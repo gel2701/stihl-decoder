@@ -20,6 +20,8 @@ import {
 import {
   isKnownPartNumberMismatch
 } from './AmazonProductionOfferContract.js';
+import { validateGtin } from './GtinValidator.js';
+import { checkHistoricalMismatch } from './HistoricalMismatches.js';
 
 export const GATE_STATUSES = {
   PASS: 'PASS',
@@ -142,6 +144,17 @@ export class TwoGateVerifier {
       }
     }
 
+    // 7. EAN/GTIN Validation (when present)
+    const rawGtin = candidate.ean_gtin || candidate.gtin || candidate.ean;
+    if (rawGtin !== undefined && rawGtin !== null && rawGtin !== '') {
+      const gtinValidation = validateGtin(rawGtin);
+      if (!gtinValidation.valid) {
+        errors.push(`INVALID_GTIN: ${gtinValidation.error}`);
+      } else {
+        checks.gtin_valid = true;
+      }
+    }
+
     const passed = errors.length === 0;
     return {
       status: passed ? GATE_STATUSES.PASS : GATE_STATUSES.FAIL,
@@ -204,16 +217,38 @@ export class TwoGateVerifier {
 
     // 4. Amazon ASIN Product Identity Proof
     const asinProof = candidate.asin_product_identity_proof || candidate.asin_identity_evidence || candidate.confirmed_product_identity;
-    if (typeof asinProof === 'string' && asinProof.trim().length > 0) {
-      checks.asin_product_identity_proof = true;
+    const isExplicitlyUnverified = candidate.status === 'ASIN_IDENTITY_UNVERIFIED' ||
+      candidate.status === 'UNVERIFIED' ||
+      candidate.asin_identity_verified === false ||
+      candidate.asin_identity_unverified === true;
+
+    if (isExplicitlyUnverified) {
+      errors.push(`ASIN_IDENTITY_UNVERIFIED: ASIN ${candidate.asin} lacks external machine-verifiable proof linking it to physical product.`);
+    } else if (typeof asinProof === 'string' && asinProof.trim().length > 0) {
+      const evidenceUrl = candidate.independent_evidence_url || '';
+      const isSolelyStihlManual = evidenceUrl.toLowerCase().endsWith('.pdf') || evidenceUrl.toLowerCase().includes('sandbysmeden');
+      const hasAmazonOrMerchantSource = Array.isArray(candidate.verifiable_evidence_sources) &&
+        candidate.verifiable_evidence_sources.some(s => s && s.type && (s.type.includes('AMAZON') || s.type.includes('MERCHANT') || s.type.includes('CATALOG')));
+
+      if (isSolelyStihlManual && !hasAmazonOrMerchantSource && !candidate.asin_identity_corroborated) {
+        errors.push(`ASIN_IDENTITY_UNVERIFIED: Manufacturer manual/IPL (${evidenceUrl}) proves model fitment (Gate 1), but cannot prove Amazon ASIN identity.`);
+      } else {
+        checks.asin_product_identity_proof = true;
+      }
     } else {
       errors.push('Missing independent Amazon ASIN product identity proof.');
     }
 
     // 5. Known Part Number Identity Mismatch Check
     const normPart = PartNormalizer.normalizePartNumber(candidate.part_number);
-    if (normPart && isKnownPartNumberMismatch(normPart, candidate.asin, candidate.product_title || candidate.matched_title || '')) {
-      errors.push(`KNOWN_PART_NUMBER_MISMATCH: ${normPart} with ASIN ${candidate.asin} is a known incorrect cross-reference.`);
+    const mismatchCheck = checkHistoricalMismatch(
+      normPart,
+      candidate.asin,
+      candidate.product_title || candidate.matched_title || candidate.product || candidate.title || '',
+      candidate.ean_gtin || candidate.gtin || candidate.ean || ''
+    );
+    if (mismatchCheck.isMismatch) {
+      errors.push(`KNOWN_PART_NUMBER_MISMATCH: ${mismatchCheck.record.reason}`);
     } else {
       checks.known_mismatch_absent = true;
     }
@@ -225,6 +260,16 @@ export class TwoGateVerifier {
       errors.push('Disallowed volatile fact present: "in_stock" must not be stored statically.');
     } else {
       checks.volatile_facts_absent = true;
+    }
+
+    // 7. Packaging & Quantity Verification (when present)
+    if (candidate.package_quantity !== undefined && candidate.package_quantity !== null) {
+      const qty = Number(candidate.package_quantity);
+      if (!Number.isInteger(qty) || qty < 1) {
+        errors.push(`Invalid package_quantity: "${candidate.package_quantity}". Must be a positive integer.`);
+      } else {
+        checks.packaging_valid = true;
+      }
     }
 
     // 7. Independent External Sources Corroborated

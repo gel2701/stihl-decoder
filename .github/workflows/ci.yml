@@ -7,6 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
+  quality-gate:
+    name: quality-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies (clean checkout)
+        run: npm ci
+
+      - name: Run fast affiliate quality gate & cross-manifest check
+        run: npm run test:gate
+
   node-contract-tests:
     name: node-contract-tests
     runs-on: ubuntu-latest

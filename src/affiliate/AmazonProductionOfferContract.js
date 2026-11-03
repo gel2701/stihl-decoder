@@ -11,6 +11,7 @@
  */
 
 import { PartNormalizer } from '../parts/PartNormalizer.js';
+import { checkHistoricalMismatch } from './HistoricalMismatches.js';
 
 export const PRODUCTION_VERIFIED_CLASSIFICATIONS = new Set([
   'VERIFIED_OEM_EXACT',
@@ -101,27 +102,8 @@ export function isValidStructuredProof(proof, isAftermarket = false) {
  */
 export function isKnownPartNumberMismatch(partNumber, asin, productOrTitle = '') {
   if (typeof partNumber !== 'string') return false;
-  const norm = PartNormalizer.normalizePartNumber(partNumber);
-  if (!norm) return false;
-  const cleanAsin = typeof asin === 'string' ? asin.trim().toUpperCase() : '';
-  const title = typeof productOrTitle === 'string' ? productOrTitle.toLowerCase() : '';
-
-  // Mismatch: 0000 400 7000 is BPMR7A; CMR6H is 0000 400 7011
-  if (norm === '00004007000') {
-    if (cleanAsin === 'B001RMA5S2') return true;
-    if (title.includes('cmr6h') || title.includes('3365')) return true;
-  }
-  // Mismatch: 0000 400 7025 is STIHL ZK C 10 (pack of 10); single piece CMR7H is a quantity/model mismatch
-  if (norm === '00004007025') {
-    if (cleanAsin === 'B07RHQ5FR4') return true;
-    if (title.includes('cmr7h') || title.includes('3066')) return true;
-  }
-  // Mismatch: 0000 642 1223 is Standard 7-Spline (SD7); Oregon 18720 is Small 7-Spline (SM7)
-  if (norm === '00006421223') {
-    if (cleanAsin === 'B000IBWVWG') return true;
-    if (title.includes('18720') || title.includes('sm7') || title.includes('small spline')) return true;
-  }
-  return false;
+  const result = checkHistoricalMismatch(partNumber, asin, productOrTitle);
+  return result.isMismatch;
 }
 
 /**

@@ -266,7 +266,8 @@ export class HttpClient {
           headers: {
             'User-Agent': this.userAgent,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.9,nl;q=0.8,de;q=0.7',
+            'Accept-Language': 'nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Cookie': 'country=nl; language=nl;',
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache',
             ...(options.headers || {})
