@@ -95,7 +95,7 @@ All EAN / UPC / GTIN values must be validated with `validateGtin()` from `src/af
 
 ---
 
-## 5. Amazon Product Verification Contract (Dual-Gate)
+## 5. Amazon Product Verification Contract (Dual-Gate & Loopholes Closed)
 
 An affiliate candidate must pass both gates in `TwoGateVerifier.js`:
 
@@ -103,5 +103,19 @@ An affiliate candidate must pass both gates in `TwoGateVerifier.js`:
 | :--- | :--- | :--- | :--- |
 | **Gate 1** | Technical & Catalog | ASIN format, allowed marketplace, canonical 11-digit STIHL part number, exists in catalog, fresh verification date, valid GTIN syntax | `GATE_1: FAIL` |
 | **Gate 2** | Product & Compatibility | OEM brand taxonomy, manufacturer MPN proof, STIHL compatibility proof, external ASIN-to-product proof, zero historical mismatches, zero volatile prices/stock | `GATE_2: FAIL` |
+
+### Closed Loopholes & Anti-Bypass Invariants:
+1. **No Self-Certified ASIN Text**: Text claims like "Agent verified", "Title match", or non-empty `asin_product_identity_proof` strings without structured external sources fail Gate 2 with `ASIN_IDENTITY_UNVERIFIED`.
+2. **Attributable External Corroboration**: Generic URLs (e.g., `amazon.nl/`, `google.com/`) and unverified source types (`AMAZON`, `MERCHANT`, `CATALOG`) are rejected. Corroboration requires attributable external merchant/distributor evidence.
+3. **No Bare Manufacturer URL Bypasses**: Manufacturer websites (e.g. `ngkntk.com`, `oregonproducts.com`, `stihl.*`) prove fitment/MPN, but cannot corroborate an Amazon ASIN unless the candidate ASIN is explicitly cited.
+4. **No Boolean Overrides**: Manually setting `asin_identity_corroborated: true` has zero effect on `TwoGateVerifier.js` evaluation.
+5. **Cross-Check Invariants**: If evidence sources claim an ASIN or GTIN differing from the candidate, verification fails with `ASIN_MISMATCH` or `GTIN_MISMATCH`. Multi-pack title contradictions with `package_quantity: 1` fail with `PACKAGE_QUANTITY_MISMATCH`.
+6. **Explicit Lifecycle Taxonomy**: Supported candidate and offer statuses are:
+   - `ACTIVE` (strictly reserved for audited live production pilot offers)
+   - `VERIFIED` / `VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE` (fully passed Gate 1 and Gate 2)
+   - `PART_COMPATIBILITY_ONLY` (fitment proven, ASIN unverified)
+   - `ASIN_IDENTITY_UNVERIFIED` (pending independent ASIN corroboration)
+   - `CONFLICTING_EVIDENCE` (incompatible claims across sources)
+   - `INCORRECT_MATCH_CONFIRMED` (rejected/blocked mismatch)
 
 If external ASIN identity is missing, the offer must remain `status: "ASIN_IDENTITY_UNVERIFIED"` with Amazon search fallback enabled. It must never be promoted to `ACTIVE` in production.

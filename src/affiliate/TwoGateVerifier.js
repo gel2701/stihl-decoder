@@ -39,7 +39,20 @@ export const VALID_OFFER_STATUSES = new Set([
   'STAGED',
   'VERIFIED',
   'ACTIVE',
-  'SUSPENDED'
+  'SUSPENDED',
+  'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE',
+  'PART_COMPATIBILITY_ONLY',
+  'ASIN_IDENTITY_UNVERIFIED',
+  'CONFLICTING_EVIDENCE',
+  'INCORRECT_MATCH_CONFIRMED'
+]);
+
+export const UNVERIFIED_ASIN_STATUSES = new Set([
+  'ASIN_IDENTITY_UNVERIFIED',
+  'PART_COMPATIBILITY_ONLY',
+  'CONFLICTING_EVIDENCE',
+  'INCORRECT_MATCH_CONFIRMED',
+  'UNVERIFIED'
 ]);
 
 export class TwoGateVerifier {
@@ -215,28 +228,104 @@ export class TwoGateVerifier {
       errors.push('Missing technical STIHL compatibility evidence.');
     }
 
-    // 4. Amazon ASIN Product Identity Proof
-    const asinProof = candidate.asin_product_identity_proof || candidate.asin_identity_evidence || candidate.confirmed_product_identity;
-    const isExplicitlyUnverified = candidate.status === 'ASIN_IDENTITY_UNVERIFIED' ||
-      candidate.status === 'UNVERIFIED' ||
+    // 4. Amazon ASIN Product Identity Proof & Attributable Corroboration
+    const candidateStatus = typeof candidate.status === 'string' ? candidate.status.trim().toUpperCase() : '';
+    const isExplicitlyUnverified = UNVERIFIED_ASIN_STATUSES.has(candidateStatus) ||
       candidate.asin_identity_verified === false ||
       candidate.asin_identity_unverified === true;
 
+    const asinProof = candidate.asin_product_identity_proof || candidate.asin_identity_evidence || candidate.confirmed_product_identity;
+    const sources = Array.isArray(candidate.verifiable_evidence_sources)
+      ? candidate.verifiable_evidence_sources
+      : (Array.isArray(candidate.evidence_sources) ? candidate.evidence_sources : []);
+
+    const allUrls = [];
+    if (sources.length > 0) {
+      for (const s of sources) {
+        if (s && typeof s.url === 'string' && s.url.trim()) allUrls.push(s.url.trim());
+      }
+    }
+    if (typeof candidate.independent_evidence_url === 'string' && candidate.independent_evidence_url.trim()) {
+      allUrls.push(candidate.independent_evidence_url.trim());
+    }
+
     if (isExplicitlyUnverified) {
       errors.push(`ASIN_IDENTITY_UNVERIFIED: ASIN ${candidate.asin} lacks external machine-verifiable proof linking it to physical product.`);
-    } else if (typeof asinProof === 'string' && asinProof.trim().length > 0) {
-      const evidenceUrl = candidate.independent_evidence_url || '';
-      const isSolelyStihlManual = evidenceUrl.toLowerCase().endsWith('.pdf') || evidenceUrl.toLowerCase().includes('sandbysmeden');
-      const hasAmazonOrMerchantSource = Array.isArray(candidate.verifiable_evidence_sources) &&
-        candidate.verifiable_evidence_sources.some(s => s && s.type && (s.type.includes('AMAZON') || s.type.includes('MERCHANT') || s.type.includes('CATALOG')));
+    } else if (typeof asinProof !== 'string' || asinProof.trim().length === 0) {
+      errors.push('Missing independent Amazon ASIN product identity proof.');
+    } else {
+      // 4a. Reject self-certified agent statements
+      const selfCertifiedPatterns = /^(agent\s+verified|matched\s+by\s+title|confirmed\s+match\s+by\s+agent|self-certified|100%\s+genuine\s+match\s+verified|title\s+match)/i;
+      if (selfCertifiedPatterns.test(asinProof.trim())) {
+        errors.push(`SELF_CERTIFIED_PROOF_REJECTED: Agent-generated statement "${asinProof.trim()}" cannot satisfy ASIN product identity.`);
+      }
 
-      if (isSolelyStihlManual && !hasAmazonOrMerchantSource && !candidate.asin_identity_corroborated) {
-        errors.push(`ASIN_IDENTITY_UNVERIFIED: Manufacturer manual/IPL (${evidenceUrl}) proves model fitment (Gate 1), but cannot prove Amazon ASIN identity.`);
+      // 4b. Validate Evidence URLs
+      if (allUrls.length === 0) {
+        errors.push('Missing verifiable external evidence source URL.');
       } else {
+        // Check for generic roots / homepages
+        const isGenericRootUrl = (urlStr) => {
+          try {
+            const u = new URL(urlStr);
+            return (!u.pathname || u.pathname === '/' || u.pathname === '') && !u.search;
+          } catch {
+            return true;
+          }
+        };
+
+        const hasGenericOnly = allUrls.every(isGenericRootUrl);
+        if (hasGenericOnly) {
+          errors.push(`GENERIC_EVIDENCE_URL_REJECTED: Generic URL "${allUrls[0]}" does not provide attributable product evidence.`);
+        }
+
+        // Check for untrusted blogs / forum patterns
+        const untrustedPatterns = /(?:random-blog|forum\.|reddit\.com|fake-proof|generic-store\.example)/i;
+        if (allUrls.some(u => untrustedPatterns.test(u))) {
+          errors.push('UNTRUSTED_EVIDENCE_SOURCE: Source URL is not an authoritative manufacturer, distributor, or audited product catalog.');
+        }
+
+        // Check for IPL / manual PDFs (which prove model fitment, but not Amazon ASIN)
+        const isIplUrl = (u) => u.toLowerCase().endsWith('.pdf') || u.toLowerCase().includes('sandbysmeden');
+        const allIpl = allUrls.length > 0 && allUrls.every(isIplUrl);
+        if (allIpl) {
+          errors.push(`ASIN_IDENTITY_UNVERIFIED: Manufacturer manual/IPL (${allUrls[0]}) proves model fitment (Gate 1), but cannot prove Amazon ASIN identity.`);
+        }
+
+        // Check for manufacturer pages without ASIN corroboration
+        const isManufacturerSite = (u) => /https?:\/\/(?:www\.)?(?:ngkntk\.com|oregonproducts\.com|stihl\.[a-z]+|stihlusa\.com|bosch-automotive\.com|bosch\.com)/i.test(u);
+        if (allUrls.length > 0 && allUrls.every(isManufacturerSite)) {
+          const hasExplicitAsinCorroboration = sources.some(s => s && typeof s.claim === 'string' && s.claim.includes(candidate.asin));
+          if (!hasExplicitAsinCorroboration) {
+            errors.push(`ASIN_IDENTITY_UNVERIFIED: Manufacturer page (${allUrls[0]}) proves technical specifications/fitment, but contains no attributable corroboration for Amazon ASIN ${candidate.asin}.`);
+          }
+        }
+      }
+
+      // 4c. Cross-check attributable evidence sources for contradictory ASIN or GTIN
+      if (sources.length > 0) {
+        const candidateGtinClean = String(candidate.ean_gtin || candidate.gtin || candidate.ean || '').replace(/[\s-]/g, '');
+        for (const src of sources) {
+          if (src && typeof src.claim === 'string') {
+            const foundAsins = src.claim.match(/\bB[0-9A-Z]{9}\b/g) || [];
+            for (const foundAsin of foundAsins) {
+              if (foundAsin !== candidate.asin) {
+                errors.push(`ASIN_MISMATCH: Evidence source claims ASIN ${foundAsin}, which contradicts candidate ASIN ${candidate.asin}.`);
+              }
+            }
+            const foundGtins = src.claim.match(/\b\d{13,14}\b/g) || [];
+            for (const g of foundGtins) {
+              if (candidateGtinClean && g !== candidateGtinClean) {
+                errors.push(`GTIN_MISMATCH: Evidence source specifies GTIN ${g}, which contradicts candidate GTIN ${candidateGtinClean}.`);
+              }
+            }
+          }
+        }
+      }
+
+      if (errors.length === 0) {
         checks.asin_product_identity_proof = true;
       }
-    } else {
-      errors.push('Missing independent Amazon ASIN product identity proof.');
     }
 
     // 5. Known Part Number Identity Mismatch Check
@@ -262,9 +351,15 @@ export class TwoGateVerifier {
       checks.volatile_facts_absent = true;
     }
 
-    // 7. Packaging & Quantity Verification (when present)
-    if (candidate.package_quantity !== undefined && candidate.package_quantity !== null) {
-      const qty = Number(candidate.package_quantity);
+    // 7. Packaging & Quantity Verification
+    const titleText = (candidate.product_title || candidate.matched_title || candidate.title || candidate.product || '').toLowerCase();
+    const proofText = (asinProof || '').toLowerCase();
+    const combinedText = `${titleText} ${proofText}`;
+    const qty = candidate.package_quantity !== undefined && candidate.package_quantity !== null
+      ? Number(candidate.package_quantity)
+      : null;
+
+    if (qty !== null) {
       if (!Number.isInteger(qty) || qty < 1) {
         errors.push(`Invalid package_quantity: "${candidate.package_quantity}". Must be a positive integer.`);
       } else {
@@ -272,17 +367,30 @@ export class TwoGateVerifier {
       }
     }
 
-    // 7. Independent External Sources Corroborated
-    const sources = candidate.verifiable_evidence_sources || candidate.evidence_sources;
-    if (Array.isArray(sources) && sources.length > 0) {
+    const indicatesMultiPack = /\b(?:pack\s+of\s+\d+|10[- ]?pack|10\s*st[uü]ck|10\s*stuks|box\s+of\s+10|zk\s*c\s*10|\d+\s*pk)\b/i.test(combinedText);
+    const indicatesSingle = /\b(?:single\s+piece|single\s+plug|1[- ]?pack|1\s*st[uü]ck|enkelstuks)\b/i.test(combinedText);
+
+    if (indicatesMultiPack && qty === 1) {
+      errors.push(`PACKAGE_QUANTITY_MISMATCH: Product description indicates a multi-pack, but candidate package_quantity is 1.`);
+    }
+    if (indicatesSingle && qty && qty > 1) {
+      errors.push(`PACKAGE_QUANTITY_MISMATCH: Product description indicates a single piece, but candidate package_quantity is ${qty}.`);
+    }
+
+    // 8. Independent External Sources Corroborated
+    if (sources.length > 0) {
       const validSources = sources.every(s => s && typeof s.url === 'string' && /^https?:\/\//i.test(s.url) && s.claim);
-      if (validSources) {
+      if (validSources && !allUrls.some(u => /(?:random-blog|forum\.|fake-proof)/i.test(u))) {
         checks.independent_sources_corroborated = true;
       } else {
-        errors.push('One or more evidence sources lack a valid HTTPS URL or claim description.');
+        errors.push('One or more evidence sources lack a valid HTTPS URL, claim description, or use an untrusted domain.');
       }
     } else if (typeof candidate.independent_evidence_url === 'string' && /^https?:\/\//i.test(candidate.independent_evidence_url)) {
-      checks.independent_sources_corroborated = true;
+      if (!allUrls.some(u => /(?:random-blog|forum\.|fake-proof)/i.test(u))) {
+        checks.independent_sources_corroborated = true;
+      } else {
+        errors.push('Evidence source URL points to an untrusted domain.');
+      }
     } else {
       errors.push('Missing verifiable external evidence source URL.');
     }

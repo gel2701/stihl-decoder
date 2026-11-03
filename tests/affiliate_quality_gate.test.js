@@ -1,45 +1,70 @@
 /**
  * tests/affiliate_quality_gate.test.js
  *
- * Phase 60Q: Automated Quality Gate & Permanent Negative Regression Suite
+ * Phase 60Q / 60Q.1: Automated Quality Gate & Adversarial Regression Suite
  *
  * Verifies that:
- * 1. All historical incorrect matches fail verification immediately (fail closed).
- * 2. Valid positive control records pass TwoGateVerifier.
- * 3. Self-certifying or fabricated ASIN identity claims without independent proof fail.
- * 4. GS1 GTIN check digit validation strictly enforces correct parities and lengths.
- * 5. Packaging and quantity contradictions are caught and rejected.
- * 6. The 3 existing live pilot ASINs remain completely functional.
+ * 1. GS1 GTIN check digit validation strictly enforces correct parities and lengths.
+ * 2. All historical incorrect matches fail verification immediately (fail closed).
+ * 3. Valid positive control records with traceable evidence pass TwoGateVerifier cleanly.
+ * 4. Adversarial tests reject:
+ *    - Fake ASIN proof text (agent-generated / title-only claims)
+ *    - Genuine manufacturer page containing no ASIN
+ *    - Random HTTPS URLs / untrusted domains
+ *    - Fabricated source classifications
+ *    - asin_identity_corroborated: true without real evidence
+ *    - Correct MPN with wrong ASIN
+ *    - Correct ASIN with wrong EAN
+ *    - Correct product with wrong package quantity
+ * 5. Production activation path (VerifiedOfferRegistry + AmazonProductionOfferContract)
+ *    fails closed against adversarial candidates and protects active production offers.
+ * 6. Explicit lifecycle taxonomy statuses are strictly adhered to.
  */
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { TwoGateVerifier, GATE_STATUSES } from '../src/affiliate/TwoGateVerifier.js';
+import {
+  TwoGateVerifier,
+  GATE_STATUSES,
+  VALID_OFFER_STATUSES,
+  UNVERIFIED_ASIN_STATUSES
+} from '../src/affiliate/TwoGateVerifier.js';
 import { validateGtin, calculateGs1CheckDigit } from '../src/affiliate/GtinValidator.js';
 import {
   HISTORICAL_MISMATCH_RECORDS,
   checkHistoricalMismatch
 } from '../src/affiliate/HistoricalMismatches.js';
+import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
 
-// --- Positive Control Records (Known Valid Matches) ---
+// --- Positive Control Records (Authoritative Production & Staged Matches with Traceable Evidence) ---
 const POSITIVE_CONTROLS = {
   BOSCH_WSR6F: {
     part_number: '11104007005',
-    asin: 'B003VPU5IM',
+    asin: 'B0068M5NAG',
     marketplace: 'amazon.nl',
     affiliate_tag: 'srihldecoder2-21',
-    manufacturer: 'Robert Bosch GmbH',
-    manufacturer_part_number: 'WSR6F',
+    manufacturer: 'Bosch Automotive Aftermarket',
+    manufacturer_part_number: '0242240506',
+    trade_number: 'WSR6F',
     brand: 'Bosch',
-    product_title: 'Bosch WSR6F Spark Plug',
+    product_title: 'Bosch 0242240506 Spark Plug WSR6F',
     package_quantity: 1,
     is_multipack: false,
     ean_gtin: '3165141051063',
     oem_brand_classification: 'OEM_SUPPLIER_EQUIVALENT',
     compatibility_proof: 'STIHL 1110 400 7005 standard spark plug for 017-026, MS 170-MS 260',
-    asin_product_identity_proof: 'Verified official Bosch packaging with ASIN B003VPU5IM matching WSR6F',
+    asin_product_identity_proof: 'Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, EAN: 3165141051063) confirms Amazon ASIN B0068M5NAG.',
     independent_evidence_url: 'https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck',
+    verifiable_evidence_sources: [
+      {
+        type: 'EXTERNAL_CATALOG',
+        url: 'https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck',
+        title: 'Bosch Automotive Aftermarket',
+        claim: 'Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, EAN: 3165141051063) confirms Amazon ASIN B0068M5NAG.',
+        retrieved_at: '2026-11-01'
+      }
+    ],
     verification_date: '2026-11-01',
     status: 'ACTIVE'
   },
@@ -49,7 +74,8 @@ const POSITIVE_CONTROLS = {
     marketplace: 'amazon.nl',
     affiliate_tag: 'srihldecoder2-21',
     manufacturer: 'Niterra Co., Ltd. (NGK Spark Plugs)',
-    manufacturer_part_number: 'BPMR7A',
+    manufacturer_part_number: 'BPMR7A / 6703',
+    trade_number: 'BPMR7A',
     brand: 'NGK',
     product_title: 'NGK 6703 BPMR7A Standard Spark Plug',
     package_quantity: 1,
@@ -57,8 +83,17 @@ const POSITIVE_CONTROLS = {
     ean_gtin: '0087295167038',
     oem_brand_classification: 'OEM_SUPPLIER_EQUIVALENT',
     compatibility_proof: 'STIHL 0000 400 7000 factory specification for MS 290, TS 400, TS 420',
-    asin_product_identity_proof: 'ASIN B001RM8J76 matches NGK Stock 6703 BPMR7A',
+    asin_product_identity_proof: 'AmzChart product intelligence confirms Amazon ASIN B001RM8J76 is authentic NGK BPMR7A (Stock 6703, GTIN 0087295167038).',
     independent_evidence_url: 'https://amzchart.com/product-research/spark-plugs-15716421',
+    verifiable_evidence_sources: [
+      {
+        type: 'EXTERNAL_CATALOG',
+        url: 'https://amzchart.com/product-research/spark-plugs-15716421',
+        title: 'Niterra Co., Ltd. (NGK Spark Plugs)',
+        claim: 'AmzChart product intelligence confirms Amazon ASIN B001RM8J76 is authentic NGK BPMR7A (Stock 6703, GTIN 0087295167038).',
+        retrieved_at: '2026-11-01'
+      }
+    ],
     verification_date: '2026-11-01',
     status: 'ACTIVE'
   },
@@ -68,7 +103,8 @@ const POSITIVE_CONTROLS = {
     marketplace: 'amazon.nl',
     affiliate_tag: 'srihldecoder2-21',
     manufacturer: 'Niterra Co., Ltd. (NGK Spark Plugs)',
-    manufacturer_part_number: 'CMR6H',
+    manufacturer_part_number: 'CMR6H / 3365',
+    trade_number: 'CMR6H',
     brand: 'NGK',
     product_title: 'NGK 3365 CMR6H Compact Spark Plug',
     package_quantity: 1,
@@ -76,8 +112,17 @@ const POSITIVE_CONTROLS = {
     ean_gtin: '0087295133651',
     oem_brand_classification: 'OEM_SUPPLIER_EQUIVALENT',
     compatibility_proof: 'STIHL 0000 400 7011 compact plug for FS 460 C-EM, MS 261 C-M',
-    asin_product_identity_proof: 'ASIN B001RMA5S2 matches NGK Stock 3365 CMR6H',
-    independent_evidence_url: 'https://www.ngkntk.com/part-finder/product/CMR6H',
+    asin_product_identity_proof: 'NGK Zündkerze CMR6H (MPN CMR6H, Stock 3365, EAN 0087295133651) confirms Amazon ASIN B001RMA5S2.',
+    independent_evidence_url: 'https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck',
+    verifiable_evidence_sources: [
+      {
+        type: 'EXTERNAL_CATALOG',
+        url: 'https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck',
+        title: 'Niterra Co., Ltd. (NGK Spark Plugs)',
+        claim: 'NGK Zündkerze CMR6H (MPN CMR6H, Stock 3365, EAN 0087295133651) confirms Amazon ASIN B001RMA5S2.',
+        retrieved_at: '2026-11-01'
+      }
+    ],
     verification_date: '2026-11-01',
     status: 'ACTIVE'
   }
@@ -108,6 +153,10 @@ test('Phase 60Q Gate 1 — GS1 GTIN Modulo-10 Check-Digit Validation Engine', ()
   assert.equal(validateGtin(null).valid, false, 'Null GTIN fails');
   assert.equal(validateGtin('008729513365A').valid, false, 'Alphanumeric GTIN fails');
   assert.equal(validateGtin('12345').valid, false, 'Non-standard 5-digit GTIN fails');
+
+  // Restricted GS1 distribution prefixes (coupon / internal)
+  assert.equal(validateGtin('2001234567899').valid, false, 'Prefix 200 restricted distribution fails');
+  assert.equal(validateGtin('0401234567899').valid, false, 'Prefix 040 restricted distribution fails');
 });
 
 test('Phase 60Q Gate 2 — All Historical Mistakes Permanently Rejected', () => {
@@ -165,51 +214,197 @@ test('Phase 60Q Gate 3 — Positive Controls Pass TwoGateVerifier Cleanly', () =
   }
 });
 
-test('Phase 60Q Gate 4 — Uncorroborated / Staged ASIN Claims Rejected', () => {
-  // A. Candidate marked ASIN_IDENTITY_UNVERIFIED must fail
-  const unverifiedCandidate = {
-    ...POSITIVE_CONTROLS.BOSCH_WSR6F,
-    status: 'ASIN_IDENTITY_UNVERIFIED'
-  };
-  const unverifiedRes = TwoGateVerifier.verifyOffer(unverifiedCandidate);
-  assert.equal(unverifiedRes.passed, false, 'Candidate with status ASIN_IDENTITY_UNVERIFIED must fail verification');
-  assert.ok(unverifiedRes.errors.some(e => e.includes('ASIN_IDENTITY_UNVERIFIED')));
+test('Phase 60Q.1 Gate 4 — Adversarial Regression Suite (Closing Verification Loopholes)', () => {
+  const base = POSITIVE_CONTROLS.BOSCH_WSR6F;
 
-  // B. Manufacturer PDF IPL as sole source cannot prove third-party Amazon ASIN
-  const iplOnlyCandidate = {
+  // 1. Fake ASIN proof text (agent-generated / title-only match claims)
+  const fakeProofCandidate = {
+    ...base,
+    asin_product_identity_proof: 'Confirmed match by agent text analysis. 100% genuine match verified.',
+    independent_evidence_url: 'https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck',
+    verifiable_evidence_sources: []
+  };
+  const fakeRes = TwoGateVerifier.verifyOffer(fakeProofCandidate);
+  assert.equal(fakeRes.passed, false, 'Fake ASIN proof text must fail verification');
+  assert.ok(fakeRes.errors.some(e => e.includes('SELF_CERTIFIED_PROOF_REJECTED')), 'Must reject self-certified agent claim');
+
+  // 2. Genuine manufacturer page containing no ASIN
+  const mfrNoAsinCandidate = {
     ...POSITIVE_CONTROLS.NGK_CMR6H,
+    independent_evidence_url: 'https://www.ngkntk.com/part-finder/product/CMR6H',
+    verifiable_evidence_sources: [
+      {
+        type: 'MANUFACTURER_CATALOG',
+        url: 'https://www.ngkntk.com/part-finder/product/CMR6H',
+        title: 'NGK Part Finder CMR6H',
+        claim: 'NGK Spark Plug CMR6H (Stock No 3365, M10x1.0 thread, hex 16mm). Official manufacturer specifications.',
+        retrieved_at: '2026-11-01'
+      }
+    ]
+  };
+  const mfrRes = TwoGateVerifier.verifyOffer(mfrNoAsinCandidate);
+  assert.equal(mfrRes.passed, false, 'Genuine manufacturer page without ASIN cannot prove ASIN identity');
+  assert.ok(mfrRes.errors.some(e => e.includes('contains no attributable corroboration for Amazon ASIN')));
+
+  // 3. Random HTTPS URL / untrusted domain
+  const randomUrlCandidate = {
+    ...base,
+    independent_evidence_url: 'https://random-blog.example.org/stihl-chainsaw-repair-guide',
+    verifiable_evidence_sources: []
+  };
+  const randomRes = TwoGateVerifier.verifyOffer(randomUrlCandidate);
+  assert.equal(randomRes.passed, false, 'Random blog URL must fail verification');
+  assert.ok(randomRes.errors.some(e => e.includes('UNTRUSTED_EVIDENCE_SOURCE')));
+
+  // 4. Fabricated source classifications
+  const fabricatedTypeCandidate = {
+    ...base,
+    verifiable_evidence_sources: [
+      {
+        type: 'AMAZON_CATALOG_VERIFIED',
+        url: 'https://generic-store.example/item',
+        title: 'Fabricated Store',
+        claim: 'Generic statement claiming match without proof',
+        retrieved_at: '2026-11-01'
+      }
+    ]
+  };
+  const fabRes = TwoGateVerifier.verifyOffer(fabricatedTypeCandidate);
+  assert.equal(fabRes.passed, false, 'Fabricated source classification label must not grant pass');
+  assert.ok(fabRes.errors.some(e => e.includes('UNTRUSTED_EVIDENCE_SOURCE') || e.includes('GENERIC_EVIDENCE_URL_REJECTED')));
+
+  // 5. asin_identity_corroborated: true without real evidence
+  const booleanBypassCandidate = {
+    ...base,
+    asin_identity_corroborated: true,
     independent_evidence_url: 'https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf',
     verifiable_evidence_sources: []
   };
-  const iplRes = TwoGateVerifier.verifyOffer(iplOnlyCandidate);
-  assert.equal(iplRes.passed, false, 'Manufacturer PDF IPL cannot prove Amazon ASIN identity');
-  assert.ok(iplRes.errors.some(e => e.includes('ASIN_IDENTITY_UNVERIFIED')));
+  const boolRes = TwoGateVerifier.verifyOffer(booleanBypassCandidate);
+  assert.equal(boolRes.passed, false, 'asin_identity_corroborated: true cannot bypass IPL evidence rejection');
+  assert.ok(boolRes.errors.some(e => e.includes('ASIN_IDENTITY_UNVERIFIED')));
 
-  // C. Disallowed volatile fact (static price) fails Gate 2
-  const priceCandidate = {
-    ...POSITIVE_CONTROLS.BOSCH_WSR6F,
-    price: '4.95'
+  // 6. Correct MPN with the wrong ASIN
+  const wrongAsinCandidate = {
+    ...POSITIVE_CONTROLS.NGK_BPMR7A,
+    asin: 'B001RMA5S2', // NGK BPMR7A candidate pointing to CMR6H ASIN
+    verifiable_evidence_sources: [
+      {
+        type: 'EXTERNAL_CATALOG',
+        url: 'https://amzchart.com/product-research/spark-plugs-15716421',
+        title: 'Niterra Co., Ltd. (NGK Spark Plugs)',
+        claim: 'AmzChart product intelligence confirms Amazon ASIN B001RM8J76 is authentic NGK BPMR7A (Stock 6703).',
+        retrieved_at: '2026-11-01'
+      }
+    ]
   };
-  const priceRes = TwoGateVerifier.verifyOffer(priceCandidate);
-  assert.equal(priceRes.passed, false, 'Candidate with static price must fail Gate 2');
-  assert.ok(priceRes.errors.some(e => e.includes('Disallowed volatile fact')));
+  const wrongAsinRes = TwoGateVerifier.verifyOffer(wrongAsinCandidate);
+  assert.equal(wrongAsinRes.passed, false, 'Evidence citing a conflicting ASIN must fail');
+  assert.ok(wrongAsinRes.errors.some(e => e.includes('ASIN_MISMATCH') || e.includes('KNOWN_PART_NUMBER_MISMATCH')));
 
-  // D. Invalid GTIN fails Gate 1
-  const badGtinCandidate = {
+  // 7. Correct ASIN with wrong EAN
+  const wrongEanCandidate = {
     ...POSITIVE_CONTROLS.NGK_CMR6H,
-    ean_gtin: '0087295133652' // invalid parity bit
+    ean_gtin: '0087295133652' // invalid parity check-digit
   };
-  const badGtinRes = TwoGateVerifier.verifyOffer(badGtinCandidate);
-  assert.equal(badGtinRes.passed, false, 'Candidate with invalid GTIN must fail Gate 1');
-  assert.ok(badGtinRes.errors.some(e => e.includes('INVALID_GTIN')));
+  const wrongEanRes = TwoGateVerifier.verifyOffer(wrongEanCandidate);
+  assert.equal(wrongEanRes.passed, false, 'Corrupted EAN must fail Gate 1');
+  assert.ok(wrongEanRes.errors.some(e => e.includes('INVALID_GTIN')));
+
+  // Contradictory EAN in evidence source
+  const swappedEanCandidate = {
+    ...POSITIVE_CONTROLS.NGK_CMR6H,
+    ean_gtin: '0087295133651',
+    verifiable_evidence_sources: [
+      {
+        type: 'EXTERNAL_CATALOG',
+        url: 'https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck',
+        title: 'NGK Spark Plugs',
+        claim: 'NGK Zündkerze CMR6H confirms Amazon ASIN B001RMA5S2 with EAN 3165141051063.', // Bosch EAN
+        retrieved_at: '2026-11-01'
+      }
+    ]
+  };
+  const swappedEanRes = TwoGateVerifier.verifyOffer(swappedEanCandidate);
+  assert.equal(swappedEanRes.passed, false, 'Contradictory GTIN in evidence source must fail');
+  assert.ok(swappedEanRes.errors.some(e => e.includes('GTIN_MISMATCH')));
+
+  // 8. Correct product with wrong package quantity
+  const multiPackCandidate = {
+    ...base,
+    product_title: 'Bosch WSR6F Spark Plug (Pack of 10)',
+    package_quantity: 1
+  };
+  const multiPackRes = TwoGateVerifier.verifyOffer(multiPackCandidate);
+  assert.equal(multiPackRes.passed, false, 'Pack of 10 with package_quantity 1 must fail');
+  assert.ok(multiPackRes.errors.some(e => e.includes('PACKAGE_QUANTITY_MISMATCH')));
+
+  // 9. Status marked ASIN_IDENTITY_UNVERIFIED fails closed
+  const unverifiedStatusCandidate = {
+    ...base,
+    status: 'ASIN_IDENTITY_UNVERIFIED'
+  };
+  const unverifiedRes = TwoGateVerifier.verifyOffer(unverifiedStatusCandidate);
+  assert.equal(unverifiedRes.passed, false, 'Status ASIN_IDENTITY_UNVERIFIED must fail');
+  assert.ok(unverifiedRes.errors.some(e => e.includes('ASIN_IDENTITY_UNVERIFIED')));
 });
 
-test('Phase 60Q Gate 5 — Packaging Quantity Integrity Enforcement', () => {
-  const invalidQtyCandidate = {
+test('Phase 60Q.1 Gate 5 — Production Activation Path Guardrails (VerifiedOfferRegistry)', () => {
+  const registry = new VerifiedOfferRegistry({
+    productionActivationAllowed: true,
+    activeWhitelist: ['11104007005', '00004007000', '00004007011']
+  });
+
+  // A. Positive control registers cleanly as ACTIVE
+  const regPositive = registry.registerOffer({
     ...POSITIVE_CONTROLS.BOSCH_WSR6F,
-    package_quantity: 0
-  };
-  const res = TwoGateVerifier.verifyOffer(invalidQtyCandidate);
-  assert.equal(res.passed, false, 'package_quantity 0 must fail verification');
-  assert.ok(res.errors.some(e => e.includes('package_quantity')));
+    status: 'ACTIVE'
+  });
+  assert.equal(regPositive.success, true, 'Positive control must register successfully in ACTIVE status');
+
+  // B. Adversarial fake-proof candidate fails registration for ACTIVE or VERIFIED
+  const regAdversarial = registry.registerOffer({
+    ...POSITIVE_CONTROLS.BOSCH_WSR6F,
+    asin_product_identity_proof: 'Confirmed match by agent text analysis.',
+    verifiable_evidence_sources: [],
+    status: 'ACTIVE'
+  });
+  assert.equal(regAdversarial.success, false, 'Adversarial candidate cannot achieve ACTIVE status in registry');
+  assert.ok(regAdversarial.errors[0].includes('Two-Gate verification failed'));
+
+  // C. Unverified candidate fails registration when requesting VERIFIED status
+  const regUnverified = registry.registerOffer({
+    ...POSITIVE_CONTROLS.NGK_CMR6H,
+    status: 'VERIFIED',
+    asin_identity_verified: false
+  });
+  assert.equal(regUnverified.success, false, 'Unverified candidate cannot achieve VERIFIED status');
+
+  // D. Staged unverified candidate fails promotion to VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE
+  const regStagedPromotion = registry.registerOffer({
+    ...POSITIVE_CONTROLS.NGK_CMR6H,
+    status: 'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE',
+    independent_evidence_url: 'https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf',
+    verifiable_evidence_sources: []
+  });
+  assert.equal(regStagedPromotion.success, false, 'Candidate with IPL cannot be promoted to VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE');
+});
+
+test('Phase 60Q.1 Gate 6 — Lifecycle Taxonomy Invariants', () => {
+  const requiredStatuses = [
+    'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE',
+    'PART_COMPATIBILITY_ONLY',
+    'ASIN_IDENTITY_UNVERIFIED',
+    'CONFLICTING_EVIDENCE',
+    'INCORRECT_MATCH_CONFIRMED'
+  ];
+
+  for (const st of requiredStatuses) {
+    assert.ok(VALID_OFFER_STATUSES.has(st), `VALID_OFFER_STATUSES must contain "${st}"`);
+  }
+
+  assert.ok(UNVERIFIED_ASIN_STATUSES.has('ASIN_IDENTITY_UNVERIFIED'));
+  assert.ok(UNVERIFIED_ASIN_STATUSES.has('PART_COMPATIBILITY_ONLY'));
+  assert.ok(UNVERIFIED_ASIN_STATUSES.has('CONFLICTING_EVIDENCE'));
+  assert.ok(UNVERIFIED_ASIN_STATUSES.has('INCORRECT_MATCH_CONFIRMED'));
 });

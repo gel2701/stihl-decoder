@@ -87,7 +87,7 @@ export const HISTORICAL_MISMATCH_RECORDS = [
     claimed_product: 'Bosch WSR 6 F Spark Plug',
     claimed_mpn: 'WSR6F',
     mismatch_type: 'ASIN_IDENTITY_INVERSION',
-    reason: 'ASIN B001RM8J76 is NGK BPMR7A (Stock 6703); Bosch WSR6F is ASIN B003VPU5IM. Claiming B001RM8J76 for WSR6F is an identity error.',
+    reason: 'ASIN B001RM8J76 is NGK BPMR7A (Stock 6703); Bosch WSR6F is authoritative production ASIN B0068M5NAG. Claiming B001RM8J76 for WSR6F is an identity error.',
     rejection_gate: 'GATE_2'
   },
   {

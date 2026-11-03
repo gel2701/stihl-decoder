@@ -83,7 +83,11 @@ export class VerifiedOfferRegistry {
     }
 
     // Two-Gate Guard: An offer cannot be VERIFIED or ACTIVE if it fails Two-Gate Verification
-    if ((requestedStatus === 'VERIFIED' || requestedStatus === 'ACTIVE') && !verification.passed) {
+    const requiresVerification = requestedStatus === 'VERIFIED' ||
+      requestedStatus === 'ACTIVE' ||
+      requestedStatus === 'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE';
+
+    if (requiresVerification && !verification.passed) {
       return {
         success: false,
         errors: [`Cannot set status to ${requestedStatus} because Two-Gate verification failed: ${verification.errors.join('; ')}`]
