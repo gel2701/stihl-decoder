@@ -19,6 +19,12 @@ export const AMAZON_MATCH_TYPES = {
   API_HIGH_CONFIDENCE: 'API_HIGH_CONFIDENCE'
 };
 
+export const COMMERCIAL_TIERS = {
+  DIRECT_VERIFIED: 'DIRECT_VERIFIED',
+  TARGETED_SEARCH: 'TARGETED_SEARCH',
+  INFORMATION_ONLY: 'INFORMATION_ONLY'
+};
+
 export const VERIFICATION_STATUSES = {
   VERIFIED_EXACT_MATCH: 'VERIFIED_EXACT_MATCH'
 };
@@ -71,6 +77,83 @@ export function isValidManualAsinOverride(override) {
   if (!override || typeof override !== 'object') return false;
   if (override.enabled !== true) return false;
   return isProductionVerifiedAmazonOffer(override);
+}
+
+/**
+ * Extracts at most 2 core keywords from a part name for targeted search.
+ * Filters out brand names, stop words, and noise.
+ * @param {string} rawPartName
+ * @returns {string}
+ */
+export function extractTargetedSearchKeywords(rawPartName) {
+  if (!rawPartName || typeof rawPartName !== 'string') return '';
+  let clean = rawPartName.toLowerCase().replace(/[\r\n\t]+/g, ' ');
+  clean = clean.replace(/\b(?:stihl|oem|no\.|nr\.|art\.|artikel|onderdeel|part|piece|st[uü]ck)\b/gi, ' ');
+  clean = clean.replace(/\b(?:ms|fs|bg|br|ts|fc|hl|hs|ht|km|bt)\s*\d+[a-z0-9\-\/]*\b/gi, ' ');
+  clean = clean.replace(/[^a-z0-9äöüëï\s]/g, ' ');
+  const stopWords = new Set([
+    'voor', 'van', 'de', 'het', 'een', 'der', 'die', 'das', 'den', 'dem', 'und', 'en', 'met',
+    'mit', 'für', 'fur', 'for', 'the', 'and', 'with', 'original', 'origineel', 'passend',
+    'geschikt', 'set', 'compleet', 'complete', 'standard', 'standaard'
+  ]);
+  const tokens = clean.split(/\s+/).filter(t => t.length > 2 && !stopWords.has(t) && !/^\d{11}$/.test(t));
+  return tokens.slice(0, 2).join(' ');
+}
+
+/**
+ * Builds safe Amazon search query for targeted search.
+ * @param {string} canonicalPartNumber
+ * @param {string|Object} [variantOrOptions]
+ * @param {Object} [extraOptions]
+ * @returns {string}
+ */
+export function buildSearchQuery(canonicalPartNumber, variantOrOptions = null, extraOptions = {}) {
+  let queryVariant = null;
+  let partName = null;
+  let mpn = null;
+
+  if (typeof variantOrOptions === 'string') {
+    if (variantOrOptions === QUERY_VARIANTS.VARIANT_A || variantOrOptions === QUERY_VARIANTS.VARIANT_B) {
+      queryVariant = variantOrOptions;
+      if (typeof extraOptions === 'string') {
+        partName = extraOptions;
+      } else if (extraOptions && typeof extraOptions === 'object') {
+        partName = extraOptions.partName || null;
+        mpn = extraOptions.mpn || null;
+      }
+    } else {
+      partName = variantOrOptions;
+      if (extraOptions && typeof extraOptions === 'object') {
+        queryVariant = extraOptions.queryVariant || null;
+        mpn = extraOptions.mpn || null;
+      }
+    }
+  } else if (variantOrOptions && typeof variantOrOptions === 'object') {
+    queryVariant = variantOrOptions.queryVariant || null;
+    partName = variantOrOptions.partName || null;
+    mpn = variantOrOptions.mpn || null;
+  }
+
+  const variant = queryVariant || getDeterministicQueryVariant(canonicalPartNumber);
+  const formattedPartNumber = PartNormalizer.formatPartNumber(canonicalPartNumber);
+  const partNoToken = (variant === QUERY_VARIANTS.VARIANT_A)
+    ? formattedPartNumber
+    : canonicalPartNumber;
+
+  let query = `STIHL ${partNoToken}`;
+  const keywords = extractTargetedSearchKeywords(partName);
+  if (keywords) {
+    query += ` ${keywords}`;
+  }
+
+  if (mpn && typeof mpn === 'string') {
+    const cleanMpn = mpn.trim().replace(/[^a-zA-Z0-9\-\/]/g, '');
+    if (cleanMpn && !query.toLowerCase().includes(cleanMpn.toLowerCase())) {
+      query += ` ${cleanMpn}`;
+    }
+  }
+
+  return query;
 }
 
 export class AmazonAffiliateProvider extends AffiliateProvider {
@@ -166,22 +249,24 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
   }
 
   /**
-   * Builds safe, encoded Amazon search URL with deterministic A/B query variant.
+   * Builds safe, encoded Amazon search URL with deterministic A/B query variant
+   * and optional targeted keywords (part name, MPN).
    * @param {string} canonicalPartNumber
    * @param {string} tag
-   * @param {string} [queryVariant]
+   * @param {string|Object} [variantOrOptions]
+   * @param {Object} [extraOptions]
+   * @param {string} [marketplace]
    * @returns {string}
    */
-  buildSearchUrl(canonicalPartNumber, tag, queryVariant = null) {
-    const variant = queryVariant || getDeterministicQueryVariant(canonicalPartNumber);
-    const formattedPartNumber = PartNormalizer.formatPartNumber(canonicalPartNumber);
-    const query = (variant === QUERY_VARIANTS.VARIANT_A)
-      ? `STIHL ${formattedPartNumber}`
-      : `STIHL ${canonicalPartNumber}`;
+  buildSearchUrl(canonicalPartNumber, tag, variantOrOptions = null, extraOptions = {}, marketplace = this.marketplace) {
+    const query = buildSearchQuery(canonicalPartNumber, variantOrOptions, extraOptions);
+    const targetMarketplace = ALLOWED_AMAZON_MARKETPLACES.has(marketplace)
+      ? marketplace
+      : this.marketplace;
     const params = new URLSearchParams();
     params.set('k', query);
     params.set('tag', tag);
-    return `https://${this.marketplace}/s?${params.toString()}`;
+    return `https://${targetMarketplace}/s?${params.toString()}`;
   }
 
   /**
@@ -281,6 +366,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
           url: asinUrl,
           affiliate_url: asinUrl,
           link_type: 'DIRECT_ASIN',
+          tier: COMMERCIAL_TIERS.DIRECT_VERIFIED,
           title: manualOverride.title || (params.partName ? `STIHL ${params.partName} (${formattedPartNumber})` : `STIHL ${formattedPartNumber}`),
           price: null,
           currency: 'EUR',
@@ -303,7 +389,12 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     // 2. Safe deterministic Amazon search link fallback
     const queryVariant = params.queryVariant || getDeterministicQueryVariant(canonicalPartNumber);
-    const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag, queryVariant);
+    const searchUrl = this.buildSearchUrl(canonicalPartNumber, defaultTag, {
+      queryVariant,
+      partName: params.partName,
+      mpn: params.mpn,
+      replacedBy: params.replacedBy
+    });
     const displayMarketplace = this.marketplace.charAt(0).toUpperCase() + this.marketplace.slice(1);
     const offers = [{
       provider: 'amazon',
@@ -314,6 +405,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       url: searchUrl,
       affiliate_url: searchUrl,
       link_type: 'SEARCH_FALLBACK',
+      tier: COMMERCIAL_TIERS.TARGETED_SEARCH,
       query_variant: queryVariant,
       title: params.partName
         ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op ${displayMarketplace}`
@@ -338,13 +430,12 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
     // 3. Optional secondary Amazon.de search offer (ONLY if explicit regional AMAZON_ASSOCIATE_TAG_DE is set)
     const deTag = this.getAssociateTag('amazon.de');
     if (deTag && this.marketplace !== 'amazon.de') {
-      const deQuery = (queryVariant === QUERY_VARIANTS.VARIANT_A)
-        ? `STIHL ${formattedPartNumber}`
-        : `STIHL ${canonicalPartNumber}`;
-      const deParams = new URLSearchParams();
-      deParams.set('k', deQuery);
-      deParams.set('tag', deTag);
-      const deSearchUrl = `https://amazon.de/s?${deParams.toString()}`;
+      const deSearchUrl = this.buildSearchUrl(canonicalPartNumber, deTag, {
+        queryVariant,
+        partName: params.partName,
+        mpn: params.mpn,
+        replacedBy: params.replacedBy
+      }, {}, 'amazon.de');
       offers.push({
         provider: 'amazon',
         marketplace: 'amazon.de',
@@ -353,6 +444,8 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
         tag: deTag,
         url: deSearchUrl,
         affiliate_url: deSearchUrl,
+        link_type: 'SEARCH_FALLBACK',
+        tier: COMMERCIAL_TIERS.TARGETED_SEARCH,
         query_variant: queryVariant,
         title: params.partName
           ? `Zoek ${params.partName} (STIHL ${formattedPartNumber}) op Amazon.de`

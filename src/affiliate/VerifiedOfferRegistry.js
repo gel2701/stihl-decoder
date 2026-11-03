@@ -18,6 +18,8 @@ import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { TwoGateVerifier, VALID_OFFER_STATUSES } from './TwoGateVerifier.js';
 import {
   AMAZON_MATCH_TYPES,
+  COMMERCIAL_TIERS,
+  buildSearchQuery,
   getDeterministicQueryVariant,
   QUERY_VARIANTS
 } from './AmazonAffiliateProvider.js';
@@ -360,6 +362,7 @@ export class VerifiedOfferRegistry {
         url: directUrl,
         affiliate_url: directUrl,
         link_type: 'DIRECT_ASIN',
+        tier: COMMERCIAL_TIERS.DIRECT_VERIFIED,
         offer_type: 'MANUAL_ASIN',
         match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
         is_verified: true,
@@ -385,9 +388,7 @@ export class VerifiedOfferRegistry {
 
     // Deterministic Search Fallback
     const queryVariant = getDeterministicQueryVariant(canonicalPart);
-    const query = (queryVariant === QUERY_VARIANTS.VARIANT_A)
-      ? `STIHL ${formattedPart}`
-      : `STIHL ${canonicalPart}`;
+    const query = buildSearchQuery(canonicalPart, { queryVariant, partName: params.partName });
     const searchParams = new URLSearchParams();
     searchParams.set('k', query);
     searchParams.set('tag', tag);
@@ -408,6 +409,7 @@ export class VerifiedOfferRegistry {
       url: searchUrl,
       affiliate_url: searchUrl,
       link_type: 'SEARCH_FALLBACK',
+      tier: COMMERCIAL_TIERS.TARGETED_SEARCH,
       offer_type: 'SEARCH_LINK',
       match_type: AMAZON_MATCH_TYPES.SEARCH_LINK,
       is_verified: false,
