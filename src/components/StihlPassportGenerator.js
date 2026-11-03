@@ -95,6 +95,7 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     : 'Nog niet toegevoegd';
 
   const isOfficialAnchor = Boolean(
+    data.passportMode === 'OFFICIAL_SERIAL_VERIFIED' ||
     data.officialAnchor ||
     data.identitySource === 'OFFICIAL_STIHL_LOOKUP' ||
     data.modelIdentitySource === 'OFFICIAL_STIHL_LOOKUP' ||
@@ -119,7 +120,7 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     model = officialProductName;
     const canonSlug = data.officialAnchor?.canonicalModelId || data.identity?.canonical_model_id || data.resolvedModel || data.canonicalModelId;
     if (canonSlug) {
-      canonicalModelName = String(canonSlug).replace(/^stihl_/, '').replace(/-/g, ' ').toUpperCase();
+      canonicalModelName = String(canonSlug).replace(/^stihl_/, '').replace(/[_-]/g, ' ').toUpperCase();
     }
   } else if (exactModel) {
     model = exactModel;
@@ -132,7 +133,19 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
   }
 
   // Model slug & Series code
-  const modelSlug = data.modelSlug || data.model_slug || data.identity?.model_slug || (model ? model.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : '');
+  let modelSlug = data.modelSlug || data.model_slug || data.identity?.model_slug;
+  if (!modelSlug && isOfficialAnchor) {
+    const canonSlug = data.officialAnchor?.canonicalModelId || data.identity?.canonical_model_id || data.canonicalModelId;
+    if (canonSlug && db?.models && Array.isArray(db.models)) {
+      const matchModel = db.models.find(m => m.id === canonSlug || m.slug === canonSlug);
+      if (matchModel && matchModel.slug) {
+        modelSlug = matchModel.slug;
+      }
+    }
+  }
+  if (!modelSlug) {
+    modelSlug = (model ? model.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : '');
+  }
   const seriesCode = data.seriesCode || data.series_code || data.identity?.series_code || null;
 
   // Identity Status
@@ -267,14 +280,27 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     };
   }
 
-  // Canonical Model QR URL: Always points to the public canonical model page.
-  // CRITICAL PRIVACY GATE: NEVER include serial numbers or query params in external QR requests!
+  // Public Target URL: Can point to specific verified public passport page or canonical model page
   const safeCatSlug = catSlug || 'kettingzagen';
   const safeModelSlug = modelSlug || '';
-  const publicUrl = (safeCatSlug && safeModelSlug)
-    ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
-    : 'https://www.stihldecoder.nl/';
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicUrl)}`;
+  const publicUrl = data.publicPassportUrl || data.passportUrl || (
+    (safeCatSlug && safeModelSlug)
+      ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
+      : 'https://www.stihldecoder.nl/'
+  );
+  const qrUrl = data.qrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicUrl)}`;
+
+  // Sales listing support (Phase 64 / Verified Sales Passport)
+  const salesListingRaw = data.salesListing || data.sales || null;
+  const salesListing = salesListingRaw ? {
+    askingPrice: salesListingRaw.askingPrice || salesListingRaw.price || null,
+    condition: salesListingRaw.condition || null,
+    location: salesListingRaw.location || null,
+    sellerRole: salesListingRaw.sellerRole || 'Particuliere verkoper',
+    verificationBadge: salesListingRaw.verificationBadge || '✓ MY STIHL Officieel Geverifieerd',
+    photos: Array.isArray(salesListingRaw.photos) ? salesListingRaw.photos : [],
+    photosReachable: Boolean(salesListingRaw.photosReachable)
+  } : null;
 
   // Safe recommendations
   const recommendations = data.recommendations || buildModelRecommendations(
@@ -295,6 +321,7 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     officialProductName,
     exactModel: exactModel || (isOfficialAnchor ? officialProductName : null),
     probableModelSeries: probableModelSeries || null,
+    identitySource: isOfficialAnchor ? 'OFFICIAL_STIHL_LOOKUP' : (data.identitySource || null),
     identityStatus,
     identityTitle,
     identityLabel,
@@ -311,6 +338,7 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     theftCheck,
     publicUrl,
     qrUrl,
+    salesListing,
     recommendations,
     publicEvidenceFacts: facts,
     publicEvidenceFields: evidenceFields
@@ -339,6 +367,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
     theftCheck,
     publicUrl,
     qrUrl,
+    salesListing,
     recommendations
   } = passport;
 
@@ -441,6 +470,37 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
           </div>
         </div>
       </div>
+
+      ${salesListing ? `
+        <!-- Verified Sales Machine Status (Phase 64) -->
+        <div class="bg-gradient-to-r from-orange-950/40 via-neutral-900 to-neutral-900/90 p-4 rounded-xl border border-orange-500/40 text-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-orange-400 font-bold">🏷️ Geverifieerde Verkoopmachine</span>
+              <span class="text-3xs font-mono uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">Dossier Actief</span>
+            </div>
+            ${salesListing.askingPrice ? `
+              <span class="bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-black tracking-wide font-mono">
+                ${salesListing.askingPrice}
+              </span>
+            ` : ''}
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-2xs pt-1 border-t border-neutral-800">
+            <div>
+              <span class="text-neutral-400 block font-medium">Conditie:</span>
+              <span class="text-white font-semibold">${salesListing.condition || 'Niet gespecificeerd'}</span>
+            </div>
+            <div>
+              <span class="text-neutral-400 block font-medium">Locatie:</span>
+              <span class="text-white font-semibold">${salesListing.location || 'Niet gespecificeerd'}</span>
+            </div>
+            <div class="col-span-2">
+              <span class="text-neutral-400 block font-medium">Officiële Verificatie:</span>
+              <span class="text-emerald-400 font-semibold">${salesListing.verificationBadge || 'MY STIHL handmatig geverifieerd'}</span>
+            </div>
+          </div>
+        </div>
+      ` : ''}
 
       <!-- Recommendation Slots Foundation (Phase 47) -->
       ${recommendationsHtml}

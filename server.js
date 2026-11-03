@@ -29,6 +29,7 @@ import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js
 import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import { defaultVerifiedOfferRegistry } from './src/affiliate/VerifiedOfferRegistry.js';
+import { renderSalesPassportPageHtml } from './src/components/SalesPassportPageTemplate.js';
 
 // Phase 59E.1: Controlled Amazon ASIN Live Pilot Launch (3 vetted spark plugs)
 if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
@@ -86,6 +87,21 @@ try {
   console.error('⚠️ Could not load public_evidence_facts.json, continuing in canonical-only mode:', err.message);
 }
 
+const salesMachinesPath = path.join(__dirname, 'data', 'verified_sales_machines.json');
+function getVerifiedSalesMachine(serial) {
+  try {
+    if (fs.existsSync(salesMachinesPath)) {
+      const machines = JSON.parse(fs.readFileSync(salesMachinesPath, 'utf8'));
+      if (Array.isArray(machines)) {
+        return machines.find(m => m.serial_number === String(serial).trim()) || null;
+      }
+    }
+  } catch (err) {
+    console.error('⚠️ Could not read verified_sales_machines.json:', err.message);
+  }
+  return null;
+}
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
   '.css': 'text/css',
@@ -112,7 +128,7 @@ const PUBLIC_ROOT_FILES = new Set([
   'apple-touch-icon.png',
   'site.webmanifest'
 ]);
-const PUBLIC_PREFIXES = ['/css/'];
+const PUBLIC_PREFIXES = ['/css/', '/sales/'];
 const PUBLIC_EXACT_FILES = new Set([
   '/components/tools/GietklokHelper.js',
   '/src/components/StihlPassportGenerator.js',
@@ -982,6 +998,32 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
+  // 12b. Public Machine Passport & Sales Dossier Routes (/paspoort/:serial/ & /verkoop/:serial/)
+  if (pathname.startsWith('/paspoort/') || pathname.startsWith('/verkoop/')) {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 2 && (parts[0] === 'paspoort' || parts[0] === 'verkoop')) {
+      const serial = parts[1].trim();
+      if (!pathname.endsWith('/')) {
+        res.writeHead(301, { 'Location': `${PRIMARY_ORIGIN}/${parts[0]}/${serial}/` });
+        res.end();
+        return;
+      }
+      const salesMachine = getVerifiedSalesMachine(serial);
+      if (salesMachine) {
+        const html = renderSalesPassportPageHtml({
+          serial,
+          machine: salesMachine,
+          database,
+          baseUrl: PRIMARY_ORIGIN
+        });
+        logStihlEvent(EVENT_TYPES.PASSPORT_DOWNLOAD || EVENT_TYPES.DECODER_USED, { serial, model: salesMachine.normalized_model }, req.headers['user-agent']);
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(html);
+        return;
+      }
+    }
+  }
+
   // 13. Part Number Routes Hub (/onderdeelnummer/ & /onderdeelnummer/stihl-:series/ & /onderdeelnummer/:partNo/)
   if (cleanPath === 'onderdeelnummer') {
     const html = renderPartNumberHubHtml(database, PRIMARY_ORIGIN);
@@ -1478,6 +1520,24 @@ function findModelBySlug(modelSlug, database) {
 function resolveStaticFilePath(pathname) {
   if (pathname === '/') {
     return path.join(__dirname, 'index.html');
+  }
+
+  if (pathname.startsWith('/sales/')) {
+    const safeSubPath = pathname.slice('/sales/'.length);
+    const candidates = [
+      path.resolve(__dirname, 'public', 'sales', safeSubPath),
+      path.resolve(__dirname, 'sales', safeSubPath)
+    ];
+    for (const cand of candidates) {
+      const relToPublic = path.relative(path.join(__dirname, 'public', 'sales'), cand);
+      const relToSales = path.relative(path.join(__dirname, 'sales'), cand);
+      if (!relToPublic.startsWith('..') || !relToSales.startsWith('..')) {
+        if (fs.existsSync(cand) && fs.statSync(cand).isFile()) {
+          return cand;
+        }
+      }
+    }
+    return null;
   }
 
   const publicPrefix = PUBLIC_PREFIXES.find((prefix) => pathname.startsWith(prefix));
