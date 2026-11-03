@@ -719,7 +719,17 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          if (el && el.dataset && el.dataset.clickedRecently === '1') {
+            return; // debounce rapid double clicks
+          }
+          if (el && el.dataset) {
+            el.dataset.clickedRecently = '1';
+            setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
+          }
+          var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
+          var eventId = 'aff_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
           var payload = JSON.stringify({
+            event_id: eventId,
             provider: data.provider || 'amazon',
             marketplace: data.marketplace || 'amazon.nl',
             part_number: data.part_number,
@@ -727,10 +737,12 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
             match_type: data.offer_type || 'SEARCH_LINK',
             asin_if_known: data.asin_if_known || null,
             product_verified: Boolean(data.product_verified),
-            destination_url: el.href,
+            destination_url: el ? el.href : null,
             query_variant: data.query_variant || null,
             section_context: data.section_context || null,
-            page_path: window.location.pathname
+            model: data.model || null,
+            page_path: window.location.pathname,
+            is_test: isTest ? 1 : 0
           });
           if (navigator.sendBeacon) {
             navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));

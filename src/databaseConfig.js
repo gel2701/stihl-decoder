@@ -104,7 +104,7 @@ export function getDatabasePath() {
   if (
     process.env.NODE_ENV === 'test' ||
     process.env.REPRODUCIBILITY_NESTED_RUN === '1' ||
-    process.argv.some((arg) => typeof arg === 'string' && (arg.endsWith('.test.js') || arg.includes('run_all_tests') || arg.includes('test_runner')))
+    process.argv.some((arg) => typeof arg === 'string' && (arg.endsWith('.test.js') || arg.endsWith('.spec.js') || arg.includes('playwright') || arg.includes('run_all_tests') || arg.includes('test_runner')))
   ) {
     return TEST_DB_PATH;
   }

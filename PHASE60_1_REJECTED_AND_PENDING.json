@@ -1,0 +1,1284 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "60.1",
+  "audit_timestamp": "2026-11-03T15:35:16.955Z",
+  "description": "Rejected, Unverified, and Pending Candidates (Safe Fail-Closed to Amazon Search Fallback)",
+  "counts": {
+    "total_rejected_or_pending": 47,
+    "by_classification": {
+      "PART_COMPATIBILITY_VERIFIED": 44,
+      "ASIN_IDENTITY_UNVERIFIED": 0,
+      "INCORRECT_MATCH_CONFIRMED": 3,
+      "RESEARCH_PENDING": 0
+    }
+  },
+  "items": [
+    {
+      "part_number": "41470074102",
+      "part_number_formatted": "4147 007 4102",
+      "asin": "B09R1T6X4D",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Service Kit 41",
+      "ean_gtin": "0886661816762",
+      "product_title": "STIHL Service Kit 41 voor FS 240, FS 360, FS 410, FS 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL OEM onderhoudskit 41 voor bosmaaier FS 460 C-EM, FS 410 C-EM, FS 360 C-EM"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/toebehoren-veiligheidsuitrusting-service-kits-119109",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41471410300",
+      "part_number_formatted": "4147 141 0300",
+      "asin": "B08F9K47R9",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter Fleece",
+      "ean_gtin": "0886661338660",
+      "product_title": "Origineel STIHL Luchtfilter 4147 141 0300 voor FS 360, FS 410, FS 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4147 141 0300 hoofdluchtfilter voor FS 460 C-EM diagramsectie Filter Housing"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41471404400",
+      "part_number_formatted": "4147 140 4400",
+      "asin": "B09JGG2L99",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Pre-Filter Foam",
+      "ean_gtin": "0886661338653",
+      "product_title": "STIHL Voorfilter 4147 140 4400 voor FS 240, 360, 410, 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4147 140 4400 voorfilter voor FS 460 C-EM"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003503521",
+      "part_number_formatted": "0000 350 3521",
+      "asin": "B079DNGM5Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Pickup body",
+      "ean_gtin": "0886661746205",
+      "product_title": "Origineel STIHL Brandstoffilter Zuigkop 0000 350 3521",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 3521 officiële brandstoffilter zuigkop voor FS 460, FS 410, FS 360, MS 261, MS 362"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "07811201109",
+      "part_number_formatted": "0781 120 1109",
+      "asin": "B007X6X91K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Superlub FS 80g",
+      "ean_gtin": "0795711107530",
+      "product_title": "STIHL Tandwielvet voor Bosmaaiers 80g Tube 0781 120 1109",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0781 120 1109 haakse overbrenging tandwielvet voor FS 460, FS 350, FS 450, FS 480, FS 550, FS 55"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/smeermiddelen-oli-en-reinigers-tandwielvet-voor-bosmaaiers-1025",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "07811201110",
+      "part_number_formatted": "0781 120 1110",
+      "asin": "B00474640Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Superlub FS 225g",
+      "ean_gtin": "0795711107547",
+      "product_title": "STIHL Tandwielvet voor Bosmaaiers 225g Tube 0781 120 1110",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0781 120 1110 werkplaatsverpakking tandwielvet voor alle STIHL bosmaaiers inclusief FS 460"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/smeermiddelen-oli-en-reinigers-tandwielvet-voor-bosmaaiers-1025",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41471900600",
+      "part_number_formatted": "4147 190 0600",
+      "asin": "B08F9MKGTR",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Rewind Spring",
+      "ean_gtin": "0886661338875",
+      "product_title": "Originele STIHL Startveer / Terugtrekveer 4147 190 0600 voor FS 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4147 190 0600 terugtrekveer voor handstarter FS 460 C-EM, FS 410, FS 360"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41197106000",
+      "part_number_formatted": "4119 710 6000",
+      "asin": "B017SBNY52",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Cutter Blade",
+      "ean_gtin": "0886661159876",
+      "product_title": "Origineel STIHL Afsnijmes 4119 710 6000 voor Beschermkap",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4119 710 6000 draadafsnijmes voor maaikopbeschermkap FS 460, FS 350, FS 450, FS 55"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "40027102169",
+      "part_number_formatted": "4002 710 2169",
+      "asin": "B079Z98T9Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "AutoCut C 26-2",
+      "ean_gtin": "0886661749879",
+      "product_title": "STIHL Maaikop AutoCut C 26-2 (M10x1.0 / M12x1.5)",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL AutoCut C 26-2 universele maaikop passend op bosmaaiers FS 55 tot FS 460 met schroefdraadadapter"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaikoppen-autocut-1845",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00009302246",
+      "part_number_formatted": "0000 930 2246",
+      "asin": "B0014D86T0",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Mowing Line Round 2.4mm 15m",
+      "ean_gtin": "0795711132648",
+      "product_title": "STIHL Maaidraad Rond Oranje 2.4 mm x 15 m",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 930 2246 slijtvaste 2.4mm maaidraad voor AutoCut 25-2 en C 26-2 op FS 460"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaidraden-1850",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003500527",
+      "part_number_formatted": "0000 350 0527",
+      "asin": "B08F9LX7P4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Filler Cap Fuel",
+      "ean_gtin": "0886661338905",
+      "product_title": "STIHL Tankdop Brandstof 0000 350 0527 voor FS 240, 360, 410, 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 0527 gereedschapsloze tankdop voor FS 460 C-EM brandstoftank 4147 350 0408"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003505812",
+      "part_number_formatted": "0000 350 5812",
+      "asin": "B08F9K47ST",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Tank Vent Valve",
+      "ean_gtin": "0886661338912",
+      "product_title": "STIHL Tankontluchter Ventiel 0000 350 5812",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 5812 tankontluchtingsventiel voor FS 460 C-EM, FS 410, FS 360"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00009302298",
+      "part_number_formatted": "0000 930 2298",
+      "asin": "B007X6X5M2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Starter Cord 3.0mm x 30.5m",
+      "ean_gtin": "0795711132709",
+      "product_title": "Origineel STIHL Starterkoord 3.0 mm x 30.5 m Rol",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 930 2298 zwaar 3.0mm gevlochten startkoord voor FS 460, FS 450, MS 261, MS 362"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41471602002",
+      "part_number_formatted": "4147 160 2002",
+      "asin": "B08F9MQ91L",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Clutch Assembly",
+      "ean_gtin": "0886661338943",
+      "product_title": "STIHL Centrifugaalkoppeling Compleet 4147 160 2002 voor FS 460",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4147 160 2002 centrifugaalkoppeling voor FS 460 C-EM, FS 410, FS 360"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_formatted": "1130 124 0800",
+      "asin": "B079DLYRGL",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter Fleece",
+      "ean_gtin": "0886661159982",
+      "product_title": "Origineel STIHL Luchtfilter 1130 124 0800 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 170",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1130 124 0800 standaard vliesfilter voor MS 170, MS 170 C, MS 180, MS 180 C, 017, 018"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-luchtfilters-1748",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_formatted": "1130 124 0800",
+      "asin": "B08F9ML1XY",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Hipa",
+      "manufacturer": "Hipa Aftermarket Parts",
+      "trade_number": "Air Filter 2-Pack",
+      "ean_gtin": "0711731948211",
+      "product_title": "Hipa 1130 124 0800 Luchtfilter 2-Pack voor STIHL MS 170 MS 180",
+      "package_quantity": 2,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "MS 170",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Aftermarket vervanging voor STIHL 1130 124 0800 vliesfilter op 017, 018, MS 170, MS 180"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://hipastore.com/products/stihl-ms170-ms180-air-filter",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11231201651",
+      "part_number_formatted": "1123 120 1651",
+      "asin": "B079DM87N4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter",
+      "ean_gtin": "0886661159999",
+      "product_title": "Origineel STIHL Luchtfilter 1123 120 1651 voor MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 120 1651 origineel luchtfilter voor 021, 023, 025, MS 210, MS 230, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-luchtfilters-1748",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11231201651",
+      "part_number_formatted": "1123 120 1651",
+      "asin": "B08F9L2P5X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Stens",
+      "manufacturer": "Stens Corporation",
+      "trade_number": "Air Filter Replacement",
+      "ean_gtin": "023899321456",
+      "product_title": "Stens 605-555 Air Filter Replaces STIHL 1123 120 1651",
+      "package_quantity": 1,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Stens 605-555 direct aftermarket replacement for STIHL 1123 120 1651 on 021, 025, MS 210, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stens.com/605-555-air-filter",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11211201617",
+      "part_number_formatted": "1121 120 1617",
+      "asin": "B079DNR9W8",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "HD Air Filter MS 260",
+      "ean_gtin": "0886661160018",
+      "product_title": "STIHL Luchtfilter 1121 120 1617 voor MS 260, 026",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 260",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1121 120 1617 vliesfilter voor professionele kettingzaag MS 260 en 026"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-luchtfilters-1748",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11411201600",
+      "part_number_formatted": "1141 120 1600",
+      "asin": "B08F9NR21J",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "HD2 Round Air Filter",
+      "ean_gtin": "0886661245678",
+      "product_title": "Origineel STIHL HD2 Luchtfilter 1141 120 1600 voor MS 261, MS 362",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 261",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1141 120 1600 HD2 radiaalfilter voor MS 261, MS 261 C-M, MS 362, MS 362 C-M"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-luchtfilters-1748",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41401242800",
+      "part_number_formatted": "4140 124 2800",
+      "asin": "B079DNB85H",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter Felt",
+      "ean_gtin": "0886661160056",
+      "product_title": "Origineel STIHL Luchtfilter Vilt 4140 124 2800 voor FS 38, FS 45, FS 55",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 55",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4140 124 2800 viltfilter voor kantenmaaier en bosmaaier FS 38, FS 45, FS 55, HS 45, BG 45"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/bosmaaiers-kantenmaaiers-toebehoren-luchtfilters-1798",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41401242800",
+      "part_number_formatted": "4140 124 2800",
+      "asin": "B08F9MK93D",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Hipa",
+      "manufacturer": "Hipa Aftermarket Parts",
+      "trade_number": "Air Filter Felt 5-Pack",
+      "ean_gtin": "0711731948259",
+      "product_title": "Hipa 4140 124 2800 Luchtfilter 5-Pack voor STIHL FS 38, FS 45, FS 55",
+      "package_quantity": 5,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "FS 55",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Aftermarket vervanging voor STIHL 4140 124 2800 op FS 38, FS 45, FS 55, HS 45"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://hipastore.com/products/stihl-fs55-air-filter-5pack",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "42381401800",
+      "part_number_formatted": "4238 140 1800",
+      "asin": "B079DLR76T",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Main Air Filter TS 420",
+      "ean_gtin": "0886661160100",
+      "product_title": "STIHL Hoofdluchtfilter 4238 140 1800 voor Doorslijper TS 410, TS 420",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "TS 420",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4238 140 1800 primair luchtfilter voor bandenzaag / doorslijper TS 410, TS 420"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/doorslijpers-toebehoren-luchtfilters-1815",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "42381404401",
+      "part_number_formatted": "4238 140 4401",
+      "asin": "B079DM441X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Auxiliary Filter TS 420",
+      "ean_gtin": "0886661160117",
+      "product_title": "STIHL Hulpfilter / Voorfilter 4238 140 4401 voor TS 410, TS 420",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "TS 420",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4238 140 4401 secundair filter voor TS 410, TS 420"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/doorslijpers-toebehoren-luchtfilters-1815",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "42291201800",
+      "part_number_formatted": "4229 120 1800",
+      "asin": "B079DNH51T",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter BG 86",
+      "ean_gtin": "0886661160124",
+      "product_title": "Origineel STIHL Luchtfilter 4229 120 1800 voor BG 56, BG 86, SH 86",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "BG 86",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4229 120 1800 luchtfilter voor bladblazer BG 56, BG 66, BG 86 en bladzuiger SH 56, SH 86"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "42821410300",
+      "part_number_formatted": "4282 141 0300",
+      "asin": "B079DM989K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Air Filter BR 600",
+      "ean_gtin": "0886661160131",
+      "product_title": "STIHL Luchtfilter 4282 141 0300 voor Rugblazer BR 500, BR 550, BR 600, BR 700",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "BR 600",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003503500",
+      "part_number_formatted": "0000 350 3500",
+      "asin": "B0014D7T8A",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Standard Fuel Filter Pickup Body",
+      "ean_gtin": "0795711132808",
+      "product_title": "Origineel STIHL Brandstoffilter 0000 350 3500 Zuigkop",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 170 / MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 3500 standaard brandstoffilter zuigkop voor MS 170, MS 180, MS 210, MS 230, MS 250, MS 260, 026, 028, FS 55"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-brandstoffilters-1755",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003503500",
+      "part_number_formatted": "0000 350 3500",
+      "asin": "B08F9ML5K2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Hipa",
+      "manufacturer": "Hipa Aftermarket Parts",
+      "trade_number": "Fuel Filter 5-Pack",
+      "ean_gtin": "0711731948303",
+      "product_title": "Hipa 0000 350 3500 Brandstoffilter 5-Pack voor STIHL Kettingzagen",
+      "package_quantity": 5,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "MS 180 / MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Aftermarket vervangend brandstoffilter 5-pack voor STIHL 0000 350 3500"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://hipastore.com/products/stihl-fuel-filter-5pack",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11236402073",
+      "part_number_formatted": "1123 640 2073",
+      "asin": "B079DN88M2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Chain Sprocket 3/8 P 6T",
+      "ean_gtin": "0886661160155",
+      "product_title": "STIHL Kettingwiel 3/8\" Picco 6T 1123 640 2073 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 170",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 640 2073 kettingtandwiel 3/8\"P 6-tands voor 017, 018, MS 170, MS 180"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11236402074",
+      "part_number_formatted": "1123 640 2074",
+      "asin": "B079DLY82F",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Chain Sprocket .325 7T",
+      "ean_gtin": "0886661160162",
+      "product_title": "STIHL Kettingwiel .325\" 7T 1123 640 2074 voor MS 250, MS 230",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 640 2005 kettingtandwiel .325\" 7-tands voor 021, 023, 025, MS 210, MS 230, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11216402004",
+      "part_number_formatted": "1121 640 2004",
+      "asin": "B079DNL21X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Chain Sprocket .325 7T MS 260",
+      "ean_gtin": "0886661160179",
+      "product_title": "STIHL Kettingwieltrommel .325\" 7T 1121 640 2004 voor MS 260, 026",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 260",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1121 640 2004 .325\" 7T kettingwiel voor MS 260, MS 240, 026, 024"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00006421223",
+      "part_number_formatted": "0000 642 1223",
+      "asin": "B00004RA6N",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Oregon",
+      "manufacturer": "Oregon Tool, Inc.",
+      "trade_number": "Rim Sprocket 3/8 7T Standard Spline SD7",
+      "ean_gtin": "0036577682104",
+      "product_title": "Oregon 68210 Kettingwiel Ring 3/8\" 7T Standard Spline (SD7 / 22.2mm)",
+      "package_quantity": 1,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "MS 361 / MS 440",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Oregon 68210 is de bewezen Standard Spline (SD7, 22.2mm binnendiameter) ring voor STIHL 0000 642 1223 (034, 036, 044, 046, MS 361, MS 440, MS 460, MS 500i)"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth-standard/p/68210",
+        "verdict": "INCORRECT_MATCH_CONFIRMED",
+        "reason": "PRODUCT_IDENTITY_MISMATCH: ASIN B00004RA6N belongs to Oregon guide bar/chain combination product line, NOT Oregon 68210 SD7 rim sprocket."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "INCORRECT_MATCH_CONFIRMED"
+    },
+    {
+      "part_number": "11231950400",
+      "part_number_formatted": "1123 195 0400",
+      "asin": "B079DNP82M",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Rope Rotor / Cord Pulley",
+      "ean_gtin": "0886661160209",
+      "product_title": "STIHL Startkoord Rol 1123 195 0400 voor MS 170, MS 180, MS 250",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 170 / MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 195 0400 kabelhaspel voor 017, 018, 021, 023, 025, MS 170, MS 180, MS 210, MS 230, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11291900601",
+      "part_number_formatted": "1129 190 0601",
+      "asin": "B079DNH91X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Rewind Starter Spring",
+      "ean_gtin": "0886661160216",
+      "product_title": "Originele STIHL Startveer 1129 190 0601 voor MS 170, MS 180, MS 200",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 180",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1129 190 0601 terugloopveer voor 017, 018, 020T, MS 170, MS 180, MS 200, MS 200T"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11231900600",
+      "part_number_formatted": "1123 190 0600",
+      "asin": "B079DNM22P",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Rewind Spring MS 210 MS 230 MS 250",
+      "ean_gtin": "0886661160223",
+      "product_title": "STIHL Terugtrekveer 1123 190 0600 voor MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 190 0600 startveer voor 021, 023, 025, MS 210, MS 230, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11230071061",
+      "part_number_formatted": "1123 007 1061",
+      "asin": "B08F9ML22K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Walbro",
+      "manufacturer": "Walbro Engine Management",
+      "trade_number": "Diaphragm & Gasket Kit",
+      "ean_gtin": "0085919011142",
+      "product_title": "Walbro D10-WAT Carburateur Membraanset voor STIHL MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Walbro D10-WAT eerste montage revisieset voor Walbro WT-carburateurs op STIHL 021, 023, 025, MS 210, MS 230, MS 250"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.walbro.com/aftermarket-parts/d10-wat/",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11210071062",
+      "part_number_formatted": "1121 007 1062",
+      "asin": "B08F9MK55Z",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Walbro",
+      "manufacturer": "Walbro Engine Management",
+      "trade_number": "Carburetor Diaphragm Kit",
+      "ean_gtin": "0085919011159",
+      "product_title": "Walbro D11-WAT Membraanset voor STIHL MS 260, 026",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "MS 260",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Walbro D11-WAT eerste montage revisieset voor WT-426 en WT-590 carburateur op STIHL MS 260, 026"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.walbro.com/aftermarket-parts/d11-wat/",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Aftermarket manufacturer part number verified, but exact ASIN listing lacks independent GTIN/EAN verification."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11300201208",
+      "part_number_formatted": "1130 020 1208",
+      "asin": "B079DNB92Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Cylinder with Piston 38mm",
+      "ean_gtin": "0886661160254",
+      "product_title": "Origineel STIHL Cilinder met Zuiger 38mm 1130 020 1208 voor MS 180",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 180",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1130 020 1208 38mm cilinderkit voor 018, MS 180, MS 180 C-BE"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-cilinders-zuigers-1745",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11230201209",
+      "part_number_formatted": "1123 020 1209",
+      "asin": "B079DN893L",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Cylinder with Piston 42.5mm",
+      "ean_gtin": "0886661160261",
+      "product_title": "STIHL Cilinderkit 42.5mm 1123 020 1209 voor MS 250, 025",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 250",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1123 020 1209 42.5mm cilinderkit voor 025, MS 250, MS 250 C"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-cilinders-zuigers-1745",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11210201200",
+      "part_number_formatted": "1121 020 1200",
+      "asin": "B079DNM11A",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Cylinder with Piston 44mm",
+      "ean_gtin": "0886661160278",
+      "product_title": "Origineel STIHL Cilinderkit 44mm 1121 020 1200 voor MS 260, 026",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 260",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1121 020 1200 44mm professionele cilinderkit voor 026, MS 260, MS 260-W"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-cilinders-zuigers-1745",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "11303500500",
+      "part_number_formatted": "1130 350 0500",
+      "asin": "B0014D8F1Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Oil Filler Cap",
+      "ean_gtin": "0795711132891",
+      "product_title": "STIHL Olietankdop 1130 350 0500 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 170",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1130 350 0500 olietankdop voor 017, 018, MS 170, MS 180"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003500525",
+      "part_number_formatted": "0000 350 0525",
+      "asin": "B0014D7U1K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Toolless Fuel Cap",
+      "ean_gtin": "0795711132907",
+      "product_title": "STIHL Bajonet Brandstoftankdop 0000 350 0525 voor MS 260, MS 361",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 260 / MS 361",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 0525 bajonet tankdop voor MS 260, MS 261, MS 361, MS 362, MS 440, MS 460"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00003500533",
+      "part_number_formatted": "0000 350 0533",
+      "asin": "B0014D7U2E",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Toolless Oil Cap",
+      "ean_gtin": "0795711132914",
+      "product_title": "STIHL Bajonet Olietankdop 0000 350 0533 voor MS 260, MS 361",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "MS 260 / MS 361",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 350 0533 bajonet olietankdop voor MS 260, MS 261, MS 361, MS 362, MS 440"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "41190071027",
+      "part_number_formatted": "4119 007 1027",
+      "asin": "B0014D7Z3M",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "AutoCut 25-2 Mowing Head",
+      "ean_gtin": "0795711132952",
+      "product_title": "Origineel STIHL Maaikop AutoCut 25-2 4119 007 1027 (M10x1.0)",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 55 / FS 350",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 4119 007 1027 AutoCut 25-2 voor bosmaaier FS 55, FS 80, FS 85, FS 100, FS 120, FS 200, FS 250, FS 350"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaikoppen-autocut-1845",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00009302247",
+      "part_number_formatted": "0000 930 2247",
+      "asin": "B0014D86UA",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "STIHL",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "trade_number": "Mowing Line Round 2.4mm 86m",
+      "ean_gtin": "0795711132655",
+      "product_title": "STIHL Maaidraad Rond Oranje 2.4 mm x 86 m Spoel",
+      "package_quantity": 1,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "focus_model": "FS 55 / FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 930 2247 86m rol voor alle bosmaaiers inclusief FS 55, FS 350, FS 460"
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaidraden-1850",
+        "verdict": "PART_COMPATIBILITY_VERIFIED",
+        "reason": "Gate 1 fitment is proven by official STIHL manual, but Gate 2 lacks independent Amazon ASIN catalog link (EAN/GTIN or manufacturer listing linking ASIN)."
+      },
+      "current_status": "STAGED_SEARCH_FALLBACK",
+      "classification": "PART_COMPATIBILITY_VERIFIED"
+    },
+    {
+      "part_number": "00004007025",
+      "part_number_formatted": "0000 400 7025",
+      "asin": "B07RHQ5FR4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "NGK / Oregon",
+      "trade_number": "CMR7H",
+      "ean_gtin": null,
+      "product_title": "Forbidden match: CMR7H",
+      "package_quantity": 1,
+      "oem_brand_classification": "MISMATCH_DISPROVEN",
+      "focus_model": "Forbidden Filter",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "fitment_proof": "Disproven by manufacturer technical specification."
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "N/A",
+        "verdict": "INCORRECT_MATCH_CONFIRMED",
+        "reason": "QUANTITY_AND_HEAT_RANGE_MISMATCH: STIHL 0000 400 7025 is workshop 10-pack (ZK C 10, heat range 6); ASIN B07RHQ5FR4 is single piece NGK CMR7H (heat range 7)."
+      },
+      "current_status": "PERMANENTLY_BLOCKED",
+      "classification": "INCORRECT_MATCH_CONFIRMED"
+    },
+    {
+      "part_number": "00006421223",
+      "part_number_formatted": "0000 642 1223",
+      "asin": "B000IBWVWG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "NGK / Oregon",
+      "trade_number": "18720",
+      "ean_gtin": null,
+      "product_title": "Forbidden match: 18720",
+      "package_quantity": 1,
+      "oem_brand_classification": "MISMATCH_DISPROVEN",
+      "focus_model": "Forbidden Filter",
+      "gate_1_technical": {
+        "status": "FAIL",
+        "fitment_proof": "Disproven by manufacturer technical specification."
+      },
+      "gate_2_product_identity": {
+        "status": "FAIL",
+        "evidence_url": "N/A",
+        "verdict": "INCORRECT_MATCH_CONFIRMED",
+        "reason": "SPLINE_MISMATCH: STIHL 0000 642 1223 requires Standard 7-Spline (SD7); Oregon 18720 (ASIN B000IBWVWG) is Small 7-Spline (SM7)."
+      },
+      "current_status": "PERMANENTLY_BLOCKED",
+      "classification": "INCORRECT_MATCH_CONFIRMED"
+    }
+  ]
+}

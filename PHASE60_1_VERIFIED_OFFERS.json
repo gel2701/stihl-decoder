@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "60.1",
+  "audit_timestamp": "2026-11-03T15:35:16.954Z",
+  "description": "Verified Amazon Affiliate Offers (Both Gate 1 and Gate 2 100% Proven)",
+  "production_lock_policy": {
+    "active_pilot_limit": 3,
+    "active_pilot_parts": [
+      "11104007005",
+      "00004007000",
+      "00004007011"
+    ],
+    "immediate_activation_allowed_for_new_offers": false,
+    "require_explicit_operator_command": true
+  },
+  "counts": {
+    "total_verified_offers": 5,
+    "active_live_pilots": 3,
+    "verified_staged_ready": 2
+  },
+  "offers": [
+    {
+      "part_number": "00004007011",
+      "part_number_formatted": "0000 400 7011",
+      "asin": "B001RMA5S2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "NGK",
+      "manufacturer": "NGK Spark Plug Co., Ltd.",
+      "trade_number": "CMR6H",
+      "ean_gtin": "0087295133651",
+      "product_title": "NGK 3365 Spark Plug CMR6H",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "FS 460",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 400 7011 standard factory spark plug for FS 460 C-EM, FS 410, FS 360, BR 500, BR 600, BR 700"
+      },
+      "gate_2_product_identity": {
+        "status": "PASS",
+        "evidence_url": "https://www.ngkntk.com/part-finder/product/CMR6H",
+        "verdict": "VERIFIED_ACTIVATION_READY",
+        "reason": "Fully corroborated via external catalog (Motointegrator / AmzChart) and active in live production pilot."
+      },
+      "current_status": "ACTIVE_LIVE_PILOT",
+      "classification": "VERIFIED_ACTIVATION_READY"
+    },
+    {
+      "part_number": "11104007005",
+      "part_number_formatted": "1110 400 7005",
+      "asin": "B0068M5NAG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Bosch",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "trade_number": "WSR6F",
+      "ean_gtin": "3165141051063",
+      "product_title": "Bosch 0242240506 Bougie WSR6F",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "MS 170 / MS 260",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 1110 400 7005 bougie voor MS 170, MS 180, MS 250, MS 260, MS 290, FS 55"
+      },
+      "gate_2_product_identity": {
+        "status": "PASS",
+        "evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
+        "verdict": "VERIFIED_ACTIVATION_READY",
+        "reason": "Fully corroborated via external catalog (Motointegrator / AmzChart) and active in live production pilot."
+      },
+      "current_status": "ACTIVE_LIVE_PILOT",
+      "classification": "VERIFIED_ACTIVATION_READY"
+    },
+    {
+      "part_number": "00004007000",
+      "part_number_formatted": "0000 400 7000",
+      "asin": "B001RM8J76",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "NGK",
+      "manufacturer": "Niterra Co., Ltd. (NGK Spark Plugs)",
+      "trade_number": "BPMR7A",
+      "ean_gtin": "0087295167038",
+      "product_title": "NGK 6703 BPMR7A Standard Spark Plug",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "TS 420 / MS 290 / MS 390",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL Quick Reference Guide bewijst dat 0000 400 7000 de standaardfabrieksbougie van NGK is voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen."
+      },
+      "gate_2_product_identity": {
+        "status": "PASS",
+        "evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
+        "verdict": "VERIFIED_ACTIVATION_READY",
+        "reason": "Fully corroborated via external catalog (Motointegrator / AmzChart) and active in live production pilot."
+      },
+      "current_status": "ACTIVE_LIVE_PILOT",
+      "classification": "VERIFIED_ACTIVATION_READY"
+    },
+    {
+      "part_number": "00004007009",
+      "part_number_formatted": "0000 400 7009",
+      "asin": "B09QH68W83",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Bosch",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "trade_number": "USR7AC",
+      "ean_gtin": "4047023059468",
+      "product_title": "Bosch 0242035503 Spark Plug USR7AC",
+      "package_quantity": 1,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "focus_model": "BG 86 / FS 56",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "STIHL 0000 400 7009 compacte bougie voor FS 40, FS 50, FS 56, BG 56, BG 86, SH 86, MS 150"
+      },
+      "gate_2_product_identity": {
+        "status": "PASS",
+        "evidence_url": "https://www.motointegrator.de/artikel/1118672-zuendkerze-bosch-0-242-035-503-1-stueck",
+        "verdict": "VERIFIED_ACTIVATION_READY",
+        "reason": "Robert Bosch OEM USR7AC (0242035503, EAN 4047023059468) independently corroborated via Motointegrator catalog."
+      },
+      "current_status": "VERIFIED_STAGED_READY",
+      "classification": "VERIFIED_ACTIVATION_READY"
+    },
+    {
+      "part_number": "00006421240",
+      "part_number_formatted": "0000 642 1240",
+      "asin": "B000IBWVWG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "brand": "Oregon",
+      "manufacturer": "Oregon Tool, Inc.",
+      "trade_number": "Rim Sprocket 3/8 7T Small Spline SM7",
+      "ean_gtin": "0036577187203",
+      "product_title": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline (SM7 / 19mm)",
+      "package_quantity": 1,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "focus_model": "MS 290 / MS 310",
+      "gate_1_technical": {
+        "status": "PASS",
+        "fitment_proof": "Oregon 18720 is de exacte Small Spline (SM7, 19mm binnendiameter) ring voor STIHL 0000 642 1240 (028, 029, 034, 039, MS 290, MS 310, MS 390)"
+      },
+      "gate_2_product_identity": {
+        "status": "PASS",
+        "evidence_url": "https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth/p/18720",
+        "verdict": "VERIFIED_ACTIVATION_READY",
+        "reason": "Oregon 18720 Power Mate 3/8-7 Small Spline SM7 independently verified on Amazon catalog and Oregon fitment chart."
+      },
+      "current_status": "VERIFIED_STAGED_READY",
+      "classification": "VERIFIED_ACTIVATION_READY"
+    }
+  ]
+}
