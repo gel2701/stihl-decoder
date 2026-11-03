@@ -105,7 +105,8 @@ export const currentProductionSuites = [
   'tests/ux_modernization_fase1_2.test.js',
   'tests/phase3_direct_parts_integration.test.js',
   'tests/phase4_intelligent_search.test.js',
-  'tests/phase5_intelligent_parts_search.test.js'
+  'tests/phase5_intelligent_parts_search.test.js',
+  'tests/phase6_catalog_coverage_quality.test.js'
 ];
 
 console.log('===============================================================');

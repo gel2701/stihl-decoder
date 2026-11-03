@@ -121,6 +121,7 @@ export function generateRobotsTxt(baseUrl = PRIMARY_ORIGIN) {
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /intern/
 
 Sitemap: ${baseUrl}/sitemap.xml`;
 }
