@@ -20,6 +20,7 @@ import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../p
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { getPartAffiliateOffer } from '../search/IntelligentPartsSearchEngine.js';
+import { renderDiagramAvailabilityNoticeHtml } from './DiagramAvailabilityNotice.js';
 
 function renderSafeTechnicalValue(model, field, database, formatter) {
   const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
@@ -52,16 +53,16 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     { name: 'Home', url: '/' },
     ...(categorySlug ? [{ name: model.category || 'Modellen', url: `/${categorySlug}/` }] : []),
     { name: `STIHL ${model.model_name}`, url: modelPath || canonicalUrl.replace('/onderdelen/', '/') },
-    { name: 'Onderdelen & Tekeningen', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
+    { name: 'Onderdelen & Tekeningposities', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
   ];
 
-  const metaDescription = `Bekijk STIHL ${model.model_name} onderdelen, onderdeelnummers, exploded views en compatibiliteit. Bekijk carburateur, luchtfilter, bougie, starter en toebehoren. Controleer uitvoering voor u bestelt.`;
+  const metaDescription = `Bekijk STIHL ${model.model_name} onderdelen, onderdeelnummers, tekeningposities en compatibiliteit. Bekijk carburateur, luchtfilter, bougie, starter en toebehoren. Controleer uitvoering voor u bestelt.`;
 
   const jsonLdData = buildStructuredData({
     pageType: 'model-parts',
     model,
     intent: {
-      title: `STIHL ${model.model_name} Onderdelen & Tekeningen Gids`,
+      title: `STIHL ${model.model_name} Onderdelen & Tekeningposities Gids`,
       description: metaDescription
     },
     breadcrumbs,
@@ -69,7 +70,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   });
 
   const seoMetaHtml = renderSeoMeta({
-    title: `STIHL ${model.model_name} Onderdelen & Tekeningen Gids | STIHLDecoder`,
+    title: `STIHL ${model.model_name} Onderdelen & Tekeningposities Gids | STIHLDecoder`,
     description: metaDescription,
     canonicalUrl,
     ogType: 'article',
@@ -202,7 +203,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const sectionNavPillsHtml = sections.length > 1 ? `
     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-1.5">
       <div class="text-2xs font-mono text-gray-400 flex items-center justify-between">
-        <span>SNEL NAAR EXPLODED VIEW SECTIE:</span>
+        <span>SNEL NAAR SECTIE (tekeningposities):</span>
         <span class="text-orange-400 font-bold">${sections.length} secties</span>
       </div>
       <div class="flex flex-wrap gap-1.5 pt-1">
@@ -222,6 +223,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     <section class="space-y-6">
       ${maintenanceHighlightHtml}
       ${sectionNavPillsHtml}
+      ${renderDiagramAvailabilityNoticeHtml()}
 
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
         <div>
@@ -229,7 +231,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <span>Canonieke Onderdelencatalogus</span>
             <span class="text-xs font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">${totalPartsCount} onderdelen</span>
           </h2>
-          <p class="text-xs text-gray-400">Onderdelen ingedeeld volgens officiële diagramsecties en documentatiereeksen.</p>
+          <p class="text-xs text-gray-400">Onderdelen ingedeeld volgens officiële diagramsecties en documentatiereeksen, met positienummers uit de onderdelentekening.</p>
         </div>
       </div>
 

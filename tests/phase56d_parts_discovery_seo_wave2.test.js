@@ -188,7 +188,7 @@ test('Phase 56D - Test 6: Model Parts Page Quick Section Navigation & Maintenanc
   assert.ok(model, 'MS 261 model must exist in database');
 
   const html = renderModelPartsPageHtml(model, database, PRIMARY_ORIGIN);
-  assert.ok(html.includes('SNEL NAAR EXPLODED VIEW SECTIE:'), 'Must render section navigation bar');
+  assert.ok(html.includes('SNEL NAAR SECTIE (tekeningposities):'), 'Must render section navigation bar');
   assert.ok(html.includes('#section-0'), 'Must contain anchor links to sections');
   assert.ok(html.includes('Veelgezochte Onderhouds- & Slijtagedelen'), 'Must render maintenance parts grid');
   assert.ok(html.includes('/onderdelen/'), 'Header must contain link to central parts discovery');

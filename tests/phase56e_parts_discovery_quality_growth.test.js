@@ -232,7 +232,7 @@ test('Phase 56E - Test 7: Amazon Affiliate Contract & Conversion Funnel', () => 
 test('Phase 56E - Test 8: Central Parts Discovery (/onderdelen/) Template & Multilingual Search', () => {
   // 1. Initial State
   const initialHtml = renderPartsDiscoveryPageHtml('', database, PRIMARY_ORIGIN);
-  assert.ok(initialHtml.includes('STIHL Onderdelen Zoeken & Explosietekeningen Catalogus'), 'Must render initial hub');
+  assert.ok(initialHtml.includes('STIHL Onderdelen Zoeken & Tekeningposities Catalogus'), 'Must render initial hub');
   assert.ok(initialHtml.includes('/onderdelen/'), 'Canonical URL must point to /onderdelen/');
 
   // 2. Exact match query

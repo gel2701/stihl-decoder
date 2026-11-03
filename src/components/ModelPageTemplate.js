@@ -11,6 +11,7 @@ import { getModelVerificationSummary } from '../canonicalData.js';
 import { ModelFamilyDriveRegistry } from '../ModelFamilyDriveRegistry.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
+import { renderDiagramAvailabilityNoticeHtml } from './DiagramAvailabilityNotice.js';
 import {
   buildPublicEvidenceFields,
   buildPublicEvidenceFieldMap,
@@ -411,13 +412,15 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
         <div>
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span>🔧 Onderdelen & Explosietekeningen STIHL ${model.model_name}</span>
+            <span>🔧 Onderdelen &amp; Tekeningposities STIHL ${model.model_name}</span>
             <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">${modelSections.reduce((acc, s) => acc + s.parts.length, 0)} onderdelen</span>
           </h2>
-          <p class="text-xs text-gray-400">Bekijk exploded views, diagramsecties en compatibele onderdelen voor de STIHL ${model.model_name}.</p>
+          <p class="text-xs text-gray-400">Bekijk onderdelensecties met tekeningposities en compatibele onderdelen voor de STIHL ${model.model_name}.</p>
         </div>
         ${safePartsPath ? `<a href="${safePartsPath}" class="text-xs text-orange-400 font-bold hover:underline shrink-0">Volledige onderdelengids →</a>` : ''}
       </div>
+
+      ${renderDiagramAvailabilityNoticeHtml()}
 
       <!-- Quick Maintenance Parts Shortcuts (Phase 56F) -->
       <div class="bg-gray-950/60 p-3.5 rounded-xl border border-gray-800/80 space-y-2">
@@ -494,13 +497,13 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
               <span class="group-hover:text-orange-400 transition">${sec.section_name}</span>
               <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${sec.parts.length}</span>
             </div>
-            <p class="text-3xs text-gray-400">Gedocumenteerde diagramsectie</p>
+            <p class="text-3xs text-gray-400">Sectie met tekeningposities</p>
           </a>
         `).join('')}
       </div>
       <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
         <a href="${safePartsPath}" class="text-orange-400 font-semibold hover:underline flex items-center gap-1.5">
-          <span>Bekijk alle ${modelSections.length} exploded view secties voor STIHL ${model.model_name}</span>
+          <span>Bekijk alle ${modelSections.length} secties met tekeningposities voor STIHL ${model.model_name}</span>
           <span aria-hidden="true">→</span>
         </a>
         ${model.series_code ? `
@@ -524,7 +527,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </a>
       ${safePartsPath ? `<a href="${safePartsPath}" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 p-4 rounded-xl text-center space-y-1 block transition group">
         <span class="font-bold text-white text-sm block group-hover:underline">🔧 Bekijk onderdelen voor de STIHL ${model.model_name}</span>
-        <span class="text-gray-400 block text-2xs">${model.series_code ? `STIHL ${model.model_name} onderdelen & exploded views (serie ${model.series_code})` : `STIHL ${model.model_name} onderdelen & exploded views`}</span>
+        <span class="text-gray-400 block text-2xs">${model.series_code ? `STIHL ${model.model_name} onderdelen & tekeningposities (serie ${model.series_code})` : `STIHL ${model.model_name} onderdelen & tekeningposities`}</span>
       </a>` : ''}
     </section>
 

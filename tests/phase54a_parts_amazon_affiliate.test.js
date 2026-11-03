@@ -626,8 +626,8 @@ assert(htmlWithAffiliate.includes('part_number=11270201216'), 'Redirect URL must
 assert(htmlWithAffiliate.includes('marketplace=amazon.nl'), 'Redirect URL must include marketplace parameter');
 assert(htmlWithAffiliate.includes('offer_type=SEARCH_LINK'), 'Redirect URL must include offer_type parameter');
 
-// Verify placement: "Zoek dit onderdeel online" must come AFTER "Montagelocatie & Diagramsecties"
-const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie & Diagramsecties');
+// Verify placement: "Zoek dit onderdeel online" must come AFTER "Montagelocatie &amp; tekeningposities"
+const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie &amp; tekeningposities');
 const searchSectionIdx = htmlWithAffiliate.indexOf('Zoek dit onderdeel online');
 assert(diagramIdx !== -1 && searchSectionIdx !== -1, 'Both sections must be present');
 assert(searchSectionIdx > diagramIdx, 'Commercial section must be below technical diagram section');
@@ -639,7 +639,7 @@ assert(!htmlWithoutAffiliate.includes('Waar te koop'), 'Page must NOT contain "W
 assert(!htmlWithoutAffiliate.includes('Zoek dit onderdeel online'), 'Page must NOT contain "Zoek dit onderdeel online" when disabled');
 assert(!htmlWithoutAffiliate.includes('Zoek op Amazon.nl'), 'Must not render Amazon CTA when disabled');
 assert(!htmlWithoutAffiliate.includes('Bekijk op Amazon.nl'), 'Must not render Amazon CTA when disabled');
-assert(htmlWithoutAffiliate.includes('Montagelocatie & Diagramsecties'), 'Technical sections must remain intact');
+assert(htmlWithoutAffiliate.includes('Montagelocatie &amp; tekeningposities'), 'Technical sections must remain intact');
 console.log('  ✅ Test 9 Passed: SSR Part Detail Page conditionally renders commercial block safely.\n');
 
 // ============================================================================

@@ -77,7 +77,7 @@ test('Phase 54C: Part Series Prefix Pages (/onderdeelnummer/stihl-XXXX/) Data-Dr
   assert.ok(html1123.includes('MS 250') || html1123.includes('025') || html1123.includes('MS 210'));
 
   // Verify direct link to model parts page is rendered for models with catalog parts
-  assert.match(html1123, /Onderdelencatalogus & tekeningen →/);
+  assert.match(html1123, /Onderdelencatalogus &amp; tekeningposities →/);
 
   // Non-hardcoded check: compare with series 1141
   const html1141 = renderPartNumberSeriesHtml('1141', database, PRIMARY_ORIGIN);
@@ -100,8 +100,8 @@ test('Phase 54C: Model Parts Pages (/kettingzagen/ms-200/onderdelen/) Full Metad
   const html200 = renderModelPartsPageHtml(m200, database, PRIMARY_ORIGIN);
 
   // Title & description
-  assert.match(html200, /<title>STIHL MS 200 \/ 020 T Onderdelen & Tekeningen Gids \| STIHLDecoder<\/title>/);
-  assert.match(html200, /<meta\s+name="description"\s+content="Bekijk STIHL MS 200 \/ 020 T onderdelen, onderdeelnummers, exploded views en compatibiliteit\./);
+  assert.match(html200, /<title>STIHL MS 200 \/ 020 T Onderdelen & Tekeningposities Gids \| STIHLDecoder<\/title>/);
+  assert.match(html200, /<meta\s+name="description"\s+content="Bekijk STIHL MS 200 \/ 020 T onderdelen, onderdeelnummers, tekeningposities en compatibiliteit\./);
   assert.match(html200, /<link\s+rel="canonical"\s+href="https:\/\/www\.stihldecoder\.nl\/kettingzagen\/ms-200\/onderdelen\/"/);
 
   // Robots index, follow because MS 200 has parts
