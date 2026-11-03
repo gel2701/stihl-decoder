@@ -10,6 +10,7 @@
     "build": "npm run build:css && node data/seed.cjs",
     "postinstall": "node data/seed.cjs",
     "test": "node tests/run_current_production_tests.js",
+    "test:gate": "node scripts/check_affiliate_consistency.mjs && node tests/affiliate_quality_gate.test.js",
     "test:e2e": "playwright test",
     "test:live-smoke": "node scripts/live_browser_smoke_test.mjs",
     "test:parts-live": "node scripts/smoke_test_parts_live.mjs",

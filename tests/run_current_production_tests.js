@@ -108,7 +108,8 @@ export const currentProductionSuites = [
   'tests/phase5_intelligent_parts_search.test.js',
   'tests/phase6_catalog_coverage_quality.test.js',
   'tests/phase60_commercial_growth.test.js',
-  'tests/phase60_1_evidence_recovery.test.js'
+  'tests/phase60_1_evidence_recovery.test.js',
+  'tests/affiliate_quality_gate.test.js'
 ];
 
 console.log('===============================================================');

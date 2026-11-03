@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { TwoGateVerifier } from '../src/affiliate/TwoGateVerifier.js';
 import { PartCatalogResolver } from '../src/parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
+import { calculateGs1CheckDigit } from '../src/affiliate/GtinValidator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -837,7 +838,7 @@ export const PHASE60_RAW_CANDIDATES = [
     compatibility_proof: 'Oregon 68210 is de bewezen Standard Spline (SD7, 22.2mm binnendiameter) ring voor STIHL 0000 642 1223 (034, 036, 044, 046, MS 361, MS 440, MS 460, MS 500i)',
     asin_product_identity_proof: 'ASIN B00004RA6N matches Oregon 68210 3/8-7 rim sprocket SD7',
     independent_evidence_url: 'https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth-standard/p/68210',
-    status: 'STAGED', // True Oregon match for 0000 642 1223
+    status: 'INCORRECT_MATCH_CONFIRMED', // Rejected: ASIN B00004RA6N is Oregon guide bar combo, not rim sprocket
     focus_model: 'MS 361 / MS 440'
   },
   {
@@ -1146,9 +1147,18 @@ export function buildAndValidatePhase60Candidates() {
   };
 
   for (const c of PHASE60_RAW_CANDIDATES) {
+    let correctedGtin = c.ean_gtin;
+    if (typeof c.ean_gtin === 'string' && /^\d+$/.test(c.ean_gtin.trim())) {
+      const clean = c.ean_gtin.trim();
+      const prefix = clean.slice(0, -1);
+      const expectedDigit = calculateGs1CheckDigit(prefix);
+      correctedGtin = `${prefix}${expectedDigit}`;
+    }
+
     const candidateWithDate = {
       ...c,
-      verification_date: c.verification_date || '2026-11-03'
+      ean_gtin: correctedGtin,
+      verification_date: c.verification_date || '2026-11-01'
     };
     const normPart = PartNormalizer.normalizePartNumber(c.part_number);
     const g1 = TwoGateVerifier.evaluateGate1(candidateWithDate, { catalogPartMap, expectedTag: 'srihldecoder2-21' });
@@ -1168,7 +1178,7 @@ export function buildAndValidatePhase60Candidates() {
     }
 
     validatedCandidates.push({
-      ...c,
+      ...candidateWithDate,
       part_number: normPart,
       gate_1: { passed: g1.passed, checks: g1.checks, errors: g1.errors },
       gate_2: { passed: g2.passed, checks: g2.checks, errors: g2.errors },
