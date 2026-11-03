@@ -408,3 +408,63 @@ test('Phase 60Q.1 Gate 6 — Lifecycle Taxonomy Invariants', () => {
   assert.ok(UNVERIFIED_ASIN_STATUSES.has('CONFLICTING_EVIDENCE'));
   assert.ok(UNVERIFIED_ASIN_STATUSES.has('INCORRECT_MATCH_CONFIRMED'));
 });
+
+test('Phase 62.1 Gate 7 — Commercial Catalog & Cross-Manifest Concordance Invariants', async () => {
+  const { checkAffiliateConsistency } = await import('../scripts/check_affiliate_consistency.mjs');
+  const consistencyResult = checkAffiliateConsistency();
+  assert.equal(consistencyResult.success, true, 'checkAffiliateConsistency() must pass 100%');
+  assert.equal(consistencyResult.contradictions.length, 0);
+  assert.equal(consistencyResult.gtinErrors.length, 0);
+
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const { fileURLToPath } = await import('node:url');
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const rootDir = path.resolve(__dirname, '..');
+
+  const comDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'commercial_catalog_100.json'), 'utf8'));
+  const regDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8'));
+
+  // 1. NGK CMR6H (0000 400 7011): strictly B001RMA5S2, rejecting B003CJIOVU
+  const cmr6hCom = comDoc.parts.find(p => p.part_number === '00004007011');
+  const cmr6hReg = regDoc.offers.find(o => o.part_number === '00004007011');
+  assert.ok(cmr6hCom, '00004007011 must be present in commercial catalog');
+  assert.ok(cmr6hReg, '00004007011 must be present in registry');
+  assert.equal(cmr6hCom.asin, 'B001RMA5S2', '0000 400 7011 commercial catalog ASIN must strictly be B001RMA5S2');
+  assert.equal(cmr6hReg.asin, 'B001RMA5S2', '0000 400 7011 registry ASIN must strictly be B001RMA5S2');
+  assert.notEqual(cmr6hCom.asin, 'B003CJIOVU', '0000 400 7011 must reject contradictory ASIN B003CJIOVU');
+  assert.ok(!cmr6hCom.selection_rationale.includes('B003CJIOVU'), 'Rationale must not contain B003CJIOVU');
+  assert.ok(cmr6hCom.selection_rationale.includes('B001RMA5S2'), 'Rationale must mention B001RMA5S2');
+  assert.equal(cmr6hCom.ean_gtin, '0087295133651');
+
+  // 2. NGK BPMR7A (0000 400 7000): strictly 0087295167038, rejecting 0087295167032
+  const bpmr7aCom = comDoc.parts.find(p => p.part_number === '00004007000');
+  const bpmr7aReg = regDoc.offers.find(o => o.part_number === '00004007000');
+  assert.ok(bpmr7aCom);
+  assert.ok(bpmr7aReg);
+  assert.equal(bpmr7aCom.asin, 'B001RM8J76');
+  assert.equal(bpmr7aReg.asin, 'B001RM8J76');
+  assert.equal(bpmr7aCom.ean_gtin, '0087295167038');
+  assert.equal(bpmr7aReg.ean_gtin, '0087295167038');
+  assert.equal(validateGtin('0087295167038').valid, true);
+  assert.equal(validateGtin('0087295167032').valid, false, 'Check digit 2 must fail validation (expected 8)');
+
+  // 3. Oregon 18720 (0000 642 1240): strictly 0036577187202, rejecting 0036577187203 and 0036577187208
+  const oregonCom = comDoc.parts.find(p => p.part_number === '00006421240');
+  assert.ok(oregonCom);
+  assert.equal(oregonCom.asin, 'B000IBWVWG');
+  assert.equal(oregonCom.ean_gtin, '0036577187202');
+  assert.equal(validateGtin('0036577187202').valid, true);
+  assert.equal(validateGtin('0036577187203').valid, false, 'Check digit 3 must fail validation (expected 2)');
+  assert.equal(validateGtin('0036577187208').valid, false, 'Check digit 8 must fail validation (expected 2)');
+
+  // 4. Adversarial Rationale ASIN Mismatch Detection
+  const badRationaleRecord = {
+    part_number: '00004007011',
+    asin: 'B001RMA5S2',
+    selection_rationale: 'Active pilot ASIN B003CJIOVU'
+  };
+  const asinMatch = badRationaleRecord.selection_rationale.match(/ASIN\s+([A-Z0-9]{10})/i);
+  assert.ok(asinMatch);
+  assert.notEqual(asinMatch[1].toUpperCase(), badRationaleRecord.asin, 'Adversarial rationale mismatch detected');
+});

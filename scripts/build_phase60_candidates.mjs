@@ -811,7 +811,7 @@ export const PHASE60_RAW_CANDIDATES = [
     package_quantity: 1,
     package_type: 'Single rim sprocket pack',
     is_multipack: false,
-    ean_gtin: '0036577187203',
+    ean_gtin: '0036577187202',
     oem_brand_classification: 'MANUFACTURER_AFTERMARKET',
     compatibility_proof: 'Oregon 18720 is de exacte Small Spline (SM7, 19mm binnendiameter) ring voor STIHL 0000 642 1240 (028, 029, 034, 039, MS 290, MS 310, MS 390)',
     asin_product_identity_proof: 'ASIN B000IBWVWG matches Oregon 18720 3/8-7 rim sprocket SM7',
