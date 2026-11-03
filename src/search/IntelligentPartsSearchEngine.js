@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { defaultVerifiedOfferRegistry } from '../affiliate/VerifiedOfferRegistry.js';
-import { AmazonAffiliateProvider } from '../affiliate/AmazonAffiliateProvider.js';
+import { AmazonAffiliateProvider, COMMERCIAL_TIERS, extractTargetedSearchKeywords } from '../affiliate/AmazonAffiliateProvider.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { SectionResolutionRegistry } from '../parts/SectionResolutionRegistry.js';
 
@@ -206,6 +206,7 @@ export function resolvePurchaseOffer(partNumber, partName = '') {
   if (activeOffer) {
     return {
       type: 'DIRECT_ASIN',
+      tier: COMMERCIAL_TIERS.DIRECT_VERIFIED,
       url: `https://${activeOffer.marketplace || 'www.amazon.nl'}/dp/${activeOffer.asin}?tag=${encodeURIComponent(partnerTag)}`,
       asin: activeOffer.asin,
       marketplace: activeOffer.marketplace || 'www.amazon.nl',
@@ -215,10 +216,11 @@ export function resolvePurchaseOffer(partNumber, partName = '') {
     };
   }
 
-  // 2. Safe compliant search fallback
-  const fallbackUrl = provider.buildSearchUrl(norm, partnerTag, partName);
+  // 2. Safe compliant targeted search
+  const fallbackUrl = provider.buildSearchUrl(norm, partnerTag, { partName });
   return {
     type: 'SEARCH_FALLBACK',
+    tier: COMMERCIAL_TIERS.TARGETED_SEARCH,
     url: fallbackUrl,
     asin: null,
     marketplace: 'www.amazon.nl',
