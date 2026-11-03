@@ -19,6 +19,7 @@ import { PRIMARY_ORIGIN } from '../config.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
+import { getPartAffiliateOffer } from '../search/IntelligentPartsSearchEngine.js';
 
 function renderSafeTechnicalValue(model, field, database, formatter) {
   const state = getPublicTechnicalDisplayState(model.slug || model.model_name, field, database);
@@ -54,7 +55,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     { name: 'Onderdelen & Tekeningen', url: categorySlug ? `/${categorySlug}/${slug}/onderdelen/` : canonicalUrl.replace(baseUrl, '') }
   ];
 
-  const metaDescription = `Bekijk STIHL ${model.model_name} onderdelen, onderdeelnummers, exploded views en compatibiliteit. Controleer uitvoering en onderdeelnummer voordat u bestelt.`;
+  const metaDescription = `Bekijk STIHL ${model.model_name} onderdelen, onderdeelnummers, exploded views en compatibiliteit. Bekijk carburateur, luchtfilter, bougie, starter en toebehoren. Controleer uitvoering voor u bestelt.`;
 
   const jsonLdData = buildStructuredData({
     pageType: 'model-parts',
@@ -128,8 +129,11 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     { label: 'Bougie', regex: /\b(spark plug|bougie|zündkerze)\b/i },
     { label: 'Luchtfilter', regex: /\b(air filter|luchtfilter|filterelement|filter element)\b/i },
     { label: 'Brandstoffilter', regex: /\b(fuel filter|brandstoffilter|pickup body|saugkopf)\b/i },
-    { label: 'Koppeling / Aandrijving', regex: /\b(clutch|koppeling|chain sprocket|kettingwiel|rim sprocket)\b/i },
-    { label: 'Starter & Koord', regex: /\b(starter|starter rope|startkoord|anwerfseil|recoil starter)\b/i },
+    { label: 'Carburateur & Membraan', regex: /\b(carburetor|carburateur|vergaser|diaphragm|stelmengsel)\b/i },
+    { label: 'Maaigarnituur & Maaikop', regex: /\b(mowing head|maaikop|autocut|trimmer head|cutter blade|slagmes|driehoeksmes|maaimes|polycut|durocut|brush knife|grass cutting blade)\b/i },
+    { label: 'Starter & Koord', regex: /\b(starter|starter rope|startkoord|anwerfseil|recoil starter|terugloopveer)\b/i },
+    { label: 'Koppeling & Aandrijving', regex: /\b(clutch|koppeling|chain sprocket|kettingwiel|rim sprocket|drive shaft|pinion)\b/i },
+    { label: 'Tandwielvet & Smering', regex: /\b(gear grease|vet|lubricant|smeermiddel|gear lubricant)\b/i },
     { label: 'Ketting & Zaagblad', regex: /\b(guide bar|zaagblad|zaagketting|saw chain)\b/i },
     { label: 'Oliepomp & Smering', regex: /\b(oil pump|oliepomp|worm gear|schnecke)\b/i }
   ];
@@ -160,19 +164,37 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
         Gedocumenteerde onderdelen voor regulier onderhoud en periodieke vervanging op de STIHL ${model.model_name}.
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
-        ${maintenanceParts.map(p => `
-          <a
-            href="/onderdeelnummer/${p.part_number}/"
-            class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition block space-y-1 group"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-2xs font-mono font-bold text-orange-400 group-hover:underline">STIHL ${p.part_number_display || p.part_number}</span>
-              <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
+        ${maintenanceParts.map(p => {
+          const offer = getPartAffiliateOffer(p.part_number, p.part_name);
+          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, section_context: '${p.section_name}'});}` : '';
+          return `
+          <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2">
+            <div>
+              <div class="flex items-center justify-between">
+                <a href="/onderdeelnummer/${p.part_number}/" class="text-2xs font-mono font-bold text-orange-400 hover:underline">STIHL ${p.part_number_display || p.part_number}</a>
+                <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
+              </div>
+              <a href="/onderdeelnummer/${p.part_number}/" class="text-xs font-semibold text-white hover:text-orange-300 transition block truncate mt-1">${p.part_name}</a>
+              <div class="text-3xs text-gray-400 mt-0.5">Sectie: ${p.section_name}</div>
             </div>
-            <div class="text-xs font-semibold text-white group-hover:text-orange-300 transition truncate">${p.part_name}</div>
-            <div class="text-3xs text-gray-400">Sectie: ${p.section_name}</div>
-          </a>
-        `).join('')}
+            ${offer ? `
+              <div class="pt-2 border-t border-gray-900 flex items-center justify-between">
+                <a href="/onderdeelnummer/${p.part_number}/" class="text-3xs text-gray-400 hover:underline">Details →</a>
+                <a
+                  href="${offer.url}"
+                  target="_blank"
+                  rel="nofollow sponsored"
+                  class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1"
+                  onclick="${affiliateClick}"
+                  title="${offer.is_direct ? 'Directe Aankoop op Amazon' : 'Zoek op Amazon'}"
+                >
+                  <span>${offer.is_direct ? '🛒 Directe Koop' : '🛒 Zoek op Amazon'}</span>
+                  <span class="opacity-70 text-3xs">↗</span>
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        `;}).join('')}
       </div>
     </div>
   ` : '';
@@ -228,7 +250,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                     <th class="py-2 pr-3 w-16">Pos.</th>
                     <th class="py-2 px-3 w-36">Onderdeelnummer</th>
                     <th class="py-2 px-3">Omschrijving</th>
-                    <th class="py-2 pl-3 text-right w-16">Aantal</th>
+                    <th class="py-2 px-3 text-center w-16">Aantal</th>
+                    <th class="py-2 pl-3 text-right w-36">Aankoop</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-800/50">
@@ -236,6 +259,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                     const safeSectionCtx = (sec.section_name || '').replace(/'/g, "\\'");
                     const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
                     const clickHandler = `if(window.trackStihlEvent){window.trackStihlEvent('model_to_part_click', {model: '${safeModelId}', part_number: '${p.part_number}', section_context: '${safeSectionCtx}', commercial_tier: '${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}', seo_tier: '${p.seo_tier || 'SEO_TIER_C'}', wave_identifier: '${p.wave_identifier || 'none'}', page_path: window.location.pathname});}`;
+                    const offer = getPartAffiliateOffer(p.part_number, p.part_name);
+                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, section_context: '${safeSectionCtx}'});}` : '';
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -247,7 +272,22 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                         ${(p.is_indexable && p.commercial_tier === 'COMMERCIAL_HIGH') ? `<a href="/onderdeelnummer/${p.part_number}/" class="ml-2 text-3xs font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 hover:border-emerald-400 transition whitespace-nowrap" onclick="${clickHandler}">Onderdeelgids →</a>` : ''}
                         ${p.configuration_name ? `<span class="ml-2 text-2xs font-mono text-gray-400 bg-gray-950 px-1.5 py-0.5 rounded border border-gray-800">${p.configuration_name}</span>` : ''}
                       </td>
-                      <td class="py-2 pl-3 text-right font-mono text-gray-400">${p.quantity || 1}</td>
+                      <td class="py-2 px-3 text-center font-mono text-gray-400">${p.quantity || 1}</td>
+                      <td class="py-2 pl-3 text-right whitespace-nowrap">
+                        ${offer ? `
+                          <a
+                            href="${offer.url}"
+                            target="_blank"
+                            rel="nofollow sponsored"
+                            class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1 min-h-[30px]"
+                            onclick="${affiliateClick}"
+                            title="${offer.is_direct ? 'Directe Aankoop op Amazon' : 'Zoek op Amazon'}"
+                          >
+                            <span>${offer.is_direct ? '🛒 Directe Koop' : '🛒 Zoek op Amazon'}</span>
+                            <span class="opacity-70 text-3xs">↗</span>
+                          </a>
+                        ` : ''}
+                      </td>
                     </tr>
                   `;}).join('')}
                 </tbody>
@@ -486,6 +526,39 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     </div>
   </footer>
 
- </body>
+  <script>
+    (function() {
+      window.handleAffiliateClick = function(el, ev, data) {
+        try {
+          var payload = JSON.stringify({
+            provider: data.provider || 'amazon',
+            marketplace: data.marketplace || 'amazon.nl',
+            part_number: data.part_number,
+            offer_type: data.offer_type || 'SEARCH_LINK',
+            match_type: data.offer_type || 'SEARCH_LINK',
+            asin_if_known: data.asin_if_known || null,
+            product_verified: Boolean(data.product_verified),
+            destination_url: el.href,
+            query_variant: data.query_variant || null,
+            section_context: data.section_context || null,
+            page_path: window.location.pathname
+          });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));
+          } else if (window.fetch) {
+            window.fetch('/api/affiliate/track', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: payload,
+              keepalive: true
+            }).catch(function() {});
+          }
+        } catch (err) {
+          // Fail-open: tracking failure must never prevent navigation
+        }
+      };
+    })();
+  </script>
+</body>
 </html>`;
 }

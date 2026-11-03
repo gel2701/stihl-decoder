@@ -79,37 +79,37 @@ export function classifyPartCategory(partName = '') {
   const name = String(partName || '').toLowerCase();
 
   // Fasteners & hardware checked early so titles with "Chainsaw Parts - M5 Nut" or "Screw for guide bar" are classified as hardware
-  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgring|circlip|sprengring|klem|clip|bout|bolt|tapeind|stud/i.test(name)) {
+  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgring|circlip|sprengring|klem|clip|bout|bolt|tapeind|stud|cylindrical pin|snap ring|grooved ball bearing|needle cage|helicoil/i.test(name)) {
     return PART_CATEGORIES.HARDWARE;
   }
-  if (/luchtfilter|air filter|luftfilter|brandstoffilter|fuel filter|kraftstofffilter|filterelement|filter element|filter|saugkopf|pickup body/i.test(name)) {
+  if (/luchtfilter|air filter|luftfilter|brandstoffilter|fuel filter|kraftstofffilter|filterelement|filter element|filter|saugkopf|pickup body|service kit|onderhoudset/i.test(name)) {
     return PART_CATEGORIES.FILTERS;
   }
-  if (/bougie|spark plug|zündkerze|zundkerze|ontsteking|ignition|stecker|bougiedop|flywheel|vliegwiel/i.test(name)) {
+  if (/bougie|spark plug|zündkerze|zundkerze|ontsteking|ignition|stecker|bougiedop|flywheel|vliegwiel|control unit|wiring harness|contactveer|cable harness|lead retainer/i.test(name)) {
     return PART_CATEGORIES.IGNITION;
   }
-  if (/carburateur|carburetor|carburettor|vergaser|membraan|diaphragm|pakking|gasket|dichtung|revisieset|carb set/i.test(name)) {
+  if (/carburateur|carburetor|carburettor|vergaser|membraan|diaphragm|pakking|gasket|dichtung|revisieset|carb set|fixed jet|inlet control|strainer|spindle|fuel tank|brandstoftank|tank vent|filler cap|fuel hose|tankdop/i.test(name)) {
     return PART_CATEGORIES.CARBURETOR;
   }
   if (/zaagketting|saw chain|sägekette|sagekette|ketting(?!enzaag)|\bchain(?!saw)\b|zaagblad|guide bar|schwert|spreader|kettingspanner|chain tensioner/i.test(name)) {
     return PART_CATEGORIES.CUTTING_EQUIPMENT;
   }
-  if (/maaikop|mowing head|autocut|trimmer|maaidraad|trimmer line|polycut|duocut|slagmes|mowing blade/i.test(name)) {
+  if (/maaikop|mowing head|autocut|trimmer|maaidraad|trimmer line|polycut|duocut|slagmes|mowing blade|cutter blade|rider plate|limit stop|deflector|thrust plate|skirt|protection|guard ring/i.test(name)) {
     return PART_CATEGORIES.TRIMMER_EQUIPMENT;
   }
-  if (/starter|recoil|anwerfer|startkoord|starter rope|startveer|rewind spring|seilrolle|starter grip/i.test(name)) {
+  if (/starter|recoil|anwerfer|startkoord|starter rope|startveer|rewind spring|seilrolle|starter grip|pawl/i.test(name)) {
     return PART_CATEGORIES.STARTER;
   }
-  if (/koppeling|clutch|kupplung|kettingwiel|sprocket|kettenrad|rim sprocket|rondsel|aandrijfwiel|clutch drum/i.test(name)) {
+  if (/koppeling|clutch|kupplung|kettingwiel|sprocket|kettenrad|rim sprocket|rondsel|aandrijfwiel|clutch drum|drive shaft|pinion|flexible liner/i.test(name)) {
     return PART_CATEGORIES.CLUTCH;
   }
-  if (/cilinder|cylinder|zylinder|zuiger|piston|kolben|zuigerveer|piston ring|crankshaft|krukas|krukaslager|drijfstang|crankcase|carter/i.test(name)) {
+  if (/cilinder|cylinder|zylinder|zuiger|piston|kolben|zuigerveer|piston ring|crankshaft|krukas|krukaslager|drijfstang|crankcase|carter|uitlaat|muffler|auspuff|cooling plate/i.test(name)) {
     return PART_CATEGORIES.ENGINE;
   }
-  if (/oliepomp|oil pump|ölpumpe|olpumpe|olieslang|wormwiel|worm gear|schneckentrieb/i.test(name)) {
+  if (/oliepomp|oil pump|ölpumpe|olpumpe|olieslang|wormwiel|worm gear|schneckentrieb|grease|vet|lubricant|smeermiddel/i.test(name)) {
     return PART_CATEGORIES.OIL_SYSTEM;
   }
-  if (/handgreep|handle|griff|av-veer|veerelement|annular buffer|bumper spike|tandkam|behuizing|housing|kap|cover|haube/i.test(name)) {
+  if (/handgreep|handle|griff|av-veer|veerelement|annular buffer|bumper spike|tandkam|behuizing|housing|kap|cover|haube|harness|draagharnas|hip pad|chest strap|chest plate|shoulder plate|shroud|shutter|handbeschermer|throttle|gashendel|rubber buffer|av spring/i.test(name)) {
     return PART_CATEGORIES.BODY;
   }
 
@@ -227,6 +227,8 @@ export function resolvePurchaseOffer(partNumber, partName = '') {
     is_direct: false
   };
 }
+
+export const getPartAffiliateOffer = resolvePurchaseOffer;
 
 /**
  * Enriches a resolved part for search presentation.

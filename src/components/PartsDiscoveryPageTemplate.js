@@ -487,6 +487,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                     target="_blank"
                     rel="nofollow sponsored"
                     class="px-3 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/40 rounded-lg text-2xs font-bold transition flex items-center gap-1 min-h-[36px]"
+                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
                   >
                     <span>${p.purchase_offer.is_direct ? '🛒 Directe Aankoop' : 'Zoek op Amazon'}</span>
                     <span>↗</span>
@@ -543,7 +544,8 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                           href="${p.purchase_offer.url}"
                           target="_blank"
                           rel="nofollow sponsored"
-                          class="px-2.5 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30 rounded-lg text-2xs font-bold transition whitespace-nowrap inline-flex items-center gap-1"
+                          class="px-2.5 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30 rounded-lg text-2xs font-bold transition whitespace-nowrap inline-flex items-center gap-1 min-h-[30px]"
+                          onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
                           title="Bekijk op Amazon"
                         >
                           <span>🛒 Amazon</span>
@@ -713,6 +715,39 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     </div>
   </footer>
 
+  <script>
+    (function() {
+      window.handleAffiliateClick = function(el, ev, data) {
+        try {
+          var payload = JSON.stringify({
+            provider: data.provider || 'amazon',
+            marketplace: data.marketplace || 'amazon.nl',
+            part_number: data.part_number,
+            offer_type: data.offer_type || 'SEARCH_LINK',
+            match_type: data.offer_type || 'SEARCH_LINK',
+            asin_if_known: data.asin_if_known || null,
+            product_verified: Boolean(data.product_verified),
+            destination_url: el.href,
+            query_variant: data.query_variant || null,
+            section_context: data.section_context || null,
+            page_path: window.location.pathname
+          });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));
+          } else if (window.fetch) {
+            window.fetch('/api/affiliate/track', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: payload,
+              keepalive: true
+            }).catch(function() {});
+          }
+        } catch (err) {
+          // Fail-open: tracking failure must never prevent navigation
+        }
+      };
+    })();
+  </script>
 </body>
 </html>`;
 }

@@ -331,7 +331,14 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'PHASE59E_BEFORE_AFTER.json',
     'PHASE59F_ACTIVATION_CANDIDATES.json',
     'PHASE59F_MATCH_EVIDENCE.json',
-    'PHASE59F1_ACTIVATION_CANDIDATES.json'
+    'PHASE59F1_ACTIVATION_CANDIDATES.json',
+    'PHASE60_FS460_MONETIZATION_AUDIT.json',
+    'PHASE60_AMAZON_MATCHING_CANDIDATES.json',
+    'PHASE60_COMMERCIAL_OPPORTUNITIES.json',
+    'PHASE60_BEFORE_AFTER.json',
+    'tests/phase60_commercial_growth.test.js',
+    'scripts/build_phase60_candidates.mjs',
+    'scripts/generate_phase60_reports.mjs'
   ]);
 
   function scanDir(dir) {
