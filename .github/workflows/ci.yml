@@ -28,6 +28,7 @@ jobs:
 
   node-contract-tests:
     name: node-contract-tests
+    needs: [quality-gate]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -42,6 +43,9 @@ jobs:
       - name: Install dependencies (clean checkout)
         run: npm ci
 
+      - name: Fast quality gate pre-check (<1s)
+        run: npm run test:gate
+
       - name: Seed SQLite database from canonical JSON
         run: node data/seed.cjs
 
@@ -50,6 +54,7 @@ jobs:
 
   trust-audit:
     name: trust-audit
+    needs: [quality-gate]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -75,6 +80,7 @@ jobs:
 
   browser-e2e:
     name: browser-e2e
+    needs: [quality-gate]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
