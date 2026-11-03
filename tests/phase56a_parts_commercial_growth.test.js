@@ -262,7 +262,7 @@ test('Phase 56A - Test 9: Internal Commercial Funnel (Machine -> Parts -> Part -
   assert.ok(ms261, 'MS 261 model must exist in database');
 
   const modelHtml = renderModelPageHtml(ms261, database, PRIMARY_ORIGIN);
-  assert.match(modelHtml, /Onderdelen & Explosietekeningen STIHL MS 261/, 'Model page must showcase canonical parts section');
+  assert.match(modelHtml, /Onderdelen &amp; Tekeningposities STIHL MS 261/, 'Model page must showcase canonical parts section');
   assert.match(modelHtml, /\/kettingzagen\/ms-261\/onderdelen\//, 'Model page must link to model parts page');
 
   // 2. Model Parts Page groups by canonical diagram section

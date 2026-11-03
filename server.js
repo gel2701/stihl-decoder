@@ -1188,7 +1188,7 @@ function renderPartNumberHubHtml(database, baseUrl) {
     return `
       <a href="${partsPath}" class="bg-gray-950 p-3 rounded-xl border border-gray-800 hover:border-orange-500 block text-xs">
         <span class="font-bold text-white block">STIHL ${model.model_name}</span>
-        <span class="text-orange-400 text-2xs block">Bekijk onderdelen & tekeningen →</span>
+        <span class="text-orange-400 text-2xs block">Bekijk onderdelen &amp; tekeningposities →</span>
       </a>
     `;
   }).filter(Boolean).join('');
@@ -1287,7 +1287,7 @@ ${JSON.stringify(jsonLd, null, 2)}
       ${popularModelLinks ? `
       <div class="space-y-3 pt-4 border-t border-gray-800">
         <h2 class="text-lg font-bold text-white">Populaire STIHL Modellen & Onderdelen</h2>
-        <p class="text-xs text-gray-400">Bekijk exploded views en onderdelencatalogi voor veelgebruikte modellen:</p>
+        <p class="text-xs text-gray-400">Bekijk onderdelencatalogi met tekeningposities voor veelgebruikte modellen:</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           ${popularModelLinks}
         </div>
@@ -1335,7 +1335,7 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
             ${hasParts && partsPath ? `
               <div class="pt-1">
                 <a href="${partsPath}" class="text-2xs font-semibold text-emerald-400 hover:underline flex items-center gap-1">
-                  <span>🔧 Onderdelencatalogus & tekeningen →</span>
+                  <span>🔧 Onderdelencatalogus &amp; tekeningposities →</span>
                 </a>
               </div>
             ` : ''}
