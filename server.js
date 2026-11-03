@@ -819,8 +819,49 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 9b. Non-Public Internal Quality Audit Dashboard: GET /intern/kwaliteit or /intern/catalogus-dekking/
-  if (pathname === '/intern/kwaliteit' || pathname === '/intern/kwaliteit/' || pathname === '/intern/catalogus-dekking' || pathname === '/intern/catalogus-dekking/') {
+  // 9b. Protected Internal Quality Audit Dashboard: GET /intern/kwaliteit or /intern/catalogus-dekking/
+  const normalizedInternalPath = (pathname || '').toLowerCase().replace(/\/+$/, '');
+  if (normalizedInternalPath === '/intern/kwaliteit' || normalizedInternalPath === '/intern/catalogus-dekking') {
+    const expectedKey = process.env.INTERNAL_DASHBOARD_KEY || process.env.ADMIN_AUDIT_KEY || process.env.ADMIN_KEY || '';
+    const authHeader = req.headers['authorization'] || '';
+    const bearerKey = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+    const headerKey = req.headers['x-admin-key'] || req.headers['x-dashboard-key'] || null;
+    const queryKey = urlObj.searchParams.get('key');
+    const providedKey = headerKey || bearerKey || queryKey || '';
+
+    const isJsonRequest = Boolean(req.headers['accept'] && req.headers['accept'].includes('application/json') && !req.headers['accept'].includes('text/html'));
+
+    // Rule 1: Fail closed if no administrator key is configured on server
+    if (!expectedKey) {
+      res.writeHead(503, {
+        'Content-Type': isJsonRequest ? 'application/json; charset=UTF-8' : 'text/html; charset=UTF-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Cache-Control': 'no-store, no-cache, must-revalidate'
+      });
+      if (isJsonRequest) {
+        res.end(JSON.stringify({ error: 'Beheerderstoegang tot intern dashboard is niet geconfigureerd op deze server.' }));
+      } else {
+        res.end('<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><title>503 Niet Beschikbaar</title><meta name="robots" content="noindex, nofollow"></head><body style="font-family:sans-serif;background:#030712;color:#f9fafb;padding:2rem;text-align:center;"><h1>503 Niet Beschikbaar</h1><p>Beheerderstoegang tot het interne dashboard is momenteel niet geconfigureerd.</p></body></html>');
+      }
+      return;
+    }
+
+    // Rule 2: Constant-time authentication check
+    if (!providedKey || !timingSafeEqual(providedKey, expectedKey)) {
+      res.writeHead(401, {
+        'Content-Type': isJsonRequest ? 'application/json; charset=UTF-8' : 'text/html; charset=UTF-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Cache-Control': 'no-store, no-cache, must-revalidate'
+      });
+      if (isJsonRequest) {
+        res.end(JSON.stringify({ error: 'Geen toegang tot intern dashboard. Ongeldige of ontbrekende beheerderssleutel.' }));
+      } else {
+        res.end('<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><title>401 Geen Toegang</title><meta name="robots" content="noindex, nofollow"></head><body style="font-family:sans-serif;background:#030712;color:#f9fafb;padding:2rem;text-align:center;"><h1>401 Geen Toegang</h1><p>Geen toegang tot het interne dashboard. Beheerdersauthenticatie vereist.</p></body></html>');
+      }
+      return;
+    }
+
+    // Rule 3: Authorized access
     let reportData = null;
     const reportPath = path.resolve(__dirname, 'data', 'catalog_coverage_report.json');
     if (fs.existsSync(reportPath)) {
@@ -834,7 +875,7 @@ const server = http.createServer(async (req, res) => {
       reportData = measureCatalogCoverage({ databasePath: getDatabasePath() });
     }
 
-    if (req.headers['accept'] && req.headers['accept'].includes('application/json') && !req.headers['accept'].includes('text/html')) {
+    if (isJsonRequest) {
       res.writeHead(200, {
         'Content-Type': 'application/json; charset=UTF-8',
         'X-Robots-Tag': 'noindex, nofollow',
@@ -1559,12 +1600,8 @@ function timingSafeEqual(actualValue, expectedValue) {
     return false;
   }
 
-  const actual = Buffer.from(actualValue);
-  const expected = Buffer.from(expectedValue);
+  const aHash = crypto.createHash('sha256').update(actualValue).digest();
+  const bHash = crypto.createHash('sha256').update(expectedValue).digest();
 
-  if (actual.length !== expected.length) {
-    return false;
-  }
-
-  return crypto.timingSafeEqual(actual, expected);
+  return crypto.timingSafeEqual(aHash, bHash);
 }

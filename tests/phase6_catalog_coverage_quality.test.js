@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
+import http from 'node:http';
+import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -165,3 +167,162 @@ test('Phase 6 - Test 5: Invariant Verification (18,373 Parts, 843 SEO Pages, 1,0
   const affiliateTag = process.env.AMAZON_ASSOCIATE_TAG || 'srihldecoder2-21';
   assert.strictEqual(affiliateTag, 'srihldecoder2-21', 'Amazon affiliate tag must remain srihldecoder2-21');
 });
+
+test('Phase 6 - Test 6: Server-Side Authentication & Access Control on Internal Dashboard', async () => {
+  const TEST_PORT = 3129;
+  const BASE_URL = `http://localhost:${TEST_PORT}`;
+  const TEST_SECRET = 'stihl-intern-audit-secret-2026';
+
+  const serverProc = spawn(process.execPath, ['server.js'], {
+    cwd: rootDir,
+    env: {
+      ...process.env,
+      PORT: String(TEST_PORT),
+      NODE_ENV: 'production',
+      INTERNAL_DASHBOARD_KEY: TEST_SECRET,
+      DATABASE_PATH: './data/test_stihl_database.db'
+    },
+    stdio: 'ignore'
+  });
+
+  const requestHelper = (urlPath, headers = {}) => {
+    return new Promise((resolve, reject) => {
+      const parsedUrl = new URL(urlPath, BASE_URL);
+      const req = http.request({
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: parsedUrl.pathname + parsedUrl.search,
+        method: 'GET',
+        headers: {
+          'Host': 'www.stihldecoder.nl',
+          ...headers
+        }
+      }, (res) => {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body }));
+      });
+      req.on('error', reject);
+      req.end();
+    });
+  };
+
+  try {
+    // Wait for server ready
+    let ready = false;
+    for (let i = 0; i < 30; i++) {
+      try {
+        const v = await requestHelper('/api/version');
+        if (v.status === 200) {
+          ready = true;
+          break;
+        }
+      } catch (e) {
+        // wait
+      }
+      await new Promise(r => setTimeout(r, 100));
+    }
+    assert.ok(ready, 'Server must start within 3 seconds');
+
+    // 1. Unauthenticated request without key must return 401
+    const unauthRes = await requestHelper('/intern/kwaliteit');
+    assert.strictEqual(unauthRes.status, 401, 'Unauthenticated request must return 401');
+    assert.strictEqual(unauthRes.headers['x-robots-tag'], 'noindex, nofollow');
+    assert.ok(!unauthRes.body.includes('Canonieke Onderdelen'), 'Must not leak dashboard contents');
+
+    // 2. Unauthenticated request with wrong key must return 401
+    const wrongKeyRes = await requestHelper('/intern/kwaliteit?key=wrong-key');
+    assert.strictEqual(wrongKeyRes.status, 401, 'Wrong key in query must return 401');
+
+    const wrongHeaderRes = await requestHelper('/intern/catalogus-dekking/', { 'x-admin-key': 'incorrect-secret' });
+    assert.strictEqual(wrongHeaderRes.status, 401, 'Wrong key in header must return 401');
+
+    // 3. Unauthenticated API JSON request without key must return 401 JSON error
+    const jsonUnauth = await requestHelper('/intern/kwaliteit', { 'Accept': 'application/json' });
+    assert.strictEqual(jsonUnauth.status, 401);
+    const jsonErr = JSON.parse(jsonUnauth.body);
+    assert.ok(jsonErr.error, 'Must return JSON error object');
+    assert.strictEqual(jsonErr.total_models_evaluated, undefined, 'Must not leak report numbers');
+
+    // 4. Authorized request via x-admin-key header must return 200 HTML
+    const authHeaderRes = await requestHelper('/intern/kwaliteit', { 'x-admin-key': TEST_SECRET });
+    assert.strictEqual(authHeaderRes.status, 200, 'Authorized via x-admin-key must return 200');
+    assert.ok(authHeaderRes.body.includes('INTERN DASHBOARD'));
+    assert.ok(authHeaderRes.body.includes('Onderdelendekking Prioriteitsmodellen'));
+
+    // 5. Authorized request via Authorization: Bearer must return 200 HTML
+    const authBearerRes = await requestHelper('/intern/catalogus-dekking/', { 'Authorization': `Bearer ${TEST_SECRET}` });
+    assert.strictEqual(authBearerRes.status, 200, 'Authorized via Bearer token must return 200');
+    assert.ok(authBearerRes.body.includes('INTERN DASHBOARD'));
+
+    // 6. Authorized request via query param ?key= must return 200 HTML
+    const authQueryRes = await requestHelper(`/intern/kwaliteit?key=${TEST_SECRET}`);
+    assert.strictEqual(authQueryRes.status, 200, 'Authorized via query key must return 200');
+    assert.ok(authQueryRes.body.includes('INTERN DASHBOARD'));
+
+    // 7. Alternative URL casing and trailing slashes
+    const authCasedRes = await requestHelper(`/intern/Kwaliteit/?key=${TEST_SECRET}`);
+    assert.strictEqual(authCasedRes.status, 200, 'Case-insensitive path must return 200');
+
+    // 8. Authorized API JSON request must return 200 JSON with metrics
+    const authJsonRes = await requestHelper('/intern/kwaliteit', {
+      'x-admin-key': TEST_SECRET,
+      'Accept': 'application/json'
+    });
+    assert.strictEqual(authJsonRes.status, 200);
+    const reportJson = JSON.parse(authJsonRes.body);
+    assert.strictEqual(reportJson.total_models_evaluated, 112);
+    assert.strictEqual(reportJson.models_with_parts, 85);
+  } finally {
+    serverProc.kill();
+  }
+
+  // 9. Fail-closed when no key is configured on server (503 Service Unavailable)
+  const unconfiguredProc = spawn(process.execPath, ['server.js'], {
+    cwd: rootDir,
+    env: {
+      ...process.env,
+      PORT: '3130',
+      NODE_ENV: 'production',
+      INTERNAL_DASHBOARD_KEY: '',
+      ADMIN_AUDIT_KEY: '',
+      ADMIN_KEY: '',
+      DATABASE_PATH: './data/test_stihl_database.db'
+    },
+    stdio: 'ignore'
+  });
+
+  try {
+    let unconfReady = false;
+    for (let i = 0; i < 30; i++) {
+      try {
+        const v = await new Promise((resolve, reject) => {
+          const req = http.get('http://localhost:3130/api/version', (res) => resolve(res.statusCode));
+          req.on('error', reject);
+        });
+        if (v === 200) {
+          unconfReady = true;
+          break;
+        }
+      } catch (e) {}
+      await new Promise(r => setTimeout(r, 100));
+    }
+    assert.ok(unconfReady, 'Unconfigured server must start');
+
+    const res503 = await new Promise((resolve, reject) => {
+      const req = http.get('http://localhost:3130/intern/kwaliteit', (res) => {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => resolve({ status: res.statusCode, body }));
+      });
+      req.on('error', reject);
+    });
+
+    assert.strictEqual(res503.status, 503, 'Must return 503 when no key is configured on server');
+    assert.ok(res503.body.includes('503 Niet Beschikbaar'), 'Must show 503 error message');
+    assert.ok(!res503.body.includes('Canonieke Onderdelen'), 'Must never leak dashboard data');
+  } finally {
+    unconfiguredProc.kill();
+  }
+});
+
