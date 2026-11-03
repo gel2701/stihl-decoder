@@ -152,6 +152,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
   const isPetrol = isPetrolModel(model);
   const isBattery = isBatteryModel(model);
   const isChainsaw = categorySlug === 'kettingzagen' || categorySlug === 'accu-kettingzagen';
+  const isBrushcutter = categorySlug === 'bosmaaiers' || model.category === 'Bosmaaier' || (Boolean(model.model_name) && model.model_name.startsWith('FS'));
   const fuelDriveLabel = getFuelDriveLabel(model);
   const valuationState = getValuationPublicationState(model);
 
@@ -450,6 +451,23 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
             <span>🗡️ Zaagblad</span>
             <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
           </a>
+          ` : (isBrushcutter ? `
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} maaigarnituur`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🌱 Maaigarnituur</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} starter`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🔄 Starter</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} vet`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>🛢️ Tandwielvet</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
+          <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} service kit`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
+            <span>📦 Service Kit</span>
+            <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
+          </a>
           ` : (isPetrol ? `
           <a href="/onderdelen/?q=${encodeURIComponent(`${model.model_name} starter`)}" class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 hover:border-orange-500/60 text-gray-200 hover:text-white transition flex items-center gap-1 group">
             <span>🔄 Starter</span>
@@ -460,7 +478,7 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
             <span>⚙️ Maaikop</span>
             <span class="text-3xs text-gray-500 group-hover:text-orange-400 font-mono">→</span>
           </a>
-          `)}
+          `))}
           ${safePartsPath ? `
           <a href="${safePartsPath}" class="px-2.5 py-1 rounded-lg bg-orange-600/20 border border-orange-500/40 text-orange-400 hover:bg-orange-600/30 font-bold transition flex items-center gap-1">
             <span>Alle onderdelen</span>

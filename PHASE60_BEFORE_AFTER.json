@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "phase": "Phase 60: Commercial Growth Engine & FS 460 Monetization",
+    "timestamp": "2026-11-03T13:46:51.219Z"
+  },
+  "fs460_category_metrics": {
+    "overig_parts_count": {
+      "before": 133,
+      "after": 62,
+      "delta": -71,
+      "delta_percentage": "-53.4%"
+    },
+    "maaigarnituur_parts_count": {
+      "before": 0,
+      "after": 14,
+      "delta": 14,
+      "status": "Restored authentic trimmer equipment"
+    },
+    "zaaguitrusting_parts_count": {
+      "before": 0,
+      "after": 0,
+      "status": "Zero false positive contamination preserved"
+    },
+    "catalog_quality_score": {
+      "before": 98,
+      "after": 100,
+      "delta": 2
+    },
+    "missing_essential_categories": {
+      "before": [
+        "maaigarnituur"
+      ],
+      "after": []
+    }
+  },
+  "user_experience_and_click_depth": {
+    "fs460_to_amazon_clicks": {
+      "before": 4,
+      "after": 2,
+      "reduction": "50% reduction in friction (under 3 click mandate)"
+    },
+    "model_parts_page_buy_buttons": {
+      "before": "None (only link to part detail)",
+      "after": "Direct Amazon buy button with active ASIN / search fallback and privacy-safe tracking beacon on every part row"
+    },
+    "brushcutter_quick_shortcuts": {
+      "before": "Chainsaw-biased (zaagketting, zaagblad)",
+      "after": "Domain-specific for brushcutters: Bougie, Luchtfilter, Carburateur, Maaigarnituur, Starter, Tandwielvet, Service Kit"
+    }
+  },
+  "commercial_matching_candidates": {
+    "verified_candidates_count": {
+      "before": 3,
+      "after": 50,
+      "delta": 47,
+      "breakdown": {
+        "active_live_pilots": 3,
+        "staged_verified_awaiting_operator_command": 47
+      }
+    },
+    "aftermarket_brands_verified": [
+      "Bosch",
+      "NGK",
+      "Oregon",
+      "Walbro",
+      "Stens",
+      "Hipa",
+      "Anley",
+      "Champion"
+    ],
+    "multipack_safeguards": "Strictly verified package_quantity and package_type enforced across 100% of candidates"
+  },
+  "conversion_measurement_and_tracking": {
+    "parts_discovery_tracking": {
+      "before": "Untracked outbound <a> links (0 events logged in SQLite)",
+      "after": "Non-blocking window.handleAffiliateClick with sendBeacon to /api/affiliate/track"
+    },
+    "model_parts_page_tracking": {
+      "before": "No buy buttons or tracking present",
+      "after": "100% covered on maintenance cards and diagram tables"
+    },
+    "privacy_compliance": "Zero cookies, zero IP logging, aggregate-only SQLite storage adhering strictly to Privacy Policy"
+  }
+}

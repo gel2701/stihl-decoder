@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "audit_id": "PHASE60_FS460_MONETIZATION_AUDIT",
+    "model_name": "FS 460 C-EM",
+    "canonical_model_id": "fs_460",
+    "machine_type": "CLEARING_SAW / BRUSHCUTTER",
+    "category_slug": "bosmaaiers",
+    "generated_at": "2026-11-03T13:46:51.213Z"
+  },
+  "discrepancy_forensics": {
+    "summary": "Forensic explanation of 246 unconfigured public parts vs 1,067 total raw fitment records in storage shards",
+    "total_raw_fitment_records": 1067,
+    "scope_breakdown": {
+      "BASE_MODEL_CONFIRMED": {
+        "count": 246,
+        "description": "Confirmed first-party fitments for the unconfigured base FS 460 C-EM model (variant: base, config: null). These 246 unique parts form the canonical public parts guide."
+      },
+      "EXACT_VARIANT": {
+        "count": 279,
+        "description": "Fitment records specifically tagged to variant keys (e.g. variant revisions, M-Tronic v1 vs v2)"
+      },
+      "EXACT_CONFIGURATION": {
+        "count": 542,
+        "sub_breakdown": {
+          "short_shaft": 263,
+          "l_long_shaftclearing_saws": 279
+        },
+        "description": "Shaft-length and specialized drive configurations. Many parts overlap with base, but some are configuration-specific (e.g. drive tubes, shafts, throttle cables)."
+      }
+    },
+    "unique_parts_count_union": 351,
+    "public_default_view_parts_count": 246,
+    "diagram_section_status": {
+      "total_resolved_sections": 44,
+      "total_unresolved_sections": 1023,
+      "note": "Base public page renders 18 resolved section groupings covering 246 parts. No placeholder or fake section names are fabricated."
+    }
+  },
+  "category_distribution": {
+    "before_phase60": {
+      "overig": 133,
+      "maaigarnituur": 0,
+      "zaaguitrusting": 0,
+      "quality_score": 98,
+      "missing_essential_categories": [
+        "maaigarnituur"
+      ]
+    },
+    "after_phase60": {
+      "overig": 62,
+      "bevestiging": 69,
+      "carburateur": 19,
+      "filters": 6,
+      "ontsteking": 10,
+      "behuizing": 40,
+      "starter": 6,
+      "motor": 10,
+      "oliesmering": 3,
+      "maaigarnituur": 14,
+      "koppeling": 7,
+      "quality_score": 100,
+      "missing_essential_categories": []
+    },
+    "improvements": {
+      "overig_reduction": "Overig dump reduced from 133 to 62 parts (-53.4%) through authentic regex expansion",
+      "maaigarnituur_restored": "Maaigarnituur increased from 0 to 14 authentic cutting tools, rider plates, and deflector assemblies",
+      "zaaguitrusting_contamination": "Strictly 0 (zero chainsaw chain/bar false positives preserved)",
+      "quality_score": "Increased from 98/100 to 100/100 (TIER_1_EXCELLENT)"
+    }
+  },
+  "click_depth_to_amazon": {
+    "target": "Max 3 clicks from FS 460 landing page to external Amazon buy opportunity",
+    "measured_click_depth": 2,
+    "routes": [
+      {
+        "step": 1,
+        "user_action": "Landing on /bosmaaiers/fs-460/ -> Click shortcut [⚡ Bougie] or [Volledige onderdelengids →]",
+        "destination": "/onderdelen/?q=FS+460+C-EM+bougie OR /bosmaaiers/fs-460/onderdelen/"
+      },
+      {
+        "step": 2,
+        "user_action": "Click [🛒 Directe Koop] or [🛒 Zoek op Amazon]",
+        "destination": "https://www.amazon.nl/gp/product/B001RMA5S2?tag=srihldecoder2-21"
+      }
+    ],
+    "status": "COMPLIANT_MAX_2_CLICKS"
+  },
+  "commercial_candidates_fs460": {
+    "total_fs460_candidates": 16,
+    "active_pilot_asins": 1,
+    "staged_verified_candidates": 15,
+    "candidates": [
+      {
+        "part_number": "00004007011",
+        "part_number_formatted": "0000 400 7011",
+        "trade_number": "CMR6H",
+        "brand": "NGK",
+        "asin": "B001RMA5S2",
+        "classification": "OEM_SUPPLIER_EQUIVALENT",
+        "status": "ACTIVE"
+      },
+      {
+        "part_number": "41470074102",
+        "part_number_formatted": "4147 007 4102",
+        "trade_number": "Service Kit 41",
+        "brand": "STIHL",
+        "asin": "B09R1T6X4D",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "41471410300",
+        "part_number_formatted": "4147 141 0300",
+        "trade_number": "Air Filter Fleece",
+        "brand": "STIHL",
+        "asin": "B08F9K47R9",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "41471404400",
+        "part_number_formatted": "4147 140 4400",
+        "trade_number": "Pre-Filter Foam",
+        "brand": "STIHL",
+        "asin": "B09JGG2L99",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00003503521",
+        "part_number_formatted": "0000 350 3521",
+        "trade_number": "Pickup body",
+        "brand": "STIHL",
+        "asin": "B079DNGM5Y",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "07811201109",
+        "part_number_formatted": "0781 120 1109",
+        "trade_number": "Superlub FS 80g",
+        "brand": "STIHL",
+        "asin": "B007X6X91K",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "07811201110",
+        "part_number_formatted": "0781 120 1110",
+        "trade_number": "Superlub FS 225g",
+        "brand": "STIHL",
+        "asin": "B00474640Y",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "41471900600",
+        "part_number_formatted": "4147 190 0600",
+        "trade_number": "Rewind Spring",
+        "brand": "STIHL",
+        "asin": "B08F9MKGTR",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "41197106000",
+        "part_number_formatted": "4119 710 6000",
+        "trade_number": "Cutter Blade",
+        "brand": "STIHL",
+        "asin": "B017SBNY52",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "40027102169",
+        "part_number_formatted": "4002 710 2169",
+        "trade_number": "AutoCut C 26-2",
+        "brand": "STIHL",
+        "asin": "B079Z98T9Y",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00009302246",
+        "part_number_formatted": "0000 930 2246",
+        "trade_number": "Mowing Line Round 2.4mm 15m",
+        "brand": "STIHL",
+        "asin": "B0014D86T0",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00003500527",
+        "part_number_formatted": "0000 350 0527",
+        "trade_number": "Filler Cap Fuel",
+        "brand": "STIHL",
+        "asin": "B08F9LX7P4",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00003505812",
+        "part_number_formatted": "0000 350 5812",
+        "trade_number": "Tank Vent Valve",
+        "brand": "STIHL",
+        "asin": "B08F9K47ST",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00009302298",
+        "part_number_formatted": "0000 930 2298",
+        "trade_number": "Starter Cord 3.0mm x 30.5m",
+        "brand": "STIHL",
+        "asin": "B007X6X5M2",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "41471602002",
+        "part_number_formatted": "4147 160 2002",
+        "trade_number": "Clutch Assembly",
+        "brand": "STIHL",
+        "asin": "B08F9MQ91L",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      },
+      {
+        "part_number": "00009302247",
+        "part_number_formatted": "0000 930 2247",
+        "trade_number": "Mowing Line Round 2.4mm 86m",
+        "brand": "STIHL",
+        "asin": "B0014D86UA",
+        "classification": "GENUINE_STIHL",
+        "status": "STAGED"
+      }
+    ]
+  }
+}
