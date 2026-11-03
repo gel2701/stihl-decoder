@@ -116,6 +116,8 @@ export class VerifiedOfferRegistry {
       manufacturer_part_number: offer.manufacturer_part_number || offer.mpn,
       brand: offer.brand,
       product_title: offer.product_title || offer.matched_title || '',
+      ean_gtin: offer.ean_gtin || offer.gtin || offer.ean || null,
+      package_quantity: offer.package_quantity || 1,
       oem_brand_classification: offer.oem_brand_classification,
       verifiable_evidence_sources: offer.verifiable_evidence_sources || [
         {

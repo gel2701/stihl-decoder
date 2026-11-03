@@ -67,7 +67,7 @@ const CORE_MANDATORY_PARTS = [
   // 3 Active Pilot ASINs
   { part_number: '11104007005', custom_name: 'Bougie Bosch WSR6F', target_models: ['MS 170', 'MS 180', 'MS 260'], rationale: 'MS 170 fabrieksbougie, actieve pilot ASIN B0068M5NAG' },
   { part_number: '00004007000', custom_name: 'Bougie NGK BPMR7A', target_models: ['MS 170', 'MS 180', 'MS 250'], rationale: 'Alternatieve fabrieksbougie, actieve pilot ASIN B001RM8J76' },
-  { part_number: '00004007011', custom_name: 'Bougie NGK CMR6H', target_models: ['FS 460 C-EM', 'FS 410', 'MS 201'], rationale: 'FS 460 fabrieksbougie, actieve pilot ASIN B003CJIOVU' },
+  { part_number: '00004007011', custom_name: 'Bougie NGK CMR6H', target_models: ['FS 460 C-EM', 'FS 410', 'MS 201'], rationale: 'FS 460 fabrieksbougie, actieve pilot ASIN B001RMA5S2' },
   // 2 Staged Ready Offers
   { part_number: '00004007009', custom_name: 'Bougie Bosch USR7AC', target_models: ['BG 86', 'SH 86', 'FS 56'], rationale: 'Staged ASIN B09QH68W83, Bosch USR7AC' },
   { part_number: '00006421240', custom_name: 'Kettingwiel Rondsel 3/8 Picco 7T Oregon 18720', target_models: ['MS 290', 'MS 310', 'MS 390'], rationale: 'Staged ASIN B000IBWVWG, Oregon 18720' },
@@ -216,6 +216,7 @@ for (let i = 0; i < chosenList.length; i++) {
   let verificationStatus;
   let brand = null;
   let mpn = null;
+  let ean_gtin = null;
 
   if (activeOffer) {
     tier = COMMERCIAL_TIERS.DIRECT_VERIFIED;
@@ -224,6 +225,7 @@ for (let i = 0; i < chosenList.length; i++) {
     verificationStatus = 'ACTIVE_PILOT';
     brand = activeOffer.brand;
     mpn = activeOffer.manufacturer_part_number;
+    ean_gtin = activeOffer.ean_gtin || null;
     tierCounts.DIRECT_VERIFIED++;
   } else if (stagedOffer && (stagedOffer.status === 'VERIFIED' || stagedOffersMap.has(canonical))) {
     tier = COMMERCIAL_TIERS.TARGETED_SEARCH;
@@ -232,6 +234,7 @@ for (let i = 0; i < chosenList.length; i++) {
     verificationStatus = 'STAGED_OPERATOR_APPROVAL';
     brand = stagedOffer.brand;
     mpn = stagedOffer.manufacturer_part_number;
+    ean_gtin = stagedOffer.ean_gtin || null;
     tierCounts.TARGETED_SEARCH++;
   } else {
     tier = COMMERCIAL_TIERS.TARGETED_SEARCH;
@@ -253,6 +256,7 @@ for (let i = 0; i < chosenList.length; i++) {
     asin,
     brand,
     mpn,
+    ean_gtin,
     target_models: item.target_models,
     search_query: searchQuery,
     affiliate_url: affiliateUrl,

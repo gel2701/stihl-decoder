@@ -81,7 +81,7 @@ De volledige selectie is opgeslagen in `data/affiliate/commercial_catalog_100.js
 |---|---|---|---|---|---|---|
 | 1 | `1110 400 7005` | Bougie Bosch WSR6F | Ontsteking | MS 170, MS 180, MS 260 | `DIRECT_VERIFIED` | Actieve pilot (`B0068M5NAG`) |
 | 2 | `0000 400 7000` | Bougie NGK BPMR7A | Ontsteking | MS 170, MS 180, MS 250 | `DIRECT_VERIFIED` | Actieve pilot (`B001RM8J76`) |
-| 3 | `0000 400 7011` | Bougie NGK CMR6H | Ontsteking | FS 460 C-EM, FS 410, MS 201 | `DIRECT_VERIFIED` | Actieve pilot (`B003CJIOVU`) |
+| 3 | `0000 400 7011` | Bougie NGK CMR6H | Ontsteking | FS 460 C-EM, FS 410, MS 201 | `DIRECT_VERIFIED` | Actieve pilot (`B001RMA5S2`) |
 | 4 | `0000 400 7009` | Bougie Bosch USR7AC | Ontsteking | BG 86, SH 86, FS 56 | `TARGETED_SEARCH` | Staged ready (`B09QH68W83`) |
 | 5 | `0000 642 1240` | Kettingwiel 3/8 Picco 7T | Zaaguitrusting | MS 290, MS 310, MS 390 | `TARGETED_SEARCH` | Staged ready (`B000IBWVWG`) |
 | 6 | `1130 124 0800` | Luchtfilter Vlies | Filters | MS 170, MS 180, 017 | `TARGETED_SEARCH` | Doelgerichte zoeklink |
@@ -108,11 +108,11 @@ De volledige selectie is opgeslagen in `data/affiliate/commercial_catalog_100.js
    - `0000 400 7025` (NGK CMR7H) → `B07RHQ5FR4` blijft permanent geblokkeerd en kan niet worden gepromoot of geactiveerd. In de batch blijft dit onderdeel geclassificeerd als zuivere `TARGETED_SEARCH`.
 2. **3 Actieve Live Pilot ASINs (Geverifieerd Behouden)**:
    - `1110 400 7005`: Bosch WSR6F (`B0068M5NAG`), EAN 3165141051063.
-   - `0000 400 7000`: NGK BPMR7A (`B001RM8J76`), EAN 0087295167032.
-   - `0000 400 7011`: NGK CMR6H (`B003CJIOVU`), EAN 0087295133651.
+   - `0000 400 7000`: NGK BPMR7A (`B001RM8J76`), EAN 0087295167038.
+   - `0000 400 7011`: NGK CMR6H (`B001RMA5S2`), EAN 0087295133651.
 3. **2 Staged Ready Offers (Klaargezet voor Operator-Review)**:
    - `0000 400 7009`: Bosch USR7AC (`B09QH68W83`), EAN 4047023059468. Voldoet aan Gate 1 & Gate 2; gehandhaafd in `TARGETED_SEARCH` totdat de operator de productie-activatie autoriseert.
-   - `0000 642 1240`: Oregon 18720 (`B000IBWVWG`), EAN 0036577187208. Voldoet aan Gate 1 & Gate 2; gehandhaafd in `TARGETED_SEARCH` in afwachting van operator-activatie.
+   - `0000 642 1240`: Oregon 18720 (`B000IBWVWG`), EAN 0036577187202. Voldoet aan Gate 1 & Gate 2; gehandhaafd in `TARGETED_SEARCH` in afwachting van operator-activatie.
 
 ---
 

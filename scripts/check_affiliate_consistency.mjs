@@ -50,6 +50,7 @@ export function checkAffiliateConsistency() {
   const manifestFiles = [
     { name: 'data/affiliate/amazon_part_offers.json', type: 'RUNTIME_ACTIVE' },
     { name: 'data/affiliate/verified_amazon_registry.json', type: 'REGISTRY' },
+    { name: 'data/affiliate/commercial_catalog_100.json', type: 'COMMERCIAL_CATALOG' },
     { name: 'PHASE60_1_VERIFIED_OFFERS.json', type: 'VERIFIED_OFFERS' },
     { name: 'PHASE60_1_REJECTED_AND_PENDING.json', type: 'REJECTED_PENDING' },
     { name: 'PHASE60_AMAZON_MATCHING_CANDIDATES.json', type: 'CANDIDATES' }
@@ -78,7 +79,7 @@ export function checkAffiliateConsistency() {
 
     const records = Array.isArray(doc)
       ? doc
-      : (doc.offers || doc.verified_offers || doc.candidates || doc.items || doc.rejected_or_pending || []);
+      : (doc.parts || doc.offers || doc.verified_offers || doc.candidates || doc.items || doc.rejected_or_pending || []);
 
     console.log(`▶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
 
@@ -88,7 +89,9 @@ export function checkAffiliateConsistency() {
       const asin = typeof rec.asin === 'string' ? rec.asin.trim().toUpperCase() : '';
       const title = rec.product_title || rec.title || rec.matched_title || rec.product || '';
       const gtin = rec.ean_gtin || rec.gtin || rec.ean || '';
-      const status = rec.status || 'STAGED';
+      const status = manifest.type === 'COMMERCIAL_CATALOG'
+        ? (rec.commercial_tier === 'DIRECT_VERIFIED' ? 'ACTIVE' : 'STAGED')
+        : (rec.status || 'STAGED');
 
       // 1. Canonical Part Grounding
       if (!normPart || !canonicalParts.has(normPart)) {
@@ -114,7 +117,20 @@ export function checkAffiliateConsistency() {
         }
       }
 
-      // 3. Historical Mismatch Check
+      // 3. Selection Rationale ASIN Consistency (Commercial Catalog)
+      if (rec.selection_rationale && typeof rec.selection_rationale === 'string') {
+        const asinInRationale = rec.selection_rationale.match(/ASIN\s+([A-Z0-9]{10})/i);
+        if (asinInRationale && asinInRationale[1].toUpperCase() !== asin) {
+          contradictions.push({
+            file: manifest.name,
+            part_number: normPart,
+            asin,
+            error: `Selection rationale mentions ASIN ${asinInRationale[1]} but record ASIN is ${asin || 'NONE'}`
+          });
+        }
+      }
+
+      // 4. Historical Mismatch Check
       const mismatchCheck = checkHistoricalMismatch(normPart, asin, title, gtin);
       if (mismatchCheck.isMismatch) {
         // If present in REJECTED_PENDING, it is quarantined (valid negative storage)
@@ -130,17 +146,19 @@ export function checkAffiliateConsistency() {
         }
       }
 
-      // 4. TwoGate Compliance for ACTIVE or VERIFIED offers
+      // 5. TwoGate Compliance for ACTIVE or VERIFIED offers
       if (status === 'ACTIVE' || status === 'VERIFIED') {
-        const twoGate = TwoGateVerifier.verifyOffer(rec, { catalogPartMap: canonicalParts });
-        if (!twoGate.passed) {
-          contradictions.push({
-            file: manifest.name,
-            part_number: normPart,
-            asin,
-            status,
-            error: `TwoGateVerifier failed for ${status} offer: ${twoGate.errors.join('; ')}`
-          });
+        if (manifest.type !== 'COMMERCIAL_CATALOG') {
+          const twoGate = TwoGateVerifier.verifyOffer(rec, { catalogPartMap: canonicalParts });
+          if (!twoGate.passed) {
+            contradictions.push({
+              file: manifest.name,
+              part_number: normPart,
+              asin,
+              status,
+              error: `TwoGateVerifier failed for ${status} offer: ${twoGate.errors.join('; ')}`
+            });
+          }
         }
 
         // Active Authorization Invariant: only the 3 authorized pilot parts may be ACTIVE
@@ -154,7 +172,7 @@ export function checkAffiliateConsistency() {
         }
       }
 
-      // 5. ASIN_IDENTITY_UNVERIFIED Safety Check
+      // 6. ASIN_IDENTITY_UNVERIFIED Safety Check
       if (rec.status === 'ASIN_IDENTITY_UNVERIFIED' && rec.is_active === true) {
         unverifiedActives.push({
           file: manifest.name,
@@ -162,6 +180,51 @@ export function checkAffiliateConsistency() {
           asin,
           error: 'Offer is marked ASIN_IDENTITY_UNVERIFIED but has is_active === true'
         });
+      }
+    }
+  }
+
+  // 7. Cross-Manifest Concordance Audit (Commercial Catalog vs Verified Registry vs Staged)
+  const regPath = path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json');
+  const comPath = path.join(rootDir, 'data', 'affiliate', 'commercial_catalog_100.json');
+  if (fs.existsSync(regPath) && fs.existsSync(comPath)) {
+    const regDoc = JSON.parse(fs.readFileSync(regPath, 'utf8'));
+    const comDoc = JSON.parse(fs.readFileSync(comPath, 'utf8'));
+    const regOffers = new Map((regDoc.offers || []).map(o => [PartNormalizer.normalizePartNumber(o.part_number), o]));
+
+    for (const item of (comDoc.parts || [])) {
+      const normPart = PartNormalizer.normalizePartNumber(item.part_number);
+      if (item.commercial_tier === 'DIRECT_VERIFIED') {
+        const regOffer = regOffers.get(normPart);
+        if (!regOffer) {
+          contradictions.push({
+            file: 'commercial_catalog_100.json',
+            part_number: normPart,
+            error: `DIRECT_VERIFIED part ${normPart} missing in verified_amazon_registry.json`
+          });
+        } else {
+          if (regOffer.status !== 'ACTIVE') {
+            contradictions.push({
+              file: 'commercial_catalog_100.json',
+              part_number: normPart,
+              error: `DIRECT_VERIFIED part ${normPart} has status ${regOffer.status} in registry (must be ACTIVE)`
+            });
+          }
+          if (regOffer.asin !== item.asin) {
+            contradictions.push({
+              file: 'commercial_catalog_100.json',
+              part_number: normPart,
+              error: `ASIN conflict between commercial catalog (${item.asin}) and registry (${regOffer.asin})`
+            });
+          }
+          if (regOffer.ean_gtin && item.ean_gtin && regOffer.ean_gtin !== item.ean_gtin) {
+            contradictions.push({
+              file: 'commercial_catalog_100.json',
+              part_number: normPart,
+              error: `EAN conflict between commercial catalog (${item.ean_gtin}) and registry (${regOffer.ean_gtin})`
+            });
+          }
+        }
       }
     }
   }
@@ -186,7 +249,7 @@ export function checkAffiliateConsistency() {
   }
 
   console.log('✅ ALL AFFILIATE MANIFESTS, GTINS, AND OFFERS ARE 100% CONSISTENT AND VERIFIED CLEAN!\n');
-  return { success: true };
+  return { success: true, contradictions, gtinErrors, unverifiedActives, unauthorizedActives };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
