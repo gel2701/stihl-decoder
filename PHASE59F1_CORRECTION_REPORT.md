@@ -1,9 +1,9 @@
 # STIHLDECODER — PHASE 59F.1 REPORT
 ## Correct Incorrect Match & Prepare Immediate Activation
 
-**Repository:** `gel2701/stihl-decoder`  
-**Datum:** 2 november 2026  
-**Baseline main commit:** `e2976cd16ed46ba4a7b91dfd79452a466ef13a3d`  
+**Repository:** `gel2701/stihl-decoder`
+**Datum:** 3 november 2026
+**Baseline main commit:** `4b29997f77a7e89fee4e2d8449e57bfd2d7a1627`
 **Branch:** `fix/phase59f1-correct-match-and-prepare-activation`  
 **Status:** MISMATCHES CORRECTED & SUSPENDED | BOSCH USR7AC READY FOR ACTIVATION | PRODUCTION LOCK PRESERVED
 
@@ -97,8 +97,9 @@ Er is een diepgaande technische verificatie uitgevoerd van tandsteek, tandenaant
 
 ### 4. Testresultaten
 
-- **80 Productietestsuites:** 100% PASS (`node tests/run_current_production_tests.js`).
-- **19 Playwright Browser E2E Journeys:** 100% PASS (`npm run test:e2e`).
+- **85 Productietestsuites:** 100% PASS (`node tests/run_current_production_tests.js`).
+- **31 Playwright Browser E2E Journeys:** 100% PASS (`npx playwright test`).
 - **Affiliate Link Audit:** 100% PASS (`node scripts/audit_amazon_affiliate_links.mjs`).
-- **Public Trust Audit:** 100% PASS (`node scripts/audit_public_trust_claims.mjs`).
+- **Public Trust Audit:** 100% PASS (5.086/5.086 routes HTTP 200, `node scripts/audit_public_trust_claims.mjs`).
 - **Dedicated Phase 59F.1 Test Suite:** 100% PASS (`node tests/phase59f1_match_correction.test.js`).
+- **Git Diff & Whitespace Verification:** 100% PASS (`git diff --check`).
