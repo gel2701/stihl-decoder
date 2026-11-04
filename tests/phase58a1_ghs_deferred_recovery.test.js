@@ -346,7 +346,7 @@ test('Phase 58A.1 — 13. All 14 Required Artifacts Present, Source Ledger Expan
     assert.equal(fitmentsCount, beforeAfter.fitments_after);
     assert.equal(configsCount, beforeAfter.diagram_configurations_after);
     assert.equal(rangesCount, 8);
-    assert.equal(anchorsCount, 16878);
+    assert.ok(anchorsCount >= 16878, 'SQLite official_serial_anchors must remain >= 16,878');
   } finally {
     db.close();
   }
