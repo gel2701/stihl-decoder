@@ -574,7 +574,62 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         <div id="detail-notes-list" class="space-y-1.5"></div>
       </section>
 
-      <!-- Section 7: Officiële Bronnen & Disclaimer -->
+      <!-- Section 7: Deze machine te koop aanbieden (Optioneel) -->
+      <section class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-orange-400 font-bold text-sm">🏷️</span>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-neutral-300">7. Deze machine te koop aanbieden (Optioneel)</h4>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="check-is-for-sale" class="sr-only peer">
+            <div class="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-600"></div>
+            <span class="ml-2 text-2xs font-medium text-neutral-400 peer-checked:text-orange-400">Te koop</span>
+          </label>
+        </div>
+
+        <form id="form-sales-offering" class="space-y-3">
+          <div id="sales-fields-container" class="hidden space-y-3 pt-2 border-t border-neutral-800/80">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="input-sales-price" class="block text-3xs font-bold text-neutral-400 mb-0.5">Vraagprijs</label>
+                <input type="text" id="input-sales-price" placeholder="bv. € 385,-" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+              </div>
+              <div>
+                <label for="input-sales-condition" class="block text-3xs font-bold text-neutral-400 mb-0.5">Conditie</label>
+                <input type="text" id="input-sales-condition" placeholder="bv. Volledig werkend, volgens verkoper" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+              </div>
+              <div>
+                <label for="input-sales-location" class="block text-3xs font-bold text-neutral-400 mb-0.5">Locatie (Woonplaats)</label>
+                <input type="text" id="input-sales-location" placeholder="bv. Coevorden" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+              </div>
+              <div>
+                <label for="input-sales-contact" class="block text-3xs font-bold text-neutral-400 mb-0.5">Contactmogelijkheid (Vrijwillig)</label>
+                <input type="text" id="input-sales-contact" placeholder="bv. Bericht via Marktplaats / Telefoon" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+              </div>
+            </div>
+
+            <div>
+              <label for="input-sales-photos" class="block text-3xs font-bold text-neutral-400 mb-0.5">Machinefoto's (Bestandsnamen of URL's, door komma's gescheiden)</label>
+              <input type="text" id="input-sales-photos" placeholder="IMG_20261103_234758_505.jpg, IMG_20261103_234821_680.jpg" class="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500 font-mono">
+            </div>
+
+            <div>
+              <label for="input-sales-desc" class="block text-3xs font-bold text-neutral-400 mb-0.5">Omschrijving voor potentiële kopers</label>
+              <textarea id="input-sales-desc" rows="3" placeholder="Extra toelichting op staat van onderhoud, slijtagedelen of accessoires..." class="w-full bg-neutral-900 border border-neutral-700 rounded-lg p-2.5 text-white text-xs placeholder-neutral-500 focus:outline-none focus:border-orange-500"></textarea>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <span id="sales-saved-indicator" class="hidden text-emerald-400 font-bold text-2xs">✓ Verkoopgegevens opgeslagen!</span>
+            <button type="submit" class="ml-auto bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2 rounded-lg transition cursor-pointer">
+              Verkoopgegevens opslaan
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Section 8: Officiële Bronnen & Disclaimer -->
       <section class="bg-neutral-950/60 p-3 rounded-xl border border-neutral-800/80 space-y-1 text-2xs text-neutral-400">
         <div id="detail-source-meta" class="font-mono text-neutral-300"></div>
         <p class="leading-relaxed">
@@ -752,7 +807,8 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       REMINDER_STATES,
       hydrateDossierEvidence,
       enrichDossierWithSerial,
-      resolveDossierConflict
+      resolveDossierConflict,
+      updateDossierSales
     } from '/src/components/MachineDossierManager.js';
     import {
       renderStihlPassportHtml,
@@ -1267,6 +1323,22 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       renderRemindersList(d);
       renderNotesList(d);
 
+      // Populate sales offering form
+      const sales = d.sales || {};
+      const isForSaleCheck = document.getElementById('check-is-for-sale');
+      const salesContainer = document.getElementById('sales-fields-container');
+      if (isForSaleCheck) {
+        isForSaleCheck.checked = Boolean(sales.is_for_sale);
+        if (sales.is_for_sale) salesContainer?.classList.remove('hidden');
+        else salesContainer?.classList.add('hidden');
+      }
+      if (document.getElementById('input-sales-price')) document.getElementById('input-sales-price').value = sales.asking_price || '';
+      if (document.getElementById('input-sales-condition')) document.getElementById('input-sales-condition').value = sales.condition || '';
+      if (document.getElementById('input-sales-location')) document.getElementById('input-sales-location').value = sales.location || '';
+      if (document.getElementById('input-sales-contact')) document.getElementById('input-sales-contact').value = sales.contact_info || '';
+      if (document.getElementById('input-sales-photos')) document.getElementById('input-sales-photos').value = (sales.photos || []).join(', ');
+      if (document.getElementById('input-sales-desc')) document.getElementById('input-sales-desc').value = sales.description || '';
+
       // Hydrate official specs dynamically
       const specsContainer = document.getElementById('detail-specs-container');
       const maintContainer = document.getElementById('detail-maint-container');
@@ -1601,6 +1673,45 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         if (res.success && res.dossier) {
           textInput.value = '';
           renderNotesList(res.dossier);
+          renderDossierList();
+        }
+      });
+
+      // Sales Offering Toggle & Form
+      document.getElementById('check-is-for-sale')?.addEventListener('change', (e) => {
+        const container = document.getElementById('sales-fields-container');
+        if (e.target.checked) container?.classList.remove('hidden');
+        else container?.classList.add('hidden');
+      });
+
+      document.getElementById('form-sales-offering')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!activeDossierId) return;
+
+        const isForSale = document.getElementById('check-is-for-sale').checked;
+        const price = document.getElementById('input-sales-price').value.trim();
+        const cond = document.getElementById('input-sales-condition').value.trim();
+        const loc = document.getElementById('input-sales-location').value.trim();
+        const desc = document.getElementById('input-sales-desc').value.trim();
+        const rawPhotos = document.getElementById('input-sales-photos').value.split(',').map(s => s.trim()).filter(Boolean);
+        const contact = document.getElementById('input-sales-contact').value.trim();
+
+        const updateRes = updateDossierSales(activeDossierId, {
+          is_for_sale: isForSale,
+          asking_price: price || null,
+          condition: cond || null,
+          location: loc || null,
+          description: desc || null,
+          photos: rawPhotos,
+          contact_info: contact || null
+        });
+
+        if (updateRes.success) {
+          const savedInd = document.getElementById('sales-saved-indicator');
+          if (savedInd) {
+            savedInd.classList.remove('hidden');
+            setTimeout(() => savedInd.classList.add('hidden'), 2500);
+          }
           renderDossierList();
         }
       });

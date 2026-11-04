@@ -224,8 +224,8 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
 
   if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
     identityTitle = 'Exact model geïdentificeerd';
-    identityLabel = 'Officieel bevestigd door STIHL (MY STIHL)';
-    identityExplanation = 'Serienummer en modeluitvoering zijn officieel geverifieerd via MY STIHL productlookup.';
+    identityLabel = 'Geverifieerd via MY STIHL productregistratie';
+    identityExplanation = 'Serienummer en modeluitvoering zijn geverifieerd via MY STIHL productregistratie. STIHLDecoder is een onafhankelijk platform en geen officieel STIHL-certificeringsorgaan.';
   } else if (identityStatus === 'EXACT_MODEL_IDENTIFIED') {
     identityTitle = 'Exact model geïdentificeerd';
     identityLabel = data.confidenceLabel || 'Exact model geïdentificeerd';
@@ -293,11 +293,11 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
   // Sales listing support (Phase 64 / Verified Sales Passport)
   const salesListingRaw = data.salesListing || data.sales || null;
   const salesListing = salesListingRaw ? {
-    askingPrice: salesListingRaw.askingPrice || salesListingRaw.price || null,
+    askingPrice: salesListingRaw.askingPrice || salesListingRaw.asking_price || salesListingRaw.price || null,
     condition: salesListingRaw.condition || null,
     location: salesListingRaw.location || null,
     sellerRole: salesListingRaw.sellerRole || 'Particuliere verkoper',
-    verificationBadge: salesListingRaw.verificationBadge || '✓ MY STIHL Officieel Geverifieerd',
+    verificationBadge: salesListingRaw.verificationBadge || '✓ MY STIHL Modelkoppeling',
     photos: Array.isArray(salesListingRaw.photos) ? salesListingRaw.photos : [],
     photosReachable: Boolean(salesListingRaw.photosReachable)
   } : null;
@@ -378,7 +378,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
 
   let badgeText = 'Indicatief overzicht';
   if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
-    badgeText = '✓ Officieel STIHL';
+    badgeText = '✓ MY STIHL Modelkoppeling';
   } else if (passportMode === 'MODEL_ONLY') {
     badgeText = 'Modelpaspoort';
   } else if (isSelfReported) {
@@ -510,7 +510,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
         <div class="space-y-0.5">
           <p class="font-semibold text-neutral-300">Onafhankelijk STIHL machinepaspoort op basis van geverifieerde gegevens</p>
           <span class="font-mono font-black text-orange-500 text-sm block">www.stihldecoder.nl</span>
-          <p class="text-neutral-500 text-3xs">Scan QR-code voor de modelpagina of het live controlerapport</p>
+          <p class="text-neutral-500 text-3xs">Onafhankelijke verificatie — géén officieel STIHL-certificaat</p>
         </div>
         <div class="flex-shrink-0 flex items-center gap-2">
           <img src="${qrUrl}" alt="Scan QR Code" class="w-12 h-12 rounded-lg border border-neutral-700 bg-white p-0.5 shadow-md" />

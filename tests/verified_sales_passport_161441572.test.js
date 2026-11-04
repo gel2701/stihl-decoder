@@ -10,8 +10,15 @@ import { buildPassportViewModel, renderStihlPassportHtml } from '../src/componen
 import {
   checkSalesPhotosReachability,
   generateSalesAdvertText,
+  renderUniversalPassportPageHtml,
   renderSalesPassportPageHtml
-} from '../src/components/SalesPassportPageTemplate.js';
+} from '../src/components/UniversalPassportPageTemplate.js';
+import {
+  createDossierObject,
+  updateDossierSales,
+  IDENTITY_STATUSES,
+  IDENTITY_SOURCES
+} from '../src/components/MachineDossierManager.js';
 import { server } from '../server.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -114,7 +121,7 @@ test('4. Machine Passport ViewModel & Sales Listing Integration', () => {
       condition: machine.condition,
       location: machine.location,
       sellerRole: machine.seller_role,
-      verificationBadge: '✓ MY STIHL Officieel Geverifieerd'
+      verificationBadge: '✓ MY STIHL Modelkoppeling'
     }
   }, dbDoc);
 
@@ -128,34 +135,49 @@ test('4. Machine Passport ViewModel & Sales Listing Integration', () => {
   assert.ok(vm.qrUrl.includes(encodeURIComponent(passportUrl)), 'QR code must encode the passport URL');
 
   const html = renderStihlPassportHtml(vm, dbDoc);
-  assert.ok(html.includes('✓ Officieel STIHL'), 'Must render official STIHL badge');
+  assert.ok(html.includes('✓ MY STIHL Modelkoppeling'), 'Must render MY STIHL modelkoppeling badge');
+  assert.ok(!html.includes('✓ Officieel STIHL'), 'Must NOT claim official STIHL certification organ');
   assert.ok(html.includes('1 614 415 72'), 'Must render formatted serial');
   assert.ok(html.includes('€ 385,-'), 'Must render asking price');
   assert.ok(html.includes('Coevorden'), 'Must render location');
   assert.ok(html.includes('volledig werkend, volgens verkoper'), 'Must render condition');
 });
 
-test('5. Photo Reachability & Publication Status Reporting', () => {
+test('5. Photo Physical Presence & Reachability on Disk', () => {
   const salesMachines = JSON.parse(fs.readFileSync(salesMachinesPath, 'utf8'));
   const machine = salesMachines.find(m => m.serial_number === TARGET_SERIAL);
 
+  const photoDir = path.join(rootDir, 'public', 'sales', TARGET_SERIAL);
+  assert.ok(fs.existsSync(photoDir), 'Directory public/sales/161441572 must exist');
+
+  // Verify all 4 expected photos exist with non-zero bytes
+  const expectedPhotos = [
+    'IMG_20261103_234758_505.jpg',
+    'IMG_20261103_234821_680.jpg',
+    'IMG_20261103_234839_810.jpg',
+    'IMG_20261103_234923_509.jpg'
+  ];
+
+  for (const filename of expectedPhotos) {
+    const filePath = path.join(photoDir, filename);
+    assert.ok(fs.existsSync(filePath), `Photo ${filename} must physically exist`);
+    const stat = fs.statSync(filePath);
+    assert.ok(stat.size > 100000, `Photo ${filename} must be valid size (>100KB)`);
+  }
+
   const status = checkSalesPhotosReachability(TARGET_SERIAL, machine.photos);
   assert.strictEqual(status.totalCount, 4);
-  assert.strictEqual(Array.isArray(status.photos), true);
-  assert.strictEqual(status.photos.length, 4);
+  assert.strictEqual(status.reachableCount, 4);
+  assert.strictEqual(status.allReachable, true, 'All 4 photos must be reported reachable');
 
-  // Since physical photos are pending seller file transfer, allReachable must be false and reported cleanly
-  assert.strictEqual(status.allReachable, false, 'Photos are pending file transfer to public/sales/161441572/');
-  assert.strictEqual(status.reachableCount, 0);
-
-  const pageHtml = renderSalesPassportPageHtml({
-    serial: TARGET_SERIAL,
+  const pageHtml = renderUniversalPassportPageHtml({
+    idOrSerial: TARGET_SERIAL,
     machine,
     database: {},
     baseUrl: 'https://www.stihldecoder.nl'
   });
 
-  assert.ok(pageHtml.includes('Publicatiestatus Beeldbestanden: Fysieke Overdracht Vereist'), 'Must clearly report pending photo transfer');
+  assert.ok(pageHtml.includes('✓ 4 foto&#39;s online') || pageHtml.includes("✓ 4 foto's online"), 'Must report 4 photos online');
   assert.ok(pageHtml.includes('IMG_20261103_234758_505.jpg'));
   assert.ok(pageHtml.includes('IMG_20261103_234821_680.jpg'));
   assert.ok(pageHtml.includes('IMG_20261103_234839_810.jpg'));
@@ -177,25 +199,37 @@ test('6. Complete Sales Advertisement Generation (Marktplaats / 2dehands)', () =
   assert.ok(advert.includes('.325" P'));
   assert.ok(advert.includes('https://www.stihldecoder.nl/paspoort/161441572/'));
   assert.ok(advert.includes('StopHeling.nl'));
+  assert.ok(advert.includes('geen officieel certificeringsorgaan van Andreas Stihl AG & Co. KG'));
 
+  // ZERO unproven theft claims
+  assert.ok(!advert.includes('Geen geregistreerde diefstal bekend'), 'Must NOT claim unproven theft-free guarantee');
   // ZERO PII check
   assert.ok(!advert.includes('screenshot'), 'Must NOT mention private screenshot file');
   assert.ok(!advert.includes('@'), 'Must NOT contain seller email');
   assert.ok(!advert.includes('password'), 'Must NOT contain account credentials');
 });
 
-test('7. HTTP Server Routes: /paspoort/161441572/ & /verkoop/161441572/', async () => {
+test('7. HTTP Server Routes: /paspoort/161441572/ & Static Photo Delivery', async () => {
   const fetchLocal = async (pathname) => {
     return new Promise((resolve, reject) => {
       const req = http.get(`http://localhost:3000${pathname}`, (res) => {
-        let data = '';
-        res.on('data', chunk => { data += chunk; });
-        res.on('end', () => resolve({ statusCode: res.statusCode, headers: res.headers, body: data }));
+        const chunks = [];
+        res.on('data', chunk => { chunks.push(chunk); });
+        res.on('end', () => {
+          const buffer = Buffer.concat(chunks);
+          resolve({
+            statusCode: res.statusCode,
+            headers: res.headers,
+            body: buffer.toString('utf8'),
+            byteLength: buffer.length
+          });
+        });
       });
       req.on('error', reject);
     });
   };
 
+  // 1. Passport page HTML
   const resPassport = await fetchLocal('/paspoort/161441572/');
   assert.strictEqual(resPassport.statusCode, 200);
   assert.ok(resPassport.headers['content-type'].includes('text/html'));
@@ -203,15 +237,159 @@ test('7. HTTP Server Routes: /paspoort/161441572/ & /verkoop/161441572/', async 
   assert.ok(resPassport.body.includes('161441572'));
   assert.ok(resPassport.body.includes('€ 385,-'));
   assert.ok(resPassport.body.includes('Coevorden'));
+  assert.ok(resPassport.body.includes('/sales/161441572/IMG_20261103_234758_505.jpg'));
+  assert.ok(resPassport.body.includes('/sales/161441572/IMG_20261103_234821_680.jpg'));
+  assert.ok(resPassport.body.includes('/sales/161441572/IMG_20261103_234839_810.jpg'));
+  assert.ok(resPassport.body.includes('/sales/161441572/IMG_20261103_234923_509.jpg'));
 
+  // 2. Static JPG Photo delivery via HTTP
+  const resPhoto1 = await fetchLocal('/sales/161441572/IMG_20261103_234758_505.jpg');
+  assert.strictEqual(resPhoto1.statusCode, 200);
+  assert.strictEqual(resPhoto1.headers['content-type'], 'image/jpeg');
+  assert.strictEqual(resPhoto1.byteLength, 2275207, 'Photo 1 must match exact byte size');
+
+  const resPhoto4 = await fetchLocal('/sales/161441572/IMG_20261103_234923_509.jpg');
+  assert.strictEqual(resPhoto4.statusCode, 200);
+  assert.strictEqual(resPhoto4.headers['content-type'], 'image/jpeg');
+  assert.strictEqual(resPhoto4.byteLength, 2119219, 'Photo 4 must match exact byte size');
+
+  // 3. Verkoop alias
   const resVerkoop = await fetchLocal('/verkoop/161441572/');
   assert.strictEqual(resVerkoop.statusCode, 200);
   assert.ok(resVerkoop.body.includes('STIHL MS 260 C-B'));
 
-  // Non-trailing slash redirect check
+  // 4. Non-trailing slash redirect check
   const resRedirect = await fetchLocal('/paspoort/161441572');
   assert.strictEqual(resRedirect.statusCode, 301);
   assert.ok(resRedirect.headers.location.endsWith('/paspoort/161441572/'));
+});
 
-  await new Promise((resolve) => server.close(resolve));
+test('8. Uniform Passport Architecture: Standard vs Sales Extension Parity', () => {
+  // A: Normal user passport without sales
+  const normalMachine = {
+    serial_number: '123456789',
+    normalized_model: 'MS 261 C-M',
+    category: 'Kettingzaag',
+    category_slug: 'kettingzagen',
+    canonical_model_id: 'stihl_ms_261',
+    sales: { is_for_sale: false }
+  };
+  const normalHtml = renderUniversalPassportPageHtml({
+    idOrSerial: '123456789',
+    machine: normalMachine,
+    database: {},
+    baseUrl: 'https://www.stihldecoder.nl'
+  });
+
+  // Must contain core passport components
+  assert.ok(normalHtml.includes('STIHL MS 261 C-M'), 'Renders model name');
+  assert.ok(normalHtml.includes('Digitaal Machinepaspoort'), 'Renders passport card');
+  assert.ok(normalHtml.includes('Deelbaar Machinepaspoort &amp; QR-Code') || normalHtml.includes('Deelbaar Machinepaspoort & QR-Code'), 'Renders QR code section');
+  assert.ok(normalHtml.includes('/paspoort/123456789/'), 'Renders canonical passport URL');
+  
+  // Must NOT contain sales offering block
+  assert.ok(!normalHtml.includes('🏷️ Te koop aangeboden'), 'No sales badge on standard passport');
+  assert.ok(!normalHtml.includes('Verkoopadvertentie Genereren'), 'No advert tool on standard passport');
+
+  // B: Machine with sales listing enabled
+  const salesMachine = {
+    serial_number: '123456789',
+    normalized_model: 'MS 261 C-M',
+    category: 'Kettingzaag',
+    category_slug: 'kettingzagen',
+    canonical_model_id: 'stihl_ms_261',
+    sales: {
+      is_for_sale: true,
+      asking_price: '€ 450,-',
+      condition: 'Zo goed als nieuw',
+      location: 'Utrecht',
+      description: 'Zelden gebruikt',
+      photos: []
+    }
+  };
+  const salesHtml = renderUniversalPassportPageHtml({
+    idOrSerial: '123456789',
+    machine: salesMachine,
+    database: {},
+    baseUrl: 'https://www.stihldecoder.nl'
+  });
+
+  // Must contain both core passport AND sales section
+  assert.ok(salesHtml.includes('STIHL MS 261 C-M'), 'Renders model name');
+  assert.ok(salesHtml.includes('Digitaal Machinepaspoort'), 'Renders passport card');
+  assert.ok(salesHtml.includes('🏷️ Te koop aangeboden'), 'Renders sales badge');
+  assert.ok(salesHtml.includes('€ 450,-'), 'Renders asking price');
+  assert.ok(salesHtml.includes('Zo goed als nieuw'), 'Renders condition');
+  assert.ok(salesHtml.includes('Utrecht'), 'Renders location');
+  assert.ok(salesHtml.includes('Verkoopadvertentie Genereren'), 'Renders sales advert generator');
+
+  // C: SalesPassportPageTemplate.js re-exports UniversalPassportPageTemplate.js
+  const reExportHtml = renderSalesPassportPageHtml({
+    idOrSerial: '123456789',
+    machine: salesMachine,
+    database: {},
+    baseUrl: 'https://www.stihldecoder.nl'
+  });
+  assert.strictEqual(reExportHtml, salesHtml, 'SalesPassportPageTemplate and UniversalPassportPageTemplate must produce 100% identical output');
+});
+
+test('9. User Isolation & Local Storage Sales Lifecycle in MachineDossierManager', () => {
+  const memoryStore = {};
+  const mockStorage = {
+    getItem: (key) => memoryStore[key] || null,
+    setItem: (key, val) => { memoryStore[key] = String(val); },
+    removeItem: (key) => { delete memoryStore[key]; }
+  };
+
+  // User 1 creates normal passport
+  const dossier1 = createDossierObject({
+    modelSlug: 'ms-260',
+    modelName: 'MS 260',
+    category: 'Kettingzaag',
+    identityStatus: IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
+    identitySource: IDENTITY_SOURCES.EXACT_CANONICAL_DECODE,
+    serialNumber: '111111111'
+  });
+
+  // User 2 creates passport
+  const dossier2 = createDossierObject({
+    modelSlug: 'ms-261',
+    modelName: 'MS 261',
+    category: 'Kettingzaag',
+    identityStatus: IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
+    identitySource: IDENTITY_SOURCES.EXACT_CANONICAL_DECODE,
+    serialNumber: '222222222'
+  });
+
+  // Save both
+  const rawList = [dossier1, dossier2];
+  mockStorage.setItem('stihl_machine_dossiers_v2', JSON.stringify(rawList));
+
+  // User 1 enables sales offering on dossier 1
+  const updateRes1 = updateDossierSales(dossier1.dossier_id, {
+    is_for_sale: true,
+    asking_price: '€ 350,-',
+    condition: 'Goed onderhouden',
+    location: 'Groningen'
+  }, mockStorage);
+
+  assert.strictEqual(updateRes1.success, true);
+  assert.strictEqual(updateRes1.dossier.sales.is_for_sale, true);
+  assert.strictEqual(updateRes1.dossier.sales.asking_price, '€ 350,-');
+
+  // Verify User 2's dossier is untouched (User isolation)
+  const savedDossiers = JSON.parse(mockStorage.getItem('stihl_machine_dossiers_v2'));
+  const user2Saved = savedDossiers.find(d => d.dossier_id === dossier2.dossier_id);
+  assert.strictEqual(user2Saved.sales.is_for_sale, false, 'User 2 sales status remains untouched');
+  assert.strictEqual(user2Saved.sales.asking_price, null, 'User 2 price remains null');
+
+  // User 1 toggles sales offering off
+  const updateResToggleOff = updateDossierSales(dossier1.dossier_id, {
+    is_for_sale: false
+  }, mockStorage);
+  assert.strictEqual(updateResToggleOff.success, true);
+  assert.strictEqual(updateResToggleOff.dossier.sales.is_for_sale, false);
+
+  // Close server cleanly at end of test run
+  server.close();
 });

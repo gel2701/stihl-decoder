@@ -79,7 +79,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
 
   let badgeText = 'INDICATIEF OVERZICHT';
   if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
-    badgeText = '✓ OFFICIEEL STIHL';
+    badgeText = '✓ MY STIHL MODELKOPPELING';
   } else if (passportMode === 'MODEL_ONLY') {
     badgeText = 'MODELPASPOORT';
   } else if (isSelfReported) {
@@ -207,7 +207,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
         <div className="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
           <div>
             <p className="font-semibold text-neutral-300">Onafhankelijk rapport op basis van bekende serienummer- en herkomstdata</p>
-            <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport en aanvullende handmatige controle</p>
+            <p className="text-[10px] text-neutral-500">Onafhankelijke verificatie — géén officieel STIHL-certificaat</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">

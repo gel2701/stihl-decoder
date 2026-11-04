@@ -29,7 +29,7 @@ import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js
 import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import { defaultVerifiedOfferRegistry } from './src/affiliate/VerifiedOfferRegistry.js';
-import { renderSalesPassportPageHtml } from './src/components/SalesPassportPageTemplate.js';
+import { renderUniversalPassportPageHtml, renderSalesPassportPageHtml } from './src/components/UniversalPassportPageTemplate.js';
 
 // Phase 59E.1: Controlled Amazon ASIN Live Pilot Launch (3 vetted spark plugs)
 if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
@@ -1010,13 +1010,64 @@ const server = http.createServer(async (req, res) => {
       }
       const salesMachine = getVerifiedSalesMachine(serial);
       if (salesMachine) {
-        const html = renderSalesPassportPageHtml({
+        const html = renderUniversalPassportPageHtml({
+          idOrSerial: serial,
           serial,
           machine: salesMachine,
           database,
           baseUrl: PRIMARY_ORIGIN
         });
         logStihlEvent(EVENT_TYPES.PASSPORT_DOWNLOAD || EVENT_TYPES.DECODER_USED, { serial, model: salesMachine.normalized_model }, req.headers['user-agent']);
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(html);
+        return;
+      }
+
+      // Check official serial anchors if not in sales machines (Standard Passport)
+      if (database.official_serial_anchors && database.official_serial_anchors[serial]) {
+        const anchor = database.official_serial_anchors[serial];
+        const machineObj = {
+          serial_number: serial,
+          normalized_model: anchor.normalized_model,
+          official_product_name: anchor.official_product_name,
+          canonical_model_id: anchor.canonical_model_id,
+          category: anchor.category,
+          category_slug: anchor.category_slug,
+          identity_verification: {
+            status: 'OFFICIAL_SERIAL_VERIFIED',
+            source: anchor.source || 'MY_STIHL'
+          },
+          sales: { is_for_sale: false }
+        };
+        const html = renderUniversalPassportPageHtml({
+          idOrSerial: serial,
+          serial,
+          machine: machineObj,
+          database,
+          baseUrl: PRIMARY_ORIGIN
+        });
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end(html);
+        return;
+      }
+
+      // Check models in database by slug (Model Passport)
+      const matchedModel = database.models?.find(m => m.slug === serial || m.id === serial || m.id === `stihl_${serial}`);
+      if (matchedModel) {
+        const machineObj = {
+          model_slug: matchedModel.slug,
+          canonical_model_id: matchedModel.id,
+          normalized_model: matchedModel.model_name || matchedModel.name,
+          category: matchedModel.category,
+          category_slug: matchedModel.category_slug,
+          sales: { is_for_sale: false }
+        };
+        const html = renderUniversalPassportPageHtml({
+          idOrSerial: serial,
+          machine: machineObj,
+          database,
+          baseUrl: PRIMARY_ORIGIN
+        });
         res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
         res.end(html);
         return;

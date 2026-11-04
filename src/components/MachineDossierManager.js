@@ -269,6 +269,7 @@ export function createDossierObject({
   notes = [],
   events = [],
   reminders = [],
+  sales = null,
   createdAt = new Date().toISOString()
 }) {
   const mSlug = modelSlug || model_slug;
@@ -356,6 +357,23 @@ export function createDossierObject({
       events: Array.isArray(events) ? events.slice(0, MAX_EVENTS_PER_DOSSIER) : [],
       reminders: Array.isArray(reminders) ? reminders.slice(0, MAX_REMINDERS_PER_DOSSIER) : []
     },
+    sales: sales ? {
+      is_for_sale: Boolean(sales.is_for_sale || sales.isForSale),
+      asking_price: sales.asking_price || sales.askingPrice || null,
+      condition: sales.condition || null,
+      location: sales.location || null,
+      description: sales.description || null,
+      photos: Array.isArray(sales.photos) ? sales.photos : [],
+      contact_info: sales.contact_info || sales.contactInfo || null
+    } : {
+      is_for_sale: false,
+      asking_price: null,
+      condition: null,
+      location: null,
+      description: null,
+      photos: [],
+      contact_info: null
+    },
     created_at: createdAt,
     updated_at: createdAt
   };
@@ -395,6 +413,17 @@ function decorateDossierAliases(d) {
   d.notes = d.maintenance.notes;
   d.events = d.maintenance.events;
   d.reminders = d.maintenance.reminders;
+  if (!d.sales) {
+    d.sales = {
+      is_for_sale: false,
+      asking_price: null,
+      condition: null,
+      location: null,
+      description: null,
+      photos: [],
+      contact_info: null
+    };
+  }
   return d;
 }
 
@@ -597,6 +626,23 @@ export function saveDossier(dossier, customStorage = null) {
         events: Array.isArray(dossier.maintenance.events) ? dossier.maintenance.events : [],
         reminders: Array.isArray(dossier.maintenance.reminders) ? dossier.maintenance.reminders : []
       },
+      sales: dossier.sales ? {
+        is_for_sale: Boolean(dossier.sales.is_for_sale),
+        asking_price: dossier.sales.asking_price || null,
+        condition: dossier.sales.condition || null,
+        location: dossier.sales.location || null,
+        description: dossier.sales.description || null,
+        photos: Array.isArray(dossier.sales.photos) ? dossier.sales.photos : [],
+        contact_info: dossier.sales.contact_info || null
+      } : {
+        is_for_sale: false,
+        asking_price: null,
+        condition: null,
+        location: null,
+        description: null,
+        photos: [],
+        contact_info: null
+      },
       created_at: dossier.created_at || new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
@@ -689,6 +735,39 @@ export function updateDossierUserData(dossierId, updates = {}, customStorage = n
     const cleanDate = serviceDateVal ? String(serviceDateVal).trim() : null;
     target.maintenance.last_service_date = (cleanDate && isValidCalendarDate(cleanDate)) ? cleanDate : null;
   }
+
+  target.updated_at = new Date().toISOString();
+  return saveDossier(target, storage);
+}
+
+/**
+ * Updates optional sales offering details for a machine dossier.
+ */
+export function updateDossierSales(dossierId, salesData = {}, customStorage = null) {
+  const storage = getStorage(customStorage);
+  if (!storage) return { success: false, error: 'Opslaan op dit apparaat is niet beschikbaar.' };
+
+  const existing = loadDossiers(storage);
+  const target = existing.find((d) => d.dossier_id === dossierId || d.id === dossierId);
+  if (!target) return { success: false, error: 'Dossier niet gevonden.' };
+
+  const isForSale = Boolean(salesData.is_for_sale || salesData.isForSale);
+  const askingPrice = salesData.asking_price != null ? String(salesData.asking_price).trim().substring(0, 100) : (salesData.askingPrice ? String(salesData.askingPrice).trim().substring(0, 100) : null);
+  const condition = salesData.condition != null ? String(salesData.condition).trim().substring(0, 100) : null;
+  const location = salesData.location != null ? String(salesData.location).trim().substring(0, 100) : null;
+  const description = salesData.description != null ? String(salesData.description).trim().substring(0, 2000) : null;
+  const photos = Array.isArray(salesData.photos) ? salesData.photos.map(p => String(p).trim()).filter(Boolean).slice(0, 20) : [];
+  const contactInfo = salesData.contact_info != null ? String(salesData.contact_info).trim().substring(0, 200) : (salesData.contactInfo ? String(salesData.contactInfo).trim().substring(0, 200) : null);
+
+  target.sales = {
+    is_for_sale: isForSale,
+    asking_price: askingPrice,
+    condition: condition,
+    location: location,
+    description: description,
+    photos: photos,
+    contact_info: contactInfo
+  };
 
   target.updated_at = new Date().toISOString();
   return saveDossier(target, storage);
