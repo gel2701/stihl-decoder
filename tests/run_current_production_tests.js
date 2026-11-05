@@ -113,7 +113,11 @@ export const currentProductionSuites = [
   'tests/affiliate_quality_gate.test.js',
   'tests/phase61_verified_affiliate_activation.test.js',
   'tests/phase62_affiliate_scaling.test.js',
-  'tests/phase64_model_recognition_regression.test.js'
+  'tests/phase64_model_recognition_regression.test.js',
+  'tests/phase65_creators_client.test.js',
+  'tests/phase65_candidate_matcher.test.js',
+  'tests/phase65_affiliate_health.test.js',
+  'tests/phase65_production_safety.test.js'
 ];
 
 console.log('===============================================================');
