@@ -23,6 +23,7 @@
 import { normalizeModelQuery, VARIANT_SUFFIXES } from '../modelNormalizer.js';
 import { resolveModelRelationship, HISTORICAL_MODEL_RELATIONSHIPS } from '../modelRelationships.js';
 import { buildSearchableIdentities } from '../globalModelSearch.js';
+import { findModelIdentity } from '../modelIdentityIndex.js';
 import { getDirectPartsForModel } from '../parts/DirectPartsEngine.js';
 
 export const SEARCH_INTENTS = {
@@ -427,6 +428,30 @@ export function searchIntelligentModels(queryStr = '', database = {}, options = 
     }
   }
 
+  const identity = cleanRaw && (intent !== SEARCH_INTENTS.AMBIGUOUS_NUMERIC || /^0\d{2}$/.test(sanitized))
+    ? findModelIdentity(sanitized, database)
+    : null;
+  if (identity?.evidence_status === 'EXACT_MODEL' &&
+      identity.model_name?.replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanRaw) {
+    return {
+      intent: SEARCH_INTENTS.MODEL,
+      query: queryStr,
+      exactMatch: {
+        ...identity,
+        slug: null,
+        variant: null,
+        is_canonical: false,
+        source: 'MODEL_IDENTITY_INDEX',
+        match_type: MATCH_TYPES.EXACT,
+        match_label: 'Exact model gevonden'
+      },
+      candidates: [],
+      suggestions: [],
+      isAmbiguous: false,
+      typoNotice: null
+    };
+  }
+
   // Tier 3: Ambiguous short numeric queries (e.g. 260, 261)
   if (intent === SEARCH_INTENTS.AMBIGUOUS_NUMERIC) {
     const digits = sanitized.replace(/\D/g, '');
@@ -580,7 +605,7 @@ export function getAutocompleteSuggestions(queryStr = '', database = {}, options
       match_type: result.exactMatch.match_type,
       badge: result.exactMatch.variant || 'Exact',
       label: `${result.exactMatch.category}${result.exactMatch.variant ? ` (${result.exactMatch.variant})` : ''}`,
-      url: `/kettingzagen/${result.exactMatch.slug}/`
+      url: result.exactMatch.slug ? `/${result.exactMatch.category_slug || 'kettingzagen'}/${result.exactMatch.slug}/` : null
     });
   }
 
