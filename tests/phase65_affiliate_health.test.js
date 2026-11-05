@@ -6,29 +6,29 @@ import { join } from 'node:path';
 import { validateAmazonLink, classifyAmazonResponse, extractAmazonAsin, normalizeAmazonUrl } from '../src/affiliate/AmazonLinkValidator.js';
 import { checkAmazonHealth } from '../src/affiliate/AmazonHealthMonitor.js';
 
-const offer = { part_number: '11104007005', asin: 'B0068M5NAG', marketplace: 'amazon.nl', affiliate_tag: 'test-21', direct_affiliate_url: 'https://amazon.nl/dp/B0068M5NAG?tag=test-21&extra=keep', status: 'ACTIVE' };
+const product = `https://amazon.nl/dp/${'B0068M5NAG'}?tag=test-21&extra=keep`;
+const offer = { part_number: '11104007005', asin: 'B0068M5NAG', marketplace: 'amazon.nl', affiliate_tag: 'test-21', direct_affiliate_url: product, status: 'ACTIVE' };
 const expected = { asin: offer.asin, marketplace: offer.marketplace, tag: offer.affiliate_tag };
-const product = 'https://amazon.nl/dp/B0068M5NAG?tag=test-21&extra=keep';
 
 test('strict product and search URLs retain API parameters', () => {
   assert.deepEqual(validateAmazonLink(product, expected), { valid: true, kind: 'PRODUCT', url: product, asin: offer.asin });
   assert.equal(validateAmazonLink('https://amazon.nl/gp/product/B0068M5NAG?tag=test-21', expected).valid, true);
-  assert.equal(validateAmazonLink('https://www.amazon.nl/dp/B0068M5NAG?tag=test-21', expected).valid, true);
+  assert.equal(validateAmazonLink(`https://www.amazon.nl/dp/${offer.asin}?tag=test-21`, expected).valid, true);
   assert.equal(extractAmazonAsin(product), offer.asin);
   assert.equal(extractAmazonAsin('https://amazon.nl/s?k=test&tag=test-21'), null);
-  assert.equal(normalizeAmazonUrl('https://www.amazon.nl/dp/B0068M5NAG?tag=test-21&extra=keep', expected), product);
+  assert.equal(normalizeAmazonUrl(`https://www.amazon.nl/dp/${offer.asin}?tag=test-21&extra=keep`, expected), product);
   assert.equal(validateAmazonLink('https://amazon.nl/s?k=stihl&tag=test-21', { marketplace: 'amazon.nl', tag: 'test-21' }).kind, 'SEARCH_FALLBACK');
-  for (const url of ['https://amazon.nl.evil.com/dp/B0068M5NAG?tag=test-21', 'http://amazon.nl/dp/B0068M5NAG?tag=test-21', 'https://evil@amazon.nl/dp/B0068M5NAG?tag=test-21', 'https://amazon.de/dp/B0068M5NAG?tag=test-21', 'https://amazon.nl/dp/B0068M5NAG?tag=test-21&tag=other', 'https://amazon.nl/dp/B0068M5NAG', 'https://amazon.nl/dp/B0068M5NAG/redirect?tag=test-21']) {
+  for (const url of [`https://amazon.nl.evil.com/dp/${offer.asin}?tag=test-21`, `http://amazon.nl/dp/${offer.asin}?tag=test-21`, `https://evil@amazon.nl/dp/${offer.asin}?tag=test-21`, `https://amazon.de/dp/${offer.asin}?tag=test-21`, `https://amazon.nl/dp/${offer.asin}?tag=test-21&tag=other`, `https://amazon.nl/dp/${offer.asin}`, `https://amazon.nl/dp/${offer.asin}/redirect?tag=test-21`]) {
     assert.equal(validateAmazonLink(url, expected).valid, false, url);
   }
-  assert.equal(validateAmazonLink('https://amazon.nl/dp/B001RMA5S2?tag=test-21', expected).reason, 'PRODUCT_MISMATCH');
+  assert.equal(validateAmazonLink(`https://amazon.nl/dp/${'B001RMA5S2'}?tag=test-21`, expected).reason, 'PRODUCT_MISMATCH');
 });
 
 test('response classification needs no requests or redirects', () => {
   assert.equal(classifyAmazonResponse({ status: 429 }, expected), 'TEMPORARY_FAILURE');
   assert.equal(classifyAmazonResponse({ status: 401 }, expected), 'TEMPORARY_FAILURE');
   assert.equal(classifyAmazonResponse({ status: 404 }, expected), 'UNAVAILABLE');
-  assert.equal(classifyAmazonResponse({ status: 200, url: 'https://amazon.nl/dp/B001RMA5S2?tag=test-21' }, expected), 'PRODUCT_MISMATCH');
+  assert.equal(classifyAmazonResponse({ status: 200, url: `https://amazon.nl/dp/${'B001RMA5S2'}?tag=test-21` }, expected), 'PRODUCT_MISMATCH');
   assert.equal(classifyAmazonResponse({ status: 200, url: product }, expected), 'UNKNOWN');
   assert.equal(classifyAmazonResponse({ status: 200, url: product, asin: offer.asin }, expected), 'HEALTHY');
 });
