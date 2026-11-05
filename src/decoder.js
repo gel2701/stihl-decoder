@@ -5,6 +5,7 @@
 
 import { sanitizeModelSpecifications, normalizeCategorySlug } from './categoryWhitelist.js';
 import { normalizeModelQuery, findModelInDatabase } from './modelNormalizer.js';
+import { findModelIdentity } from './modelIdentityIndex.js';
 import { resolveModelRelationship } from './modelRelationships.js';
 import { StihlRangeResolver } from './StihlRangeResolver.js';
 import { SerialChronologyResolver } from './SerialChronologyResolver.js';
@@ -418,7 +419,10 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     }
   }
 
-  const hasResolvedModel = Boolean(relationship || matchedModelSpec || publicEvidenceMatch);
+  const indexedIdentity = !relationship && !matchedModelSpec && !publicEvidenceMatch
+    ? findModelIdentity(modelStr, database)
+    : null;
+  const hasResolvedModel = Boolean(relationship || matchedModelSpec || publicEvidenceMatch || indexedIdentity);
   const prefixCode = norm.prefix || (relationship ? '0' : null);
   const prefixMeaning = database.prefixes ? database.prefixes[prefixCode] : null;
 
@@ -442,6 +446,8 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     category = matchedModelSpec.category || matchedModelSpec.category_slug;
   } else if (overlayModel?.category) {
     category = overlayModel.category;
+  } else if (indexedIdentity?.category) {
+    category = indexedIdentity.category;
   } else if (norm.prefix === 'BR' || norm.prefix === 'BG' || norm.prefix === 'SH') {
     category = 'Bladblazer';
   } else if (norm.prefix === 'FS' || norm.prefix === 'FR') {
@@ -458,7 +464,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     ? relationship.model_name
     : (matchedModelSpec
       ? matchedModelSpec.model_name
-      : (overlayModel?.model_name || norm.canonicalQuery));
+      : (overlayModel?.model_name || indexedIdentity?.model_name || norm.canonicalQuery));
   const overlaySpecs = overlayModelKey
     ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, resolvedModelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
@@ -486,7 +492,9 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
       ? 'VERIFIED_ALIAS'
       : relationship
         ? 'RELATED_MODEL_NO_SPEC_ATTACH'
-        : 'UNKNOWN';
+        : indexedIdentity
+          ? 'EXACT_IDENTITY_ONLY'
+          : 'UNKNOWN';
 
   const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || []) : null);
   const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
@@ -518,7 +526,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     fuel_type: driveClassification.drive_type,
     fuel_type_label: driveClassification.display_label,
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
-    confidenceLabel: matchedModelSpec || overlayModelKey ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
+    confidenceLabel: matchedModelSpec || overlayModelKey || indexedIdentity ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
     modelResolution,
     publicEvidenceSummary: publicSourceSummary,
     publicEvidenceFields: overlaySpecs.publicEvidenceFields,
