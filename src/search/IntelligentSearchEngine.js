@@ -74,6 +74,62 @@ export const VERIFIED_AUXILIARY_MODELS = [
     machine_form: 'HANDHELD',
     variant: 'Winteruitvoering (VW)',
     explanation: 'Winteruitvoering van MS 261 met handvat- en carburateurverwarming (VW)'
+  },
+  {
+    model_name: '025',
+    fuel_type: 'PETROL_2STROKE',
+    slug: '025',
+    category: 'Kettingzaag',
+    category_slug: 'kettingzagen',
+    series_code: '1121',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    power_source: 'GASOLINE',
+    engine_type: 'COMBUSTION_2_STROKE',
+    machine_form: 'HANDHELD',
+    variant: null,
+    explanation: 'Legacy numeric-prefix chainsaw. Series 1121, predecessor to MS 260.'
+  },
+  {
+    model_name: 'HS 81',
+    fuel_type: 'PETROL_2STROKE',
+    slug: 'hs-81',
+    category: 'Heggenschaar',
+    category_slug: 'heggenscharen',
+    series_code: '4231',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    power_source: 'GASOLINE',
+    engine_type: 'COMBUSTION_2_STROKE',
+    machine_form: 'HANDHELD',
+    variant: null,
+    explanation: 'Professionele heggenschaar. R = Rechts, T = Telescopisch.'
+  },
+  {
+    model_name: 'HS 81 R',
+    fuel_type: 'PETROL_2STROKE',
+    slug: 'hs-81-r',
+    category: 'Heggenschaar',
+    category_slug: 'heggenscharen',
+    series_code: '4231',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    power_source: 'GASOLINE',
+    engine_type: 'COMBUSTION_2_STROKE',
+    machine_form: 'HANDHELD',
+    variant: null,
+    explanation: 'Heggenschaar met langgerechtig blad voor professionele toepassingen.'
+  },
+  {
+    model_name: 'HS 81 T',
+    fuel_type: 'PETROL_2STROKE',
+    slug: 'hs-81-t',
+    category: 'Heggenschaar',
+    category_slug: 'heggenscharen',
+    series_code: '4231',
+    fuel_type_label: 'Benzine (2-Takt 1:50)',
+    power_source: 'GASOLINE',
+    engine_type: 'COMBUSTION_2_STROKE',
+    machine_form: 'HANDHELD',
+    variant: null,
+    explanation: 'Heggenschaar met telescopische steel voor hoogwerk.'
   }
 ];
 

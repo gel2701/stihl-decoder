@@ -278,6 +278,12 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
           })
         };
       }
+      // Phase 64: legacy numeric model designations (e.g. 025) must resolve as
+      // models when an exact verified identity exists, instead of failing as a
+      // malformed serial number.
+      if (intelligent.exactMatch) {
+        return analyzeModelQuery(stripped, database, options);
+      }
     }
     return {
       success: false,
@@ -368,9 +374,13 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
   if (!relationship && !matchedModelSpec) {
     const cleanQ = (norm.canonicalQuery || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
     const cleanBase = (norm.baseModel || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+    // Phase 64: prefer exact variant identity (e.g. HS 81 R) over base model match
     const aux = VERIFIED_AUXILIARY_MODELS.find(m => {
       const mClean = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
-      return mClean === cleanQ || mClean === cleanBase;
+      return mClean === cleanQ;
+    }) || VERIFIED_AUXILIARY_MODELS.find(m => {
+      const mClean = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+      return mClean === cleanBase;
     });
     if (aux) {
       matchedModelSpec = {
@@ -379,6 +389,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
         category: aux.category,
         category_slug: aux.category_slug,
         series_code: aux.series_code,
+        fuel_type: aux.fuel_type || null,
         fuel_type_label: aux.fuel_type_label,
         data_status: 'EVIDENCE_STORE_LINKED',
         basic_classification: {
