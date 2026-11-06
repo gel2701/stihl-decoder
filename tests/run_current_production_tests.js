@@ -117,7 +117,8 @@ export const currentProductionSuites = [
   'tests/phase65_creators_client.test.js',
   'tests/phase65_candidate_matcher.test.js',
   'tests/phase65_affiliate_health.test.js',
-  'tests/phase65_production_safety.test.js'
+  'tests/phase65_production_safety.test.js',
+  'tests/phase66a_batch250.test.js'
 ];
 
 console.log('===============================================================');
