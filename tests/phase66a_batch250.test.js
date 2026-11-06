@@ -1,0 +1,77 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { run } from '../scripts/phase66a_batch250.mjs';
+
+const dir = await mkdtemp(join(tmpdir(), 'phase66a-test-'));
+const checkpoint = join(dir, 'checkpoint.json');
+const output = new URL('../reports/phase66a_affiliate_candidates.json', import.meta.url);
+try {
+  await assert.rejects(run({ checkpoint, sources: ['external'] }), /offline-only/);
+  await assert.rejects(run({ checkpoint, stopAfterBatches: 0 }), /Invalid batch limit/);
+  const partial = await run({ checkpoint, stopAfterBatches: 1 });
+  assert.equal(partial.processed, 25);
+  assert.equal(partial.complete, false);
+  const resumed = await run({ checkpoint });
+  assert.equal(resumed.complete, true);
+  const text = await readFile(output, 'utf8');
+  const report = JSON.parse(text);
+  assert.equal(report.records.length, 250);
+  assert.deepEqual(report.records.map(r => r.part_number), JSON.parse(await readFile(new URL('../output/phase56a/AMAZON_VERIFICATION_QUEUE.json', import.meta.url))).queue.map(r => r.part_number));
+  assert.equal(report.counts.unique_parts, 250);
+  assert.equal(report.batch_size, 25);
+  assert.equal(report.mode, 'OFFLINE');
+  assert.equal(report.records.find(r => r.part_number === '00004007000').part_name, 'Spark plug NGK BPMR7A');
+  assert.equal(report.records.find(r => r.part_number === '00004007000').status, 'VERIFIED');
+  assert.equal(report.records.find(r => r.part_number === '00004007000').candidates[0].asin, 'B001RM8J76');
+  assert.equal(report.records.find(r => r.part_number === '00004007025').candidates[0].status, 'REJECTED');
+  assert.equal(report.records.find(r => r.part_number === '00006421223').candidates[0].status, 'REJECTED');
+    assert.equal(report.records.find(r => r.part_number === '00006421240').status, 'STAGED');
+    assert.equal(report.records.find(r => r.part_number === '00006421240').candidates[0].research_status, 'RESEARCH_REQUIRED');
+  assert.equal(report.records.find(r => r.part_number === '00006421240').candidates[0].asin, 'B000IBWVWG');
+  assert.ok(report.records.some(r => r.status === 'RESEARCH_REQUIRED' && r.candidates.length === 0));
+  assert.ok(report.records.every(r => r.candidates.every(c => c.asin !== 'B000000000')));
+  assert.ok(report.records.every(r => r.current_link_type === (r.status === 'VERIFIED' ? 'EXISTING_ACTIVE_REGISTRY_LINK' : 'SEARCH_FALLBACK')));
+   assert.equal(report.counts.part_statuses.VERIFIED, 3);
+   assert.equal(report.counts.part_statuses.NO_CANDIDATE, 0);
+   assert.equal(report.counts.active_existing_verified, 3);
+    assert.equal(report.counts.new_verified, 0);
+    assert.equal(report.counts.part_statuses.STAGED, 1);
+    assert.equal(report.counts.part_statuses.REJECTED, 2);
+    assert.equal(report.counts.part_statuses.RESEARCH_REQUIRED, 244);
+    assert.equal(report.counts.unique_asins, 5);
+    assert.equal(report.counts.unique_mappings, 6);
+   assert.equal(report.counts.permitted_searches_performed, 0);
+   assert.equal(report.next_verification_batch.length, 25);
+   assert.equal(Object.values(report.counts.categories).reduce((a, b) => a + b, 0), 250);
+    assert.ok(report.records.every(r => r.search_profile.searches_performed === 0 && ['VERIFIED', 'STAGED', 'REJECTED', 'RESEARCH_REQUIRED'].includes(r.status)));
+   assert.ok(report.records.flatMap(r => r.candidates).every(c => c.source && c.source_timestamp && c.activation_state && c.research_status && 'manufacturer' in c && 'manufacturer_part_number' in c && 'ean_gtin' in c && 'package_quantity' in c));
+    assert.ok(report.records.flatMap(r => r.candidates).every(c => c.status !== 'VERIFIED' || c.source === 'data/affiliate/verified_amazon_registry.json'));
+    assert.ok(report.records.every(r => !Object.hasOwn(r, 'direct_url') && r.candidates.every(c => !Object.hasOwn(c, 'direct_url'))));
+   const historical = await Promise.all(['PHASE59F1_ACTIVATION_CANDIDATES.json', 'PHASE60_1_VERIFIED_OFFERS.json'].map(async name => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'))));
+   const eligible = historical.flatMap(doc => doc.offers).filter(c => c.asin && c.asin !== 'B000000000' && report.records.some(r => r.part_number === c.part_number));
+   for (const row of report.records) {
+     const available = new Set(eligible.filter(c => c.part_number === row.part_number).map(c => `${c.marketplace}:${c.asin}`));
+     assert.equal(row.candidates.length, available.size);
+   }
+  assert.equal(report.counts.unique_mappings, new Set(report.records.flatMap(r => r.candidates.map(c => `${r.part_number}:${c.marketplace}:${c.asin}`))).size);
+  await run({ checkpoint });
+  assert.equal(await readFile(output, 'utf8'), text);
+   await assert.rejects(run({ checkpoint: fileURLToPath(output) }), /Checkpoint path overlaps/);
+   const tampered = join(dir, 'tampered.json');
+   await writeFile(tampered, JSON.stringify({ fingerprint: report.input_fingerprint, cursor: 25, records: [{ part_number: report.records[0].part_number, status: 'VERIFIED', asin: 'B000000000' }] }));
+   await assert.rejects(run({ checkpoint: tampered }), /Checkpoint mismatch/);
+   await writeFile(tampered, JSON.stringify({ fingerprint: report.input_fingerprint, cursor: 25 }));
+   assert.equal((await run({ checkpoint: tampered, stopAfterBatches: 1 })).processed, 50);
+  const corrupted = join(dir, 'corrupt.json');
+  await writeFile(corrupted, JSON.stringify({ fingerprint: 'wrong', records: [] }));
+  await assert.rejects(run({ checkpoint: corrupted }), /Checkpoint mismatch/);
+  const interrupted = join(dir, 'interrupted.json');
+  await assert.rejects(run({ checkpoint: interrupted, onBatch: () => { throw new Error('failure'); } }), /failure/);
+  assert.equal((await run({ checkpoint: interrupted, stopAfterBatches: 1 })).processed, 50);
+  console.log('Phase 66A offline batch tests passed');
+} finally {
+  await rm(dir, { recursive: true, force: true });
+}
