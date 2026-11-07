@@ -119,7 +119,9 @@ export const currentProductionSuites = [
   'tests/phase65_affiliate_health.test.js',
   'tests/phase65_production_safety.test.js',
   'tests/phase66a_batch250.test.js',
-  'tests/phase66b_research25.test.js'
+  'tests/phase66b_research25.test.js',
+  'tests/phase67_creators_transport.test.js',
+  'tests/phase67_creators_probe.test.js'
 ];
 
 console.log('===============================================================');
