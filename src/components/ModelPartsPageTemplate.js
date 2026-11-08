@@ -532,6 +532,11 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          try {
+            if (localStorage.getItem('stihl_cookie_consent') === 'denied') {
+              return; // Respect explicit refusal of analytics / tracking
+            }
+          } catch (e) {}
           if (el && el.dataset && el.dataset.clickedRecently === '1') {
             return; // debounce rapid double clicks
           }

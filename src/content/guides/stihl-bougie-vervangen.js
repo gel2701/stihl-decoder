@@ -262,7 +262,7 @@ export const stihlBougieVervangenGuide = {
       url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 361, MS 390, MS 440, MS 461, 026',
-      description: 'OEM-toeleverancierskwaliteit van Bosch (eerste montage toeleverancier). Geleverd in officiële Bosch-merkverpakking (0242240506 / WSR6F), met identieke technische specificaties aan STIHL onderdeelnummer 1110 400 7005. Dit is een origineel Bosch merkproduct, geen door STIHL verpakt artikel.'
+      description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd bougietype (Bosch WSR6F, MPN 0242240506). Voldoet aan de in de documentatie vermelde specificaties (M14x1,25, elektrodenafstand 0,5 mm, 25 Nm) en gecorreleerd aan STIHL referentienummer 1110 400 7005. Betreft een merkproduct van Robert Bosch GmbH, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     },
     {
       asin: 'B001RM8J76',
@@ -276,7 +276,7 @@ export const stihlBougieVervangenGuide = {
       url: 'https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 390, MS 440, MS 461, HS 45, FS 350',
-      description: 'OEM-toeleverancierskwaliteit van NGK / Niterra. Geleverd in officiële NGK-merkverpakking (BPMR7A / 6703), met specificaties conform STIHL onderdeelnummer 0000 400 7000. Dit is een origineel NGK merkproduct, geen door STIHL verpakt artikel.'
+      description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd bougietype (NGK BPMR7A / 6703). Voldoet aan de in de documentatie vermelde specificaties (M14x1,25, elektrodenafstand 0,5 mm, 25 Nm) en gecorreleerd aan STIHL referentienummer 0000 400 7000. Betreft een merkproduct van NGK / Niterra, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     },
     {
       asin: 'B001RMA5S2',
@@ -290,7 +290,7 @@ export const stihlBougieVervangenGuide = {
       url: 'https://www.amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'BG 86, BR 600, MS 261, MS 261 C-M, FS 460 C-EM',
-      description: 'OEM-toeleverancierskwaliteit van NGK / Niterra voor compacte M10 cilinderkoppen en 4-MIX motoren. Geleverd in officiële NGK-merkverpakking (CMR6H / 3365), met specificaties conform STIHL onderdeelnummer 0000 400 7011. Dit is een origineel NGK merkproduct, geen door STIHL verpakt artikel.'
+      description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd compact bougietype voor M10 cilinderkoppen en 4-MIX motoren (NGK CMR6H / 3365). Voldoet aan de in de documentatie vermelde specificaties (M10x1,0, elektrodenafstand 0,5 mm, 12 Nm) en gecorreleerd aan STIHL referentienummer 0000 400 7011. Betreft een merkproduct van NGK / Niterra, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     }
   ],
 

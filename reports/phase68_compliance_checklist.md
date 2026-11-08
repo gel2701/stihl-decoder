@@ -30,17 +30,17 @@
 
 > [!IMPORTANT]
 > **Definitie & Juridisch/Operationeel Voorbehoud:**
-> Technische websitegereedheid (**Compliance Readiness**) betekent dat STIHLDecoder.nl qua frontend, datamodellen, disclosures en linkstructuur 100% voldoet aan de objectieve regels van de *Amazon Associates Operating Agreement* en *Program Participation Requirements*.
+> Technische websitegereedheid (**Compliance Readiness**) betreft een interne technische kwaliteitscontrole waarbij de frontend, datamodellen, disclosures en linkstructuur van STIHLDecoder.nl zijn getoetst aan de gepubliceerde bepalingen van de *Amazon Associates Operating Agreement* en *Program Participation Requirements*.
 >
-> Dit is echter **NIET** gelijk aan formele toelating of officiële account-goedkeuring door Amazon zelf:
-> 1. **Autonoom Goedkeuringsproces:** Amazon beoordeelt affiliate-accounts pas definitief nadat het account minimaal 3 gekwalificeerde verkopen heeft gerealiseerd binnen de gestelde termijn (doorgaans 180 dagen).
-> 2. **Menselijke Review:** Een compliance auditor van Amazon voert vervolgens een handmatige beoordeling uit van de site, contentwaarde en verkeerskwaliteit.
-> 3. **Geen Automatisch Recht:** Geen enkele technische audit of code-implementatie kan de formele goedkeuring door Amazon garanderen, aangezien Amazon het discretionaire recht behoudt accounts naar eigen inzicht goed te keuren of af te wijzen.
+> Dit is uitdrukkelijk **NIET** gelijk aan formele toelating of officiële accountgoedkeuring door Amazon zelf:
+> 1. **Autonoom Goedkeuringsproces:** Amazon beoordeelt affiliate-accounts pas na minimaal 3 gekwalificeerde verkopen binnen de gestelde termijn (doorgaans 180 dagen).
+> 2. **Discretionaire Review:** Een compliance-medewerker van Amazon voert vervolgens een zelfstandige beoordeling uit van de site, contentwaarde en verkeerskwaliteit.
+> 3. **Geen Garantie op Goedkeuring:** Geen enkele interne technische audit kan officiële goedkeuring door Amazon garanderen. Amazon behoudt te allen tijde het discretionaire recht accounts naar eigen inzicht toe te laten of af te wijzen.
 >
-> **Doel van Phase 68/68.1:** Alle bekende formele en technische afkeuringsgronden (zoals verhullende redirects, ontbrekende disclosures, niet-gevalideerde prijsclaims, merkverwarring of misleidende pasvormclaims) proactief en aantoonbaar wegnemen zodat de site tijdens de formele menselijke audit direct aan alle toelatingscriteria voldoet.
+> **Doel van Phase 68/68.1:** Bekende technische en inhoudelijke risicofactoren (zoals verhullende redirects, ontbrekende disclosures, niet-gevalideerde prijsclaims, merkverwarring of misleidende pasvormclaims) proactief mitigeren om de website technisch zorgvuldig voor te bereiden op de menselijke review door Amazon.
 
 ---
 
 ## 3. Conclusie
 
-STIHLDecoder.nl voldoet technisch en operationeel aan alle vereisten van de Amazon Associates Operating Agreement en is optimaal voorbereid op de officiële audit en accountbeoordeling door Amazon.
+De interne technische controle van STIHLDecoder.nl toont op de onderzochte criteria geen schendingen van de gepubliceerde richtlijnen van de Amazon Associates Operating Agreement. De site is hiermee technisch voorbereid op de toekomstige onafhankelijke en autonome beoordeling door Amazon.

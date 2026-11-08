@@ -11,7 +11,7 @@
 Het doel van Phase 68 is het optimaliseren van de conversie van bestaande bezoekers op STIHLDecoder.nl naar relevante Amazon-onderdelen, ter voorbereiding op formele account-goedkeuring door het Amazon Associates programma.
 
 ### Kernprincipes:
-1. **Technische Betrouwbaarheid:** Alleen 100% geverifieerde onderdelen krijgen een directe `/dp/` productlink.
+1. **Technische Betrouwbaarheid:** Alleen redactioneel en technisch geverifieerde onderdelen krijgen een directe `/dp/` productlink.
 2. **Eerlijkheid & Zero-Fictitious Claims:** Geen verzonnen prijzen, dynamische sterren of voorraadclaims zonder live Creators API.
 3. **Duidelijke Demarcatie:** Strikt onderscheid tussen geverifieerde producten en dynamische Amazon zoekresultaten.
 4. **Mobile First:** Alle CTA's geoptimaliseerd voor touch-targets (minstens 44x44px).

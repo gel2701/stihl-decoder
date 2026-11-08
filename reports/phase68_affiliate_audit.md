@@ -74,14 +74,14 @@ Op de onderdeeldetailpagina (`/onderdeelnummer/:partNumber/`):
 | **Productevaluatie** | Onduidelijk of onderdeel geverifieerd was | Strikt visueel onderscheid (Emerald vs Amber) | Hogere gebruikersintentie en vertrouwen |
 | **Mobiele Interactie** | Knoppen te klein (< 36px) | `min-h-[44px]` touch target, full-width | -25% mobiele drop-off |
 | **Amazon Doorklik** | Onduidelijke zoekbestemming | Duidelijk label `Bekijk product op Amazon.nl` vs `Zoek op Amazon.nl ↗` | Betere pre-kwalificatie van kliks |
-| **Amazon Beoordeling** | Risico op afkeuring bij compliance-audits | 100% compliant disclosures en no-claim beleid | Optimaal voorbereid op menselijke audit |
+| **Amazon Beoordeling** | Risico op afkeuring bij compliance-audits | Uitgebreide disclosures en no-claim beleid | Technisch voorbereid op menselijke audit |
 
 ---
 
 ## 4. Conclusie & Audit Verdict
 
-De affiliate-architectuur is nu optimaal ingericht voor conversie zonder enig compliance- of kwaliteitsrisico:
+De affiliate-architectuur is gericht ingericht voor conversie met strikte technische compliance-waarborgen:
 - **Pilotbeveiliging:** Maximaal 3 actieve geverifieerde ASINs in productie gehandhaafd.
 - **Geen valse claims:** Geen niet-geverifieerde prijzen, sterbeoordelingen of voorraadindicaties.
 - **Transparantie:** Volledige tweetalige Amazon-disclosures aanwezig op alle pagina's met affiliate-links.
-- **Audit-gereedheid:** De site voldoet technisch en redactioneel aan de toelatingsvoorwaarden van de Amazon Associates Operating Agreement ter voorbereiding op de formele menselijke audit (waarbij formele goedkeuring autonoom door Amazon wordt toegekend na 3 gekwalificeerde verkopen).
+- **Audit-gereedheid:** De site is intern technisch getoetst aan de gepubliceerde richtlijnen van de Amazon Associates Operating Agreement ter voorbereiding op de formele review (waarbij formele goedkeuring te allen tijde een autonoom en discretionair besluit van Amazon blijft na het behalen van 3 gekwalificeerde verkopen).

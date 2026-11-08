@@ -149,7 +149,7 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
         <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800">
           <h4 class="font-bold text-white text-sm mb-1">Privacy-vriendelijke affiliate klikmeting</h4>
           <p class="text-gray-400 leading-relaxed">
-            Wanneer u op een uitgaande Amazon-link klikt, stuurt onze pagina een geaggregeerd signaal naar onze eigen server (<code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code>) om bij te houden welk onderdeelnummer gezocht is, via welk type onderdeelkaart (geverifieerd of zoekfallback) en op welk apparaattype (mobiel of desktop). Hierbij worden géén cookies geplaatst, géén IP-adressen opgeslagen, géén unieke apparaat-fingerprints gemaakt en géén persoonsgebonden gebruikersprofielen opgebouwd. Deze technische telemetrie functioneert onafhankelijk van advertentiecookies en respecteert de consentstatus van de bezoeker.
+            Wanneer u op een uitgaande Amazon-link klikt, stuurt onze pagina een geaggregeerd signaal naar onze eigen server (<code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code>) om bij te houden welk onderdeelnummer gezocht is, via welk type onderdeelkaart (geverifieerd of zoekfallback) en op welk apparaattype (mobiel of desktop). Hierbij worden géén cookies geplaatst, géén IP-adressen opgeslagen, géén unieke apparaat-fingerprints gemaakt en géén persoonsgebonden gebruikersprofielen opgebouwd. Deze technische doorklikmeting respecteert uw consentstatus: indien u cookies heeft geweigerd (<code class="text-amber-400 font-mono text-3xs">stihl_cookie_consent = 'denied'</code>), wordt de verzending van dit signaal in uw browser direct onderdrukt.
           </p>
         </div>
       </div>
