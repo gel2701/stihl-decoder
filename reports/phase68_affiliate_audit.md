@@ -74,7 +74,7 @@ Op de onderdeeldetailpagina (`/onderdeelnummer/:partNumber/`):
 | **Productevaluatie** | Onduidelijk of onderdeel geverifieerd was | Strikt visueel onderscheid (Emerald vs Amber) | Hogere gebruikersintentie en vertrouwen |
 | **Mobiele Interactie** | Knoppen te klein (< 36px) | `min-h-[44px]` touch target, full-width | -25% mobiele drop-off |
 | **Amazon Doorklik** | Onduidelijke zoekbestemming | Duidelijk label `Bekijk product op Amazon.nl` vs `Zoek op Amazon.nl ↗` | Betere pre-kwalificatie van kliks |
-| **Amazon Goedkeuring** | Risico op afkeuring bij compliance-audits | 100% compliant disclosures en no-claim beleid | Voldoet aan alle toelatingseisen |
+| **Amazon Beoordeling** | Risico op afkeuring bij compliance-audits | 100% compliant disclosures en no-claim beleid | Optimaal voorbereid op menselijke audit |
 
 ---
 
@@ -84,3 +84,4 @@ De affiliate-architectuur is nu optimaal ingericht voor conversie zonder enig co
 - **Pilotbeveiliging:** Maximaal 3 actieve geverifieerde ASINs in productie gehandhaafd.
 - **Geen valse claims:** Geen niet-geverifieerde prijzen, sterbeoordelingen of voorraadindicaties.
 - **Transparantie:** Volledige tweetalige Amazon-disclosures aanwezig op alle pagina's met affiliate-links.
+- **Audit-gereedheid:** De site voldoet technisch en redactioneel aan de toelatingsvoorwaarden van de Amazon Associates Operating Agreement ter voorbereiding op de formele menselijke audit (waarbij formele goedkeuring autonoom door Amazon wordt toegekend na 3 gekwalificeerde verkopen).

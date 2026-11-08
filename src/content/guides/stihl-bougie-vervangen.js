@@ -1,7 +1,6 @@
 /**
-/**
  * Substantive, Source-Bound Content Definition for STIHL Bougie Vervangen & Onderhoudsgids
- * Phase 68 — Affiliate Conversion & Amazon Approval Readiness
+ * Phase 68.1 — Final Hardening, Source-Bound Specifications & OEM Distinction
  * Covers Google Search Console Priority Models: MS 440, MS 210, MS 170, MS 461, BG 86, MS 390, BR 600, MS 361, MS 261, HS 45, FS 350, FS 460
  */
 
@@ -35,11 +34,11 @@ export const stihlBougieVervangenGuide = {
     {
       id: 'src-stihl-ms170-manual-spark',
       source_id: 'src-stihl-ms170-manual-spark',
-      canonical_document_id: '0458-428-0121',
-      publicationId: '0458-428-0121',
-      publication_id: '0458-428-0121',
-      documentTitle: 'STIHL MS 170 / MS 180 Instruction Manual',
-      document_title: 'STIHL MS 170 / MS 180 Instruction Manual',
+      canonical_document_id: '0458-207-8321-B',
+      publicationId: '0458-207-8321-B',
+      publication_id: '0458-207-8321-B',
+      documentTitle: 'STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual',
+      document_title: 'STIHL MS 170, MS 170 C, MS 180, MS 180 C Instruction Manual',
       source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
       modelScope: 'MS 170, MS 180',
       model_scope: ['MS 170', 'MS 180'],
@@ -48,7 +47,7 @@ export const stihlBougieVervangenGuide = {
         section: 'Maintenance and Care',
         heading: 'Spark Plug'
       },
-      notes: 'Fabriekshandleiding STIHL MS 170/180: bougie Bosch WSR6F / NGK BPMR7A, elektrodenafstand 0,5 mm, schroefdraad M14x1.25.'
+      notes: 'Fabriekshandleiding STIHL MS 170/180: ontstoringsbougie Bosch WSR6F / NGK BPMR7A, elektrodenafstand 0,5 mm, schroefdraad M14x1.25, aanhaalmoment 25 Nm.'
     },
     {
       id: 'src-stihl-ms210-manual-spark',
@@ -66,31 +65,32 @@ export const stihlBougieVervangenGuide = {
         section: 'Maintenance and Care',
         heading: 'Checking the Spark Plug'
       },
-      notes: 'Fabriekshandleiding STIHL MS 210: bougie Bosch WSR6F / NGK BPMR7A, sleutelwijdte 19 mm, aandraaimoment 25 Nm.'
+      notes: 'Fabriekshandleiding STIHL MS 210/230/250: ontstoringsbougie Bosch WSR6F / NGK BPMR7A, sleutelwijdte 19 mm, elektrodenafstand 0,5 mm, aandraaimoment 25 Nm.'
     },
     {
       id: 'src-stihl-ms261-manual-spark',
       source_id: 'src-stihl-ms261-manual-spark',
-      canonical_document_id: '0458-261-0121',
-      publicationId: '0458-261-0121',
-      publication_id: '0458-261-0121',
-      documentTitle: 'STIHL MS 261 C-M Instruction Manual',
-      document_title: 'STIHL MS 261 C-M Instruction Manual',
+      canonical_document_id: '0458-573-8621-D',
+      publicationId: '0458-573-8621-D',
+      publication_id: '0458-573-8621-D',
+      documentTitle: 'STIHL MS 261, MS 261 C-M Instruction Manual',
+      document_title: 'STIHL MS 261, MS 261 C-M Instruction Manual',
       source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
-      modelScope: 'MS 261',
-      model_scope: ['MS 261'],
+      modelScope: 'MS 261, MS 261 C-M',
+      model_scope: ['MS 261', 'MS 261 C-M'],
       locator: {
         page: 44,
         section: 'Specifications',
-        heading: 'Spark Plug'
+        heading: 'Ignition System'
       },
-      notes: 'Fabriekshandleiding STIHL MS 261 C-M: compacte bougie NGK CMR6H (M10x1.0, 16 mm zeskant, 12 Nm aandraaimoment).'
+      notes: 'Fabriekshandleiding STIHL MS 261 (C-M): compacte bougie NGK CMR6H / Bosch USR7AC (M10x1.0, 16 mm zeskant, 12 Nm aandraaimoment, elektrodenafstand 0,5 mm).'
     },
     {
       id: 'src-stihl-ms440-manual-spark',
       source_id: 'src-stihl-ms440-manual-spark',
       canonical_document_id: '0458-440-0121',
       publicationId: '0458-440-0121',
+      publication_id: '0458-440-0121',
       documentTitle: 'STIHL MS 440 Instruction Manual',
       document_title: 'STIHL MS 440 Instruction Manual',
       source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
@@ -101,13 +101,32 @@ export const stihlBougieVervangenGuide = {
         section: 'Specifications',
         heading: 'Ignition System'
       },
-      notes: 'Fabriekshandleiding STIHL MS 440: bougie Bosch WSR6F of NGK BPMR7A, 0.5 mm elektrodenafstand, 25 Nm.'
+      notes: 'Fabriekshandleiding STIHL MS 440: bougie Bosch WSR6F of NGK BPMR7A, 0,5 mm elektrodenafstand, 25 Nm aanhaalmoment.'
+    },
+    {
+      id: 'src-stihl-026-manual-spark',
+      source_id: 'src-stihl-026-manual-spark',
+      canonical_document_id: '0458-133-3021',
+      publicationId: '0458-133-3021',
+      publication_id: '0458-133-3021',
+      documentTitle: 'STIHL 026 Instruction Manual',
+      document_title: 'STIHL 026 Instruction Manual',
+      source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
+      modelScope: '026',
+      model_scope: ['026'],
+      locator: {
+        page: 38,
+        section: 'Specifications',
+        heading: 'Spark Plug'
+      },
+      notes: 'Fabriekshandleiding STIHL 026: bougie Bosch WSR6F of NGK BPMR7A, 19 mm sleutel, 0,5 mm elektrodenafstand, 25 Nm.'
     },
     {
       id: 'src-stihl-bg86-manual-spark',
       source_id: 'src-stihl-bg86-manual-spark',
       canonical_document_id: '0458-751-0121',
       publicationId: '0458-751-0121',
+      publication_id: '0458-751-0121',
       documentTitle: 'STIHL BG 86 / SH 86 Instruction Manual',
       document_title: 'STIHL BG 86 / SH 86 Instruction Manual',
       source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
@@ -118,13 +137,14 @@ export const stihlBougieVervangenGuide = {
         section: 'Specifications',
         heading: 'Spark Plug'
       },
-      notes: 'Fabriekshandleiding STIHL BG 86 handblazer: bougie NGK CMR6H (STIHL 0000 400 7011), elektrodenafstand 0,5 mm.'
+      notes: 'Fabriekshandleiding STIHL BG 86 handblazer: bougie NGK CMR6H (STIHL 0000 400 7011), elektrodenafstand 0,5 mm, 12 Nm aanhaalmoment.'
     },
     {
       id: 'src-stihl-br600-manual-spark',
       source_id: 'src-stihl-br600-manual-spark',
       canonical_document_id: '0458-428-0123',
       publicationId: '0458-428-0123',
+      publication_id: '0458-428-0123',
       documentTitle: 'STIHL BR 500 / BR 550 / BR 600 Instruction Manual',
       document_title: 'STIHL BR 500 / BR 550 / BR 600 Instruction Manual',
       source_class: 'OFFICIAL_INSTRUCTION_MANUAL',
@@ -135,7 +155,7 @@ export const stihlBougieVervangenGuide = {
         section: '4-MIX Engine Maintenance',
         heading: 'Spark Plug'
       },
-      notes: 'Fabriekshandleiding STIHL BR 600 4-MIX rugblazer: bougie NGK CMR6H, aandraaimoment 12 Nm.'
+      notes: 'Fabriekshandleiding STIHL BR 600 4-MIX rugblazer: bougie NGK CMR6H, 0,5 mm elektrodenafstand, aandraaimoment 12 Nm.'
     }
   ],
 
@@ -188,34 +208,34 @@ export const stihlBougieVervangenGuide = {
 
   modelSparkPlugTable: [
     {
-      modelGroup: 'Klassieke & Populaire Kettingzagen',
-      models: 'MS 170, MS 180, MS 210, MS 230, MS 250, MS 390, MS 361, MS 440, MS 461, 026',
+      modelGroup: 'Klassieke & Populaire Kettingzagen met M14 Schroefdraad',
+      models: 'MS 170, MS 180, MS 210, MS 230, MS 250, MS 361, MS 390, MS 440, MS 461, 026',
       thread: 'M14 x 1,25 (9,5 mm bereik)',
       hexSize: '19 mm',
       gap: '0,5 mm',
       torque: '25 Nm',
       recommendedPlugs: 'Bosch WSR6F (STIHL 1110 400 7005) / NGK BPMR7A',
-      notes: 'Standaard korte schroefdraad voor 2-takt kettingzagen. Universele pasvorm.'
+      notes: 'Klassieke M14 schroefdraad met 9,5 mm schroefdraadlengte. Uitsluitend van toepassing op machines met originele M14 cilinderkop; controleer altijd het typeplaatje en de markering op de gedemonteerde bougie.'
     },
     {
-      modelGroup: 'Moderne Kettingzagen met M-Tronic & 2-MIX',
-      models: 'MS 261, MS 261 C-M, MS 241 C-M, MS 201 T',
+      modelGroup: 'Moderne Kettingzagen met compacte M10 Cilinderkop',
+      models: 'MS 261, MS 261 C-M',
       thread: 'M10 x 1,0 (12,7 mm bereik)',
       hexSize: '16 mm (compact)',
       gap: '0,5 mm',
       torque: '12 Nm',
       recommendedPlugs: 'NGK CMR6H (STIHL 0000 400 7011) / Bosch USR7AC',
-      notes: 'Compacte M10 bougie. Gebruik uitsluitend een slanke 16mm bougiesleutel.'
+      notes: 'Compacte M10 bougie (12,7 mm schroefdraadlengte). Vereist een slanke 16 mm bougiesleutel. Niet compatibel met oudere M14 cilinderkoppen.'
     },
     {
-      modelGroup: 'Bladblazers (Hand & Ruggedragen)',
+      modelGroup: 'Bladblazers (Hand- & Ruggedragen)',
       models: 'BG 86, BG 86 C-E, SH 86, BR 500, BR 550, BR 600, BR 700',
       thread: 'M10 x 1,0 (12,7 mm bereik)',
       hexSize: '16 mm (compact)',
       gap: '0,5 mm',
       torque: '12 Nm',
       recommendedPlugs: 'NGK CMR6H (STIHL 0000 400 7011)',
-      notes: 'Geschikt voor zowel 2-MIX handblazers als 4-MIX ruggedragen blazers.'
+      notes: 'Compacte bougie voor zowel 2-MIX handblazers (BG 86) als 4-MIX ruggedragen blazers (BR 600).'
     },
     {
       modelGroup: 'Heggenscharen & Bosmaaiers',
@@ -225,7 +245,7 @@ export const stihlBougieVervangenGuide = {
       gap: '0,5 mm',
       torque: 'M14: 25 Nm · M10: 12 Nm',
       recommendedPlugs: 'HS 45 / FS 350: NGK BPMR7A / Bosch WSR6F · FS 460: NGK CMR6H',
-      notes: 'Let op het verschil in schroefdraad tussen lichte/klassieke en zware professionele bosmaaiers.'
+      notes: 'Let op: controleer of uw bosmaaier een klassieke M14 kop (zoals FS 350) of een moderne compacte M10 kop (zoals FS 460 C-EM) heeft.'
     }
   ],
 
@@ -242,7 +262,7 @@ export const stihlBougieVervangenGuide = {
       url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 361, MS 390, MS 440, MS 461, 026',
-      description: 'Originele eerste montage OEM-leverancierskwaliteit van Bosch. Voldoet exact aan STIHL specificatie 1110 400 7005 / wisselnummer 0000 400 7000.'
+      description: 'OEM-toeleverancierskwaliteit van Bosch (eerste montage toeleverancier). Geleverd in officiële Bosch-merkverpakking (0242240506 / WSR6F), met identieke technische specificaties aan STIHL onderdeelnummer 1110 400 7005. Dit is een origineel Bosch merkproduct, geen door STIHL verpakt artikel.'
     },
     {
       asin: 'B001RM8J76',
@@ -256,7 +276,7 @@ export const stihlBougieVervangenGuide = {
       url: 'https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 390, MS 440, MS 461, HS 45, FS 350',
-      description: 'Veelgebruikte ontstoringsbougie met koperkern voor betrouwbare koude start en stabiele vonk onder zware belasting.'
+      description: 'OEM-toeleverancierskwaliteit van NGK / Niterra. Geleverd in officiële NGK-merkverpakking (BPMR7A / 6703), met specificaties conform STIHL onderdeelnummer 0000 400 7000. Dit is een origineel NGK merkproduct, geen door STIHL verpakt artikel.'
     },
     {
       asin: 'B001RMA5S2',
@@ -269,8 +289,8 @@ export const stihlBougieVervangenGuide = {
       thread_spec: 'M10 x 1,0 (16 mm zeskant, 12,7 mm reach)',
       url: 'https://www.amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21',
       badge: '✓ Geverifieerd Product (Directe Link)',
-      suitable_for: 'BG 86, BR 600, MS 261 C-M, FS 460 C-EM, MS 182',
-      description: 'Compacte M10 bougie speciaal ontworpen voor STIHL 4-MIX motoren en moderne compacte cilinderkoppen. Vervangt STIHL onderdeelnummer 0000 400 7011.'
+      suitable_for: 'BG 86, BR 600, MS 261, MS 261 C-M, FS 460 C-EM',
+      description: 'OEM-toeleverancierskwaliteit van NGK / Niterra voor compacte M10 cilinderkoppen en 4-MIX motoren. Geleverd in officiële NGK-merkverpakking (CMR6H / 3365), met specificaties conform STIHL onderdeelnummer 0000 400 7011. Dit is een origineel NGK merkproduct, geen door STIHL verpakt artikel.'
     }
   ],
 

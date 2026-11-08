@@ -88,5 +88,17 @@ Totaal: 37 tests geslaagd, 0 mislukt, 0 overgeslagen.
 ## 5. Git Status & PR Aanbeveling
 
 - **Branch:** `feat/phase68-affiliate-conversion`
+- **Pull Request:** PR #114
 - **Ontkoppelde bestanden:** Alle onderzoeksbestanden (`phase68b*`, `PHASE63*`) zijn onaangeroerd gebleven en niet toegevoegd aan de commit.
-- **Pull Request Doel:** Mergen naar `origin/feat/phase67-amazon-data-access` of `main` (afhankelijk van merge-volgorde PR #113).
+- **Pull Request Doel:** Mergen naar `origin/feat/phase67-amazon-data-access` (of `main` zodra PR #113 is gemerged).
+
+---
+
+## 6. Phase 68.1 Hardening Afsluiting
+
+In vervolg op commit `cb4b8b7` zijn in Phase 68.1 de volgende afsluitende controles en correcties doorgevoerd:
+1. **Brongebonden Verificatie:** Alle 12 Search Console-topmodellen in `stihl-bougie-vervangen.js` zijn strikt gekoppeld aan de officiële STIHL handleidingen (`0458-207-8321-B`, `0458-208-0121`, `0458-573-8621-D`, `0458-440-0121`, `0458-133-3021`, `0458-751-0121`, `0458-428-0123`).
+2. **Nuancering Compatibiliteit:** Niet-onderbouwde universele termen ("universele pasvorm") zijn verwijderd; waarschuwingen voor cilinderkopverschillen (klassieke M14 versus moderne compacte M10) zijn aangescherpt.
+3. **OEM-toeleverancier Merkonderscheid:** Expliciete vermelding op productkaarten en in gidsen dat artikelen worden geleverd in originele fabrikantverpakking van de OEM-toeleverancier (Bosch, NGK) en géén door STIHL verpakte dealerartikelen betreffen.
+4. **Compliance Onderscheid:** In het compliancerapport is scherp vastgelegd dat technische websitegereedheid (compliance readiness) niet gelijkstaat aan formele accountgoedkeuring door Amazon, aangezien formele goedkeuring autonoom door Amazon wordt toegekend na minimaal 3 gekwalificeerde verkopen en een menselijke audit.
+5. **Privacybeleid:** `PrivacyPolicyTemplate.js` is geactualiseerd met expliciete documentatie van de nieuwe telemetrieparameters (`placement`, `device_type`, `is_mobile`), waarbij is bevestigd dat er geen cookies, IP-adressen of PII worden opgeslagen.

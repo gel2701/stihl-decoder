@@ -414,7 +414,7 @@ ${supersessionHtml}
             ? 'OEM-Fabrikant / Eerste Montage'
             : (offer.oem_brand_classification === 'GENUINE_STIHL_OEM' ? 'Origineel STIHL' : 'Kwaliteitsvervanger');
           const descriptionText = offer.description || (isVerified
-            ? 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'
+            ? 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'
             : `U opent een dynamische zoekopdracht op Amazon.nl voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
           const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
           const placement = isVerified ? 'verified_product_card' : 'search_fallback';
@@ -482,7 +482,7 @@ ${supersessionHtml}
 
               <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
                 <span class="text-3xs text-gray-400 leading-tight">
-                  Directe productpagina op Amazon.nl. Geen onbevestigde prijs of voorraadclaims.
+                  Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims.
                 </span>
                 <a
                   href="${offer.url}"
