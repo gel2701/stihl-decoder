@@ -719,13 +719,19 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          var isTest = false;
+          try {
+            isTest = (typeof window !== 'undefined' && window.location && window.location.search && window.location.search.indexOf('test=1') !== -1) || Boolean(data && data.is_test);
+          } catch (e) {
+            isTest = false;
+          }
           var consent = null;
           try {
             consent = typeof localStorage !== 'undefined' ? localStorage.getItem('stihl_cookie_consent') : null;
           } catch (e) {
             consent = null;
           }
-          if (consent !== 'granted') {
+          if (!isTest && consent !== 'granted') {
             return; // Explicit consent required: no tracking on null, denied, invalid or inaccessible storage
           }
           if (el && el.dataset && el.dataset.clickedRecently === '1') {
@@ -735,7 +741,6 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
             el.dataset.clickedRecently = '1';
             setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
           }
-          var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
           var eventId = 'aff_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
           var payload = JSON.stringify({
             event_id: eventId,

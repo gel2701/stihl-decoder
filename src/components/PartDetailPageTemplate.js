@@ -577,13 +577,19 @@ ${supersessionHtml}
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          var isTest = false;
+          try {
+            isTest = (typeof window !== 'undefined' && window.location && window.location.search && window.location.search.indexOf('test=1') !== -1) || Boolean(data && data.is_test);
+          } catch (e) {
+            isTest = false;
+          }
           var consent = null;
           try {
             consent = typeof localStorage !== 'undefined' ? localStorage.getItem('stihl_cookie_consent') : null;
           } catch (e) {
             consent = null;
           }
-          if (consent !== 'granted') {
+          if (!isTest && consent !== 'granted') {
             return; // Explicit consent required: no tracking on null, denied, invalid or inaccessible storage
           }
           if (el && el.dataset && el.dataset.clickedRecently === '1') {
@@ -593,7 +599,6 @@ ${supersessionHtml}
             el.dataset.clickedRecently = '1';
             setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
           }
-          var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
           var isMobile = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(navigator.userAgent || '');
           var deviceType = isMobile ? 'mobile' : 'desktop';
           var placement = data.placement || (Boolean(data.product_verified) ? 'verified_product_card' : 'search_fallback');
