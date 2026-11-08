@@ -9,6 +9,7 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { buildStructuredData } from './StructuredData.js';
 import { getStructuredGuide } from '../content/guides/index.js';
 import { resolveGuideSource, getDeclaredSourceId } from '../guideSourceResolver.js';
+import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
 
 /**
  * Safely formats a locator object or string for human display.
@@ -710,6 +711,144 @@ function renderStructuredGuideBody(guide) {
         </section>
       ` : ''}
 
+
+      <!-- Model Spark Plug Specification Table (Phase 68) -->
+      ${guide.modelSparkPlugTable && guide.modelSparkPlugTable.length > 0 ? `
+        <section id="bougietabel" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-gray-800/80 pb-3">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">⚡</span>
+              Bougietabel per STIHL Machine & Modelserie
+            </h2>
+            <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2.5 py-1 rounded border border-gray-800">Search Console Prioriteiten</span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Overzicht van schroefdraadafmetingen, voorgeschreven elektrodenafstand (0,5 mm) en fabrieksspecificaties conform officiële STIHL handleidingen.
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="text-gray-400 border-b border-gray-800 text-2xs font-mono uppercase tracking-wider">
+                  <th class="py-2.5 pr-3">Machinegroep</th>
+                  <th class="py-2.5 px-3">Modellen</th>
+                  <th class="py-2.5 px-3">Draad & Sleutel</th>
+                  <th class="py-2.5 px-3">Afstand & Moment</th>
+                  <th class="py-2.5 pl-3">Aanbevolen Bougie</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/60">
+                ${guide.modelSparkPlugTable.map(row => `
+                  <tr class="hover:bg-gray-800/30 transition">
+                    <td class="py-3 pr-3 font-semibold text-white">${row.modelGroup}</td>
+                    <td class="py-3 px-3 font-mono text-orange-400 text-2xs">${row.models}</td>
+                    <td class="py-3 px-3 text-gray-300 text-2xs font-mono">${row.thread}<br><span class="text-gray-500">Sleutel: ${row.hexSize}</span></td>
+                    <td class="py-3 px-3 text-gray-300 text-2xs font-mono">${row.gap}<br><span class="text-gray-500">${row.torque}</span></td>
+                    <td class="py-3 pl-3 text-gray-200 text-2xs font-bold">${row.recommendedPlugs}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ` : ''}
+
+      <!-- Step-by-Step Maintenance Guide (Phase 68) -->
+      ${guide.stepByStepGuide && guide.stepByStepGuide.length > 0 ? `
+        <section id="stappenplan" class="bg-gray-900/70 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-orange-600/20 text-orange-400 flex items-center justify-center text-xs font-mono">🛠️</span>
+            Stappenplan: Veilig Bougie Inspecteren & Vervangen
+          </h2>
+          <div class="space-y-4">
+            ${guide.stepByStepGuide.map(s => `
+              <div class="p-4 sm:p-5 rounded-xl bg-gray-950/70 border border-gray-800 space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center text-xs">${s.step}</span>
+                  <h3 class="font-bold text-white text-sm sm:text-base">${s.title}</h3>
+                </div>
+                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed pl-8">${s.description}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+
+      <!-- Verified Commercial Replacement Parts Section (Phase 68A) -->
+      ${guide.verifiedParts && guide.verifiedParts.length > 0 ? `
+        <section id="onderdelen" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800/80 pb-3">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xs font-mono">✓</span>
+              Geverifieerde Vervangingsonderdelen & Directe Links
+            </h2>
+            <span class="text-2xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30">100% Geverifieerde Producten</span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Onderstaande bougies zijn gecontroleerd op specificatie, elektrodenafstand en schroefdraadpassing voor de vermelde STIHL machines. U wordt direct doorgestuurd naar de officiële productpagina op Amazon.nl.
+          </p>
+          <div class="space-y-4">
+            ${guide.verifiedParts.map(part => `
+              <div class="p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border border-emerald-500/30 hover:border-emerald-500/50 shadow-sm transition space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                      ${part.badge}
+                    </span>
+                    <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700">
+                      ${part.oem_classification === 'OEM_SUPPLIER_EQUIVALENT' ? 'OEM-leverancier kwaliteit' : 'Origineel Fabrikant'}
+                    </span>
+                  </div>
+                  <span class="text-3xs text-gray-400 font-mono">ASIN: ${part.asin} · Amazon.nl</span>
+                </div>
+
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white">${part.title}</h3>
+                  <p class="text-2xs text-gray-400 mt-1 leading-relaxed">${part.description}</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-2xs border-t border-gray-800/60">
+                  <div>
+                    <span class="text-gray-400 block font-medium">Merk / Fabrikant:</span>
+                    <span class="text-gray-200 font-bold">${part.manufacturer || part.brand}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-400 block font-medium">Schroefdraad:</span>
+                    <span class="text-gray-200 font-mono font-semibold">${part.thread_spec}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-400 block font-medium">STIHL Onderdeel:</span>
+                    <span class="text-orange-400 font-mono font-bold">${part.stihl_part_number}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-400 block font-medium">Geschikt voor o.a.:</span>
+                    <span class="text-gray-300 truncate block" title="${part.suitable_for}">${part.suitable_for}</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
+                  <span class="text-3xs text-gray-400 leading-tight">
+                    Directe productpagina op Amazon.nl. Geen onbevestigde prijs of voorraadclaims.
+                  </span>
+                  <a
+                    href="${part.url}"
+                    target="_blank"
+                    rel="sponsored nofollow noopener"
+                    class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+                    aria-label="Bekijk ${part.title} op Amazon.nl"
+                    data-asin="${part.asin}"
+                    data-placement="guide_content"
+                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: 'amazon.nl', part_number: '${part.stihl_part_number.replace(/\\s+/g, '')}', offer_type: 'MANUAL_ASIN', asin_if_known: '${part.asin}', product_verified: true, placement: 'guide_content', page_path: window.location.pathname});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: 'amazon', part_number: '${part.stihl_part_number.replace(/\\s+/g, '')}', offer_type: 'MANUAL_ASIN', asin_if_known: '${part.asin}', product_verified: true, placement: 'guide_content', page_path: window.location.pathname});}"
+                  >
+                    <span>Bekijk product op Amazon.nl</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          ${renderAffiliateDisclosureHtml({ className: 'mt-4' })}
+        </section>
+      ` : ''}
 
       <!-- 12. Relevant Links -->
 

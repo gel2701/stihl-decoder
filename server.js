@@ -627,6 +627,11 @@ const server = http.createServer(async (req, res) => {
 
       const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
 
+      const ua = req.headers['user-agent'] || '';
+      const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);
+      const deviceType = data.device_type || (isMobileUa ? 'mobile' : 'desktop');
+      const placement = data.placement || (isProductVerified ? 'verified_product_card' : 'search_fallback');
+
       logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
         provider: data.provider || 'amazon',
         marketplace: data.marketplace || destinationHost,
@@ -643,6 +648,9 @@ const server = http.createServer(async (req, res) => {
         wave_identifier: data.wave_identifier || null,
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
         seo_tier: data.seo_tier || null,
         commercial_tier: data.commercial_tier || null,
         event_id: data.event_id || null
@@ -668,6 +676,9 @@ const server = http.createServer(async (req, res) => {
         wave_identifier: data.wave_identifier || null,
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
         seo_tier: data.seo_tier || null,
         commercial_tier: data.commercial_tier || null,
         event_id: data.event_id ? `${data.event_id}_spec` : null

@@ -385,45 +385,51 @@ ${supersessionHtml}
 
     ${offers.length > 0 ? (() => {
       const hasVerifiedOffer = offers.some(o => o.match_type === 'MANUAL_ASIN' || o.is_verified === true);
-      const sectionTitle = hasVerifiedOffer ? 'Waar te koop' : 'Zoek dit onderdeel online';
-      const sectionPill = hasVerifiedOffer ? 'Aangesloten webwinkels' : 'Online zoeken';
+      const sectionTitle = hasVerifiedOffer ? 'Waar te koop — Beschikbare Aanbiedingen' : 'Zoek dit onderdeel online';
+      const sectionPill = hasVerifiedOffer ? 'Geverifieerde Producten & Zoekopties' : 'Online zoeken';
       const sectionIntro = hasVerifiedOffer
-        ? 'Bekijk gecontroleerde productpagina’s en zoekopties bij aangesloten webwinkels.'
-        : 'Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid en exacte productmatch zijn niet vooraf bevestigd.';
+        ? 'Voor dit onderdeel is een gecontroleerde productaanbieding beschikbaar via aangesloten webwinkels, inclusief technische compatibiliteitsinformatie.'
+        : 'Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid, verkoper en exacte productovereenkomst zijn niet vooraf individueel gecontroleerd.';
       const sectionId = hasVerifiedOffer ? 'waar-te-koop-heading' : 'zoek-online-heading';
 
       return `
     <!-- Commercial Offers Section ("${sectionTitle}") -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs" aria-labelledby="${sectionId}">
-      <div class="flex items-center justify-between">
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 sm:p-6 space-y-4 text-xs" aria-labelledby="${sectionId}">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800/80 pb-3">
         <h2 id="${sectionId}" class="text-base font-bold text-white flex items-center gap-2">
           <span>${sectionTitle}</span>
-          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">${sectionPill}</span>
+          <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2.5 py-0.5 rounded border border-orange-500/20">${sectionPill}</span>
         </h2>
+        <span class="text-3xs text-gray-500">Transparante affiliate-verwijzingen</span>
       </div>
       <p class="text-xs text-gray-400 leading-relaxed">
         ${sectionIntro}
       </p>
-      <div class="space-y-3">
+      <div class="space-y-4">
         ${offers.map(offer => {
           const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
-          const badgeText = offer.badge_label || (isVerified ? 'Geverifieerd product' : 'Amazon-zoekopdracht');
           const buttonText = offer.label || (isVerified ? 'Bekijk product op Amazon.nl' : 'Zoek op Amazon.nl');
+          const productTitle = offer.title || (isVerified ? `${offer.brand || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
+          const oemLabel = offer.oem_brand_classification === 'OEM_SUPPLIER_EQUIVALENT'
+            ? 'OEM-Fabrikant / Eerste Montage'
+            : (offer.oem_brand_classification === 'GENUINE_STIHL_OEM' ? 'Origineel STIHL' : 'Kwaliteitsvervanger');
           const descriptionText = offer.description || (isVerified
-            ? 'Voor dit onderdeel is een specifieke Amazon-productpagina gecontroleerd. Controleer vóór aankoop altijd onderdeelnummer en machine-uitvoering.'
-            : `Zoek op Amazon naar STIHL onderdeel ${formattedPartNo}. De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd.`);
+            ? 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'
+            : `U opent een dynamische zoekopdracht op Amazon.nl voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
           const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
+          const placement = isVerified ? 'verified_product_card' : 'search_fallback';
 
           const redirectParams = new URLSearchParams({
             url: offer.url,
             part_number: resolved.part_number,
             model: compatibleModels[0]?.model_id || '',
             provider: offer.provider || 'amazon',
-            marketplace: offer.marketplace || '',
-            offer_type: offer.match_type || 'SEARCH_LINK',
+            marketplace: offer.marketplace || 'amazon.nl',
+            offer_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
             match_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
             asin_if_known: offer.asin || '',
             product_verified: isVerified ? 'true' : 'false',
+            placement: placement,
             query_variant: offer.query_variant || '',
             section_context: primarySectionContext || '',
             wave_identifier: waveIdentifier,
@@ -431,35 +437,107 @@ ${supersessionHtml}
             commercial_tier: indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'
           });
           const safePrimarySec = (primarySectionContext || '').replace(/'/g, "\\'");
+
+          if (isVerified) {
+            // Enhanced Verified Product Card (Phase 68A)
+            return `
+            <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border border-emerald-500/30 hover:border-emerald-500/50 shadow-sm transition space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    ✓ Geverifieerd Product (Directe Link)
+                  </span>
+                  <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700">
+                    ${oemLabel}
+                  </span>
+                </div>
+                <span class="text-3xs text-gray-400 font-mono">ASIN: ${offer.asin || '—'} · Amazon.nl</span>
+              </div>
+
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${productTitle}</h3>
+                <p class="text-2xs text-gray-400 mt-1 leading-relaxed">${descriptionText}</p>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-2xs border-t border-gray-800/60">
+                <div>
+                  <span class="text-gray-400 block font-medium">Fabrikant/Merk:</span>
+                  <span class="text-gray-200 font-bold">${offer.manufacturer || offer.brand || 'Fabrikant'}</span>
+                </div>
+                <div>
+                  <span class="text-gray-400 block font-medium">Fabrikantcode (MPN):</span>
+                  <span class="text-gray-200 font-mono font-semibold">${offer.mpn || formattedPartNo}</span>
+                </div>
+                <div>
+                  <span class="text-gray-400 block font-medium">STIHL Onderdeel:</span>
+                  <span class="text-orange-400 font-mono font-bold">${formattedPartNo}</span>
+                </div>
+                <div>
+                  <span class="text-gray-400 block font-medium">Geschikt voor:</span>
+                  <span class="text-gray-300 truncate block" title="${compatibleModels.map(m => m.model_name).join(', ')}">
+                    ${compatibleModels.slice(0, 3).map(m => m.model_name).join(', ')}${compatibleModels.length > 3 ? ` +${compatibleModels.length - 3}` : ''}
+                  </span>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
+                <span class="text-3xs text-gray-400 leading-tight">
+                  Directe productpagina op Amazon.nl. Geen onbevestigde prijs of voorraadclaims.
+                </span>
+                <a
+                  href="${offer.url}"
+                  target="_blank"
+                  rel="sponsored nofollow noopener"
+                  class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+                  aria-label="${ariaLabel}"
+                  data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
+                  data-tracking-url="/api/affiliate/track"
+                  data-part-number="${resolved.part_number}"
+                  data-marketplace="${offer.marketplace || 'amazon.nl'}"
+                  data-offer-type="MANUAL_ASIN"
+                  data-placement="verified_product_card"
+                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: 'verified_product_card', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: 'verified_product_card', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+                >
+                  <span>${buttonText}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+            `;
+          }
+
+          // Distinctive Search Fallback Card (Phase 68B)
           return `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
                 <span class="font-bold text-white text-sm capitalize">${offer.marketplace || offer.provider}</span>
-                <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800">${badgeText}</span>
+                <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-amber-300/90 border border-amber-600/30">Amazon-zoekopdracht (Niet vooraf gecontroleerd)</span>
               </div>
               <div class="text-2xs text-gray-400">
                 ${descriptionText}
+                <span class="block text-gray-400 mt-0.5">Dit betreft een dynamische zoekopdracht. Controleer altijd zelf de pasvorm en productspecificaties vóór aankoop.</span>
               </div>
             </div>
             <a
               href="${offer.url}"
               target="_blank"
               rel="sponsored nofollow noopener"
-              class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+              class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 hover:text-white border border-gray-700 font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-950"
               aria-label="${ariaLabel}"
               data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
               data-tracking-url="/api/affiliate/track"
               data-part-number="${resolved.part_number}"
               data-marketplace="${offer.marketplace || 'amazon.nl'}"
-              data-offer-type="${offer.match_type || 'SEARCH_LINK'}"
-              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: '${offer.match_type}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: ${isVerified}, page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              data-offer-type="SEARCH_LINK"
+              data-placement="search_fallback"
+              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
-              <span>${buttonText}</span>
-              <span aria-hidden="true">↗</span>
+              <span>Zoek op Amazon.nl ↗</span>
             </a>
           </div>
-        `;}).join('')}
+          `;
+        }).join('')}
       </div>
       ${renderAffiliateDisclosureHtml({ className: 'mt-3' })}
     </section>
@@ -507,6 +585,9 @@ ${supersessionHtml}
             setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
           }
           var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
+          var isMobile = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(navigator.userAgent || '');
+          var deviceType = isMobile ? 'mobile' : 'desktop';
+          var placement = data.placement || (Boolean(data.product_verified) ? 'verified_product_card' : 'search_fallback');
           var eventId = 'aff_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
           var payload = JSON.stringify({
             event_id: eventId,
@@ -525,6 +606,9 @@ ${supersessionHtml}
             commercial_tier: data.commercial_tier || null,
             model: data.model || null,
             page_path: window.location.pathname,
+            placement: placement,
+            device_type: deviceType,
+            is_mobile: isMobile,
             is_test: isTest ? 1 : 0
           });
           if (navigator.sendBeacon) {

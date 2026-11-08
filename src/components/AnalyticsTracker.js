@@ -50,7 +50,7 @@ export const EVENT_TYPES = {
   MODEL_PAGE_VIEW: 'model_page_view'
 };
 
-const WHITELISTED_METADATA_KEYS = [
+export const WHITELISTED_METADATA_KEYS = [
   'model_slug',
   'category',
   'source_page',
@@ -81,7 +81,11 @@ const WHITELISTED_METADATA_KEYS = [
   'search_query_normalized',
   'matched_model',
   'section_context',
-  'wave_identifier'
+  'wave_identifier',
+  'placement',
+  'device_type',
+  'is_mobile',
+  'click_target'
 ];
 
 const BOT_USER_AGENTS_REGEX = /googlebot|bingbot|yandexbot|ahrefsbot|semrushbot|baiduspider|playwright|headlesschrome|internal-test|lighthouse/i;

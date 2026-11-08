@@ -262,7 +262,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                     const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
                     const clickHandler = `if(window.trackStihlEvent){window.trackStihlEvent('model_to_part_click', {model: '${safeModelId}', part_number: '${p.part_number}', section_context: '${safeSectionCtx}', commercial_tier: '${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}', seo_tier: '${p.seo_tier || 'SEO_TIER_C'}', wave_identifier: '${p.wave_identifier || 'none'}', page_path: window.location.pathname});}`;
                     const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${safeModelId}', section_context: '${safeSectionCtx}'});}` : '';
+                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, placement: 'model_parts_table', page_path: window.location.pathname, model: '${safeModelId}', section_context: '${safeSectionCtx}'});}` : '';
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -280,10 +280,10 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                           <a
                             href="${offer.url}"
                             target="_blank"
-                            rel="nofollow sponsored"
+                            rel="sponsored nofollow noopener"
                             class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1 min-h-[30px]"
                             onclick="${affiliateClick}"
-                            title="${offer.is_direct ? 'Directe Aankoop op Amazon' : 'Zoek op Amazon'}"
+                            title="${offer.is_direct ? 'Directe Aankoop op Amazon.nl' : 'Zoek op Amazon.nl'}"
                           >
                             <span>${offer.is_direct ? '🛒 Directe Koop' : '🛒 Zoek op Amazon'}</span>
                             <span class="opacity-70 text-3xs">↗</span>

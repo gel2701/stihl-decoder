@@ -8,13 +8,15 @@ import { stihlCarburateurAfstellenGuide } from './stihl-carburateur-afstellen.js
 import { stihlMTronicResettenGuide } from './stihl-m-tronic-resetten.js';
 import { stihlGietklokAflezenGuide } from './stihl-gietklok-aflezen.js';
 import { namaakStihlHerkennenGuide } from './namaak-stihl-herkennen.js';
+import { stihlBougieVervangenGuide } from './stihl-bougie-vervangen.js';
 
 export const REBUILT_GUIDES = [
   stihlKettingzaagStartNietGuide,
   stihlCarburateurAfstellenGuide,
   stihlMTronicResettenGuide,
   stihlGietklokAflezenGuide,
-  namaakStihlHerkennenGuide
+  namaakStihlHerkennenGuide,
+  stihlBougieVervangenGuide
 ];
 
 export const REBUILT_GUIDES_MAP = new Map(
