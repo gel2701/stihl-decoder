@@ -45,7 +45,7 @@ De oorspronkelijke coding agent voor Phase 68 is gestopt wegens budgetlimiet. Bi
    - Whitelist uitgebreid met `placement`, `device_type`, `is_mobile`, `click_target`.
    - `export const WHITELISTED_METADATA_KEYS` toegevoegd voor testbaarheid.
 2. `server.js`:
-   - Endpoint `/api/affiliate/track` uitgebreid met detectie van apparaattype en opslag van `placement`, `device_type` en `is_mobile`.
+   - Historische beschrijving: endpoint `/api/affiliate/track` ontving `placement`, `device_type` en `is_mobile`. Phase 68.3 schakelt persistente affiliate-opslag op deze publieke endpoint uit; toestemmingsbewijs is server-side niet verifieerbaar.
    - `/api/affiliate/out` bevestigd op HTTP 410 Gone.
 3. `src/components/PartDetailPageTemplate.js`:
    - Geverifieerde productkaarten voorzien van emerald badge, OEM-leverancierslabel, fabrikant, MPN, compatibele modellen preview, 44px mobiele CTA en zero-claim garantie.
@@ -111,4 +111,4 @@ In vervolg op de privacycontrole is de consent-validatie voor affiliate-kliktrac
 1. **Expliciete Toestemming Vereist:** `/api/affiliate/track` mag uitsluitend worden aangeroepen wanneer `stihl_cookie_consent === 'granted'`. Bij `null` (nog geen keuze gemaakt), `denied`, ongeldige waarden of een onleesbare localStorage wordt géén trackingbeacon verzonden.
 2. **Consistente Implementatie:** Toegepast in `PartDetailPageTemplate.js`, `ModelPartsPageTemplate.js`, `PartsDiscoveryPageTemplate.js` en `SiteAnalytics.js`.
 3. **Behoud Aankoopfunctionaliteit:** De native Amazon links, ASINs, partner-ID (`tag=srihldecoder2-21`) en `href` attributen blijven in alle gevallen ongehinderd en onveranderd functioneren.
-4. **Genuanceerde Privacyclaims:** Helder onderscheid tussen tijdelijk in-memory IP-adres verwerking voor rate limiting (misbruikpreventie) en persistente opslag van geanonimiseerde klikgebeurtenissen in SQLite.
+4. **Genuanceerde Privacyclaims:** Helder onderscheid tussen tijdelijk in-memory IP-adres verwerking voor rate limiting (misbruikpreventie) en geen persistente opslag van affiliate-klikgebeurtenissen via de publieke endpoint zolang server-side toestemming niet onafhankelijk kan worden bevestigd.

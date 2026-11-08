@@ -10,6 +10,29 @@ import { buildStructuredData } from './StructuredData.js';
 import { getStructuredGuide } from '../content/guides/index.js';
 import { resolveGuideSource, getDeclaredSourceId } from '../guideSourceResolver.js';
 import { renderAffiliateDisclosureHtml } from '../affiliate/AffiliateDisclosure.js';
+import { AffiliateOfferResolver, defaultResolverInstance } from '../affiliate/AffiliateOfferResolver.js';
+
+const escapeOffer = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+
+function resolveGuideOffers(parts) {
+  return parts.map(part => {
+    const partNumber = part.stihl_part_number.replace(/\s+/g, '');
+    const offers = AffiliateOfferResolver.resolveOffers({ partNumber });
+    const active = defaultResolverInstance.verifiedRegistry?.getActiveOffer?.(partNumber);
+    const offer = offers.find(candidate => {
+      if (candidate?.provider !== 'amazon' || candidate.part_number !== partNumber || typeof candidate.url !== 'string') return false;
+      let url;
+      try { url = new URL(candidate.url); } catch { return false; }
+       const expectedTag = defaultResolverInstance.amazonProvider?.getAssociateTag?.(candidate.marketplace);
+       if (url.protocol !== 'https:' || !['amazon.nl', 'amazon.de', 'amazon.com'].includes(url.hostname) || url.hostname !== candidate.marketplace || !expectedTag || url.searchParams.getAll('tag').length !== 1 || url.searchParams.get('tag') !== expectedTag) return false;
+      if (candidate.link_type === 'DIRECT_ASIN') {
+        return Boolean(active && candidate.is_verified === true && candidate.asin === active.asin && url.pathname === `/dp/${active.asin}` && url.hostname === active.marketplace);
+      }
+      return candidate.link_type === 'SEARCH_FALLBACK' && candidate.asin == null && candidate.is_verified === false && url.pathname === '/s' && Boolean(url.searchParams.get('k'));
+    });
+    return { part, offer };
+  });
+}
 
 /**
  * Safely formats a locator object or string for human display.
@@ -138,6 +161,22 @@ export function renderGuidePageHtml(guide, database, baseUrl = PRIMARY_ORIGIN) {
       </p>
     </div>
   </footer>
+  <script>
+    document.addEventListener('click', function(event) {
+      var link = event.target.closest('a[data-placement="guide_content"]');
+      if (!link || !window.handleAffiliateClick) return;
+      window.handleAffiliateClick(link, event, {
+        provider: 'amazon',
+        marketplace: link.dataset.marketplace,
+        part_number: link.dataset.partNumber,
+        offer_type: link.dataset.offerType,
+        asin_if_known: link.dataset.asin || null,
+        product_verified: link.dataset.offerType === 'MANUAL_ASIN',
+        placement: 'guide_content',
+        page_path: window.location.pathname
+      });
+    });
+  </script>
 </body>
 </html>`;
 }
@@ -774,81 +813,87 @@ function renderStructuredGuideBody(guide) {
       ` : ''}
 
       <!-- Verified Commercial Replacement Parts Section (Phase 68A) -->
-      ${guide.verifiedParts && guide.verifiedParts.length > 0 ? `
+      ${guide.verifiedParts && guide.verifiedParts.length > 0 ? (() => {
+        const resolved = resolveGuideOffers(guide.verifiedParts);
+        const directCount = resolved.filter(({ offer }) => offer?.link_type === 'DIRECT_ASIN').length;
+        return `
         <section id="onderdelen" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800/80 pb-3">
             <h2 class="text-xl font-bold text-white flex items-center gap-2">
               <span class="w-6 h-6 rounded-md bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xs font-mono">✓</span>
-              Geverifieerde Vervangingsonderdelen & Directe Links
+               ${directCount ? 'Geverifieerde Vervangingsonderdelen & Directe Links' : 'Vervangingsonderdelen & Zoekmogelijkheden'}
             </h2>
-            <span class="text-2xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30">100% Geverifieerde Producten</span>
+            <span class="text-2xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30">${directCount ? `${directCount} actieve productlinks` : 'Geen actieve productlinks'}</span>
           </div>
           <p class="text-xs text-gray-400 leading-relaxed">
-            Onderstaande bougies zijn gecontroleerd op specificatie, elektrodenafstand en schroefdraadpassing voor de vermelde STIHL machines. U wordt direct doorgestuurd naar de officiële productpagina op Amazon.nl.
+             Controleer vóór aankoop altijd het onderdeelnummer en de uitvoering van uw machine. Alleen actieve, gecontroleerde aanbiedingen hebben een directe productlink; zoekresultaten zijn niet vooraf gecontroleerd.
           </p>
           <div class="space-y-4">
-            ${guide.verifiedParts.map(part => `
+            ${resolved.map(({ part, offer }) => `
               <div class="p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border border-emerald-500/30 hover:border-emerald-500/50 shadow-sm transition space-y-3">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <div class="flex items-center gap-2">
                     <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                      ${part.badge}
+                      ${escapeOffer(offer?.badge_label || (offer ? 'Amazon-zoekopdracht (niet vooraf gecontroleerd)' : 'Geen aanbieding beschikbaar'))}
                     </span>
                     <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700">
-                      ${part.oem_classification === 'OEM_SUPPLIER_EQUIVALENT' ? 'OEM-leverancier kwaliteit' : 'Origineel Fabrikant'}
+                      ${offer?.link_type === 'DIRECT_ASIN' ? escapeOffer(offer.oem_brand_classification === 'OEM_SUPPLIER_EQUIVALENT' ? 'OEM-leverancier kwaliteit' : 'Gecontroleerd product') : 'Pasvorm zelf controleren'}
                     </span>
                   </div>
-                  <span class="text-3xs text-gray-400 font-mono">ASIN: ${part.asin} · Amazon.nl</span>
+                  <span class="text-3xs text-gray-400 font-mono">${offer?.link_type === 'DIRECT_ASIN' ? `ASIN: ${escapeOffer(offer.asin)} · ${escapeOffer(offer.marketplace)}` : 'Geen directe productlink'}</span>
                 </div>
 
                 <div>
-                  <h3 class="text-sm sm:text-base font-bold text-white">${part.title}</h3>
-                  <p class="text-2xs text-gray-400 mt-1 leading-relaxed">${part.description}</p>
+                  <h3 class="text-sm sm:text-base font-bold text-white">${escapeOffer(offer?.title || 'Geen aanbieding beschikbaar')}</h3>
+                  <p class="text-2xs text-gray-400 mt-1 leading-relaxed">${escapeOffer(offer?.description || 'Voor dit onderdeel is geen aanbieding beschikbaar.')}</p>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-2xs border-t border-gray-800/60">
                   <div>
                     <span class="text-gray-400 block font-medium">Merk / Fabrikant:</span>
-                    <span class="text-gray-200 font-bold">${part.manufacturer || part.brand}</span>
+                    <span class="text-gray-200 font-bold">${escapeOffer(offer?.link_type === 'DIRECT_ASIN' ? (offer.manufacturer || offer.brand || 'Niet vermeld') : 'Niet bevestigd')}</span>
                   </div>
                   <div>
                     <span class="text-gray-400 block font-medium">Schroefdraad:</span>
-                    <span class="text-gray-200 font-mono font-semibold">${part.thread_spec}</span>
+                    <span class="text-gray-200 font-mono font-semibold">${escapeOffer(part.thread_spec)}</span>
                   </div>
                   <div>
                     <span class="text-gray-400 block font-medium">STIHL Onderdeel:</span>
-                    <span class="text-orange-400 font-mono font-bold">${part.stihl_part_number}</span>
+                    <span class="text-orange-400 font-mono font-bold">${escapeOffer(part.stihl_part_number)}</span>
                   </div>
                   <div>
                     <span class="text-gray-400 block font-medium">Geschikt voor o.a.:</span>
-                    <span class="text-gray-300 truncate block" title="${part.suitable_for}">${part.suitable_for}</span>
+                    <span class="text-gray-300 truncate block" title="${escapeOffer(part.suitable_for)}">${escapeOffer(part.suitable_for)}</span>
                   </div>
                 </div>
 
                 <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
                   <span class="text-3xs text-gray-400 leading-tight">
-                    Directe productpagina op Amazon.nl. Geen onbevestigde prijs of voorraadclaims.
+                     ${offer?.link_type === 'DIRECT_ASIN' ? 'Directe productpagina. Geen onbevestigde prijs of voorraadclaims.' : 'Zoekresultaten zijn niet vooraf gecontroleerd. Controleer zelf de pasvorm.'}
                   </span>
-                  <a
-                    href="${part.url}"
-                    target="_blank"
-                    rel="sponsored nofollow noopener"
-                    class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
-                    aria-label="Bekijk ${part.title} op Amazon.nl"
-                    data-asin="${part.asin}"
-                    data-placement="guide_content"
-                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: 'amazon.nl', part_number: '${part.stihl_part_number.replace(/\\s+/g, '')}', offer_type: 'MANUAL_ASIN', asin_if_known: '${part.asin}', product_verified: true, placement: 'guide_content', page_path: window.location.pathname});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: 'amazon', part_number: '${part.stihl_part_number.replace(/\\s+/g, '')}', offer_type: 'MANUAL_ASIN', asin_if_known: '${part.asin}', product_verified: true, placement: 'guide_content', page_path: window.location.pathname});}"
-                  >
-                    <span>Bekijk product op Amazon.nl</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
+                   ${offer ? `<a
+                     href="${escapeOffer(offer.url)}"
+                     target="_blank"
+                     rel="sponsored nofollow noopener"
+                     class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+                     aria-label="${escapeOffer(offer.cta_aria_label || offer.label)}"
+                     data-part-number="${escapeOffer(offer.part_number)}"
+                     data-offer-type="${offer.link_type === 'DIRECT_ASIN' ? 'MANUAL_ASIN' : 'SEARCH_LINK'}"
+                     data-asin="${escapeOffer(offer.asin || '')}"
+                     data-marketplace="${escapeOffer(offer.marketplace)}"
+                     data-placement="guide_content"
+                   >
+                     <span>${escapeOffer(offer.label)}</span>
+                     <span aria-hidden="true">↗</span>
+                   </a>` : ''}
                 </div>
               </div>
             `).join('')}
           </div>
-          ${renderAffiliateDisclosureHtml({ className: 'mt-4' })}
-        </section>
-      ` : ''}
+           ${resolved.some(({ offer }) => offer) ? renderAffiliateDisclosureHtml({ className: 'mt-4' }) : ''}
+         </section>
+       `;
+      })() : ''}
 
       <!-- 12. Relevant Links -->
 

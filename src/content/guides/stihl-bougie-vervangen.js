@@ -251,44 +251,32 @@ export const stihlBougieVervangenGuide = {
 
   verifiedParts: [
     {
-      asin: 'B0068M5NAG',
-      title: 'Bosch WSR6F Bougie (0242240506)',
       manufacturer: 'Robert Bosch GmbH',
       brand: 'Bosch',
       mpn: '0242240506 / WSR6F',
       stihl_part_number: '1110 400 7005',
       oem_classification: 'OEM_SUPPLIER_EQUIVALENT',
       thread_spec: 'M14 x 1,25 (19 mm zeskant, 9,5 mm reach)',
-      url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
-      badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 361, MS 390, MS 440, MS 461, 026',
       description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd bougietype (Bosch WSR6F, MPN 0242240506). Voldoet aan de in de documentatie vermelde specificaties (M14x1,25, elektrodenafstand 0,5 mm, 25 Nm) en gecorreleerd aan STIHL referentienummer 1110 400 7005. Betreft een merkproduct van Robert Bosch GmbH, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     },
     {
-      asin: 'B001RM8J76',
-      title: 'NGK BPMR7A Bougie (Stock 6703)',
       manufacturer: 'Niterra Co., Ltd. (NGK)',
       brand: 'NGK',
       mpn: 'BPMR7A / 6703',
       stihl_part_number: '0000 400 7000',
       oem_classification: 'OEM_SUPPLIER_EQUIVALENT',
       thread_spec: 'M14 x 1,25 (19 mm zeskant, 9,5 mm reach)',
-      url: 'https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
-      badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'MS 170, MS 210, MS 250, MS 390, MS 440, MS 461, HS 45, FS 350',
       description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd bougietype (NGK BPMR7A / 6703). Voldoet aan de in de documentatie vermelde specificaties (M14x1,25, elektrodenafstand 0,5 mm, 25 Nm) en gecorreleerd aan STIHL referentienummer 0000 400 7000. Betreft een merkproduct van NGK / Niterra, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     },
     {
-      asin: 'B001RMA5S2',
-      title: 'NGK CMR6H Compacte Bougie (Stock 3365)',
       manufacturer: 'Niterra Co., Ltd. (NGK)',
       brand: 'NGK',
       mpn: 'CMR6H / 3365',
       stihl_part_number: '0000 400 7011',
       oem_classification: 'OEM_SUPPLIER_EQUIVALENT',
       thread_spec: 'M10 x 1,0 (16 mm zeskant, 12,7 mm reach)',
-      url: 'https://www.amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21',
-      badge: '✓ Geverifieerd Product (Directe Link)',
       suitable_for: 'BG 86, BR 600, MS 261, MS 261 C-M, FS 460 C-EM',
       description: 'Door STIHL in de vermelde fabriekshandleidingen gespecificeerd compact bougietype voor M10 cilinderkoppen en 4-MIX motoren (NGK CMR6H / 3365). Voldoet aan de in de documentatie vermelde specificaties (M10x1,0, elektrodenafstand 0,5 mm, 12 Nm) en gecorreleerd aan STIHL referentienummer 0000 400 7011. Betreft een merkproduct van NGK / Niterra, geleverd in fabrieksverpakking (geen door STIHL verpakt artikel).'
     }

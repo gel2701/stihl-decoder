@@ -196,7 +196,7 @@ function cleanupAffiliateRateLimitMap(now) {
 }
 
 function checkAffiliateRateLimit(req) {
-  const ip = getTrustedClientIp(req);
+  const ip = req.socket.remoteAddress || 'unknown';
   const now = Date.now();
   if (affiliateRateLimitMap.size >= 100) {
     cleanupAffiliateRateLimitMap(now);
@@ -253,7 +253,9 @@ const server = http.createServer(async (req, res) => {
 
   // Diagnostic Logging for Forensics (NO PII)
   if (process.env.NODE_ENV === 'production' || process.env.DEBUG_REDIRECTS) {
-    console.log(`[HTTP-Request] host: "${req.headers.host}", x-forwarded-host: "${req.headers['x-forwarded-host']}", x-forwarded-proto: "${forwardedProto}", url: "${req.url}"`);
+    if (pathname !== '/api/affiliate/track' && pathname !== '/api/affiliate/click') {
+      console.log(`[HTTP-Request] host: "${req.headers.host}", x-forwarded-host: "${req.headers['x-forwarded-host']}", x-forwarded-proto: "${forwardedProto}", url: "${req.url}"`);
+    }
   }
 
   // 0. Render Alignment: Node.js serves 200 OK directly for all incoming requests.
@@ -589,103 +591,15 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    let bodyStr = '';
+    let bodyBytes = 0;
     req.on('data', chunk => {
-      bodyStr += chunk;
-      if (bodyStr.length > 8192) req.destroy();
+      bodyBytes += chunk.length;
+      if (bodyBytes > 8192) req.destroy();
     });
 
     req.on('end', () => {
-      let data = {};
-      try {
-        if (bodyStr) data = JSON.parse(bodyStr);
-      } catch {}
-
-      const ALLOWED_AFFILIATE_HOSTS = new Set([
-        'www.amazon.nl',
-        'amazon.nl',
-        'www.amazon.de',
-        'amazon.de',
-        'www.amazon.com',
-        'amazon.com'
-      ]);
-
-      let destinationHost = 'amazon.nl';
-      if (typeof data.destination_url === 'string') {
-        try {
-          const destUrl = new URL(data.destination_url);
-          if (ALLOWED_AFFILIATE_HOSTS.has(destUrl.hostname.toLowerCase())) {
-            destinationHost = destUrl.hostname.toLowerCase();
-          }
-        } catch {}
-      }
-
-      const normPart = PartNormalizer.normalizePartNumber(data.part_number);
-      const isProductVerified = Boolean(data.product_verified);
-      const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
-      const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
-
-      const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
-
-      const ua = req.headers['user-agent'] || '';
-      const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);
-      const deviceType = data.device_type || (isMobileUa ? 'mobile' : 'desktop');
-      const placement = data.placement || (isProductVerified ? 'verified_product_card' : 'search_fallback');
-
-      logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
-        provider: data.provider || 'amazon',
-        marketplace: data.marketplace || destinationHost,
-        offer_type: offerType,
-        match_type: data.match_type || offerType,
-        link_type: linkType,
-        asin_if_known: data.asin_if_known || null,
-        product_verified: isProductVerified,
-        destination_url: data.destination_url || null,
-        part_number: normPart,
-        model: data.model || null,
-        query_variant: data.query_variant || null,
-        section_context: data.section_context || null,
-        wave_identifier: data.wave_identifier || null,
-        page_path: data.page_path || '/',
-        source_page: data.page_path || '/',
-        placement: placement,
-        device_type: deviceType,
-        is_mobile: deviceType === 'mobile',
-        seo_tier: data.seo_tier || null,
-        commercial_tier: data.commercial_tier || null,
-        event_id: data.event_id || null
-      }, req.headers['user-agent'], isTestClick);
-
-      const specificEventType = isProductVerified
-        ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
-        : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK;
-
-      logStihlEvent(specificEventType, {
-        provider: data.provider || 'amazon',
-        marketplace: data.marketplace || destinationHost,
-        offer_type: offerType,
-        match_type: data.match_type || offerType,
-        link_type: linkType,
-        asin_if_known: data.asin_if_known || null,
-        product_verified: isProductVerified,
-        destination_url: data.destination_url || null,
-        part_number: normPart,
-        model: data.model || null,
-        query_variant: data.query_variant || null,
-        section_context: data.section_context || null,
-        wave_identifier: data.wave_identifier || null,
-        page_path: data.page_path || '/',
-        source_page: data.page_path || '/',
-        placement: placement,
-        device_type: deviceType,
-        is_mobile: deviceType === 'mobile',
-        seo_tier: data.seo_tier || null,
-        commercial_tier: data.commercial_tier || null,
-        event_id: data.event_id ? `${data.event_id}_spec` : null
-      }, req.headers['user-agent'], isTestClick);
-
       res.writeHead(202, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, recorded: true }));
+      res.end(JSON.stringify({ success: true, recorded: false }));
     });
     return;
   }
