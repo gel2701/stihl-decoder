@@ -389,7 +389,7 @@ ${supersessionHtml}
       const sectionPill = hasVerifiedOffer ? 'Geverifieerde Producten & Zoekopties' : 'Online zoeken';
       const sectionIntro = hasVerifiedOffer
         ? 'Voor dit onderdeel is een gecontroleerde productaanbieding beschikbaar via aangesloten webwinkels, inclusief technische compatibiliteitsinformatie.'
-        : 'Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid, verkoper en exacte productovereenkomst zijn niet vooraf individueel gecontroleerd.';
+        : 'Zoek op Amazon naar dit onderdeelnummer. Beschikbaarheid en exacte productmatch zijn niet vooraf bevestigd.';
       const sectionId = hasVerifiedOffer ? 'waar-te-koop-heading' : 'zoek-online-heading';
 
       return `
@@ -577,11 +577,15 @@ ${supersessionHtml}
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          var consent = null;
           try {
-            if (localStorage.getItem('stihl_cookie_consent') === 'denied') {
-              return; // Respect explicit refusal of analytics / tracking
-            }
-          } catch (e) {}
+            consent = typeof localStorage !== 'undefined' ? localStorage.getItem('stihl_cookie_consent') : null;
+          } catch (e) {
+            consent = null;
+          }
+          if (consent !== 'granted') {
+            return; // Explicit consent required: no tracking on null, denied, invalid or inaccessible storage
+          }
           if (el && el.dataset && el.dataset.clickedRecently === '1') {
             return; // debounce rapid double clicks
           }

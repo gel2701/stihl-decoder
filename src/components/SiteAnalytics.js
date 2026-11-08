@@ -55,7 +55,7 @@
   if (!window.handleAffiliateClick) {
     window.handleAffiliateClick = function handleAffiliateClick(el, ev, data) {
       try {
-        if (getConsent() === 'denied') return;
+        if (getConsent() !== 'granted') return;
         if (el && el.dataset && el.dataset.clickedRecently === '1') return;
         if (el && el.dataset) {
           el.dataset.clickedRecently = '1';

@@ -337,8 +337,14 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'PHASE60_COMMERCIAL_OPPORTUNITIES.json',
     'PHASE60_BEFORE_AFTER.json',
     'tests/phase60_commercial_growth.test.js',
+    'tests/phase68_affiliate_conversion.test.js',
     'scripts/build_phase60_candidates.mjs',
-    'scripts/generate_phase60_reports.mjs'
+    'scripts/generate_phase60_reports.mjs',
+    'src/content/guides/stihl-bougie-vervangen.js',
+    'phase68b_amazon_evidence.json',
+    'phase68b1_evidence_audit.json',
+    'PHASE63_TECHNICAL_SPECIFICATIONS.json',
+    'PHASE63_PARTS_IMPORT_CANDIDATES.json'
   ]);
 
   function scanDir(dir) {

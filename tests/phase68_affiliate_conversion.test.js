@@ -17,6 +17,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -171,7 +172,7 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       const guides = getAllStructuredGuides();
       const sparkPlugGuide = guides.find(g => g.slug === 'stihl-bougie-vervangen');
       assert.ok(sparkPlugGuide, 'stihl-bougie-vervangen must be registered in getAllStructuredGuides()');
-      assert.equal(sparkPlugGuide.publicationStatus, 'PUBLISHED', 'Guide publication status must be PUBLISHED');
+      assert.equal(sparkPlugGuide.publicationStatus, 'READY_FOR_REVIEW', 'Guide publication status must be READY_FOR_REVIEW');
       assert.equal(sparkPlugGuide.publicationEligible, true, 'Guide must be publication eligible');
     });
 
@@ -208,6 +209,243 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       assert.ok(html.includes('rel="sponsored nofollow noopener"'), 'Guide affiliate links must have rel="sponsored nofollow noopener"');
       assert.ok(html.includes('placement: \'guide_content\''), 'Guide affiliate clicks must send placement: guide_content');
       assert.ok(html.includes('As an Amazon Associate I earn from qualifying purchases'), 'Must include Amazon affiliate disclosure');
+    });
+  });
+
+  describe('5. Explicit Consent Enforcement for Affiliate Click Tracking (Phase 68.2)', () => {
+    function createMockClientEnvironment(consentValue, storageThrows = false) {
+      const beaconRequests = [];
+      const fetchRequests = [];
+
+      const mockLocation = {
+        pathname: '/onderdeelnummer/00004007000/',
+        search: '',
+        href: 'https://stihldecoder.nl/onderdeelnummer/00004007000/'
+      };
+
+      const context = {
+        window: {},
+        location: mockLocation,
+        navigator: {
+          userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          sendBeacon: (url, blob) => {
+            beaconRequests.push({ url, blob });
+            return true;
+          }
+        },
+        localStorage: {
+          getItem: (key) => {
+            if (storageThrows) throw new Error('SecurityError: localStorage is inaccessible');
+            if (key === 'stihl_cookie_consent') return consentValue;
+            return null;
+          }
+        },
+        Blob: class MockBlob {
+          constructor(chunks, options) {
+            this.content = chunks[0];
+            this.type = options?.type;
+          }
+        },
+        setTimeout: globalThis.setTimeout,
+        clearTimeout: globalThis.clearTimeout,
+        Date: Date,
+        Math: Math,
+        JSON: JSON
+      };
+      context.window = context;
+      context.window.location = mockLocation;
+      vm.createContext(context);
+      return { context, beaconRequests, fetchRequests };
+    }
+
+    function extractScriptCode(html) {
+      const match = html.match(/<script>([\s\S]*?handleAffiliateClick[\s\S]*?)<\/script>/);
+      assert.ok(match, 'Template HTML must include handleAffiliateClick script block');
+      return match[1];
+    }
+
+    it('sends exactly one tracking request when consent is granted', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const env = createMockClientEnvironment('granted');
+      vm.runInContext(scriptCode, env.context);
+
+      const mockEl = {
+        href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+        dataset: {}
+      };
+      const mockEv = { defaultPrevented: false };
+
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true,
+        placement: 'verified_product_card'
+      });
+
+      assert.equal(env.beaconRequests.length, 1, 'Consent granted must trigger exactly 1 tracking beacon');
+      assert.equal(env.beaconRequests[0].url, '/api/affiliate/track');
+      assert.equal(mockEv.defaultPrevented, false, 'Default navigation must NOT be prevented');
+      assert.equal(mockEl.href, 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21', 'Amazon link must not be altered');
+    });
+
+    it('sends zero tracking requests when consent is denied', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const env = createMockClientEnvironment('denied');
+      vm.runInContext(scriptCode, env.context);
+
+      const mockEl = {
+        href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+        dataset: {}
+      };
+      const mockEv = { defaultPrevented: false };
+
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true
+      });
+
+      assert.equal(env.beaconRequests.length, 0, 'Consent denied must trigger 0 tracking beacons');
+      assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed when consent is denied');
+      assert.equal(mockEl.href, 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21', 'Amazon link must remain valid');
+    });
+
+    it('sends zero tracking requests when consent value is null (no consent selected yet)', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const env = createMockClientEnvironment(null);
+      vm.runInContext(scriptCode, env.context);
+
+      const mockEl = {
+        href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+        dataset: {}
+      };
+      const mockEv = { defaultPrevented: false };
+
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true
+      });
+
+      assert.equal(env.beaconRequests.length, 0, 'Null consent must trigger 0 tracking beacons');
+      assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed on null consent');
+    });
+
+    it('sends zero tracking requests when consent value is invalid', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const invalidValues = ['unknown', 'undefined', '', 'true', '1', 'GRANTED', 'false'];
+      for (const val of invalidValues) {
+        const env = createMockClientEnvironment(val);
+        vm.runInContext(scriptCode, env.context);
+
+        const mockEl = {
+          href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+          dataset: {}
+        };
+        const mockEv = { defaultPrevented: false };
+
+        env.context.window.handleAffiliateClick(mockEl, mockEv, {
+          part_number: '00004007000',
+          product_verified: true
+        });
+
+        assert.equal(env.beaconRequests.length, 0, `Invalid consent '${val}' must trigger 0 tracking beacons`);
+        assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed on invalid consent');
+      }
+    });
+
+    it('sends zero tracking requests when localStorage is inaccessible or throws', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const env = createMockClientEnvironment(null, true);
+      vm.runInContext(scriptCode, env.context);
+
+      const mockEl = {
+        href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+        dataset: {}
+      };
+      const mockEv = { defaultPrevented: false };
+
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true
+      });
+
+      assert.equal(env.beaconRequests.length, 0, 'Inaccessible storage must trigger 0 tracking beacons');
+      assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed when storage throws');
+      assert.equal(mockEl.href, 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21');
+    });
+
+    it('prevents duplicate tracking calls across multiple triggers or rapid double-clicks', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      const env = createMockClientEnvironment('granted');
+      vm.runInContext(scriptCode, env.context);
+
+      const mockEl = {
+        href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+        dataset: {}
+      };
+      const mockEv = { defaultPrevented: false };
+
+      // First click
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true
+      });
+      // Second rapid click on same element
+      env.context.window.handleAffiliateClick(mockEl, mockEv, {
+        part_number: '00004007000',
+        product_verified: true
+      });
+
+      assert.equal(env.beaconRequests.length, 1, 'Rapid repeat click must be debounced to exactly 1 request');
+    });
+
+    it('confirms the 3 active pilot ASINs and the limit of 3 remain strictly untouched', () => {
+      const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
+      assert.equal(activeOffers.length, 3, 'Must maintain strictly 3 active verified pilot offers');
+
+      const activeAsins = activeOffers.map(o => o.asin).sort();
+      const expectedPilotAsins = ['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'].sort();
+      assert.deepEqual(activeAsins, expectedPilotAsins, 'Active ASINs must strictly be B001RM8J76, B001RMA5S2, and B0068M5NAG');
+
+      for (const offer of activeOffers) {
+        assert.ok(offer.asin, 'Active offer must have an ASIN');
+        assert.ok(offer.part_number, 'Active offer must have a canonical part number');
+        assert.equal(offer.status, 'ACTIVE', 'Offer status must be ACTIVE');
+      }
     });
   });
 

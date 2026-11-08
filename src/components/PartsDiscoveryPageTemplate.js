@@ -719,11 +719,15 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     (function() {
       window.handleAffiliateClick = function(el, ev, data) {
         try {
+          var consent = null;
           try {
-            if (localStorage.getItem('stihl_cookie_consent') === 'denied') {
-              return; // Respect explicit refusal of analytics / tracking
-            }
-          } catch (e) {}
+            consent = typeof localStorage !== 'undefined' ? localStorage.getItem('stihl_cookie_consent') : null;
+          } catch (e) {
+            consent = null;
+          }
+          if (consent !== 'granted') {
+            return; // Explicit consent required: no tracking on null, denied, invalid or inaccessible storage
+          }
           if (el && el.dataset && el.dataset.clickedRecently === '1') {
             return; // debounce rapid double clicks
           }

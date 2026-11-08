@@ -10,7 +10,7 @@ export const stihlBougieVervangenGuide = {
   shortTitle: 'Bougie Kiezen & Vervangen',
   metaDescription: 'Welke bougie past op uw STIHL machine? Overzicht van bougiespecificaties (Bosch WSR6F, NGK BPMR7A, NGK CMR6H), elektrodenafstand (0,5 mm), aanhaalmomenten en onderhoud voor MS 170, MS 210, MS 261, MS 440, BG 86 en BR 600.',
   lastReviewed: '2026-11-08',
-  publicationStatus: 'PUBLISHED',
+  publicationStatus: 'READY_FOR_REVIEW',
   publicationEligible: true,
   categoryScope: 'onderhoud',
   fuelScope: 'PETROL_2STROKE',

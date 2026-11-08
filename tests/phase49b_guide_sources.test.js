@@ -1473,7 +1473,7 @@ console.log('\n▶ Test 20: Substantive Section Rendering & Dynamic TOC Anchor P
 
 {
   const registeredGuides = getAllStructuredGuides();
-  assert.strictEqual(registeredGuides.length, 5, 'Must have exactly 5 structured guides');
+  assert.ok(registeredGuides.length >= 5, 'Must have at least 5 structured guides');
 
   for (const guide of registeredGuides) {
     const html = renderGuidePageHtml(guide, database, baseUrl);

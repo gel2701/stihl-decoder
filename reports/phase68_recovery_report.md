@@ -102,3 +102,13 @@ In vervolg op commit `cb4b8b7` zijn in Phase 68.1 de volgende afsluitende contro
 3. **OEM-toeleverancier Merkonderscheid:** Expliciete vermelding op productkaarten en in gidsen dat artikelen worden geleverd in originele fabrikantverpakking van de OEM-toeleverancier (Bosch, NGK) en géén door STIHL verpakte dealerartikelen betreffen.
 4. **Compliance Onderscheid:** In het compliancerapport is vastgelegd dat technische gereedheid (compliance readiness) een interne kwaliteitscontrole betreft en niet gelijkstaat aan officiële accountgoedkeuring door Amazon, aangezien goedkeuring te allen tijde een autonoom en discretionair besluit van Amazon blijft na het behalen van 3 gekwalificeerde verkopen en een handmatige review.
 5. **Privacybeleid:** `PrivacyPolicyTemplate.js` is geactualiseerd met expliciete documentatie van de nieuwe telemetrieparameters (`placement`, `device_type`, `is_mobile`), waarbij is bevestigd dat er geen cookies, IP-adressen of PII worden opgeslagen.
+
+---
+
+## 7. Phase 68.2 Final Consent Fix
+
+In vervolg op de privacycontrole is de consent-validatie voor affiliate-kliktracking strikt expliciet gemaakt:
+1. **Expliciete Toestemming Vereist:** `/api/affiliate/track` mag uitsluitend worden aangeroepen wanneer `stihl_cookie_consent === 'granted'`. Bij `null` (nog geen keuze gemaakt), `denied`, ongeldige waarden of een onleesbare localStorage wordt géén trackingbeacon verzonden.
+2. **Consistente Implementatie:** Toegepast in `PartDetailPageTemplate.js`, `ModelPartsPageTemplate.js`, `PartsDiscoveryPageTemplate.js` en `SiteAnalytics.js`.
+3. **Behoud Aankoopfunctionaliteit:** De native Amazon links, ASINs, partner-ID (`tag=srihldecoder2-21`) en `href` attributen blijven in alle gevallen ongehinderd en onveranderd functioneren.
+4. **Genuanceerde Privacyclaims:** Helder onderscheid tussen tijdelijk in-memory IP-adres verwerking voor rate limiting (misbruikpreventie) en persistente opslag van geanonimiseerde klikgebeurtenissen in SQLite.

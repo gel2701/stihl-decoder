@@ -80,7 +80,7 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
         STIHLDecoder.nl is een onafhankelijke informatieve tool voor doe-het-zelvers, reparateurs, hoveniers en verzamelaars. StihlDecoder.nl is op geen enkele wijze gelieerd aan, gesponsord door of goedgekeurd door <strong>ANDREAS STIHL AG & Co. KG</strong> of haar dochterondernemingen. Alle merk- en modelnamen zijn het eigendom van de respectieve merkhouders.
       </p>
       <p class="text-sm text-gray-300 leading-relaxed">
-        U kunt onze website volledig anoniem bezoeken. Wij vereisen geen account, geen registratie en verzamelen geen persoonsgegevens zoals namen, e-mailadressen of betalingsgegevens.
+        U kunt onze website bezoeken zonder account of registratie. Wij verzamelen geen persoonsgegevens zoals namen, e-mailadressen of betalingsgegevens. Inkomende IP-adressen worden uitsluitend tijdelijk in het werkgeheugen verwerkt voor rate limiting en serverbeveiliging tegen geautomatiseerd misbruik, en worden niet persistent opgeslagen in onze database.
       </p>
     </article>
 
@@ -146,11 +146,17 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
           </p>
         </div>
         </div>
-        <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800">
-          <h4 class="font-bold text-white text-sm mb-1">Privacy-vriendelijke affiliate klikmeting</h4>
+        <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800 space-y-2">
+          <h4 class="font-bold text-white text-sm">Affiliate klikmeting &amp; Gegevensverwerking</h4>
           <p class="text-gray-400 leading-relaxed">
-            Wanneer u op een uitgaande Amazon-link klikt, stuurt onze pagina een geaggregeerd signaal naar onze eigen server (<code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code>) om bij te houden welk onderdeelnummer gezocht is, via welk type onderdeelkaart (geverifieerd of zoekfallback) en op welk apparaattype (mobiel of desktop). Hierbij worden géén cookies geplaatst, géén IP-adressen opgeslagen, géén unieke apparaat-fingerprints gemaakt en géén persoonsgebonden gebruikersprofielen opgebouwd. Deze technische doorklikmeting respecteert uw consentstatus: indien u cookies heeft geweigerd (<code class="text-amber-400 font-mono text-3xs">stihl_cookie_consent = 'denied'</code>), wordt de verzending van dit signaal in uw browser direct onderdrukt.
+            Bij het gebruik van uitgaande links naar Amazon maken wij een zorgvuldig onderscheid tussen netwerkverkeer, toestemming en persistente opslag:
           </p>
+          <ul class="list-disc list-inside space-y-1.5 text-gray-400 text-2xs">
+            <li><strong>Tijdelijke rate limiting (in-memory):</strong> Om misbruik en serveroverbelasting te voorkomen, verwerkt onze server het IP-adres van verzoeken tijdelijk in het vluchtige werkgeheugen (sliding window van 1 tot 10 minuten). Dit IP-adres wordt niet opgeslagen in de database en niet gekoppeld aan klikgebeurtenissen.</li>
+            <li><strong>Expliciete toestemming vereist:</strong> Een telemetrie-signaal naar <code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code> wordt <em>uitsluitend</em> verstuurd wanneer u expliciet toestemming heeft gegeven (<code class="text-amber-400 font-mono text-3xs">stihl_cookie_consent = 'granted'</code>). Bij afwezigheid van toestemming (<code class="text-neutral-400 font-mono text-3xs">null</code>), bij weigering (<code class="text-neutral-400 font-mono text-3xs">'denied'</code>), bij ongeldige waarden of wanneer lokale opslag niet leesbaar is, wordt er géén trackingbeacon verstuurd.</li>
+            <li><strong>Gebeurtenisgegevens in SQLite:</strong> Indien toestemming is verleend, slaat onze interne database uitsluitend technische interactieparameters op (onderdeelnummer, plaatsingstype, mobiel/desktop). Deze records bevatten geen IP-adressen, geen trackingcookies en geen gebruikersprofielen.</li>
+            <li><strong>Ongehinderde aankoopfunctionaliteit:</strong> Het bezoeken van de uitgaande Amazon-links functioneert altijd direct en ongehinderd, ongeacht uw toestemmingskeuze.</li>
+          </ul>
         </div>
       </div>
     </article>
