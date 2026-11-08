@@ -1,0 +1,86 @@
+{
+  "phase": "67",
+  "observed_at": "2026-11-07",
+  "mode": "INDIVIDUAL_DISTRIBUTOR_PRODUCT_PAGES_NO_LIVE_MARKETPLACE",
+  "counts": {
+    "parts": 5,
+    "individual_distributor_product_pages": 5,
+    "new_asin_candidates": 0,
+    "verified_asins": 0,
+    "staged_activations": 0,
+    "production_changes": 0
+  },
+  "amazon_access": {
+    "status": "UNAVAILABLE_NOT_CONFIGURED",
+    "local_process_or_user_env_names_checked": ["AMAZON", "CREATORS", "PAAPI", "KEEPA", "AWS"],
+    "matching_local_keys_observed": false,
+    "remote_deployment_credentials_inspectable": false,
+    "real_auth_attempted": false,
+    "access_denial_proven": false,
+    "mock_transport_only": true,
+    "live_access_working": false,
+    "other_source_integrations_verified": false,
+    "prerequisites": ["client_id", "client_secret", "approved_EU_v3.2_access", "NL_DE_partner_tags", "account_quota_confirmation"]
+  },
+  "product_evidence": [
+    {
+      "part_number": "00006421240",
+      "source_url": "https://www.lsengineers.co.uk/rim-sprocket-3-8-picco-7t-stihl-part-no-0000-642-1240.html",
+      "observed": "3/8 Picco 7T; spline unspecified",
+      "identity": "DISTRIBUTOR_PRODUCT_PAGE_CREDIBLE_WITH_COMPATIBILITY_CONFLICT",
+      "independent_source_url": "https://www.oregonproducts.com/en/p/18720",
+      "independent_observed": "Oregon 18720: 3/8 standard, 7 spline, 7 tooth; compatibility with Picco 1240 not established",
+      "historical_asin": "B000IBWVWG",
+      "historical_asin_status": "STAGED_UNVERIFIED_CONFLICTED_INACTIVE",
+      "amazon_verified": false
+    },
+    {
+      "part_number": "00004007025",
+      "source_url": "https://www.lsengineers.co.uk/stihl-spark-plug-zk-c-10-set-of-10-for-stihl-fs-361-0-c-em-fs-38-clearing-saws-oem-no-0000-400-7025.html",
+      "observed": "ZK C 10; title Each versus URL set-of-10",
+      "identity": "DISTRIBUTOR_PRODUCT_PAGE_QUANTITY_CONFLICT",
+      "historical_asin": "B07RHQ5FR4",
+      "historical_asin_status": "PREVIOUSLY_REJECTED_INACTIVE",
+      "amazon_verified": false
+    },
+    {
+      "part_number": "00004007026",
+      "source_url": "https://www.lsengineers.co.uk/spark-plug-stihl-zk-c-10-1-set-of-40-genuine-stihl-part-oem-no-0000-400-7026.html",
+      "observed": "ZK C 10; 1 set of 40",
+      "identity": "DISTRIBUTOR_PRODUCT_PAGE_CREDIBLE",
+      "amazon_verified": false
+    },
+    {
+      "part_number": "11411201600",
+      "source_url": "https://www.lsengineers.co.uk/air-filter-fleece-for-stihl-ms231-ms231c-part-no-1141-120-1600.html",
+      "observed": "Exact part number; fleece; MS231/MS231C; historical queue described HD2",
+      "identity": "DISTRIBUTOR_PRODUCT_PAGE_CREDIBLE_QUEUE_DESCRIPTION_CONFLICT",
+      "amazon_verified": false
+    },
+    {
+      "part_number": "00003503502",
+      "source_url": "https://www.lsengineers.co.uk/fuel-pick-up-filter-for-stihl-ts410-ts420.html",
+      "observed": "0000 350 3502 fuel pick up filter; TS410/TS420",
+      "identity": "DISTRIBUTOR_PRODUCT_PAGE_CREDIBLE",
+      "amazon_verified": false
+    }
+  ],
+  "ean_observed": false,
+  "official_stihl_product_article_verified": false,
+  "new_amazon_listing_verified": false,
+  "official_docs": [
+    "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/get-started/using-curl",
+    "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/concepts/api-rates",
+    "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/search-items",
+    "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/concepts/best-programming-practices"
+  ],
+  "documented_cache_ttl": {
+    "access_token_seconds": 3600,
+    "offers_seconds": 3600,
+    "browse_node_info_seconds": 3600,
+    "other_resources_seconds": 86400,
+    "customer_data_caching_allowed": false,
+    "local_implementation_verified": false
+  },
+  "github_projects_audited": false
+}

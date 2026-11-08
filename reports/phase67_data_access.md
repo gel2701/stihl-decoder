@@ -1,0 +1,19 @@
+# Fase 67 — databronnen en validatie
+
+Onderzoeksdatum: 2026-11-07. Scope: vijf onderdelen; individuele distributeurspagina's als productbewijs, geen officiële STIHL-productpagina's of live Amazon-resultaten. Fase 66B gebruikte alleen zoekresultaatsnippers; onderstaande pagina's verbeteren de identificatie van de onderdelen, niet de ASIN-validatie.
+
+| Onderdeel | Individuele productpagina en waarneming | Beoordeling |
+|---|---|---|
+| `00006421240` | [LS Engineers](https://www.lsengineers.co.uk/rim-sprocket-3-8-picco-7t-stihl-part-no-0000-642-1240.html): 3/8 Picco, 7 tanden; spline niet vermeld. [Oregon 18720](https://www.oregonproducts.com/en/p/18720): 3/8 standaard, 7 splines, 7 tanden. | Onderdeelidentiteit aannemelijk; Oregon-compatibiliteit niet afleidbaar, conflict met historisch gestagede `B000IBWVWG`. Niet activeren. |
+| `00004007025` | [LS Engineers](https://www.lsengineers.co.uk/stihl-spark-plug-zk-c-10-set-of-10-for-stihl-fs-361-0-c-em-fs-38-clearing-saws-oem-no-0000-400-7025.html): ZK C 10; titel zegt Each, URL zegt set-of-10. | Aantal tegenstrijdig; `B07RHQ5FR4` was eerder afgewezen (NGK CMR7H, geen bewezen match). Niet activeren. |
+| `00004007026` | [LS Engineers](https://www.lsengineers.co.uk/spark-plug-stihl-zk-c-10-1-set-of-40-genuine-stihl-part-oem-no-0000-400-7026.html): ZK C 10, 1 set van 40. | Onderdeelidentiteit aannemelijk; geen ASIN-match. |
+| `11411201600` | [LS Engineers](https://www.lsengineers.co.uk/air-filter-fleece-for-stihl-ms231-ms231c-part-no-1141-120-1600.html): exact nummer, fleece, MS231/MS231C. | Distributeurspagina ondersteunt fleece; historische wachtrij noemde HD2. Geen ASIN-match. |
+| `00003503502` | [LS Engineers](https://www.lsengineers.co.uk/fuel-pick-up-filter-for-stihl-ts410-ts420.html): onderdeelnummer 0000 350 3502, brandstofopnamefilter voor TS410/TS420. | Onderdeelidentiteit aannemelijk; geen ASIN-match. |
+
+Geen EAN waargenomen voor deze vijf producten. Geen officiële STIHL-productartikelen geverifieerd; Oregon 18720 is onafhankelijk fabrikantsartikel, maar geen bewezen vervanger voor `00006421240`. Geen nieuwe Amazon-listing of ASIN geverifieerd. Telling: 5 individuele distributeurspagina's; 0 nieuwe ASIN-kandidaten; 0 geverifieerde ASIN's; 0 activeringen.
+
+## Amazon-toegang
+
+Status `UNAVAILABLE_NOT_CONFIGURED`: geen lokale proces- of gebruikersomgevingssleutels met `AMAZON`, `CREATORS`, `PAAPI`, `KEEPA` of `AWS` waargenomen. Externe deploymentgeheimen niet inspecteerbaar. Geen echte authenticatie geprobeerd: dit bewijst geen toegangsweigering. Alleen mock-transport gerapporteerd, geen werkende live verbinding; geen andere bronintegraties geïnstalleerd of geverifieerd. Geen productieaanpassing. Geen GitHub-projectaudit uitgevoerd.
+
+Voor live Creators API: client ID en client secret, goedgekeurde EU v3.2-toegang, juiste partner-tag voor NL/DE en bevestigde accountquota nodig. [Using cURL](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/get-started/using-curl) beschrijft OAuth-client_credentials, EU-tokenendpoint en marketplace-headers. [SearchItems](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/search-items) levert maximaal tien resultaten per zoekaanvraag; een zoekresultaat alleen bevestigt geen exacte variant of verpakking. [API Rates](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/concepts/api-rates) beschrijft initiële maxima van 1 TPS en 8640 TPD gedurende 30 dagen en latere omzetafhankelijke toegang; werkelijk accountquotum onbekend. [Best Programming Practices](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/concepts/best-programming-practices) vermeldt tokenhergebruik tot vervaldatum (3600 s), caching van Offers en BrowseNodeInfo gedurende 1 uur, overige velden waaronder ItemInfo en Images gedurende 1 dag; geen Amazon-klantgegevens cachen. Dit zijn documentatierichtlijnen, niet bewijs dat lokale caching is geïmplementeerd.
