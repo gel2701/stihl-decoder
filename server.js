@@ -214,7 +214,15 @@ export function resetAffiliateRateLimits() {
   affiliateRateLimitMap.clear();
 }
 
-export function hasVerifiedAffiliateConsent(req) {
+/**
+ * Inspects request for the first-party stihl_cookie_consent=granted cookie.
+ *
+ * Note: A first-party cookie is a client-side indicator that the user accepted
+ * consent in their browser, rather than cryptographic or independent server-side proof.
+ * It serves to filter out non-consenting visitors, automated scrapers, and unverified direct
+ * API hits before persisting affiliate events to SQLite.
+ */
+export function hasAffiliateConsentCookie(req) {
   if (!req || !req.headers) return false;
   const cookieHeader = req.headers.cookie;
   if (!cookieHeader || typeof cookieHeader !== 'string') return false;
@@ -229,6 +237,8 @@ export function hasVerifiedAffiliateConsent(req) {
   });
   return cookies['stihl_cookie_consent'] === 'granted';
 }
+
+export const hasVerifiedAffiliateConsent = hasAffiliateConsentCookie;
 
 function isSameOriginRequest(req) {
   const origin = req.headers['origin'];
@@ -605,6 +615,12 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (!isSameOriginRequest(req)) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN_ORIGIN' }));
+      return;
+    }
+
     if (checkAffiliateRateLimit(req)) {
       res.writeHead(429, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
@@ -623,14 +639,14 @@ const server = http.createServer(async (req, res) => {
         if (bodyStr) data = JSON.parse(bodyStr);
       } catch {}
 
-      // Server-Side Consent Verification (Phase 68.3 Security & Privacy Protection)
-      // Browser consent cannot be derived solely from unproven JSON payload fields (e.g. data.consent)
+      // Cookie Consent Indicator Check (Phase 68.3 Privacy Protection)
+      // Browser consent cannot be assumed from unverified JSON payload fields (e.g. data.consent)
       // or public query parameters (e.g. ?test=1).
-      // Inspect first-party HTTP cookie header for verified consent proof.
-      const hasVerifiedConsent = hasVerifiedAffiliateConsent(req);
+      // Require first-party stihl_cookie_consent=granted cookie as indication of user consent.
+      const hasConsent = hasAffiliateConsentCookie(req);
 
-      if (!hasVerifiedConsent) {
-        // Fail-closed: Zero persistent event storage for unverified requests or client claims.
+      if (!hasConsent) {
+        // Fail-closed: Zero persistent event storage when consent is not indicated.
         // Acknowledge non-blockingly without storing analytics in SQLite.
         res.writeHead(202, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: true, recorded: false }));

@@ -122,6 +122,7 @@ export const currentProductionSuites = [
   'tests/phase66b_research25.test.js',
   'tests/phase67_creators_transport.test.js',
   'tests/phase67_creators_probe.test.js',
+  'tests/phase68_affiliate_conversion.test.js',
   'tests/phase683_tracking_integrity.test.js',
   'tests/phase683_guide_registry.test.js'
 ];

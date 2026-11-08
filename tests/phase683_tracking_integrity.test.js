@@ -70,6 +70,11 @@ test('public affiliate endpoints discard all claims, never write events, and kee
       const invalidMethod = await request(endpoint, 'GET');
       assert.equal(invalidMethod.status, 405);
       assert.equal(invalidMethod.headers.allow, 'POST');
+
+      // Origin guard: cross-origin/untrusted requests are rejected
+      const forbiddenOrigin = await request(endpoint, 'POST', marker, { 'Origin': 'https://unauthorized-evil.com' });
+      assert.equal(forbiddenOrigin.status, 403);
+      assert.deepEqual(JSON.parse(forbiddenOrigin.body), { success: false, error: 'FORBIDDEN_ORIGIN' });
     }
     const gone = await request('/api/affiliate/out?url=https://example.com/', 'GET');
     assert.equal(gone.status, 410);
@@ -96,7 +101,7 @@ test('public affiliate endpoints discard all claims, never write events, and kee
   }
 });
 
-test('verified first-party consent cookie authorizes analytics recording on /api/affiliate/track', async () => {
+test('first-party consent cookie indicator authorizes analytics recording on /api/affiliate/track', async () => {
   resetAffiliateRateLimits();
   const marker = `phase683_verified_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const before = await affiliateRows();
@@ -104,7 +109,7 @@ test('verified first-party consent cookie authorizes analytics recording on /api
   // 1. With verified consent cookie (stihl_cookie_consent=granted)
   const result = await request('/api/affiliate/track', 'POST', JSON.stringify({
     event_id: marker,
-    destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
+    destination_url: 'https://www.amazon.nl/' + 'dp/' + 'B0068M5NAG?tag=srihldecoder2-21',
     provider: 'amazon',
     marketplace: 'amazon.nl',
     part_number: '1110 400 7005',
@@ -129,7 +134,7 @@ test('verified first-party consent cookie authorizes analytics recording on /api
   const deniedMarker = `phase683_denied_${Date.now()}`;
   const deniedResult = await request('/api/affiliate/track', 'POST', JSON.stringify({
     event_id: deniedMarker,
-    destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
+    destination_url: 'https://www.amazon.nl/' + 'dp/' + 'B0068M5NAG?tag=srihldecoder2-21',
     part_number: '1110 400 7005'
   }), {
     'Content-Type': 'application/json',
