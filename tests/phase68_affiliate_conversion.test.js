@@ -402,6 +402,65 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       assert.equal(mockEl.href, 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21');
     });
 
+    it('sends zero tracking requests when ?test=1 is in URL but consent is not granted', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      // Null, denied, or missing consent with ?test=1 in search
+      for (const consentVal of [null, 'denied', '']) {
+        const env = createMockClientEnvironment(consentVal);
+        env.context.window.location.search = '?test=1';
+        vm.runInContext(scriptCode, env.context);
+
+        const mockEl = {
+          href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+          dataset: {}
+        };
+        const mockEv = { defaultPrevented: false };
+
+        env.context.window.handleAffiliateClick(mockEl, mockEv, {
+          part_number: '00004007000',
+          product_verified: true
+        });
+
+        assert.equal(env.beaconRequests.length, 0, `?test=1 with consent '${consentVal}' must NOT trigger tracking`);
+        assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed');
+      }
+    });
+
+    it('sends zero tracking requests when client data.is_test is true but consent is not granted', () => {
+      const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
+      const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
+      const resolver = new PartCatalogResolver(catalog);
+      const partItem = resolver.resolvePartNumber('00004007000');
+      const html = renderPartDetailPageHtml(partItem, catalog);
+      const scriptCode = extractScriptCode(html);
+
+      for (const consentVal of [null, 'denied', '']) {
+        const env = createMockClientEnvironment(consentVal);
+        vm.runInContext(scriptCode, env.context);
+
+        const mockEl = {
+          href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21',
+          dataset: {}
+        };
+        const mockEv = { defaultPrevented: false };
+
+        env.context.window.handleAffiliateClick(mockEl, mockEv, {
+          part_number: '00004007000',
+          product_verified: true,
+          is_test: true
+        });
+
+        assert.equal(env.beaconRequests.length, 0, `data.is_test with consent '${consentVal}' must NOT trigger tracking`);
+        assert.equal(mockEv.defaultPrevented, false, 'Link navigation must proceed');
+      }
+    });
+
     it('prevents duplicate tracking calls across multiple triggers or rapid double-clicks', () => {
       const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
       const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));

@@ -8,6 +8,11 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   test('A. Outbound affiliate clicks on model parts page fire non-blocking beacon with test flag and no PII', async ({ page }) => {
     const gates = attachIntegrityGates(page);
 
+    // Simulate explicit visitor cookie consent
+    await page.addInitScript(() => {
+      localStorage.setItem('stihl_cookie_consent', 'granted');
+    });
+
     // Collect beacon requests made to /api/affiliate/track
     const trackRequests = [];
     await page.route('**/api/affiliate/track', async (route) => {
@@ -91,6 +96,11 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   test('B. Rapid double-click debounce prevents duplicate beacon transmissions', async ({ page }) => {
     const gates = attachIntegrityGates(page);
 
+    // Simulate explicit visitor cookie consent
+    await page.addInitScript(() => {
+      localStorage.setItem('stihl_cookie_consent', 'granted');
+    });
+
     const trackRequests = [];
     await page.route('**/api/affiliate/track', async (route) => {
       const request = route.request();
@@ -118,6 +128,11 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   test('C. Parts discovery page (/onderdelen/) tracks affiliate clicks with model attribution', async ({ page }) => {
     const gates = attachIntegrityGates(page);
 
+    // Simulate explicit visitor cookie consent
+    await page.addInitScript(() => {
+      localStorage.setItem('stihl_cookie_consent', 'granted');
+    });
+
     const trackRequests = [];
     await page.route('**/api/affiliate/track', async (route) => {
       trackRequests.push(route.request().postDataJSON());
@@ -139,6 +154,88 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
     expect(tracked.destination_url).toContain('amazon.nl');
 
     gates.assertClean('Parts Discovery Affiliate Tracking');
+  });
+
+  test('D. Without consent (clean session), clicking affiliate link with ?test=1 sends ZERO tracking requests', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+
+    const trackRequests = [];
+    await page.route('**/api/affiliate/track', async (route) => {
+      trackRequests.push(route.request().postDataJSON());
+      await route.continue();
+    });
+
+    // Clean browser session with no consent in localStorage
+    await page.goto('/bosmaaiers/fs-460/onderdelen/?test=1');
+
+    const amazonLinks = page.locator('a[href*="amazon.nl"]');
+    const firstLink = amazonLinks.first();
+    const href = await firstLink.getAttribute('href');
+    expect(href).toContain('amazon.nl');
+
+    // Click link without consent
+    await firstLink.dispatchEvent('click');
+    await page.waitForTimeout(600);
+
+    // Verify zero tracking requests were dispatched
+    expect(trackRequests.length).toBe(0);
+
+    gates.assertClean('Zero Tracking Without Consent');
+  });
+
+  test('E. When consent is denied, clicking affiliate link with ?test=1 sends ZERO tracking requests', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+
+    // Explicitly denied consent
+    await page.addInitScript(() => {
+      localStorage.setItem('stihl_cookie_consent', 'denied');
+    });
+
+    const trackRequests = [];
+    await page.route('**/api/affiliate/track', async (route) => {
+      trackRequests.push(route.request().postDataJSON());
+      await route.continue();
+    });
+
+    await page.goto('/bosmaaiers/fs-460/onderdelen/?test=1');
+
+    const amazonLinks = page.locator('a[href*="amazon.nl"]');
+    await amazonLinks.first().dispatchEvent('click');
+    await page.waitForTimeout(600);
+
+    expect(trackRequests.length).toBe(0);
+
+    gates.assertClean('Zero Tracking On Consent Denied');
+  });
+
+  test('F. Without consent, client-side data.is_test dispatch sends ZERO tracking requests', async ({ page }) => {
+    const gates = attachIntegrityGates(page);
+
+    const trackRequests = [];
+    await page.route('**/api/affiliate/track', async (route) => {
+      trackRequests.push(route.request().postDataJSON());
+      await route.continue();
+    });
+
+    // Clean session
+    await page.goto('/bosmaaiers/fs-460/onderdelen/');
+
+    // Invoke client-side handleAffiliateClick directly with is_test: true but without granted consent
+    await page.evaluate(() => {
+      if (window.handleAffiliateClick) {
+        window.handleAffiliateClick(
+          { href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21', dataset: {} },
+          { defaultPrevented: false },
+          { is_test: true, part_number: '00004007000' }
+        );
+      }
+    });
+
+    await page.waitForTimeout(600);
+
+    expect(trackRequests.length).toBe(0);
+
+    gates.assertClean('Zero Tracking On Client is_test Without Consent');
   });
 
 });
