@@ -72,10 +72,30 @@ assert.strictEqual(sitemapXml.includes('/gidsen/serienummer-locaties/'), true, '
 assert.strictEqual(sitemapXml.includes('/gidsen/stihl-kettingzaag-start-niet/'), true, 'Sitemap must contain published start guide');
 assert.strictEqual(sitemapXml.includes('/stihl-paspoort/'), true, 'Sitemap must contain published intent');
 
+const publishedGuideSlugs = Object.entries(GUIDE_PUBLICATION_STATUS)
+  .filter(([_, status]) => status === 'PUBLISHED')
+  .map(([slug]) => slug);
+assert.deepStrictEqual(
+  publishedGuideSlugs.sort(),
+  ['serienummer-locaties', 'stihl-kettingzaag-start-niet'].sort(),
+  'Only proven guides with full primary source attribution may have status PUBLISHED'
+);
+
 const unreviewedGuideSlugs = Object.entries(GUIDE_PUBLICATION_STATUS)
   .filter(([_, status]) => status !== 'PUBLISHED')
   .map(([slug]) => slug);
-assert.strictEqual(unreviewedGuideSlugs.length, 4, 'Must have exactly 4 unreviewed guides');
+assert.strictEqual(unreviewedGuideSlugs.length, 5, 'Must have exactly 5 unreviewed guides');
+assert.deepStrictEqual(
+  unreviewedGuideSlugs.sort(),
+  [
+    'stihl-bougie-vervangen',
+    'stihl-carburateur-afstellen',
+    'stihl-gietklok-aflezen',
+    'stihl-m-tronic-resetten',
+    'namaak-stihl-herkennen'
+  ].sort(),
+  'All non-published guides must match explicit unreviewed configuration'
+);
 
 for (const slug of unreviewedGuideSlugs) {
   assert.strictEqual(isGuidePublished(slug), false, `Guide ${slug} must not be published`);

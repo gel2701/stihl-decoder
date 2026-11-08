@@ -283,6 +283,7 @@ export function getValuationPublicationState(model) {
 export const GUIDE_ROUTE_CONFIG = {
   'serienummer-locaties': { status: 'PUBLISHED' },
   'stihl-kettingzaag-start-niet': { status: 'PUBLISHED' },
+  'stihl-bougie-vervangen': { status: 'READY_FOR_REVIEW' },
   'stihl-carburateur-afstellen': { status: 'READY_FOR_REVIEW' },
   'stihl-m-tronic-resetten': { status: 'READY_FOR_REVIEW' },
   'stihl-gietklok-aflezen': { status: 'READY_FOR_REVIEW' },

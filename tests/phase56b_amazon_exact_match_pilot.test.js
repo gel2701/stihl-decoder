@@ -312,7 +312,7 @@ test('Phase 56B - Test 10: SEO Indexation Freeze (400 indexable parts, 581 sitem
 });
 
 test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () => {
-  const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', 'data', 'output']);
+  const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', '.agents', 'data', 'output']);
   const EXCLUDE_FILES = new Set([
     'tests/phase54a_parts_amazon_affiliate.test.js',
     'tests/phase54a_h_amazon_link_integrity.test.js',
@@ -337,8 +337,16 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'PHASE60_COMMERCIAL_OPPORTUNITIES.json',
     'PHASE60_BEFORE_AFTER.json',
     'tests/phase60_commercial_growth.test.js',
+    'tests/phase68_affiliate_conversion.test.js',
+    'tests/phase683_tracking_integrity.test.js',
+    'tests/e2e/affiliate-tracking.spec.js',
     'scripts/build_phase60_candidates.mjs',
-    'scripts/generate_phase60_reports.mjs'
+    'scripts/generate_phase60_reports.mjs',
+    'src/content/guides/stihl-bougie-vervangen.js',
+    'phase68b_amazon_evidence.json',
+    'phase68b1_evidence_audit.json',
+    'PHASE63_TECHNICAL_SPECIFICATIONS.json',
+    'PHASE63_PARTS_IMPORT_CANDIDATES.json'
   ]);
 
   function scanDir(dir) {

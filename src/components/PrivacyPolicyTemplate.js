@@ -80,7 +80,7 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
         STIHLDecoder.nl is een onafhankelijke informatieve tool voor doe-het-zelvers, reparateurs, hoveniers en verzamelaars. StihlDecoder.nl is op geen enkele wijze gelieerd aan, gesponsord door of goedgekeurd door <strong>ANDREAS STIHL AG & Co. KG</strong> of haar dochterondernemingen. Alle merk- en modelnamen zijn het eigendom van de respectieve merkhouders.
       </p>
       <p class="text-sm text-gray-300 leading-relaxed">
-        U kunt onze website volledig anoniem bezoeken. Wij vereisen geen account, geen registratie en verzamelen geen persoonsgegevens zoals namen, e-mailadressen of betalingsgegevens.
+        U kunt onze website bezoeken zonder account of registratie. Wij verzamelen geen persoonsgegevens zoals namen, e-mailadressen of betalingsgegevens. Inkomende IP-adressen worden uitsluitend tijdelijk in het werkgeheugen verwerkt voor rate limiting en serverbeveiliging tegen geautomatiseerd misbruik, en worden niet persistent opgeslagen in onze database.
       </p>
     </article>
 
@@ -146,11 +146,18 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
           </p>
         </div>
         </div>
-        <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800">
-          <h4 class="font-bold text-white text-sm mb-1">Privacy-vriendelijke affiliate klikmeting</h4>
+        <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800 space-y-2">
+          <h4 class="font-bold text-white text-sm">Affiliate klikmeting &amp; Gegevensverwerking</h4>
           <p class="text-gray-400 leading-relaxed">
-            Wanneer u op een uitgaande Amazon-link klikt, stuurt onze pagina een geaggregeerd signaal naar onze eigen server (<code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code>) om bij te houden welk onderdeelnummer gezocht is. Hierbij worden geen cookies geplaatst, geen IP-adressen opgeslagen en geen gebruikersprofielen opgebouwd.
+            Bij het gebruik van uitgaande links naar Amazon maken wij een zorgvuldig onderscheid tussen netwerkverkeer, toestemming en persistente opslag:
           </p>
+          <ul class="list-disc list-inside space-y-1.5 text-gray-400 text-2xs">
+            <li><strong>Tijdelijke rate limiting (in-memory):</strong> Om misbruik en serveroverbelasting te voorkomen, verwerkt onze server het IP-adres van verzoeken tijdelijk in het vluchtige werkgeheugen (sliding window van 1 tot 10 minuten). Dit IP-adres wordt niet opgeslagen in de database en niet gekoppeld aan klikgebeurtenissen.</li>
+            <li><strong>Expliciete toestemming vereist:</strong> Een telemetrie-signaal naar <code class="text-amber-400 font-mono text-3xs">/api/affiliate/track</code> wordt <em>uitsluitend</em> verstuurd wanneer u expliciet toestemming heeft gegeven (<code class="text-amber-400 font-mono text-3xs">stihl_cookie_consent = 'granted'</code>). Bij afwezigheid van toestemming (<code class="text-neutral-400 font-mono text-3xs">null</code>), bij weigering (<code class="text-neutral-400 font-mono text-3xs">'denied'</code>), bij ongeldige waarden of wanneer lokale opslag niet leesbaar is, wordt er géén trackingbeacon verstuurd.</li>
+            <li><strong>Affiliate-API:</strong> De publieke klikendpoint bewaart geen affiliate-gebeurtenissen in SQLite, ook niet bij een directe POST of een meegezonden toestemmingsclaim. De server kan de browserinstelling niet onafhankelijk controleren. Een IP-adres wordt uitsluitend tijdelijk in het werkgeheugen gebruikt voor rate limiting; de inhoud van klikverzoeken wordt niet opgeslagen of als gebeurtenis gelogd.</li>
+            <li><strong>Analytics na toestemming:</strong> Als u toestemming geeft, kan Google Analytics geaggregeerde paginaweergaven en klikinteracties verwerken volgens de hierboven beschreven instellingen. Dit is geen meting van Amazon-bestellingen of commissies.</li>
+            <li><strong>Ongehinderde aankoopfunctionaliteit:</strong> Het bezoeken van de uitgaande Amazon-links functioneert altijd direct en ongehinderd, ongeacht uw toestemmingskeuze.</li>
+          </ul>
         </div>
       </div>
     </article>
@@ -200,6 +207,11 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
 
       document.getElementById('manage-cookie-accept')?.addEventListener('click', function() {
         localStorage.setItem('stihl_cookie_consent', 'granted');
+        try {
+          var isSecure = window.location.protocol === 'https:';
+          var secureFlag = isSecure ? '; Secure' : '';
+          document.cookie = 'stihl_cookie_consent=granted; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+        } catch (e) {}
         if (typeof gtag === 'function') {
           gtag('consent', 'update', { analytics_storage: 'granted' });
         }
@@ -209,6 +221,11 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
 
       document.getElementById('manage-cookie-reject')?.addEventListener('click', function() {
         localStorage.setItem('stihl_cookie_consent', 'denied');
+        try {
+          var isSecure = window.location.protocol === 'https:';
+          var secureFlag = isSecure ? '; Secure' : '';
+          document.cookie = 'stihl_cookie_consent=denied; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+        } catch (e) {}
         if (typeof gtag === 'function') {
           gtag('consent', 'update', { analytics_storage: 'denied' });
         }

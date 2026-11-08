@@ -19,6 +19,11 @@
     } catch {
       // Consent remains in-memory for this page if storage is unavailable.
     }
+    try {
+      var isSecure = window.location.protocol === 'https:';
+      var secureFlag = isSecure ? '; Secure' : '';
+      document.cookie = CONSENT_KEY + '=' + encodeURIComponent(value) + '; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+    } catch (e) {}
   }
 
   function ensureGtag() {
@@ -51,6 +56,50 @@
       });
     }
   };
+
+  if (!window.handleAffiliateClick) {
+    window.handleAffiliateClick = function handleAffiliateClick(el, ev, data) {
+      try {
+        if (getConsent() !== 'granted') return;
+        if (el && el.dataset && el.dataset.clickedRecently === '1') return;
+        if (el && el.dataset) {
+          el.dataset.clickedRecently = '1';
+          setTimeout(function() { el.dataset.clickedRecently = '0'; }, 1200);
+        }
+        var isTest = window.location.search.indexOf('test=1') !== -1 || Boolean(data && data.is_test);
+        var isMobile = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(navigator.userAgent || '');
+        var deviceType = isMobile ? 'mobile' : 'desktop';
+        var placement = (data && data.placement) || ((data && data.product_verified) ? 'verified_product_card' : 'guide_content');
+        var eventId = 'aff_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+        var payload = JSON.stringify({
+          event_id: eventId,
+          provider: (data && data.provider) || 'amazon',
+          marketplace: (data && data.marketplace) || 'amazon.nl',
+          part_number: (data && data.part_number) || '',
+          offer_type: (data && data.offer_type) || 'MANUAL_ASIN',
+          match_type: (data && data.match_type) || 'MANUAL_ASIN',
+          asin_if_known: (data && data.asin_if_known) || null,
+          product_verified: Boolean(data && data.product_verified),
+          destination_url: el ? el.href : null,
+          page_path: window.location.pathname,
+          placement: placement,
+          device_type: deviceType,
+          is_mobile: isMobile,
+          is_test: isTest ? 1 : 0
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/affiliate/track', new Blob([payload], { type: 'application/json' }));
+        } else if (window.fetch) {
+          window.fetch('/api/affiliate/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true
+          }).catch(function() {});
+        }
+      } catch (err) {}
+    };
+  }
 
   function normalizedClickLabel(element) {
     const aria = element.getAttribute('aria-label');
@@ -145,6 +194,13 @@
 
   function boot() {
     const consent = getConsent();
+    if (consent) {
+      try {
+        var isSecure = window.location.protocol === 'https:';
+        var secureFlag = isSecure ? '; Secure' : '';
+        document.cookie = CONSENT_KEY + '=' + encodeURIComponent(consent) + '; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+      } catch (e) {}
+    }
 
     updateAnalyticsConsent(consent === 'granted');
 

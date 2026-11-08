@@ -196,7 +196,7 @@ function cleanupAffiliateRateLimitMap(now) {
 }
 
 function checkAffiliateRateLimit(req) {
-  const ip = getTrustedClientIp(req);
+  const ip = req.socket.remoteAddress || 'unknown';
   const now = Date.now();
   if (affiliateRateLimitMap.size >= 100) {
     cleanupAffiliateRateLimitMap(now);
@@ -209,6 +209,36 @@ function checkAffiliateRateLimit(req) {
   entry.count += 1;
   return entry.count > AFFILIATE_MAX_REQUESTS_PER_WINDOW;
 }
+
+export function resetAffiliateRateLimits() {
+  affiliateRateLimitMap.clear();
+}
+
+/**
+ * Inspects request for the first-party stihl_cookie_consent=granted cookie.
+ *
+ * Note: A first-party cookie is a client-side indicator that the user accepted
+ * consent in their browser, rather than cryptographic or independent server-side proof.
+ * It serves to filter out non-consenting visitors, automated scrapers, and unverified direct
+ * API hits before persisting affiliate events to SQLite.
+ */
+export function hasAffiliateConsentCookie(req) {
+  if (!req || !req.headers) return false;
+  const cookieHeader = req.headers.cookie;
+  if (!cookieHeader || typeof cookieHeader !== 'string') return false;
+  const cookies = {};
+  cookieHeader.split(';').forEach(c => {
+    const idx = c.indexOf('=');
+    if (idx > -1) {
+      const k = c.substring(0, idx).trim();
+      const v = c.substring(idx + 1).trim();
+      cookies[k] = decodeURIComponent(v);
+    }
+  });
+  return cookies['stihl_cookie_consent'] === 'granted';
+}
+
+export const hasVerifiedAffiliateConsent = hasAffiliateConsentCookie;
 
 function isSameOriginRequest(req) {
   const origin = req.headers['origin'];
@@ -253,7 +283,9 @@ const server = http.createServer(async (req, res) => {
 
   // Diagnostic Logging for Forensics (NO PII)
   if (process.env.NODE_ENV === 'production' || process.env.DEBUG_REDIRECTS) {
-    console.log(`[HTTP-Request] host: "${req.headers.host}", x-forwarded-host: "${req.headers['x-forwarded-host']}", x-forwarded-proto: "${forwardedProto}", url: "${req.url}"`);
+    if (pathname !== '/api/affiliate/track' && pathname !== '/api/affiliate/click') {
+      console.log(`[HTTP-Request] host: "${req.headers.host}", x-forwarded-host: "${req.headers['x-forwarded-host']}", x-forwarded-proto: "${forwardedProto}", url: "${req.url}"`);
+    }
   }
 
   // 0. Render Alignment: Node.js serves 200 OK directly for all incoming requests.
@@ -583,6 +615,12 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (!isSameOriginRequest(req)) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'FORBIDDEN_ORIGIN' }));
+      return;
+    }
+
     if (checkAffiliateRateLimit(req)) {
       res.writeHead(429, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'RATE_LIMITED' }));
@@ -600,6 +638,20 @@ const server = http.createServer(async (req, res) => {
       try {
         if (bodyStr) data = JSON.parse(bodyStr);
       } catch {}
+
+      // Cookie Consent Indicator Check (Phase 68.3 Privacy Protection)
+      // Browser consent cannot be assumed from unverified JSON payload fields (e.g. data.consent)
+      // or public query parameters (e.g. ?test=1).
+      // Require first-party stihl_cookie_consent=granted cookie as indication of user consent.
+      const hasConsent = hasAffiliateConsentCookie(req);
+
+      if (!hasConsent) {
+        // Fail-closed: Zero persistent event storage when consent is not indicated.
+        // Acknowledge non-blockingly without storing analytics in SQLite.
+        res.writeHead(202, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, recorded: false }));
+        return;
+      }
 
       const ALLOWED_AFFILIATE_HOSTS = new Set([
         'www.amazon.nl',
@@ -627,6 +679,11 @@ const server = http.createServer(async (req, res) => {
 
       const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
 
+      const ua = req.headers['user-agent'] || '';
+      const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);
+      const deviceType = data.device_type || (isMobileUa ? 'mobile' : 'desktop');
+      const placement = data.placement || (isProductVerified ? 'verified_product_card' : 'search_fallback');
+
       logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
         provider: data.provider || 'amazon',
         marketplace: data.marketplace || destinationHost,
@@ -643,6 +700,9 @@ const server = http.createServer(async (req, res) => {
         wave_identifier: data.wave_identifier || null,
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
         seo_tier: data.seo_tier || null,
         commercial_tier: data.commercial_tier || null,
         event_id: data.event_id || null
@@ -668,6 +728,9 @@ const server = http.createServer(async (req, res) => {
         wave_identifier: data.wave_identifier || null,
         page_path: data.page_path || '/',
         source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
         seo_tier: data.seo_tier || null,
         commercial_tier: data.commercial_tier || null,
         event_id: data.event_id ? `${data.event_id}_spec` : null

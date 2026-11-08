@@ -15,6 +15,11 @@ export const SITE_ANALYTICS_TAGS = `
       try {
         if (localStorage.getItem('stihl_cookie_consent') === 'granted') {
           analyticsConsent = 'granted';
+          try {
+            var isSecure = window.location.protocol === 'https:';
+            var secureFlag = isSecure ? '; Secure' : '';
+            document.cookie = 'stihl_cookie_consent=granted; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+          } catch (ce) {}
         }
       } catch (e) {}
       window.gtag('consent', 'default', {

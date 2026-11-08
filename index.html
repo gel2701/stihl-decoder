@@ -1356,6 +1356,9 @@
         cookieAcceptBtn.addEventListener('click', () => {
           try {
             localStorage.setItem('stihl_cookie_consent', 'granted');
+            const isSecure = window.location.protocol === 'https:';
+            const secureFlag = isSecure ? '; Secure' : '';
+            document.cookie = 'stihl_cookie_consent=granted; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
           } catch (e) {}
           if (cookieBanner) cookieBanner.classList.add('hidden');
           if (typeof window.initGoogleAnalytics === 'function') {
@@ -1368,6 +1371,9 @@
         cookieRejectBtn.addEventListener('click', () => {
           try {
             localStorage.setItem('stihl_cookie_consent', 'denied');
+            const isSecure = window.location.protocol === 'https:';
+            const secureFlag = isSecure ? '; Secure' : '';
+            document.cookie = 'stihl_cookie_consent=denied; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
           } catch (e) {}
           if (cookieBanner) cookieBanner.classList.add('hidden');
         });
