@@ -338,6 +338,7 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'PHASE60_BEFORE_AFTER.json',
     'tests/phase60_commercial_growth.test.js',
     'tests/phase68_affiliate_conversion.test.js',
+    'tests/e2e/affiliate-tracking.spec.js',
     'scripts/build_phase60_candidates.mjs',
     'scripts/generate_phase60_reports.mjs',
     'src/content/guides/stihl-bougie-vervangen.js',

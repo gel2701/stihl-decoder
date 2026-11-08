@@ -224,7 +224,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
     await page.evaluate(() => {
       if (window.handleAffiliateClick) {
         window.handleAffiliateClick(
-          { href: 'https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21', dataset: {} },
+          { href: 'https://amazon.nl/s?k=00004007000&tag=srihldecoder2-21', dataset: {} },
           { defaultPrevented: false },
           { is_test: true, part_number: '00004007000' }
         );
