@@ -207,6 +207,11 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
 
       document.getElementById('manage-cookie-accept')?.addEventListener('click', function() {
         localStorage.setItem('stihl_cookie_consent', 'granted');
+        try {
+          var isSecure = window.location.protocol === 'https:';
+          var secureFlag = isSecure ? '; Secure' : '';
+          document.cookie = 'stihl_cookie_consent=granted; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+        } catch (e) {}
         if (typeof gtag === 'function') {
           gtag('consent', 'update', { analytics_storage: 'granted' });
         }
@@ -216,6 +221,11 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
 
       document.getElementById('manage-cookie-reject')?.addEventListener('click', function() {
         localStorage.setItem('stihl_cookie_consent', 'denied');
+        try {
+          var isSecure = window.location.protocol === 'https:';
+          var secureFlag = isSecure ? '; Secure' : '';
+          document.cookie = 'stihl_cookie_consent=denied; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+        } catch (e) {}
         if (typeof gtag === 'function') {
           gtag('consent', 'update', { analytics_storage: 'denied' });
         }

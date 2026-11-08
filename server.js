@@ -210,6 +210,26 @@ function checkAffiliateRateLimit(req) {
   return entry.count > AFFILIATE_MAX_REQUESTS_PER_WINDOW;
 }
 
+export function resetAffiliateRateLimits() {
+  affiliateRateLimitMap.clear();
+}
+
+export function hasVerifiedAffiliateConsent(req) {
+  if (!req || !req.headers) return false;
+  const cookieHeader = req.headers.cookie;
+  if (!cookieHeader || typeof cookieHeader !== 'string') return false;
+  const cookies = {};
+  cookieHeader.split(';').forEach(c => {
+    const idx = c.indexOf('=');
+    if (idx > -1) {
+      const k = c.substring(0, idx).trim();
+      const v = c.substring(idx + 1).trim();
+      cookies[k] = decodeURIComponent(v);
+    }
+  });
+  return cookies['stihl_cookie_consent'] === 'granted';
+}
+
 function isSameOriginRequest(req) {
   const origin = req.headers['origin'];
   const referer = req.headers['referer'];
@@ -591,15 +611,117 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    let bodyBytes = 0;
+    let bodyStr = '';
     req.on('data', chunk => {
-      bodyBytes += chunk.length;
-      if (bodyBytes > 8192) req.destroy();
+      bodyStr += chunk;
+      if (bodyStr.length > 8192) req.destroy();
     });
 
     req.on('end', () => {
+      let data = {};
+      try {
+        if (bodyStr) data = JSON.parse(bodyStr);
+      } catch {}
+
+      // Server-Side Consent Verification (Phase 68.3 Security & Privacy Protection)
+      // Browser consent cannot be derived solely from unproven JSON payload fields (e.g. data.consent)
+      // or public query parameters (e.g. ?test=1).
+      // Inspect first-party HTTP cookie header for verified consent proof.
+      const hasVerifiedConsent = hasVerifiedAffiliateConsent(req);
+
+      if (!hasVerifiedConsent) {
+        // Fail-closed: Zero persistent event storage for unverified requests or client claims.
+        // Acknowledge non-blockingly without storing analytics in SQLite.
+        res.writeHead(202, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, recorded: false }));
+        return;
+      }
+
+      const ALLOWED_AFFILIATE_HOSTS = new Set([
+        'www.amazon.nl',
+        'amazon.nl',
+        'www.amazon.de',
+        'amazon.de',
+        'www.amazon.com',
+        'amazon.com'
+      ]);
+
+      let destinationHost = 'amazon.nl';
+      if (typeof data.destination_url === 'string') {
+        try {
+          const destUrl = new URL(data.destination_url);
+          if (ALLOWED_AFFILIATE_HOSTS.has(destUrl.hostname.toLowerCase())) {
+            destinationHost = destUrl.hostname.toLowerCase();
+          }
+        } catch {}
+      }
+
+      const normPart = PartNormalizer.normalizePartNumber(data.part_number);
+      const isProductVerified = Boolean(data.product_verified);
+      const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+      const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
+
+      const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
+
+      const ua = req.headers['user-agent'] || '';
+      const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);
+      const deviceType = data.device_type || (isMobileUa ? 'mobile' : 'desktop');
+      const placement = data.placement || (isProductVerified ? 'verified_product_card' : 'search_fallback');
+
+      logStihlEvent(EVENT_TYPES.AFFILIATE_CLICK, {
+        provider: data.provider || 'amazon',
+        marketplace: data.marketplace || destinationHost,
+        offer_type: offerType,
+        match_type: data.match_type || offerType,
+        link_type: linkType,
+        asin_if_known: data.asin_if_known || null,
+        product_verified: isProductVerified,
+        destination_url: data.destination_url || null,
+        part_number: normPart,
+        model: data.model || null,
+        query_variant: data.query_variant || null,
+        section_context: data.section_context || null,
+        wave_identifier: data.wave_identifier || null,
+        page_path: data.page_path || '/',
+        source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
+        seo_tier: data.seo_tier || null,
+        commercial_tier: data.commercial_tier || null,
+        event_id: data.event_id || null
+      }, req.headers['user-agent'], isTestClick);
+
+      const specificEventType = isProductVerified
+        ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
+        : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK;
+
+      logStihlEvent(specificEventType, {
+        provider: data.provider || 'amazon',
+        marketplace: data.marketplace || destinationHost,
+        offer_type: offerType,
+        match_type: data.match_type || offerType,
+        link_type: linkType,
+        asin_if_known: data.asin_if_known || null,
+        product_verified: isProductVerified,
+        destination_url: data.destination_url || null,
+        part_number: normPart,
+        model: data.model || null,
+        query_variant: data.query_variant || null,
+        section_context: data.section_context || null,
+        wave_identifier: data.wave_identifier || null,
+        page_path: data.page_path || '/',
+        source_page: data.page_path || '/',
+        placement: placement,
+        device_type: deviceType,
+        is_mobile: deviceType === 'mobile',
+        seo_tier: data.seo_tier || null,
+        commercial_tier: data.commercial_tier || null,
+        event_id: data.event_id ? `${data.event_id}_spec` : null
+      }, req.headers['user-agent'], isTestClick);
+
       res.writeHead(202, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, recorded: false }));
+      res.end(JSON.stringify({ success: true, recorded: true }));
     });
     return;
   }

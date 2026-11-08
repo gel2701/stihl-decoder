@@ -5,7 +5,7 @@ import { after, test } from 'node:test';
 process.env.PORT = '0';
 process.env.NODE_ENV = 'production';
 
-const { server } = await import('../server.js');
+const { server, resetAffiliateRateLimits } = await import('../server.js');
 const { getDatabaseConnection } = await import('../src/databaseConfig.js');
 
 after(() => server.close());
@@ -94,4 +94,52 @@ test('public affiliate endpoints discard all claims, never write events, and kee
   } finally {
     console.log = originalLog;
   }
+});
+
+test('verified first-party consent cookie authorizes analytics recording on /api/affiliate/track', async () => {
+  resetAffiliateRateLimits();
+  const marker = `phase683_verified_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const before = await affiliateRows();
+
+  // 1. With verified consent cookie (stihl_cookie_consent=granted)
+  const result = await request('/api/affiliate/track', 'POST', JSON.stringify({
+    event_id: marker,
+    destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
+    provider: 'amazon',
+    marketplace: 'amazon.nl',
+    part_number: '1110 400 7005',
+    product_verified: true,
+    offer_type: 'MANUAL_ASIN',
+    link_type: 'DIRECT_ASIN',
+    placement: 'verified_product_card'
+  }), {
+    'Content-Type': 'application/json',
+    'Cookie': 'stihl_cookie_consent=granted',
+    'User-Agent': 'Mozilla/5.0 Test'
+  });
+
+  assert.equal(result.status, 202);
+  assert.deepEqual(JSON.parse(result.body), { success: true, recorded: true });
+
+  const after = await affiliateRows();
+  assert.equal(after.length, before.length + 2, 'Must record primary and specific affiliate events');
+  assert.ok(after.some(r => r.event_id === marker));
+
+  // 2. With denied consent cookie (stihl_cookie_consent=denied)
+  const deniedMarker = `phase683_denied_${Date.now()}`;
+  const deniedResult = await request('/api/affiliate/track', 'POST', JSON.stringify({
+    event_id: deniedMarker,
+    destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21',
+    part_number: '1110 400 7005'
+  }), {
+    'Content-Type': 'application/json',
+    'Cookie': 'stihl_cookie_consent=denied',
+    'User-Agent': 'Mozilla/5.0 Test'
+  });
+
+  assert.equal(deniedResult.status, 202);
+  assert.deepEqual(JSON.parse(deniedResult.body), { success: true, recorded: false });
+
+  const afterDenied = await affiliateRows();
+  assert.equal(afterDenied.length, after.length, 'Must not record events when cookie is denied');
 });

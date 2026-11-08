@@ -112,3 +112,12 @@ In vervolg op de privacycontrole is de consent-validatie voor affiliate-kliktrac
 2. **Consistente Implementatie:** Toegepast in `PartDetailPageTemplate.js`, `ModelPartsPageTemplate.js`, `PartsDiscoveryPageTemplate.js` en `SiteAnalytics.js`.
 3. **Behoud Aankoopfunctionaliteit:** De native Amazon links, ASINs, partner-ID (`tag=srihldecoder2-21`) en `href` attributen blijven in alle gevallen ongehinderd en onveranderd functioneren.
 4. **Genuanceerde Privacyclaims:** Helder onderscheid tussen tijdelijk in-memory IP-adres verwerking voor rate limiting (misbruikpreventie) en geen persistente opslag van affiliate-klikgebeurtenissen via de publieke endpoint zolang server-side toestemming niet onafhankelijk kan worden bevestigd.
+
+---
+
+## 8. Phase 68.3 Security & Registry Integrity Fix
+
+1. **Server-Side Consent Verificatie:** In `server.js` verifieert `hasVerifiedAffiliateConsent(req)` de first-party cookie `stihl_cookie_consent=granted`. Client-side consent in `localStorage` wordt bij toekenning gesynchroniseerd met `document.cookie` (`SameSite=Lax; Max-Age=31536000`). Directe POST-verzoeken zonder cookie, verzoeken met vervalste bodyclaims (`consent: true`) of queries (`?test=1`) leiden tot exact 0 SQLite-schrijfacties en retourneren `202 Accepted` `{ success: true, recorded: false }`.
+2. **Centrale Autorisatie Gidslinks:** In `GuidePageTemplate.js` worden alle artikelen in `verifiedParts` uitsluitend via `AffiliateOfferResolver` en `VerifiedOfferRegistry` geautoriseerd. Hardcoded ASIN's en URL's zijn geëlimineerd uit `stihl-bougie-vervangen.js`. Onbekende, staged of rejected onderdelen vallen conform fail-closed principes direct terug op een gemarkeerde `SEARCH_FALLBACK` zonder directe productlink.
+3. **Behoud Pilot Invarianten:** Het strikte pilot-maximum van 3 actieve ASIN's (`B0068M5NAG`, `B001RM8J76`, `B001RMA5S2`) blijft te allen tijde gehandhaafd. De bougiegids behoudt status `READY_FOR_REVIEW`.
+4. **Volledige CI Parity:** Zowel de node contract tests als de Playwright browser-e2e tests slagen 100% reproduceerbaar.

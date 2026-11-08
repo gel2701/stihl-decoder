@@ -19,6 +19,11 @@
     } catch {
       // Consent remains in-memory for this page if storage is unavailable.
     }
+    try {
+      var isSecure = window.location.protocol === 'https:';
+      var secureFlag = isSecure ? '; Secure' : '';
+      document.cookie = CONSENT_KEY + '=' + encodeURIComponent(value) + '; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+    } catch (e) {}
   }
 
   function ensureGtag() {
@@ -189,6 +194,13 @@
 
   function boot() {
     const consent = getConsent();
+    if (consent) {
+      try {
+        var isSecure = window.location.protocol === 'https:';
+        var secureFlag = isSecure ? '; Secure' : '';
+        document.cookie = CONSENT_KEY + '=' + encodeURIComponent(consent) + '; Path=/; SameSite=Lax; Max-Age=31536000' + secureFlag;
+      } catch (e) {}
+    }
 
     updateAnalyticsConsent(consent === 'granted');
 
