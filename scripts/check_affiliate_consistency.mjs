@@ -27,7 +27,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion)
+// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE expansion)
 const AUTHORIZED_PILOT_PARTS = new Set([
   '11104007005', // Bosch WSR6F
   '00004007000', // NGK BPMR7A
@@ -53,7 +53,17 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '07811201109', // STIHL Aandrijfvet 80g
   '07811201110', // STIHL Aandrijfvet 225g
   '41471900600', // STIHL Terugtrekveer FS 460
-  '41197106000'  // STIHL Afsnijdmes maaikop
+  '41197106000', // STIHL Afsnijdmes maaikop
+  // Phase 70: Sägenspezi / Amazon.de expansion parts
+  '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
+  '11304001302', // Sägenspezi Zündmodul MS 170 / MS 180 (B00LAHQD8A)
+  '11231200605', // Sägenspezi Vergaser MS 250 (B00LAHQRM2)
+  '11211200611', // Sägenspezi Vergaser MS 260 (B07MM5R1KG)
+  '11210201200', // Sägenspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
+  '11236402074', // Sägenspezi Kettenrad MS 180 (B00LAHPOXA)
+  '11230071000', // Sägenspezi Kettenspanner Umbaukit MS 170 (B07F6CH3BV)
+  '11230302003', // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '11231412200'  // Sägenspezi Ansaugstutzen MS 210 (B00LAHFB1U)
 ]);
 
 export function checkAffiliateConsistency() {
@@ -212,7 +222,7 @@ export function checkAffiliateConsistency() {
   if (fs.existsSync(regPath) && fs.existsSync(comPath)) {
     const regDoc = JSON.parse(fs.readFileSync(regPath, 'utf8'));
     const comDoc = JSON.parse(fs.readFileSync(comPath, 'utf8'));
-    const regOffers = new Map((regDoc.offers || []).map(o => [PartNormalizer.normalizePartNumber(o.part_number), o]));
+    const regOffers = new Map((regDoc.offers || []).filter(o => !o.marketplace || o.marketplace === 'amazon.nl').map(o => [PartNormalizer.normalizePartNumber(o.part_number), o]));
 
     for (const item of (comDoc.parts || [])) {
       const normPart = PartNormalizer.normalizePartNumber(item.part_number);

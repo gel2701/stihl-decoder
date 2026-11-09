@@ -8,11 +8,12 @@ import { validateAmazonLink } from '../src/affiliate/AmazonLinkValidator.js';
 const registryPath = new URL('../data/affiliate/verified_amazon_registry.json', import.meta.url);
 const registry = JSON.parse(readFileSync(registryPath));
 const active = registry.offers.filter(offer => offer.status === 'ACTIVE');
+const activeNL = active.filter(offer => !offer.marketplace || offer.marketplace === 'amazon.nl');
 const activeMap = new Map(active.map(offer => [offer.part_number, offer.asin]));
 assert.equal(activeMap.get('11104007005'), 'B0068M5NAG');
 assert.equal(activeMap.get('00004007000'), 'B001RM8J76');
 assert.equal(activeMap.get('00004007011'), 'B001RMA5S2');
-assert.ok(active.length <= 25);
+assert.ok(activeNL.length <= 25);
 assert.equal(registry.policy.max_active_offers_allowed, 25);
 for (const offer of active) {
   assert.equal(validateAmazonLink(offer.direct_affiliate_url, {

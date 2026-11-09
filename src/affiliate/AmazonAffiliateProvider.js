@@ -194,10 +194,12 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
   }
 
   /**
-   * Reads associate tag for the given marketplace from environment variables.
-   * Supports regional tags (e.g. AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_COM)
-   * with fallback to AMAZON_ASSOCIATE_TAG strictly for amazon.nl.
-   * Never hardcoded, never logged.
+   * Reads associate tag for the given marketplace from environment variables or strict defaults.
+   * Supports regional tags (e.g. AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_NL)
+   * with strict marketplace isolation:
+   * - amazon.de strictly uses AMAZON_ASSOCIATE_TAG_DE || 'srihldecode00-21'
+   * - amazon.nl strictly uses AMAZON_ASSOCIATE_TAG_NL || AMAZON_ASSOCIATE_TAG || 'srihldecoder2-21'
+   * Tags are never mixed or leaked between marketplaces.
    * @param {string} [marketplace]
    * @returns {string|null}
    */
@@ -206,7 +208,7 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
       ? marketplace.trim().toLowerCase()
       : this.marketplace;
 
-    // 1. Check explicit regional env var (e.g., AMAZON_ASSOCIATE_TAG_DE, AMAZON_ASSOCIATE_TAG_COM, AMAZON_ASSOCIATE_TAG_NL)
+    // 1. Regional tag takes precedence if set (e.g. AMAZON_ASSOCIATE_TAG_DE for amazon.de)
     const suffix = targetMarketplace.split('.').pop()?.toUpperCase();
     if (suffix) {
       const regionalVar = `AMAZON_ASSOCIATE_TAG_${suffix}`;
@@ -317,21 +319,47 @@ export class AmazonAffiliateProvider extends AffiliateProvider {
 
     const formattedPartNumber = PartNormalizer.formatPartNumber(canonicalPartNumber);
 
-    // 0. Check VerifiedOfferRegistry first (Phase 59D Controlled Activation)
-    if (this.verifiedRegistry && typeof this.verifiedRegistry.getActiveOffer === 'function') {
-      const activeOffer = this.verifiedRegistry.getActiveOffer(canonicalPartNumber);
-      if (activeOffer) {
-        const targetMarketplace = activeOffer.marketplace || this.marketplace;
-        const targetTag = this.getAssociateTag(targetMarketplace);
-        if (targetTag) {
-          const commercialOffer = this.verifiedRegistry.resolveCommercialOffer({
-            partNumber: canonicalPartNumber,
-            partName: params.partName,
-            tag: targetTag,
-            marketplace: targetMarketplace
-          });
-          if (commercialOffer) {
-            return [commercialOffer];
+    // 0. Check VerifiedOfferRegistry first (Phase 59D / Phase 70 Multi-Offer)
+    if (this.verifiedRegistry) {
+      if (typeof this.verifiedRegistry.getActiveOffers === 'function') {
+        const activeOffers = this.verifiedRegistry.getActiveOffers(canonicalPartNumber);
+        if (activeOffers && activeOffers.length > 0) {
+          const resolvedCommercialOffers = [];
+          for (const activeOffer of activeOffers) {
+            const targetMarketplace = activeOffer.marketplace || this.marketplace;
+            const targetTag = this.getAssociateTag(targetMarketplace) || activeOffer.affiliate_tag;
+            if (targetTag) {
+              const commercialOffer = this.verifiedRegistry.resolveCommercialOffer({
+                partNumber: canonicalPartNumber,
+                partName: params.partName,
+                tag: targetTag,
+                marketplace: targetMarketplace,
+                activeOffer
+              });
+              if (commercialOffer) {
+                resolvedCommercialOffers.push(commercialOffer);
+              }
+            }
+          }
+          if (resolvedCommercialOffers.length > 0) {
+            return resolvedCommercialOffers;
+          }
+        }
+      } else if (typeof this.verifiedRegistry.getActiveOffer === 'function') {
+        const activeOffer = this.verifiedRegistry.getActiveOffer(canonicalPartNumber);
+        if (activeOffer) {
+          const targetMarketplace = activeOffer.marketplace || this.marketplace;
+          const targetTag = this.getAssociateTag(targetMarketplace) || activeOffer.affiliate_tag;
+          if (targetTag) {
+            const commercialOffer = this.verifiedRegistry.resolveCommercialOffer({
+              partNumber: canonicalPartNumber,
+              partName: params.partName,
+              tag: targetTag,
+              marketplace: targetMarketplace
+            });
+            if (commercialOffer) {
+              return [commercialOffer];
+            }
           }
         }
       }
