@@ -360,9 +360,10 @@ export class EbayBrowseApiClient {
           }
 
           // Conclusive condition:
-          // Either the option explicitly lists NL in shipToLocations with valid cost,
-          // OR contextual delivery to NL returned a concrete shipping cost with delivery estimates
-          if (parsedCost != null && (explicitlyListsNl || opt.shippingCarrierCode || opt.shippingServiceCode)) {
+          // The option must explicitly list NL (or NL, NLD, Netherlands, Europe, Worldwide) in shipToLocations
+          // AND have a valid, parsed non-negative shipping cost.
+          // Carrier codes or service codes alone without explicit destination coverage are NOT sufficient.
+          if (parsedCost != null && explicitlyListsNl) {
             shippingStatus = 'SHIPS_TO_NL_CONFIRMED';
             shippingCostNl = parsedCost;
             shipsToNl = true;
@@ -387,7 +388,7 @@ export class EbayBrowseApiClient {
       results.push({
         item_id: item.itemId,
         title: item.title || '',
-        seller_name: item.seller?.username || this.defaultSeller,
+        seller_name: item.seller?.username || null,
         item_price: itemPrice,
         currency,
         shipping_cost_nl: shippingCostNl,

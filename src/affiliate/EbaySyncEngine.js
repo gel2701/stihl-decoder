@@ -1,14 +1,15 @@
 /**
  * src/affiliate/EbaySyncEngine.js
  *
- * Phase 70D / 71A — Scalable eBay Batch Synchronization & Verification Engine
+ * Phase 71B — Scalable eBay Batch Synchronization & Verification Engine
  *
  * Implements strict, multi-tiered part matching and conclusive NL shipping validation:
- * - Match Gate 1: Exact 11-digit STIHL part number (OEM or aftermarket reference in MPN/title/specifics).
- * - Match Gate 2: Explicit superseding/replacement part numbers.
- * - Match Gate 3: Validated model compatibility + component type + technical specification concordance (e.g. bore, chain pitch, gauge).
- * - Rejection: Blocks wrong parts, wrong dimensions, incompatible chain pitch, other machine variants, and superficial keyword matches.
- * - Conclusive NL Shipping: Requires SHIPS_TO_NL_CONFIRMED.
+ * - Technical Conflict Verification across ALL match levels (even exact/superseding numbers).
+ * - Component Type Concordance: blocks wrong part categories (e.g. spark plug for cylinder).
+ * - Technical Specs Concordance: blocks wrong bore diameter, chain pitch, gauge, drive links.
+ * - Model Claim Restriction: limits claims strictly to demonstrated models.
+ * - Seller Identity Verification: validates seller username (saegenspezi_de), rejects unknown/mismatched sellers.
+ * - Conclusive NL Shipping: requires explicit SHIPS_TO_NL_CONFIRMED.
  * - Scalability: Supports 250 to 1,000+ items with batch rate-limiting, deduplication, resumable checkpoints, and audit reporting.
  */
 
@@ -18,9 +19,12 @@ export const REJECTION_REASONS = {
   DOES_NOT_SHIP_TO_NL: 'DOES_NOT_SHIP_TO_NL',
   SHIPPING_UNVERIFIED: 'SHIPPING_UNVERIFIED',
   OUT_OF_STOCK: 'OUT_OF_STOCK',
+  SELLER_MISMATCH: 'SELLER_MISMATCH',
+  SELLER_UNKNOWN: 'SELLER_UNKNOWN',
   PART_NUMBER_MISMATCH: 'PART_NUMBER_MISMATCH',
   COMPONENT_TYPE_MISMATCH: 'COMPONENT_TYPE_MISMATCH',
   MODEL_CONFLICT: 'MODEL_CONFLICT',
+  INSUFFICIENT_TECHNICAL_EVIDENCE: 'INSUFFICIENT_TECHNICAL_EVIDENCE',
   TECHNICAL_SPEC_CONFLICT_BORE: 'TECHNICAL_SPEC_CONFLICT_BORE',
   TECHNICAL_SPEC_CONFLICT_PITCH: 'TECHNICAL_SPEC_CONFLICT_PITCH',
   TECHNICAL_SPEC_CONFLICT_GAUGE: 'TECHNICAL_SPEC_CONFLICT_GAUGE',
@@ -54,11 +58,11 @@ export class EbaySyncEngine {
 
   /**
    * Evaluates compatibility between an eBay item and a target STIHL part.
-   * Fails closed: rejects if there is ambiguity, wrong part type, or technical conflict.
+   * Enforces technical specification & component checks across ALL match levels.
    *
    * @param {Object} item - Parsed eBay item summary
    * @param {Object|string} targetPart - Canonical part number or metadata object
-   * @returns {{ compatible: boolean, evidence_type?: string, match_score: number, rejection_reason?: string }}
+   * @returns {{ compatible: boolean, evidence_type?: string, match_score: number, evidenced_models?: string[], rejection_reason?: string }}
    */
   evaluateItemCompatibility(item, targetPart) {
     if (!item || !targetPart) {
@@ -84,22 +88,16 @@ export class EbaySyncEngine {
 
     const combinedSearchText = `${title} ${itemUrl} ${specificValues}`;
 
-    // --- GATE 1: Exact STIHL Part Number Match ---
-    if (
+    // --- STEP 1: Detect Part Number Presence ---
+    const hasExactPartNumber = (
       combinedSearchText.includes(normPart) ||
       combinedSearchText.includes(formattedPart.toLowerCase()) ||
       combinedSearchText.includes(dashedPart.toLowerCase()) ||
       combinedSearchText.includes(dottedPart.toLowerCase())
-    ) {
-      return {
-        compatible: true,
-        evidence_type: 'EXACT_PART_NUMBER_MATCH',
-        match_score: 1.0
-      };
-    }
+    );
 
-    // --- GATE 2: Explicit Superseding / Replacement Part Number ---
-    const supersessions = Array.isArray(targetPart.supersessions) ? targetPart.supersessions : [];
+    let hasSupersedingPartNumber = false;
+    const supersessions = Array.isArray(targetPart?.supersessions) ? targetPart.supersessions : [];
     for (const sup of supersessions) {
       const normSup = PartNormalizer.normalizePartNumber(sup);
       if (normSup) {
@@ -112,22 +110,22 @@ export class EbaySyncEngine {
           combinedSearchText.includes(supDashed.toLowerCase()) ||
           combinedSearchText.includes(supDotted.toLowerCase())
         ) {
-          return {
-            compatible: true,
-            evidence_type: 'SUPERSEDING_PART_NUMBER_MATCH',
-            match_score: 0.95
-          };
+          hasSupersedingPartNumber = true;
+          break;
         }
       }
     }
 
-    // If metadata is provided, check model compatibility + component type + specs
+    // --- STEP 2: Strict Component Type & Technical Specs Check ---
+    // (MANDATORY EVEN IF EXACT PART NUMBER IS PRESENT TO PREVENT WRONG REPLACEMENT CLAIMS)
+    let evidencedModels = [];
+
     if (typeof targetPart === 'object' && targetPart !== null) {
       const partName = (targetPart.part_name || '').toLowerCase();
       const models = Array.isArray(targetPart.models) ? targetPart.models : [];
       const specs = targetPart.technical_specs || {};
 
-      // Detect Component Type
+      // Detect Target Component Type
       const isCylinder = partName.includes('cylinder') || partName.includes('zylinder') || partName.includes('cilinder');
       const isPiston = partName.includes('piston') || partName.includes('kolben') || partName.includes('zuiger');
       const isChain = partName.includes('chain') || partName.includes('kette') || partName.includes('ketting') || partName.includes('sägekette');
@@ -135,41 +133,50 @@ export class EbaySyncEngine {
       const isCarburetor = partName.includes('carburetor') || partName.includes('vergaser') || partName.includes('carburateur');
       const isSparkPlug = partName.includes('spark plug') || partName.includes('zündkerze') || partName.includes('bougie');
 
-      // Check Component Type Concordance
-      if (isCylinder && !title.includes('zylinder') && !title.includes('cylinder') && !title.includes('cilinder')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-      if (isPiston && !isCylinder && !title.includes('kolben') && !title.includes('piston') && !title.includes('zuiger')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-      if (isChain && !title.includes('kette') && !title.includes('chain') && !title.includes('sägekette')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-      if (isGuideBar && !title.includes('schwert') && !title.includes('schiene') && !title.includes('führungsschiene') && !title.includes('bar')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-      if (isCarburetor && !title.includes('vergaser') && !title.includes('carburetor') && !title.includes('carburateur')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-      if (isSparkPlug && !title.includes('zündkerze') && !title.includes('spark') && !title.includes('bougie')) {
-        return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
-      }
-
-      // Check Model Compatibility
-      if (models.length > 0) {
-        const matchesAnyModel = models.some(m => {
-          const lowerM = m.toLowerCase();
-          const cleanM = lowerM.replace(/[^a-z0-9]/g, '');
-          const cleanTitle = title.replace(/[^a-z0-9]/g, '');
-          return title.includes(lowerM) || cleanTitle.includes(cleanM);
-        });
-
-        if (!matchesAnyModel) {
-          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.MODEL_CONFLICT };
+      // Check Incompatible Component Types in Item Title
+      if (isCylinder) {
+        if (!title.includes('zylinder') && !title.includes('cylinder') && !title.includes('cilinder')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+        if (title.includes('zündkerze') || title.includes('bougie') || title.includes('vergaser') || title.includes('carburetor')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
         }
       }
 
-      // Check Technical Specifications (Bore, Pitch, Gauge)
+      if (isPiston && !isCylinder) {
+        if (!title.includes('kolben') && !title.includes('piston') && !title.includes('zuiger')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+      }
+
+      if (isChain) {
+        if (!title.includes('kette') && !title.includes('chain') && !title.includes('sägekette')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+        if (title.includes('zylinder') || title.includes('vergaser') || title.includes('zündkerze')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+      }
+
+      if (isGuideBar) {
+        if (!title.includes('schwert') && !title.includes('schiene') && !title.includes('führungsschiene') && !title.includes('bar')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+      }
+
+      if (isCarburetor) {
+        if (!title.includes('vergaser') && !title.includes('carburetor') && !title.includes('carburateur')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+      }
+
+      if (isSparkPlug) {
+        if (!title.includes('zündkerze') && !title.includes('spark') && !title.includes('bougie')) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.COMPONENT_TYPE_MISMATCH };
+        }
+      }
+
+      // Check Technical Specifications (Bore, Pitch, Gauge, Drive Links)
       if (specs.bore_mm) {
         const boreRegex = /(\d{2}(?:[.,]\d+)?)\s*mm/i;
         const match = title.match(boreRegex);
@@ -213,12 +220,63 @@ export class EbaySyncEngine {
         }
       }
 
-      // Model + component type verified without technical conflict
+      // Evidenced Models Check
+      if (models.length > 0) {
+        evidencedModels = models.filter(m => {
+          const lowerM = m.toLowerCase();
+          const cleanM = lowerM.replace(/[^a-z0-9]/g, '');
+          const cleanTitle = title.replace(/[^a-z0-9]/g, '');
+          return title.includes(lowerM) || cleanTitle.includes(cleanM);
+        });
+
+        // If listing names specific models but none of our target models -> MODEL_CONFLICT
+        if (evidencedModels.length === 0 && !hasExactPartNumber && !hasSupersedingPartNumber) {
+          return { compatible: false, match_score: 0, rejection_reason: REJECTION_REASONS.MODEL_CONFLICT };
+        }
+      }
+    }
+
+    // --- STEP 3: Return Compatibility Decision ---
+    if (hasExactPartNumber) {
       return {
         compatible: true,
-        evidence_type: 'MODEL_AND_SPEC_COMPATIBLE',
-        match_score: 0.85
+        evidence_type: 'EXACT_PART_NUMBER_MATCH',
+        match_score: 1.0,
+        evidenced_models: evidencedModels
       };
+    }
+
+    if (hasSupersedingPartNumber) {
+      return {
+        compatible: true,
+        evidence_type: 'SUPERSEDING_PART_NUMBER_MATCH',
+        match_score: 0.95,
+        evidenced_models: evidencedModels
+      };
+    }
+
+    // If matching without part number: requires proven model, verified component type, and sufficient technical evidence
+    if (typeof targetPart === 'object' && targetPart !== null) {
+      const specs = targetPart.technical_specs || {};
+      const hasTechnicalAnchor = specs.bore_mm || specs.chain_pitch || specs.drive_link_thickness_mm;
+
+      if (evidencedModels.length > 0) {
+        if (!hasTechnicalAnchor) {
+          // Model match alone without technical specifications is insufficient
+          return {
+            compatible: false,
+            match_score: 0,
+            rejection_reason: REJECTION_REASONS.INSUFFICIENT_TECHNICAL_EVIDENCE
+          };
+        }
+
+        return {
+          compatible: true,
+          evidence_type: 'MODEL_AND_SPEC_COMPATIBLE',
+          match_score: 0.85,
+          evidenced_models: evidencedModels
+        };
+      }
     }
 
     return {
@@ -235,6 +293,7 @@ export class EbaySyncEngine {
    * @param {Object} [options]
    * @param {number} [options.maxItems=1000] - Scalable capacity cap
    * @param {boolean} [options.deduplicate=true]
+   * @param {string|boolean} [options.requireSeller='saegenspezi_de'] - Verified seller requirement
    * @returns {Promise<{
    *   scanned_count: number,
    *   matched_count: number,
@@ -276,7 +335,7 @@ export class EbaySyncEngine {
 
       const res = await this.apiClient.searchItems({
         partNumber: normPart,
-        seller: 'saegenspezi_de'
+        seller: options.requireSeller !== false ? (options.requireSeller || 'saegenspezi_de') : undefined
       });
 
       if (this.batchDelayMs > 0) {
@@ -294,6 +353,41 @@ export class EbaySyncEngine {
         // Deduplication check
         if (options.deduplicate !== false && seenItemIds.has(item.item_id)) {
           continue;
+        }
+
+        // Seller identity verification
+        const sellerName = (item.seller_name || '').toLowerCase().trim();
+        const requiredSeller = options.requireSeller !== false
+          ? String(options.requireSeller || 'saegenspezi_de').toLowerCase().trim()
+          : null;
+        const isSägenspezi = sellerName === 'saegenspezi_de' || sellerName === 'saegenspezi';
+
+        if (requiredSeller) {
+          if (!sellerName) {
+            rejectedCandidates.push({
+              item_id: item.item_id,
+              title: item.title,
+              seller_name: null,
+              part_number: normPart,
+              rejection_reason: REJECTION_REASONS.SELLER_UNKNOWN,
+              timestamp: new Date().toISOString()
+            });
+            rejectionBreakdown[REJECTION_REASONS.SELLER_UNKNOWN] = (rejectionBreakdown[REJECTION_REASONS.SELLER_UNKNOWN] || 0) + 1;
+            continue;
+          }
+
+          if (sellerName !== requiredSeller && !isSägenspezi) {
+            rejectedCandidates.push({
+              item_id: item.item_id,
+              title: item.title,
+              seller_name: item.seller_name,
+              part_number: normPart,
+              rejection_reason: REJECTION_REASONS.SELLER_MISMATCH,
+              timestamp: new Date().toISOString()
+            });
+            rejectionBreakdown[REJECTION_REASONS.SELLER_MISMATCH] = (rejectionBreakdown[REJECTION_REASONS.SELLER_MISMATCH] || 0) + 1;
+            continue;
+          }
         }
 
         // Shipping validation: must be conclusively SHIPS_TO_NL_CONFIRMED
@@ -341,7 +435,7 @@ export class EbaySyncEngine {
             item_id: item.item_id,
             title: item.title,
             seller_name: item.seller_name,
-            brand: 'Sägenspezi',
+            brand: isSägenspezi ? 'Sägenspezi' : (item.seller_name || 'Aftermarket'),
             item_price: item.item_price,
             currency: item.currency,
             shipping_cost_nl: item.shipping_cost_nl,
@@ -350,6 +444,7 @@ export class EbaySyncEngine {
             affiliate_url: item.affiliate_url,
             condition: item.condition,
             evidence_type: matchResult.evidence_type,
+            evidenced_models: matchResult.evidenced_models || [],
             match_score: matchResult.match_score,
             synced_at: new Date().toISOString()
           };
