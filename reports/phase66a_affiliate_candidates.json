@@ -14,29 +14,30 @@
     "PHASE59F1_ACTIVATION_CANDIDATES.json",
     "PHASE60_1_VERIFIED_OFFERS.json"
   ],
-  "input_fingerprint": "52d5a9bb4a6b881f030ab71f906a672d62eceffc7c508fa6e2f6f31c6d1e108c",
+  "input_fingerprint": "f38b9ea814cf1df8310e7579e97f699a346b2a1b1f539b8130a6600883f2229b",
   "batch_size": 25,
   "counts": {
     "parts": 250,
     "unique_parts": 250,
-    "active_existing_verified": 6,
+    "active_existing_verified": 10,
     "new_verified": 0,
     "permitted_searches_performed": 0,
-    "unique_asins": 8,
-    "unique_mappings": 9,
+    "unique_asins": 11,
+    "unique_mappings": 12,
     "part_statuses": {
-      "VERIFIED": 6,
-      "STAGED": 1,
+      "VERIFIED": 10,
+      "STAGED": 0,
       "REJECTED": 2,
-      "RESEARCH_REQUIRED": 241,
+      "RESEARCH_REQUIRED": 238,
       "NO_CANDIDATE": 0
     },
     "candidate_mappings": {
-      "VERIFIED": 6,
-      "STAGED": 1,
+      "VERIFIED": 10,
+      "STAGED": 0,
       "REJECTED": 2
     },
     "manufacturers": {
+      "ANDREAS STIHL AG & Co. KG": 3,
       "Bosch Automotive Aftermarket": 1,
       "MCHNIC": 1,
       "MospdyGear": 1,
@@ -45,7 +46,7 @@
       "Trade-Shop": 1
     },
     "marketplaces": {
-      "amazon.nl": 9
+      "amazon.nl": 12
     },
     "categories": {
       "antivibratie": 9,
@@ -1341,7 +1342,7 @@
       "search_profile": {
         "query": "STIHL 0000 642 1240 Stihl 00006421240 Rim Sprocket 3/8\" Picco 7T",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
@@ -1352,28 +1353,32 @@
         {
           "asin": "B000IBWVWG",
           "marketplace": "amazon.nl",
-          "status": "STAGED",
-          "activation_state": "INACTIVE",
-          "research_status": "RESEARCH_REQUIRED",
-          "source": "PHASE60_1_VERIFIED_OFFERS.json",
-          "source_timestamp": "2026-11-03T17:32:53.569Z",
-          "source_status": "VERIFIED_STAGED_READY",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
           "manufacturer": "Oregon Tool, Inc.",
-          "manufacturer_part_number": null,
+          "manufacturer_part_number": "18720",
           "ean_gtin": "0036577187202",
           "package_quantity": 1,
-          "evidence_sources": [],
-          "reason": "Not active in production registry; offline evidence cannot establish current ASIN identity",
-          "evidence_url": "https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth/p/18720",
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B000IBWVWG",
+              "title": "Amazon.nl productvermelding B000IBWVWG",
+              "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 290 / MS 310 voor onderdeel 00006421240.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
           "gate_1": "PASS",
-          "gate_2": "PASS",
-          "url_valid": null
+          "gate_2": "PASS"
         }
       ],
-      "status": "STAGED",
-      "activation_state": "INACTIVE",
-      "research_status": "CANDIDATE_NEEDS_VERIFICATION",
-      "current_link_type": "SEARCH_FALLBACK",
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%200000%20642%201240&tag=srihldecoder2-21"
     },
     {
@@ -4451,17 +4456,42 @@
       "search_profile": {
         "query": "STIHL 1121 640 2004 Stihl Chain Sprocket 0.325'' 7T",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DNL21X",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "1121 640 2004",
+          "ean_gtin": "0886661160174",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B079DNL21X",
+              "title": "Amazon.nl productvermelding B079DNL21X",
+              "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 260 voor onderdeel 11216402004.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201121%20640%202004&tag=srihldecoder2-21"
     },
     {
@@ -5183,18 +5213,43 @@
       "search_profile": {
         "query": "STIHL 0000 930 2298 Stihl Starter Rope 3.0Mm X 30.5M",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B007X6X5M2",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "0000 930 2298",
+          "ean_gtin": "0795711132705",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B007X6X5M2",
+              "title": "Amazon.nl productvermelding B007X6X5M2",
+              "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00009302298.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%200000%20930%202298&tag=srihldecoder2-21"
     },
     {
@@ -6393,18 +6448,43 @@
       "search_profile": {
         "query": "STIHL 1123 640 2073 Stihl Chain Sprocket 3/8\"P 6 Teeth",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DN88M2",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "1123 640 2073",
+          "ean_gtin": "0886661160150",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B079DN88M2",
+              "title": "Amazon.nl productvermelding B079DN88M2",
+              "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 170 voor onderdeel 11236402073.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201123%20640%202073&tag=srihldecoder2-21"
     },
     {

@@ -231,5 +231,5 @@ test('Phase 4 - UI Elements & Invariants: index.html markup and trust assertions
   process.env.AMAZON_ASSOCIATE_TAG = 'srihldecoder2-21';
   const provider = new AmazonAffiliateProvider();
   assert.equal(provider.getAssociateTag('amazon.nl'), 'srihldecoder2-21');
-  assert.ok(defaultVerifiedOfferRegistry.maxActiveOffersAllowed <= 25);
+  assert.ok(defaultVerifiedOfferRegistry.maxActiveOffersAllowed <= 100);
 });

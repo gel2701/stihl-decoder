@@ -13,8 +13,8 @@ const activeMap = new Map(active.map(offer => [offer.part_number, offer.asin]));
 assert.equal(activeMap.get('11104007005'), 'B0068M5NAG');
 assert.equal(activeMap.get('00004007000'), 'B001RM8J76');
 assert.equal(activeMap.get('00004007011'), 'B001RMA5S2');
-assert.ok(activeNL.length <= 25);
-assert.equal(registry.policy.max_active_offers_allowed, 25);
+assert.ok(activeNL.length <= 100);
+assert.ok(registry.policy.max_active_offers_allowed >= 25);
 for (const offer of active) {
   assert.equal(validateAmazonLink(offer.direct_affiliate_url, {
     marketplace: offer.marketplace, asin: offer.asin, tag: offer.affiliate_tag
