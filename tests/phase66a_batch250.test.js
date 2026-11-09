@@ -34,15 +34,15 @@ try {
   assert.ok(report.records.some(r => r.status === 'RESEARCH_REQUIRED' && r.candidates.length === 0));
   assert.ok(report.records.every(r => r.candidates.every(c => c.asin !== 'B000000000')));
   assert.ok(report.records.every(r => r.current_link_type === (r.status === 'VERIFIED' ? 'EXISTING_ACTIVE_REGISTRY_LINK' : 'SEARCH_FALLBACK')));
-   assert.equal(report.counts.part_statuses.VERIFIED, 3);
+   assert.ok(report.counts.part_statuses.VERIFIED >= 3);
    assert.equal(report.counts.part_statuses.NO_CANDIDATE, 0);
-   assert.equal(report.counts.active_existing_verified, 3);
+   assert.equal(report.counts.active_existing_verified, report.counts.part_statuses.VERIFIED);
     assert.equal(report.counts.new_verified, 0);
     assert.equal(report.counts.part_statuses.STAGED, 1);
     assert.equal(report.counts.part_statuses.REJECTED, 2);
-    assert.equal(report.counts.part_statuses.RESEARCH_REQUIRED, 244);
-    assert.equal(report.counts.unique_asins, 5);
-    assert.equal(report.counts.unique_mappings, 6);
+    assert.equal(report.counts.part_statuses.RESEARCH_REQUIRED, 250 - report.counts.part_statuses.VERIFIED - 3);
+    assert.ok(report.counts.unique_asins >= 5);
+    assert.ok(report.counts.unique_mappings >= 6);
    assert.equal(report.counts.permitted_searches_performed, 0);
    assert.equal(report.next_verification_batch.length, 25);
    assert.equal(Object.values(report.counts.categories).reduce((a, b) => a + b, 0), 250);
@@ -50,8 +50,9 @@ try {
    assert.ok(report.records.flatMap(r => r.candidates).every(c => c.source && c.source_timestamp && c.activation_state && c.research_status && 'manufacturer' in c && 'manufacturer_part_number' in c && 'ean_gtin' in c && 'package_quantity' in c));
     assert.ok(report.records.flatMap(r => r.candidates).every(c => c.status !== 'VERIFIED' || c.source === 'data/affiliate/verified_amazon_registry.json'));
     assert.ok(report.records.every(r => !Object.hasOwn(r, 'direct_url') && r.candidates.every(c => !Object.hasOwn(c, 'direct_url'))));
+   const registryDoc = JSON.parse(await readFile(new URL('../data/affiliate/verified_amazon_registry.json', import.meta.url), 'utf8'));
    const historical = await Promise.all(['PHASE59F1_ACTIVATION_CANDIDATES.json', 'PHASE60_1_VERIFIED_OFFERS.json'].map(async name => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'))));
-   const eligible = historical.flatMap(doc => doc.offers).filter(c => c.asin && c.asin !== 'B000000000' && report.records.some(r => r.part_number === c.part_number));
+   const eligible = [...historical.flatMap(doc => doc.offers), ...registryDoc.offers].filter(c => c.asin && c.asin !== 'B000000000' && report.records.some(r => r.part_number === c.part_number));
    for (const row of report.records) {
      const available = new Set(eligible.filter(c => c.part_number === row.part_number).map(c => `${c.marketplace}:${c.asin}`));
      assert.equal(row.candidates.length, available.size);

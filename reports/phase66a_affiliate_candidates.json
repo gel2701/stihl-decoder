@@ -14,35 +14,38 @@
     "PHASE59F1_ACTIVATION_CANDIDATES.json",
     "PHASE60_1_VERIFIED_OFFERS.json"
   ],
-  "input_fingerprint": "f52a4651fd7732f649a909a03bc56b4d8ea9d66eda908f15291dcb8cf3f19c73",
+  "input_fingerprint": "a80c934b91c0b0d9a04f37224b32958c9169da26e6d2eb458ecc26fbfe4013ba",
   "batch_size": 25,
   "counts": {
     "parts": 250,
     "unique_parts": 250,
-    "active_existing_verified": 3,
+    "active_existing_verified": 6,
     "new_verified": 0,
     "permitted_searches_performed": 0,
-    "unique_asins": 5,
-    "unique_mappings": 6,
+    "unique_asins": 8,
+    "unique_mappings": 9,
     "part_statuses": {
-      "VERIFIED": 3,
+      "VERIFIED": 6,
       "STAGED": 1,
       "REJECTED": 2,
-      "RESEARCH_REQUIRED": 244,
+      "RESEARCH_REQUIRED": 241,
       "NO_CANDIDATE": 0
     },
     "candidate_mappings": {
-      "VERIFIED": 3,
+      "VERIFIED": 6,
       "STAGED": 1,
       "REJECTED": 2
     },
     "manufacturers": {
       "Bosch Automotive Aftermarket": 1,
+      "MCHNIC": 1,
+      "MospdyGear": 1,
       "Niterra Co., Ltd. (NGK Spark Plugs)": 3,
-      "Oregon Tool, Inc.": 2
+      "Oregon Tool, Inc.": 2,
+      "Trade-Shop": 1
     },
     "marketplaces": {
-      "amazon.nl": 6
+      "amazon.nl": 9
     },
     "categories": {
       "antivibratie": 9,
@@ -2121,7 +2124,7 @@
       "search_profile": {
         "query": "STIHL 1141 120 1600 HD2 Air filter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
@@ -2129,11 +2132,36 @@
         "official_stihl",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B09ZV1SQ7K",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "Trade-Shop",
+          "manufacturer_part_number": "1141 120 1600",
+          "ean_gtin": null,
+          "package_quantity": 2,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_LISTING",
+              "url": "https://www.amazon.nl/dp/B09ZV1SQ7K",
+              "title": "Amazon.nl Product Listing B09ZV1SQ7K",
+              "claim": "2 x Trade-Shop HD2 luchtfilter voor Stihl MS 231, MS 241, MS 251, MS 261, MS 271, MS 291, MS 311, MS 362, MS 391 vervangt 1141-120-1600 1141-140-4400.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201141%20120%201600&tag=srihldecoder2-21"
     },
     {
@@ -2780,18 +2808,43 @@
       "search_profile": {
         "query": "STIHL 4140 124 2800 Air filter felt",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "official_stihl"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B0F53RHZLS",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "MospdyGear",
+          "manufacturer_part_number": "4140 124 2800",
+          "ean_gtin": null,
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_LISTING",
+              "url": "https://www.amazon.nl/dp/B0F53RHZLS",
+              "title": "Amazon.nl Product Listing B0F53RHZLS",
+              "claim": "4140 124 2800 Luchtfilter Brandstoffilter Bougie, Vervanging voor Stihl FC55 FS38 FS45 FS46 FS55 HS45 KM55 HL45 String Trimmer, vervangt 41401242800.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204140%20124%202800&tag=srihldecoder2-21"
     },
     {
@@ -5780,18 +5833,43 @@
       "search_profile": {
         "query": "STIHL 1121 120 1617 Stihl Air Filter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B0CQXCJSDC",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-09",
+          "manufacturer": "MCHNIC",
+          "manufacturer_part_number": "1121 120 1617",
+          "ean_gtin": null,
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_LISTING",
+              "url": "https://www.amazon.nl/dp/B0CQXCJSDC",
+              "title": "Amazon.nl Product Listing B0CQXCJSDC",
+              "claim": "MCHNIC Luchtfilter met Bougiebenzinefilter voor Stihl 024 026 MS240 MS260 MS 240 MS 260 Kettingzaag 1121 120 1617.",
+              "retrieved_at": "2026-11-09"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201121%20120%201617&tag=srihldecoder2-21"
     },
     {

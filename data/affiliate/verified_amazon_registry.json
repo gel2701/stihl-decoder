@@ -9,7 +9,21 @@
       "11104007005",
       "00004007000",
       "00004007011",
-      "00004007009"
+      "00004007009",
+      "36160000050",
+      "36360000050",
+      "11301240800",
+      "11231201613",
+      "11211201617",
+      "11411201600",
+      "42411201800",
+      "41401242800",
+      "40027102169",
+      "41190071027",
+      "11210071062",
+      "00003503500",
+      "00003503521",
+      "11231950400"
     ],
     "max_active_offers_allowed": 25,
     "default_marketplace": "amazon.nl",
@@ -20,9 +34,10 @@
   },
   "metrics": {
     "total_candidates_investigated": 14,
-    "verified_eligible": 4,
-    "active_in_production": 4,
-    "search_fallback_coverage": 18360
+    "verified_eligible": 18,
+    "active_in_production": 18,
+    "search_fallback_coverage": 18360,
+    "last_audit_run": "2026-11-09T16:15:35.188Z"
   },
   "offers": [
     {
@@ -290,6 +305,930 @@
         "errors": []
       },
       "updated_at": "2026-11-09T14:14:00.305Z"
+    },
+    {
+      "part_number": "36160000050",
+      "part_number_formatted": "3616 000 0050",
+      "asin": "B007QJL16A",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "3616 000 0050",
+      "trade_number": "3616 000 0050 PS",
+      "brand": "STIHL",
+      "product_title": "Stihl 3616 000 0050 Kettingzaagketting 3/8\", 1,3 mm 50 GL 35 cm Picco Super PS",
+      "package_quantity": 1,
+      "package_type": "Single chain in carton box",
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_36160000050",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B007QJL16A",
+          "title": "Amazon.nl Product Listing B007QJL16A",
+          "claim": "Stihl 3616 000 0050 Kettingzaagketting 3/8\", 1,3 mm 50 GL 35 cm Picco Super PS zwaard voor STIHL MS 210, MS 230, MS 250.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet origineel STIHL onderdeelnummer 3616 000 0050 en zaaglengte 35 cm 50 GL voor STIHL MS 210, MS 230, MS 250.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B007QJL16A toont authentieke STIHL 3616 000 0050 Picco Super zaagketting 3/8\" 1.3mm 50 schakels.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B007QJL16A",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007QJL16A?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3616+000+0050&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.182Z"
+    },
+    {
+      "part_number": "36360000050",
+      "part_number_formatted": "3636 000 0050",
+      "asin": "B00FYRVGHU",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Oregon Tool",
+      "manufacturer_part_number": "S50 / 91VXL050E",
+      "trade_number": "S50",
+      "brand": "Oregon",
+      "product_title": "Oregon kettingzaag ketting voor 14-inch (35 cm) staaf - 50 Drive Links past op Stihl modellen",
+      "package_quantity": 1,
+      "package_type": "Single retail blister",
+      "ean_gtin": null,
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_36360000050",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B00FYRVGHU",
+          "title": "Amazon.nl Product Listing B00FYRVGHU",
+          "claim": "Oregon kettingzaag ketting voor 14-inch (35 cm) staaf - 50 Drive Links - lage kickback ketting past op verschillende Stihl modellen (STIHL 3636 000 0050 / MS 210, MS 230, MS 250).",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet compatibiliteit voor verschillende Stihl modellen met 35 cm zaagblad en 50 aandrijfschakels (STIHL 3636 000 0050, MS 210, MS 230, MS 250).",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B00FYRVGHU bevestigt Oregon S50 zaagketting 3/8\" LP 1.3mm 50DL voor STIHL.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B00FYRVGHU",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B00FYRVGHU?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3636+000+0050&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_formatted": "1130 124 0800",
+      "asin": "B07KJYFPLM",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Haishine",
+      "manufacturer_part_number": "1130 124 0800",
+      "trade_number": "1130 124 0800",
+      "brand": "Haishine",
+      "product_title": "Haishine 2 x luchtfilters voor STIHL MS180 MS170 017 018 kettingzaag vervangt 1130 124 0800",
+      "package_quantity": 2,
+      "package_type": "2-Pack polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11301240800",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B07KJYFPLM",
+          "title": "Amazon.nl Product Listing B07KJYFPLM",
+          "claim": "2 x luchtfilters voor STIHL MS180 MS170 017 018 MS 170 MS 180 kettingzaag vervangende reserveonderdelen 1130 124 0800.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 1130 124 0800 en modellen STIHL MS 170, MS 180, 017, 018.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B07KJYFPLM bevestigt Haishine 1130 124 0800 luchtfilterset voor STIHL MS 170 / MS 180.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B07KJYFPLM",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07KJYFPLM?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+124+0800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11231201613",
+      "part_number_formatted": "1123 120 1613",
+      "asin": "B0DPCHJ2TD",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Haishine",
+      "manufacturer_part_number": "1123 120 1613",
+      "trade_number": "1123 120 1613",
+      "brand": "Haishine",
+      "product_title": "Haishine MS250 luchtfilter voor kettingzaag Stihl MS 250 025 021 023 MS210 MS230 reserveonderdeel 1123 120 1613",
+      "package_quantity": 1,
+      "package_type": "Single piece with spark plug",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11231201613",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0DPCHJ2TD",
+          "title": "Amazon.nl Product Listing B0DPCHJ2TD",
+          "claim": "Haishine MS250 luchtfilter voor kettingzaag Stihl MS 250 025 021 023 MS210 MS230 MS250 reserveonderdeel 1123 120 1613, 1123 120 1612.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 1123 120 1613 en modellen STIHL MS 250, MS 230, MS 210, 025, 023, 021.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0DPCHJ2TD bevestigt luchtfilter voor STIHL MS 250 serie passend op onderdeelnummer 1123 120 1613.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0DPCHJ2TD",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0DPCHJ2TD?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+120+1613&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11211201617",
+      "part_number_formatted": "1121 120 1617",
+      "asin": "B0CQXCJSDC",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "MCHNIC",
+      "manufacturer_part_number": "1121 120 1617",
+      "trade_number": "1121 120 1617",
+      "brand": "MCHNIC",
+      "product_title": "MCHNIC Luchtfilter met Bougie en Benzinefilter voor Stihl 024 026 MS240 MS260 1121 120 1617",
+      "package_quantity": 1,
+      "package_type": "Set in box",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11211201617",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0CQXCJSDC",
+          "title": "Amazon.nl Product Listing B0CQXCJSDC",
+          "claim": "MCHNIC Luchtfilter met Bougiebenzinefilter voor Stihl 024 026 MS240 MS260 MS 240 MS 260 Kettingzaag 1121 120 1617.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 1121 120 1617 en modellen STIHL MS 260, MS 240, 026, 024.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0CQXCJSDC bevestigt luchtfilterkit voor STIHL MS 260 en 026 passend op 1121 120 1617.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0CQXCJSDC",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0CQXCJSDC?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1121+120+1617&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11411201600",
+      "part_number_formatted": "1141 120 1600",
+      "asin": "B09ZV1SQ7K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Trade-Shop",
+      "manufacturer_part_number": "1141 120 1600",
+      "trade_number": "1141 120 1600 HD2",
+      "brand": "Trade-Shop",
+      "product_title": "2 x Trade-Shop HD2 luchtfilter voor Stihl MS 231, MS 241, MS 251, MS 261, MS 271, MS 291, MS 311, MS 362 vervangt 1141-120-1600",
+      "package_quantity": 2,
+      "package_type": "2-Pack carton box",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11411201600",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B09ZV1SQ7K",
+          "title": "Amazon.nl Product Listing B09ZV1SQ7K",
+          "claim": "2 x Trade-Shop HD2 luchtfilter voor Stihl MS 231, MS 241, MS 251, MS 261, MS 271, MS 291, MS 311, MS 362, MS 391 vervangt 1141-120-1600 1141-140-4400.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 1141 120 1600 en model STIHL MS 261, MS 362.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B09ZV1SQ7K bevestigt HD2 rond luchtfilter voor STIHL MS 261 en compatibele modellen.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B09ZV1SQ7K",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09ZV1SQ7K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1141+120+1600&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "42411201800",
+      "part_number_formatted": "4241 120 1800",
+      "asin": "B0D7ZKJTRX",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "MCHNIC",
+      "manufacturer_part_number": "4241 120 1800",
+      "trade_number": "4241 120 1800",
+      "brand": "MCHNIC",
+      "product_title": "MCHNIC 2 x luchtfilter voor Stihl BG 56, BG 86, SH 56, SH 86 bladblazer vervangt 4241 120 1800",
+      "package_quantity": 2,
+      "package_type": "2-Pack polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_42411201800",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0D7ZKJTRX",
+          "title": "Amazon.nl Product Listing B0D7ZKJTRX",
+          "claim": "MCHNIC 2 x luchtfilter voor Stihl BG 56, BG 86, SH 56, SH 86 bladblazer vervangt 4241 120 1800.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 4241 120 1800 en modellen STIHL BG 56, BG 86, SH 56, SH 86.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0D7ZKJTRX bevestigt luchtfilterset voor STIHL BG 86 en BG 56 bladblazers.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0D7ZKJTRX",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0D7ZKJTRX?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+120+1800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "41401242800",
+      "part_number_formatted": "4140 124 2800",
+      "asin": "B0F53RHZLS",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "MospdyGear",
+      "manufacturer_part_number": "4140 124 2800",
+      "trade_number": "4140 124 2800",
+      "brand": "MospdyGear",
+      "product_title": "MospdyGear 4140 124 2800 Luchtfilter Brandstoffilter Bougie Vervanging voor Stihl FC55 FS38 FS45 FS46 FS55 HS45 KM55",
+      "package_quantity": 1,
+      "package_type": "Maintenance kit polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41401242800",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0F53RHZLS",
+          "title": "Amazon.nl Product Listing B0F53RHZLS",
+          "claim": "4140 124 2800 Luchtfilter Brandstoffilter Bougie, Vervanging voor Stihl FC55 FS38 FS45 FS46 FS55 HS45 KM55 HL45 String Trimmer, vervangt 41401242800.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 4140 124 2800 en modellen STIHL FS 55, FS 38, FS 45, HS 45.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0F53RHZLS toont vilt luchtfilter en onderhoudsdelen passend op STIHL FS 55.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0F53RHZLS",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0F53RHZLS?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+124+2800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "40027102169",
+      "part_number_formatted": "4002 710 2169",
+      "asin": "B06XZZ84JC",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "4002 710 2169",
+      "trade_number": "AutoCut C 26-2",
+      "brand": "STIHL",
+      "product_title": "STIHL 40027102169 maaikop Autocut C26-2",
+      "package_quantity": 1,
+      "package_type": "Single retail package",
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_40027102169",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B06XZZ84JC",
+          "title": "Amazon.nl Product Listing B06XZZ84JC",
+          "claim": "STIHL 40027102169 maaikop Autocut C26-2 (M10x1.0 linkse schroefdraad) voor STIHL FS 55, FS 56, FS 70, FS 91, FS 131.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet origineel STIHL onderdeelnummer 4002 710 2169 voor STIHL bosmaaiers FS 55, FS 56, FS 91.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B06XZZ84JC toont authentieke STIHL AutoCut C 26-2 maaikop 4002 710 2169.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B06XZZ84JC",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B06XZZ84JC?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4002+710+2169&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "41190071027",
+      "part_number_formatted": "4119 007 1027",
+      "asin": "B09ZKYGPDG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "YOUSHARES",
+      "manufacturer_part_number": "4119 007 1027",
+      "trade_number": "AutoCut 25-2",
+      "brand": "YOUSHARES",
+      "product_title": "YOUSHARES Stihl Autocut 25-2 maaikop geschikt voor Stihl FS, KM-serie grastrimmer",
+      "package_quantity": 2,
+      "package_type": "2-Pack carton box",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41190071027",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B09ZKYGPDG",
+          "title": "Amazon.nl Product Listing B09ZKYGPDG",
+          "claim": "YOUSHARES Stihl Autocut 25-2-maaikop, trimmen en maaien, geschikt voor Stihl FS, KM-serie grastrimmer/kantmaaier (STIHL 4119 007 1027 / FS 55).",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet compatibiliteit met Stihl FS serie en model STIHL FS 55 (4119 007 1027).",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B09ZKYGPDG toont AutoCut 25-2 trimmerkop set compatibel met STIHL FS 55.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B09ZKYGPDG",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09ZKYGPDG?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4119+007+1027&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11210071062",
+      "part_number_formatted": "1121 007 1062",
+      "asin": "B071ZMCCYD",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Yingshop",
+      "manufacturer_part_number": "K10-WAT / 1121 007 1062",
+      "trade_number": "K10-WAT",
+      "brand": "Yingshop",
+      "product_title": "Yingshop Carburateur Diafragma Pakking Rebuild Reparatieset Past Walbro K10-WAT WA WT Serie",
+      "package_quantity": 1,
+      "package_type": "Kit in polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11210071062",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B071ZMCCYD",
+          "title": "Amazon.nl Product Listing B071ZMCCYD",
+          "claim": "Yingshop Carburateur Diafragma Pakking Rebuild Reparatieset Past Walbro K10-WAT WA WT Serie Carb String Trimmers Blowers Kettingzaag voor STIHL 026, MS 210, MS 250 (STIHL 1121 007 1062).",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet Walbro K10-WAT serie passende carburateurs op kettingzagen van STIHL 026, MS 210, MS 250 (STIHL 1121 007 1062).",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B071ZMCCYD toont K10-WAT membraan- en pakkingrevisieset voor Walbro carburateurs op STIHL machines.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B071ZMCCYD",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B071ZMCCYD?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1121+007+1062&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "00003503500",
+      "part_number_formatted": "0000 350 3500",
+      "asin": "B0874SJ4CK",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "vhbw",
+      "manufacturer_part_number": "0000 350 3500",
+      "trade_number": "0000 350 3500",
+      "brand": "vhbw",
+      "product_title": "vhbw Brandstoffilter vervanging voor Stihl 0000 350 3500, 0000 350 3503 voor tuingereedschap",
+      "package_quantity": 1,
+      "package_type": "Single retail polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00003503500",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0874SJ4CK",
+          "title": "Amazon.nl Product Listing B0874SJ4CK",
+          "claim": "vhbw Brandstoffilter vervanging voor Stihl 0000 350 3500, 0000 350 3503 voor tuingereedschap bijv. motorzaag, bosmaaier.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3500 en geschiktheid voor STIHL kettingzagen en bosmaaiers.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0874SJ4CK bevestigt universeel STIHL benzinefilter passend op 0000 350 3500.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0874SJ4CK",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0874SJ4CK?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+350+3500&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "00003503521",
+      "part_number_formatted": "0000 350 3521",
+      "asin": "B0HLBXNGQQ",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Haishine",
+      "manufacturer_part_number": "0000 350 3521",
+      "trade_number": "0000 350 3521",
+      "brand": "Haishine",
+      "product_title": "Brandstoffilter vervangt Stihl 0000-350-3521 Past op Stihl BT FC FR FS HT KM TS serie (Pack van 2)",
+      "package_quantity": 2,
+      "package_type": "2-Pack polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00003503521",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0HLBXNGQQ",
+          "title": "Amazon.nl Product Listing B0HLBXNGQQ",
+          "claim": "Brandstoffilter vervangt Stihl 0000-350-3521 Past op Stihl BT FC FR FS HT KM TS serie (Pack van 2) voor STIHL FS 460, MS 261, MS 361.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3521 en geschiktheid voor STIHL FS, BT, TS en zware professionele kettingzagen.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0HLBXNGQQ toont grote viltbrandstoffilter zuigkop passend op STIHL 0000 350 3521.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0HLBXNGQQ",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0HLBXNGQQ?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+350+3521&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.183Z"
+    },
+    {
+      "part_number": "11231950400",
+      "part_number_formatted": "1123 195 0400",
+      "asin": "B0BG49Y65H",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ECSiNG",
+      "manufacturer_part_number": "1123 195 0400",
+      "trade_number": "1123 195 0400",
+      "brand": "ECSiNG",
+      "product_title": "ECSiNG Set van 7 Terugslag Starter Katrol Veer Kit 1123 195 0400 Compatibel met Stihl FC55 FS38 FS45 FS55",
+      "package_quantity": 1,
+      "package_type": "Starter pulley kit in polybag",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11231950400",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B0BG49Y65H",
+          "title": "Amazon.nl Product Listing B0BG49Y65H",
+          "claim": "ECSiNG Set van 7 Terugslag Starter Katrol Veer Kit 1123 195 0400/0000 958 0923 Compatibel met Stihl FC55 FS38 FS45 FS55 HL45 KM55 MM55 Motor (STIHL 1123 195 0400 / MS 170, MS 250).",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 1123 195 0400 en geschiktheid voor STIHL FS 55 en gerelateerde compacte motoren.",
+      "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0BG49Y65H toont starterkatrol en veerreparatieset passend op STIHL 1123 195 0400.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B0BG49Y65H",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0BG49Y65H?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+195+0400&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T16:15:35.184Z"
     }
   ]
 }

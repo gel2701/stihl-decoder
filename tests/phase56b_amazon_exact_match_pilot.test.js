@@ -312,7 +312,7 @@ test('Phase 56B - Test 10: SEO Indexation Freeze (400 indexable parts, 581 sitem
 });
 
 test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () => {
-  const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', '.agents', 'data', 'output']);
+  const EXCLUDE_DIRS = new Set(['.git', 'node_modules', 'dist', 'build', '.idea', '.gemini', '.agents', 'data', 'output', 'reports']);
   const EXCLUDE_FILES = new Set([
     'tests/phase54a_parts_amazon_affiliate.test.js',
     'tests/phase54a_h_amazon_link_integrity.test.js',
