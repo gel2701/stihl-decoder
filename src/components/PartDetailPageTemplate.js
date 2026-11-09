@@ -16,10 +16,20 @@ import { isPartIndexationPilotEnabled, getPartIndexationPilotEntry } from '../se
 import { renderDiagramAvailabilityNoticeHtml } from './DiagramAvailabilityNotice.js';
 
 export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = null, baseUrl = PRIMARY_ORIGIN) {
-  const resolved = (rawPartNumberOrResolved && typeof rawPartNumberOrResolved === 'object' && rawPartNumberOrResolved.part_number)
+  let resolved = null;
+  if (rawPartNumberOrResolved && typeof rawPartNumberOrResolved === 'object') {
+    if (rawPartNumberOrResolved.part_number) {
+      resolved = rawPartNumberOrResolved;
+    } else if (rawPartNumberOrResolved.resolved && rawPartNumberOrResolved.resolved.part_number) {
+      resolved = rawPartNumberOrResolved.resolved;
+    }
+  }
+  if (!resolved) {
+    resolved = PartCatalogResolver.resolvePartNumber(rawPartNumberOrResolved, database);
+  }
+  const rawPartNumber = typeof rawPartNumberOrResolved === 'string'
     ? rawPartNumberOrResolved
-    : PartCatalogResolver.resolvePartNumber(rawPartNumberOrResolved, database);
-  const rawPartNumber = typeof rawPartNumberOrResolved === 'string' ? rawPartNumberOrResolved : (resolved?.part_number || '');
+    : (resolved?.part_number || rawPartNumberOrResolved?.partNumber || '');
   const formattedPartNo = resolved?.part_number_display || PartNormalizer.formatPartNumber(rawPartNumber);
   const canonicalUrl = `${baseUrl}/onderdeelnummer/${resolved?.part_number || rawPartNumber}/`;
 
@@ -102,7 +112,9 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
   const indexEntry = isIndexable ? getIndexablePartEntry(resolved.part_number) : null;
   const displayPartName = indexEntry?.clean_name || resolved.technical_profile?.display_name || resolved.part_name || 'STIHL Vervangingsonderdeel';
   const robotsContent = isIndexable ? 'index, follow' : 'noindex, follow';
-  const compatibleModels = resolved.compatible_models || [];
+  const compatibleModels = (rawPartNumberOrResolved && typeof rawPartNumberOrResolved === 'object' && Array.isArray(rawPartNumberOrResolved.compatibleModels))
+    ? rawPartNumberOrResolved.compatibleModels
+    : (resolved.compatible_models || []);
   const fitments = resolved.fitments || [];
   const primarySectionContext = (resolved.technical_profile?.canonical_sections && resolved.technical_profile.canonical_sections.length > 0)
     ? resolved.technical_profile.canonical_sections[0]
@@ -115,11 +127,13 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     ? `Bekijk op welke STIHL machines onderdeel ${formattedPartNo} (${displayPartName.toLowerCase()}) voorkomt (${compatibleModels.length} modellen${primarySectionContext ? `, sectie ${primarySectionContext}` : ''}), met bekende uitvoeringen, montageposities en compatibiliteitsinformatie.`
     : `STIHL onderdeelnummer ${formattedPartNo} (${displayPartName}). Bekijk geschikte modellen, montagelocatie en diagramposities.`;
 
-  const offers = AffiliateOfferResolver.resolveOffers({
-    partNumber: resolved.part_number,
-    partName: displayPartName,
-    model: compatibleModels[0]?.model_id || null
-  });
+  const offers = (rawPartNumberOrResolved && typeof rawPartNumberOrResolved === 'object' && Array.isArray(rawPartNumberOrResolved.offers))
+    ? rawPartNumberOrResolved.offers
+    : AffiliateOfferResolver.resolveOffers({
+        partNumber: resolved.part_number,
+        partName: displayPartName,
+        model: compatibleModels[0]?.model_id || null
+      });
 
   // Group fitments by section (meaningful, resolved diagram sections only, including verified multi-section contexts)
   const sectionMap = new Map();
@@ -323,7 +337,7 @@ ${supersessionHtml}
                   <span>${m.variants.join(', ')}</span>
                 </div>
               ` : ''}
-              ${m.configurations.length > 0 ? `
+              ${(m.configurations && m.configurations.length > 0) ? `
                 <div class="text-2xs text-gray-400">
                   <span class="text-gray-500 block">Uitvoering:</span>
                   <span>${m.configurations.join(', ')}</span>
@@ -408,16 +422,19 @@ ${supersessionHtml}
       <div class="space-y-4">
         ${offers.map(offer => {
           const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
-          const buttonText = offer.label || (isVerified ? 'Bekijk product op Amazon.nl' : 'Zoek op Amazon.nl');
-          const productTitle = offer.title || (isVerified ? `${offer.brand || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
+          const isGerman = offer.marketplace === 'amazon.de';
+          const buttonText = offer.label || (isVerified ? (isGerman ? 'Bekijk product op Amazon.de' : 'Bekijk product op Amazon.nl') : 'Zoek op Amazon.nl');
+          const productTitle = offer.title || (isVerified ? `${offer.brand || offer.seller_name || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
           const oemLabel = offer.oem_brand_classification === 'OEM_SUPPLIER_EQUIVALENT'
             ? 'OEM-Fabrikant / Eerste Montage'
             : (offer.oem_brand_classification === 'GENUINE_STIHL_OEM' ? 'Origineel STIHL' : 'Kwaliteitsvervanger');
           const descriptionText = offer.description || (isVerified
-            ? 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'
-            : `U opent een dynamische zoekopdracht op Amazon.nl voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
+            ? (isGerman
+                ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd (verkoper: ${offer.seller_name || 'Sägenspezi'}). Verzending naar Nederland is bevestigd.`
+                : 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.')
+            : `U opent een dynamische zoekopdracht op ${isGerman ? 'Amazon.de' : 'Amazon.nl'} voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
           const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
-          const placement = isVerified ? 'verified_product_card' : 'search_fallback';
+          const placement = isVerified ? (isGerman ? 'verified_product_card_de' : 'verified_product_card') : 'search_fallback';
 
           const redirectParams = new URLSearchParams({
             url: offer.url,
@@ -439,19 +456,30 @@ ${supersessionHtml}
           const safePrimarySec = (primarySectionContext || '').replace(/'/g, "\\'");
 
           if (isVerified) {
-            // Enhanced Verified Product Card (Phase 68A)
+            // Enhanced Verified Product Card (Phase 68A / Phase 70 Multi-Marketplace)
             return `
-            <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border border-emerald-500/30 hover:border-emerald-500/50 shadow-sm transition space-y-3">
+            <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border ${isGerman ? 'border-amber-500/30 hover:border-amber-500/50' : 'border-emerald-500/30 hover:border-emerald-500/50'} shadow-sm transition space-y-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
-                  <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    ✓ Geverifieerd Product (Directe Link)
+                  <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full ${isGerman ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'}">
+                    ✓ ${isGerman ? 'Directe Link (Amazon.de)' : 'Geverifieerd Product (Directe Link)'}
                   </span>
+                  ${isGerman && offer.seller_name ? `
+                  <span class="text-3xs font-mono px-2 py-0.5 rounded bg-amber-950/40 text-amber-200 border border-amber-700/40 font-semibold">
+                    Verkoper: ${offer.seller_name}
+                  </span>
+                  ` : `
                   <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700">
                     ${oemLabel}
                   </span>
+                  `}
+                  ${offer.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED' ? `
+                  <span class="text-3xs font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/30">
+                    🇳🇱 Verzending naar NL bevestigd
+                  </span>
+                  ` : ''}
                 </div>
-                <span class="text-3xs text-gray-400 font-mono">ASIN: ${offer.asin || '—'} · Amazon.nl</span>
+                <span class="text-3xs text-gray-400 font-mono">ASIN: ${offer.asin || '—'} · ${isGerman ? 'Amazon.de' : 'Amazon.nl'}</span>
               </div>
 
               <div>
@@ -462,7 +490,7 @@ ${supersessionHtml}
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-2xs border-t border-gray-800/60">
                 <div>
                   <span class="text-gray-400 block font-medium">Fabrikant/Merk:</span>
-                  <span class="text-gray-200 font-bold">${offer.manufacturer || offer.brand || 'Fabrikant'}</span>
+                  <span class="text-gray-200 font-bold">${offer.manufacturer || offer.brand || (offer.seller_name || 'Fabrikant')}</span>
                 </div>
                 <div>
                   <span class="text-gray-400 block font-medium">Fabrikantcode (MPN):</span>
@@ -482,21 +510,21 @@ ${supersessionHtml}
 
               <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
                 <span class="text-3xs text-gray-400 leading-tight">
-                  Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims.
+                  ${isGerman ? `Directe productpagina op Amazon.de (verkoper: ${offer.seller_name || 'Amazon marketplace'}). Verzending naar Nederland gecontroleerd. Actuele prijs en beschikbaarheid op Amazon.` : `Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims. Actuele prijs en beschikbaarheid op Amazon.`}
                 </span>
                 <a
                   href="${offer.url}"
                   target="_blank"
                   rel="sponsored nofollow noopener"
-                  class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+                  class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl ${isGerman ? 'bg-amber-600 hover:bg-amber-500' : 'bg-orange-600 hover:bg-orange-500'} text-white font-bold text-xs shadow-sm hover:shadow transition flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-950"
                   aria-label="${ariaLabel}"
                   data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
                   data-tracking-url="/api/affiliate/track"
                   data-part-number="${resolved.part_number}"
                   data-marketplace="${offer.marketplace || 'amazon.nl'}"
                   data-offer-type="MANUAL_ASIN"
-                  data-placement="verified_product_card"
-                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: 'verified_product_card', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: 'verified_product_card', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+                  data-placement="${placement}"
+                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
                 >
                   <span>${buttonText}</span>
                   <span aria-hidden="true">↗</span>

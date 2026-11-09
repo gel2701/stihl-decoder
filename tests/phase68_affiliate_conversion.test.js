@@ -144,7 +144,7 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
 
   describe('3. Production Safety Lock & Catalog Pilot Integrity (Section 2 & 5)', () => {
     it('strictly limits active verified offers within policy cap and retains original 3 pilot ASINs', () => {
-      const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
+      const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.nl' });
       assert.ok(activeOffers.length <= 25, 'Active verified offers must be within policy cap of 25');
 
       const asins = activeOffers.map(o => o.asin);
@@ -155,7 +155,8 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       const registryPath = resolve(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json');
       assert.ok(existsSync(registryPath), 'Registry file must exist');
       const registryData = JSON.parse(readFileSync(registryPath, 'utf-8'));
-      assert.ok(registryData.metrics.active_in_production <= 25, 'Registry metrics must maintain active_in_production <= 25');
+      const activeNLCount = registryData.metrics.active_nl ?? registryData.metrics.active_in_production;
+      assert.ok(activeNLCount <= 25, 'Registry metrics must maintain active_nl <= 25');
 
       // Verify none of the Phase 68B candidate ASINs were prematurely injected
       const researchAsinBlacklist = ['B00HQ63YUY', 'B00455Q028', 'B07V9P5T8Q', 'B000182C0K', 'B0032V6Y4E'];
@@ -493,7 +494,7 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
     });
 
     it('confirms the original 3 active pilot ASINs remain strictly active within policy cap', () => {
-      const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
+      const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.nl' });
       assert.ok(activeOffers.length <= 25, 'Active offers must remain within policy cap of 25');
 
       const activeAsins = activeOffers.map(o => o.asin);

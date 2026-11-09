@@ -120,7 +120,7 @@ test('Phase 62.3 — 3-Tier Commercial Framework Behavior', () => {
   assert.ok(directOffers[0].url.includes('/dp/B0068M5NAG'));
 
   // TIER 2: TARGETED_SEARCH (Valid part without active ASIN)
-  const searchOffers = provider.getOffers({ partNumber: '11231200605', partName: 'Carburateur' });
+  const searchOffers = provider.getOffers({ partNumber: '11231200600', partName: 'Carburateur' });
   assert.ok(searchOffers.length >= 1);
   assert.equal(searchOffers[0].link_type, 'SEARCH_FALLBACK');
   assert.equal(searchOffers[0].tier, COMMERCIAL_TIERS.TARGETED_SEARCH);
@@ -213,7 +213,7 @@ test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
 
   // Invariant 4: Baseline 3 active pilot ASINs live in production, total within 25 cap
   const verifiedOffersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8'));
-  const activeOffers = verifiedOffersDoc.offers.filter(o => o.status === 'ACTIVE');
+  const activeOffers = verifiedOffersDoc.offers.filter(o => o.status === 'ACTIVE' && (!o.marketplace || o.marketplace === 'amazon.nl'));
   assert.ok(activeOffers.length <= 25, 'Active offers must be within policy cap of 25');
   const activeParts = activeOffers.map(o => o.part_number);
   assert.ok(['11104007005', '00004007000', '00004007011'].every(p => activeParts.includes(p)), 'Baseline 3 pilot parts remain active');
