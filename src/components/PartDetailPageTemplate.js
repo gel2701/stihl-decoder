@@ -501,22 +501,16 @@ ${supersessionHtml}
                   <span class="text-orange-400 font-mono font-bold">${formattedPartNo}</span>
                 </div>
                 <div>
-                  <span class="text-gray-400 block font-medium">${offer.item_price != null ? 'Indicatieve prijs:' : 'Geschikt voor:'}</span>
-                  ${offer.item_price != null ? `
-                  <span class="text-emerald-400 font-mono font-bold">
-                    €${offer.item_price.toFixed(2)}${offer.shipping_cost_nl != null ? ` <span class="text-3xs text-gray-400 font-normal">(+ €${offer.shipping_cost_nl.toFixed(2)} verz.${offer.total_price != null ? ` · tot. €${offer.total_price.toFixed(2)}` : ''})</span>` : ''}
-                  </span>
-                  ` : `
+                  <span class="text-gray-400 block font-medium">Geschikt voor:</span>
                   <span class="text-gray-300 truncate block" title="${compatibleModels.map(m => m.model_name).join(', ')}">
                     ${compatibleModels.slice(0, 3).map(m => m.model_name).join(', ')}${compatibleModels.length > 3 ? ` +${compatibleModels.length - 3}` : ''}
                   </span>
-                  `}
                 </div>
               </div>
 
               <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
                 <span class="text-3xs text-gray-400 leading-tight">
-                  ${isGerman ? `Directe productpagina op Amazon.de (verkoper: ${offer.seller_name || 'Amazon marketplace'}). Verzending naar Nederland gecontroleerd.` : `Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims.`}
+                  ${isGerman ? `Directe productpagina op Amazon.de (verkoper: ${offer.seller_name || 'Amazon marketplace'}). Verzending naar Nederland gecontroleerd. Actuele prijs en beschikbaarheid op Amazon.` : `Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims. Actuele prijs en beschikbaarheid op Amazon.`}
                 </span>
                 <a
                   href="${offer.url}"

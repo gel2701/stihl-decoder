@@ -392,8 +392,10 @@ test('Phase 70: 8. HTML rendering of multi-market offers in PartDetailPageTempla
     assert.ok(html.includes('Verkoper: Sägenspezi') || html.includes('Sägenspezi'), 'Must render Sägenspezi as seller');
     assert.ok(html.includes('Verzending naar NL bevestigd'), 'Must render shipping to NL confirmed badge');
     assert.ok(html.includes('data-placement="verified_product_card_de"'), 'Must have distinct DE placement attribute');
-    assert.ok(html.includes('(+ €10.00 verz.'));
-    assert.ok(html.includes('tot. €69.49'));
+    // Policy check: Amazon Associates forbids publishing static unverified prices without live PA-API feed
+    assert.ok(!html.includes('tot. €69.49'), 'Must NOT display static calculated total price in public HTML');
+    assert.ok(!html.includes('Indicatieve prijs'), 'Must NOT display unauthorized indicative price claim');
+    assert.ok(html.includes('Actuele prijs en beschikbaarheid op Amazon'), 'Must direct user to Amazon for live pricing and availability');
   } finally {
     if (prevEnv === undefined) delete process.env.AMAZON_AFFILIATE_ENABLED;
     else process.env.AMAZON_AFFILIATE_ENABLED = prevEnv;

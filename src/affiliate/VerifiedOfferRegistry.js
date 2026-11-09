@@ -79,10 +79,16 @@ export class VerifiedOfferRegistry {
     this.registryPath = options.registryPath || defaultRegistryPath;
     this.productionActivationAllowed = options.productionActivationAllowed ?? false;
     this.defaultMarketplace = options.defaultMarketplace || 'amazon.nl';
-    this.maxActiveOffersAllowed = options.maxActiveOffersAllowed ?? MAX_PILOT_ACTIVE_OFFERS;
+    this.maxActiveOffersAllowed = options.maxActiveOffersAllowed ?? (
+      process.env.AFFILIATE_MAX_ACTIVE_OFFERS ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS, 10) : MAX_PILOT_ACTIVE_OFFERS
+    );
     this.maxActiveOffersPerMarketplace = {
-      'amazon.nl': options.maxActiveOffersPerMarketplace?.['amazon.nl'] ?? this.maxActiveOffersAllowed,
-      'amazon.de': options.maxActiveOffersPerMarketplace?.['amazon.de'] ?? this.maxActiveOffersAllowed,
+      'amazon.nl': options.maxActiveOffersPerMarketplace?.['amazon.nl'] ?? (
+        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL, 10) : this.maxActiveOffersAllowed
+      ),
+      'amazon.de': options.maxActiveOffersPerMarketplace?.['amazon.de'] ?? (
+        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE, 10) : this.maxActiveOffersAllowed
+      ),
       ...(options.maxActiveOffersPerMarketplace || {})
     };
     this.activeWhitelist = options.activeWhitelist
