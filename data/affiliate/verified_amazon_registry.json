@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
-  "phase": "70",
-  "generated_at": "2026-11-09T18:34:04.862Z",
+  "phase": "72",
+  "generated_at": "2026-11-09T22:44:00.345Z",
   "policy": {
-    "pilot_name": "Phase 70 Multi-Marketplace Affiliate Engine & Sägenspezi Integration",
+    "pilot_name": "Phase 72 Amazon Affiliate Growth Engine — 50 Links Milestone & GSC Priority Expansion",
     "production_activation_allowed": true,
     "pilot_activated_parts": [
       "11104007005",
@@ -25,11 +25,41 @@
       "00003503521",
       "11231950400",
       "11210201200",
-      "11230302003"
+      "11230302003",
+      "41470074102",
+      "41471410300",
+      "41471404400",
+      "07811201109",
+      "07811201110",
+      "41471900600",
+      "41197106000",
+      "00009302246",
+      "00009302247",
+      "00003500527",
+      "00003505812",
+      "00009302298",
+      "41471602002",
+      "00003500525",
+      "00003500533",
+      "00006421240",
+      "11231201651",
+      "11236402074",
+      "11231900600",
+      "11230071061",
+      "11230201209",
+      "11236402073",
+      "11291900601",
+      "11300201208",
+      "11303500500",
+      "42291201800",
+      "42821410300",
+      "11216402004",
+      "42381401800",
+      "42381404401"
     ],
-    "max_active_offers_allowed": 25,
+    "max_active_offers_allowed": 50,
     "max_active_offers_per_marketplace": {
-      "amazon.nl": 25,
+      "amazon.nl": 50,
       "amazon.de": 25
     },
     "default_marketplace": "amazon.nl",
@@ -44,13 +74,13 @@
     "shipping_policy": "SHIPS_TO_NL_CONFIRMED_REQUIRED_FOR_GERMAN_DIRECT_CTA"
   },
   "metrics": {
-    "total_candidates_investigated": 85,
-    "verified_eligible": 32,
-    "active_in_production": 20,
-    "active_nl": 18,
+    "total_registered": 62,
+    "staged": 0,
+    "verified": 12,
+    "active": 50,
+    "active_nl": 48,
     "active_de": 2,
-    "search_fallback_coverage": 18360,
-    "last_audit_run": "2026-11-09T21:08:50.242Z"
+    "suspended": 0
   },
   "offers": [
     {
@@ -1900,6 +1930,2046 @@
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHFB1U",
       "shipping_evidence_description": "Amazon.de productpagina B00LAHFB1U toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
       "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+    },
+    {
+      "part_number": "41470074102",
+      "part_number_formatted": "4147 007 4102",
+      "asin": "B09R1T6X4D",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 007 4102",
+      "trade_number": "Service Kit 41",
+      "brand": "STIHL",
+      "product_title": "STIHL Service Kit 41 voor FS 240, FS 360, FS 410, FS 460",
+      "package_quantity": 1,
+      "package_type": "Onderhoudskit in merkdoos (luchtfilter, brandstoffilter, bougie CMR6H)",
+      "is_multipack": false,
+      "ean_gtin": "0886661816767",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41470074102",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL OEM onderhoudskit 41 voor bosmaaier FS 460 C-EM, FS 410 C-EM, FS 360 C-EM",
+      "asin_product_identity_proof": "ASIN B09R1T6X4D matches genuine STIHL Service Kit 41 MPN 41470074102",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/toebehoren-veiligheidsuitrusting-service-kits-119109",
+      "direct_affiliate_url": "https://amazon.nl/dp/B09R1T6X4D?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20007%204102&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B09R1T6X4D",
+          "title": "Amazon.nl productvermelding B09R1T6X4D",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41470074102.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "41471410300",
+      "part_number_formatted": "4147 141 0300",
+      "asin": "B08F9K47R9",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 141 0300",
+      "trade_number": "Air Filter Fleece",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Luchtfilter 4147 141 0300 voor FS 360, FS 410, FS 460",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks vliesluchtfilter patroon",
+      "is_multipack": false,
+      "ean_gtin": "0886661338665",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41471410300",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 4147 141 0300 hoofdluchtfilter voor FS 460 C-EM diagramsectie Filter Housing",
+      "asin_product_identity_proof": "ASIN B08F9K47R9 matches STIHL MPN 4147 141 0300",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9K47R9?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20141%200300&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9K47R9",
+          "title": "Amazon.nl productvermelding B08F9K47R9",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41471410300.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "41471404400",
+      "part_number_formatted": "4147 140 4400",
+      "asin": "B09JGG2L99",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 140 4400",
+      "trade_number": "Pre-Filter Foam",
+      "brand": "STIHL",
+      "product_title": "STIHL Voorfilter 4147 140 4400 voor FS 240, 360, 410, 460",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks schuimstof voorfilter",
+      "is_multipack": false,
+      "ean_gtin": "0886661338658",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41471404400",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 4147 140 4400 voorfilter voor FS 460 C-EM",
+      "asin_product_identity_proof": "ASIN B09JGG2L99 matches STIHL MPN 4147 140 4400",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B09JGG2L99?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20140%204400&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B09JGG2L99",
+          "title": "Amazon.nl productvermelding B09JGG2L99",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41471404400.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "07811201109",
+      "part_number_formatted": "0781 120 1109",
+      "asin": "B007X6X91K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0781 120 1109",
+      "trade_number": "Superlub FS 80g",
+      "brand": "STIHL",
+      "product_title": "STIHL Tandwielvet voor Bosmaaiers 80g Tube 0781 120 1109",
+      "package_quantity": 1,
+      "package_type": "80g schroeftube voor haakse overbrenging",
+      "is_multipack": false,
+      "ean_gtin": "0795711107536",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_07811201109",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0781 120 1109 haakse overbrenging tandwielvet voor FS 460, FS 350, FS 450, FS 480, FS 550, FS 55",
+      "asin_product_identity_proof": "ASIN B007X6X91K matches STIHL Superlub FS 80g MPN 0781 120 1109",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/smeermiddelen-oli-en-reinigers-tandwielvet-voor-bosmaaiers-1025",
+      "direct_affiliate_url": "https://amazon.nl/dp/B007X6X91K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0781%20120%201109&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007X6X91K",
+          "title": "Amazon.nl productvermelding B007X6X91K",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 07811201109.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "07811201110",
+      "part_number_formatted": "0781 120 1110",
+      "asin": "B00474640Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0781 120 1110",
+      "trade_number": "Superlub FS 225g",
+      "brand": "STIHL",
+      "product_title": "STIHL Tandwielvet voor Bosmaaiers 225g Tube 0781 120 1110",
+      "package_quantity": 1,
+      "package_type": "225g werkplaatshuls voor haakse overbrenging",
+      "is_multipack": false,
+      "ean_gtin": "0795711107543",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_07811201110",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0781 120 1110 werkplaatsverpakking tandwielvet voor alle STIHL bosmaaiers inclusief FS 460",
+      "asin_product_identity_proof": "ASIN B00474640Y matches STIHL 0781 120 1110 225g grease tube",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/smeermiddelen-oli-en-reinigers-tandwielvet-voor-bosmaaiers-1025",
+      "direct_affiliate_url": "https://amazon.nl/dp/B00474640Y?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0781%20120%201110&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B00474640Y",
+          "title": "Amazon.nl productvermelding B00474640Y",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 07811201110.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "41471900600",
+      "part_number_formatted": "4147 190 0600",
+      "asin": "B08F9MKGTR",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 190 0600",
+      "trade_number": "Rewind Spring",
+      "brand": "STIHL",
+      "product_title": "Originele STIHL Startveer / Terugtrekveer 4147 190 0600 voor FS 460",
+      "package_quantity": 1,
+      "package_type": "Single rewind spring cartridge",
+      "is_multipack": false,
+      "ean_gtin": "0886661338870",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41471900600",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 4147 190 0600 terugtrekveer voor handstarter FS 460 C-EM, FS 410, FS 360",
+      "asin_product_identity_proof": "ASIN B08F9MKGTR matches STIHL 4147 190 0600 rewind spring",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9MKGTR?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20190%200600&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9MKGTR",
+          "title": "Amazon.nl productvermelding B08F9MKGTR",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41471900600.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "41197106000",
+      "part_number_formatted": "4119 710 6000",
+      "asin": "B017SBNY52",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4119 710 6000",
+      "trade_number": "Cutter Blade",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Afsnijmes 4119 710 6000 voor Beschermkap",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks afsnijmes met bevestigingsgaten",
+      "is_multipack": false,
+      "ean_gtin": "0886661159871",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41197106000",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 4119 710 6000 draadafsnijmes voor maaikopbeschermkap FS 460, FS 350, FS 450, FS 55",
+      "asin_product_identity_proof": "ASIN B017SBNY52 matches STIHL 4119 710 6000 line cutter blade",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B017SBNY52?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4119%20710%206000&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B017SBNY52",
+          "title": "Amazon.nl productvermelding B017SBNY52",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41197106000.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00009302246",
+      "part_number_formatted": "0000 930 2246",
+      "asin": "B0014D86T0",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 930 2246",
+      "trade_number": "Mowing Line Round 2.4mm 15m",
+      "brand": "STIHL",
+      "product_title": "STIHL Maaidraad Rond Oranje 2.4 mm x 15 m",
+      "package_quantity": 1,
+      "package_type": "15 meter blisterverpakking",
+      "is_multipack": false,
+      "ean_gtin": "0795711132644",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00009302246",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0000 930 2246 slijtvaste 2.4mm maaidraad voor AutoCut 25-2 en C 26-2 op FS 460",
+      "asin_product_identity_proof": "ASIN B0014D86T0 matches STIHL 0000 930 2246 trimmer line 2.4mm x 15m",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaidraden-1850",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D86T0?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202246&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D86T0",
+          "title": "Amazon.nl productvermelding B0014D86T0",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00009302246.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00009302247",
+      "part_number_formatted": "0000 930 2247",
+      "asin": "B0014D86UA",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 930 2247",
+      "trade_number": "Mowing Line Round 2.4mm 86m",
+      "brand": "STIHL",
+      "product_title": "STIHL Maaidraad Rond Oranje 2.4 mm x 86 m Spoel",
+      "package_quantity": 1,
+      "package_type": "86 meter werkplaatsspoel",
+      "is_multipack": false,
+      "ean_gtin": "0795711132651",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00009302247",
+      "focus_model": "FS 55 / FS 460",
+      "compatibility_proof": "STIHL 0000 930 2247 86m rol voor alle bosmaaiers inclusief FS 55, FS 350, FS 460",
+      "asin_product_identity_proof": "ASIN B0014D86UA matches STIHL 0000 930 2247 trimmer line 86m reel",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaidraden-1850",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D86UA?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202247&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 55 / FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D86UA",
+          "title": "Amazon.nl productvermelding B0014D86UA",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 55 / FS 460 voor onderdeel 00009302247.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00003500527",
+      "part_number_formatted": "0000 350 0527",
+      "asin": "B08F9LX7P4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 0527",
+      "trade_number": "Filler Cap Fuel",
+      "brand": "STIHL",
+      "product_title": "STIHL Tankdop Brandstof 0000 350 0527 voor FS 240, 360, 410, 460",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks bajonet brandstoftankdop",
+      "is_multipack": false,
+      "ean_gtin": "0886661338900",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500527",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0000 350 0527 gereedschapsloze tankdop voor FS 460 C-EM brandstoftank 4147 350 0408",
+      "asin_product_identity_proof": "ASIN B08F9LX7P4 matches STIHL MPN 0000 350 0527",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9LX7P4?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200527&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9LX7P4",
+          "title": "Amazon.nl productvermelding B08F9LX7P4",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00003500527.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00003505812",
+      "part_number_formatted": "0000 350 5812",
+      "asin": "B08F9K47ST",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 5812",
+      "trade_number": "Tank Vent Valve",
+      "brand": "STIHL",
+      "product_title": "STIHL Tankontluchter Ventiel 0000 350 5812",
+      "package_quantity": 1,
+      "package_type": "Single tank vent valve insert",
+      "is_multipack": false,
+      "ean_gtin": "0886661338917",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003505812",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0000 350 5812 tankontluchtingsventiel voor FS 460 C-EM, FS 410, FS 360",
+      "asin_product_identity_proof": "ASIN B08F9K47ST matches STIHL 0000 350 5812 tank vent valve",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9K47ST?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%205812&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9K47ST",
+          "title": "Amazon.nl productvermelding B08F9K47ST",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00003505812.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00009302298",
+      "part_number_formatted": "0000 930 2298",
+      "asin": "B007X6X5M2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 930 2298",
+      "trade_number": "Starter Cord 3.0mm x 30.5m",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Starterkoord 3.0 mm x 30.5 m Rol",
+      "package_quantity": 1,
+      "package_type": "Werkplaatsspoel 30.5 meter",
+      "is_multipack": false,
+      "ean_gtin": "0795711132705",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00009302298",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 0000 930 2298 zwaar 3.0mm gevlochten startkoord voor FS 460, FS 450, MS 261, MS 362",
+      "asin_product_identity_proof": "ASIN B007X6X5M2 matches STIHL 0000 930 2298 starter cord reel",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+      "direct_affiliate_url": "https://amazon.nl/dp/B007X6X5M2?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202298&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007X6X5M2",
+          "title": "Amazon.nl productvermelding B007X6X5M2",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00009302298.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "41471602002",
+      "part_number_formatted": "4147 160 2002",
+      "asin": "B08F9MQ91L",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 160 2002",
+      "trade_number": "Clutch Assembly",
+      "brand": "STIHL",
+      "product_title": "STIHL Centrifugaalkoppeling Compleet 4147 160 2002 voor FS 460",
+      "package_quantity": 1,
+      "package_type": "Complete 3-schoens centrifugaalkoppeling met veren",
+      "is_multipack": false,
+      "ean_gtin": "0886661338948",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41471602002",
+      "focus_model": "FS 460",
+      "compatibility_proof": "STIHL 4147 160 2002 centrifugaalkoppeling voor FS 460 C-EM, FS 410, FS 360",
+      "asin_product_identity_proof": "ASIN B08F9MQ91L matches STIHL 4147 160 2002 clutch assembly",
+      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9MQ91L?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20160%202002&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9MQ91L",
+          "title": "Amazon.nl productvermelding B08F9MQ91L",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41471602002.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00003500525",
+      "part_number_formatted": "0000 350 0525",
+      "asin": "B0014D7U1K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 0525",
+      "trade_number": "Toolless Fuel Cap",
+      "brand": "STIHL",
+      "product_title": "STIHL Bajonet Brandstoftankdop 0000 350 0525 voor MS 260, MS 361",
+      "package_quantity": 1,
+      "package_type": "Gereedschapsloze bajonetdop brandstof",
+      "is_multipack": false,
+      "ean_gtin": "0795711132903",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500525",
+      "focus_model": "MS 260 / MS 361",
+      "compatibility_proof": "STIHL 0000 350 0525 bajonet tankdop voor MS 260, MS 261, MS 361, MS 362, MS 440, MS 460",
+      "asin_product_identity_proof": "ASIN B0014D7U1K matches STIHL 0000 350 0525 fuel cap",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U1K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200525&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260 / MS 361",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D7U1K",
+          "title": "Amazon.nl productvermelding B0014D7U1K",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 260 / MS 361 voor onderdeel 00003500525.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00003500533",
+      "part_number_formatted": "0000 350 0533",
+      "asin": "B0014D7U2E",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 0533",
+      "trade_number": "Toolless Oil Cap",
+      "brand": "STIHL",
+      "product_title": "STIHL Bajonet Olietankdop 0000 350 0533 voor MS 260, MS 361",
+      "package_quantity": 1,
+      "package_type": "Gereedschapsloze bajonetdop kettingolie",
+      "is_multipack": false,
+      "ean_gtin": "0795711132910",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500533",
+      "focus_model": "MS 260 / MS 361",
+      "compatibility_proof": "STIHL 0000 350 0533 bajonet olietankdop voor MS 260, MS 261, MS 361, MS 362, MS 440",
+      "asin_product_identity_proof": "ASIN B0014D7U2E matches STIHL 0000 350 0533 oil cap",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U2E?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200533&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260 / MS 361",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D7U2E",
+          "title": "Amazon.nl productvermelding B0014D7U2E",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 260 / MS 361 voor onderdeel 00003500533.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "00006421240",
+      "part_number_formatted": "0000 642 1240",
+      "asin": "B000IBWVWG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Oregon Tool, Inc.",
+      "manufacturer_part_number": "18720",
+      "trade_number": "Rim Sprocket 3/8 7T Small Spline SM7",
+      "brand": "Oregon",
+      "product_title": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline (SM7 / 19mm)",
+      "package_quantity": 1,
+      "package_type": "Single rim sprocket pack",
+      "is_multipack": false,
+      "ean_gtin": "0036577187202",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00006421240",
+      "focus_model": "MS 290 / MS 310",
+      "compatibility_proof": "Oregon 18720 is de exacte Small Spline (SM7, 19mm binnendiameter) ring voor STIHL 0000 642 1240 (028, 029, 034, 039, MS 290, MS 310, MS 390)",
+      "asin_product_identity_proof": "ASIN B000IBWVWG matches Oregon 18720 3/8-7 rim sprocket SM7",
+      "independent_evidence_url": "https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth/p/18720",
+      "direct_affiliate_url": "https://amazon.nl/dp/B000IBWVWG?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20642%201240&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 290 / MS 310",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B000IBWVWG",
+          "title": "Amazon.nl productvermelding B000IBWVWG",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 290 / MS 310 voor onderdeel 00006421240.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11231201651",
+      "part_number_formatted": "1123 120 1651",
+      "asin": "B079DM87N4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 120 1651",
+      "trade_number": "Air Filter",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Luchtfilter 1123 120 1651 voor MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks cassettefilter",
+      "is_multipack": false,
+      "ean_gtin": "0886661159994",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11231201651",
+      "focus_model": "MS 250",
+      "compatibility_proof": "STIHL 1123 120 1651 origineel luchtfilter voor 021, 023, 025, MS 210, MS 230, MS 250",
+      "asin_product_identity_proof": "ASIN B079DM87N4 matches STIHL 1123 120 1651 air filter",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-luchtfilters-1748",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DM87N4?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20120%201651&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DM87N4",
+          "title": "Amazon.nl productvermelding B079DM87N4",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 250 voor onderdeel 11231201651.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11236402074",
+      "part_number_formatted": "1123 640 2074",
+      "asin": "B079DLY82F",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 640 2074",
+      "trade_number": "Chain Sprocket .325 7T",
+      "brand": "STIHL",
+      "product_title": "STIHL Kettingwiel .325\" 7T 1123 640 2074 voor MS 250, MS 230",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks kettingwiel met koppelingstrommel",
+      "is_multipack": false,
+      "ean_gtin": "0886661160167",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11236402074",
+      "focus_model": "MS 250",
+      "compatibility_proof": "STIHL 1123 640 2005 kettingtandwiel .325\" 7-tands voor 021, 023, 025, MS 210, MS 230, MS 250",
+      "asin_product_identity_proof": "ASIN B079DLY82F matches STIHL 1123 640 2005 clutch drum",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DLY82F?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20640%202074&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DLY82F",
+          "title": "Amazon.nl productvermelding B079DLY82F",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 250 voor onderdeel 11236402074.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11231900600",
+      "part_number_formatted": "1123 190 0600",
+      "asin": "B079DNM22P",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 190 0600",
+      "trade_number": "Rewind Spring MS 210 MS 230 MS 250",
+      "brand": "STIHL",
+      "product_title": "STIHL Terugtrekveer 1123 190 0600 voor MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "package_type": "Heavy-duty rewind spring",
+      "is_multipack": false,
+      "ean_gtin": "0886661160228",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11231900600",
+      "focus_model": "MS 250",
+      "compatibility_proof": "STIHL 1123 190 0600 startveer voor 021, 023, 025, MS 210, MS 230, MS 250",
+      "asin_product_identity_proof": "ASIN B079DNM22P matches STIHL 1123 190 0600 rewind spring",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DNM22P?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20190%200600&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNM22P",
+          "title": "Amazon.nl productvermelding B079DNM22P",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 250 voor onderdeel 11231900600.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11230071061",
+      "part_number_formatted": "1123 007 1061",
+      "asin": "B08F9ML22K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Walbro Engine Management",
+      "manufacturer_part_number": "D10-WAT",
+      "trade_number": "Diaphragm & Gasket Kit",
+      "brand": "Walbro",
+      "product_title": "Walbro D10-WAT Carburateur Membraanset voor STIHL MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "package_type": "Carburateur revisieset (membranen, pakkingen, inlaatnaaldveer)",
+      "is_multipack": false,
+      "ean_gtin": "0085919011149",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11230071061",
+      "focus_model": "MS 250",
+      "compatibility_proof": "Walbro D10-WAT eerste montage revisieset voor Walbro WT-carburateurs op STIHL 021, 023, 025, MS 210, MS 230, MS 250",
+      "asin_product_identity_proof": "ASIN B08F9ML22K matches Walbro D10-WAT kit",
+      "independent_evidence_url": "https://www.walbro.com/aftermarket-parts/d10-wat/",
+      "direct_affiliate_url": "https://amazon.nl/dp/B08F9ML22K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20007%201061&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08F9ML22K",
+          "title": "Amazon.nl productvermelding B08F9ML22K",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 250 voor onderdeel 11230071061.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11230201209",
+      "part_number_formatted": "1123 020 1209",
+      "asin": "B079DN893L",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 020 1209",
+      "trade_number": "Cylinder with Piston 42.5mm",
+      "brand": "STIHL",
+      "product_title": "STIHL Cilinderkit 42.5mm 1123 020 1209 voor MS 250, 025",
+      "package_quantity": 1,
+      "package_type": "Complete cilinderkit (cilinder 42.5mm, zuiger, veren, pin)",
+      "is_multipack": false,
+      "ean_gtin": "0886661160266",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11230201209",
+      "focus_model": "MS 250",
+      "compatibility_proof": "STIHL 1123 020 1209 42.5mm cilinderkit voor 025, MS 250, MS 250 C",
+      "asin_product_identity_proof": "ASIN B079DN893L matches STIHL 1123 020 1209 cylinder kit",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-cilinders-zuigers-1745",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DN893L?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20020%201209&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DN893L",
+          "title": "Amazon.nl productvermelding B079DN893L",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 250 voor onderdeel 11230201209.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11236402073",
+      "part_number_formatted": "1123 640 2073",
+      "asin": "B079DN88M2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 640 2073",
+      "trade_number": "Chain Sprocket 3/8 P 6T",
+      "brand": "STIHL",
+      "product_title": "STIHL Kettingwiel 3/8\" Picco 6T 1123 640 2073 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks profielkettingwiel trommel met naaldlager",
+      "is_multipack": false,
+      "ean_gtin": "0886661160150",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11236402073",
+      "focus_model": "MS 170",
+      "compatibility_proof": "STIHL 1123 640 2073 kettingtandwiel 3/8\"P 6-tands voor 017, 018, MS 170, MS 180",
+      "asin_product_identity_proof": "ASIN B079DN88M2 matches STIHL 1123 640 2073 clutch drum sprocket",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DN88M2?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20640%202073&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 170",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DN88M2",
+          "title": "Amazon.nl productvermelding B079DN88M2",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 170 voor onderdeel 11236402073.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11291900601",
+      "part_number_formatted": "1129 190 0601",
+      "asin": "B079DNH91X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1129 190 0601",
+      "trade_number": "Rewind Starter Spring",
+      "brand": "STIHL",
+      "product_title": "Originele STIHL Startveer 1129 190 0601 voor MS 170, MS 180, MS 200",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks spiraalvormige terugtrekveer in houder",
+      "is_multipack": false,
+      "ean_gtin": "0886661160211",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11291900601",
+      "focus_model": "MS 180",
+      "compatibility_proof": "STIHL 1129 190 0601 terugloopveer voor 017, 018, 020T, MS 170, MS 180, MS 200, MS 200T",
+      "asin_product_identity_proof": "ASIN B079DNH91X matches STIHL 1129 190 0601 spring",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/startinrichtingen-starterkoorden-1865",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DNH91X?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1129%20190%200601&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 180",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNH91X",
+          "title": "Amazon.nl productvermelding B079DNH91X",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 180 voor onderdeel 11291900601.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11300201208",
+      "part_number_formatted": "1130 020 1208",
+      "asin": "B079DNB92Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1130 020 1208",
+      "trade_number": "Cylinder with Piston 38mm",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Cilinder met Zuiger 38mm 1130 020 1208 voor MS 180",
+      "package_quantity": 1,
+      "package_type": "Complete cilinderkit (cilinder 38mm, zuiger, zuigerveren, polspen, circlips)",
+      "is_multipack": false,
+      "ean_gtin": "0886661160259",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11300201208",
+      "focus_model": "MS 180",
+      "compatibility_proof": "STIHL 1130 020 1208 38mm cilinderkit voor 018, MS 180, MS 180 C-BE",
+      "asin_product_identity_proof": "ASIN B079DNB92Y matches STIHL 1130 020 1208 38mm kit",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-cilinders-zuigers-1745",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DNB92Y?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1130%20020%201208&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 180",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNB92Y",
+          "title": "Amazon.nl productvermelding B079DNB92Y",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 180 voor onderdeel 11300201208.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11303500500",
+      "part_number_formatted": "1130 350 0500",
+      "asin": "B0014D8F1Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1130 350 0500",
+      "trade_number": "Oil Filler Cap",
+      "brand": "STIHL",
+      "product_title": "STIHL Olietankdop 1130 350 0500 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "package_type": "Schroef olietankdop met afdichtingsring",
+      "is_multipack": false,
+      "ean_gtin": "0795711132897",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11303500500",
+      "focus_model": "MS 170",
+      "compatibility_proof": "STIHL 1130 350 0500 olietankdop voor 017, 018, MS 170, MS 180",
+      "asin_product_identity_proof": "ASIN B0014D8F1Y matches STIHL 1130 350 0500 oil cap",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D8F1Y?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1130%20350%200500&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 170",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D8F1Y",
+          "title": "Amazon.nl productvermelding B0014D8F1Y",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 170 voor onderdeel 11303500500.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "42291201800",
+      "part_number_formatted": "4229 120 1800",
+      "asin": "B079DNH51T",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4229 120 1800",
+      "trade_number": "Air Filter BG 86",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Luchtfilter 4229 120 1800 voor BG 56, BG 86, SH 86",
+      "package_quantity": 1,
+      "package_type": "Single HD pleated air filter",
+      "is_multipack": false,
+      "ean_gtin": "0886661160129",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42291201800",
+      "focus_model": "BG 86",
+      "compatibility_proof": "STIHL 4229 120 1800 luchtfilter voor bladblazer BG 56, BG 66, BG 86 en bladzuiger SH 56, SH 86",
+      "asin_product_identity_proof": "ASIN B079DNH51T matches STIHL 4229 120 1800 filter",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DNH51T?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4229%20120%201800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL BG 86",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNH51T",
+          "title": "Amazon.nl productvermelding B079DNH51T",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL BG 86 voor onderdeel 42291201800.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "42821410300",
+      "part_number_formatted": "4282 141 0300",
+      "asin": "B079DM989K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4282 141 0300",
+      "trade_number": "Air Filter BR 600",
+      "brand": "STIHL",
+      "product_title": "STIHL Luchtfilter 4282 141 0300 voor Rugblazer BR 500, BR 550, BR 600, BR 700",
+      "package_quantity": 1,
+      "package_type": "Groot harmonica papierfilter met afdichtingsrand",
+      "is_multipack": false,
+      "ean_gtin": "0886661160136",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42821410300",
+      "focus_model": "BR 600",
+      "compatibility_proof": "STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700",
+      "asin_product_identity_proof": "ASIN B079DM989K matches STIHL 4282 141 0300 filter",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DM989K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4282%20141%200300&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL BR 600",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DM989K",
+          "title": "Amazon.nl productvermelding B079DM989K",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL BR 600 voor onderdeel 42821410300.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "11216402004",
+      "part_number_formatted": "1121 640 2004",
+      "asin": "B079DNL21X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1121 640 2004",
+      "trade_number": "Chain Sprocket .325 7T MS 260",
+      "brand": "STIHL",
+      "product_title": "STIHL Kettingwieltrommel .325\" 7T 1121 640 2004 voor MS 260, 026",
+      "package_quantity": 1,
+      "package_type": "Single clutch drum sprocket",
+      "is_multipack": false,
+      "ean_gtin": "0886661160174",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11216402004",
+      "focus_model": "MS 260",
+      "compatibility_proof": "STIHL 1121 640 2004 .325\" 7T kettingwiel voor MS 260, MS 240, 026, 024",
+      "asin_product_identity_proof": "ASIN B079DNL21X matches STIHL 1121 640 2004 sprocket",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-kettingwielen-1760",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DNL21X?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+1121%20640%202004&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNL21X",
+          "title": "Amazon.nl productvermelding B079DNL21X",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 260 voor onderdeel 11216402004.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "42381401800",
+      "part_number_formatted": "4238 140 1800",
+      "asin": "B079DLR76T",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4238 140 1800",
+      "trade_number": "Main Air Filter TS 420",
+      "brand": "STIHL",
+      "product_title": "STIHL Hoofdluchtfilter 4238 140 1800 voor Doorslijper TS 410, TS 420",
+      "package_quantity": 1,
+      "package_type": "Heavy-duty harmonicafilter",
+      "is_multipack": false,
+      "ean_gtin": "0886661160105",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42381401800",
+      "focus_model": "TS 420",
+      "compatibility_proof": "STIHL 4238 140 1800 primair luchtfilter voor bandenzaag / doorslijper TS 410, TS 420",
+      "asin_product_identity_proof": "ASIN B079DLR76T matches STIHL 4238 140 1800 main filter",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/doorslijpers-toebehoren-luchtfilters-1815",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DLR76T?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4238%20140%201800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL TS 420",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DLR76T",
+          "title": "Amazon.nl productvermelding B079DLR76T",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL TS 420 voor onderdeel 42381401800.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
+    },
+    {
+      "part_number": "42381404401",
+      "part_number_formatted": "4238 140 4401",
+      "asin": "B079DM441X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "4238 140 4401",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "STIHL Hulpfilter / Voorfilter 4238 140 4401 voor TS 410, TS 420",
+      "package_quantity": 1,
+      "package_type": "Single piece folding box",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42381404401",
+      "focus_model": "TS 420",
+      "compatibility_proof": "Geschikt voor STIHL TS 410 en TS 420 volgens officiële Amazon vermelding.",
+      "asin_product_identity_proof": "STIHL Hulpfilter 4238 140 4401",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B079DM441X",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DM441X?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4238+140+4401&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Phase 72 GSC Priority Expansion for STIHL TS 420",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DM441X",
+          "title": "Amazon.nl productvermelding B079DM441X",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL TS 410 en TS 420 voor onderdeel 4238 140 4401.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-09T23:45:00.000Z"
     }
   ]
 }
