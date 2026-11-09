@@ -133,6 +133,38 @@ export class VerifiedOfferRegistry {
       return { success: false, errors: [`Invalid offer status: "${requestedStatus}". Must be STAGED, VERIFIED, ACTIVE, or SUSPENDED.`] };
     }
 
+    const mkt = (offer.marketplace || this.defaultMarketplace).trim().toLowerCase();
+    const cleanAsin = (offer.asin || '').trim().toUpperCase();
+    const compositeKey = `${normPart}:${mkt}:${cleanAsin}`;
+
+    // Shipping verification validation for German offers:
+    let shippingStatus = offer.shipping_to_nl_status;
+    if (mkt === 'amazon.nl') {
+      shippingStatus = shippingStatus || 'SHIPS_TO_NL_CONFIRMED';
+    } else if (mkt === 'amazon.de') {
+      if (shippingStatus === 'SHIPS_TO_NL_CONFIRMED') {
+        const hasEvidence = offer.shipping_evidence_description &&
+                            offer.shipping_evidence_url &&
+                            offer.shipping_checked_at;
+        if (!hasEvidence) {
+          return {
+            success: false,
+            errors: ['Cannot register German offer as SHIPS_TO_NL_CONFIRMED without verifiable shipping evidence (shipping_evidence_url, shipping_evidence_description, and shipping_checked_at are required).']
+          };
+        }
+      } else if (!shippingStatus) {
+        shippingStatus = 'SHIPPING_UNKNOWN';
+      }
+    }
+
+    // Invariant: German offer cannot be registered as ACTIVE if shipping_to_nl_status !== 'SHIPS_TO_NL_CONFIRMED'
+    if (mkt === 'amazon.de' && requestedStatus === 'ACTIVE' && shippingStatus !== 'SHIPS_TO_NL_CONFIRMED') {
+      return {
+        success: false,
+        errors: [`Cannot register German offer as ACTIVE: shipping_to_nl_status is "${shippingStatus}", but must be "SHIPS_TO_NL_CONFIRMED".`]
+      };
+    }
+
     // Two-Gate Guard: An offer cannot be VERIFIED or ACTIVE if it fails Two-Gate Verification
     const requiresVerification = requestedStatus === 'VERIFIED' ||
       requestedStatus === 'ACTIVE' ||
@@ -157,10 +189,6 @@ export class VerifiedOfferRegistry {
         : 'Demoted from ACTIVE to VERIFIED: production activation disabled by policy';
     }
 
-    const mkt = (offer.marketplace || this.defaultMarketplace).trim().toLowerCase();
-    const cleanAsin = (offer.asin || '').trim().toUpperCase();
-    const compositeKey = `${normPart}:${mkt}:${cleanAsin}`;
-
     const defaultTag = mkt === 'amazon.de'
       ? (process.env.AMAZON_ASSOCIATE_TAG_DE || 'srihldecode00-21')
       : (process.env.AMAZON_ASSOCIATE_TAG_NL || process.env.AMAZON_ASSOCIATE_TAG || 'srihldecoder2-21');
@@ -181,7 +209,12 @@ export class VerifiedOfferRegistry {
       model_compatibility: offer.model_compatibility || null,
       seller_name: offer.seller_name || (mkt === 'amazon.de' && /sägenspezi/i.test(offer.product_title || '') ? 'Sägenspezi' : null),
       seller_id: offer.seller_id || (offer.seller_name === 'Sägenspezi' || /sägenspezi/i.test(offer.product_title || '') ? 'A1GMRJIURBAM28' : null),
-      shipping_to_nl_status: offer.shipping_to_nl_status || (mkt === 'amazon.nl' ? 'SHIPS_TO_NL_CONFIRMED' : 'SHIPPING_UNKNOWN'),
+      shipping_to_nl_status: shippingStatus,
+      shipping_destination_country: offer.shipping_destination_country || 'NL',
+      shipping_checked_at: offer.shipping_checked_at || (shippingStatus === 'SHIPS_TO_NL_CONFIRMED' ? (offer.verification_date || new Date().toISOString().split('T')[0]) : null),
+      shipping_evidence_url: offer.shipping_evidence_url || null,
+      shipping_evidence_description: offer.shipping_evidence_description || null,
+      fulfillment_context: offer.fulfillment_context || null,
       shipping_cost_nl: (typeof offer.shipping_cost_nl === 'number') ? offer.shipping_cost_nl : null,
       item_price: (typeof offer.item_price === 'number') ? offer.item_price : (typeof offer.price === 'number' ? offer.price : null),
       currency: offer.currency || 'EUR',
@@ -197,6 +230,8 @@ export class VerifiedOfferRegistry {
       compatibility_proof: offer.compatibility_proof || offer.confirmed_stihl_compatibility || '',
       asin_product_identity_proof: offer.asin_product_identity_proof || offer.confirmed_product_identity || '',
       independent_evidence_url: offer.independent_evidence_url || null,
+      direct_affiliate_url: offer.direct_affiliate_url || (cleanAsin ? `https://${mkt}/dp/${cleanAsin}?tag=${offer.affiliate_tag || defaultTag}` : null),
+      search_fallback_url: offer.search_fallback_url || `https://${mkt}/s?k=STIHL+${normPart}&tag=${offer.affiliate_tag || defaultTag}`,
       verification_date: offer.verification_date || new Date().toISOString().split('T')[0],
       status: finalStatus,
       status_reason: statusReason || (finalStatus === 'ACTIVE' ? 'Active and approved for production' : 'Staged/verified in registry; direct link not active'),
@@ -319,6 +354,66 @@ export class VerifiedOfferRegistry {
    */
   deactivateOffer(partNumber, reason = 'Deactivated by operator', options = {}) {
     return this.setOfferStatus(partNumber, 'VERIFIED', reason, options);
+  }
+
+  /**
+   * Independently sets or updates the shipping-to-NL status and evidence for an offer.
+   *
+   * @param {string} partNumber
+   * @param {string} marketplace
+   * @param {string} asin
+   * @param {'SHIPS_TO_NL_CONFIRMED'|'SHIPPING_UNKNOWN'|'DOES_NOT_SHIP_TO_NL'} shippingStatus
+   * @param {Object} [evidence={}]
+   * @param {string} [evidence.shipping_checked_at]
+   * @param {string} [evidence.shipping_evidence_url]
+   * @param {string} [evidence.shipping_evidence_description]
+   * @param {number|null} [evidence.shipping_cost_nl]
+   * @param {string} [evidence.fulfillment_context]
+   * @returns {{ success: boolean, offer?: Object, errors: string[] }}
+   */
+  setShippingStatus(partNumber, marketplace, asin, shippingStatus, evidence = {}) {
+    const normPart = PartNormalizer.normalizePartNumber(partNumber);
+    if (!normPart) return { success: false, errors: [`Invalid part number: "${partNumber}".`] };
+
+    const mkt = (marketplace || this.defaultMarketplace).toLowerCase();
+    const cleanAsin = (asin || '').toUpperCase();
+    const offer = this.offers.get(`${normPart}:${mkt}:${cleanAsin}`);
+    if (!offer) {
+      return { success: false, errors: [`Offer ${normPart} (${mkt} / ${cleanAsin}) not found in registry.`] };
+    }
+
+    const validStatuses = new Set(['SHIPS_TO_NL_CONFIRMED', 'SHIPPING_UNKNOWN', 'DOES_NOT_SHIP_TO_NL']);
+    if (!validStatuses.has(shippingStatus)) {
+      return { success: false, errors: [`Invalid shipping status "${shippingStatus}". Must be SHIPS_TO_NL_CONFIRMED, SHIPPING_UNKNOWN, or DOES_NOT_SHIP_TO_NL.`] };
+    }
+
+    if (mkt === 'amazon.de' && shippingStatus === 'SHIPS_TO_NL_CONFIRMED') {
+      const desc = evidence.shipping_evidence_description || offer.shipping_evidence_description;
+      const url = evidence.shipping_evidence_url || offer.shipping_evidence_url;
+      const date = evidence.shipping_checked_at || offer.shipping_checked_at;
+      if (!desc || !url || !date) {
+        return {
+          success: false,
+          errors: ['Cannot set German offer to SHIPS_TO_NL_CONFIRMED without verifiable shipping evidence (url, description, checked_at).']
+        };
+      }
+    }
+
+    offer.shipping_to_nl_status = shippingStatus;
+    if (evidence.shipping_checked_at !== undefined) offer.shipping_checked_at = evidence.shipping_checked_at;
+    if (evidence.shipping_evidence_url !== undefined) offer.shipping_evidence_url = evidence.shipping_evidence_url;
+    if (evidence.shipping_evidence_description !== undefined) offer.shipping_evidence_description = evidence.shipping_evidence_description;
+    if (evidence.shipping_cost_nl !== undefined) offer.shipping_cost_nl = evidence.shipping_cost_nl;
+    if (evidence.fulfillment_context !== undefined) offer.fulfillment_context = evidence.fulfillment_context;
+
+    // Failsafe: if German offer is currently ACTIVE and shipping status is not confirmed, automatically demote to VERIFIED
+    if (mkt === 'amazon.de' && shippingStatus !== 'SHIPS_TO_NL_CONFIRMED' && offer.status === 'ACTIVE') {
+      offer.status = 'VERIFIED';
+      offer.status_reason = `Demoted to VERIFIED: shipping_to_nl_status changed to "${shippingStatus}".`;
+    }
+
+    offer.updated_at = new Date().toISOString();
+    return { success: true, offer, errors: [] };
   }
 
   /**

@@ -24,15 +24,8 @@
       "00003503500",
       "00003503521",
       "11231950400",
-      "11301200603",
-      "11304001302",
-      "11231200605",
-      "11211200611",
       "11210201200",
-      "11236402074",
-      "11230071000",
-      "11230302003",
-      "11231412200"
+      "11230302003"
     ],
     "max_active_offers_allowed": 25,
     "max_active_offers_per_marketplace": {
@@ -53,11 +46,11 @@
   "metrics": {
     "total_candidates_investigated": 85,
     "verified_eligible": 32,
-    "active_in_production": 32,
+    "active_in_production": 20,
     "active_nl": 18,
-    "active_de": 14,
+    "active_de": 2,
     "search_fallback_coverage": 18360,
-    "last_audit_run": "2026-11-09T18:34:04.863Z"
+    "last_audit_run": "2026-11-09T20:08:44.011Z"
   },
   "offers": [
     {
@@ -1268,11 +1261,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 170 / 017 / MS 180",
       "item_price": 7.48,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11301240800",
       "verifiable_evidence_sources": [
         {
@@ -1289,8 +1282,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHKLBU?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+124+0800&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHKLBU",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHKLBU toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11231201613",
@@ -1310,11 +1308,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 210 / 021 / MS 230 / MS 250",
       "item_price": 7.48,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11231201613",
       "verifiable_evidence_sources": [
         {
@@ -1331,8 +1329,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHKSDQ?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+120+1613&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHKSDQ",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHKSDQ toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "00004007009",
@@ -1352,11 +1355,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 180 / MS 170",
       "item_price": 14.99,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_00004007009",
       "verifiable_evidence_sources": [
         {
@@ -1373,8 +1376,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B077X8JMG9?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+400+7009&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B077X8JMG9",
+      "shipping_evidence_description": "Amazon.de productpagina B077X8JMG9 toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "00003503500",
@@ -1394,11 +1402,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 250 / 025 / MS 230 / MS 210",
       "item_price": 6.48,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_00003503500",
       "verifiable_evidence_sources": [
         {
@@ -1415,8 +1423,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00SVDWDRG?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3500&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
+      "shipping_evidence_description": "Amazon.de productpagina B00SVDWDRG toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "36360000050",
@@ -1436,11 +1449,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 180 / 018 / MS 170 / MS 210 / MS 230 / MS 250",
       "item_price": 23.59,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_36360000050",
       "verifiable_evidence_sources": [
         {
@@ -1457,8 +1470,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B071J6WTSR?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3636+000+0050&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B071J6WTSR",
+      "shipping_evidence_description": "Amazon.de productpagina B071J6WTSR toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11301200603",
@@ -1478,11 +1496,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 170 / 017",
       "item_price": 18.49,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11301200603",
       "verifiable_evidence_sources": [
         {
@@ -1499,8 +1517,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHQK2Y?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+120+0603&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQK2Y",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHQK2Y toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11304001302",
@@ -1520,11 +1543,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018",
       "item_price": 17.88,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11304001302",
       "verifiable_evidence_sources": [
         {
@@ -1541,8 +1564,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHQD8A?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+400+1302&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQD8A",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHQD8A toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11231200605",
@@ -1562,11 +1590,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 250 / 025",
       "item_price": 19.99,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11231200605",
       "verifiable_evidence_sources": [
         {
@@ -1583,8 +1611,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHQRM2?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+120+0605&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQRM2",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHQRM2 toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11211200611",
@@ -1604,11 +1637,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 260 / 026",
       "item_price": 18.49,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11211200611",
       "verifiable_evidence_sources": [
         {
@@ -1625,8 +1658,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B07MM5R1KG?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121+120+0611&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B07MM5R1KG",
+      "shipping_evidence_description": "Amazon.de productpagina B07MM5R1KG toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11210201200",
@@ -1647,7 +1685,7 @@
       "model_compatibility": "MS 260 / 026",
       "item_price": 59.49,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_cost_nl": null,
+      "shipping_cost_nl": 10,
       "currency": "EUR",
       "pilot_eligible": true,
       "pilot_active": true,
@@ -1668,7 +1706,12 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121+020+1200&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot (shipping to NL confirmed at €10).",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00PGX7STM",
+      "shipping_evidence_description": "Amazon.de productpagina B00PGX7STM bevestigt expliciet levering naar Nederland door verkoper Sägenspezi (A1GMRJIURBAM28) voor €10 verzendkosten.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11236402074",
@@ -1688,11 +1731,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 180 / 018",
       "item_price": 7.99,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11236402074",
       "verifiable_evidence_sources": [
         {
@@ -1709,8 +1752,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHPOXA?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+640+2074&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHPOXA",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHPOXA toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11230071000",
@@ -1730,11 +1778,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 170 / 017 / MS 180 / 018",
       "item_price": 11.99,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "DOES_NOT_SHIP_TO_NL",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11230071000",
       "verifiable_evidence_sources": [
         {
@@ -1751,8 +1799,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B07F6CH3BV?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+007+1000&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to DOES_NOT_SHIP_TO_NL.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B07F6CH3BV",
+      "shipping_evidence_description": "Amazon.de productpagina B07F6CH3BV toont expliciete leveringsbeperking naar Nederland met melding 'Vergelijkbare artikelen worden verzonden naar Nederland'.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11230302003",
@@ -1773,7 +1826,7 @@
       "model_compatibility": "MS 210 / 021",
       "item_price": 13.49,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_cost_nl": null,
+      "shipping_cost_nl": 10,
       "currency": "EUR",
       "pilot_eligible": true,
       "pilot_active": true,
@@ -1794,7 +1847,12 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+030+2003&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot (shipping to NL confirmed at €10).",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHGFRO",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHGFRO bevestigt expliciet levering naar Nederland door verkoper Sägenspezi (A1GMRJIURBAM28) voor €10 verzendkosten.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     },
     {
       "part_number": "11231412200",
@@ -1814,11 +1872,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 210 / 021",
       "item_price": 24.99,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
       "shipping_cost_nl": null,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_11231412200",
       "verifiable_evidence_sources": [
         {
@@ -1835,8 +1893,13 @@
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHFB1U?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+141+2200&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot."
+      "status": "VERIFIED",
+      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-09",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHFB1U",
+      "shipping_evidence_description": "Amazon.de productpagina B00LAHFB1U toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
     }
   ]
 }
