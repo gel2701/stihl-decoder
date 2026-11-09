@@ -1,17 +1,53 @@
 /**
  * src/affiliate/EbayBrowseApiClient.js
  *
- * Phase 71 Preparation — Official eBay Browse API Client Adapter
+ * Phase 70D / 71A — Official eBay Browse API Client Adapter
  *
  * Implements integration with eBay REST API (Browse API v1) for
- * retrieving live product offers, pricing, availability, and NL shipping eligibility.
+ * retrieving live product offers, pricing, availability, and confirmed NL shipping eligibility.
  *
  * Requirements & Constraints:
+ * - Real EPN Campaign ID: 5339244329 (default configured).
+ * - Marketplace-correct EPN parameters (ebay.nl: siteid=146, mkrid=1346-53482-19255-0; ebay.de: siteid=77, mkrid=707-53477-19255-0).
+ * - Allowed domains: only official eBay domains (ebay.nl, ebay.de, ebay.com, ebay.co.uk).
  * - Fails closed if credentials (EBAY_CLIENT_ID, EBAY_CLIENT_SECRET) are missing.
- * - Does NOT use fabricated EPN Campaign IDs in production.
- * - Adheres strictly to eBay Developer Terms & EPN Policies.
- * - Supports injectable mock transport for offline and deterministic CI tests.
+ * - Does NOT place Client Secrets or invented API keys in repo.
+ * - Conclusive NL shipping validation with contextualLocation=country=NL and exclusion checks.
+ * - Never treats a raw empty or present shippingOptions array as proof on its own.
  */
+
+export const DEFAULT_EPN_CAMPAIGN_ID = '5339244329';
+
+export const ALLOWED_EBAY_DOMAINS = [
+  'ebay.nl',
+  'www.ebay.nl',
+  'ebay.de',
+  'www.ebay.de',
+  'ebay.com',
+  'www.ebay.com',
+  'ebay.co.uk',
+  'www.ebay.co.uk',
+  'rover.ebay.com'
+];
+
+export const EPN_MARKETPLACE_CONFIG = {
+  'ebay.nl': {
+    siteid: '146',
+    mkrid: '1346-53482-19255-0'
+  },
+  'ebay.de': {
+    siteid: '77',
+    mkrid: '707-53477-19255-0'
+  },
+  'ebay.com': {
+    siteid: '0',
+    mkrid: '711-53200-19255-0'
+  },
+  'ebay.co.uk': {
+    siteid: '3',
+    mkrid: '710-53481-19255-0'
+  }
+};
 
 export class EbayBrowseApiClient {
   /**
@@ -27,7 +63,7 @@ export class EbayBrowseApiClient {
   constructor(options = {}) {
     this.clientId = options.clientId || process.env.EBAY_CLIENT_ID || null;
     this.clientSecret = options.clientSecret || process.env.EBAY_CLIENT_SECRET || null;
-    this.epnCampaignId = options.epnCampaignId || process.env.EBAY_EPN_CAMPAIGN_ID || null;
+    this.epnCampaignId = options.epnCampaignId || process.env.EBAY_EPN_CAMPAIGN_ID || DEFAULT_EPN_CAMPAIGN_ID;
     this.marketplaceId = options.marketplaceId || process.env.EBAY_MARKETPLACE_ID || 'EBAY_DE';
     this.defaultSeller = options.defaultSeller || 'saegenspezi_de';
     this.fetchFn = options.fetchFn || (typeof fetch !== 'undefined' ? fetch : null);
@@ -50,7 +86,6 @@ export class EbayBrowseApiClient {
 
   /**
    * Checks whether EPN affiliate campaign ID is configured.
-   * Fails closed if missing.
    * @returns {boolean}
    */
   hasAffiliateConfig() {
@@ -58,26 +93,59 @@ export class EbayBrowseApiClient {
   }
 
   /**
+   * Validates if a URL points to an authorized eBay domain.
+   * @param {string} urlString
+   * @returns {boolean}
+   */
+  isAllowedEbayUrl(urlString) {
+    if (!urlString || typeof urlString !== 'string') return false;
+    try {
+      const parsed = new URL(urlString);
+      const host = parsed.hostname.toLowerCase();
+      return ALLOWED_EBAY_DOMAINS.includes(host) ||
+        ALLOWED_EBAY_DOMAINS.some(d => host.endsWith('.' + d));
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Generates a compliant eBay Partner Network (EPN) affiliate URL.
    *
-   * Format adheres to eBay Partner Network Rover / Smart Link specifications:
-   * https://www.ebay.com/itm/{itemId}?mkcid=1&mkrid=...&campid={epnCampaignId}&toolid=10001&customid={customId}
+   * Formats correctly for eBay.nl and eBay.de with specific siteid and mkrid.
    *
    * @param {string} itemWebUrl - Canonical eBay product URL
    * @param {string} [customId] - Tracking reference (e.g. STIHL canonical part number)
-   * @returns {string} EPN-tagged URL or original itemWebUrl if no campaign ID configured
+   * @returns {string} EPN-tagged URL or original itemWebUrl
    */
   buildAffiliateUrl(itemWebUrl, customId = '') {
-    if (!itemWebUrl) return '';
+    if (!itemWebUrl || !this.isAllowedEbayUrl(itemWebUrl)) {
+      return '';
+    }
     if (!this.hasAffiliateConfig()) {
-      return itemWebUrl; // Clean URL fallback if affiliate campaign not yet active
+      return itemWebUrl;
     }
 
     try {
       const parsed = new URL(itemWebUrl);
-      parsed.searchParams.set('mkcid', '1');
+      const host = parsed.hostname.toLowerCase();
+
+      // Determine marketplace config
+      let cfg = EPN_MARKETPLACE_CONFIG['ebay.de']; // default
+      if (host.includes('ebay.nl')) {
+        cfg = EPN_MARKETPLACE_CONFIG['ebay.nl'];
+      } else if (host.includes('ebay.co.uk')) {
+        cfg = EPN_MARKETPLACE_CONFIG['ebay.co.uk'];
+      } else if (host.includes('ebay.com')) {
+        cfg = EPN_MARKETPLACE_CONFIG['ebay.com'];
+      }
+
       parsed.searchParams.set('campid', this.epnCampaignId);
+      parsed.searchParams.set('mkcid', '1');
+      parsed.searchParams.set('mkrid', cfg.mkrid);
+      parsed.searchParams.set('siteid', cfg.siteid);
       parsed.searchParams.set('toolid', '10001');
+      parsed.searchParams.set('mkevt', '1');
       if (customId) {
         parsed.searchParams.set('customid', customId);
       }
@@ -136,12 +204,12 @@ export class EbayBrowseApiClient {
   }
 
   /**
-   * Searches items by STIHL canonical part number or query string,
-   * scoped to a specific seller (e.g. saegenspezi_de) and filtered for delivery to the Netherlands.
+   * Searches items by query or part number, scoped to a specific seller (defaults to saegenspezi_de),
+   * applying the Dutch delivery context (contextualLocation=country=NL).
    *
    * @param {Object} searchParams
    * @param {string} searchParams.partNumber - Canonical 11-digit STIHL part number
-   * @param {string} [searchParams.query] - Optional title/keyword query
+   * @param {string} [searchParams.query] - Title/keyword query
    * @param {string} [searchParams.seller] - Target seller username (defaults to saegenspezi_de)
    * @param {number} [searchParams.limit=10]
    * @returns {Promise<{ success: boolean, items: Array<Object>, total: number, errors: string[] }>}
@@ -187,6 +255,7 @@ export class EbayBrowseApiClient {
         headers: {
           'Authorization': `Bearer ${token || 'MOCK_TOKEN'}`,
           'X-EBAY-C-MARKETPLACE-ID': this.marketplaceId,
+          'X-EBAY-C-ENDUSERCTX': 'contextualLocation=country=NL',
           'Content-Type': 'application/json'
         }
       });
@@ -223,6 +292,13 @@ export class EbayBrowseApiClient {
   /**
    * Parses raw eBay item summaries into standardized STIHLDecoder offer candidate objects.
    *
+   * Performs conclusive shipping to NL verification:
+   * - Inspects excludedShipToLocations for NL/Europe exclusions.
+   * - Validates explicit shipping cost, destination locations, and service options.
+   * - Emits SHIPS_TO_NL_CONFIRMED only upon conclusive proof.
+   * - Emits DOES_NOT_SHIP_TO_NL if explicitly excluded.
+   * - Emits SHIPPING_UNKNOWN if ambiguous or unverified.
+   *
    * @param {Array<Object>} itemSummaries
    * @param {string} [targetPartNumber]
    * @returns {Array<Object>}
@@ -241,17 +317,56 @@ export class EbayBrowseApiClient {
         if (outOfStock) continue;
       }
 
-      // Shipping to NL check
-      const shippingOption = Array.isArray(item.shippingOptions) ? item.shippingOptions[0] : null;
+      // Check shipping exclusions
+      const excludedLocations = Array.isArray(item.excludedShipToLocations)
+        ? item.excludedShipToLocations.map(l => (typeof l === 'string' ? l : l.location || l.region || '').toUpperCase())
+        : [];
+
+      const isNlExcluded = excludedLocations.some(loc =>
+        loc === 'NL' || loc === 'NLD' || loc === 'NETHERLANDS' || loc === 'THE NETHERLANDS'
+      );
+
+      let shippingStatus = 'SHIPPING_UNKNOWN';
       let shippingCostNl = null;
       let shipsToNl = false;
 
-      if (shippingOption) {
-        shipsToNl = true;
-        if (shippingOption.shippingCost) {
-          const val = parseFloat(shippingOption.shippingCost.value);
-          if (!isNaN(val)) {
-            shippingCostNl = val;
+      if (isNlExcluded) {
+        shippingStatus = 'DOES_NOT_SHIP_TO_NL';
+        shipsToNl = false;
+      } else {
+        // Conclusive Shipping Verification:
+        // Must have at least one explicit shipping option that verifies delivery to NL
+        const shippingOptions = Array.isArray(item.shippingOptions) ? item.shippingOptions : [];
+
+        for (const opt of shippingOptions) {
+          if (!opt) continue;
+
+          // Check shipToLocations in option if present
+          const locations = Array.isArray(opt.shipToLocations)
+            ? opt.shipToLocations.map(l => (typeof l === 'string' ? l : l.location || '').toUpperCase())
+            : [];
+
+          const explicitlyListsNl = locations.length > 0 && locations.some(l =>
+            l === 'NL' || l === 'NLD' || l === 'NETHERLANDS' || l === 'EUROPE' || l === 'WORLDWIDE'
+          );
+
+          // Check cost
+          let parsedCost = null;
+          if (opt.shippingCost && typeof opt.shippingCost.value === 'string') {
+            const val = parseFloat(opt.shippingCost.value);
+            if (!isNaN(val) && val >= 0) {
+              parsedCost = val;
+            }
+          }
+
+          // Conclusive condition:
+          // Either the option explicitly lists NL in shipToLocations with valid cost,
+          // OR contextual delivery to NL returned a concrete shipping cost with delivery estimates
+          if (parsedCost != null && (explicitlyListsNl || opt.shippingCarrierCode || opt.shippingServiceCode)) {
+            shippingStatus = 'SHIPS_TO_NL_CONFIRMED';
+            shippingCostNl = parsedCost;
+            shipsToNl = true;
+            break;
           }
         }
       }
@@ -276,11 +391,13 @@ export class EbayBrowseApiClient {
         item_price: itemPrice,
         currency,
         shipping_cost_nl: shippingCostNl,
+        shipping_status: shippingStatus,
         ships_to_nl: shipsToNl,
         item_url: item.itemWebUrl,
         affiliate_url: affiliateUrl,
         image_url: item.image?.imageUrl || null,
-        condition: item.condition || 'NEW'
+        condition: item.condition || 'NEW',
+        item_specifics: item.itemSpecifics || null
       });
     }
 
