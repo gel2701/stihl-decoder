@@ -124,7 +124,8 @@ export const currentProductionSuites = [
   'tests/phase67_creators_probe.test.js',
   'tests/phase68_affiliate_conversion.test.js',
   'tests/phase683_tracking_integrity.test.js',
-  'tests/phase683_guide_registry.test.js'
+  'tests/phase683_guide_registry.test.js',
+  'tests/phase69_expansion_batch.test.js'
 ];
 
 console.log('===============================================================');

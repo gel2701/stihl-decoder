@@ -1,0 +1,9 @@
+# Phase 69 expansion readiness
+
+Research-only batch: 10 ranked nonactive part/ASIN pairs. 0 STAGED, 10 RESEARCH_REQUIRED, 1 of those BLOCKED_CONFLICT (00006421240); 0 READY_FOR_MANUAL_REVIEW, 0 newly verified, 0 activated. Full ranked claims and source references: `reports/phase69_expansion_batch.json`. Rank reflects evidence triage, not traffic or sales.
+
+Historical Phase 60.1 PASS/PASS for 00004007009 and 00006421240 is not current verification. Bosch Motointegrator cited page returns 404; AUTODOC cited Bosch listing now shows VEGAZ TPS-915. Oregon 18720 manufacturer page specifies standard 3/8 7T; L&S identifies STIHL 0000 642 1240 as 3/8 Picco 7T. Do not mark 1240 REJECTED without definitive pair mismatch proof. Remaining eight historically passed gate 1 and failed gate 2 for missing independent ASIN linkage. Manufacturer, MPN, EAN, and fitment fields remain historical unverified claims; GTIN checksum proves only digit validity. Current TwoGateVerifier ran on all ten archival records with canonical catalog and expected tag; both gates failed for every candidate. Mandatory current provenance, manufacturer MPN or independent ASIN identity evidence is missing. No missing date or proof was invented.
+
+No live Amazon Creators access (`reports/phase67_validation.json`); Phase68b2 named files absent. GSC clicks, impressions, CTR, and position are null (`output/phase56g/GSC_INTEGRATION_AUDIT.json`); no traffic-ranking claim. All ten use search fallback, never direct ASIN activation. Registry remains at three active offers and cap three.
+
+Later proposal only: maximum 5/10 active after explicit operator approval, separate production change, current attributable marketplace identity, resolved fitment/pitch conflict, genuine dated evidence, both gates passing, historical mismatch checks, kill switch and rollback validation. No cap change or activation now.
