@@ -504,7 +504,7 @@ ${supersessionHtml}
                   <span class="text-gray-400 block font-medium">${offer.item_price != null ? 'Indicatieve prijs:' : 'Geschikt voor:'}</span>
                   ${offer.item_price != null ? `
                   <span class="text-emerald-400 font-mono font-bold">
-                    €${offer.item_price.toFixed(2)}${offer.shipping_cost_nl != null ? ` <span class="text-3xs text-gray-400 font-normal">(+ €${offer.shipping_cost_nl.toFixed(2)} verz.)</span>` : ''}
+                    €${offer.item_price.toFixed(2)}${offer.shipping_cost_nl != null ? ` <span class="text-3xs text-gray-400 font-normal">(+ €${offer.shipping_cost_nl.toFixed(2)} verz.${offer.total_price != null ? ` · tot. €${offer.total_price.toFixed(2)}` : ''})</span>` : ''}
                   </span>
                   ` : `
                   <span class="text-gray-300 truncate block" title="${compatibleModels.map(m => m.model_name).join(', ')}">

@@ -119,9 +119,9 @@ test('Phase 70: 2. 1:N Multi-Offer Architecture & Backwards Compatibility', () =
   const allOffers = registry.getOffers(partNumber);
   assert.equal(allOffers.length, 2, 'Part 1130 124 0800 must have 2 registered offers (NL + DE)');
 
-  // In production registry, DE offer for 1130 124 0800 has DOES_NOT_SHIP_TO_NL -> only NL is active
+  // In production registry, DE offer for 1130 124 0800 has SHIPPING_UNKNOWN -> only NL is active
   const activeOffers = registry.getActiveOffers(partNumber);
-  assert.equal(activeOffers.length, 1, 'Part 1130 124 0800 must have 1 active offer because German offer does not ship to NL');
+  assert.equal(activeOffers.length, 1, 'Part 1130 124 0800 must have 1 active offer because German offer does not have confirmed shipping to NL');
   assert.equal(activeOffers[0].marketplace, 'amazon.nl');
 
   // Backwards compatibility: getOffer and getActiveOffer without marketplace argument default to NL
@@ -133,11 +133,11 @@ test('Phase 70: 2. 1:N Multi-Offer Architecture & Backwards Compatibility', () =
   assert.equal(defaultActive.marketplace, 'amazon.nl', 'Default getActiveOffer must return amazon.nl');
   assert.equal(defaultActive.asin, 'B07KJYFPLM');
 
-  // German offer exists in registry with DOES_NOT_SHIP_TO_NL, but getActiveOffer for DE returns null
+  // German offer exists in registry with SHIPPING_UNKNOWN, but getActiveOffer for DE returns null
   const deOffer = registry.getOffer(partNumber, 'amazon.de');
   assert.equal(deOffer.marketplace, 'amazon.de');
   assert.equal(deOffer.asin, 'B00LAHKLBU');
-  assert.equal(deOffer.shipping_to_nl_status, 'DOES_NOT_SHIP_TO_NL');
+  assert.equal(deOffer.shipping_to_nl_status, 'SHIPPING_UNKNOWN');
 
   const deActiveOffer = registry.getActiveOffer(partNumber, 'amazon.de');
   assert.equal(deActiveOffer, null, 'German offer without confirmed shipping must return null from getActiveOffer');
@@ -353,8 +353,8 @@ test('Phase 70: 7. TwoGateVerifier passes all 14 German Sägenspezi offers clean
   }
 
   assert.equal(deOffers.filter(o => o.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED').length, 2);
-  assert.equal(deOffers.filter(o => o.shipping_to_nl_status === 'DOES_NOT_SHIP_TO_NL').length, 7);
-  assert.equal(deOffers.filter(o => o.shipping_to_nl_status === 'SHIPPING_UNKNOWN').length, 5);
+  assert.equal(deOffers.filter(o => o.shipping_to_nl_status === 'SHIPPING_UNKNOWN').length, 12);
+  assert.equal(deOffers.filter(o => o.shipping_to_nl_status === 'DOES_NOT_SHIP_TO_NL').length, 0);
 });
 
 test('Phase 70: 8. HTML rendering of multi-market offers in PartDetailPageTemplate', () => {
@@ -392,7 +392,8 @@ test('Phase 70: 8. HTML rendering of multi-market offers in PartDetailPageTempla
     assert.ok(html.includes('Verkoper: Sägenspezi') || html.includes('Sägenspezi'), 'Must render Sägenspezi as seller');
     assert.ok(html.includes('Verzending naar NL bevestigd'), 'Must render shipping to NL confirmed badge');
     assert.ok(html.includes('data-placement="verified_product_card_de"'), 'Must have distinct DE placement attribute');
-    assert.ok(html.includes('(+ €10.00 verz.)'), 'Must render shipping cost when reliably established');
+    assert.ok(html.includes('(+ €10.00 verz.'));
+    assert.ok(html.includes('tot. €69.49'));
   } finally {
     if (prevEnv === undefined) delete process.env.AMAZON_AFFILIATE_ENABLED;
     else process.env.AMAZON_AFFILIATE_ENABLED = prevEnv;
@@ -452,7 +453,8 @@ test('Phase 70A: 11. DOES_NOT_SHIP_TO_NL blocks direct German CTA button', () =>
   const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true });
   registry.importRegistry(registryDoc);
 
-  // Pick an offer with DOES_NOT_SHIP_TO_NL, e.g. 1130 124 0800 (B00LAHKLBU)
+  // Set an offer to DOES_NOT_SHIP_TO_NL, e.g. 1130 124 0800 (B00LAHKLBU)
+  registry.setShippingStatus('11301240800', 'amazon.de', 'B00LAHKLBU', 'DOES_NOT_SHIP_TO_NL');
   const blockedOffer = registry.getOffer('11301240800', 'amazon.de');
   assert.equal(blockedOffer.shipping_to_nl_status, 'DOES_NOT_SHIP_TO_NL');
   assert.equal(blockedOffer.status, 'VERIFIED');
