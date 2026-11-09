@@ -120,13 +120,13 @@ test('Phase 62.3 — 3-Tier Commercial Framework Behavior', () => {
   assert.ok(directOffers[0].url.includes('/dp/B0068M5NAG'));
 
   // TIER 2: TARGETED_SEARCH (Valid part without active ASIN)
-  const searchOffers = provider.getOffers({ partNumber: '11301240800', partName: 'Luchtfilter' });
+  const searchOffers = provider.getOffers({ partNumber: '11231200605', partName: 'Carburateur' });
   assert.ok(searchOffers.length >= 1);
   assert.equal(searchOffers[0].link_type, 'SEARCH_FALLBACK');
   assert.equal(searchOffers[0].tier, COMMERCIAL_TIERS.TARGETED_SEARCH);
   assert.equal(searchOffers[0].asin, null);
   assert.equal(searchOffers[0].badge_label, 'Amazon-zoekopdracht');
-  assert.ok(searchOffers[0].url.includes('luchtfilter'));
+  assert.ok(searchOffers[0].url.includes('carburateur'));
   assert.ok(searchOffers[0].description.includes('niet vooraf bevestigd'));
 
   // TIER 3: INFORMATION_ONLY (Invalid part number yields empty offers, no misleading claims)
@@ -211,10 +211,12 @@ test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
   const locCount = (sitemapXml.match(/<loc>/g) || []).length;
   assert.equal(locCount, 1024, 'Must maintain exactly 1,024 sitemap URLs');
 
-  // Invariant 4: Exactly 3 active pilot ASINs live in production
+  // Invariant 4: Baseline 3 active pilot ASINs live in production, total within 25 cap
   const verifiedOffersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8'));
   const activeOffers = verifiedOffersDoc.offers.filter(o => o.status === 'ACTIVE');
-  assert.equal(activeOffers.length, 3, 'Must maintain exactly 3 active live pilot ASINs');
+  assert.ok(activeOffers.length <= 25, 'Active offers must be within policy cap of 25');
+  const activeParts = activeOffers.map(o => o.part_number);
+  assert.ok(['11104007005', '00004007000', '00004007011'].every(p => activeParts.includes(p)), 'Baseline 3 pilot parts remain active');
 
   // Invariant 5: Universal tracking tag is srihldecoder2-21
   const testProvider = new AmazonAffiliateProvider({ tag: 'srihldecoder2-21', defaultMarketplace: 'amazon.nl' });

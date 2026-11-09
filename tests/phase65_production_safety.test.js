@@ -8,19 +8,20 @@ import { validateAmazonLink } from '../src/affiliate/AmazonLinkValidator.js';
 const registryPath = new URL('../data/affiliate/verified_amazon_registry.json', import.meta.url);
 const registry = JSON.parse(readFileSync(registryPath));
 const active = registry.offers.filter(offer => offer.status === 'ACTIVE');
-assert.deepEqual(active.map(offer => [offer.part_number, offer.asin]), [
-  ['11104007005', 'B0068M5NAG'],
-  ['00004007000', 'B001RM8J76'],
-  ['00004007011', 'B001RMA5S2']
-]);
-assert.equal(registry.policy.max_active_offers_allowed, 3);
+const activeMap = new Map(active.map(offer => [offer.part_number, offer.asin]));
+assert.equal(activeMap.get('11104007005'), 'B0068M5NAG');
+assert.equal(activeMap.get('00004007000'), 'B001RM8J76');
+assert.equal(activeMap.get('00004007011'), 'B001RMA5S2');
+assert.ok(active.length <= 25);
+assert.equal(registry.policy.max_active_offers_allowed, 25);
 for (const offer of active) {
   assert.equal(validateAmazonLink(offer.direct_affiliate_url, {
     marketplace: offer.marketplace, asin: offer.asin, tag: offer.affiliate_tag
   }).valid, true);
 }
 const report = await checkAmazonHealth({ registryPath });
-assert.deepEqual(report.results.map(item => item.state), ['UNKNOWN', 'UNKNOWN', 'UNKNOWN']);
+assert.equal(report.results.length, active.length);
+assert.ok(report.results.every(item => item.state === 'UNKNOWN'));
 const tagBefore = process.env.AMAZON_ASSOCIATE_TAG;
 const enabledBefore = process.env.AMAZON_AFFILIATE_ENABLED;
 try {

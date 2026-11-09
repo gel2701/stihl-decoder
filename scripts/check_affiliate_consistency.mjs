@@ -27,11 +27,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-// Mandatory authorized pilot ASINs
+// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion)
 const AUTHORIZED_PILOT_PARTS = new Set([
   '11104007005', // Bosch WSR6F
   '00004007000', // NGK BPMR7A
-  '00004007011'  // NGK CMR6H
+  '00004007011', // NGK CMR6H
+  '00004007009', // Bosch USR7AC
+  '36160000050', // STIHL Zaagketting Picco Super PS 3/8" 1.3mm 50GL (B007QJL16A)
+  '36360000050', // Oregon S50 Zaagketting 3/8" LP 1.3mm 50DL (B00FYRVGHU)
+  '11301240800', // Haishine Luchtfilter MS 170 / MS 180 (B07KJYFPLM)
+  '11231201613', // Haishine Luchtfilter MS 250 / MS 230 / MS 210 (B0DPCHJ2TD)
+  '11211201617', // MCHNIC Luchtfilter MS 260 / 026 (B0CQXCJSDC)
+  '11411201600', // Trade-Shop HD2 Luchtfilter MS 261 / MS 362 (B09ZV1SQ7K)
+  '42411201800', // MCHNIC Luchtfilter BG 56 / BG 86 (B0D7ZKJTRX)
+  '41401242800', // MospdyGear Luchtfilter FS 55 / HS 45 (B0F53RHZLS)
+  '40027102169', // STIHL AutoCut C 26-2 Maaikop FS 55 (B06XZZ84JC)
+  '41190071027', // YOUSHARES AutoCut 25-2 Maaikop FS 55 (B09ZKYGPDG)
+  '11210071062', // Yingshop Walbro K10-WAT Membraanset (B071ZMCCYD)
+  '00003503500', // vhbw Brandstoffilter MS 170 / MS 250 / FS 55 (B0874SJ4CK)
+  '00003503521', // Haishine Brandstoffilter zuigkop FS 460 / MS 261 (B0HLBXNGQQ)
+  '11231950400', // ECSiNG Starter katrol / veer kit FS 55 / MS 170 (B0BG49Y65H)
+  '41470074102', // STIHL Service Kit 41
+  '41471410300', // STIHL Luchtfilter vlies FS 460
+  '41471404400', // STIHL Voorfilter schuim FS 460
+  '07811201109', // STIHL Aandrijfvet 80g
+  '07811201110', // STIHL Aandrijfvet 225g
+  '41471900600', // STIHL Terugtrekveer FS 460
+  '41197106000'  // STIHL Afsnijdmes maaikop
 ]);
 
 export function checkAffiliateConsistency() {
