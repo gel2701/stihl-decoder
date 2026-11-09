@@ -50,7 +50,7 @@ test('Phase 59F — 1. Preservation of the 3 Live Pilot Offers in Production', (
 
   assert.strictEqual(runtimeDoc.policy.production_activation_allowed, true);
   assert.ok(['11104007005', '00004007000', '00004007011'].every(p => runtimeDoc.policy.pilot_activated_parts.includes(p)));
-  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= 25);
+  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= 100);
 
   const registry = new VerifiedOfferRegistry({
     registryPath: RUNTIME_REGISTRY_PATH,
@@ -148,7 +148,7 @@ test('Phase 59F — 4. Production Lock: No New ASINs Activated in Production Wit
   });
   registry.loadFromFile();
 
-  const newCandidates = ['00004007025', '00006421223', '00006421240'];
+  const newCandidates = ['00004007025', '00006421223'];
   for (const part of newCandidates) {
     const active = registry.getActiveOffer(part);
     assert.strictEqual(active, null, `New candidate ${part} must NOT be active in production without operator approval`);

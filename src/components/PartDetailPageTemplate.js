@@ -423,11 +423,17 @@ ${supersessionHtml}
         ${offers.map(offer => {
           const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
           const isGerman = offer.marketplace === 'amazon.de';
-          const buttonText = offer.label || (isVerified ? (isGerman ? 'Bekijk product op Amazon.de' : 'Bekijk product op Amazon.nl') : 'Zoek op Amazon.nl');
+          const buttonText = offer.label || (isVerified
+            ? (isGerman ? 'Bekijk bij Sägenspezi op Amazon.de' : 'Bekijk dit onderdeel op Amazon.nl')
+            : (isGerman ? 'Zoek op Amazon.de' : 'Zoek op Amazon.nl'));
           const productTitle = offer.title || (isVerified ? `${offer.brand || offer.seller_name || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
-          const oemLabel = offer.oem_brand_classification === 'OEM_SUPPLIER_EQUIVALENT'
-            ? 'OEM-Fabrikant / Eerste Montage'
-            : (offer.oem_brand_classification === 'GENUINE_STIHL_OEM' ? 'Origineel STIHL' : 'Kwaliteitsvervanger');
+          const oemLabel = (offer.oem_brand_classification === 'GENUINE_STIHL' || offer.oem_brand_classification === 'GENUINE_STIHL_OEM')
+            ? 'Origineel STIHL'
+            : (offer.oem_brand_classification === 'OEM_SUPPLIER_EQUIVALENT'
+              ? `OEM-Kwaliteit (${offer.brand || 'Toeleverancier'})`
+              : (offer.oem_brand_classification === 'MANUFACTURER_AFTERMARKET'
+                ? `Aftermarket (${offer.brand || 'Kwaliteitsvervanger'})`
+                : 'Kwaliteitsvervanger'));
           const descriptionText = offer.description || (isVerified
             ? (isGerman
                 ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd (verkoper: ${offer.seller_name || 'Sägenspezi'}). Verzending naar Nederland is bevestigd.`

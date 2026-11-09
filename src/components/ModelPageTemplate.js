@@ -138,9 +138,17 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
     url: canonicalUrl
   });
 
+  const metaTitle = hasParts
+    ? `STIHL ${model.model_name} Serienummer Decoder, Bouwjaar, Onderdelen & Specificaties | STIHLDecoder`
+    : `STIHL ${model.model_name} Serienummer Decoder, Bouwjaar & Modelinformatie | STIHLDecoder`;
+
+  const metaDescription = hasParts
+    ? `Bekijk modeldata, technische specificaties en onderdelen voor de STIHL ${model.model_name}. Vind passende filters, bougies, slijtagedelen en directe aankoopmogelijkheden met serienummercontrole.`
+    : `Bekijk de bekende modeldata voor STIHL ${model.model_name}, inclusief bronstatus, onderdeleninformatie en aanwijzingen voor controle via typeplaatje en serienummer.`;
+
   const seoMetaHtml = renderSeoMeta({
-    title: `STIHL ${model.model_name} Serienummer Decoder, Bouwjaar & Modelinformatie | STIHLDecoder`,
-    description: `Bekijk de bekende modeldata voor STIHL ${model.model_name}, inclusief bronstatus, onderdeleninformatie en aanwijzingen voor controle via typeplaatje en serienummer.`,
+    title: metaTitle,
+    description: metaDescription,
     canonicalUrl,
     ogType: 'article',
     jsonLdData
@@ -237,12 +245,31 @@ export function renderModelPageHtml(model, database, baseUrl = PRIMARY_ORIGIN) {
       </div>
 
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL ${model.model_name} Serienummer Decoder, Bouwjaar & Modelinformatie
+        STIHL ${model.model_name} Serienummer Decoder, Specificaties &amp; Onderdelen
       </h1>
       <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Bekijk de momenteel bekende modeldata van de STIHL ${model.model_name}. Gebruik het serienummer voor formaat- en herkomstcontrole en bevestig model en uitvoering altijd via typeplaatje of primaire handleiding.
+        Bekijk de momenteel bekende modeldata, technische fabrieksspecificaties en compatibele onderdelen van de STIHL ${model.model_name}. Gebruik het serienummer voor formaat- en herkomstcontrole en bevestig model en uitvoering altijd via typeplaatje of primaire handleiding.
       </p>
     </header>
+
+    ${hasParts && safePartsPath ? `
+    <!-- High-Converting Parts Direct Action Banner (Phase 72 SEO & Conversion) -->
+    <div class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 p-4 sm:p-5 rounded-2xl border border-orange-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-orange-400">🔧 Passende Onderdelen Beschikbaar</span>
+          <span class="text-3xs font-mono px-2 py-0.5 rounded bg-orange-500/10 text-orange-300 border border-orange-500/20">${modelSections.reduce((acc, s) => acc + s.parts.length, 0)} onderdelen</span>
+        </div>
+        <p class="text-xs text-gray-300">Zoekt u onderdelen voor uw STIHL ${model.model_name}? Bekijk direct compatibele bougies, filters, slijtagedelen en tekeningposities met geverifieerde aankoopopties.</p>
+      </div>
+      <a
+        href="${safePartsPath}"
+        class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-5 py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-2 whitespace-nowrap shadow-md shadow-orange-600/20 shrink-0"
+      >
+        <span>Bekijk Onderdelen →</span>
+      </a>
+    </div>
+    ` : ''}
 
     <!-- Prominent Decoder Tool Card -->
     <section class="bg-gray-900 border border-gray-800 p-6 rounded-2xl space-y-4 stihl-orange-glow">

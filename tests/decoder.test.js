@@ -34,7 +34,7 @@ const ms260 = database.models.find(m => m.slug === 'ms-260' || m.id === 'stihl_m
 assert.ok(ms260);
 const html260 = renderModelPageHtml(ms260, database);
 assert.ok(html260.includes('MS 260'));
-assert.ok(html260.includes('Modelinformatie'));
+assert.ok(html260.includes('Modelinformatie') || html260.includes('Specificaties') || html260.includes('Onderdelen'));
 console.log('✅ Test 2 Passed: Pilot Model Page 2 (MS 260) SSR HTML rendered correctly.');
 
 // Test 3: Pilot Model Page 3 - FS 350 (/bosmaaiers/fs-350/)

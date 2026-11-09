@@ -35,7 +35,13 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 25;
+export const MAX_PILOT_ACTIVE_OFFERS = 50;
+
+export const COMMERCIAL_MILESTONES = Object.freeze({
+  MILESTONE_50: 50,
+  MILESTONE_100: 100,
+  MILESTONE_250: 250
+});
 
 /**
  * OfferMap: Subclass of Map providing transparent lookup by compositeKey
@@ -360,6 +366,95 @@ export class VerifiedOfferRegistry {
    */
   deactivateOffer(partNumber, reason = 'Deactivated by operator', options = {}) {
     return this.setOfferStatus(partNumber, 'VERIFIED', reason, options);
+  }
+
+  /**
+   * Activates a batch of candidate offers with atomic safety, deduplication, batch limits,
+   * individual kill switch generation, and expiry date management (Phase 72).
+   *
+   * @param {Array<Object>} offers
+   * @param {Object} [options]
+   * @param {number} [options.batchLimit=50]
+   * @param {string} [options.reason='Phase 72 batch activation']
+   * @param {number} [options.evidenceExpiryDays=180]
+   * @returns {{ success: boolean, activatedCount: number, errors: string[], offers: Array<Object> }}
+   */
+  activateBatch(offers, options = {}) {
+    if (!Array.isArray(offers)) {
+      return { success: false, activatedCount: 0, errors: ['Offers must be an array'], offers: [] };
+    }
+    const batchLimit = options.batchLimit || 50;
+    if (offers.length > batchLimit) {
+      return {
+        success: false,
+        activatedCount: 0,
+        errors: [`Batch size (${offers.length}) exceeds maximum allowed batch limit of ${batchLimit}`],
+        offers: []
+      };
+    }
+
+    const activated = [];
+    const errors = [];
+    const rollbackState = [];
+
+    for (const rawOffer of offers) {
+      const normPart = PartNormalizer.normalizePartNumber(rawOffer.part_number);
+      if (!normPart || normPart.length !== 11) {
+        errors.push(`Invalid canonical part number: "${rawOffer?.part_number}"`);
+        break;
+      }
+      const mkt = (rawOffer.marketplace || this.defaultMarketplace).toLowerCase();
+      const asin = (rawOffer.asin || '').trim().toUpperCase();
+      const compositeKey = `${normPart}:${mkt}:${asin}`;
+
+      // Snapshot existing offer for rollback if present
+      const existing = this.offers.get(compositeKey);
+      if (existing) {
+        rollbackState.push({ key: compositeKey, previous: JSON.parse(JSON.stringify(existing)), isNew: false, normPart });
+      } else {
+        rollbackState.push({ key: compositeKey, isNew: true, normPart, asin });
+      }
+
+      // Generate individual kill switch ID if not present
+      const mktPrefix = mkt === 'amazon.de' ? 'DE' : 'NL';
+      const killSwitchId = rawOffer.kill_switch_id || `KILL_AMAZON_${mktPrefix}_${normPart}`;
+
+      // Set expiry review date (max 180 days per Two-Gate freshness rules)
+      const expiryDays = options.evidenceExpiryDays || 180;
+      const reviewByDate = new Date(Date.now() + expiryDays * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+      const preparedOffer = {
+        ...rawOffer,
+        kill_switch_id: killSwitchId,
+        review_by_date: rawOffer.review_by_date || reviewByDate,
+        status: 'ACTIVE',
+        status_reason: rawOffer.status_reason || options.reason || 'Phase 72 batch activation'
+      };
+
+      const regResult = this.registerOffer(preparedOffer);
+      if (!regResult.success) {
+        errors.push(`Failed to register offer for ${normPart} (${asin}): ${regResult.errors.join('; ')}`);
+        break;
+      }
+
+      activated.push(regResult.offer);
+    }
+
+    if (errors.length > 0) {
+      // Atomic rollback of entire batch
+      for (const item of rollbackState) {
+        if (item.isNew) {
+          this.offers.delete(item.key);
+          const list = this.partIndex.get(item.normPart) || [];
+          this.partIndex.set(item.normPart, list.filter(o => o.asin !== item.asin));
+        } else {
+          this.offers.set(item.key, item.previous);
+        }
+      }
+      return { success: false, activatedCount: 0, errors, offers: [] };
+    }
+
+    return { success: true, activatedCount: activated.length, errors: [], offers: activated };
   }
 
   /**

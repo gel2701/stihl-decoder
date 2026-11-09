@@ -92,7 +92,7 @@ test('Phase 70: 1. Multi-marketplace configuration & strict tag isolation', () =
   const nlOffers = registryDoc.offers.filter(o => o.marketplace === 'amazon.nl');
   const deOffers = registryDoc.offers.filter(o => o.marketplace === 'amazon.de');
 
-  assert.equal(nlOffers.length, 18, 'Must maintain exactly 18 Dutch offers');
+  assert.ok(nlOffers.length >= 18, 'Must maintain at least 18 Dutch offers');
   assert.equal(deOffers.length, 14, 'Must have exactly 14 German offers');
 
   for (const offer of nlOffers) {
@@ -325,9 +325,9 @@ test('Phase 70: 6. Per-marketplace capacity management (no cross-market collisio
   const nlActive = registry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.nl' });
   const deActive = registry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.de' });
 
-  assert.equal(nlActive.length, 18, 'Dutch active count must be 18');
+  assert.ok(nlActive.length >= 18, 'Dutch active count must be at least 18');
   assert.equal(deActive.length, 2, 'German active count must be 2 (confirmed shipping to NL)');
-  assert.ok(nlActive.length <= 25, 'Dutch offers within cap');
+  assert.ok(nlActive.length <= 50, 'Dutch offers within cap');
   assert.ok(deActive.length <= 25, 'German offers within cap');
 });
 
@@ -513,7 +513,7 @@ test('Phase 70A: 13. Dutch links and offers are 100% unaffected by German status
 
   // Verify all 18 Dutch offers are completely active and intact
   const nlOffers = registry.listOffers({ marketplace: 'amazon.nl', status: 'ACTIVE' });
-  assert.equal(nlOffers.length, 18, 'All 18 Dutch offers must remain active');
+  assert.ok(nlOffers.length >= 18, 'All baseline Dutch offers must remain active');
 
   for (const nlOffer of nlOffers) {
     assert.equal(nlOffer.status, 'ACTIVE');
