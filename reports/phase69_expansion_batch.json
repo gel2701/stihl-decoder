@@ -11,11 +11,13 @@
   },
   "counts": {
     "candidates_evaluated": 11,
-    "passed_two_gate": 10,
+    "live_amazon_listings_checked": 10,
+    "confirmed_live_listings_retained": 1,
+    "unverifiable_404_demoted_to_staged": 9,
     "blocked_conflict": 1,
-    "newly_activated": 10,
+    "newly_activated": 1,
     "baseline_active_preserved": 3,
-    "total_active_in_production": 13,
+    "total_active_in_production": 4,
     "max_active_cap": 25
   },
   "production_baseline": {
@@ -39,7 +41,16 @@
       "gate1": "PASS",
       "gate2": "PASS",
       "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding vermeldt expliciet geschikt voor STIHL BG 86, FS 56, etc. Gecontroleerde Bosch USR7AC bougie."
+      "evidence_summary": "Amazon.nl vermelding vermeldt expliciet geschikt voor STIHL BG 86, FS 56, etc. Gecontroleerde Bosch USR7AC bougie.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 200,
+        "http_status_de": 200,
+        "listing_title_nl": "Tuinkaars 0242035503",
+        "listing_title_de": "Bosch USR7AC - Zündkerze für Gartengeräte - 1 Zündkerze",
+        "compatibility_confirmed": true,
+        "verdict": "RETAINED_ACTIVE"
+      }
     },
     {
       "rank": 2,
@@ -72,8 +83,18 @@
       "model_compatibility": "FS 460 C-EM, FS 410 C-EM, FS 360 C-EM",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet STIHL Service Kit 41 voor FS 460 C-EM, FS 410, FS 360."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet STIHL Service Kit 41 voor FS 460 C-EM, FS 410, FS 360.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 4,
@@ -88,8 +109,18 @@
       "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM en FS 410."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM en FS 410.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 5,
@@ -104,8 +135,18 @@
       "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 6,
@@ -120,8 +161,18 @@
       "model_compatibility": "FS 460, FS 410, FS 360, MS 261, MS 362",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460, MS 261, MS 362."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460, MS 261, MS 362.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 7,
@@ -136,8 +187,18 @@
       "model_compatibility": "FS 460, FS 350, FS 450, FS 480, FS 550, FS 55",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet tandwielvet voor STIHL FS 460, FS 350, FS 55."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet tandwielvet voor STIHL FS 460, FS 350, FS 55.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 8,
@@ -152,8 +213,18 @@
       "model_compatibility": "FS 460, FS 350, FS 450, FS 550",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet tandwielvet voor STIHL bosmaaier aandrijvingen (FS 460)."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet tandwielvet voor STIHL bosmaaier aandrijvingen (FS 460).",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 9,
@@ -168,8 +239,18 @@
       "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM en FS 410."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet geschikt voor STIHL FS 460 C-EM en FS 410.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 10,
@@ -184,8 +265,18 @@
       "model_compatibility": "FS 460, FS 350, FS 450, FS 55",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet afsnijdmes voor STIHL bosmaaiers FS 460, FS 350."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet afsnijdmes voor STIHL bosmaaiers FS 460, FS 350.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     },
     {
       "rank": 11,
@@ -200,13 +291,25 @@
       "model_compatibility": "MS 170, MS 180, 017, 018",
       "gate1": "PASS",
       "gate2": "PASS",
-      "status": "ACTIVE",
-      "evidence_summary": "Amazon.nl vermelding noemt expliciet luchtfilter voor STIHL MS 170, MS 180, 017, 018."
+      "status": "STAGED",
+      "evidence_summary": "Amazon.nl vermelding noemt expliciet luchtfilter voor STIHL MS 170, MS 180, 017, 018.",
+      "live_check": {
+        "checked_at": "2026-11-09",
+        "http_status_nl": 404,
+        "http_status_de": 404,
+        "http_status_com": 404,
+        "listing_found": false,
+        "compatibility_confirmed": false,
+        "verdict": "DEMOTED_TO_STAGED_SEARCH_FALLBACK",
+        "reason": "ASIN retourneert HTTP 404 op Amazon.nl, Amazon.de en Amazon.com. Veilig gerouteerd naar zoek-fallback."
+      }
     }
   ],
   "rollback_instructions": {
     "reversible": true,
     "rollback_method": "VerifiedOfferRegistry.deactivateOffer(partNumber) or setOfferStatus(partNumber, \"VERIFIED\")",
     "kill_switch_support": "Individual kill switches KILL_PILOT_[PART] intact; registry.policy.production_activation_allowed: false turns off all direct links sitewide instantly."
-  }
+  },
+  "audit_timestamp": "2026-11-09T16:15:00.000Z",
+  "audit_phase": "Phase 69C Final Amazon Listing Check"
 }

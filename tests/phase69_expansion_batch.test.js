@@ -34,7 +34,7 @@ test('Phase 69C: 1. AMAZON_LISTING_COMPATIBLE classification and taxonomy', () =
 
 test('Phase 69C: 2. Acceptance of verified Amazon product listings under TwoGateVerifier', () => {
   const activeNewOffers = registry.offers.filter(o => o.evidence_classification === 'AMAZON_LISTING_COMPATIBLE');
-  assert.equal(activeNewOffers.length, 10, 'Must have exactly 10 new AMAZON_LISTING_COMPATIBLE offers in registry');
+  assert.equal(activeNewOffers.length, 1, 'Must have exactly 1 confirmed live AMAZON_LISTING_COMPATIBLE offer in active registry');
 
   for (const offer of activeNewOffers) {
     const v = TwoGateVerifier.verifyOffer(offer, {
@@ -131,12 +131,12 @@ test('Phase 69C: 3. Rejection of invalid listings, wrong models, and technical c
   assert.equal(mismatchRes.isMismatch, true);
 });
 
-test('Phase 69C: 4. Production capacity limit raised to 25 and 13 active offers verified', () => {
+test('Phase 69C: 4. Production capacity limit raised to 25 and verified active offers maintained', () => {
   assert.equal(MAX_PILOT_ACTIVE_OFFERS, 25);
   assert.equal(registry.policy.max_active_offers_allowed, 25);
-  assert.equal(registry.metrics.active_in_production, 13);
-  assert.equal(registry.offers.filter(o => o.status === 'ACTIVE').length, 13);
-  assert.equal(registry.policy.pilot_activated_parts.length, 13);
+  assert.equal(registry.metrics.active_in_production, 4);
+  assert.equal(registry.offers.filter(o => o.status === 'ACTIVE').length, 4);
+  assert.equal(registry.policy.pilot_activated_parts.length, 4);
 
   // Verify baseline 3 offers remain completely intact and active
   const baselineParts = ['11104007005', '00004007000', '00004007011'];
@@ -147,25 +147,47 @@ test('Phase 69C: 4. Production capacity limit raised to 25 and 13 active offers 
     assert.equal(offer.pilot_active, true);
   }
 
-  // Verify MS 170 wear part is active
-  const ms170Offer = registry.offers.find(o => o.part_number === '11301240800');
-  assert.ok(ms170Offer, 'MS 170 air filter (1130 124 0800) must be active');
-  assert.equal(ms170Offer.asin, 'B079DLYRGL');
-  assert.equal(ms170Offer.status, 'ACTIVE');
+  // Verify verified Bosch USR7AC spark plug is active
+  const usr7acOffer = registry.offers.find(o => o.part_number === '00004007009');
+  assert.ok(usr7acOffer, 'Bosch USR7AC (0000 400 7009) must be active');
+  assert.equal(usr7acOffer.asin, 'B09QH68W83');
+  assert.equal(usr7acOffer.status, 'ACTIVE');
+  assert.equal(usr7acOffer.pilot_active, true);
+
+  // Verify unverified candidates (404 on Amazon) are STAGED and not in active registry
+  const unverifiedParts = [
+    '41470074102', '41471410300', '41471404400', '00003503521',
+    '07811201109', '07811201110', '41471900600', '41197106000', '11301240800'
+  ];
+  for (const pn of unverifiedParts) {
+    const candidate = batch.candidates.find(c => c.part_number === pn);
+    assert.ok(candidate, `Candidate ${pn} must exist in batch report`);
+    assert.equal(candidate.status, 'STAGED');
+    assert.equal(candidate.live_check.listing_found, false);
+    assert.equal(candidate.live_check.http_status_nl, 404);
+    assert.equal(registry.offers.some(o => o.part_number === pn), false, `${pn} must not be in active registry`);
+  }
 });
 
 test('Phase 69C: 5. Deterministic search fallback maintained for non-activated catalog', () => {
   const reg = new VerifiedOfferRegistry({ productionActivationAllowed: true });
   reg.importRegistry(registry);
 
-  // Active part resolves to direct ASIN
-  const activeCommercial = reg.resolveCommercialOffer({ partNumber: '11301240800' });
+  // Active verified part resolves to direct ASIN
+  const activeCommercial = reg.resolveCommercialOffer({ partNumber: '00004007009' });
   assert.equal(activeCommercial.link_type, 'DIRECT_ASIN');
-  assert.equal(activeCommercial.asin, 'B079DLYRGL');
+  assert.equal(activeCommercial.asin, 'B09QH68W83');
   assert.equal(activeCommercial.is_verified, true);
   assert.ok(activeCommercial.description.includes('Amazon-productvermelding'));
 
-  // Non-activated part resolves strictly to deterministic SEARCH_FALLBACK
+  // Staged unverified part resolves strictly to deterministic SEARCH_FALLBACK
+  const stagedCommercial = reg.resolveCommercialOffer({ partNumber: '11301240800' });
+  assert.equal(stagedCommercial.link_type, 'SEARCH_FALLBACK');
+  assert.equal(stagedCommercial.asin, null);
+  assert.equal(stagedCommercial.is_verified, false);
+  assert.ok(stagedCommercial.url.includes('/s?k='));
+
+  // Non-activated catalog part resolves strictly to deterministic SEARCH_FALLBACK
   const unactivatedCommercial = reg.resolveCommercialOffer({ partNumber: '11231200605' });
   assert.equal(unactivatedCommercial.link_type, 'SEARCH_FALLBACK');
   assert.equal(unactivatedCommercial.asin, null);
@@ -182,7 +204,7 @@ test('Phase 69C: 6. Reversibility & Rollback Support', () => {
   const reg = new VerifiedOfferRegistry({ productionActivationAllowed: true });
   reg.importRegistry(registry);
 
-  const testPart = '11301240800';
+  const testPart = '00004007009';
   assert.equal(reg.isOfferActive(testPart), true);
 
   // Deactivate offer (Rollback)
