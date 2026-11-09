@@ -1,16 +1,26 @@
 {
   "schema_version": "1.0.0",
-  "phase": "59E.1",
-  "generated_at": "2026-11-01T22:10:01.178Z",
+  "phase": "69C",
+  "generated_at": "2026-11-09T14:14:00.306Z",
   "policy": {
-    "pilot_name": "First Live Amazon ASIN Pilot (Controlled Launch)",
+    "pilot_name": "Phase 69C Amazon Compatibility First Expanded Pilot",
     "production_activation_allowed": true,
     "pilot_activated_parts": [
       "11104007005",
       "00004007000",
-      "00004007011"
+      "00004007011",
+      "00004007009",
+      "41470074102",
+      "41471410300",
+      "41471404400",
+      "00003503521",
+      "07811201109",
+      "07811201110",
+      "41471900600",
+      "41197106000",
+      "11301240800"
     ],
-    "max_active_offers_allowed": 3,
+    "max_active_offers_allowed": 25,
     "default_marketplace": "amazon.nl",
     "affiliate_tag": "srihldecoder2-21",
     "fallback_rule": "Deterministic search fallback for all unverified, staged, or non-whitelisted parts",
@@ -18,10 +28,10 @@
     "oem_badge_policy": "STRICT_SUPPLIER_EQUIVALENT_NO_MISLEADING_OEM_CLAIMS"
   },
   "metrics": {
-    "total_candidates_investigated": 3,
-    "verified_eligible": 3,
-    "active_in_production": 3,
-    "search_fallback_coverage": 18370
+    "total_candidates_investigated": 14,
+    "verified_eligible": 13,
+    "active_in_production": 13,
+    "search_fallback_coverage": 18360
   },
   "offers": [
     {
@@ -215,6 +225,669 @@
         "errors": []
       },
       "updated_at": "2026-11-01T17:15:00.000Z"
+    },
+    {
+      "part_number": "00004007009",
+      "part_number_formatted": "0000 400 7009",
+      "asin": "B09QH68W83",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Bosch Automotive Aftermarket",
+      "manufacturer_part_number": "0242035503 / USR7AC",
+      "trade_number": "USR7AC",
+      "brand": "Bosch",
+      "product_title": "Bosch 0242035503 Spark Plug USR7AC",
+      "package_quantity": 1,
+      "package_type": "Single piece folding box",
+      "ean_gtin": "4047023059468",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "BG 56, BG 86, SH 56, SH 86, FS 40, FS 50, FS 56, MS 150",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00004007009",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B09QH68W83",
+          "title": "Bosch USR7AC Amazon.nl productvermelding",
+          "claim": "Amazon.nl productvermelding voor ASIN B09QH68W83 vermeldt expliciet compatibiliteit met STIHL BG 56, BG 86, SH 56, SH 86, FS 40, FS 50, FS 56, MS 150.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL BG 56, BG 86, SH 56, SH 86, FS 40, FS 50, FS 56, MS 150 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B09QH68W83 met producttype bougie (Bosch USR7AC / 0242035503).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09QH68W83?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7009&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.305Z"
+    },
+    {
+      "part_number": "41470074102",
+      "part_number_formatted": "4147 007 4102",
+      "asin": "B09R1T6X4D",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 007 4102 / Service Kit 41",
+      "trade_number": "Service Kit 41",
+      "brand": "STIHL",
+      "product_title": "STIHL Service Kit 41",
+      "package_quantity": 1,
+      "package_type": "Set / kit",
+      "ean_gtin": "0886661816767",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460 C-EM, FS 410 C-EM, FS 360 C-EM",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41470074102",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B09R1T6X4D",
+          "title": "STIHL Service Kit 41 Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B09R1T6X4D vermeldt expliciet STIHL Service Kit 41 voor bosmaaier modellen FS 460 C-EM, FS 410, FS 360.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460 C-EM, FS 410 C-EM en FS 360 C-EM volgens Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B09R1T6X4D (STIHL Service Kit 41, onderhoudsset voor bosmaaiers).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09R1T6X4D?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+007+4102&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.305Z"
+    },
+    {
+      "part_number": "41471410300",
+      "part_number_formatted": "4147 141 0300",
+      "asin": "B08F9K47R9",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 141 0300",
+      "brand": "STIHL",
+      "product_title": "STIHL air filter fleece",
+      "package_quantity": 1,
+      "package_type": "Single filter",
+      "ean_gtin": "0886661338665",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41471410300",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B08F9K47R9",
+          "title": "STIHL Luchtfilter vlies Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B08F9K47R9 vermeldt expliciet geschikt voor STIHL FS 460 C-EM en FS 410.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460 C-EM, FS 410 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B08F9K47R9 (STIHL vliesluchtfilter 4147 141 0300).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9K47R9?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+141+0300&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.305Z"
+    },
+    {
+      "part_number": "41471404400",
+      "part_number_formatted": "4147 140 4400",
+      "asin": "B09JGG2L99",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 140 4400",
+      "brand": "STIHL",
+      "product_title": "STIHL pre-filter foam",
+      "package_quantity": 1,
+      "package_type": "Single foam insert",
+      "ean_gtin": "0886661338658",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41471404400",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B09JGG2L99",
+          "title": "STIHL Voorfilter schuimrubber Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B09JGG2L99 vermeldt expliciet geschikt voor STIHL FS 460 C-EM.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460 C-EM volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B09JGG2L99 (STIHL voorfilter schuim 4147 140 4400).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09JGG2L99?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+140+4400&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "00003503521",
+      "part_number_formatted": "0000 350 3521",
+      "asin": "B079DNGM5Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 3521",
+      "brand": "STIHL",
+      "product_title": "STIHL fuel pickup filter",
+      "package_quantity": 1,
+      "package_type": "Single fuel pickup body",
+      "ean_gtin": "0886661746200",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460, FS 410, FS 360, MS 261, MS 362",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00003503521",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B079DNGM5Y",
+          "title": "STIHL Brandstoffilter Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B079DNGM5Y vermeldt expliciet geschikt voor STIHL FS 460, MS 261, MS 362.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460, MS 261, MS 362 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B079DNGM5Y (STIHL brandstoffilter / zuigkop 0000 350 3521).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNGM5Y?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+350+3521&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "07811201109",
+      "part_number_formatted": "0781 120 1109",
+      "asin": "B007X6X91K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0781 120 1109 / Superlub FS 80g",
+      "trade_number": "Superlub FS 80g",
+      "brand": "STIHL",
+      "product_title": "STIHL gear grease 80g",
+      "package_quantity": 1,
+      "package_type": "Tube 80g",
+      "ean_gtin": "0795711107536",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460, FS 350, FS 450, FS 480, FS 550, FS 55",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_07811201109",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B007X6X91K",
+          "title": "STIHL Superlub FS 80g Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B007X6X91K vermeldt expliciet tandwielvet geschikt voor STIHL FS 460, FS 350, FS 55.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460, FS 350, FS 55 bosmaaiers volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B007X6X91K (STIHL Superlub FS tandwielvet 80g tube).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007X6X91K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0781+120+1109&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "07811201110",
+      "part_number_formatted": "0781 120 1110",
+      "asin": "B00474640Y",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0781 120 1110 / Superlub FS 225g",
+      "trade_number": "Superlub FS 225g",
+      "brand": "STIHL",
+      "product_title": "STIHL gear grease 225g",
+      "package_quantity": 1,
+      "package_type": "Tube 225g",
+      "ean_gtin": "0795711107543",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460, FS 350, FS 450, FS 550",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_07811201110",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B00474640Y",
+          "title": "STIHL Superlub FS 225g Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B00474640Y vermeldt expliciet tandwielvet geschikt voor STIHL FS 460, FS 350 en overige bosmaaiers.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460, FS 350 en bosmaaier aandrijvingen volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B00474640Y (STIHL Superlub FS tandwielvet 225g tube).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B00474640Y?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0781+120+1110&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "41471900600",
+      "part_number_formatted": "4147 190 0600",
+      "asin": "B08F9MKGTR",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 190 0600",
+      "brand": "STIHL",
+      "product_title": "STIHL rewind starter spring",
+      "package_quantity": 1,
+      "package_type": "Single spring housing",
+      "ean_gtin": "0886661338870",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460 C-EM, FS 410, FS 360",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41471900600",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B08F9MKGTR",
+          "title": "STIHL Terugtrekveer Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B08F9MKGTR vermeldt expliciet geschikt voor STIHL FS 460 C-EM, FS 410.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460 C-EM, FS 410 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B08F9MKGTR (STIHL starterveer 4147 190 0600).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MKGTR?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+190+0600&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "41197106000",
+      "part_number_formatted": "4119 710 6000",
+      "asin": "B017SBNY52",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4119 710 6000",
+      "brand": "STIHL",
+      "product_title": "STIHL line cutting blade",
+      "package_quantity": 1,
+      "package_type": "Single blade",
+      "ean_gtin": "0886661159871",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "FS 460, FS 350, FS 450, FS 55",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_41197106000",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B017SBNY52",
+          "title": "STIHL Afsnijdmes Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B017SBNY52 vermeldt expliciet geschikt voor STIHL FS 460, FS 350, FS 55.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL FS 460, FS 350, FS 55 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B017SBNY52 (STIHL afsnijdmes voor maaikopkap).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B017SBNY52?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4119+710+6000&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true,
+          "gtin_valid": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
+    },
+    {
+      "part_number": "11301240800",
+      "part_number_formatted": "1130 124 0800",
+      "asin": "B079DLYRGL",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1130 124 0800",
+      "brand": "STIHL",
+      "product_title": "STIHL air filter fleece MS 170 MS 180",
+      "package_quantity": 1,
+      "package_type": "Single filter element",
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": "MS 170, MS 180, 017, 018",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11301240800",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_LISTING",
+          "url": "https://www.amazon.nl/dp/B079DLYRGL",
+          "title": "STIHL Luchtfilter MS 170 Amazon.nl vermelding",
+          "claim": "Amazon.nl vermelding voor ASIN B079DLYRGL vermeldt expliciet geschikt voor STIHL MS 170, MS 180, 017, 018.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL MS 170, MS 180, 017, 018 volgens actuele Amazon-productvermelding.",
+      "asin_product_identity_proof": "Gecontroleerde Amazon.nl productpagina voor ASIN B079DLYRGL (STIHL vliesluchtfilter 1130 124 0800).",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B079DLYRGL?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+124+0800&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "ACTIVE",
+      "status_reason": "Geactiveerd onder Phase 69C Amazon Compatibility First met expliciete modelvermelding op Amazon.",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      },
+      "updated_at": "2026-11-09T14:14:00.306Z"
     }
   ]
 }

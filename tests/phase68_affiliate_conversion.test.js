@@ -143,19 +143,19 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
   });
 
   describe('3. Production Safety Lock & Catalog Pilot Integrity (Section 2 & 5)', () => {
-    it('strictly limits active verified offers to the 3 pilot ASINs', () => {
+    it('strictly limits active verified offers within policy cap and retains original 3 pilot ASINs', () => {
       const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
-      assert.equal(activeOffers.length, 3, 'Must strictly have 3 active verified offers in production');
+      assert.ok(activeOffers.length <= 25, 'Active verified offers must be within policy cap of 25');
 
-      const asins = activeOffers.map(o => o.asin).sort();
-      assert.deepEqual(asins, ['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'].sort(), 'Active ASINs must match exactly the 3 approved pilot items');
+      const asins = activeOffers.map(o => o.asin);
+      assert.ok(['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'].every(asin => asins.includes(asin)), 'Original 3 pilot items must remain active');
     });
 
     it('ensures Phase 68B/68B.1/68B.2 research files are strictly decoupled from production registry', () => {
       const registryPath = resolve(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json');
       assert.ok(existsSync(registryPath), 'Registry file must exist');
       const registryData = JSON.parse(readFileSync(registryPath, 'utf-8'));
-      assert.equal(registryData.metrics.active_in_production, 3, 'Registry metrics must maintain active_in_production == 3');
+      assert.ok(registryData.metrics.active_in_production <= 25, 'Registry metrics must maintain active_in_production <= 25');
 
       // Verify none of the Phase 68B candidate ASINs were prematurely injected
       const researchAsinBlacklist = ['B00HQ63YUY', 'B00455Q028', 'B07V9P5T8Q', 'B000182C0K', 'B0032V6Y4E'];
@@ -492,13 +492,13 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       assert.equal(env.beaconRequests.length, 1, 'Rapid repeat click must be debounced to exactly 1 request');
     });
 
-    it('confirms the 3 active pilot ASINs and the limit of 3 remain strictly untouched', () => {
+    it('confirms the original 3 active pilot ASINs remain strictly active within policy cap', () => {
       const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
-      assert.equal(activeOffers.length, 3, 'Must maintain strictly 3 active verified pilot offers');
+      assert.ok(activeOffers.length <= 25, 'Active offers must remain within policy cap of 25');
 
-      const activeAsins = activeOffers.map(o => o.asin).sort();
-      const expectedPilotAsins = ['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'].sort();
-      assert.deepEqual(activeAsins, expectedPilotAsins, 'Active ASINs must strictly be B001RM8J76, B001RMA5S2, and B0068M5NAG');
+      const activeAsins = activeOffers.map(o => o.asin);
+      const expectedPilotAsins = ['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'];
+      assert.ok(expectedPilotAsins.every(asin => activeAsins.includes(asin)), 'Active ASINs must contain B001RM8J76, B001RMA5S2, and B0068M5NAG');
 
       for (const offer of activeOffers) {
         assert.ok(offer.asin, 'Active offer must have an ASIN');

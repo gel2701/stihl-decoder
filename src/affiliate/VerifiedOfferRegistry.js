@@ -35,7 +35,7 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 3;
+export const MAX_PILOT_ACTIVE_OFFERS = 25;
 
 export class VerifiedOfferRegistry {
   /**
@@ -87,7 +87,8 @@ export class VerifiedOfferRegistry {
     // Two-Gate Guard: An offer cannot be VERIFIED or ACTIVE if it fails Two-Gate Verification
     const requiresVerification = requestedStatus === 'VERIFIED' ||
       requestedStatus === 'ACTIVE' ||
-      requestedStatus === 'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE';
+      requestedStatus === 'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE' ||
+      requestedStatus === 'AMAZON_LISTING_COMPATIBLE';
 
     if (requiresVerification && !verification.passed) {
       return {
@@ -119,6 +120,8 @@ export class VerifiedOfferRegistry {
       ean_gtin: offer.ean_gtin || offer.gtin || offer.ean || null,
       package_quantity: offer.package_quantity || 1,
       oem_brand_classification: offer.oem_brand_classification,
+      evidence_classification: offer.evidence_classification || (offer.status === 'AMAZON_LISTING_COMPATIBLE' ? 'AMAZON_LISTING_COMPATIBLE' : null),
+      model_compatibility: offer.model_compatibility || null,
       verifiable_evidence_sources: offer.verifiable_evidence_sources || [
         {
           type: 'EXTERNAL_CATALOG',
@@ -297,6 +300,41 @@ export class VerifiedOfferRegistry {
     const formattedPart = PartNormalizer.formatPartNumber(offer.part_number);
     const marketplace = offer.marketplace || 'amazon.nl';
     const displayMarketplace = marketplace.charAt(0).toUpperCase() + marketplace.slice(1);
+    const isAmazonListingCompatible = offer.evidence_classification === 'AMAZON_LISTING_COMPATIBLE' ||
+      offer.verification_status === 'AMAZON_LISTING_COMPATIBLE' ||
+      offer.status === 'AMAZON_LISTING_COMPATIBLE';
+
+    if (isAmazonListingCompatible) {
+      const model = offer.model_compatibility || (offer.compatibility_proof ? offer.compatibility_proof.match(/(?:voor|for)\s+([A-Za-z0-9\s,-]+)/i)?.[1]?.trim() : '') || 'STIHL machines';
+      if (classification === 'GENUINE_STIHL') {
+        return {
+          badge_label: 'Origineel STIHL',
+          label: `Bekijk origineel product op ${displayMarketplace}`,
+          description: `Geschikt voor STIHL ${model} (volgens Amazon-productvermelding). Controleer vóór aankoop altijd machine-uitvoering en bouwjaar.`
+        };
+      }
+      if (classification === 'OEM_SUPPLIER_EQUIVALENT') {
+        const brand = offer.brand || offer.manufacturer || 'OEM-leverancier';
+        return {
+          badge_label: `OEM-kwaliteit (${brand})`,
+          label: `Bekijk ${brand} product op ${displayMarketplace}`,
+          description: `Geschikt voor STIHL ${model} (volgens Amazon-productvermelding). Controleer vóór aankoop altijd machine-uitvoering en bouwjaar.`
+        };
+      }
+      if (classification === 'MANUFACTURER_AFTERMARKET') {
+        const brand = offer.brand || 'Aftermarket';
+        return {
+          badge_label: `Kwaliteitsvervanger (${brand})`,
+          label: `Bekijk ${brand} vervanger op ${displayMarketplace}`,
+          description: `Geschikt voor STIHL ${model} (volgens Amazon-productvermelding). Controleer vóór aankoop altijd machine-uitvoering en bouwjaar.`
+        };
+      }
+      return {
+        badge_label: 'Compatibel product',
+        label: `Bekijk product op ${displayMarketplace}`,
+        description: `Geschikt voor STIHL ${model} (volgens Amazon-productvermelding). Controleer vóór aankoop altijd machine-uitvoering en bouwjaar.`
+      };
+    }
 
     if (classification === 'GENUINE_STIHL') {
       return {
@@ -354,6 +392,7 @@ export class VerifiedOfferRegistry {
     if (activeOffer) {
       const directUrl = `https://${activeOffer.marketplace}/dp/${activeOffer.asin}?tag=${encodeURIComponent(tag)}`;
       const taxonomy = VerifiedOfferRegistry.getTaxonomyDisplayMeta(activeOffer);
+      const isAmazonListingCompatible = activeOffer.evidence_classification === 'AMAZON_LISTING_COMPATIBLE';
 
       return {
         provider: 'amazon',
@@ -368,7 +407,8 @@ export class VerifiedOfferRegistry {
         offer_type: 'MANUAL_ASIN',
         match_type: AMAZON_MATCH_TYPES.MANUAL_ASIN,
         is_verified: true,
-        verification_status: 'VERIFIED_EXACT_MATCH',
+        verification_status: isAmazonListingCompatible ? 'AMAZON_LISTING_COMPATIBLE' : 'VERIFIED_EXACT_MATCH',
+        evidence_classification: activeOffer.evidence_classification || null,
         oem_brand_classification: activeOffer.oem_brand_classification,
         manufacturer: activeOffer.manufacturer,
         brand: activeOffer.brand,

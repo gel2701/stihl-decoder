@@ -44,8 +44,14 @@ export const VALID_OFFER_STATUSES = new Set([
   'PART_COMPATIBILITY_ONLY',
   'ASIN_IDENTITY_UNVERIFIED',
   'CONFLICTING_EVIDENCE',
-  'INCORRECT_MATCH_CONFIRMED'
+  'INCORRECT_MATCH_CONFIRMED',
+  'AMAZON_LISTING_COMPATIBLE'
 ]);
+
+export const EVIDENCE_CLASSIFICATIONS = Object.freeze({
+  AMAZON_LISTING_COMPATIBLE: 'AMAZON_LISTING_COMPATIBLE',
+  INDEPENDENT_MANUFACTURER_VERIFIED: 'INDEPENDENT_MANUFACTURER_VERIFIED'
+});
 
 export const UNVERIFIED_ASIN_STATUSES = new Set([
   'ASIN_IDENTITY_UNVERIFIED',
@@ -136,8 +142,15 @@ export class TwoGateVerifier {
       checks.catalog_grounded = true; // skipped if map not passed
     }
 
+    const isAmazonListingCompatible = candidate.evidence_classification === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.status === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.verification_status === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.evidence_type === 'AMAZON_LISTING_COMPATIBLE';
+
     // 6. Mandatory Provenance Fields & Freshness (max 180 days)
-    const requiredFields = ['manufacturer', 'brand', 'oem_brand_classification', 'verification_date'];
+    const requiredFields = isAmazonListingCompatible
+      ? ['brand', 'oem_brand_classification', 'verification_date']
+      : ['manufacturer', 'brand', 'oem_brand_classification', 'verification_date'];
     const missingFields = requiredFields.filter(f => !candidate[f] || typeof candidate[f] !== 'string');
     if (missingFields.length > 0) {
       errors.push(`Missing mandatory provenance fields: ${missingFields.join(', ')}.`);
@@ -205,6 +218,16 @@ export class TwoGateVerifier {
       };
     }
 
+    const isAmazonListingCompatible = candidate.evidence_classification === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.status === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.verification_status === 'AMAZON_LISTING_COMPATIBLE' ||
+      candidate.evidence_type === 'AMAZON_LISTING_COMPATIBLE';
+
+    // 0. Technical Conflict Guard (e.g. 3/8 standard vs 3/8 Picco pitch mismatch)
+    if (candidate.blocker === 'BLOCKED_CONFLICT' || candidate.status === 'BLOCKED_CONFLICT' || candidate.has_technical_conflict === true) {
+      errors.push(`BLOCKED_CONFLICT: ${candidate.blocker_reason || candidate.conflict_reason || 'Conflicting technical specifications detected (e.g. pitch, spline or dimension mismatch).'}`);
+    }
+
     // 1. OEM Brand Taxonomy Classification
     if (VALID_OEM_BRAND_CLASSIFICATIONS.has(candidate.oem_brand_classification)) {
       checks.oem_taxonomy_valid = true;
@@ -213,7 +236,7 @@ export class TwoGateVerifier {
     }
 
     // 2. Manufacturer MPN Proof
-    const mpn = candidate.manufacturer_part_number || candidate.mpn;
+    const mpn = candidate.manufacturer_part_number || candidate.mpn || (candidate.oem_brand_classification === 'GENUINE_STIHL' ? candidate.part_number : null);
     if (typeof mpn === 'string' && mpn.trim().length > 0) {
       checks.manufacturer_mpn_proof = true;
     } else {
@@ -223,7 +246,20 @@ export class TwoGateVerifier {
     // 3. Compatibility Proof
     const compProof = candidate.compatibility_proof || candidate.compatibility_evidence || candidate.confirmed_stihl_compatibility;
     if (typeof compProof === 'string' && compProof.trim().length > 0) {
-      checks.compatibility_proof = true;
+      if (isAmazonListingCompatible) {
+        const normPart = PartNormalizer.normalizePartNumber(candidate.part_number);
+        const compClean = compProof.replace(/[\s.-]/g, '');
+        const mentionsModelOrPart = /\b(?:MS|FS|BR|BG|SH|TS|HT|BT|HL|KM|017|018|021|023|025|026|028|029|034|036|038|039|044|046|064|066)\b/i.test(compProof) ||
+          (normPart && compClean.includes(normPart)) ||
+          /\bSTIHL\b/i.test(compProof);
+        if (!mentionsModelOrPart) {
+          errors.push('AMAZON_LISTING_INCOMPATIBLE: Amazon listing compatibility proof must explicitly name the STIHL model or part number.');
+        } else {
+          checks.compatibility_proof = true;
+        }
+      } else {
+        checks.compatibility_proof = true;
+      }
     } else {
       errors.push('Missing technical STIHL compatibility evidence.');
     }
@@ -253,6 +289,33 @@ export class TwoGateVerifier {
       errors.push(`ASIN_IDENTITY_UNVERIFIED: ASIN ${candidate.asin} lacks external machine-verifiable proof linking it to physical product.`);
     } else if (typeof asinProof !== 'string' || asinProof.trim().length === 0) {
       errors.push('Missing independent Amazon ASIN product identity proof.');
+    } else if (isAmazonListingCompatible) {
+      // Under Amazon Compatibility First (Phase 69C):
+      // A verified Amazon product listing URL constitutes sufficient ASIN identity proof.
+      if (allUrls.length === 0) {
+        errors.push('Missing verifiable Amazon product listing URL.');
+      } else {
+        const untrustedPatterns = /(?:random-blog|forum\.|reddit\.com|fake-proof|generic-store\.example)/i;
+        if (allUrls.some(u => untrustedPatterns.test(u))) {
+          errors.push('UNTRUSTED_EVIDENCE_SOURCE: Source URL is not an authoritative Amazon listing or product catalog.');
+        } else {
+          // Check for contradictory ASIN claims
+          for (const src of sources) {
+            if (src && typeof src.claim === 'string') {
+              const foundAsins = src.claim.match(/\bB[0-9A-Z]{9}\b/g) || [];
+              for (const foundAsin of foundAsins) {
+                if (foundAsin !== candidate.asin) {
+                  errors.push(`ASIN_MISMATCH: Evidence source claims ASIN ${foundAsin}, which contradicts candidate ASIN ${candidate.asin}.`);
+                }
+              }
+            }
+          }
+          if (errors.length === 0) {
+            checks.asin_product_identity_proof = true;
+            checks.independent_sources_corroborated = true;
+          }
+        }
+      }
     } else {
       // 4a. Reject self-certified agent statements
       const selfCertifiedPatterns = /^(agent\s+verified|matched\s+by\s+title|confirmed\s+match\s+by\s+agent|self-certified|100%\s+genuine\s+match\s+verified|title\s+match)/i;
@@ -378,7 +441,13 @@ export class TwoGateVerifier {
     }
 
     // 8. Independent External Sources Corroborated
-    if (sources.length > 0) {
+    if (isAmazonListingCompatible) {
+      if (checks.asin_product_identity_proof) {
+        checks.independent_sources_corroborated = true;
+      } else {
+        errors.push('Missing verifiable Amazon product listing URL or proof.');
+      }
+    } else if (sources.length > 0) {
       const validSources = sources.every(s => s && typeof s.url === 'string' && /^https?:\/\//i.test(s.url) && s.claim);
       if (validSources && !allUrls.some(u => /(?:random-blog|forum\.|fake-proof)/i.test(u))) {
         checks.independent_sources_corroborated = true;

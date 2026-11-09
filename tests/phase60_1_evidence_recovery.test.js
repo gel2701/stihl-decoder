@@ -78,8 +78,8 @@ test('Phase 60.1: Amazon Evidence Recovery & Invariants', async (t) => {
 
   await t.test('3. Strict Production Lock & Safety Net', () => {
     const verifiedRegistry = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/affiliate/verified_amazon_registry.json'), 'utf8'));
-    assert.strictEqual(verifiedRegistry.policy.max_active_offers_allowed, 3, 'Max 3 active offers in production');
-    assert.deepEqual(verifiedRegistry.policy.pilot_activated_parts, ['11104007005', '00004007000', '00004007011']);
+    assert.ok(verifiedRegistry.policy.max_active_offers_allowed <= 25, 'Max active offers within policy cap (Phase 69C: 25)');
+    assert.ok(['11104007005', '00004007000', '00004007011'].every(p => verifiedRegistry.policy.pilot_activated_parts.includes(p)), 'Baseline 3 pilot parts remain active');
 
     // Check that all unverified / staged parts fall back to search
     const verifiedDoc = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'PHASE60_1_VERIFIED_OFFERS.json'), 'utf8'));

@@ -27,11 +27,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-// Mandatory authorized pilot ASINs
+// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C expansion)
 const AUTHORIZED_PILOT_PARTS = new Set([
   '11104007005', // Bosch WSR6F
   '00004007000', // NGK BPMR7A
-  '00004007011'  // NGK CMR6H
+  '00004007011', // NGK CMR6H
+  '00004007009', // Bosch USR7AC
+  '41470074102', // STIHL Service Kit 41
+  '41471410300', // STIHL Luchtfilter vlies FS 460
+  '41471404400', // STIHL Voorfilter schuim FS 460
+  '00003503521', // STIHL Brandstoffilter zuigkop
+  '07811201109', // STIHL Aandrijfvet 80g
+  '07811201110', // STIHL Aandrijfvet 225g
+  '41471900600', // STIHL Terugtrekveer FS 460
+  '41197106000', // STIHL Afsnijdmes maaikop
+  '11301240800'  // STIHL Luchtfilter MS 170 / MS 180
 ]);
 
 export function checkAffiliateConsistency() {
