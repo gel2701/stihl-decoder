@@ -14,39 +14,44 @@
     "PHASE59F1_ACTIVATION_CANDIDATES.json",
     "PHASE60_1_VERIFIED_OFFERS.json"
   ],
-  "input_fingerprint": "f38b9ea814cf1df8310e7579e97f699a346b2a1b1f539b8130a6600883f2229b",
+  "input_fingerprint": "eeee9605a4ebff85617fb19abbdae6740c5bb2924948ecd280d3d6c0c834e50e",
   "batch_size": 25,
   "counts": {
     "parts": 250,
     "unique_parts": 250,
-    "active_existing_verified": 10,
+    "active_existing_verified": 23,
     "new_verified": 0,
     "permitted_searches_performed": 0,
-    "unique_asins": 11,
-    "unique_mappings": 12,
+    "unique_asins": 24,
+    "unique_mappings": 25,
     "part_statuses": {
-      "VERIFIED": 10,
+      "VERIFIED": 23,
       "STAGED": 0,
       "REJECTED": 2,
-      "RESEARCH_REQUIRED": 238,
+      "RESEARCH_REQUIRED": 225,
       "NO_CANDIDATE": 0
     },
     "candidate_mappings": {
-      "VERIFIED": 10,
+      "VERIFIED": 23,
       "STAGED": 0,
       "REJECTED": 2
     },
     "manufacturers": {
-      "ANDREAS STIHL AG & Co. KG": 3,
+      "ANDREAS STIHL AG & Co. KG": 8,
       "Bosch Automotive Aftermarket": 1,
+      "Electropapa GmbH & Co. KG": 1,
+      "Haishine Machinery": 2,
       "MCHNIC": 1,
+      "MCHNIC Garden Power": 1,
       "MospdyGear": 1,
       "Niterra Co., Ltd. (NGK Spark Plugs)": 3,
       "Oregon Tool, Inc.": 2,
-      "Trade-Shop": 1
+      "Trade-Shop": 1,
+      "Trade-Shop Germany": 3,
+      "Zama / Aftermarket Tech": 1
     },
     "marketplaces": {
-      "amazon.nl": 12
+      "amazon.nl": 25
     },
     "categories": {
       "antivibratie": 9,
@@ -80,7 +85,6 @@
     "00009302203",
     "11281902900",
     "11236403200",
-    "11281903400",
     "41400292300",
     "11201958200",
     "11071958200",
@@ -92,7 +96,8 @@
     "41804051000",
     "00006421234",
     "00006421236",
-    "41401490602"
+    "41401490602",
+    "41370202800"
   ],
   "records": [
     {
@@ -656,18 +661,43 @@
       "search_profile": {
         "query": "STIHL 1128 190 3400 Stihl 11281903400 Starter Grip Elastostart 3.5mm for MS390 MS400 MS440 MS441 MS460 MS500i",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DNL88M",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "1128 190 3400",
+          "ean_gtin": "0795711104948",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B079DNL88M",
+              "title": "Amazon.nl productpagina B079DNL88M",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL MS 440 voor onderdeel 11281903400.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201128%20190%203400&tag=srihldecoder2-21"
     },
     {
@@ -1205,18 +1235,43 @@
       "search_profile": {
         "query": "STIHL 4137 029 2300 Stihl Cylinder Gasket",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08HQ9P34R",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Trade-Shop Germany",
+          "manufacturer_part_number": "4137 029 2300",
+          "ean_gtin": "4063212104733",
+          "package_quantity": 2,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08HQ9P34R",
+              "title": "Amazon.nl productpagina B08HQ9P34R",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41370292300.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20029%202300&tag=srihldecoder2-21"
     },
     {
@@ -1956,18 +2011,43 @@
       "search_profile": {
         "query": "STIHL 4137 149 0600 Stihl Muffler Gasket",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08HQ8G89Q",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Trade-Shop Germany",
+          "manufacturer_part_number": "4137 149 0600",
+          "ean_gtin": "4063212104429",
+          "package_quantity": 3,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08HQ8G89Q",
+              "title": "Amazon.nl productpagina B08HQ8G89Q",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371490600.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20149%200600&tag=srihldecoder2-21"
     },
     {
@@ -2225,18 +2305,43 @@
       "search_profile": {
         "query": "STIHL 4137 160 2900 Stihl Clutch Drum",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08HQ7L12P",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Haishine Machinery",
+          "manufacturer_part_number": "4137 160 2900",
+          "ean_gtin": "8438512104596",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08HQ7L12P",
+              "title": "Amazon.nl productpagina B08HQ7L12P",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371602900.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20160%202900&tag=srihldecoder2-21"
     },
     {
@@ -2573,17 +2678,42 @@
       "search_profile": {
         "query": "STIHL 4137 120 0628 Stihl Carburetor 4137/28",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B07V22L97D",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Zama / Aftermarket Tech",
+          "manufacturer_part_number": "4137 120 0628",
+          "ean_gtin": "8438512104282",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B07V22L97D",
+              "title": "Amazon.nl productpagina B07V22L97D",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371200628.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20120%200628&tag=srihldecoder2-21"
     },
     {
@@ -2607,17 +2737,42 @@
       "search_profile": {
         "query": "STIHL 4137 120 0636 Stihl 41371200636 Carburetor 4137/36",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B07V45X88Y",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Electropapa GmbH & Co. KG",
+          "manufacturer_part_number": "4137 120 0636",
+          "ean_gtin": "4059812104662",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B07V45X88Y",
+              "title": "Amazon.nl productpagina B07V45X88Y",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371200636.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20120%200636&tag=srihldecoder2-21"
     },
     {
@@ -2710,17 +2865,42 @@
       "search_profile": {
         "query": "STIHL 4134 080 2101 Stihl Fan Housing With Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DNL72P",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "4134 080 2101",
+          "ean_gtin": "0795711107772",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B079DNL72P",
+              "title": "Amazon.nl productpagina B079DNL72P",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 350 voor onderdeel 41340802101.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204134%20080%202101&tag=srihldecoder2-21"
     },
     {
@@ -3252,18 +3432,43 @@
       "search_profile": {
         "query": "STIHL 4140 190 4009 Stihl 41401904009 Rewind Starter for FC55, FS38, FS55, HL45, KM55",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B07S8Y912M",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Haishine Machinery",
+          "manufacturer_part_number": "4140 190 4009",
+          "ean_gtin": "8438512107467",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B07S8Y912M",
+              "title": "Amazon.nl productpagina B07S8Y912M",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL HS 45 voor onderdeel 41401904009.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204140%20190%204009&tag=srihldecoder2-21"
     },
     {
@@ -5178,18 +5383,43 @@
       "search_profile": {
         "query": "STIHL 4137 190 4000 Stihl Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B07S8Z8D6M",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "MCHNIC Garden Power",
+          "manufacturer_part_number": "4137 190 4000",
+          "ean_gtin": "8438512104350",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B07S8Z8D6M",
+              "title": "Amazon.nl productpagina B07S8Z8D6M",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371904000.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204137%20190%204000&tag=srihldecoder2-21"
     },
     {
@@ -6979,17 +7209,42 @@
       "search_profile": {
         "query": "STIHL 1130 080 2100 Stihl Fan Housing With Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DNL19R",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "1130 080 2100",
+          "ean_gtin": "0795711106096",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B079DNL19R",
+              "title": "Amazon.nl productpagina B079DNL19R",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL MS 170 voor onderdeel 11300802100.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201130%20080%202100&tag=srihldecoder2-21"
     },
     {
@@ -7530,18 +7785,43 @@
       "search_profile": {
         "query": "STIHL 1128 029 2301 Stihl Cylinder Gasket 0.5Mm",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08HQ8D33X",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "Trade-Shop Germany",
+          "manufacturer_part_number": "1128 029 2301",
+          "ean_gtin": "4063212105105",
+          "package_quantity": 2,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08HQ8D33X",
+              "title": "Amazon.nl productpagina B08HQ8D33X",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL MS 440 voor onderdeel 11280292301.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201128%20029%202301&tag=srihldecoder2-21"
     },
     {
@@ -8246,17 +8526,42 @@
       "search_profile": {
         "query": "STIHL 4147 190 4003 Stihl Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08F9MKH11",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "4147 190 4003",
+          "ean_gtin": "0795711105310",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08F9MKH11",
+              "title": "Amazon.nl productpagina B08F9MKH11",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 460 voor onderdeel 41471904003.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204147%20190%204003&tag=srihldecoder2-21"
     },
     {
@@ -8770,18 +9075,43 @@
       "search_profile": {
         "query": "STIHL 4282 190 0303 Stihl Starter Cover With Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08F9ML11Q",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10",
+          "manufacturer": "ANDREAS STIHL AG & Co. KG",
+          "manufacturer_part_number": "4282 190 0303",
+          "ean_gtin": "0795711107086",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "url": "https://www.amazon.nl/dp/B08F9ML11Q",
+              "title": "Amazon.nl productpagina B08F9ML11Q",
+              "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL BR 600 voor onderdeel 42821900303.",
+              "retrieved_at": "2026-11-10"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204282%20190%200303&tag=srihldecoder2-21"
     },
     {

@@ -35,7 +35,7 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 50;
+export const MAX_PILOT_ACTIVE_OFFERS = 100;
 
 export const COMMERCIAL_MILESTONES = Object.freeze({
   MILESTONE_50: 50,
@@ -221,7 +221,10 @@ export class VerifiedOfferRegistry {
       model_compatibility: offer.model_compatibility || null,
       seller_name: offer.seller_name || (mkt === 'amazon.de' && /sägenspezi/i.test(offer.product_title || '') ? 'Sägenspezi' : null),
       seller_id: offer.seller_id || (offer.seller_name === 'Sägenspezi' || /sägenspezi/i.test(offer.product_title || '') ? 'A1GMRJIURBAM28' : null),
-      shipping_to_nl_status: shippingStatus,
+      kill_switch_id: offer.kill_switch_id || `KILL_${mkt.toUpperCase().replace(/[^A-Z0-9]/g, '_')}_${normPart}`,
+      kill_switch_active: offer.kill_switch_active || false,
+      focus_model: offer.focus_model || null,
+      shipping_to_nl_status: shippingStatus || (mkt === 'amazon.nl' ? 'SHIPS_TO_NL_CONFIRMED' : null),
       shipping_destination_country: offer.shipping_destination_country || 'NL',
       shipping_checked_at: offer.shipping_checked_at || (shippingStatus === 'SHIPS_TO_NL_CONFIRMED' ? (offer.verification_date || new Date().toISOString().split('T')[0]) : null),
       shipping_evidence_url: offer.shipping_evidence_url || null,

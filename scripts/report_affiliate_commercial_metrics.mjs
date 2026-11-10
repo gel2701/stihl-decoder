@@ -111,7 +111,7 @@ export function generateCommercialReport(options = {}) {
   };
 
   const report = {
-    report_title: 'STIHLDecoder Phase 72 Commercial Affiliate & GSC Growth Report',
+    report_title: 'STIHLDecoder Phase 73 Commercial Affiliate & GSC Growth Report (100 Verified Links)',
     generated_at: new Date().toISOString(),
     marketplaces: {
       amazon_nl: {

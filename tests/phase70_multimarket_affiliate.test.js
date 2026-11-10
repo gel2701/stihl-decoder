@@ -327,7 +327,7 @@ test('Phase 70: 6. Per-marketplace capacity management (no cross-market collisio
 
   assert.ok(nlActive.length >= 18, 'Dutch active count must be at least 18');
   assert.equal(deActive.length, 2, 'German active count must be 2 (confirmed shipping to NL)');
-  assert.ok(nlActive.length <= 50, 'Dutch offers within cap');
+  assert.ok(nlActive.length <= 100, 'Dutch offers within cap');
   assert.ok(deActive.length <= 25, 'German offers within cap');
 });
 
