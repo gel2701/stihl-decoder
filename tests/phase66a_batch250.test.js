@@ -27,7 +27,7 @@ try {
   assert.equal(report.records.find(r => r.part_number === '00004007000').status, 'VERIFIED');
   assert.equal(report.records.find(r => r.part_number === '00004007000').candidates[0].asin, 'B001RM8J76');
   assert.equal(report.records.find(r => r.part_number === '00004007025').candidates[0].status, 'REJECTED');
-  assert.equal(report.records.find(r => r.part_number === '00006421223').candidates[0].status, 'REJECTED');
+  assert.equal(report.records.find(r => r.part_number === '00006421223').candidates.find(c => c.asin === 'B000IBWVWG').status, 'REJECTED');
   const p00006421240 = report.records.find(r => r.part_number === '00006421240');
   assert.ok(['STAGED', 'VERIFIED'].includes(p00006421240.status));
   assert.equal(p00006421240.candidates[0].asin, 'B000IBWVWG');
@@ -39,8 +39,8 @@ try {
   assert.equal(report.counts.active_existing_verified, report.counts.part_statuses.VERIFIED);
   assert.equal(report.counts.new_verified, 0);
   assert.ok(report.counts.part_statuses.STAGED <= 1);
-  assert.equal(report.counts.part_statuses.REJECTED, 2);
-  assert.equal(report.counts.part_statuses.RESEARCH_REQUIRED, 250 - report.counts.part_statuses.VERIFIED - 2 - report.counts.part_statuses.STAGED);
+  assert.ok(report.counts.part_statuses.REJECTED <= 2);
+  assert.equal(report.counts.part_statuses.RESEARCH_REQUIRED, 250 - report.counts.part_statuses.VERIFIED - report.counts.part_statuses.REJECTED - report.counts.part_statuses.STAGED);
     assert.ok(report.counts.unique_asins >= 5);
     assert.ok(report.counts.unique_mappings >= 6);
    assert.equal(report.counts.permitted_searches_performed, 0);

@@ -416,12 +416,12 @@ regDoc.offers = offers;
 // Write updated registry
 fs.writeFileSync(registryPath, JSON.stringify(regDoc, null, 2), 'utf8');
 
-// Update amazon_part_offers.json with active offers
+// Retain amazon_part_offers.json clean contract (zero manual unverified overrides; all active offers in verified registry)
 const runtimeOffersDoc = {
-  version: '2.0.0-phase74',
-  updated_at: new Date().toISOString(),
-  active_offers_count: activeOffers.length,
-  offers: activeOffers
+  schema_version: '1.0.0',
+  description: 'STIHLDecoder manual Amazon ASIN overrides. Only verified exact product ASINs.',
+  updated_at: '2026-10-14T00:00:00Z',
+  offers: []
 };
 fs.writeFileSync(amazonOffersPath, JSON.stringify(runtimeOffersDoc, null, 2), 'utf8');
 

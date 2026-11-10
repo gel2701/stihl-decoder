@@ -14,25 +14,25 @@
     "PHASE59F1_ACTIVATION_CANDIDATES.json",
     "PHASE60_1_VERIFIED_OFFERS.json"
   ],
-  "input_fingerprint": "71c1368452cbff7e85141d04aa70ff6a814a9d6f2833078fa72d3c9d302ef237",
+  "input_fingerprint": "7e635c26649014fb563f5c4fcf17152b8f15355f045c96c5667c21034899af09",
   "batch_size": 25,
   "counts": {
     "parts": 250,
     "unique_parts": 250,
-    "active_existing_verified": 6,
+    "active_existing_verified": 8,
     "new_verified": 0,
     "permitted_searches_performed": 0,
-    "unique_asins": 8,
-    "unique_mappings": 9,
+    "unique_asins": 9,
+    "unique_mappings": 11,
     "part_statuses": {
-      "VERIFIED": 6,
+      "VERIFIED": 8,
       "STAGED": 1,
-      "REJECTED": 2,
-      "RESEARCH_REQUIRED": 241,
+      "REJECTED": 1,
+      "RESEARCH_REQUIRED": 240,
       "NO_CANDIDATE": 0
     },
     "candidate_mappings": {
-      "VERIFIED": 6,
+      "VERIFIED": 8,
       "STAGED": 1,
       "REJECTED": 2
     },
@@ -41,11 +41,12 @@
       "MCHNIC": 1,
       "MospdyGear": 1,
       "Niterra Co., Ltd. (NGK Spark Plugs)": 3,
+      "Oregon Tool": 2,
       "Oregon Tool, Inc.": 2,
       "Trade-Shop": 1
     },
     "marketplaces": {
-      "amazon.nl": 9
+      "amazon.nl": 11
     },
     "categories": {
       "antivibratie": 9,
@@ -827,7 +828,7 @@
       "search_profile": {
         "query": "STIHL 0000 642 1223 Stihl 00006421223 Rim Sprocket 3/8\" 7T",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
@@ -835,6 +836,35 @@
         "ghs"
       ],
       "candidates": [
+        {
+          "asin": "B00455Q028",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10T10:00:00.000Z",
+          "manufacturer": "Oregon Tool",
+          "manufacturer_part_number": "68210",
+          "ean_gtin": "5400182633471",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "MANUFACTURER_CROSS_REFERENCE",
+              "name": "Oregon Official Power Mate Sprocket Catalog",
+              "url": "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C-3-8%22-pitch---standard-7-spline-(sd7)/p/68210",
+              "claim": "Oregon 68210 is 3/8\" Pitch 7-Tooth Standard 7-Spline (SD7, ID 22.2 mm / 7/8\") floating rim sprocket replacing STIHL 0000 642 1223 for MS 360, MS 361, MS 362, MS 440, MS 441, MS 460, MS 461, MS 462, 034, 036, 044, 046"
+            },
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "name": "Amazon NL Oregon 68210 Product Page",
+              "url": "https://www.amazon.nl/dp/B00455Q028",
+              "claim": "Oregon 68210 Kettingwiel Ring 3/8\" 7T Standard Spline ASIN B00455Q028"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        },
         {
           "asin": "B000IBWVWG",
           "marketplace": "amazon.nl",
@@ -864,10 +894,10 @@
           "url_valid": true
         }
       ],
-      "status": "REJECTED",
-      "activation_state": "INACTIVE",
-      "research_status": "HISTORICAL_MISMATCH",
-      "current_link_type": "SEARCH_FALLBACK",
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%200000%20642%201223&tag=srihldecoder2-21"
     },
     {
@@ -2289,18 +2319,48 @@
       "search_profile": {
         "query": "STIHL 0000 642 1231 Stihl 00006421231 Rim Sprocket 3/8\" 7T",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B000IBWVWG",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10T10:00:00.000Z",
+          "manufacturer": "Oregon Tool",
+          "manufacturer_part_number": "18720",
+          "ean_gtin": "0036577187202",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "MANUFACTURER_CROSS_REFERENCE",
+              "name": "Oregon Official Power Mate Sprocket Catalog",
+              "url": "https://www.oregonproducts.com/en/power-mate%C2%AE-rim-sprocket%2C-3-8%22-pitch---small-7-spline-(sm7)/p/18720",
+              "claim": "Oregon 18720 is 3/8\" Pitch 7-Tooth Small 7-Spline (SM7, ID 19.05 mm / 3/4\") floating rim sprocket replacing STIHL 0000 642 1231 for MS 240, MS 260, MS 261, MS 270, MS 271, MS 280, 024, 026"
+            },
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "name": "Amazon NL Oregon 18720 Product Page",
+              "url": "https://www.amazon.nl/dp/B000IBWVWG",
+              "claim": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline ASIN B000IBWVWG"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%200000%20642%201231&tag=srihldecoder2-21"
     },
     {

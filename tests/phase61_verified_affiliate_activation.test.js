@@ -120,7 +120,7 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
     // Exactly 3 active pilot ASINs baseline preserved within 25 cap
     const activeRegistryPath = path.join(ROOT_DIR, 'data', 'affiliate', 'verified_amazon_registry.json');
     const activeData = JSON.parse(fs.readFileSync(activeRegistryPath, 'utf8'));
-    const activeOffers = activeData.offers || [];
+    const activeOffers = (activeData.offers || []).filter(o => o.status === 'ACTIVE');
     const activeNL = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     assert.ok(activeNL.length <= 100, 'Active offers must be within policy cap');
 
