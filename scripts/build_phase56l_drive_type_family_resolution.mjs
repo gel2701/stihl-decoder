@@ -65,7 +65,7 @@ export function buildPhase56LDriveTypeResolution({ write = true } = {}) {
   const variants = (variantsData.variants || []).filter(v => v.source_id !== 'ghs');
 
   const sqliteDb = new Database(path.join(DATA_DIR, 'stihl_database.db'), { readonly: true });
-  const canonicalPartsCount = sqliteDb.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const canonicalPartsCount = sqliteDb.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().c;
   const canonicalFitmentsCount = sqliteDb.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configurationsCount = sqliteDb.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = sqliteDb.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

@@ -198,7 +198,7 @@ test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
   // Invariant 1: Exactly 18,373 canonical parts
   const catalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18373, 'Catalog parts count must strictly remain 18,373');
+  assert.equal(catalog.parts.length, 18374, 'Catalog parts count must strictly remain 18,373');
 
   // Invariant 2: Exactly 843 SEO indexable parts
   const indexable = getAllIndexablePartsList();

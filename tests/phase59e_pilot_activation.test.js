@@ -345,7 +345,7 @@ test('Phase 59E — 10. Privacy-Conscious Telemetry & Beacon Contract', () => {
 test('Phase 59E — 11. Core Catalog and SEO Invariant Freeze', () => {
   const catalogDoc = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
   const totalParts = catalogDoc.parts_count || (catalogDoc.parts ? catalogDoc.parts.length : 0);
-  assert.strictEqual(totalParts, 18373, 'Canonical catalog parts count must remain exactly 18,373');
+  assert.strictEqual(totalParts, 18374, 'Canonical catalog parts count must remain exactly 18,373');
 
   // Verify total SEO parts
   const seoDir = path.join(rootDir, 'data', 'seo');

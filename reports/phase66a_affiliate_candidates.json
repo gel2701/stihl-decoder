@@ -14,25 +14,25 @@
     "PHASE59F1_ACTIVATION_CANDIDATES.json",
     "PHASE60_1_VERIFIED_OFFERS.json"
   ],
-  "input_fingerprint": "7e635c26649014fb563f5c4fcf17152b8f15355f045c96c5667c21034899af09",
+  "input_fingerprint": "6cde054268015bc8cff4f36edd20151a16a3db2f60226977939fc39d45e96a5a",
   "batch_size": 25,
   "counts": {
     "parts": 250,
     "unique_parts": 250,
-    "active_existing_verified": 8,
+    "active_existing_verified": 11,
     "new_verified": 0,
     "permitted_searches_performed": 0,
-    "unique_asins": 9,
-    "unique_mappings": 11,
+    "unique_asins": 12,
+    "unique_mappings": 14,
     "part_statuses": {
-      "VERIFIED": 8,
+      "VERIFIED": 11,
       "STAGED": 1,
       "REJECTED": 1,
-      "RESEARCH_REQUIRED": 240,
+      "RESEARCH_REQUIRED": 237,
       "NO_CANDIDATE": 0
     },
     "candidate_mappings": {
-      "VERIFIED": 8,
+      "VERIFIED": 11,
       "STAGED": 1,
       "REJECTED": 2
     },
@@ -43,10 +43,11 @@
       "Niterra Co., Ltd. (NGK Spark Plugs)": 3,
       "Oregon Tool": 2,
       "Oregon Tool, Inc.": 2,
+      "STIHL": 3,
       "Trade-Shop": 1
     },
     "marketplaces": {
-      "amazon.nl": 11
+      "amazon.nl": 14
     },
     "categories": {
       "antivibratie": 9,
@@ -6453,18 +6454,48 @@
       "search_profile": {
         "query": "STIHL 1123 640 2073 Stihl Chain Sprocket 3/8\"P 6 Teeth",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DN88M2",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10T14:00:00.000Z",
+          "manufacturer": "STIHL",
+          "manufacturer_part_number": "1123 640 2073",
+          "ean_gtin": "0886661160150",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "MANUFACTURER_CROSS_REFERENCE",
+              "name": "STIHL Kettingwielen Catalogus",
+              "url": "https://www.stihl.nl/nl/ap/zaagkettingen-en-kettingwielen-1640",
+              "claim": "STIHL kettingwiel 3/8\" Picco 6T 1123 640 2073 voor MS 170, MS 180"
+            },
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "name": "Amazon NL STIHL 1123 640 2073 Product Page",
+              "url": "https://www.amazon.nl/dp/B079DN88M2",
+              "claim": "STIHL 1123 640 2073 Kettingwiel ASIN B079DN88M2"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201123%20640%202073&tag=srihldecoder2-21"
     },
     {
@@ -6959,17 +6990,47 @@
       "search_profile": {
         "query": "STIHL 1130 080 2100 Stihl Fan Housing With Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B079DNL19R",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10T14:00:00.000Z",
+          "manufacturer": "STIHL",
+          "manufacturer_part_number": "1130 080 2100",
+          "ean_gtin": "0795711106096",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "MANUFACTURER_CROSS_REFERENCE",
+              "name": "STIHL Ventilatorhuizen Catalogus",
+              "url": "https://www.stihl.nl/nl/ap/kettingzagen-1638",
+              "claim": "STIHL ventilatorhuis met trekstarter 1130 080 2100 voor MS 170, MS 180"
+            },
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "name": "Amazon NL STIHL 1130 080 2100 Product Page",
+              "url": "https://www.amazon.nl/dp/B079DNL19R",
+              "claim": "STIHL 1130 080 2100 Starter ASIN B079DNL19R"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%201130%20080%202100&tag=srihldecoder2-21"
     },
     {
@@ -8750,18 +8811,48 @@
       "search_profile": {
         "query": "STIHL 4282 190 0303 Stihl Starter Cover With Rewind Starter",
         "marketplace": "amazon.nl",
-        "research_required": true,
+        "research_required": false,
         "searches_performed": 0
       },
       "catalog_sources": [
         "sparepartsworld",
         "ghs"
       ],
-      "candidates": [],
-      "status": "RESEARCH_REQUIRED",
-      "activation_state": "INACTIVE",
-      "research_status": "RESEARCH_REQUIRED",
-      "current_link_type": "SEARCH_FALLBACK",
+      "candidates": [
+        {
+          "asin": "B08F9ML11Q",
+          "marketplace": "amazon.nl",
+          "status": "VERIFIED",
+          "activation_state": "ACTIVE",
+          "research_status": "EXISTING_REGISTRY_VERIFIED",
+          "source": "data/affiliate/verified_amazon_registry.json",
+          "source_timestamp": "2026-11-10T14:00:00.000Z",
+          "manufacturer": "STIHL",
+          "manufacturer_part_number": "4282 190 0303",
+          "ean_gtin": "0795711107086",
+          "package_quantity": 1,
+          "evidence_sources": [
+            {
+              "type": "MANUFACTURER_CROSS_REFERENCE",
+              "name": "STIHL Rugblazers Starter Catalogus",
+              "url": "https://www.stihl.nl/nl/ap/bladblazers-en-bladzuigers-1648",
+              "claim": "STIHL terugloopstarter compleet 4282 190 0303 voor BR 500, BR 550, BR 600"
+            },
+            {
+              "type": "AMAZON_PRODUCT_PAGE",
+              "name": "Amazon NL STIHL 4282 190 0303 Product Page",
+              "url": "https://www.amazon.nl/dp/B08F9ML11Q",
+              "claim": "STIHL 4282 190 0303 Starter ASIN B08F9ML11Q"
+            }
+          ],
+          "gate_1": "PASS",
+          "gate_2": "PASS"
+        }
+      ],
+      "status": "VERIFIED",
+      "activation_state": "ACTIVE",
+      "research_status": "EXISTING_REGISTRY_VERIFIED",
+      "current_link_type": "EXISTING_ACTIVE_REGISTRY_LINK",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL%204282%20190%200303&tag=srihldecoder2-21"
     },
     {
