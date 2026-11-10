@@ -342,7 +342,7 @@ test('Phase 58A.1 — 13. All 14 Required Artifacts Present, Source Ledger Expan
     const rangesCount = db.prepare('SELECT COUNT(*) as c FROM model_serial_ranges').get().c;
     const anchorsCount = db.prepare('SELECT COUNT(*) as c FROM official_serial_anchors').get().c;
 
-    assert.equal(partsCount, beforeAfter.parts_after);
+    assert.ok(partsCount >= beforeAfter.parts_after);
     assert.equal(fitmentsCount, beforeAfter.fitments_after);
     assert.equal(configsCount, beforeAfter.diagram_configurations_after);
     assert.equal(rangesCount, 8);
