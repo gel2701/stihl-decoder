@@ -33,7 +33,7 @@ test('Phase 69D: 1. AMAZON_LISTING_COMPATIBLE classification and taxonomy', () =
 });
 
 test('Phase 69D: 2. Acceptance of verified Amazon product listings under TwoGateVerifier', () => {
-  const activeNewOffers = registry.offers.filter(o => o.evidence_classification === 'AMAZON_LISTING_COMPATIBLE' && (!o.marketplace || o.marketplace === 'amazon.nl'));
+  const activeNewOffers = registry.offers.filter(o => o.status === 'ACTIVE' && o.evidence_classification === 'AMAZON_LISTING_COMPATIBLE' && (!o.marketplace || o.marketplace === 'amazon.nl'));
   assert.ok(activeNewOffers.length >= 15, 'Must have at least 15 confirmed live AMAZON_LISTING_COMPATIBLE offers in active registry');
 
   for (const offer of activeNewOffers) {

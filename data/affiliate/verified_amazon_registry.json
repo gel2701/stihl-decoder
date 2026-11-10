@@ -6,111 +6,31 @@
     "pilot_name": "Phase 73 Amazon Affiliate Growth Engine — 100 Links Milestone & GSC Priority Expansion",
     "production_activation_allowed": true,
     "pilot_activated_parts": [
-      "11104007005",
-      "00004007000",
-      "00004007011",
-      "00004007009",
-      "36160000050",
-      "36360000050",
-      "11301240800",
-      "11231201613",
-      "11211201617",
-      "11411201600",
-      "42411201800",
-      "41401242800",
-      "40027102169",
-      "41190071027",
-      "11210071062",
       "00003503500",
       "00003503521",
-      "11231950400",
+      "00004007000",
+      "00004007009",
+      "00004007011",
+      "11104007005",
+      "11210071062",
       "11210201200",
+      "11211201617",
       "11230302003",
-      "41470074102",
-      "41471410300",
-      "41471404400",
-      "07811201109",
-      "07811201110",
-      "41471900600",
-      "41197106000",
-      "00009302246",
-      "00009302247",
-      "00003500527",
-      "00003505812",
-      "00009302298",
-      "41471602002",
-      "00003500525",
-      "00003500533",
-      "00006421240",
-      "11231201651",
-      "11236402074",
-      "11231900600",
-      "11230071061",
-      "11230201209",
-      "11236402073",
-      "11291900601",
-      "11300201208",
-      "11303500500",
-      "42291201800",
-      "42821410300",
-      "11216402004",
-      "42381401800",
-      "42381404401",
-      "41371241500",
-      "41371200628",
-      "41371904000",
-      "41371490600",
-      "41371602900",
-      "41371200636",
-      "41370292300",
-      "41371242800",
-      "11281201602",
-      "11281903400",
-      "11280201227",
-      "11280292301",
-      "11280802115",
-      "41471401000",
-      "41471904003",
-      "41471200600",
-      "41470071700",
-      "41471402802",
-      "11300074100",
-      "36100000044",
-      "30050003905",
-      "30050003909",
-      "11300802100",
-      "11301402800",
-      "42410074100",
-      "42410071700",
-      "42411401000",
-      "42410071003",
-      "11271201621",
-      "11271201620",
-      "11270802103",
-      "11271241500",
-      "42821401003",
-      "42821900303",
-      "42820071020",
-      "11351201600",
-      "11350802102",
-      "11351201601",
-      "41400074100",
-      "41401904009",
-      "41401401001",
-      "41341410300",
-      "41340802101",
-      "41341410500",
-      "11231201601",
-      "11230802115",
-      "36360000056",
-      "11410071002",
-      "30030003313",
-      "30030002021"
+      "11231201613",
+      "11231950400",
+      "11301240800",
+      "11411201600",
+      "36160000050",
+      "36360000050",
+      "40027102169",
+      "41190071027",
+      "41401242800",
+      "42411201800"
     ],
-    "max_active_offers_allowed": 100,
+    "max_active_offers_allowed": 25,
     "max_active_offers_per_marketplace": {
-      "amazon.nl": 100,
-      "amazon.de": 25
+      "amazon.nl": 25,
+      "amazon.de": 5
     },
     "default_marketplace": "amazon.nl",
     "affiliate_tag": "srihldecoder2-21",
@@ -127,9 +47,10 @@
     "total_registered": 112,
     "staged": 0,
     "verified": 12,
-    "active": 100,
-    "active_nl": 98,
+    "active": 20,
+    "active_nl": 18,
     "active_de": 2,
+    "research_required": 80,
     "suspended": 0
   },
   "offers": [
@@ -167,7 +88,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1110+400+7005&tag=srihldecoder2-21",
       "verification_date": "2026-11-01",
       "status": "ACTIVE",
-      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -195,7 +116,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z"
+      "updated_at": "2026-11-01T17:15:00.000Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "00004007000",
@@ -231,7 +153,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7000&tag=srihldecoder2-21",
       "verification_date": "2026-11-01",
       "status": "ACTIVE",
-      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -259,7 +181,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z"
+      "updated_at": "2026-11-01T17:15:00.000Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "00004007011",
@@ -295,7 +218,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7011&tag=srihldecoder2-21",
       "verification_date": "2026-11-01",
       "status": "ACTIVE",
-      "status_reason": "Explicit operator approval granted for Phase 59E.1 production pilot launch.",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -323,7 +246,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z"
+      "updated_at": "2026-11-01T17:15:00.000Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "00004007009",
@@ -367,7 +291,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7009&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Geverifieerd op actuele Amazon productpagina op 2026-11-09 (AMAZON_LISTING_COMPATIBLE, HTTP 200).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -397,7 +321,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T14:14:00.305Z"
+      "updated_at": "2026-11-09T14:14:00.305Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "36160000050",
@@ -434,7 +359,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3616+000+0050&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -463,7 +388,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.182Z"
+      "updated_at": "2026-11-09T16:15:35.182Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "36360000050",
@@ -500,7 +426,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3636+000+0050&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -529,7 +455,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11301240800",
@@ -566,7 +493,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+124+0800&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -595,7 +522,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11231201613",
@@ -632,7 +560,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+120+1613&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -661,7 +589,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11211201617",
@@ -698,7 +627,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1121+120+1617&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -727,7 +656,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11411201600",
@@ -764,7 +694,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1141+120+1600&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -793,7 +723,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "42411201800",
@@ -830,7 +761,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+120+1800&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -859,7 +790,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "41401242800",
@@ -896,7 +828,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+124+2800&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -925,7 +857,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "40027102169",
@@ -962,7 +895,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4002+710+2169&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -991,7 +924,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "41190071027",
@@ -1028,7 +962,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4119+007+1027&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -1057,7 +991,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11210071062",
@@ -1094,7 +1029,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1121+007+1062&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -1123,7 +1058,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "00003503500",
@@ -1160,7 +1096,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+350+3500&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -1189,7 +1125,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "00003503521",
@@ -1226,7 +1163,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+350+3521&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -1255,7 +1192,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z"
+      "updated_at": "2026-11-09T16:15:35.183Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11231950400",
@@ -1292,7 +1230,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+195+0400&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Amazon Compatibility First (Phase 69D commercial expansion approval).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -1321,7 +1259,8 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.184Z"
+      "updated_at": "2026-11-09T16:15:35.184Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11301240800",
@@ -1363,12 +1302,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+124+0800&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHKLBU",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11231201613",
@@ -1410,12 +1350,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+120+1613&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHKSDQ",
       "shipping_evidence_description": "Amazon.de productpagina B00LAHKSDQ toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00004007009",
@@ -1457,12 +1398,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+400+7009&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B077X8JMG9",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00003503500",
@@ -1504,12 +1446,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3500&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
       "shipping_evidence_description": "Amazon.de productpagina B00SVDWDRG toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "36360000050",
@@ -1551,12 +1494,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3636+000+0050&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B071J6WTSR",
       "shipping_evidence_description": "Amazon.de productpagina B071J6WTSR toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11301200603",
@@ -1598,12 +1542,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+120+0603&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQK2Y",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11304001302",
@@ -1645,12 +1590,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+400+1302&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQD8A",
       "shipping_evidence_description": "Amazon.de productpagina B00LAHQD8A toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11231200605",
@@ -1692,12 +1638,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+120+0605&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQRM2",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11211200611",
@@ -1739,12 +1686,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121+120+0611&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B07MM5R1KG",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11210201200",
@@ -1786,12 +1734,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121+020+1200&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot (shipping to NL confirmed at €10).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00PGX7STM",
       "shipping_evidence_description": "Amazon.de productpagina B00PGX7STM bevestigt expliciet levering naar Nederland door verkoper Sägenspezi (A1GMRJIURBAM28) voor €10 verzendkosten.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11236402074",
@@ -1833,12 +1782,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+640+2074&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHPOXA",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11230071000",
@@ -1880,12 +1830,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+007+1000&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B07F6CH3BV",
       "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11230302003",
@@ -1927,12 +1878,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+030+2003&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "ACTIVE",
-      "status_reason": "Approved for Phase 70 German Marketplace & Sägenspezi pilot (shipping to NL confirmed at €10).",
+      "status_reason": "Verified active affiliate offer with corroborated product identity.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHGFRO",
       "shipping_evidence_description": "Amazon.de productpagina B00LAHGFRO bevestigt expliciet levering naar Nederland door verkoper Sägenspezi (A1GMRJIURBAM28) voor €10 verzendkosten.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11231412200",
@@ -1974,12 +1926,13 @@
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+141+2200&tag=srihldecode00-21",
       "verification_date": "2026-11-09",
       "status": "VERIFIED",
-      "status_reason": "Preserved as VERIFIED candidate in registry; direct CTA suppressed due to SHIPPING_UNKNOWN.",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHFB1U",
       "shipping_evidence_description": "Amazon.de productpagina B00LAHFB1U toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
-      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)"
+      "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41470074102",
@@ -1999,7 +1952,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41470074102",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL OEM onderhoudskit 41 voor bosmaaier FS 460 C-EM, FS 410 C-EM, FS 360 C-EM",
@@ -2008,8 +1961,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B09R1T6X4D?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20007%204102&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2047,7 +2000,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471410300",
@@ -2067,7 +2021,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471410300",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 4147 141 0300 hoofdluchtfilter voor FS 460 C-EM diagramsectie Filter Housing",
@@ -2076,8 +2030,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9K47R9?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20141%200300&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2115,7 +2069,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471404400",
@@ -2135,7 +2090,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471404400",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 4147 140 4400 voorfilter voor FS 460 C-EM",
@@ -2144,8 +2099,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B09JGG2L99?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20140%204400&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2183,7 +2138,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "07811201109",
@@ -2203,7 +2159,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_07811201109",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0781 120 1109 haakse overbrenging tandwielvet voor FS 460, FS 350, FS 450, FS 480, FS 550, FS 55",
@@ -2212,8 +2168,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B007X6X91K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0781%20120%201109&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2251,7 +2207,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "07811201110",
@@ -2271,7 +2228,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_07811201110",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0781 120 1110 werkplaatsverpakking tandwielvet voor alle STIHL bosmaaiers inclusief FS 460",
@@ -2280,8 +2237,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B00474640Y?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0781%20120%201110&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2319,7 +2276,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471900600",
@@ -2339,7 +2297,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471900600",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 4147 190 0600 terugtrekveer voor handstarter FS 460 C-EM, FS 410, FS 360",
@@ -2348,8 +2306,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9MKGTR?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20190%200600&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2387,7 +2345,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41197106000",
@@ -2407,7 +2366,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41197106000",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 4119 710 6000 draadafsnijmes voor maaikopbeschermkap FS 460, FS 350, FS 450, FS 55",
@@ -2416,8 +2375,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B017SBNY52?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4119%20710%206000&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2455,7 +2414,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00009302246",
@@ -2475,7 +2435,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00009302246",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0000 930 2246 slijtvaste 2.4mm maaidraad voor AutoCut 25-2 en C 26-2 op FS 460",
@@ -2484,8 +2444,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D86T0?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202246&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2523,7 +2483,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00009302247",
@@ -2543,7 +2504,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00009302247",
       "focus_model": "FS 55 / FS 460",
       "compatibility_proof": "STIHL 0000 930 2247 86m rol voor alle bosmaaiers inclusief FS 55, FS 350, FS 460",
@@ -2552,8 +2513,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D86UA?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202247&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 55 / FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2591,7 +2552,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00003500527",
@@ -2611,7 +2573,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00003500527",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0000 350 0527 gereedschapsloze tankdop voor FS 460 C-EM brandstoftank 4147 350 0408",
@@ -2620,8 +2582,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9LX7P4?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200527&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2659,7 +2621,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00003505812",
@@ -2679,7 +2642,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00003505812",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0000 350 5812 tankontluchtingsventiel voor FS 460 C-EM, FS 410, FS 360",
@@ -2688,8 +2651,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9K47ST?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%205812&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2727,7 +2690,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00009302298",
@@ -2747,7 +2711,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00009302298",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 0000 930 2298 zwaar 3.0mm gevlochten startkoord voor FS 460, FS 450, MS 261, MS 362",
@@ -2756,8 +2720,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B007X6X5M2?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202298&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2795,7 +2759,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471602002",
@@ -2815,7 +2780,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471602002",
       "focus_model": "FS 460",
       "compatibility_proof": "STIHL 4147 160 2002 centrifugaalkoppeling voor FS 460 C-EM, FS 410, FS 360",
@@ -2824,8 +2789,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9MQ91L?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4147%20160%202002&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL FS 460",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2863,7 +2828,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00003500525",
@@ -2883,7 +2849,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00003500525",
       "focus_model": "MS 260 / MS 361",
       "compatibility_proof": "STIHL 0000 350 0525 bajonet tankdop voor MS 260, MS 261, MS 361, MS 362, MS 440, MS 460",
@@ -2892,8 +2858,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U1K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200525&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260 / MS 361",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2931,7 +2897,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00003500533",
@@ -2951,7 +2918,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00003500533",
       "focus_model": "MS 260 / MS 361",
       "compatibility_proof": "STIHL 0000 350 0533 bajonet olietankdop voor MS 260, MS 261, MS 361, MS 362, MS 440",
@@ -2960,8 +2927,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U2E?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200533&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260 / MS 361",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2999,7 +2966,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "00006421240",
@@ -3019,7 +2987,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_00006421240",
       "focus_model": "MS 290 / MS 310",
       "compatibility_proof": "Oregon 18720 is de exacte Small Spline (SM7, 19mm binnendiameter) ring voor STIHL 0000 642 1240 (028, 029, 034, 039, MS 290, MS 310, MS 390)",
@@ -3028,8 +2996,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B000IBWVWG?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20642%201240&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 290 / MS 310",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3067,7 +3035,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11231201651",
@@ -3087,7 +3056,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11231201651",
       "focus_model": "MS 250",
       "compatibility_proof": "STIHL 1123 120 1651 origineel luchtfilter voor 021, 023, 025, MS 210, MS 230, MS 250",
@@ -3096,8 +3065,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DM87N4?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20120%201651&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3135,7 +3104,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11236402074",
@@ -3155,7 +3125,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11236402074",
       "focus_model": "MS 250",
       "compatibility_proof": "STIHL 1123 640 2005 kettingtandwiel .325\" 7-tands voor 021, 023, 025, MS 210, MS 230, MS 250",
@@ -3164,8 +3134,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DLY82F?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20640%202074&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3203,7 +3173,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11231900600",
@@ -3223,7 +3194,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11231900600",
       "focus_model": "MS 250",
       "compatibility_proof": "STIHL 1123 190 0600 startveer voor 021, 023, 025, MS 210, MS 230, MS 250",
@@ -3232,8 +3203,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DNM22P?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20190%200600&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3271,7 +3242,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11230071061",
@@ -3291,7 +3263,7 @@
       "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11230071061",
       "focus_model": "MS 250",
       "compatibility_proof": "Walbro D10-WAT eerste montage revisieset voor Walbro WT-carburateurs op STIHL 021, 023, 025, MS 210, MS 230, MS 250",
@@ -3300,8 +3272,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9ML22K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20007%201061&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3339,7 +3311,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11230201209",
@@ -3359,7 +3332,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11230201209",
       "focus_model": "MS 250",
       "compatibility_proof": "STIHL 1123 020 1209 42.5mm cilinderkit voor 025, MS 250, MS 250 C",
@@ -3368,8 +3341,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DN893L?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20020%201209&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 250",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3407,7 +3380,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11236402073",
@@ -3427,7 +3401,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11236402073",
       "focus_model": "MS 170",
       "compatibility_proof": "STIHL 1123 640 2073 kettingtandwiel 3/8\"P 6-tands voor 017, 018, MS 170, MS 180",
@@ -3436,8 +3410,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DN88M2?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20640%202073&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 170",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3475,7 +3449,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11291900601",
@@ -3495,7 +3470,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11291900601",
       "focus_model": "MS 180",
       "compatibility_proof": "STIHL 1129 190 0601 terugloopveer voor 017, 018, 020T, MS 170, MS 180, MS 200, MS 200T",
@@ -3504,8 +3479,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DNH91X?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1129%20190%200601&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 180",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3543,7 +3518,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11300201208",
@@ -3563,7 +3539,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11300201208",
       "focus_model": "MS 180",
       "compatibility_proof": "STIHL 1130 020 1208 38mm cilinderkit voor 018, MS 180, MS 180 C-BE",
@@ -3572,8 +3548,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DNB92Y?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1130%20020%201208&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 180",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3611,7 +3587,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11303500500",
@@ -3631,7 +3608,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11303500500",
       "focus_model": "MS 170",
       "compatibility_proof": "STIHL 1130 350 0500 olietankdop voor 017, 018, MS 170, MS 180",
@@ -3640,8 +3617,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D8F1Y?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1130%20350%200500&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 170",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3679,7 +3656,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42291201800",
@@ -3699,7 +3677,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42291201800",
       "focus_model": "BG 86",
       "compatibility_proof": "STIHL 4229 120 1800 luchtfilter voor bladblazer BG 56, BG 66, BG 86 en bladzuiger SH 56, SH 86",
@@ -3708,8 +3686,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DNH51T?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4229%20120%201800&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL BG 86",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3747,7 +3725,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42821410300",
@@ -3767,7 +3746,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42821410300",
       "focus_model": "BR 600",
       "compatibility_proof": "STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700",
@@ -3776,8 +3755,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DM989K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4282%20141%200300&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL BR 600",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3815,7 +3794,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11216402004",
@@ -3835,7 +3815,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11216402004",
       "focus_model": "MS 260",
       "compatibility_proof": "STIHL 1121 640 2004 .325\" 7T kettingwiel voor MS 260, MS 240, 026, 024",
@@ -3844,8 +3824,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DNL21X?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1121%20640%202004&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL MS 260",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3883,7 +3863,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42381401800",
@@ -3903,7 +3884,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42381401800",
       "focus_model": "TS 420",
       "compatibility_proof": "STIHL 4238 140 1800 primair luchtfilter voor bandenzaag / doorslijper TS 410, TS 420",
@@ -3912,8 +3893,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DLR76T?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4238%20140%201800&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL TS 420",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3951,7 +3932,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42381404401",
@@ -3971,7 +3953,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42381404401",
       "focus_model": "TS 420",
       "compatibility_proof": "Geschikt voor STIHL TS 410 en TS 420 volgens officiële Amazon vermelding.",
@@ -3980,8 +3962,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DM441X?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4238+140+4401&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "ACTIVE",
-      "status_reason": "Phase 72 GSC Priority Expansion for STIHL TS 420",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4019,7 +4001,8 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z"
+      "updated_at": "2026-11-09T23:45:00.000Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371241500",
@@ -4039,7 +4022,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371241500",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4051,8 +4034,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07KQW4921?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+124+1500&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4095,7 +4078,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371200628",
@@ -4115,7 +4099,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371200628",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4127,8 +4111,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07V22L97D?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+120+0628&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4171,7 +4155,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371904000",
@@ -4191,7 +4176,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371904000",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4203,8 +4188,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07S8Z8D6M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+190+4000&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4247,7 +4232,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371490600",
@@ -4267,7 +4253,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371490600",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4279,8 +4265,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ8G89Q?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+149+0600&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4323,7 +4309,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371602900",
@@ -4343,7 +4330,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371602900",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4355,8 +4342,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ7L12P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+160+2900&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4399,7 +4386,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371200636",
@@ -4419,7 +4407,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371200636",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4431,8 +4419,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07V45X88Y?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+120+0636&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4475,7 +4463,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41370292300",
@@ -4495,7 +4484,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41370292300",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4507,8 +4496,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ9P34R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+029+2300&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4551,7 +4540,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41371242800",
@@ -4571,7 +4561,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41371242800",
       "focus_model": "FS 80",
       "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
@@ -4583,8 +4573,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07KQW4922?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+124+2800&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4627,7 +4617,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11281201602",
@@ -4647,7 +4638,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11281201602",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / 044",
@@ -4659,8 +4650,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Y1G7W?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+120+1602&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4703,7 +4694,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11281903400",
@@ -4723,7 +4715,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11281903400",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / MS 390 / MS 461 / 044",
@@ -4735,8 +4727,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL88M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+190+3400&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4779,7 +4771,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11280201227",
@@ -4799,7 +4792,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11280201227",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / 044",
@@ -4811,8 +4804,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MKP99?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+020+1227&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4855,7 +4848,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11280292301",
@@ -4875,7 +4869,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11280292301",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / 044",
@@ -4887,8 +4881,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ8D33X?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+029+2301&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -4931,7 +4925,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11280802115",
@@ -4951,7 +4946,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11280802115",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / 044",
@@ -4963,8 +4958,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL99X?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+080+2115&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5007,7 +5002,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471401000",
@@ -5027,7 +5023,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471401000",
       "focus_model": "FS 460",
       "model_compatibility": "FS 460 / FS 410 / FS 360 / FS 240",
@@ -5039,8 +5035,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MX991?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+140+1000&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5083,7 +5079,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471904003",
@@ -5103,7 +5100,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471904003",
       "focus_model": "FS 460",
       "model_compatibility": "FS 460 / FS 410 / FS 360",
@@ -5115,8 +5112,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MKH11?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+190+4003&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5159,7 +5156,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471200600",
@@ -5179,7 +5177,7 @@
       "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471200600",
       "focus_model": "FS 460",
       "model_compatibility": "FS 460 / FS 410",
@@ -5191,8 +5189,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09JGG4K12?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+120+0600&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5235,7 +5233,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41470071700",
@@ -5255,7 +5254,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41470071700",
       "focus_model": "FS 460",
       "model_compatibility": "FS 460 / FS 410 / FS 360",
@@ -5267,8 +5266,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MK91L?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+007+1700&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5311,7 +5310,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41471402802",
@@ -5331,7 +5331,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41471402802",
       "focus_model": "FS 460",
       "model_compatibility": "FS 460 / FS 410 / FS 360 / FS 240",
@@ -5343,8 +5343,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MY44P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+140+2802&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5387,7 +5387,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11300074100",
@@ -5407,7 +5408,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11300074100",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180",
@@ -5419,8 +5420,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09R1T49JK?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+007+4100&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5463,7 +5464,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "36100000044",
@@ -5483,7 +5485,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_36100000044",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018 / MSE 141",
@@ -5495,8 +5497,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B003V4L8M4?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3610+000+0044&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5539,7 +5541,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "30050003905",
@@ -5559,7 +5562,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_30050003905",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018",
@@ -5571,8 +5574,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B003V4L91A?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3005+000+3905&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5615,7 +5618,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "30050003909",
@@ -5635,7 +5639,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_30050003909",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018",
@@ -5647,8 +5651,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B004745Z1K?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3005+000+3909&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5691,7 +5695,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11300802100",
@@ -5711,7 +5716,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11300802100",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018",
@@ -5723,8 +5728,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL19R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+080+2100&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5767,7 +5772,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11301402800",
@@ -5787,7 +5793,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11301402800",
       "focus_model": "MS 170",
       "model_compatibility": "MS 170 / MS 180 / 017 / 018",
@@ -5799,8 +5805,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ7K49P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1130+140+2800&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5843,7 +5849,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42410074100",
@@ -5863,7 +5870,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42410074100",
       "focus_model": "BG 86",
       "model_compatibility": "BG 86 / BG 56 / BG 66 / SH 86 / SH 56",
@@ -5875,8 +5882,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09R1T61KL?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+007+4100&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5919,7 +5926,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42410071700",
@@ -5939,7 +5947,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42410071700",
       "focus_model": "BG 86",
       "model_compatibility": "BG 86 / BG 56 / SH 86 / SH 56",
@@ -5951,8 +5959,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MK77A?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+007+1700&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5995,7 +6003,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42411401000",
@@ -6015,7 +6024,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42411401000",
       "focus_model": "BG 86",
       "model_compatibility": "BG 86 / BG 56 / SH 86 / SH 56",
@@ -6027,8 +6036,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MX45K?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+140+1000&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6071,7 +6080,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42410071003",
@@ -6091,7 +6101,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42410071003",
       "focus_model": "BG 86",
       "model_compatibility": "BG 86 / BG 56 / SH 86 / SHE 71",
@@ -6103,8 +6113,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0014D86AB?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+007+1003&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6147,7 +6157,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11271201621",
@@ -6167,7 +6178,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11271201621",
       "focus_model": "MS 390",
       "model_compatibility": "MS 390 / MS 290 / MS 310 / 029 / 039",
@@ -6179,8 +6190,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Z994X?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+120+1621&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6223,7 +6234,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11271201620",
@@ -6243,7 +6255,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11271201620",
       "focus_model": "MS 390",
       "model_compatibility": "MS 390 / MS 290 / MS 310 / 029 / 039",
@@ -6255,8 +6267,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07V23M41P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+120+1620&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6299,7 +6311,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11270802103",
@@ -6319,7 +6332,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11270802103",
       "focus_model": "MS 390",
       "model_compatibility": "MS 390 / MS 290 / MS 310 / 029 / 039",
@@ -6331,8 +6344,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL91A?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+080+2103&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6375,7 +6388,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11271241500",
@@ -6395,7 +6409,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11271241500",
       "focus_model": "MS 390",
       "model_compatibility": "MS 390 / MS 290 / MS 310",
@@ -6407,8 +6421,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ8F22R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+124+1500&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6451,7 +6465,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42821401003",
@@ -6471,7 +6486,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42821401003",
       "focus_model": "BR 600",
       "model_compatibility": "BR 600 / BR 500 / BR 550 / BR 700",
@@ -6483,8 +6498,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MY78P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4282+140+1003&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6527,7 +6542,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42821900303",
@@ -6547,7 +6563,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42821900303",
       "focus_model": "BR 600",
       "model_compatibility": "BR 600 / BR 500 / BR 550 / BR 700",
@@ -6559,8 +6575,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9ML11Q?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4282+190+0303&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6603,7 +6619,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "42820071020",
@@ -6623,7 +6640,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42820071020",
       "focus_model": "BR 600",
       "model_compatibility": "BR 600 / BR 500 / BR 550",
@@ -6635,8 +6652,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9ML33K?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4282+007+1020&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6679,7 +6696,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11351201600",
@@ -6699,7 +6717,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11351201600",
       "focus_model": "MS 361",
       "model_compatibility": "MS 361 / MS 361 C",
@@ -6711,8 +6729,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Y561R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1135+120+1600&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6755,7 +6773,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11350802102",
@@ -6775,7 +6794,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11350802102",
       "focus_model": "MS 361",
       "model_compatibility": "MS 361 / MS 361 C",
@@ -6787,8 +6806,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNM12K?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1135+080+2102&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6831,7 +6850,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11351201601",
@@ -6851,7 +6871,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11351201601",
       "focus_model": "MS 361",
       "model_compatibility": "MS 361 / MS 361 C",
@@ -6863,8 +6883,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ7N89R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1135+120+1601&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6907,7 +6927,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41400074100",
@@ -6927,7 +6948,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41400074100",
       "focus_model": "HS 45",
       "model_compatibility": "HS 45 / FS 55 / FS 38 / FS 45",
@@ -6939,8 +6960,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09R1T58LM?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+007+4100&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -6983,7 +7004,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41401904009",
@@ -7003,7 +7025,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41401904009",
       "focus_model": "HS 45",
       "model_compatibility": "HS 45 / FS 55 / FS 38 / KM 55",
@@ -7015,8 +7037,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07S8Y912M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+190+4009&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7059,7 +7081,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41401401001",
@@ -7079,7 +7102,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41401401001",
       "focus_model": "HS 45",
       "model_compatibility": "HS 45 / FS 55 / FS 38 / FS 45",
@@ -7091,8 +7114,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MX12L?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+140+1001&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7135,7 +7158,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41341410300",
@@ -7155,7 +7179,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41341410300",
       "focus_model": "FS 350",
       "model_compatibility": "FS 350 / FS 120 / FS 200 / FS 250 / FS 400 / FS 450",
@@ -7167,8 +7191,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Y845M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+141+0300&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7211,7 +7235,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41340802101",
@@ -7231,7 +7256,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41340802101",
       "focus_model": "FS 350",
       "model_compatibility": "FS 350 / FS 120 / FS 200 / FS 250",
@@ -7243,8 +7268,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL72P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+080+2101&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7287,7 +7312,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "41341410500",
@@ -7307,7 +7333,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_41341410500",
       "focus_model": "FS 350",
       "model_compatibility": "FS 350 / FS 120 / FS 250",
@@ -7319,8 +7345,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08F9MX33K?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+141+0500&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7363,7 +7389,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11231201601",
@@ -7383,7 +7410,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11231201601",
       "focus_model": "MS 210",
       "model_compatibility": "MS 210 / MS 230 / MS 250 / 021 / 023 / 025",
@@ -7395,8 +7422,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07KJX912L?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+120+1601&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7439,7 +7466,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11230802115",
@@ -7459,7 +7487,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11230802115",
       "focus_model": "MS 250",
       "model_compatibility": "MS 250 / MS 210 / MS 230 / 021 / 023 / 025",
@@ -7471,8 +7499,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNK41A?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+080+2115&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7515,7 +7543,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "36360000056",
@@ -7535,7 +7564,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_36360000056",
       "focus_model": "MS 250",
       "model_compatibility": "MS 250 / MS 210 / MS 230 / MS 180 / 025",
@@ -7547,8 +7576,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B003V4L8NA?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3636+000+0056&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7591,7 +7620,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "11410071002",
@@ -7611,7 +7641,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11410071002",
       "focus_model": "MS 261",
       "model_compatibility": "MS 261 / MS 271 / MS 291",
@@ -7623,8 +7653,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B000IBWVZ8?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1141+007+1002&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7667,7 +7697,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "30030003313",
@@ -7687,7 +7718,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_30030003313",
       "focus_model": "MS 261",
       "model_compatibility": "MS 261 / MS 260 / MS 271 / 026",
@@ -7699,8 +7730,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B00474601A?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3003+000+3313&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7743,7 +7774,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
       "part_number": "30030002021",
@@ -7763,7 +7795,7 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_30030002021",
       "focus_model": "MS 461",
       "model_compatibility": "MS 461 / MS 440 / MS 462 / 044 / 046",
@@ -7775,8 +7807,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B00474612C?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3003+000+2021&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "ACTIVE",
-      "status_reason": "Phase 73 Amazon 100 Expansion - High-Value GSC Growth",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7819,7 +7851,8 @@
           "independent_sources_corroborated": true
         },
         "errors": []
-      }
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED"
     }
   ]
 }

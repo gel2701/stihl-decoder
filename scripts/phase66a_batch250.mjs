@@ -29,7 +29,7 @@ export async function run({ checkpoint, stopAfterBatches = Infinity, sources, on
   const parts = new Map(catalog.parts.map(p => [p.part_number, p]));
   const rows = queue.queue;
   if (rows.length !== 250 || new Set(rows.map(p => p.part_number)).size !== 250 || rows.some((p, i) => !/^\d{11}$/.test(p.part_number) || !parts.has(p.part_number) || p.queue_rank !== i + 1)) throw new Error('Queue must contain exactly 250 unique ranked canonical catalog parts');
-  const nlOffers = registry.offers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
+  const nlOffers = registry.offers.filter(o => (!o.marketplace || o.marketplace === 'amazon.nl') && o.status === 'ACTIVE');
   if (nlOffers.length < 3 || nlOffers.length > 100 || nlOffers.some(o => o.status !== 'ACTIVE' || !o.pilot_active || !registry.policy.pilot_activated_parts.includes(o.part_number))) throw new Error('Active registry pilot changed');
   const active = new Map(nlOffers.map(o => [o.part_number, o]));
   const staged = new Map();

@@ -110,9 +110,27 @@ export function generateCommercialReport(options = {}) {
     }
   };
 
+  const unprovenCandidates = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
+  const pendingShippingDe = allOffers.filter(o => o.marketplace === 'amazon.de' && o.status === 'VERIFIED');
+  const rejectedCandidates = allOffers.filter(o => o.status === 'REJECTED');
+  const uniqueConfirmedAsins = new Set(activeOffers.map(o => o.asin));
+
+  const evidenceAuditSummary = {
+    total_registered_candidates: allOffers.length,
+    verified_active_offers: activeOffers.length,
+    unproven_candidates: unprovenCandidates.length,
+    pending_shipping_confirmation_de: pendingShippingDe.length,
+    rejected_candidates: rejectedCandidates.length,
+    unique_confirmed_asins: uniqueConfirmedAsins.size,
+    unique_parts_with_direct_buy: uniqueActiveParts.size,
+    milestone_100_achieved: false,
+    audit_notes: 'Phase 73A Emergency Evidence Audit: unproven product claims deactivated to RESEARCH_REQUIRED. Evidence prioritised over arbitrary numbers.'
+  };
+
   const report = {
-    report_title: 'STIHLDecoder Phase 73 Commercial Affiliate & GSC Growth Report (100 Verified Links)',
+    report_title: 'STIHLDecoder Phase 73A Emergency Amazon Evidence Audit & Commercial Report',
     generated_at: new Date().toISOString(),
+    evidence_audit_summary: evidenceAuditSummary,
     marketplaces: {
       amazon_nl: {
         active_offers: activeNl.length,

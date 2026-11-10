@@ -27,12 +27,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE expansion)
+// Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE confirmed shipping)
 const AUTHORIZED_PILOT_PARTS = new Set([
-  '11104007005', // Bosch WSR6F
-  '00004007000', // NGK BPMR7A
-  '00004007011', // NGK CMR6H
-  '00004007009', // Bosch USR7AC
+  '11104007005', // Bosch WSR6F (B0068M5NAG)
+  '00004007000', // NGK BPMR7A (B001RM8J76)
+  '00004007011', // NGK CMR6H (B001RMA5S2)
+  '00004007009', // Bosch USR7AC (B09QH68W83)
   '36160000050', // STIHL Zaagketting Picco Super PS 3/8" 1.3mm 50GL (B007QJL16A)
   '36360000050', // Oregon S50 Zaagketting 3/8" LP 1.3mm 50DL (B00FYRVGHU)
   '11301240800', // Haishine Luchtfilter MS 170 / MS 180 (B07KJYFPLM)
@@ -47,97 +47,8 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '00003503500', // vhbw Brandstoffilter MS 170 / MS 250 / FS 55 (B0874SJ4CK)
   '00003503521', // Haishine Brandstoffilter zuigkop FS 460 / MS 261 (B0HLBXNGQQ)
   '11231950400', // ECSiNG Starter katrol / veer kit FS 55 / MS 170 (B0BG49Y65H)
-  '41470074102', // STIHL Service Kit 41
-  '41471410300', // STIHL Luchtfilter vlies FS 460
-  '41471404400', // STIHL Voorfilter schuim FS 460
-  '07811201109', // STIHL Aandrijfvet 80g
-  '07811201110', // STIHL Aandrijfvet 225g
-  '41471900600', // STIHL Terugtrekveer FS 460
-  '41197106000', // STIHL Afsnijdmes maaikop
-  // Phase 72: GSC Priority Expansion (Amazon.nl)
-  '00009302246', // STIHL Maaidraad Rond 2.4 mm x 15 m (B0014D86T0)
-  '00009302247', // STIHL Maaidraad Rond 2.4 mm x 86 m (B0014D86UA)
-  '00003500527', // STIHL Tankdop Brandstof FS 240/360/410/460 (B08F9LX7P4)
-  '00003505812', // STIHL Tankontluchter Ventiel FS 460 (B08F9K47ST)
-  '00009302298', // STIHL Starterkoord 3.0 mm x 30.5 m (B007X6X5M2)
-  '41471602002', // STIHL Centrifugaalkoppeling Compleet FS 460 (B08F9MQ91L)
-  '00003500525', // STIHL Bajonet Brandstoftankdop MS 440/461/361/260 (B0014D7U1K)
-  '00003500533', // STIHL Bajonet Olietankdop MS 440/461/361/260 (B0014D7U2E)
-  '00006421240', // Oregon 18720 Kettingwiel Ring 3/8" 7T Small Spline MS 390 (B000IBWVWG)
-  '11231201651', // STIHL Luchtfilter MS 210/230/250 (B079DM87N4)
-  '11231900600', // STIHL Terugtrekveer MS 210/230/250 (B079DNM22P)
-  '11230071061', // Walbro D10-WAT Carburateur Membraanset MS 210/230/250 (B08F9ML22K)
-  '11230201209', // STIHL Cilinderkit 42.5mm MS 250 (B079DN893L)
-  '11236402073', // STIHL Kettingwiel 3/8" Picco 6T MS 170/180 (B079DN88M2)
-  '11291900601', // STIHL Startveer MS 170/180 (B079DNH91X)
-  '11300201208', // STIHL Cilinder met Zuiger 38mm MS 180 (B079DNB92Y)
-  '11303500500', // STIHL Olietankdop MS 170/180 (B0014D8F1Y)
-  '42291201800', // STIHL Luchtfilter BG 56/86/SH 86 (B079DNH51T)
-  '42821410300', // STIHL Luchtfilter BR 500/550/600/700 (B079DM989K)
-  '11216402004', // STIHL Kettingwieltrommel .325" 7T MS 260 (B079DNL21X)
-  '42381401800', // STIHL Hoofdluchtfilter TS 410/420 (B079DLR76T)
-  '42381404401', // STIHL Hulpfilter TS 410/420 (B079DM441X)
-  // Phase 70: Sägenspezi / Amazon.de expansion parts
-  '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
-  '11304001302', // Sägenspezi Zündmodul MS 170 / MS 180 (B00LAHQD8A)
-  '11231200605', // Sägenspezi Vergaser MS 250 (B00LAHQRM2)
-  '11211200611', // Sägenspezi Vergaser MS 260 (B07MM5R1KG)
   '11210201200', // Sägenspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
-  '11236402074', // Sägenspezi Kettenrad MS 180 (B00LAHPOXA)
-  '11230071000', // Sägenspezi Kettenspanner Umbaukit MS 170 (B07F6CH3BV)
-  '11230302003', // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
-  '11231412200', // Sägenspezi Ansaugstutzen MS 210 (B00LAHFB1U)
-  // Phase 73: Amazon 100 Expansion (Amazon.nl)
-  '41371241500', // Haishine Luchtfilter Voorfilter FS 80 (B07KQW4921)
-  '41371200628', // Carburateur C1Q-S28D FS 80 (B07V22L97D)
-  '41371904000', // MCHNIC Trekstarter Compleet FS 80 (B07S8Z8D6M)
-  '41371490600', // Trade-Shop Uitlaatpakking FS 80 (B08HQ8G89Q)
-  '41371602900', // Haishine Koppelingstrommel FS 80 (B08HQ7L12P)
-  '41371200636', // vhbw Carburateur FS 80 (B07V45X88Y)
-  '41370292300', // Trade-Shop Cilindervoetpakking FS 80 (B08HQ9P34R)
-  '41371242800', // Trade-Shop Luchtfilter FS 80 (B07KQW4922)
-  '11281201602', // Trade-Shop Luchtfilter HD MS 440 (B08K8Y1G7W)
-  '11281903400', // STIHL ElastoStart Startergreep MS 440 (B079DNL88M)
-  '11280201227', // Meteor Cilinder en Zuigerset 50mm MS 440 (B08F9MKP99)
-  '11280292301', // Trade-Shop Cilindervoetpakking 0.5mm MS 440 (B08HQ8D33X)
-  '11280802115', // STIHL Ventilatorhuis met Trekstarter MS 440 (B079DNL99X)
-  '41471401000', // STIHL Filterdeksel FS 460 (B08F9MX991)
-  '41471904003', // STIHL Terugloopstarter Compleet FS 460 (B08F9MKH11)
-  '41471200600', // Walbro WTF-5B Carburateur FS 460 (B09JGG4K12)
-  '41470071700', // STIHL Set Carburateuronderdelen FS 460 (B08F9MK91L)
-  '41471402802', // STIHL Filterhuis FS 460 (B08F9MY44P)
-  '11300074100', // STIHL Service Kit 6 MS 170 (B09R1T49JK)
-  '36100000044', // STIHL Zaagketting PMM3 44DL MS 170 (B003V4L8M4)
-  '30050003905', // STIHL Zaagblad Light 01 30cm MS 170 (B003V4L91A)
-  '30050003909', // STIHL Zaagblad Light 01 35cm MS 170 (B004745Z1K)
-  '11300802100', // STIHL Ventilatorhuis Trekstarter MS 170 (B079DNL19R)
-  '11301402800', // Trade-Shop Luchtfilterhuis Bodemplaat MS 170 (B08HQ7K49P)
-  '42410074100', // STIHL Service Kit 36 BG 86 (B09R1T61KL)
-  '42410071700', // STIHL Set Carburateuronderdelen BG 86 (B08F9MK77A)
-  '42411401000', // STIHL Filterdeksel BG 86 (B08F9MX45K)
-  '42410071003', // STIHL Dakgoot-Reinigingsset BG 86 (B0014D86AB)
-  '11271201621', // Trade-Shop Luchtfilter Vlies MS 390 (B08K8Z994X)
-  '11271201620', // Haishine Geflockt Luchtfilter MS 390 (B07V23M41P)
-  '11270802103', // STIHL Ventilatorhuis Trekstarter MS 390 (B079DNL91A)
-  '11271241500', // Trade-Shop Voorfilter Schuimstof MS 390 (B08HQ8F22R)
-  '42821401003', // STIHL Filterdeksel BR 600 (B08F9MY78P)
-  '42821900303', // STIHL Terugloopstarter BR 600 (B08F9ML11Q)
-  '42820071020', // STIHL Filterhuis Ombouwset BR 600 (B08F9ML33K)
-  '11351201600', // Trade-Shop Luchtfilter Vlies MS 361 (B08K8Y561R)
-  '11350802102', // STIHL Ventilatorhuis Trekstarter MS 361 (B079DNM12K)
-  '11351201601', // Trade-Shop HD Luchtfilter MS 361 (B08HQ7N89R)
-  '41400074100', // STIHL Service Kit 41 HS 45 (B09R1T58LM)
-  '41401904009', // Haishine Trekstarter Compleet HS 45 (B07S8Y912M)
-  '41401401001', // STIHL Luchtfilterkap HS 45 (B08F9MX12L)
-  '41341410300', // Trade-Shop Luchtfilter FS 350 (B08K8Y845M)
-  '41340802101', // STIHL Ventilatorhuis Trekstarter FS 350 (B079DNL72P)
-  '41341410500', // STIHL Luchtfilterkap FS 350 (B08F9MX33K)
-  '11231201601', // Haishine Draadgaas Luchtfilter MS 210/250 (B07KJX912L)
-  '11230802115', // STIHL Ventilatorhuis Trekstarter MS 250 (B079DNK41A)
-  '36360000056', // STIHL Zaagketting PM3 56DL MS 250 (B003V4L8NA)
-  '11410071002', // STIHL Ringtandwiel Ombouwset MS 261 (B000IBWVZ8)
-  '30030003313', // STIHL Zaagblad Light 04 40cm MS 261 (B00474601A)
-  '30030002021'  // STIHL Zaagblad Rollomatic ES 50cm MS 461 (B00474612C)
+  '11230302003'  // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
 ]);
 
 export function checkAffiliateConsistency() {
@@ -278,13 +189,13 @@ export function checkAffiliateConsistency() {
         }
       }
 
-      // 6. ASIN_IDENTITY_UNVERIFIED Safety Check
-      if (rec.status === 'ASIN_IDENTITY_UNVERIFIED' && rec.is_active === true) {
+      // 6. ASIN_IDENTITY_UNVERIFIED & RESEARCH_REQUIRED Safety Check
+      if ((rec.status === 'ASIN_IDENTITY_UNVERIFIED' || rec.status === 'RESEARCH_REQUIRED' || rec.evidence_audit_category === 'RESEARCH_REQUIRED') && (rec.is_active === true || rec.pilot_active === true)) {
         unverifiedActives.push({
           file: manifest.name,
           part_number: normPart,
           asin,
-          error: 'Offer is marked ASIN_IDENTITY_UNVERIFIED but has is_active === true'
+          error: `Offer has unproven status (${rec.status || rec.evidence_audit_category}) but is marked active (is_active: ${rec.is_active}, pilot_active: ${rec.pilot_active})`
         });
       }
     }

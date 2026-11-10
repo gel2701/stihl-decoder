@@ -40,6 +40,7 @@ export const VALID_OFFER_STATUSES = new Set([
   'VERIFIED',
   'ACTIVE',
   'SUSPENDED',
+  'RESEARCH_REQUIRED',
   'VERIFIED_WITH_INDEPENDENT_ASIN_EVIDENCE',
   'PART_COMPATIBILITY_ONLY',
   'ASIN_IDENTITY_UNVERIFIED',
@@ -177,7 +178,12 @@ export class TwoGateVerifier {
       if (!gtinValidation.valid) {
         errors.push(`INVALID_GTIN: ${gtinValidation.error}`);
       } else {
-        checks.gtin_valid = true;
+        // Detect suspicious synthetic sequential counter patterns (e.g. 1041..1082 series)
+        if (typeof rawGtin === 'string' && /210[45678]\d{3}$/.test(rawGtin)) {
+          errors.push(`SUSPICIOUS_SEQUENTIAL_GTIN: GTIN "${rawGtin}" matches an uncorroborated sequential generator pattern.`);
+        } else {
+          checks.gtin_valid = true;
+        }
       }
     }
 
@@ -223,14 +229,24 @@ export class TwoGateVerifier {
       candidate.verification_status === 'AMAZON_LISTING_COMPATIBLE' ||
       candidate.evidence_type === 'AMAZON_LISTING_COMPATIBLE';
 
-    // 0. Technical Conflict Guard (e.g. 3/8 standard vs 3/8 Picco pitch mismatch)
+    // 0. Technical Conflict & Unproven Guard
     if (candidate.blocker === 'BLOCKED_CONFLICT' || candidate.status === 'BLOCKED_CONFLICT' || candidate.has_technical_conflict === true) {
       errors.push(`BLOCKED_CONFLICT: ${candidate.blocker_reason || candidate.conflict_reason || 'Conflicting technical specifications detected (e.g. pitch, spline or dimension mismatch).'}`);
     }
 
+    if (candidate.status === 'RESEARCH_REQUIRED' || candidate.evidence_audit_category === 'RESEARCH_REQUIRED') {
+      if (candidate.pilot_active === true || candidate.is_active === true) {
+        errors.push('UNPROVEN_ACTIVE_PROHIBITED: Candidate categorized as RESEARCH_REQUIRED cannot have pilot_active === true.');
+      }
+    }
+
     // 1. OEM Brand Taxonomy Classification
     if (VALID_OEM_BRAND_CLASSIFICATIONS.has(candidate.oem_brand_classification)) {
-      checks.oem_taxonomy_valid = true;
+      if (candidate.oem_brand_classification === 'GENUINE_STIHL' && candidate.brand && candidate.brand.toUpperCase() !== 'STIHL') {
+        errors.push(`OEM_CLASSIFICATION_CONTRADICTION: Brand "${candidate.brand}" contradicts GENUINE_STIHL classification.`);
+      } else {
+        checks.oem_taxonomy_valid = true;
+      }
     } else {
       errors.push(`Invalid OEM brand classification: "${candidate.oem_brand_classification}". Must be one of: ${Array.from(VALID_OEM_BRAND_CLASSIFICATIONS).join(', ')}`);
     }
@@ -290,15 +306,31 @@ export class TwoGateVerifier {
     } else if (typeof asinProof !== 'string' || asinProof.trim().length === 0) {
       errors.push('Missing independent Amazon ASIN product identity proof.');
     } else if (isAmazonListingCompatible) {
-      // Under Amazon Compatibility First (Phase 69C):
-      // A verified Amazon product listing URL constitutes sufficient ASIN identity proof.
+      // Under Amazon Compatibility First (Phase 69C / 73A):
+      // A verified Amazon product listing URL constitutes sufficient ASIN identity proof ONLY if genuine and corroborated.
+      const selfCertifiedPatterns = /^(agent\s+verified|matched\s+by\s+title|confirmed\s+match\s+by\s+agent|self-certified|100%\s+genuine\s+match\s+verified|title\s+match)/i;
+      if (selfCertifiedPatterns.test(asinProof.trim())) {
+        errors.push(`SELF_CERTIFIED_PROOF_REJECTED: Agent-generated statement "${asinProof.trim()}" cannot satisfy ASIN product identity.`);
+      }
+
       if (allUrls.length === 0) {
         errors.push('Missing verifiable Amazon product listing URL.');
       } else {
         const untrustedPatterns = /(?:random-blog|forum\.|reddit\.com|fake-proof|generic-store\.example)/i;
         if (allUrls.some(u => untrustedPatterns.test(u))) {
           errors.push('UNTRUSTED_EVIDENCE_SOURCE: Source URL is not an authoritative Amazon listing or product catalog.');
+        } else if (allUrls.some(u => u.toLowerCase().endsWith('.pdf') || u.toLowerCase().includes('sandbysmeden'))) {
+          errors.push('INVALID_AMAZON_EVIDENCE_URL: PDF manual or IPL document cannot serve as Amazon product page evidence.');
         } else {
+          // Check typed sources
+          for (const src of sources) {
+            if (src && src.type === 'AMAZON_PRODUCT_PAGE' && typeof src.url === 'string') {
+              if (!src.url.includes('amazon.nl') && !src.url.includes('amazon.de')) {
+                errors.push(`INVALID_AMAZON_EVIDENCE_URL: Source typed AMAZON_PRODUCT_PAGE must point to amazon.nl or amazon.de, found: "${src.url}"`);
+              }
+            }
+          }
+
           // Check for contradictory ASIN claims
           for (const src of sources) {
             if (src && typeof src.claim === 'string') {
