@@ -48,12 +48,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
     assert.ok(activeOffers.length >= 50, `Expected at least 50 ACTIVE offers, found ${activeOffers.length}`);
-    assert.strictEqual(activeOffers.length, 52, `Expected exactly 52 ACTIVE offers in Phase 75B, found ${activeOffers.length}`);
+    assert.strictEqual(activeOffers.length, 51, `Expected exactly 51 ACTIVE offers in Phase 75B, found ${activeOffers.length}`);
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
 
-    assert.strictEqual(activeNl.length, 50, 'Expected exactly 50 active Amazon.nl offers');
+    assert.strictEqual(activeNl.length, 49, 'Expected exactly 49 active Amazon.nl offers');
     assert.strictEqual(activeDe.length, 2, 'Expected exactly 2 active Amazon.de offers with confirmed NL delivery');
   });
 
@@ -98,7 +98,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
 
     assert.strictEqual(report.milestones.milestone_50.achieved, true, 'Milestone 50 must be marked achieved');
-    assert.strictEqual(report.milestones.milestone_50.current, 52, 'Current active offers must be 52');
+    assert.strictEqual(report.milestones.milestone_50.current, 51, 'Current active offers must be 51');
   });
 
   it('4. Genuine Brand Taxonomy & Check-Digit Validation across All Active Offers', () => {
@@ -169,7 +169,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 52, 'Registry must load exactly 52 active offers');
+    assert.strictEqual(activeOffers.length, 51, 'Registry must load exactly 51 active offers');
 
     const killSwitchIds = new Set();
     for (const offer of activeOffers) {
@@ -177,51 +177,47 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       assert.ok(!killSwitchIds.has(offer.kill_switch_id), `Duplicate kill_switch_id: ${offer.kill_switch_id}`);
       killSwitchIds.add(offer.kill_switch_id);
     }
-    assert.strictEqual(killSwitchIds.size, 52, 'All 52 kill switch IDs must be distinct');
+    assert.strictEqual(killSwitchIds.size, 51, 'All 51 kill switch IDs must be distinct');
 
     const unverifiedPart = '99999999999';
     const fallbackOffer = registry.getActiveOffer(unverifiedPart, 'amazon.nl');
     assert.strictEqual(fallbackOffer, null, 'Unverified part must return null active offer');
   });
 
-  it('7. Phase 75B: Multi-Offer Resolution (Champion RCJ6Y & Oregon 90PX050E)', () => {
+  it('7. Phase 75B: Multi-Offer Resolver Invariants & Quarantine Verification', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 60
     });
     registry.loadFromFile();
 
-    // 1. Oregon 90PX050E on STIHL 3610 000 0050
+    // 1. Oregon 90PX050E on STIHL 3610 000 0050 remains active direct ASIN
     const oregonResolved = registry.resolveCommercialOffer({ partNumber: '36100000050' });
     assert.strictEqual(oregonResolved.link_type, 'DIRECT_ASIN');
     assert.strictEqual(oregonResolved.asin, 'B00HQ63YUY');
     assert.strictEqual(oregonResolved.brand, 'Oregon');
 
-    // 2. Primary NGK offer for 0000 400 7000
+    // 2. Primary NGK offer for 0000 400 7000 remains default active direct ASIN
     const primaryResolved = registry.resolveCommercialOffer({ partNumber: '00004007000' });
     assert.strictEqual(primaryResolved.link_type, 'DIRECT_ASIN');
     assert.strictEqual(primaryResolved.asin, 'B001RM8J76');
     assert.strictEqual(primaryResolved.brand, 'NGK');
 
-    // 3. Secondary Champion offer for 0000 400 7000 (selective ASIN resolution)
-    const championResolved = registry.resolveCommercialOffer({
-      partNumber: '00004007000',
-      asin: 'B00IKF8TH8'
-    });
-    assert.strictEqual(championResolved.link_type, 'DIRECT_ASIN');
-    assert.strictEqual(championResolved.asin, 'B00IKF8TH8');
-    assert.strictEqual(championResolved.brand, 'Champion');
+    // 3. Champion RCJ6Y is quarantined in RESEARCH_REQUIRED
+    const champRecord = registry.getOffer('00004007000', 'amazon.nl', 'B00IKF8TH8');
+    assert.ok(champRecord, 'Champion record must exist in registry');
+    assert.strictEqual(champRecord.status, 'RESEARCH_REQUIRED');
+    assert.notStrictEqual(champRecord.status, 'ACTIVE');
 
-    // 4. Multi-offer listing for 0000 400 7000
+    // 4. Multi-offer listing for 0000 400 7000: active offers count is exactly 1 (NGK only)
     const activeSparkPlugs = registry.getActiveOffers('00004007000');
-    assert.strictEqual(activeSparkPlugs.length, 2, 'Must have exactly 2 active spark plug offers (NGK and Champion)');
-    assert.ok(activeSparkPlugs.some(o => o.asin === 'B001RM8J76'));
-    assert.ok(activeSparkPlugs.some(o => o.asin === 'B00IKF8TH8'));
+    assert.strictEqual(activeSparkPlugs.length, 1, 'Only NGK BPMR7A must be active for 0000 400 7000');
+    assert.strictEqual(activeSparkPlugs[0].asin, 'B001RM8J76');
 
-    // 5. Multi-offer commercial resolution
+    // 5. Commercial resolution resolves exclusively to primary NGK
     const resolvedOffers = registry.resolveCommercialOffers({ partNumber: '00004007000' });
-    assert.strictEqual(resolvedOffers.length, 2);
+    assert.strictEqual(resolvedOffers.length, 1);
     assert.strictEqual(resolvedOffers[0].asin, 'B001RM8J76');
-    assert.strictEqual(resolvedOffers[1].asin, 'B00IKF8TH8');
+    assert.strictEqual(resolvedOffers[0].link_type, 'DIRECT_ASIN');
   });
 });

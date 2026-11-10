@@ -119,8 +119,8 @@ const championOffer = {
   ean_gtin: '04023055684427',
   oem_brand_classification: 'OEM_SUPPLIER_EQUIVALENT',
   evidence_classification: 'AMAZON_LISTING_COMPATIBLE',
-  pilot_eligible: true,
-  pilot_active: true,
+  pilot_eligible: false,
+  pilot_active: false,
   kill_switch_id: 'KILL_PILOT_00004007000_CHAMPION',
   verifiable_evidence_sources: [
     {
@@ -137,8 +137,8 @@ const championOffer = {
   direct_affiliate_url: 'https://www.amazon.nl/dp/B00IKF8TH8?tag=srihldecoder2-21',
   search_fallback_url: 'https://www.amazon.nl/s?k=STIHL+0000+400+7000&tag=srihldecoder2-21',
   verification_date: '2026-11-10',
-  status: 'ACTIVE',
-  status_reason: 'Verified active secondary affiliate offer: Champion equivalent to NGK BPMR7A.',
+  status: 'RESEARCH_REQUIRED',
+  status_reason: 'Quarantined pending investigation of NGK cross-reference variance: Champion RCJ6 corresponds to standard heat range NGK BPMR7A, whereas Champion RCJ6Y corresponds to colder NGK BPMR8Y in official NGK cross-references.',
   gate_1_technical: {
     status: 'PASS',
     passed: true,
@@ -171,11 +171,19 @@ const championOffer = {
   shipping_to_nl_status: 'SHIPS_TO_NL_CONFIRMED'
 };
 
-const hasOregon = reg.offers.some(o => o.asin === 'B00HQ63YUY');
-if (!hasOregon) reg.offers.push(oregonOffer);
+const oregonIdx = reg.offers.findIndex(o => o.asin === 'B00HQ63YUY');
+if (oregonIdx >= 0) {
+  reg.offers[oregonIdx] = oregonOffer;
+} else {
+  reg.offers.push(oregonOffer);
+}
 
-const hasChampion = reg.offers.some(o => o.asin === 'B00IKF8TH8');
-if (!hasChampion) reg.offers.push(championOffer);
+const champIdx = reg.offers.findIndex(o => o.asin === 'B00IKF8TH8');
+if (champIdx >= 0) {
+  reg.offers[champIdx] = championOffer;
+} else {
+  reg.offers.push(championOffer);
+}
 
 const activeOffers = reg.offers.filter(o => o.status === 'ACTIVE' || o.pilot_active === true);
 const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
