@@ -56,6 +56,24 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
     assert.strictEqual(activeDe.length, 2, 'Expected exactly 2 active Amazon.de offers with confirmed NL delivery');
   });
 
+  it('1B. Registry Metrics Invariant & Status Breakdown Synchronization', () => {
+    assert.ok(regDoc.metrics, 'Registry must contain metrics block');
+    const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
+    const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
+    const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
+    const unprovenOffers = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
+    const verifiedInactive = allOffers.filter(o => o.status === 'VERIFIED' && !o.pilot_active);
+
+    assert.strictEqual(regDoc.metrics.total_registered, allOffers.length, 'metrics.total_registered must match allOffers.length');
+    assert.strictEqual(regDoc.metrics.active, activeOffers.length, 'metrics.active must equal actual active offers');
+    assert.strictEqual(regDoc.metrics.active_nl, activeNl.length, 'metrics.active_nl must equal actual active NL offers');
+    assert.strictEqual(regDoc.metrics.active_de, activeDe.length, 'metrics.active_de must equal actual active DE offers');
+    assert.strictEqual(regDoc.metrics.research_required, unprovenOffers.length, 'metrics.research_required must equal unproven offers count');
+    assert.strictEqual(regDoc.metrics.verified, verifiedInactive.length, 'metrics.verified must equal verified inactive offers count');
+    assert.strictEqual(regDoc.metrics.staged, 0, 'metrics.staged must be 0');
+    assert.strictEqual(regDoc.metrics.suspended, 0, 'metrics.suspended must be 0');
+  });
+
   it('2. Strict Verification of 6 New Genuine Maintenance Products', () => {
     const verifiedNewCandidates = [
       {
@@ -133,6 +151,23 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
       const mismatch = checkHistoricalMismatch(item.part, item.asin);
       assert.strictEqual(mismatch.isMismatch, false, `Part ${item.part} cannot be in historical mismatch list`);
     }
+
+    // Explicit technical validation of Oregon Sprocket separation
+    const smallSpline = allOffers.find(o => o.part_number === '00006421231');
+    const standardSpline = allOffers.find(o => o.part_number === '00006421223');
+
+    assert.ok(smallSpline.product_title.includes('Small Spline') || smallSpline.product_title.includes('SM7'));
+    assert.ok(smallSpline.compatibility_proof.includes('19.05 mm') || smallSpline.compatibility_proof.includes('Small 7-Spline'));
+    assert.ok(smallSpline.model_compatibility.includes('MS 261'));
+    assert.ok(!smallSpline.model_compatibility.includes('MS 440'), 'Small spline must not list MS 440');
+    assert.ok(!smallSpline.model_compatibility.includes('MS 460'), 'Small spline must not list MS 460');
+
+    assert.ok(standardSpline.product_title.includes('Standard Spline') || standardSpline.product_title.includes('SD7'));
+    assert.ok(standardSpline.compatibility_proof.includes('22.2 mm') || standardSpline.compatibility_proof.includes('Standard 7-Spline'));
+    assert.ok(standardSpline.model_compatibility.includes('MS 440'));
+    assert.ok(standardSpline.model_compatibility.includes('MS 460'));
+    assert.ok(!standardSpline.model_compatibility.includes('MS 261'), 'Standard spline must not list MS 261');
+    assert.ok(!standardSpline.model_compatibility.includes('MS 260'), 'Standard spline must not list MS 260');
   });
 
   it('3. GSC Priority Coverage: MS 440, MS 170, MS 210, HS 45 and FS 80 Gap Resolution', () => {

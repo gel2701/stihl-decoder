@@ -106,6 +106,52 @@ export function checkAffiliateConsistency() {
 
     console.log(`▶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
 
+    // Audit registry metrics synchronization (Phase 74B invariant)
+    if (manifest.type === 'REGISTRY' && doc.metrics) {
+      const activeCount = records.filter(o => o.status === 'ACTIVE' || o.pilot_active === true).length;
+      const activeNlCount = records.filter(o => (o.status === 'ACTIVE' || o.pilot_active === true) && (!o.marketplace || o.marketplace === 'amazon.nl')).length;
+      const activeDeCount = records.filter(o => (o.status === 'ACTIVE' || o.pilot_active === true) && o.marketplace === 'amazon.de').length;
+      const researchCount = records.filter(o => o.status === 'RESEARCH_REQUIRED').length;
+      const verifiedInactiveCount = records.filter(o => o.status === 'VERIFIED' && !o.pilot_active).length;
+
+      if (doc.metrics.total_registered !== records.length) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.total_registered (${doc.metrics.total_registered}) !== offers count (${records.length})`
+        });
+      }
+      if (doc.metrics.active !== activeCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active (${doc.metrics.active}) !== actual active count (${activeCount})`
+        });
+      }
+      if (doc.metrics.active_nl !== activeNlCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active_nl (${doc.metrics.active_nl}) !== actual active NL count (${activeNlCount})`
+        });
+      }
+      if (doc.metrics.active_de !== activeDeCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active_de (${doc.metrics.active_de}) !== actual active DE count (${activeDeCount})`
+        });
+      }
+      if (doc.metrics.research_required !== researchCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.research_required (${doc.metrics.research_required}) !== actual research_required count (${researchCount})`
+        });
+      }
+      if (doc.metrics.verified !== verifiedInactiveCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.verified (${doc.metrics.verified}) !== actual verified inactive count (${verifiedInactiveCount})`
+        });
+      }
+    }
+
     for (const rec of records) {
       totalScanned++;
       const normPart = PartNormalizer.normalizePartNumber(rec.part_number);
