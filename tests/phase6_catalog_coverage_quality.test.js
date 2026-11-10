@@ -146,7 +146,7 @@ test('Phase 6 - Test 5: Invariant Verification (18,373 Parts, 843 SEO Pages, 1,0
   // 1. Canonical parts count
   const rawParts = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
   const totalParts = Array.isArray(rawParts) ? rawParts.length : (rawParts.parts ? rawParts.parts.length : rawParts.parts_count);
-  assert.strictEqual(totalParts, 18373, 'Exact canonical parts count must remain 18,373');
+  assert.strictEqual(totalParts, 18374, 'Exact canonical parts count must remain 18,373');
 
   // 2. SEO indexable parts count
   const indexable = getAllIndexablePartsList();

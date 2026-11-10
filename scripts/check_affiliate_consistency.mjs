@@ -79,7 +79,9 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '11300802100', // STIHL Trekstarter MS 170 (B079DNL19R)
   '36360000056', // STIHL PM3 Zaagketting MS 210 (B003V4L8NA)
   '07811201110', // STIHL Tandwielvet 225g FS 460 / FS 80 (B00474640Y)
-  '30030003313'  // STIHL Zaagblad Light 04 40cm MS 261 / MS 260 (B00474601A)
+  '30030003313', // STIHL Zaagblad Light 04 40cm MS 261 / MS 260 (B00474601A)
+  // Phase 75B Commercial Expansion: Oregon 90PX050E chain for 3610 000 0050
+  '36100000050'  // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
 ]);
 
 export function checkAffiliateConsistency() {
@@ -284,12 +286,13 @@ export function checkAffiliateConsistency() {
   if (fs.existsSync(regPath) && fs.existsSync(comPath)) {
     const regDoc = JSON.parse(fs.readFileSync(regPath, 'utf8'));
     const comDoc = JSON.parse(fs.readFileSync(comPath, 'utf8'));
-    const regOffers = new Map((regDoc.offers || []).filter(o => !o.marketplace || o.marketplace === 'amazon.nl').map(o => [PartNormalizer.normalizePartNumber(o.part_number), o]));
+    const regOffersList = (regDoc.offers || []).filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
 
     for (const item of (comDoc.parts || [])) {
       const normPart = PartNormalizer.normalizePartNumber(item.part_number);
       if (item.commercial_tier === 'DIRECT_VERIFIED') {
-        const regOffer = regOffers.get(normPart);
+        const regOffer = regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart && (!item.asin || o.asin === item.asin)) ||
+                         regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart);
         if (!regOffer) {
           contradictions.push({
             file: 'commercial_catalog_100.json',

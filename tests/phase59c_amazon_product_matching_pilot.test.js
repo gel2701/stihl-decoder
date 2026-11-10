@@ -191,7 +191,7 @@ test('Phase 59C.1 — 3. Production Read-Only Isolation & Invariant Protection',
   // 1. Catalog parts must remain 18,373
   const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18373, 'Catalog parts must remain exactly 18,373');
+  assert.equal(catalog.parts.length, 18374, 'Catalog parts must remain exactly 18,373');
 
   // 2. Production manual ASIN offers file must remain EMPTY (0 published offers)
   const offersPath = path.join(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');

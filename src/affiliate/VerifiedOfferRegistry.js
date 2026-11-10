@@ -546,19 +546,29 @@ export class VerifiedOfferRegistry {
   /**
    * Retrieves an offer from registry.
    * If marketplace is omitted, returns the primary/default offer for partNumber.
+   * If asin is provided, returns the specific matching offer.
    *
    * @param {string} partNumber
    * @param {string} [marketplace]
+   * @param {string} [asin]
    * @returns {Object|null}
    */
-  getOffer(partNumber, marketplace = null) {
+  getOffer(partNumber, marketplace = null, asin = null) {
     const normPart = PartNormalizer.normalizePartNumber(partNumber);
     if (!normPart) return null;
     const list = this.partIndex.get(normPart);
     if (!list || list.length === 0) return null;
+    const cleanAsin = asin ? asin.trim().toUpperCase() : null;
+
     if (marketplace) {
       const mkt = marketplace.toLowerCase();
+      if (cleanAsin) {
+        return list.find(o => o.marketplace === mkt && o.asin === cleanAsin) || null;
+      }
       return list.find(o => o.marketplace === mkt) || null;
+    }
+    if (cleanAsin) {
+      return list.find(o => o.asin === cleanAsin) || null;
     }
     // Default to primary/defaultMarketplace or first offer
     return list.find(o => o.marketplace === this.defaultMarketplace) || list[0] || null;
@@ -579,12 +589,14 @@ export class VerifiedOfferRegistry {
   /**
    * Retrieves an ACTIVE offer eligible for direct product linking on a specific marketplace.
    * Defaults to defaultMarketplace ('amazon.nl').
+   * If asin is provided, selects that specific active offer (supporting 1:N multi-offer).
    *
    * @param {string} partNumber
    * @param {string} [marketplace]
+   * @param {string} [asin]
    * @returns {Object|null}
    */
-  getActiveOffer(partNumber, marketplace = this.defaultMarketplace) {
+  getActiveOffer(partNumber, marketplace = this.defaultMarketplace, asin = null) {
     if (!this.productionActivationAllowed) {
       return null;
     }
@@ -596,7 +608,7 @@ export class VerifiedOfferRegistry {
       return null;
     }
 
-    const offer = this.getOffer(normPart, marketplace);
+    const offer = this.getOffer(normPart, marketplace, asin);
     if (!offer) return null;
     if (offer.status !== 'ACTIVE') return null;
 
@@ -772,7 +784,7 @@ export class VerifiedOfferRegistry {
     const canonicalPart = PartNormalizer.normalizePartNumber(params.partNumber);
     const formattedPart = PartNormalizer.formatPartNumber(canonicalPart);
     const marketplace = (params.marketplace || this.defaultMarketplace).trim().toLowerCase();
-    const activeOffer = params.activeOffer || this.getActiveOffer(canonicalPart, marketplace);
+    const activeOffer = params.activeOffer || this.getActiveOffer(canonicalPart, marketplace, params.asin);
     const targetMarketplace = activeOffer ? activeOffer.marketplace : marketplace;
     const defaultTag = targetMarketplace === 'amazon.de'
       ? (process.env.AMAZON_ASSOCIATE_TAG_DE || 'srihldecode00-21')
@@ -887,6 +899,33 @@ export class VerifiedOfferRegistry {
       rel: 'sponsored nofollow noopener',
       target: '_blank'
     };
+  }
+
+  /**
+   * Resolves all active commercial offers for a part number across all marketplaces or on a specific marketplace.
+   * If multiple active offers exist (e.g. primary NGK and secondary Champion), returns resolved descriptors for each.
+   * If no active offer exists, returns single search fallback.
+   *
+   * @param {Object} params
+   * @param {string} params.partNumber
+   * @param {string} [params.marketplace]
+   * @returns {Array<Object>}
+   */
+  resolveCommercialOffers(params = {}) {
+    const canonicalPart = PartNormalizer.normalizePartNumber(params.partNumber);
+    if (!canonicalPart) return [];
+    let activeOffers = this.getActiveOffers(canonicalPart);
+    if (params.marketplace) {
+      const mkt = params.marketplace.trim().toLowerCase();
+      activeOffers = activeOffers.filter(o => (o.marketplace || this.defaultMarketplace).toLowerCase() === mkt);
+    }
+    if (activeOffers.length === 0) {
+      return [this.resolveCommercialOffer(params)];
+    }
+    return activeOffers.map(activeOffer => this.resolveCommercialOffer({
+      ...params,
+      activeOffer
+    }));
   }
 
   /**
