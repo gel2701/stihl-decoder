@@ -158,8 +158,8 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       const activeNLCount = registryData.metrics.active_nl ?? registryData.metrics.active_in_production;
       assert.ok(activeNLCount <= 100, 'Registry metrics must maintain active_nl <= 100');
 
-      // Verify none of the Phase 68B candidate ASINs were prematurely injected
-      const researchAsinBlacklist = ['B00HQ63YUY', 'B00455Q028', 'B07V9P5T8Q', 'B000182C0K', 'B0032V6Y4E'];
+      // Verify unpromoted Phase 68B candidate ASINs were not prematurely injected (B00455Q028 graduated in Phase 74)
+      const researchAsinBlacklist = ['B00HQ63YUY', 'B07V9P5T8Q', 'B000182C0K', 'B0032V6Y4E'];
       const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE' });
       for (const asin of researchAsinBlacklist) {
         const found = activeOffers.find(o => o.asin === asin);

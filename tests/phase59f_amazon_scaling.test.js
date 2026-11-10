@@ -148,7 +148,8 @@ test('Phase 59F — 4. Production Lock: No New ASINs Activated in Production Wit
   });
   registry.loadFromFile();
 
-  const newCandidates = ['00004007025', '00006421223'];
+  // 0000 642 1223 was approved & activated in Phase 74; test unapproved 0000 642 1240
+  const newCandidates = ['00004007025', '00006421240'];
   for (const part of newCandidates) {
     const active = registry.getActiveOffer(part);
     assert.strictEqual(active, null, `New candidate ${part} must NOT be active in production without operator approval`);

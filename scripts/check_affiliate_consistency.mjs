@@ -48,7 +48,13 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '00003503521', // Haishine Brandstoffilter zuigkop FS 460 / MS 261 (B0HLBXNGQQ)
   '11231950400', // ECSiNG Starter katrol / veer kit FS 55 / MS 170 (B0BG49Y65H)
   '11210201200', // Sägenspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
-  '11230302003'  // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '11230302003', // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '00006421223', // Oregon 68210 Rim Sprocket 3/8" 7T SD7 MS 440 (B00455Q028)
+  '00006421231', // Oregon 18720 Rim Sprocket 3/8" 7T SM7 MS 261 / MS 290 (B000IBWVWG)
+  '07811201109', // STIHL MultiLub Tandwielvet 80g Tube HS 45 (B007TK174M)
+  '30050004809', // Oregon 140SDEA074 Zaagblad 14" MS 170 / MS 210 (B001FUALX0)
+  '30050004813', // Oregon 160SDEA074 Zaagblad 16" MS 210 / MS 250 (B002VAAQC4)
+  '56057504303'  // STIHL 2-in-1 Feilenhalter 4.0mm MS 170 / MS 210 (B00CIRQW0K)
 ]);
 
 export function checkAffiliateConsistency() {
@@ -99,6 +105,52 @@ export function checkAffiliateConsistency() {
       : (doc.parts || doc.offers || doc.verified_offers || doc.candidates || doc.items || doc.rejected_or_pending || []);
 
     console.log(`▶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
+
+    // Audit registry metrics synchronization (Phase 74B invariant)
+    if (manifest.type === 'REGISTRY' && doc.metrics) {
+      const activeCount = records.filter(o => o.status === 'ACTIVE' || o.pilot_active === true).length;
+      const activeNlCount = records.filter(o => (o.status === 'ACTIVE' || o.pilot_active === true) && (!o.marketplace || o.marketplace === 'amazon.nl')).length;
+      const activeDeCount = records.filter(o => (o.status === 'ACTIVE' || o.pilot_active === true) && o.marketplace === 'amazon.de').length;
+      const researchCount = records.filter(o => o.status === 'RESEARCH_REQUIRED').length;
+      const verifiedInactiveCount = records.filter(o => o.status === 'VERIFIED' && !o.pilot_active).length;
+
+      if (doc.metrics.total_registered !== records.length) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.total_registered (${doc.metrics.total_registered}) !== offers count (${records.length})`
+        });
+      }
+      if (doc.metrics.active !== activeCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active (${doc.metrics.active}) !== actual active count (${activeCount})`
+        });
+      }
+      if (doc.metrics.active_nl !== activeNlCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active_nl (${doc.metrics.active_nl}) !== actual active NL count (${activeNlCount})`
+        });
+      }
+      if (doc.metrics.active_de !== activeDeCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.active_de (${doc.metrics.active_de}) !== actual active DE count (${activeDeCount})`
+        });
+      }
+      if (doc.metrics.research_required !== researchCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.research_required (${doc.metrics.research_required}) !== actual research_required count (${researchCount})`
+        });
+      }
+      if (doc.metrics.verified !== verifiedInactiveCount) {
+        contradictions.push({
+          file: manifest.name,
+          error: `Registry metrics.verified (${doc.metrics.verified}) !== actual verified inactive count (${verifiedInactiveCount})`
+        });
+      }
+    }
 
     for (const rec of records) {
       totalScanned++;
