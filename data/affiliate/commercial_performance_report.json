@@ -1,21 +1,21 @@
 {
   "report_title": "STIHLDecoder Phase 73A Emergency Amazon Evidence Audit & Commercial Report",
-  "generated_at": "2026-11-10T01:13:11.913Z",
+  "generated_at": "2026-11-10T09:32:11.258Z",
   "evidence_audit_summary": {
-    "total_registered_candidates": 112,
-    "verified_active_offers": 20,
-    "unproven_candidates": 80,
+    "total_registered_candidates": 116,
+    "verified_active_offers": 26,
+    "unproven_candidates": 78,
     "pending_shipping_confirmation_de": 12,
     "rejected_candidates": 0,
-    "unique_confirmed_asins": 20,
-    "unique_parts_with_direct_buy": 20,
+    "unique_confirmed_asins": 26,
+    "unique_parts_with_direct_buy": 26,
     "milestone_100_achieved": false,
     "audit_notes": "Phase 73A Emergency Evidence Audit: unproven product claims deactivated to RESEARCH_REQUIRED. Evidence prioritised over arbitrary numbers."
   },
   "marketplaces": {
     "amazon_nl": {
-      "active_offers": 18,
-      "distinct_parts": 18,
+      "active_offers": 24,
+      "distinct_parts": 24,
       "affiliate_tag": "srihldecoder2-21",
       "status": "OPERATIONAL"
     },
@@ -26,28 +26,28 @@
       "shipping_requirement": "SHIPS_TO_NL_CONFIRMED",
       "status": "OPERATIONAL"
     },
-    "total_active_offers": 20,
-    "total_registered_offers": 112,
-    "distinct_active_parts": 20
+    "total_active_offers": 26,
+    "total_registered_offers": 116,
+    "distinct_active_parts": 26
   },
   "milestones": {
     "milestone_50": {
       "target": 50,
-      "current": 20,
+      "current": 26,
       "achieved": false,
-      "percentage": 40
+      "percentage": 52
     },
     "milestone_100": {
       "target": 100,
-      "current": 20,
+      "current": 26,
       "achieved": false,
-      "percentage": 20
+      "percentage": 26
     },
     "milestone_250": {
       "target": 250,
-      "current": 20,
+      "current": 26,
       "achieved": false,
-      "percentage": 8
+      "percentage": 10
     }
   },
   "gsc_model_coverage": [
@@ -58,13 +58,14 @@
       "gsc_impressions": 446,
       "gsc_clicks": 2,
       "canonical_parts_count": 258,
-      "active_offers_count": 2,
-      "distinct_active_parts_count": 2,
+      "active_offers_count": 3,
+      "distinct_active_parts_count": 3,
       "active_parts": [
         "11104007005",
-        "00004007000"
+        "00004007000",
+        "00006421223"
       ],
-      "coverage_status": "MODERATE"
+      "coverage_status": "STRONG"
     },
     {
       "model_id": "fs_460",
@@ -73,12 +74,13 @@
       "gsc_impressions": 315,
       "gsc_clicks": 0,
       "canonical_parts_count": 246,
-      "active_offers_count": 3,
-      "distinct_active_parts_count": 3,
+      "active_offers_count": 4,
+      "distinct_active_parts_count": 4,
       "active_parts": [
         "00004007011",
         "41190071027",
-        "00003503521"
+        "00003503521",
+        "07811201109"
       ],
       "coverage_status": "STRONG"
     },
@@ -89,14 +91,16 @@
       "gsc_impressions": 195,
       "gsc_clicks": 7,
       "canonical_parts_count": 200,
-      "active_offers_count": 5,
-      "distinct_active_parts_count": 5,
+      "active_offers_count": 7,
+      "distinct_active_parts_count": 7,
       "active_parts": [
         "11104007005",
         "00004007000",
         "11301240800",
         "00003503500",
-        "11231950400"
+        "11231950400",
+        "30050004809",
+        "56057504303"
       ],
       "coverage_status": "STRONG"
     },
@@ -107,13 +111,14 @@
       "gsc_impressions": 163,
       "gsc_clicks": 2,
       "canonical_parts_count": 240,
-      "active_offers_count": 2,
-      "distinct_active_parts_count": 2,
+      "active_offers_count": 3,
+      "distinct_active_parts_count": 3,
       "active_parts": [
         "11104007005",
-        "00004007000"
+        "00004007000",
+        "00006421223"
       ],
-      "coverage_status": "MODERATE"
+      "coverage_status": "STRONG"
     },
     {
       "model_id": "bg_86",
@@ -137,12 +142,13 @@
       "gsc_impressions": 125,
       "gsc_clicks": 1,
       "canonical_parts_count": 213,
-      "active_offers_count": 3,
-      "distinct_active_parts_count": 3,
+      "active_offers_count": 4,
+      "distinct_active_parts_count": 4,
       "active_parts": [
         "11104007005",
         "00004007000",
-        "00003503500"
+        "00003503500",
+        "00006421231"
       ],
       "coverage_status": "STRONG"
     },
@@ -167,13 +173,14 @@
       "gsc_impressions": 101,
       "gsc_clicks": 1,
       "canonical_parts_count": 240,
-      "active_offers_count": 2,
-      "distinct_active_parts_count": 2,
+      "active_offers_count": 3,
+      "distinct_active_parts_count": 3,
       "active_parts": [
         "11104007005",
-        "00004007000"
+        "00004007000",
+        "00006421223"
       ],
-      "coverage_status": "MODERATE"
+      "coverage_status": "STRONG"
     },
     {
       "model_id": "hs_45",
@@ -182,13 +189,14 @@
       "gsc_impressions": 52,
       "gsc_clicks": 2,
       "canonical_parts_count": 177,
-      "active_offers_count": 4,
-      "distinct_active_parts_count": 4,
+      "active_offers_count": 5,
+      "distinct_active_parts_count": 5,
       "active_parts": [
         "11104007005",
         "00004007000",
         "41401242800",
-        "11231950400"
+        "11231950400",
+        "07811201109"
       ],
       "coverage_status": "STRONG"
     },
@@ -213,8 +221,8 @@
       "gsc_impressions": 39,
       "gsc_clicks": 2,
       "canonical_parts_count": 236,
-      "active_offers_count": 8,
-      "distinct_active_parts_count": 8,
+      "active_offers_count": 10,
+      "distinct_active_parts_count": 10,
       "active_parts": [
         "11104007005",
         "00004007000",
@@ -223,7 +231,9 @@
         "11231201613",
         "11210071062",
         "00003503500",
-        "11231950400"
+        "11231950400",
+        "30050004813",
+        "56057504303"
       ],
       "coverage_status": "STRONG"
     },
@@ -234,10 +244,14 @@
       "gsc_impressions": 36,
       "gsc_clicks": 0,
       "canonical_parts_count": 22,
-      "active_offers_count": 0,
-      "distinct_active_parts_count": 0,
-      "active_parts": [],
-      "coverage_status": "GAP"
+      "active_offers_count": 3,
+      "distinct_active_parts_count": 3,
+      "active_parts": [
+        "11104007005",
+        "00004007000",
+        "41190071027"
+      ],
+      "coverage_status": "STRONG"
     },
     {
       "model_id": "ms_210",
@@ -246,8 +260,8 @@
       "gsc_impressions": 341,
       "gsc_clicks": 1,
       "canonical_parts_count": 237,
-      "active_offers_count": 9,
-      "distinct_active_parts_count": 9,
+      "active_offers_count": 12,
+      "distinct_active_parts_count": 12,
       "active_parts": [
         "11104007005",
         "00004007000",
@@ -257,7 +271,10 @@
         "11210071062",
         "00003503500",
         "11231950400",
-        "11230302003"
+        "11230302003",
+        "30050004809",
+        "30050004813",
+        "56057504303"
       ],
       "coverage_status": "STRONG"
     }

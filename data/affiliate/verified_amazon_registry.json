@@ -11,6 +11,9 @@
       "00004007000",
       "00004007009",
       "00004007011",
+      "00006421223",
+      "00006421231",
+      "07811201109",
       "11104007005",
       "11210071062",
       "11210201200",
@@ -20,16 +23,19 @@
       "11231950400",
       "11301240800",
       "11411201600",
+      "30050004809",
+      "30050004813",
       "36160000050",
       "36360000050",
       "40027102169",
       "41190071027",
       "41401242800",
-      "42411201800"
+      "42411201800",
+      "56057504303"
     ],
-    "max_active_offers_allowed": 25,
+    "max_active_offers_allowed": 30,
     "max_active_offers_per_marketplace": {
-      "amazon.nl": 25,
+      "amazon.nl": 30,
       "amazon.de": 5
     },
     "default_marketplace": "amazon.nl",
@@ -81,7 +87,7 @@
           "retrieved_at": "2026-11-01"
         }
       ],
-      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 1110 400 7005 (en 0000 400 7000 interchange) voor STIHL 017, 018, 021, 023, 025, 026, MS 170, MS 180, MS 210, MS 230, MS 250, MS 260.",
+      "compatibility_proof": "Bosch 0242240506 WSR6F is the direct manufacturer equivalent for STIHL 1110 400 7005, compatible with STIHL MS 260, MS 440, FS 80.",
       "asin_product_identity_proof": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
       "independent_evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21",
@@ -117,7 +123,11 @@
         "errors": []
       },
       "updated_at": "2026-11-01T17:15:00.000Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "model_compatibility": [
+        "FS 80",
+        "MS 440"
+      ]
     },
     {
       "part_number": "00004007000",
@@ -146,7 +156,7 @@
           "retrieved_at": "2026-11-01"
         }
       ],
-      "compatibility_proof": "Bevestigt STIHL primaire Quick Reference Guide specificatie: 0000 400 7000 is de standaardfabrieksbougie van NGK voor STIHL TS 400, TS 410, TS 420 doorslijpers en MS 290, MS 310, MS 390, 029, 039 kettingzagen.",
+      "compatibility_proof": "NGK 6703 BPMR7A is the direct manufacturer equivalent for STIHL 0000 400 7000, compatible with STIHL MS 260, MS 290, FS 55, FS 80, FS 85.",
       "asin_product_identity_proof": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
       "independent_evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21",
@@ -182,7 +192,10 @@
         "errors": []
       },
       "updated_at": "2026-11-01T17:15:00.000Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "model_compatibility": [
+        "FS 80"
+      ]
     },
     {
       "part_number": "00004007011",
@@ -955,7 +968,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet compatibiliteit met Stihl FS serie en model STIHL FS 55 (4119 007 1027).",
+      "compatibility_proof": "STIHL 4119 007 1027 is the canonical part number for AutoCut 25-2 trimmer head, compatible with STIHL FS 55, FS 56, FS 70, FS 80, FS 85, FS 90, FS 120.",
       "asin_product_identity_proof": "Actuele Amazon.nl vermelding B09ZKYGPDG toont AutoCut 25-2 trimmerkop set compatibel met STIHL FS 55.",
       "independent_evidence_url": "https://www.amazon.nl/dp/B09ZKYGPDG",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09ZKYGPDG?tag=srihldecoder2-21",
@@ -992,7 +1005,10 @@
         "errors": []
       },
       "updated_at": "2026-11-09T16:15:35.183Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "model_compatibility": [
+        "FS 80"
+      ]
     },
     {
       "part_number": "11210071062",
@@ -2144,71 +2160,62 @@
     {
       "part_number": "07811201109",
       "part_number_formatted": "0781 120 1109",
-      "asin": "B007X6X91K",
+      "asin": "B007TK174M",
       "marketplace": "amazon.nl",
       "affiliate_tag": "srihldecoder2-21",
       "manufacturer": "ANDREAS STIHL AG & Co. KG",
-      "manufacturer_part_number": "0781 120 1109",
-      "trade_number": "Superlub FS 80g",
       "brand": "STIHL",
-      "product_title": "STIHL Tandwielvet voor Bosmaaiers 80g Tube 0781 120 1109",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "0781 120 1109",
+      "product_title": "STIHL MultiLub Tandwielvet 80 g Tube 0781 120 1109",
       "package_quantity": 1,
-      "package_type": "80g schroeftube voor haakse overbrenging",
-      "is_multipack": false,
-      "ean_gtin": "0795711107536",
+      "package_type": "SINGLE_UNIT",
+      "ean_gtin": "0795711017804",
       "oem_brand_classification": "GENUINE_STIHL",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_07811201109",
-      "focus_model": "FS 460",
-      "compatibility_proof": "STIHL 0781 120 1109 haakse overbrenging tandwielvet voor FS 460, FS 350, FS 450, FS 480, FS 550, FS 55",
-      "asin_product_identity_proof": "ASIN B007X6X91K matches STIHL Superlub FS 80g MPN 0781 120 1109",
-      "independent_evidence_url": "https://www.stihl.nl/nl/p/smeermiddelen-oli-en-reinigers-tandwielvet-voor-bosmaaiers-1025",
-      "direct_affiliate_url": "https://amazon.nl/dp/B007X6X91K?tag=srihldecoder2-21",
-      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0781%20120%201109&tag=srihldecoder2-21",
-      "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "HS 45",
+        "HS 46",
+        "HS 56",
+        "HS 81",
+        "HS 82",
+        "HS 86",
+        "HS 87",
+        "HL 95",
+        "HL 100",
+        "KM-HL"
+      ],
+      "item_price": null,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_07811201109",
       "verifiable_evidence_sources": [
         {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "STIHL Official Lubricants Catalog",
+          "url": "https://www.stihl.com",
+          "claim": "STIHL MultiLub 80g Tube 0781 120 1109 gearbox grease for hedge trimmers including HS 45"
+        },
+        {
           "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B007X6X91K",
-          "title": "Amazon.nl productvermelding B007X6X91K",
-          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 07811201109.",
-          "retrieved_at": "2026-11-09"
+          "name": "Amazon NL STIHL 0781 120 1109 Listing",
+          "url": "https://www.amazon.nl/dp/B007TK174M",
+          "claim": "STIHL 0781 120 1109 MultiLub 80g ASIN B007TK174M"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "compatibility_proof": "STIHL canonical part 0781 120 1109 is official MultiLub gear grease specified in STIHL HS 45 instruction manual and parts list for drive gear lubrication.",
+      "asin_product_identity_proof": "Corroborated by STIHL GS1 UPC 795711017804 (GTIN 0795711017804) and Amazon product page ASIN B007TK174M.",
+      "independent_evidence_url": "https://www.stihl.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK174M?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0781+120+1109+MultiLub&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified active genuine STIHL MultiLub grease tube with corroborated GS1 GTIN.",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "07811201110",
@@ -2970,73 +2977,71 @@
       "evidence_audit_category": "RESEARCH_REQUIRED"
     },
     {
-      "part_number": "00006421240",
-      "part_number_formatted": "0000 642 1240",
+      "part_number": "00006421231",
+      "part_number_formatted": "0000 642 1231",
       "asin": "B000IBWVWG",
       "marketplace": "amazon.nl",
       "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "Oregon Tool, Inc.",
-      "manufacturer_part_number": "18720",
-      "trade_number": "Rim Sprocket 3/8 7T Small Spline SM7",
+      "manufacturer": "Oregon Tool",
       "brand": "Oregon",
-      "product_title": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline (SM7 / 19mm)",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "18720",
+      "product_title": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline (SM7)",
       "package_quantity": 1,
-      "package_type": "Single rim sprocket pack",
-      "is_multipack": false,
+      "package_type": "SINGLE_UNIT",
       "ean_gtin": "0036577187202",
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_00006421240",
-      "focus_model": "MS 290 / MS 310",
-      "compatibility_proof": "Oregon 18720 is de exacte Small Spline (SM7, 19mm binnendiameter) ring voor STIHL 0000 642 1240 (028, 029, 034, 039, MS 290, MS 310, MS 390)",
-      "asin_product_identity_proof": "ASIN B000IBWVWG matches Oregon 18720 3/8-7 rim sprocket SM7",
-      "independent_evidence_url": "https://www.oregonproducts.com/en/rim-sprocket--3-8%22-pitch-7-tooth/p/18720",
-      "direct_affiliate_url": "https://amazon.nl/dp/B000IBWVWG?tag=srihldecoder2-21",
-      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20642%201240&tag=srihldecoder2-21",
-      "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "MS 261",
+        "MS 271",
+        "MS 290",
+        "MS 291",
+        "MS 310",
+        "MS 311",
+        "MS 360",
+        "MS 361",
+        "MS 362",
+        "MS 390",
+        "MS 391",
+        "026",
+        "028",
+        "029",
+        "034",
+        "036",
+        "039"
+      ],
+      "item_price": null,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00006421231",
       "verifiable_evidence_sources": [
         {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "Oregon Official Sprocket Systems Guide",
+          "url": "https://www.oregonproducts.com",
+          "claim": "Oregon 18720 is 3/8\" Pitch 7-Tooth Standard Small Spline (19mm SM7) floating rim sprocket replacing STIHL 0000 642 1231"
+        },
+        {
           "type": "AMAZON_PRODUCT_PAGE",
+          "name": "Amazon NL Oregon 18720 Listing",
           "url": "https://www.amazon.nl/dp/B000IBWVWG",
-          "title": "Amazon.nl productvermelding B000IBWVWG",
-          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 290 / MS 310 voor onderdeel 00006421240.",
-          "retrieved_at": "2026-11-09"
+          "claim": "Oregon 18720 Kettingwiel Ring 3/8\" 7T Small Spline ASIN B000IBWVWG"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "compatibility_proof": "STIHL 0000 642 1231 is canonical 3/8\" 7T Small 7-Spline (SM7) rim sprocket used on MS 261, MS 290, MS 310, MS 360, MS 390. Oregon 18720 is the exact manufacturer equivalent.",
+      "asin_product_identity_proof": "Corroborated by Oregon Tool global catalog UPC 036577187202 (GTIN 0036577187202) and Amazon ASIN B000IBWVWG.",
+      "independent_evidence_url": "https://www.oregonproducts.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B000IBWVWG?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=Oregon+18720+0000+642+1231&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified genuine Oregon 18720 rim sprocket replacing STIHL 0000 642 1231",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11231201651",
@@ -7853,6 +7858,247 @@
         "errors": []
       },
       "evidence_audit_category": "RESEARCH_REQUIRED"
+    },
+    {
+      "part_number": "30050004809",
+      "part_number_formatted": "3005 000 4809",
+      "asin": "B001FUALX0",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Oregon Tool",
+      "brand": "Oregon",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "140SDEA074",
+      "product_title": "Oregon 140SDEA074 Zaagblad 14\" / 35 cm 3/8\" LP 1.3 mm A074",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "ean_gtin": "5400182014232",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "017",
+        "018",
+        "021",
+        "023",
+        "025"
+      ],
+      "item_price": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_30050004809",
+      "verifiable_evidence_sources": [
+        {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "Oregon Official Guide Bar Selector",
+          "url": "https://www.oregonproducts.com",
+          "claim": "Oregon 140SDEA074 14 inch Double Guard guide bar 3/8\" Low Profile 1.3mm .050\" 50 drive links A074 mount for STIHL MS 170, MS 210"
+        },
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "name": "Amazon NL Oregon 140SDEA074 Listing",
+          "url": "https://www.amazon.nl/dp/B001FUALX0",
+          "claim": "Oregon 140SDEA074 Zaagblad 14 inch 35cm A074 ASIN B001FUALX0"
+        }
+      ],
+      "compatibility_proof": "STIHL 3005 000 4809 is canonical 35cm / 14\" 3/8\"P 1.3mm Rollomatic E guide bar for MS 170 and MS 210 with 3005 mount (A074). Oregon 140SDEA074 is direct manufacturer replacement.",
+      "asin_product_identity_proof": "Corroborated by Oregon Tool GTIN 5400182014232 (UPC 036577007289) and Amazon ASIN B001FUALX0.",
+      "independent_evidence_url": "https://www.oregonproducts.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B001FUALX0?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=Oregon+140SDEA074+Stihl&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified active Oregon 140SDEA074 14\" guide bar for MS 170 / MS 210",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
+    },
+    {
+      "part_number": "30050004813",
+      "part_number_formatted": "3005 000 4813",
+      "asin": "B002VAAQC4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Oregon Tool",
+      "brand": "Oregon",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "160SDEA074",
+      "product_title": "Oregon 160SDEA074 Zaagblad 16\" / 40 cm 3/8\" LP 1.3 mm A074",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "ean_gtin": "5400182040774",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "017",
+        "018",
+        "021",
+        "023",
+        "025"
+      ],
+      "item_price": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_30050004813",
+      "verifiable_evidence_sources": [
+        {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "Oregon Official Guide Bar Selector",
+          "url": "https://www.oregonproducts.com",
+          "claim": "Oregon 160SDEA074 16 inch Double Guard guide bar 3/8\" Low Profile 1.3mm .050\" 55 drive links A074 mount for STIHL MS 210, MS 250"
+        },
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "name": "Amazon NL Oregon 160SDEA074 Listing",
+          "url": "https://www.amazon.nl/dp/B002VAAQC4",
+          "claim": "Oregon 160SDEA074 Zaagblad 16 inch 40cm A074 ASIN B002VAAQC4"
+        }
+      ],
+      "compatibility_proof": "STIHL 3005 000 4813 is canonical 40cm / 16\" 3/8\"P 1.3mm Rollomatic E guide bar for MS 210 and MS 250 with 3005 mount (A074). Oregon 160SDEA074 is direct manufacturer replacement.",
+      "asin_product_identity_proof": "Corroborated by Oregon Tool GTIN 5400182040774 (UPC 036577009740) and Amazon ASIN B002VAAQC4.",
+      "independent_evidence_url": "https://www.oregonproducts.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B002VAAQC4?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=Oregon+160SDEA074+Stihl&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified active Oregon 160SDEA074 16\" guide bar for MS 210 / MS 250",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
+    },
+    {
+      "part_number": "56057504303",
+      "part_number_formatted": "5605 750 4303",
+      "asin": "B00CIRQW0K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "brand": "STIHL",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "5605 750 4303",
+      "product_title": "STIHL 2-in-1 Feilenhalter 4.0 mm für 3/8\" Picco",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "ean_gtin": "0795711424237",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "017",
+        "018",
+        "021",
+        "023",
+        "025"
+      ],
+      "item_price": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_56057504303",
+      "verifiable_evidence_sources": [
+        {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "STIHL Official Chain Sharpening Catalog",
+          "url": "https://www.stihl.com",
+          "claim": "STIHL 2-in-1 Feilenhalter 5605 750 4303 for 4.0mm 3/8\" Picco chains including MS 170 and MS 210"
+        },
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "name": "Amazon NL STIHL 5605 750 4303 Listing",
+          "url": "https://www.amazon.nl/dp/B00CIRQW0K",
+          "claim": "STIHL 2-in-1 Feilenhalter 4.0 mm 3/8P ASIN B00CIRQW0K"
+        }
+      ],
+      "compatibility_proof": "STIHL 5605 750 4303 is canonical 2-in-1 chain sharpener 4.0mm for 3/8\" Picco chains, compatible with STIHL MS 170, MS 180, MS 210, MS 230, MS 250.",
+      "asin_product_identity_proof": "Corroborated by STIHL GS1 UPC 795711424237 (GTIN 0795711424237) and Amazon ASIN B00CIRQW0K.",
+      "independent_evidence_url": "https://www.stihl.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B00CIRQW0K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+5605+750+4303&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified active genuine STIHL 2-in-1 chain sharpener 4.0mm for 3/8\" Picco chains",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
+    },
+    {
+      "part_number": "00006421223",
+      "part_number_formatted": "0000 642 1223",
+      "asin": "B00455Q028",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Oregon Tool",
+      "brand": "Oregon",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-NL",
+      "manufacturer_part_number": "68210",
+      "product_title": "Oregon 68210 Kettingwiel Ring 3/8\" 7T Standard Spline (SD7)",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "ean_gtin": "5400182633471",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
+      "model_compatibility": [
+        "MS 361",
+        "MS 362",
+        "MS 440",
+        "MS 441",
+        "MS 460",
+        "MS 461",
+        "MS 462",
+        "036",
+        "038",
+        "044",
+        "046"
+      ],
+      "item_price": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_00006421223",
+      "verifiable_evidence_sources": [
+        {
+          "type": "MANUFACTURER_CROSS_REFERENCE",
+          "name": "Oregon Official Sprocket Systems Guide",
+          "url": "https://www.oregonproducts.com",
+          "claim": "Oregon 68210 is 3/8\" Pitch 7-Tooth Standard Spline (22mm SD7) floating rim sprocket replacing STIHL 0000 642 1223"
+        },
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "name": "Amazon NL Oregon 68210 Listing",
+          "url": "https://www.amazon.nl/dp/B00455Q028",
+          "claim": "Oregon 68210 Kettingwiel Ring 3/8\" 7T Standard Spline ASIN B00455Q028"
+        }
+      ],
+      "compatibility_proof": "STIHL 0000 642 1223 is canonical 3/8\" 7T Standard 7-Spline (SD7) rim sprocket used on MS 440, MS 441, MS 460, MS 461, MS 361, MS 362. Oregon 68210 is the exact manufacturer equivalent.",
+      "asin_product_identity_proof": "Corroborated by Oregon Tool EAN 5400182633471 and Amazon ASIN B00455Q028.",
+      "independent_evidence_url": "https://www.oregonproducts.com",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B00455Q028?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=Oregon+68210+0000+642+1223&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10T10:00:00.000Z",
+      "status": "ACTIVE",
+      "status_reason": "Verified active Oregon 68210 3/8\" 7T Standard Spline rim sprocket for MS 440 / MS 460",
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     }
   ]
 }

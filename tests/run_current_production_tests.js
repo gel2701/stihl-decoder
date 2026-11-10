@@ -128,7 +128,8 @@ export const currentProductionSuites = [
   'tests/phase69_expansion_batch.test.js',
   'tests/phase70_multimarket_affiliate.test.js',
   'tests/phase72_amazon_growth.test.js',
-  'tests/phase73_amazon_100.test.js'
+  'tests/phase73_amazon_100.test.js',
+  'tests/phase74_amazon_growth.test.js'
 ];
 
 console.log('===============================================================');

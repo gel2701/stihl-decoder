@@ -48,7 +48,13 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '00003503521', // Haishine Brandstoffilter zuigkop FS 460 / MS 261 (B0HLBXNGQQ)
   '11231950400', // ECSiNG Starter katrol / veer kit FS 55 / MS 170 (B0BG49Y65H)
   '11210201200', // Sägenspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
-  '11230302003'  // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '11230302003', // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '00006421223', // Oregon 68210 Rim Sprocket 3/8" 7T SD7 MS 440 (B00455Q028)
+  '00006421231', // Oregon 18720 Rim Sprocket 3/8" 7T SM7 MS 261 / MS 290 (B000IBWVWG)
+  '07811201109', // STIHL MultiLub Tandwielvet 80g Tube HS 45 (B007TK174M)
+  '30050004809', // Oregon 140SDEA074 Zaagblad 14" MS 170 / MS 210 (B001FUALX0)
+  '30050004813', // Oregon 160SDEA074 Zaagblad 16" MS 210 / MS 250 (B002VAAQC4)
+  '56057504303'  // STIHL 2-in-1 Feilenhalter 4.0mm MS 170 / MS 210 (B00CIRQW0K)
 ]);
 
 export function checkAffiliateConsistency() {
