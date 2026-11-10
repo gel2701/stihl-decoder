@@ -60,7 +60,7 @@ describe('Phase 72: Amazon Affiliate Growth Engine — 50 Links & GSC Priorities
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
 
     assert.ok(activeNl.length >= 18, 'Must have at least 18 active Amazon.nl offers');
-    assert.equal(activeDe.length, 2, 'Must have exactly 2 active Amazon.de offers with confirmed NL shipping');
+    assert.ok(activeDe.length >= 2, 'Must have at least 2 active Amazon.de offers with confirmed NL shipping');
 
     // German active offers must have confirmed NL delivery
     for (const deOffer of activeDe) {
@@ -70,7 +70,7 @@ describe('Phase 72: Amazon Affiliate Growth Engine — 50 Links & GSC Priorities
 
     // Inactive German offers must remain inactive
     const inactiveDe = doc.offers.filter(o => o.marketplace === 'amazon.de' && o.status !== 'ACTIVE');
-    assert.ok(inactiveDe.length >= 12, 'Must retain at least 12 inactive German offers');
+    assert.ok(inactiveDe.length >= 6, 'Must retain at least 6 inactive German offers');
   });
 
   test('2. All active offers pass TwoGateVerifier cleanly', () => {

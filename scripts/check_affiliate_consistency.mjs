@@ -81,7 +81,18 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '07811201110', // STIHL Tandwielvet 225g FS 460 / FS 80 (B00474640Y)
   '30030003313', // STIHL Zaagblad Light 04 40cm MS 261 / MS 260 (B00474601A)
   // Phase 75B Commercial Expansion: Oregon 90PX050E chain for 3610 000 0050
-  '36100000050'  // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
+  '36100000050', // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
+  // Phase 75C Expansion: 4 Amazon.nl verified parts + 6 Sägenspezi Amazon.de parts
+  '36100000044', // Oregon 90PX044E Zaagketting 30cm (B002X3IIYC)
+  '00003506201', // Walbro 188-512-1 Primerbalg (B0773YKFX3)
+  '11230071060', // C·T·S / Walbro K20-WAT Carburateurset (B073NJNXMF)
+  '40037102115', // STIHL AutoCut 46-2 Maaikop (B01BBVB4HY)
+  '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
+  '11304001302', // Sägenspezi Zündmodul MS 170 / MS 180 (B00LAHQD8A)
+  '11231200605', // Sägenspezi Vergaser MS 250 (B00LAHQRM2)
+  '11211200611', // Sägenspezi Carburateur MS 260 (B07MM5R1KG)
+  '11230071000', // Sägenspezi Kettingspanner zijdelings ombouwkit (B07F6CH3BV)
+  '11231412200'  // Sägenspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
 ]);
 
 export function checkAffiliateConsistency() {

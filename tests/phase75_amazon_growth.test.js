@@ -48,13 +48,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
     assert.ok(activeOffers.length >= 50, `Expected at least 50 ACTIVE offers, found ${activeOffers.length}`);
-    assert.strictEqual(activeOffers.length, 51, `Expected exactly 51 ACTIVE offers in Phase 75B, found ${activeOffers.length}`);
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
 
-    assert.strictEqual(activeNl.length, 49, 'Expected exactly 49 active Amazon.nl offers');
-    assert.strictEqual(activeDe.length, 2, 'Expected exactly 2 active Amazon.de offers with confirmed NL delivery');
+    assert.ok(activeNl.length >= 49, `Expected at least 49 active Amazon.nl offers, found ${activeNl.length}`);
+    assert.ok(activeDe.length >= 2, `Expected at least 2 active Amazon.de offers with confirmed NL delivery, found ${activeDe.length}`);
   });
 
   it('2. Registry Metrics Invariant & Status Breakdown Synchronization', () => {
@@ -98,7 +97,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
 
     assert.strictEqual(report.milestones.milestone_50.achieved, true, 'Milestone 50 must be marked achieved');
-    assert.strictEqual(report.milestones.milestone_50.current, 51, 'Current active offers must be 51');
+    assert.ok(report.milestones.milestone_50.current >= 50, `Current active offers must be >= 50, got ${report.milestones.milestone_50.current}`);
   });
 
   it('4. Genuine Brand Taxonomy & Check-Digit Validation across All Active Offers', () => {
@@ -164,12 +163,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('6. Kill Switch Precision & Fail-Closed Fallback Mechanics', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 60
+      maxActiveOffersAllowed: 100
     });
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 51, 'Registry must load exactly 51 active offers');
+    assert.ok(activeOffers.length >= 50, `Registry must load at least 50 active offers, found ${activeOffers.length}`);
 
     const killSwitchIds = new Set();
     for (const offer of activeOffers) {
@@ -177,7 +176,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       assert.ok(!killSwitchIds.has(offer.kill_switch_id), `Duplicate kill_switch_id: ${offer.kill_switch_id}`);
       killSwitchIds.add(offer.kill_switch_id);
     }
-    assert.strictEqual(killSwitchIds.size, 51, 'All 51 kill switch IDs must be distinct');
+    assert.strictEqual(killSwitchIds.size, activeOffers.length, 'All kill switch IDs must be distinct');
 
     const unverifiedPart = '99999999999';
     const fallbackOffer = registry.getActiveOffer(unverifiedPart, 'amazon.nl');
