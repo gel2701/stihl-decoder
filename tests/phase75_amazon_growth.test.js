@@ -304,7 +304,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 84, 'Total active offers must equal 84 (53 NL + 31 DE)');
+    assert.ok(activeOffers.length >= 84, `Total active offers must be >= 84, found ${activeOffers.length}`);
 
     // Verify all 6 newly activated MS 250 / 025 offers on amazon.de
     const expectedMs250DeOffers = [
@@ -346,6 +346,74 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
         const models = (off.model_compatibility || []).join(' ');
         assert.ok(!/MS\s*250|\b025\b/i.test(models), `Offer ${off.asin} (${pn}) must NOT claim MS 250 / 025 compatibility`);
       }
+    }
+  });
+
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (99 Active Offers: 53 NL + 46 DE)', () => {
+    const registry = new VerifiedOfferRegistry({
+      productionActivationAllowed: true,
+      maxActiveOffersAllowed: 100
+    });
+    registry.loadFromFile();
+
+    const activeOffers = registry.listOffers({ status: 'ACTIVE' });
+    assert.strictEqual(activeOffers.length, 99, 'Total active offers must equal 99 (53 NL + 46 DE)');
+
+    const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
+    const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
+    assert.strictEqual(activeNl.length, 53, 'Active NL offers must equal 53');
+    assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
+
+    // Verify all 15 newly activated MS 440 / 044 offers on amazon.de
+    const expectedMs440DeOffers = [
+      ['30030005217', 'B00LAHENAA'],
+      ['30030009417', 'B00LAHGMUE'],
+      ['30030005221', 'B00LAHIYAU'],
+      ['30030009421', 'B00LAHI9QE'],
+      ['30030005231', 'B00LAHQF0Q'],
+      ['30030009431', 'B00LAHMFU0'],
+      ['30030006041', 'B00LAHP2KA'],
+      ['00006421216', 'B00LPH14UW'],
+      ['11281202202', 'B07434JVX4'],
+      ['00003503518', 'B00QM7TH36'],
+      ['11286407112', 'B00LAHFW96'],
+      ['11281200625', 'B00LAHQXLW'],
+      ['11280201227', 'B00LAHOFMQ'],
+      ['11280802115', 'B00LAHP3AE'],
+      ['11280071050', 'B00LAHMQD6']
+    ];
+
+    for (const [partNum, asin] of expectedMs440DeOffers) {
+      assert.ok(canonicalPartSet.has(partNum), `Part ${partNum} must exist in canonical parts catalog`);
+      const offer = registry.getOffer(partNum, 'amazon.de', asin);
+      assert.ok(offer, `MS 440 offer ${asin} for ${partNum} must exist`);
+      assert.strictEqual(offer.status, 'ACTIVE', `MS 440 offer ${asin} must be ACTIVE`);
+      assert.strictEqual(offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+      assert.strictEqual(offer.affiliate_tag, 'srihldecode00-21');
+    }
+
+    // Verify MS 440 & FS 460 reuse alignment on existing active offers
+    const ms440ReusedAsins = ['B00474612C', 'B00455Q028', 'B0068M5NAG', 'B001RM8J76', 'B0874SJ4CK', 'B079DNH91X'];
+    for (const asin of ms440ReusedAsins) {
+      const off = activeOffers.find(o => o.asin === asin);
+      assert.ok(off, `Reused MS 440 offer ${asin} must be active`);
+      const models = (off.model_compatibility || []).join(' ');
+      assert.ok(/MS\s*440/i.test(models), `Offer ${asin} must include MS 440 in model_compatibility`);
+    }
+
+    const fs460ReusedAsins = ['B01BBVB4HY', 'B08F9K47R9', 'B09JGG2L99', 'B0HLBXNGQQ', 'B0773YKFX3', 'B001RMA5S2', 'B09QH68W83', 'B077X8JMG9', 'B08F9MQ91L', 'B09R1T6X4D', 'B00474640Y', 'B08F9MKGTR'];
+    for (const asin of fs460ReusedAsins) {
+      const off = activeOffers.find(o => o.asin === asin);
+      assert.ok(off, `Reused FS 460 offer ${asin} must be active`);
+      const models = (off.model_compatibility || []).join(' ');
+      assert.ok(/FS\s*460/i.test(models), `Offer ${asin} must include FS 460 in model_compatibility`);
+    }
+
+    // Ensure M10x1.0 mowing heads (AutoCut 25-2 / AutoCut C 26-2) do NOT claim FS 460 (M12x1.5L) compatibility
+    for (const m10Asin of ['B09ZKYGPDG', 'B06XZZ84JC']) {
+      const off = activeOffers.find(o => o.asin === m10Asin);
+      const models = (off?.model_compatibility || []).join(' ');
+      assert.ok(!/FS\s*460/i.test(models), `M10 mowing head ${m10Asin} must NOT claim FS 460 compatibility`);
     }
   });
 });
