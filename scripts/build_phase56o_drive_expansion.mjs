@@ -82,7 +82,7 @@ export async function buildPhase56oDriveExpansion({
     WHERE source_id IS NULL OR source_id != 'ghs'
   `).all();
 
-  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().c;
   const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

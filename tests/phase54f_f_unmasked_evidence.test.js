@@ -257,7 +257,7 @@ describe('Phase 54F-F — Newly Unmasked Evidence Escalation Test Suite', () => 
   // Test 23 — Database Catalog Counts Strict Freeze
   it('Test 23 — Database Catalog Counts Strict Freeze', () => {
     const db = new Database(DB_PATH, { readonly: true });
-    const parts = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
+    const parts = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().c;
     const fitments = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
     const configs = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
     const evidence = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

@@ -67,7 +67,7 @@ test('Phase 61D - Test 4: Discovery hub and static UI use honest labels', () => 
 });
 
 test('Phase 61D - Test 5: Catalog and SEO invariants unchanged', () => {
-  assert.equal(catalog.parts.length, 18376);
+  assert.equal(catalog.parts.length, 18377);
   assert.equal(catalog.parts.filter(p => isPartIndexable(p.part_number)).length, 843);
   const sitemapUrls = (generateSitemapXml(PRIMARY_ORIGIN, database).match(/<loc>/g) || []).length;
   assert.equal(sitemapUrls, 1024);

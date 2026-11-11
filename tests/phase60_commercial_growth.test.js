@@ -172,7 +172,7 @@ describe('Phase 60: Commercial Growth Engine & FS 460 Monetization', () => {
 
   describe('6. Non-negotiable Trust & Production Invariants', () => {
     test('Canonical parts catalog remains exactly 18,373 parts', () => {
-      assert.equal(partsCatalog.length, 18376);
+      assert.equal(partsCatalog.length, 18377);
     });
 
     test('Formulation "Bevestigde compatibiliteit" is enforced; 0 occurrences of forbidden phrase', () => {

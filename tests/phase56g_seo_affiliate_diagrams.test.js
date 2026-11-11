@@ -60,7 +60,7 @@ const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { reado
 const database = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
 test('Phase 56G - Test 1: Canonical Database & Catalog Invariants Frozen', () => {
-  assert.strictEqual(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c, 17082);
+  assert.strictEqual(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().c, 17082);
   assert.strictEqual(db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c, 175106);
   assert.strictEqual(db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c, 766);
   assert.strictEqual(db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c, 208412);

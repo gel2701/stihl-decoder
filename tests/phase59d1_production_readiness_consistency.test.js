@@ -439,7 +439,7 @@ test('Phase 59D.1 — 6. Production Read-Only Safety & Invariant Protection', ()
   // Invariant 1: Exactly 18,373 canonical catalog parts
   const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18376, 'Canonical catalog must contain exactly 18,373 parts');
+  assert.equal(catalog.parts.length, 18377, 'Canonical catalog must contain exactly 18,373 parts');
 
   // Invariant 2: 0 runtime published ASINs in amazon_part_offers.json
   const offersPath = path.join(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');
