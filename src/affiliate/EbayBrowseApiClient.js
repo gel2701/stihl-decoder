@@ -1,289 +1,186 @@
-/**
- * src/affiliate/EbayBrowseApiClient.js
- *
- * Phase 71 Preparation — Official eBay Browse API Client Adapter
- *
- * Implements integration with eBay REST API (Browse API v1) for
- * retrieving live product offers, pricing, availability, and NL shipping eligibility.
- *
- * Requirements & Constraints:
- * - Fails closed if credentials (EBAY_CLIENT_ID, EBAY_CLIENT_SECRET) are missing.
- * - Does NOT use fabricated EPN Campaign IDs in production.
- * - Adheres strictly to eBay Developer Terms & EPN Policies.
- * - Supports injectable mock transport for offline and deterministic CI tests.
- */
-
 export class EbayBrowseApiClient {
-  /**
-   * @param {Object} [options]
-   * @param {string} [options.clientId]
-   * @param {string} [options.clientSecret]
-   * @param {string} [options.epnCampaignId]
-   * @param {string} [options.marketplaceId] - Default 'EBAY_DE' or 'EBAY_NL'
-   * @param {string} [options.defaultSeller] - Default 'saegenspezi_de'
-   * @param {Function} [options.fetchFn] - Custom fetch function for tests/mocks
-   * @param {string} [options.mockToken] - Static mock access token for unit tests
-   */
   constructor(options = {}) {
-    this.clientId = options.clientId || process.env.EBAY_CLIENT_ID || null;
-    this.clientSecret = options.clientSecret || process.env.EBAY_CLIENT_SECRET || null;
-    this.epnCampaignId = options.epnCampaignId || process.env.EBAY_EPN_CAMPAIGN_ID || null;
-    this.marketplaceId = options.marketplaceId || process.env.EBAY_MARKETPLACE_ID || 'EBAY_DE';
-    this.defaultSeller = options.defaultSeller || 'saegenspezi_de';
-    this.fetchFn = options.fetchFn || (typeof fetch !== 'undefined' ? fetch : null);
-    this.mockToken = options.mockToken || null;
-
+    this.clientId = options.clientId ?? process.env.EBAY_CLIENT_ID;
+    this.clientSecret = options.clientSecret ?? process.env.EBAY_CLIENT_SECRET;
+    this.epnCampaignId = options.epnCampaignId ?? process.env.EBAY_EPN_CAMPAIGN_ID;
+    this.marketplaceId = options.marketplaceId ?? process.env.EBAY_MARKETPLACE_ID ?? 'EBAY_DE';
+    this.defaultSeller = options.defaultSeller ?? 'saegenspezi_de';
+    this.fetchFn = options.fetchFn ?? globalThis.fetch;
+    this.mockToken = options.mockToken ?? null;
+    this.sleepFn = options.sleepFn ?? (ms => new Promise(resolve => setTimeout(resolve, ms)));
     this.tokenEndpoint = 'https://api.ebay.com/identity/v1/oauth2/token';
     this.browseApiEndpoint = 'https://api.ebay.com/buy/browse/v1/item_summary/search';
     this.cachedAccessToken = this.mockToken;
-    this.tokenExpiry = this.mockToken ? Date.now() + 86400000 : 0;
+    this.tokenExpiry = this.mockToken ? Infinity : 0;
+    this.lastQueryAt = 0;
+    this.partCache = new Map();
+    this.lastAuthError = null;
   }
 
-  /**
-   * Checks whether the required client credentials are configured.
-   * Fails closed if missing.
-   * @returns {boolean}
-   */
   isConfigured() {
-    return Boolean(this.mockToken || (this.clientId && this.clientSecret));
+    return process.env.EBAY_ENABLED === 'true' && Boolean(this.fetchFn && (this.mockToken || (this.clientId && this.clientSecret)));
   }
 
-  /**
-   * Checks whether EPN affiliate campaign ID is configured.
-   * Fails closed if missing.
-   * @returns {boolean}
-   */
   hasAffiliateConfig() {
-    return Boolean(this.epnCampaignId);
+    return /^\d+$/.test(String(this.epnCampaignId ?? ''));
   }
 
-  /**
-   * Generates a compliant eBay Partner Network (EPN) affiliate URL.
-   *
-   * Format adheres to eBay Partner Network Rover / Smart Link specifications:
-   * https://www.ebay.com/itm/{itemId}?mkcid=1&mkrid=...&campid={epnCampaignId}&toolid=10001&customid={customId}
-   *
-   * @param {string} itemWebUrl - Canonical eBay product URL
-   * @param {string} [customId] - Tracking reference (e.g. STIHL canonical part number)
-   * @returns {string} EPN-tagged URL or original itemWebUrl if no campaign ID configured
-   */
-  buildAffiliateUrl(itemWebUrl, customId = '') {
-    if (!itemWebUrl) return '';
-    if (!this.hasAffiliateConfig()) {
-      return itemWebUrl; // Clean URL fallback if affiliate campaign not yet active
-    }
+  preflight() {
+    const missing = [];
+    if (!this.mockToken && !this.clientId) missing.push('EBAY_CLIENT_ID');
+    if (!this.mockToken && !this.clientSecret) missing.push('EBAY_CLIENT_SECRET');
+    if (!this.hasAffiliateConfig()) missing.push('EBAY_EPN_CAMPAIGN_ID');
+    if (!this.fetchFn) missing.push('fetch');
+    return { enabled: process.env.EBAY_ENABLED === 'true', ready: this.isConfigured() && this.hasAffiliateConfig(), missing };
+  }
 
+  buildAffiliateUrl(itemAffiliateWebUrl) {
+    if (!this.hasAffiliateConfig() || typeof itemAffiliateWebUrl !== 'string') return '';
     try {
-      const parsed = new URL(itemWebUrl);
-      parsed.searchParams.set('mkcid', '1');
-      parsed.searchParams.set('campid', this.epnCampaignId);
-      parsed.searchParams.set('toolid', '10001');
-      if (customId) {
-        parsed.searchParams.set('customid', customId);
-      }
-      return parsed.toString();
+      const url = new URL(itemAffiliateWebUrl);
+      if (url.protocol !== 'https:' || url.username || url.password || url.port || !/^(?:[a-z0-9-]+\.)*ebay\.(?:de|nl|com)$/i.test(url.hostname)) return '';
+      const ids = [...url.searchParams.getAll('campid'), ...url.searchParams.getAll('affiliateCampaignId')];
+      if (ids.length !== 1 || ids[0] !== String(this.epnCampaignId)) return '';
+      return url.toString();
     } catch {
-      return itemWebUrl;
+      return '';
     }
   }
 
-  /**
-   * Obtains an OAuth 2.0 Application access token using client_credentials grant.
-   * @returns {Promise<string|null>}
-   */
   async getAccessToken() {
-    if (!this.isConfigured()) {
-      return null;
-    }
-
-    const now = Date.now();
-    if (this.cachedAccessToken && now < this.tokenExpiry - 60000) {
-      return this.cachedAccessToken;
-    }
-
-    const authHeader = 'Basic ' + Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64');
-    const params = new URLSearchParams({
-      grant_type: 'client_credentials',
-      scope: 'https://api.ebay.com/oauth/api_scope'
-    });
-
+    if (!this.isConfigured() || !this.hasAffiliateConfig()) return null;
+    this.lastAuthError = null;
+    if (this.cachedAccessToken && Date.now() < this.tokenExpiry - 60000) return this.cachedAccessToken;
     try {
       const response = await this.fetchFn(this.tokenEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': authHeader
+          Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`
         },
-        body: params.toString()
+        body: new URLSearchParams({ grant_type: 'client_credentials', scope: 'https://api.ebay.com/oauth/api_scope' }).toString()
       });
-
       if (!response.ok) {
-        throw new Error(`OAuth request failed with HTTP ${response.status}`);
+        this.lastAuthError = `OAuth HTTP ${response.status}`;
+        return null;
       }
-
       const data = await response.json();
       if (!data.access_token) {
-        throw new Error('OAuth response missing access_token');
+        this.lastAuthError = 'OAuth response missing access_token';
+        return null;
       }
-
       this.cachedAccessToken = data.access_token;
-      this.tokenExpiry = now + (data.expires_in ? data.expires_in * 1000 : 7200000);
+      this.tokenExpiry = Date.now() + (Number(data.expires_in) || 7200) * 1000;
       return this.cachedAccessToken;
-    } catch (err) {
-      console.warn(`[EbayBrowseApiClient] Error obtaining OAuth token: ${err.message}`);
+    } catch {
+      this.lastAuthError = 'OAuth request failed';
       return null;
     }
   }
 
-  /**
-   * Searches items by STIHL canonical part number or query string,
-   * scoped to a specific seller (e.g. saegenspezi_de) and filtered for delivery to the Netherlands.
-   *
-   * @param {Object} searchParams
-   * @param {string} searchParams.partNumber - Canonical 11-digit STIHL part number
-   * @param {string} [searchParams.query] - Optional title/keyword query
-   * @param {string} [searchParams.seller] - Target seller username (defaults to saegenspezi_de)
-   * @param {number} [searchParams.limit=10]
-   * @returns {Promise<{ success: boolean, items: Array<Object>, total: number, errors: string[] }>}
-   */
   async searchItems(searchParams = {}) {
-    if (!this.isConfigured()) {
-      return {
-        success: false,
-        items: [],
-        total: 0,
-        errors: ['eBay Browse API credentials not configured (EBAY_CLIENT_ID / EBAY_CLIENT_SECRET missing).']
-      };
-    }
-
+    const fail = error => ({ success: false, items: [], total: 0, errors: [error] });
+    if (process.env.EBAY_ENABLED !== 'true') return fail('eBay disabled.');
+    if (!this.isConfigured() || !this.hasAffiliateConfig()) return fail('eBay Browse API not configured.');
+    // Phase 76D: per-call marketplace override (engine searches NL and DE with one client)
+    const marketplaceId = ['EBAY_DE', 'EBAY_NL'].includes(searchParams.marketplace) ? searchParams.marketplace : this.marketplaceId;
+    if (!['EBAY_DE', 'EBAY_NL'].includes(marketplaceId)) return fail('Unsupported eBay marketplace.');
+    const part = String(searchParams.partNumber ?? '').trim();
+    const compact = part.replace(/[\s-]/g, '');
+    if (!/^\d{11}$/.test(compact)) return fail('Valid partNumber required.');
+    const substitutes = Array.isArray(searchParams.verifiedSubstitutes) ? searchParams.verifiedSubstitutes : [];
+    // Phase 76C: seller filter optional — null/''/'ALL' searches all suitable sellers
+    const seller = Object.prototype.hasOwnProperty.call(searchParams, 'seller') ? searchParams.seller : this.defaultSeller;
+    const key = `${marketplaceId}:${seller ?? 'ALL'}:${compact}:${substitutes.join(',')}`;
+    if (this.partCache.has(key)) return this.partCache.get(key);
     const token = await this.getAccessToken();
-    if (!token) {
-      return {
-        success: false,
-        items: [],
-        total: 0,
-        errors: ['Unable to acquire OAuth token for eBay Browse API.']
-      };
+    if (!token) return fail(this.lastAuthError || 'Unable to acquire OAuth token for eBay Browse API.');
+    const formatted = `${compact.slice(0, 4)} ${compact.slice(4, 7)} ${compact.slice(7)}`;
+    let queries = [formatted, compact, `STIHL ${compact}`];
+    for (const substitute of (Array.isArray(searchParams.verifiedSubstitutes) ? searchParams.verifiedSubstitutes : []).slice(0, 2)) {
+      if (/^\d{11}$/.test(String(substitute))) queries.push(`STIHL ${substitute}`);
     }
-
-    const seller = searchParams.seller || this.defaultSeller;
-    const query = searchParams.query || searchParams.partNumber;
-    if (!query) {
-      return { success: false, items: [], total: 0, errors: ['Query or partNumber required.'] };
-    }
-
-    const filterParts = [`deliveryCountry:NL`];
-    if (seller) {
-      filterParts.push(`sellers:{${seller}}`);
-    }
-
-    const url = new URL(this.browseApiEndpoint);
-    url.searchParams.set('q', query);
-    url.searchParams.set('filter', filterParts.join(','));
-    url.searchParams.set('limit', String(searchParams.limit || 10));
-
-    try {
-      const response = await this.fetchFn(url.toString(), {
-        headers: {
-          'Authorization': `Bearer ${token || 'MOCK_TOKEN'}`,
-          'X-EBAY-C-MARKETPLACE-ID': this.marketplaceId,
-          'Content-Type': 'application/json'
+    // Phase 76D: maxQueries bounds fan-out for large batches (default full ladder)
+    queries = queries.slice(0, Math.max(1, Math.min(queries.length, Number(searchParams.maxQueries) || queries.length)));
+    const items = new Map();
+    for (const query of queries) {
+      try {
+        const wait = 1000 - (Date.now() - this.lastQueryAt);
+        if (this.lastQueryAt && wait > 0) await this.sleepFn(wait);
+        const url = new URL(this.browseApiEndpoint);
+        url.searchParams.set('q', query);
+        url.searchParams.set('filter', `deliveryCountry:NL,sellers:{${this.defaultSeller}}`);
+        url.searchParams.set('limit', String(Math.max(1, Math.min(10, Number(searchParams.limit) || 10))));
+        this.lastQueryAt = Date.now();
+        const response = await this.fetchFn(url.toString(), {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'X-EBAY-C-MARKETPLACE-ID': marketplaceId,
+            'X-EBAY-C-ENDUSERCTX': `affiliateCampaignId=${this.epnCampaignId}`
+          }
+        });
+        if (!response.ok) return fail(`eBay Browse API returned HTTP ${response.status}`);
+        const body = await response.json();
+        for (const item of this.parseItemSummaries(body.itemSummaries, compact, searchParams.verifiedSubstitutes)) {
+          if (!items.has(item.item_id)) items.set(item.item_id, item);
         }
-      });
-
-      if (!response.ok) {
-        return {
-          success: false,
-          items: [],
-          total: 0,
-          errors: [`eBay Browse API returned HTTP ${response.status}`]
-        };
+      } catch {
+        return fail('eBay Browse API request failed.');
       }
-
-      const body = await response.json();
-      const rawSummaries = Array.isArray(body.itemSummaries) ? body.itemSummaries : [];
-      const parsedItems = this.parseItemSummaries(rawSummaries, searchParams.partNumber);
-
-      return {
-        success: true,
-        items: parsedItems,
-        total: body.total != null ? body.total : parsedItems.length,
-        errors: []
-      };
-    } catch (err) {
-      return {
-        success: false,
-        items: [],
-        total: 0,
-        errors: [`Request failed: ${err.message}`]
-      };
     }
+    const result = { success: true, items: [...items.values()], total: items.size, errors: [] };
+    this.partCache.set(key, result);
+    return result;
   }
 
-  /**
-   * Parses raw eBay item summaries into standardized STIHLDecoder offer candidate objects.
-   *
-   * @param {Array<Object>} itemSummaries
-   * @param {string} [targetPartNumber]
-   * @returns {Array<Object>}
-   */
-  parseItemSummaries(itemSummaries, targetPartNumber = '') {
+   parseItemSummaries(itemSummaries, targetPartNumber = '', verifiedSubstitutes = []) {
     const results = [];
-
-    for (const item of itemSummaries) {
-      if (!item || !item.itemId) continue;
-
-      // Availability check: omit items that are explicitly OUT_OF_STOCK
-      if (item.estimatedAvailabilities) {
-        const outOfStock = item.estimatedAvailabilities.some(
-          a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK'
-        );
-        if (outOfStock) continue;
-      }
-
-      // Shipping to NL check
-      const shippingOption = Array.isArray(item.shippingOptions) ? item.shippingOptions[0] : null;
-      let shippingCostNl = null;
-      let shipsToNl = false;
-
-      if (shippingOption) {
-        shipsToNl = true;
-        if (shippingOption.shippingCost) {
-          const val = parseFloat(shippingOption.shippingCost.value);
-          if (!isNaN(val)) {
-            shippingCostNl = val;
-          }
-        }
-      }
-
-      // Price extraction
-      let itemPrice = null;
-      let currency = 'EUR';
-      if (item.price) {
-        const val = parseFloat(item.price.value);
-        if (!isNaN(val)) {
-          itemPrice = val;
-          currency = item.price.currency || 'EUR';
-        }
-      }
-
-      const affiliateUrl = this.buildAffiliateUrl(item.itemWebUrl, targetPartNumber);
-
+    const seen = new Set();
+    const codes = [targetPartNumber, ...(Array.isArray(verifiedSubstitutes) ? verifiedSubstitutes.slice(0, 2) : [])].map(code => String(code).replace(/[\s-]/g, '')).filter(code => /^\d{11}$/.test(code));
+    const targetCompact = targetPartNumber.replace(/[\s-]/g, '');
+    for (const item of (Array.isArray(itemSummaries) ? itemSummaries : [])) {
+      if (!item?.itemId || seen.has(item.itemId)) continue;
+      const affiliateUrl = this.buildAffiliateUrl(item.itemAffiliateWebUrl);
+      if (!affiliateUrl) continue;
+      // Fail-closed: MPN must be exactly the target part number, OR title must contain ONLY part number as standalone (not bundle/set/kit)
+      const title = String(item.title || '').toLowerCase();
+      const mpn = String(item.mpn || '').toLowerCase();
+      const compactMpn = mpn.replace(/[\s-]/g, '');
+      const hasExactMpn = codes.some(code => code === compactMpn);
+      const hasStandalonePartNumber = codes.some(code => {
+        const formatted = code.slice(0, 4) + ' ' + code.slice(4, 7) + ' ' + code.slice(7);
+        // Title must contain the part number
+        if (!new RegExp(`(^|\\D)${formatted.replace(/\s/g, '[\\s-]*')}(\\D|$)`).test(title)) return false;
+        // But reject if it's part of a kit/bundle
+        if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\bcombi\b/.test(title)) return false;
+        return true;
+      });
+      if (!hasExactMpn && !hasStandalonePartNumber) continue;
+      // Reject if title mentions conflicting type (carburetor in spark plug query)
+      if (/vergaser|carburetor|carb/.test(title) && codes.some(c => c === targetCompact)) continue;
+      if (item.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) continue;
+      const options = Array.isArray(item.shippingOptions) ? item.shippingOptions : [];
+      const shipping = options.find(option => {
+        const locations = option.shipToLocations;
+        return (Array.isArray(locations) && locations.some(loc => loc === 'NL' || loc?.country === 'NL')) || locations?.country === 'NL' || option.shippingDestination?.country === 'NL';
+      });
+      if (!shipping) continue;
+      const amount = value => value != null && /^\d+(?:\.\d+)?$/.test(String(value)) ? Number(value) : null;
+      seen.add(item.itemId);
       results.push({
         item_id: item.itemId,
-        title: item.title || '',
-        seller_name: item.seller?.username || this.defaultSeller,
-        item_price: itemPrice,
-        currency,
-        shipping_cost_nl: shippingCostNl,
-        ships_to_nl: shipsToNl,
-        item_url: item.itemWebUrl,
+        title: item.title ?? '',
+        seller_name: item.seller?.username ?? '',
+        item_price: amount(item.price?.value),
+        currency: item.price?.currency ?? null,
+        shipping_cost_nl: shipping ? amount(shipping.shippingCost?.value) : null,
+        ships_to_nl: true,
+        item_url: affiliateUrl,
         affiliate_url: affiliateUrl,
-        image_url: item.image?.imageUrl || null,
-        condition: item.condition || 'NEW'
+        image_url: item.image?.imageUrl ?? null,
+        condition: item.condition ?? null
       });
     }
-
     return results;
   }
 }
