@@ -1478,7 +1478,10 @@
       "ean_gtin": null,
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "model_compatibility": "MS 250 / 025 / MS 230 / MS 210",
+      "model_compatibility": [
+        "MS 250",
+        "025"
+      ],
       "item_price": 6.48,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_cost_nl": 10,
@@ -1495,20 +1498,21 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Explizite Kompatibilitätsangabe im Amazon.de Produkttitel für STIHL 025 MS250 MS 250",
+      "compatibility_proof": "Amazon.de titel noemt uitsluitend STIHL 025 / MS 250. Geen bewijs voor MS 170, MS 210 of MS 230; compatibiliteit beperkt tot MS 250 / 025. Set (slang + filter), geen 1:1 bewezen STIHL-onderdeelnummer.",
       "asin_product_identity_proof": "Amazon.de ASIN B00SVDWDRG verifiziert für Sägenspezi Kraftstofffilter passend für STIHL 025 MS 250",
       "independent_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
       "direct_affiliate_url": "https://www.amazon.de/dp/B00SVDWDRG?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3500&tag=srihldecode00-21",
       "verification_date": "2026-11-11",
       "status": "ACTIVE",
-      "status_reason": "Verified active German affiliate offer with confirmed delivery to Netherlands (€10 merchant shipping).",
+      "status_reason": "Active for MS 250 / 025 only (Phase 75D correction): listing title states MS 250; MS 170 not proven.",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-11",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
       "shipping_evidence_description": "Amazon.de store Sägenspezi bevestigt expliciet levering naar Nederland voor B00SVDWDRG (€10 standaard verzendkosten).",
       "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "focus_model": "MS 250"
     },
     {
       "part_number": "36360000050",
