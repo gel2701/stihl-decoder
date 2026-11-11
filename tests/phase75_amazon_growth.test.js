@@ -255,7 +255,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(registry.getActiveOffer('36100000055', 'amazon.de'), null, '3610 000 0055 must not resolve as active without confirmed NL delivery');
   });
 
-  it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (78 Active Offers)', () => {
+  it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 78 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -263,7 +263,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 78, 'Total active offers must equal 78 (53 NL + 25 DE)');
+    assert.ok(activeOffers.length >= 78, `Total active offers must be >= 78, found ${activeOffers.length}`);
 
     // Canonical 30 cm 1,3 mm 44 DL chain 3636 000 0044 must exist and have active Sägenspezi offer B0723GG5VR
     assert.ok(canonicalPartSet.has('36360000044'), '3636 000 0044 must exist in canonical parts catalog');
@@ -294,5 +294,46 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
     // Ensure B00LAHPOXA is no longer erroneously mapped to 11236402074 (.325" 7T)
     assert.strictEqual(registry.getOffer('11236402074', 'amazon.de', 'B00LAHPOXA'), null);
+  });
+
+  it('10. Phase 75G: MS 250 / 025 Commercial Coverage & Technical Variant Boundaries (85 Active Offers)', () => {
+    const registry = new VerifiedOfferRegistry({
+      productionActivationAllowed: true,
+      maxActiveOffersAllowed: 100
+    });
+    registry.loadFromFile();
+
+    const activeOffers = registry.listOffers({ status: 'ACTIVE' });
+    assert.strictEqual(activeOffers.length, 85, 'Total active offers must equal 85 (53 NL + 32 DE)');
+
+    // Verify all 7 newly activated MS 250 / 025 offers on amazon.de
+    const expectedMs250DeOffers = [
+      ['30050004713', 'B00LAHOXZK'],
+      ['36360000050', 'B00LAHEP26'],
+      ['36360000055', 'B00LAHFGYW'],
+      ['11236402073', 'B00LAHPSUO'],
+      ['11230071060', 'B00LAHUJAS'],
+      ['30050004813', 'B072PXRKSW'],
+      ['30050004809', 'B00LA7AW0K']
+    ];
+
+    for (const [partNum, asin] of expectedMs250DeOffers) {
+      assert.ok(canonicalPartSet.has(partNum), `Part ${partNum} must exist in canonical parts catalog`);
+      const offer = registry.getOffer(partNum, 'amazon.de', asin);
+      assert.ok(offer, `MS 250 offer ${asin} for ${partNum} must exist`);
+      assert.strictEqual(offer.status, 'ACTIVE', `MS 250 offer ${asin} must be ACTIVE`);
+      assert.strictEqual(offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+      assert.strictEqual(offer.affiliate_tag, 'srihldecode00-21');
+    }
+
+    // Strict technical boundary check: M10 2-MIX spark plugs and 1,1 mm (.043") chains/bars must NOT claim MS 250 compatibility
+    const ms170OnlyParts = ['00004007009', '00004007011', '36100000044', '36100000050', '30050003905', '30050003909'];
+    for (const pn of ms170OnlyParts) {
+      const partOffers = activeOffers.filter(o => o.part_number === pn);
+      for (const off of partOffers) {
+        const models = (off.model_compatibility || []).join(' ');
+        assert.ok(!/MS\s*250|\b025\b/i.test(models), `Offer ${off.asin} (${pn}) must NOT claim MS 250 / 025 compatibility`);
+      }
+    }
   });
 });
