@@ -75,12 +75,13 @@
       "36360000055",
       "11301402803",
       "36360000044",
-      "11301200608"
+      "11301200608",
+      "30050004713"
     ],
     "max_active_offers_allowed": 100,
     "max_active_offers_per_marketplace": {
       "amazon.nl": 100,
-      "amazon.de": 25
+      "amazon.de": 50
     },
     "default_marketplace": "amazon.nl",
     "affiliate_tag": "srihldecoder2-21",
@@ -94,15 +95,15 @@
     "shipping_policy": "SHIPS_TO_NL_CONFIRMED_REQUIRED_FOR_GERMAN_DIRECT_CTA"
   },
   "metrics": {
-    "total_registered": 135,
+    "total_registered": 142,
     "staged": 0,
     "verified": 3,
-    "active": 78,
+    "active": 85,
     "active_nl": 53,
-    "active_de": 25,
+    "active_de": 32,
     "research_required": 54,
     "suspended": 0,
-    "last_updated": "2026-11-11T18:34:23.188Z"
+    "last_updated": "2026-11-11T19:39:50.352Z"
   },
   "offers": [
     {
@@ -170,23 +171,29 @@
       "updated_at": "2026-11-01T17:15:00.000Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170 (zonder 2-MIX)",
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55"
       ],
       "machine_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170 (zonder 2-MIX)",
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55"
       ]
     },
@@ -255,24 +262,30 @@
       "updated_at": "2026-11-01T17:15:00.000Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170 (zonder 2-MIX)",
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55",
         "BG 86"
       ],
       "machine_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170 (zonder 2-MIX)",
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55",
         "BG 86"
       ]
@@ -517,20 +530,22 @@
       "updated_at": "2026-11-09T16:15:35.182Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
         "MS 180 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "018",
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "machine_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
         "MS 180 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "018",
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ]
     },
     {
@@ -600,20 +615,22 @@
       "updated_at": "2026-11-09T16:15:35.183Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
         "MS 180 (standaard 35 cm / 1,3 mm geleider 3005 000 4809)",
         "018",
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "machine_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
         "MS 180 (standaard 35 cm / 1,3 mm geleider 3005 000 4809)",
         "018",
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ]
     },
     {
@@ -748,7 +765,23 @@
         "errors": []
       },
       "updated_at": "2026-11-09T16:15:35.183Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "model_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021"
+      ],
+      "machine_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021"
+      ]
     },
     {
       "part_number": "11211201617",
@@ -1289,23 +1322,29 @@
       "updated_at": "2026-11-09T16:15:35.183Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170",
         "MS 180",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55"
       ],
       "machine_compatibility": [
+        "MS 250",
+        "025",
+        "MS 230",
+        "023",
+        "MS 210",
+        "021",
         "MS 170",
         "MS 180",
         "017",
         "018",
-        "MS 210",
-        "MS 230",
-        "MS 250",
         "FS 55"
       ]
     },
@@ -1680,7 +1719,8 @@
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
         "MS 230",
-        "MS 250"
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025"
       ],
       "machine_compatibility": [
         "MS 180 (standaard 35 cm / 1,3 mm geleider 3005 000 4809)",
@@ -1688,7 +1728,8 @@
         "MS 170 (met 35 cm / 1,3 mm geleider 3005 000 4809)",
         "MS 210",
         "MS 230",
-        "MS 250"
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025"
       ],
       "item_price": 7.99,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
@@ -3071,6 +3112,14 @@
         "021",
         "023",
         "025"
+      ],
+      "machine_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "021",
+        "023",
+        "025"
       ]
     },
     {
@@ -3306,10 +3355,18 @@
       "model_compatibility": [
         "MS 210",
         "MS 230",
-        "MS 250",
+        "MS 250 (Walbro WT carburateur)",
         "021",
         "023",
-        "025"
+        "025 (Walbro WT carburateur)"
+      ],
+      "machine_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250 (Walbro WT carburateur)",
+        "021",
+        "023",
+        "025 (Walbro WT carburateur)"
       ]
     },
     {
@@ -3460,8 +3517,26 @@
       "model_compatibility": [
         "MS 170",
         "MS 180",
+        "MS 210",
+        "MS 230",
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
         "017",
-        "018"
+        "018",
+        "021",
+        "023",
+        "025 (3/8\" Picco 6Z uitvoering)"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 210",
+        "MS 230",
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
+        "017",
+        "018",
+        "021",
+        "023",
+        "025 (3/8\" Picco 6Z uitvoering)"
       ]
     },
     {
@@ -7682,9 +7757,7 @@
       "model_compatibility": [
         "MS 210",
         "MS 230",
-        "MS 250",
-        "021",
-        "023",
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider, 56 TG)",
         "025"
       ],
       "item_price": null,
@@ -7746,7 +7819,13 @@
         "errors": []
       },
       "evidence_audit_category": "VERIFIED",
-      "currency": "EUR"
+      "currency": "EUR",
+      "machine_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider, 56 TG)",
+        "025"
+      ]
     },
     {
       "part_number": "11410071002",
@@ -8021,12 +8100,13 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
       "model_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering)",
         "MS 180 (standaard 35 cm / 1,3 mm)",
         "018",
         "MS 170 (met 1,3 mm ketting)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "item_price": null,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
@@ -8059,12 +8139,13 @@
       "status_reason": "Verified active Oregon 140SDEA074 14\" guide bar for MS 170 / MS 210",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "machine_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering)",
         "MS 180 (standaard 35 cm / 1,3 mm)",
         "018",
         "MS 170 (met 1,3 mm ketting)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ]
     },
     {
@@ -8085,12 +8166,13 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "INDEPENDENT_MANUFACTURER_VERIFIED",
       "model_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering)",
         "MS 180 (met 40 cm / 1,3 mm ketting 3636 000 0055)",
         "018",
         "MS 170 (met 40 cm / 1,3 mm ketting 3636 000 0055)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "item_price": null,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
@@ -8123,12 +8205,13 @@
       "status_reason": "Verified active Oregon 160SDEA074 16\" guide bar for MS 210 / MS 250",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "machine_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering)",
         "MS 180 (met 40 cm / 1,3 mm ketting 3636 000 0055)",
         "018",
         "MS 170 (met 40 cm / 1,3 mm ketting 3636 000 0055)",
         "MS 210",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ]
     },
     {
@@ -8436,7 +8519,7 @@
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": [
-        "MS 250",
+        "MS 250 (Walbro WT-215 uitvoering)",
         "025"
       ],
       "pilot_eligible": true,
@@ -8495,7 +8578,11 @@
       },
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "seller_id": "A1GMRJIURBAM28",
-      "shipping_cost_nl": 10
+      "shipping_cost_nl": 10,
+      "machine_compatibility": [
+        "MS 250 (Walbro WT-215 uitvoering)",
+        "025"
+      ]
     },
     {
       "part_number": "11211200611",
@@ -8953,14 +9040,15 @@
       "focus_model": "MS 250",
       "machine_compatibility": [
         "MS 210",
-        "MS 210 C",
         "MS 230",
-        "MS 230 C",
-        "MS 250",
-        "MS 250 C",
+        "MS 250 (Walbro WT carburateur)",
         "021",
         "023",
-        "025"
+        "025 (Walbro WT carburateur)",
+        "MS 170",
+        "MS 180",
+        "FS 55",
+        "BG 86"
       ],
       "compatibility_proof": "STIHL 1123 007 1060 is the carburetor parts set for Walbro WT carburetors (WT-215, etc.) fitted to MS 210, MS 230, MS 250, equivalent to Walbro K20-WAT rebuild kit.",
       "asin_product_identity_proof": "Amazon ASIN B073NJNXMF confirms K20-WAT carburetor rebuild kit matching STIHL 1123 007 1060.",
@@ -8971,7 +9059,19 @@
       "status": "ACTIVE",
       "status_reason": "Verified active affiliate offer: Walbro K20-WAT carburetor rebuild kit matching STIHL 1123 007 1060.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED"
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "model_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250 (Walbro WT carburateur)",
+        "021",
+        "023",
+        "025 (Walbro WT carburateur)",
+        "MS 170",
+        "MS 180",
+        "FS 55",
+        "BG 86"
+      ]
     },
     {
       "part_number": "40037102115",
@@ -9039,21 +9139,27 @@
       "focus_model": "MS 170",
       "model_compatibility": [
         "MS 170",
-        "MS 180",
         "017",
+        "MS 180",
         "018",
         "MS 210",
+        "021",
         "MS 230",
-        "MS 250"
+        "023",
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
+        "025 (3/8\" Picco 6Z uitvoering)"
       ],
       "machine_compatibility": [
         "MS 170",
-        "MS 180",
         "017",
+        "MS 180",
         "018",
         "MS 210",
+        "021",
         "MS 230",
-        "MS 250"
+        "023",
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
+        "025 (3/8\" Picco 6Z uitvoering)"
       ],
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
@@ -9459,28 +9565,28 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "focus_model": "MS 170",
       "model_compatibility": [
-        "MS 170",
-        "MS 180",
-        "MS 210",
-        "MS 230",
         "MS 250",
-        "017",
-        "018",
-        "021",
+        "025",
+        "MS 230",
         "023",
-        "025"
+        "MS 210",
+        "021",
+        "MS 170",
+        "017",
+        "MS 180",
+        "018"
       ],
       "machine_compatibility": [
-        "MS 170",
-        "MS 180",
-        "MS 210",
-        "MS 230",
         "MS 250",
-        "017",
-        "018",
-        "021",
+        "025",
+        "MS 230",
         "023",
-        "025"
+        "MS 210",
+        "021",
+        "MS 170",
+        "017",
+        "MS 180",
+        "018"
       ],
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
@@ -9538,20 +9644,24 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "focus_model": "MS 170",
       "model_compatibility": [
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "025",
         "MS 170 (met 40 cm / 1,3 mm geleider 3005 000 4813)",
-        "MS 180",
+        "017",
+        "MS 180 (met 40 cm / 1,3 mm geleider 3005 000 4813)",
+        "018",
         "MS 210",
-        "MS 211",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "machine_compatibility": [
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "025",
         "MS 170 (met 40 cm / 1,3 mm geleider 3005 000 4813)",
-        "MS 180",
+        "017",
+        "MS 180 (met 40 cm / 1,3 mm geleider 3005 000 4813)",
+        "018",
         "MS 210",
-        "MS 211",
-        "MS 230",
-        "MS 250"
+        "MS 230"
       ],
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
@@ -9738,12 +9848,20 @@
       "model_compatibility": [
         "MS 180 (met 30 cm / 1,3 mm geleider 3005 000 4805)",
         "018",
-        "MS 170 (met 30 cm / 1,3 mm geleider 3005 000 4805)"
+        "MS 170 (met 30 cm / 1,3 mm geleider 3005 000 4805)",
+        "MS 250 (met 30 cm / 3/8\" P 1,3 mm geleider 3005 000 4805)",
+        "025 (met 30 cm / 3/8\" P 1,3 mm geleider 3005 000 4805)",
+        "MS 210",
+        "MS 230"
       ],
       "machine_compatibility": [
         "MS 180 (met 30 cm / 1,3 mm geleider 3005 000 4805)",
         "018",
-        "MS 170 (met 30 cm / 1,3 mm geleider 3005 000 4805)"
+        "MS 170 (met 30 cm / 1,3 mm geleider 3005 000 4805)",
+        "MS 250 (met 30 cm / 3/8\" P 1,3 mm geleider 3005 000 4805)",
+        "025 (met 30 cm / 3/8\" P 1,3 mm geleider 3005 000 4805)",
+        "MS 210",
+        "MS 230"
       ],
       "item_price": 6.99,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
@@ -10054,6 +10172,487 @@
       "status_reason": "Verified Sägenspezi 1-screw compensator carburetor (Zama C1Q-S152E equivalent) for STIHL 018 / MS 180 (non-2-MIX) with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "updated_at": "2026-11-11T18:34:23.186Z"
+    },
+    {
+      "part_number": "30050004713",
+      "part_number_formatted": "3005 000 4713",
+      "asin": "B00LAHOXZK",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3005-000-4713-SPEZI",
+      "product_title": "Sägenspezi geleidingsrail zwaard 40cm 325\" 62TG 1,6mm geschikt voor Stihl 025 MS250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (.325\" 1,6 mm uitvoering, 40 cm / 62 TG)",
+        "025 (.325\" 1,6 mm uitvoering, 40 cm / 62 TG)"
+      ],
+      "machine_compatibility": [
+        "MS 250 (.325\" 1,6 mm uitvoering, 40 cm / 62 TG)",
+        "025 (.325\" 1,6 mm uitvoering, 40 cm / 62 TG)"
+      ],
+      "item_price": 24.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHOXZK",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €24.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30050004713_MS250",
+      "compatibility_proof": "Sägenspezi 40 cm zaagblad met exacte specificaties voor STIHL 3005 000 4713: kettingsteek .325\", groefdikte 1,6 mm (.063\") en 62 aandrijfschakels voor STIHL 025 / MS 250 met .325\" 7Z kettingwiel.",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHOXZK \"Sägenspezi geleidingsrail zwaard 40cm 325\\\" 62TG 1,6mm geschikt voor Stihl 025 MS250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHOXZK",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHOXZK",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "Sägenspezi geleidingsrail zwaard 40cm 325\" 62TG 1,6mm geschikt voor Stihl 025 MS250 (€24,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHOXZK?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3005+000+4713&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 40cm .325\" 1.6mm 62DL guide bar for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.350Z"
+    },
+    {
+      "part_number": "36360000050",
+      "part_number_formatted": "3636 000 0050",
+      "asin": "B00LAHEP26",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3636-000-0050-SPEZI-HM-MS250",
+      "product_title": "35cm Sägenspezi Kette (Halbmeißel) 3/8\"P 50TG 1,3mm passend für Stihl 025 MS250 MS 250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "machine_compatibility": [
+        "MS 250 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "025 (met 35 cm / 3/8\" P 1,3 mm geleider 3005 000 4809)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "item_price": 7.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHEP26",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€7.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_36360000050_MS250",
+      "compatibility_proof": "Sägenspezi 35 cm Halbmeißel zaagketting met exacte specificaties voor STIHL 3636 000 0050 (63 PM3 50): kettingsteek 3/8\" Picco, groefdikte 1,3 mm (.050\") en 50 aandrijfschakels voor STIHL 025 / MS 250.",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHEP26 \"35cm Sägenspezi Kette (Halbmeißel) 3/8\\\"P 50TG 1,3mm passend für Stihl 025 MS250 MS 250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHEP26",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHEP26",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "35cm Sägenspezi Kette (Halbmeißel) 3/8\"P 50TG 1,3mm passend für Stihl 025 MS250 MS 250 (€7,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHEP26?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3636+000+0050&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 35cm 3/8\"P 1.3mm 50DL semi-chisel chain for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.351Z"
+    },
+    {
+      "part_number": "36360000055",
+      "part_number_formatted": "3636 000 0055",
+      "asin": "B00LAHFGYW",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3636-000-0055-SPEZI-HM-MS250",
+      "product_title": "40cm Sägenspezi Kette (Halbmeißel) 3/8\"P 55TG 1,3mm passend für Stihl 025 MS250 MS 250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "025 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "machine_compatibility": [
+        "MS 250 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "025 (met 40 cm / 3/8\" P 1,3 mm geleider 3005 000 4813, 55 TG)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "item_price": 8.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHFGYW",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€8.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_36360000055_MS250",
+      "compatibility_proof": "Sägenspezi 40 cm Halbmeißel zaagketting met exacte specificaties voor STIHL 3636 000 0055 (63 PM3 55): kettingsteek 3/8\" Picco, groefdikte 1,3 mm (.050\") en 55 aandrijfschakels voor STIHL 025 / MS 250.",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHFGYW \"40cm Sägenspezi Kette (Halbmeißel) 3/8\\\"P 55TG 1,3mm passend für Stihl 025 MS250 MS 250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHFGYW",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHFGYW",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "40cm Sägenspezi Kette (Halbmeißel) 3/8\"P 55TG 1,3mm passend für Stihl 025 MS250 MS 250 (€8,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHFGYW?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3636+000+0055&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 40cm 3/8\"P 1.3mm 55DL semi-chisel chain for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.352Z"
+    },
+    {
+      "part_number": "11236402073",
+      "part_number_formatted": "1123 640 2073",
+      "asin": "B00LAHPSUO",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1123-640-2073-SPEZI-MS250",
+      "product_title": "Sägenspezi Kettenrad 3/8\" 6Z passend für Stihl 025 MS250 MS 250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
+        "025 (3/8\" Picco 6Z uitvoering)",
+        "MS 210",
+        "MS 230",
+        "MS 170",
+        "MS 180"
+      ],
+      "machine_compatibility": [
+        "MS 250 (3/8\" Picco 6Z uitvoering)",
+        "025 (3/8\" Picco 6Z uitvoering)",
+        "MS 210",
+        "MS 230",
+        "MS 170",
+        "MS 180"
+      ],
+      "item_price": 8.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHPSUO",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€8.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11236402073_MS250",
+      "compatibility_proof": "Sägenspezi 3/8\" Picco 6-tands kettingwiel (Kettenrad 3/8\" 6Z) voor STIHL 025 en MS 250 (uitvoeringen met 3/8\" Picco snijgarnituur), vervangt STIHL 1123 640 2073 / 1123 640 2003.",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHPSUO \"Sägenspezi Kettenrad 3/8\\\" 6Z passend für Stihl 025 MS250 MS 250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHPSUO",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHPSUO",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "Sägenspezi Kettenrad 3/8\" 6Z passend für Stihl 025 MS250 MS 250 (€8,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHPSUO?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+640+2073&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 3/8\" 6T spur sprocket for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.352Z"
+    },
+    {
+      "part_number": "11230071060",
+      "part_number_formatted": "1123 007 1060",
+      "asin": "B00LAHUJAS",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1123-007-1060-SPEZI-ZAMA",
+      "product_title": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
+        "025 (met Zama carburateur)"
+      ],
+      "machine_compatibility": [
+        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
+        "025 (met Zama carburateur)"
+      ],
+      "item_price": 14.49,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€14.49 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11230071060_MS250",
+      "compatibility_proof": "Sägenspezi carburateur-membraanset specifiek voor Zama C1Q carburateurs op STIHL 025 en MS 250 (zoals STIHL 1123 120 0606 Zama C1Q-S84H).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHUJAS \"Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHUJAS",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250 (€14,49).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHUJAS?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+007+1060&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi Zama carburetor diaphragm kit for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.352Z"
+    },
+    {
+      "part_number": "30050004813",
+      "part_number_formatted": "3005 000 4813",
+      "asin": "B072PXRKSW",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3005-000-4813-SPEZI-SET-MS250",
+      "product_title": "40cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\"P 55TG 1,3mm passend für Stihl 025 MS 250 MS250",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "MS 210",
+        "MS 230"
+      ],
+      "machine_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering, 40 cm / 55 TG)",
+        "MS 210",
+        "MS 230"
+      ],
+      "item_price": 39.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B072PXRKSW",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €39.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30050004813_MS250_SET",
+      "compatibility_proof": "Sägenspezi 40 cm zaagblad + 2 Vollmeißel-kettingen combinatieset (3/8\" Picco, 1,3 mm, 55 aandrijfschakels) voor STIHL 025 en MS 250 (komt overeen met geleider 3005 000 4813 + 2x ketting 3636 000 0055).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B072PXRKSW \"40cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\\\"P 55TG 1,3mm passend für Stihl 025 MS 250 MS250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B072PXRKSW",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B072PXRKSW",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "40cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\"P 55TG 1,3mm passend für Stihl 025 MS 250 MS250 (€39,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B072PXRKSW?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3005+000+4813&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 40cm 3/8\"P 1.3mm 55DL guide bar + 2 saw chains combo set for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.352Z"
+    },
+    {
+      "part_number": "30050004809",
+      "part_number_formatted": "3005 000 4809",
+      "asin": "B00LA7AW0K",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3005-000-4809-SPEZI-SET-MS250",
+      "product_title": "35cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\"P 50TG 1,3mm passend für Stihl 025 MS 250 MS250",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "machine_compatibility": [
+        "MS 250 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "025 (3/8\" P 1,3 mm uitvoering, 35 cm / 50 TG)",
+        "MS 210",
+        "MS 230",
+        "MS 180"
+      ],
+      "item_price": 35.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LA7AW0K",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €35.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30050004809_MS250_SET",
+      "compatibility_proof": "Sägenspezi 35 cm zaagblad + 2 Halbmeißel-kettingen combinatieset (3/8\" Picco, 1,3 mm, 50 aandrijfschakels) voor STIHL 025 en MS 250 (komt overeen met geleider 3005 000 4809 + 2x ketting 3636 000 0050).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LA7AW0K \"35cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\\\"P 50TG 1,3mm passend für Stihl 025 MS 250 MS250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LA7AW0K",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LA7AW0K",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "35cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\"P 50TG 1,3mm passend für Stihl 025 MS 250 MS250 (€35,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LA7AW0K?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3005+000+4809&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 35cm 3/8\"P 1.3mm 50DL guide bar + 2 saw chains combo set for STIHL 025 / MS 250 with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T19:39:50.352Z"
     }
   ]
 }

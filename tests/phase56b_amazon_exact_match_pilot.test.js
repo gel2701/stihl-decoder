@@ -359,7 +359,8 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'scripts/apply_phase75c_expansion.mjs',
     'scripts/apply_phase75d_ms170_expansion.mjs',
     'scripts/apply_phase75e_ms170_final_gaps.mjs',
-    'scripts/apply_phase75f_ms180_coverage.mjs'
+    'scripts/apply_phase75f_ms180_coverage.mjs',
+    'scripts/apply_phase75g_ms250_coverage.mjs'
   ]);
 
   function scanDir(dir) {

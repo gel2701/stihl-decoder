@@ -29,6 +29,7 @@ const rootDir = path.resolve(__dirname, '..');
 
 // Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE confirmed shipping)
 const AUTHORIZED_PILOT_PARTS = new Set([
+  '30050004713', // Phase 75G MS 250 40cm .325" 1.6mm 62DL guide bar (Sägenspezi B00LAHOXZK)
   '11301402803', // Phase 75F MS 180 air filter housing with filter (Sägenspezi B00LAHKMBO)
   '36360000044', // Phase 75F MS 180 30cm 3/8" P 1.3mm 44DL saw chain (Sägenspezi B0723GG5VR)
   '11301200608', // Phase 75F MS 180 1-screw compensator carburetor C1Q-S152E (Sägenspezi B00LAHQFX8)
