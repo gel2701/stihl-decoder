@@ -43,7 +43,7 @@ const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { reado
 const stihlDb = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
 test('Phase 56H Test 1: Frozen Canonical Database & SEO Invariants Intact', () => {
-  const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
+  const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().c;
   const fitmentsCount = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configsCount = db.prepare("SELECT count(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

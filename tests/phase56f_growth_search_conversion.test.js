@@ -38,7 +38,7 @@ const db = new Database(dbPath, { readonly: true });
 const database = JSON.parse(fs.readFileSync(path.resolve(rootDir, 'data', 'stihl_database.json'), 'utf8'));
 
 test('Phase 56F - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
-  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().c;
   const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

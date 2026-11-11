@@ -424,7 +424,7 @@ describe('Phase 57A.1 — Parts Affiliate Linking Evidence & Discovery Audit', (
 
     // Parts catalog check
     const catalogDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
-    assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055'].includes(p.part_number)).length, 17082, 'Pre-58A canonical parts must remain 17,082');
+    assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055', '36360000044'].includes(p.part_number)).length, 17082, 'Pre-58A canonical parts must remain 17,082');
   });
 
   // Test 16: Evidenceless record cannot be classified as NOT_FOUND_AFTER_EXHAUSTIVE_SEARCH

@@ -232,7 +232,7 @@ test('Phase 59F — 6. Universal Search Fallback Preserved Across Staged & All O
 
 test('Phase 59F — 7. Core Production Invariants Preserved', () => {
   const canonicalCatalog = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
-  assert.strictEqual(canonicalCatalog.parts.length, 18376, 'Catalog must preserve exactly 18,373 canonical parts');
+  assert.strictEqual(canonicalCatalog.parts.length, 18377, 'Catalog must preserve exactly 18,373 canonical parts');
 
   const indexable = getAllIndexablePartsList();
   assert.strictEqual(indexable.length, 843, 'Must maintain exactly 843 indexable parts');

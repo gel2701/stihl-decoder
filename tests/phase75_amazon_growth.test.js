@@ -254,4 +254,45 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.notStrictEqual(chain11Record.status, 'ACTIVE');
     assert.strictEqual(registry.getActiveOffer('36100000055', 'amazon.de'), null, '3610 000 0055 must not resolve as active without confirmed NL delivery');
   });
+
+  it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (78 Active Offers)', () => {
+    const registry = new VerifiedOfferRegistry({
+      productionActivationAllowed: true,
+      maxActiveOffersAllowed: 100
+    });
+    registry.loadFromFile();
+
+    const activeOffers = registry.listOffers({ status: 'ACTIVE' });
+    assert.strictEqual(activeOffers.length, 78, 'Total active offers must equal 78 (53 NL + 25 DE)');
+
+    // Canonical 30 cm 1,3 mm 44 DL chain 3636 000 0044 must exist and have active Sägenspezi offer B0723GG5VR
+    assert.ok(canonicalPartSet.has('36360000044'), '3636 000 0044 must exist in canonical parts catalog');
+    const chain30cm13 = registry.getActiveOffer('36360000044', 'amazon.de');
+    assert.ok(chain30cm13, '3636 000 0044 must have an active offer on amazon.de');
+    assert.strictEqual(chain30cm13.asin, 'B0723GG5VR');
+    assert.strictEqual(chain30cm13.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+
+    // Verify all 8 newly activated MS 180 offers on amazon.de
+    const expectedMs180DeOffers = [
+      ['11301402803', 'B00LAHKMBO'],
+      ['00004007009', 'B077X8JMG9'],
+      ['36360000044', 'B0723GG5VR'],
+      ['36360000050', 'B071J6WTSR'],
+      ['36100000050', 'B07R9J97NQ'],
+      ['11236402073', 'B00LAHPOXA'],
+      ['11301200603', 'B074CH7JFY'],
+      ['11301200608', 'B00LAHQFX8']
+    ];
+
+    for (const [partNum, asin] of expectedMs180DeOffers) {
+      const offer = registry.getOffer(partNum, 'amazon.de', asin);
+      assert.ok(offer, `MS 180 offer ${asin} for ${partNum} must exist`);
+      assert.strictEqual(offer.status, 'ACTIVE', `MS 180 offer ${asin} must be ACTIVE`);
+      assert.strictEqual(offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+      assert.strictEqual(offer.affiliate_tag, 'srihldecode00-21');
+    }
+
+    // Ensure B00LAHPOXA is no longer erroneously mapped to 11236402074 (.325" 7T)
+    assert.strictEqual(registry.getOffer('11236402074', 'amazon.de', 'B00LAHPOXA'), null);
+  });
 });
