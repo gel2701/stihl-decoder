@@ -52,7 +52,7 @@ try {
     assert.ok(report.records.every(r => !Object.hasOwn(r, 'direct_url') && r.candidates.every(c => !Object.hasOwn(c, 'direct_url'))));
    const registryDoc = JSON.parse(await readFile(new URL('../data/affiliate/verified_amazon_registry.json', import.meta.url), 'utf8'));
    const historical = await Promise.all(['PHASE59F1_ACTIVATION_CANDIDATES.json', 'PHASE60_1_VERIFIED_OFFERS.json'].map(async name => JSON.parse(await readFile(new URL(`../${name}`, import.meta.url), 'utf8'))));
-   const eligible = [...historical.flatMap(doc => doc.offers), ...registryDoc.offers.filter(o => o.status === 'ACTIVE')].filter(c => c.asin && c.asin !== 'B000000000' && report.records.some(r => r.part_number === c.part_number));
+   const eligible = [...historical.flatMap(doc => doc.offers), ...registryDoc.offers.filter(o => (!o.marketplace || o.marketplace === 'amazon.nl') && o.status === 'ACTIVE')].filter(c => c.asin && c.asin !== 'B000000000' && report.records.some(r => r.part_number === c.part_number));
    for (const row of report.records) {
      const available = new Set(eligible.filter(c => c.part_number === row.part_number).map(c => `${c.marketplace}:${c.asin}`));
      assert.equal(row.candidates.length, available.size);
