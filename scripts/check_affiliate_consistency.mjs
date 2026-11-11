@@ -54,7 +54,45 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '07811201109', // STIHL MultiLub Tandwielvet 80g Tube HS 45 (B007TK174M)
   '30050004809', // Oregon 140SDEA074 Zaagblad 14" MS 170 / MS 210 (B001FUALX0)
   '30050004813', // Oregon 160SDEA074 Zaagblad 16" MS 210 / MS 250 (B002VAAQC4)
-  '56057504303'  // STIHL 2-in-1 Feilenhalter 4.0mm MS 170 / MS 210 (B00CIRQW0K)
+  '56057504303', // STIHL 2-in-1 Feilenhalter 4.0mm MS 170 / MS 210 (B00CIRQW0K)
+  // Phase 75 Commercial Expansion to Milestone 50 (Focus models + genuine brands)
+  '30030002021', // STIHL Zaagblad 50 cm MS 440 / MS 461 (B00474612C)
+  '42821401003', // STIHL Luchtfilterkap BR 600 (B08F9MY78P)
+  '42821900303', // STIHL Trekstarter BR 600 (B08F9ML11Q)
+  '42820071020', // STIHL Filterhuis ombouwset BR 600 (B08F9ML33K)
+  '42410074100', // STIHL Service Kit 36 BG 86 (B09R1T61KL)
+  '42410071700', // STIHL Membraanset BG 86 (B08F9MK77A)
+  '42411401000', // STIHL Filterdeksel BG 86 (B08F9MX45K)
+  '42410071003', // STIHL Dakgoot-set BG 86 (B0014D86AB)
+  '11270802103', // STIHL Trekstarter MS 390 (B079DNL91A)
+  '41470074102', // STIHL Service Kit 41 FS 460 (B09R1T6X4D)
+  '41471410300', // STIHL Luchtfilter FS 460 (B08F9K47R9)
+  '41471404400', // STIHL Voorfilter FS 460 (B09JGG2L99)
+  '41471900600', // STIHL Startveer FS 460 (B08F9MKGTR)
+  '41471602002', // STIHL Koppeling FS 460 (B08F9MQ91L)
+  '11231201651', // STIHL Luchtfilter MS 210 (B079DM87N4)
+  '11231900600', // STIHL Terugtrekveer MS 210 (B079DNM22P)
+  '11230071061', // Walbro D10-WAT Membraanset MS 210 (B08F9ML22K)
+  '11236402073', // STIHL Kettingwiel 6T MS 170 (B079DN88M2)
+  '11291900601', // STIHL Startveer MS 170 (B079DNH91X)
+  '11303500500', // STIHL Olietankdop MS 170 (B0014D8F1Y)
+  '11300802100', // STIHL Trekstarter MS 170 (B079DNL19R)
+  '36360000056', // STIHL PM3 Zaagketting MS 210 (B003V4L8NA)
+  '07811201110', // STIHL Tandwielvet 225g FS 460 / FS 80 (B00474640Y)
+  '30030003313', // STIHL Zaagblad Light 04 40cm MS 261 / MS 260 (B00474601A)
+  // Phase 75B Commercial Expansion: Oregon 90PX050E chain for 3610 000 0050
+  '36100000050', // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
+  // Phase 75C Expansion: 4 Amazon.nl verified parts + 6 Sägenspezi Amazon.de parts
+  '36100000044', // Oregon 90PX044E Zaagketting 30cm (B002X3IIYC)
+  '41303506200', // Walbro 188-512-1 / Stens 615-764 Primerbalg (B0773YKFX3)
+  '11230071060', // C·T·S / Walbro K20-WAT Carburateurset (B073NJNXMF)
+  '40037102115', // STIHL AutoCut 46-2 Maaikop (B01BBVB4HY)
+  '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
+  '11304001302', // Sägenspezi Zündmodul MS 170 / MS 180 (B00LAHQD8A)
+  '11231200605', // Sägenspezi Vergaser MS 250 (B00LAHQRM2)
+  '11211200611', // Sägenspezi Carburateur MS 260 (B07MM5R1KG)
+  '11230071000', // Sägenspezi Kettingspanner zijdelings ombouwkit (B07F6CH3BV)
+  '11231412200'  // Sägenspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
 ]);
 
 export function checkAffiliateConsistency() {
@@ -259,12 +297,13 @@ export function checkAffiliateConsistency() {
   if (fs.existsSync(regPath) && fs.existsSync(comPath)) {
     const regDoc = JSON.parse(fs.readFileSync(regPath, 'utf8'));
     const comDoc = JSON.parse(fs.readFileSync(comPath, 'utf8'));
-    const regOffers = new Map((regDoc.offers || []).filter(o => !o.marketplace || o.marketplace === 'amazon.nl').map(o => [PartNormalizer.normalizePartNumber(o.part_number), o]));
+    const regOffersList = (regDoc.offers || []).filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
 
     for (const item of (comDoc.parts || [])) {
       const normPart = PartNormalizer.normalizePartNumber(item.part_number);
       if (item.commercial_tier === 'DIRECT_VERIFIED') {
-        const regOffer = regOffers.get(normPart);
+        const regOffer = regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart && (!item.asin || o.asin === item.asin)) ||
+                         regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart);
         if (!regOffer) {
           contradictions.push({
             file: 'commercial_catalog_100.json',

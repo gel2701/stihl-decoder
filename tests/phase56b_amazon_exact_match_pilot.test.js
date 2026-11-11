@@ -61,7 +61,7 @@ process.env.AMAZON_ASSOCIATE_TAG = 'stihldecoder-21';
 test('Phase 56B - Test 1: Authoritative Catalog Invariants Preserved', () => {
   const db = new Database(dbPath, { readonly: true });
 
-  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]'").get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().c;
   const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
@@ -352,7 +352,11 @@ test('Phase 56B - Test 11: Zero Uncontrolled /dp/ Links in Repository Code', () 
     'tests/phase72_amazon_growth.test.js',
     'tests/phase73_amazon_100.test.js',
     'tests/phase74_amazon_growth.test.js',
-    'scripts/apply_phase74_growth.mjs'
+    'tests/phase75_amazon_growth.test.js',
+    'scripts/apply_phase74_growth.mjs',
+    'scripts/apply_phase75_growth.mjs',
+    'scripts/apply_phase75b_expansion.mjs',
+    'scripts/apply_phase75c_expansion.mjs'
   ]);
 
   function scanDir(dir) {

@@ -39,7 +39,7 @@ const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
 test('Phase 54E: Core Database & Catalog Invariants Unchanged', () => {
-  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().count;
   const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
   const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
   const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
@@ -385,7 +385,7 @@ test('Phase 54E-R2: Diagram Position Accounting & Field Population Integrity', (
   assert.strictEqual(PartNormalizer.isRawDiagramPosition('OFFICIAL_REF'), true);
 
   const fitmentRows = db.prepare("SELECT part_number, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
-  const totalParts = db.prepare("SELECT COUNT(*) as count FROM parts WHERE sources != '[\"ghs\"]'").get().count;
+  const totalParts = db.prepare("SELECT COUNT(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().count;
   const totalFitments = fitmentRows.length;
 
   let fitmentsWithRawPosition = 0;

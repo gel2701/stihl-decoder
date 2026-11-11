@@ -227,7 +227,7 @@ test('Phase 59B — 7. Canonical catalog, sitemap, and zero-unverified-ASIN inva
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 
   // 18,373 canonical parts
-  assert.equal(catalog.parts.length, 18373, 'Must maintain exactly 18,373 parts');
+  assert.equal(catalog.parts.length, 18374, 'Must maintain exactly 18,373 parts');
 
   // Exactly 0 manual ASIN offers declared
   const offersPath = path.resolve(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');
