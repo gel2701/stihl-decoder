@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES } from './AmazonAffiliateProvider.js';
+import { EbayAffiliateProvider } from './EbayAffiliateProvider.js';
 import { VerifiedOfferRegistry, defaultVerifiedOfferRegistry } from './VerifiedOfferRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +36,10 @@ export class AffiliateOfferResolver {
       verifiedRegistry: this.verifiedRegistry
     });
     this.registerProvider(this.amazonProvider);
+    if (process.env.EBAY_ENABLED === 'true') {
+      const ebayProvider = new EbayAffiliateProvider({ cachedOffers: options.ebayCachedOffers });
+      if (ebayProvider.isEnabled()) this.registerProvider(ebayProvider);
+    }
   }
 
   /**
