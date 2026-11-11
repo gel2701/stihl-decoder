@@ -296,7 +296,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(registry.getOffer('11236402074', 'amazon.de', 'B00LAHPOXA'), null);
   });
 
-  it('10. Phase 75G: MS 250 / 025 Commercial Coverage & Technical Variant Boundaries (85 Active Offers)', () => {
+  it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (84 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -304,15 +304,14 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 85, 'Total active offers must equal 85 (53 NL + 32 DE)');
+    assert.strictEqual(activeOffers.length, 84, 'Total active offers must equal 84 (53 NL + 31 DE)');
 
-    // Verify all 7 newly activated MS 250 / 025 offers on amazon.de
+    // Verify all 6 newly activated MS 250 / 025 offers on amazon.de
     const expectedMs250DeOffers = [
       ['30050004713', 'B00LAHOXZK'],
       ['36360000050', 'B00LAHEP26'],
       ['36360000055', 'B00LAHFGYW'],
       ['11236402073', 'B00LAHPSUO'],
-      ['11230071060', 'B00LAHUJAS'],
       ['30050004813', 'B072PXRKSW'],
       ['30050004809', 'B00LA7AW0K']
     ];
@@ -325,6 +324,19 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       assert.strictEqual(offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
       assert.strictEqual(offer.affiliate_tag, 'srihldecode00-21');
     }
+
+    // Zama / Walbro separation: B00LAHUJAS deactivated from 11230071060 and parked as RESEARCH_REQUIRED on 11231200606
+    assert.strictEqual(registry.getOffer('11230071060', 'amazon.de', 'B00LAHUJAS'), null, 'B00LAHUJAS must not be mapped to Walbro 11230071060');
+    const zamaResearch = registry.getOffer('11231200606', 'amazon.de', 'B00LAHUJAS');
+    assert.ok(zamaResearch, 'B00LAHUJAS must be preserved as a research product');
+    assert.strictEqual(zamaResearch.status, 'RESEARCH_REQUIRED');
+    assert.notStrictEqual(zamaResearch.status, 'ACTIVE');
+
+    // Existing Walbro K20-WAT and D10-WAT offers remain ACTIVE
+    const walbroK20 = registry.getOffer('11230071060', 'amazon.nl', 'B073NJNXMF');
+    const walbroD10 = registry.getOffer('11230071061', 'amazon.nl', 'B08F9ML22K');
+    assert.ok(walbroK20 && walbroK20.status === 'ACTIVE', 'Walbro K20-WAT B073NJNXMF must remain ACTIVE');
+    assert.ok(walbroD10 && walbroD10.status === 'ACTIVE', 'Walbro D10-WAT B08F9ML22K must remain ACTIVE');
 
     // Strict technical boundary check: M10 2-MIX spark plugs and 1,1 mm (.043") chains/bars must NOT claim MS 250 compatibility
     const ms170OnlyParts = ['00004007009', '00004007011', '36100000044', '36100000050', '30050003905', '30050003909'];

@@ -92,18 +92,69 @@
     "fallback_rule": "Deterministic search fallback for all unverified, staged, or non-whitelisted parts",
     "redirect_policy": "NO_REDIRECTS_DIRECT_AMAZON_ONLY",
     "oem_badge_policy": "STRICT_SUPPLIER_EQUIVALENT_NO_MISLEADING_OEM_CLAIMS",
-    "shipping_policy": "SHIPS_TO_NL_CONFIRMED_REQUIRED_FOR_GERMAN_DIRECT_CTA"
+    "shipping_policy": "SHIPS_TO_NL_CONFIRMED_REQUIRED_FOR_GERMAN_DIRECT_CTA",
+    "ms250_parked_research_backlog": [
+      {
+        "category": "Ontstekingsmodule MS 250",
+        "candidate_part_numbers": [
+          "0000 400 1306",
+          "1123 400 1301"
+        ],
+        "notes": "Verify standard (025 / MS 250 / MS 250 C-B) vs ErgoStart (MS 250 C-BE) ignition module offers in future research batch."
+      },
+      {
+        "category": "STIHL Service Kit 2",
+        "candidate_part_numbers": [
+          "1123 007 4100"
+        ],
+        "notes": "Verify complete OEM or proven aftermarket maintenance kit for MS 210 / MS 230 / MS 250 in future research batch."
+      },
+      {
+        "category": ".325\" kettingwiel, 7 tanden",
+        "candidate_part_numbers": [
+          "1123 640 2074",
+          "1123 007 1032",
+          "0000 642 1236"
+        ],
+        "notes": "Verify .325\" 7Z spur/rim sprocket for 025 / MS 250 without mixing 3/8\" Picco sprockets."
+      },
+      {
+        "category": ".325\" zaagketting, 1,6 mm",
+        "candidate_part_numbers": [
+          "3639 000 0062",
+          "3686 000 0062",
+          "3689 000 0062",
+          "3686 000 0056"
+        ],
+        "notes": "Verify .325\" 1,6 mm (.063\") saw chain with exact drive link count (62 TG for 40 cm / 56 TG for 35 cm)."
+      },
+      {
+        "category": "Complete .325\" zaagblad- en kettingset",
+        "candidate_part_numbers": [
+          "3005 000 4713",
+          "3005 000 4709"
+        ],
+        "notes": "Verify complete .325\" 1,6 mm guide bar + saw chain combo set for 025 / MS 250."
+      },
+      {
+        "category": "Zama carburateur-membraanset (B00LAHUJAS)",
+        "candidate_part_numbers": [
+          "1123 120 0606"
+        ],
+        "notes": "Deactivated from 1123 007 1060 (Walbro K20-WAT); verify exact Zama OEM repair kit reference or accessory relationship before activation."
+      }
+    ]
   },
   "metrics": {
     "total_registered": 142,
     "staged": 0,
     "verified": 3,
-    "active": 85,
+    "active": 84,
     "active_nl": 53,
-    "active_de": 32,
-    "research_required": 54,
+    "active_de": 31,
+    "research_required": 55,
     "suspended": 0,
-    "last_updated": "2026-11-11T19:39:50.352Z"
+    "last_updated": "2026-11-11T21:13:09.748Z"
   },
   "offers": [
     {
@@ -10236,7 +10287,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 40cm .325\" 1.6mm 62DL guide bar for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.350Z"
+      "updated_at": "2026-11-11T21:13:09.746Z"
     },
     {
       "part_number": "36360000050",
@@ -10307,7 +10358,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 35cm 3/8\"P 1.3mm 50DL semi-chisel chain for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.351Z"
+      "updated_at": "2026-11-11T21:13:09.747Z"
     },
     {
       "part_number": "36360000055",
@@ -10378,7 +10429,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 40cm 3/8\"P 1.3mm 55DL semi-chisel chain for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.352Z"
+      "updated_at": "2026-11-11T21:13:09.747Z"
     },
     {
       "part_number": "11236402073",
@@ -10449,70 +10500,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 3/8\" 6T spur sprocket for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.352Z"
-    },
-    {
-      "part_number": "11230071060",
-      "part_number_formatted": "1123 007 1060",
-      "asin": "B00LAHUJAS",
-      "marketplace": "amazon.de",
-      "affiliate_tag": "srihldecode00-21",
-      "manufacturer": "Sägenspezi",
-      "brand": "Sägenspezi",
-      "seller_name": "Sägenspezi",
-      "seller_id": "A1GMRJIURBAM28",
-      "manufacturer_part_number": "1123-007-1060-SPEZI-ZAMA",
-      "product_title": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250",
-      "package_quantity": 1,
-      "package_type": "SINGLE_UNIT",
-      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "focus_model": "MS 250",
-      "model_compatibility": [
-        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
-        "025 (met Zama carburateur)"
-      ],
-      "machine_compatibility": [
-        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
-        "025 (met Zama carburateur)"
-      ],
-      "item_price": 14.49,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_destination_country": "NL",
-      "shipping_cost_nl": 10,
-      "shipping_checked_at": "2026-11-11",
-      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
-      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€14.49 item price + €10.00 Sägenspezi merchant shipping to NL).",
-      "currency": "EUR",
-      "pilot_eligible": true,
-      "pilot_active": true,
-      "kill_switch_id": "KILL_PILOT_DE_11230071060_MS250",
-      "compatibility_proof": "Sägenspezi carburateur-membraanset specifiek voor Zama C1Q carburateurs op STIHL 025 en MS 250 (zoals STIHL 1123 120 0606 Zama C1Q-S84H).",
-      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHUJAS \"Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250\".",
-      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
-      "verifiable_evidence_sources": [
-        {
-          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
-          "source_type": "AMAZON_MARKETPLACE_LISTING",
-          "source_url": "https://www.amazon.de/dp/B00LAHUJAS",
-          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
-          "claim": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250 (€14,49).",
-          "verified_attributes": [
-            "asin",
-            "part_number",
-            "seller_id",
-            "model_compatibility",
-            "ships_to_nl"
-          ]
-        }
-      ],
-      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHUJAS?tag=srihldecode00-21",
-      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+007+1060&tag=srihldecode00-21",
-      "verification_date": "2026-11-11",
-      "status": "ACTIVE",
-      "status_reason": "Verified Sägenspezi Zama carburetor diaphragm kit for STIHL 025 / MS 250 with confirmed NL shipping.",
-      "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.352Z"
+      "updated_at": "2026-11-11T21:13:09.748Z"
     },
     {
       "part_number": "30050004813",
@@ -10581,7 +10569,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 40cm 3/8\"P 1.3mm 55DL guide bar + 2 saw chains combo set for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.352Z"
+      "updated_at": "2026-11-11T21:13:09.748Z"
     },
     {
       "part_number": "30050004809",
@@ -10652,7 +10640,69 @@
       "status": "ACTIVE",
       "status_reason": "Verified Sägenspezi 35cm 3/8\"P 1.3mm 50DL guide bar + 2 saw chains combo set for STIHL 025 / MS 250 with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T19:39:50.352Z"
+      "updated_at": "2026-11-11T21:13:09.748Z"
+    },
+    {
+      "part_number": "11231200606",
+      "part_number_formatted": "1123 120 0606",
+      "asin": "B00LAHUJAS",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "SPEZI-ZAMA-MEMBRANKIT-MS250",
+      "product_title": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 250",
+      "model_compatibility": [
+        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
+        "025 (met Zama carburateur)"
+      ],
+      "machine_compatibility": [
+        "MS 250 (met Zama C1Q carburateur, o.a. 1123 120 0606)",
+        "025 (met Zama carburateur)"
+      ],
+      "item_price": 14.49,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 250 (025) store page with NL destination (€14.49 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": false,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_PILOT_DE_B00LAHUJAS_ZAMA_RESEARCH",
+      "compatibility_proof": "Sägenspezi carburateur-membraanset voor Zama-carburateurs op STIHL 025 / MS 250; gedeactiveerd als exacte vervanger van 1123 007 1060 (Walbro K20-WAT) in afwachting van exacte OEM-revisieset- of accessoirekoppeling.",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (MS 250 / 025): ASIN B00LAHUJAS \"Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHUJAS",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (025 / MS 250)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHUJAS",
+          "url": "https://www.amazon.de/stores/page/A50D41D8-6AE9-4A84-ACAF-6AE8FE49BB43",
+          "claim": "Sägenspezi Vergasermembrankit für Zama passend für Stihl 025 MS250 MS 250 (€14,49).",
+          "verified_attributes": [
+            "asin",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHUJAS?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123+120+0606&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Parked for research: Zama carburetor diaphragm kit for 025 / MS 250 deactivated from 1123 007 1060 (Walbro K20-WAT) until exact OEM Zama repair kit part number or accessory relation is established.",
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "updated_at": "2026-11-11T21:13:09.748Z"
     }
   ]
 }
