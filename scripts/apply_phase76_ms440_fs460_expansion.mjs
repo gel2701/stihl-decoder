@@ -18,7 +18,6 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 const registryPath = path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json');
-const runtimeOffersPath = path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json');
 
 const regDoc = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 const nowIso = new Date().toISOString();
@@ -425,10 +424,6 @@ regDoc.metrics = {
 
 fs.writeFileSync(registryPath, JSON.stringify(regDoc, null, 2) + '\n', 'utf8');
 
-// Synchronize runtime amazon_part_offers.json
-const runtimeDoc = JSON.parse(fs.readFileSync(runtimeOffersPath, 'utf8'));
-runtimeDoc.offers = activeOffers;
-runtimeDoc.generated_at = nowIso;
-fs.writeFileSync(runtimeOffersPath, JSON.stringify(runtimeDoc, null, 2) + '\n', 'utf8');
+// Runtime amazon_part_offers.json intentionally remains empty; the verified registry is the source of truth.
 
 console.log(`Updated registry: total=${allOffers.length}, active=${activeOffers.length} (NL=${activeNl.length}, DE=${activeDe.length}), research=${researchCount}, verified_inactive=${verifiedInactiveCount}`);
