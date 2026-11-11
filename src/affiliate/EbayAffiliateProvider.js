@@ -1,112 +1,75 @@
-/**
- * src/affiliate/EbayAffiliateProvider.js
- *
- * Phase 71 Preparation — Official eBay Partner Network (EPN) Affiliate Provider
- *
- * Implements the AffiliateProvider interface for eBay:
- * - Specializes in aftermarket inventory (e.g. Sägenspezi shop on eBay).
- * - Queries and validates items via EbayBrowseApiClient.
- * - Decoupled from core STIHL machine / serial identity.
- * - Fails closed if environment or API configuration is inactive.
- */
-
 import { AffiliateProvider } from './AffiliateProvider.js';
 import { EbayBrowseApiClient } from './EbayBrowseApiClient.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 
+const partInTitle = (title, part) => new RegExp(`(^|\\D)${part.slice(0, 4)}[\\s-]*${part.slice(4, 7)}[\\s-]*${part.slice(7)}(?!\\d)`).test(title);
+
 export class EbayAffiliateProvider extends AffiliateProvider {
-  /**
-   * @param {Object} [options]
-   * @param {EbayBrowseApiClient} [options.apiClient]
-   * @param {Map<string, Object>} [options.cachedOffers] - Pre-synced verified catalog offers
-   */
   constructor(options = {}) {
     super('ebay');
     this.apiClient = options.apiClient || new EbayBrowseApiClient();
     this.cachedOffers = options.cachedOffers || new Map();
   }
 
-  /**
-   * Checks whether eBay affiliate integration is enabled.
-   * Fails closed by default unless EBAY_AFFILIATE_ENABLED is explicitly 'true'.
-   * @returns {boolean}
-   */
   isEnabled() {
-    return process.env.EBAY_AFFILIATE_ENABLED === 'true';
+    return process.env.EBAY_ENABLED === 'true' &&
+      process.env.EBAY_AFFILIATE_ENABLED !== 'false' &&
+      process.env.EBAY_EPN_CAMPAIGN_ID === '5339245312' &&
+      Boolean(process.env.EBAY_CLIENT_ID?.trim() && process.env.EBAY_CLIENT_SECRET?.trim());
   }
 
-  /**
-   * Sets pre-synced verified offers for synchronous page rendering.
-   * @param {Map<string, Object>} map
-   */
   setCachedOffers(map) {
-    if (map instanceof Map) {
-      this.cachedOffers = map;
-    }
+    if (map instanceof Map) this.cachedOffers = map;
   }
 
-  /**
-   * Synchronous commercial offer resolution adhering to AffiliateProvider contract.
-   * Resolves from verified cached inventory.
-   *
-   * @param {Object} params
-   * @param {string} params.partNumber
-   * @param {string} [params.canonicalPartNumber]
-   * @returns {Array<Object>}
-   */
   getOffers(params = {}) {
-    if (!this.isEnabled()) {
-      return [];
-    }
-
-    const normPart = PartNormalizer.normalizePartNumber(params.canonicalPartNumber || params.partNumber);
-    if (!normPart) {
-      return [];
-    }
-
-    const cached = this.cachedOffers.get(normPart);
-    if (!cached || !cached.ships_to_nl) {
-      return [];
-    }
-
-    return [
-      {
+    if (!this.isEnabled()) return [];
+    const part = PartNormalizer.normalizePartNumber(params.canonicalPartNumber || params.partNumber);
+    if (!part) return [];
+    const entries = this.cachedOffers.get(part);
+    const seen = new Set();
+    const offers = [];
+    for (const item of (Array.isArray(entries) ? entries : [entries])) {
+      if (!item || item.ships_to_nl !== true || typeof item.item_id !== 'string' || !item.item_id || typeof item.title !== 'string') continue;
+      const marketplace = item.marketplaceId || item.marketplace_id || item.marketplace;
+      if (!['EBAY_NL', 'EBAY_DE'].includes(marketplace)) continue;
+      const url = this.apiClient.buildAffiliateUrl(item.itemAffiliateWebUrl);
+      if (!url || (item.affiliate_url && item.affiliate_url !== url)) continue;
+      const itemPart = PartNormalizer.normalizePartNumber(item.part_number);
+      const replacements = Array.isArray(item.verified_replacements) ? item.verified_replacements : [];
+      if (itemPart !== part && !replacements.some(replacement => replacement?.verified === true && PartNormalizer.normalizePartNumber(replacement.part_number) === part && itemPart === PartNormalizer.normalizePartNumber(replacement.replacement_part_number))) continue;
+      if (!itemPart || !partInTitle(item.title, itemPart)) continue;
+      const nameTokens = String(params.partName || '').toLowerCase().match(/[a-z]{4,}/g) || [];
+      if (nameTokens.length && !nameTokens.some(token => item.title.toLowerCase().includes(token))) continue;
+      const key = `${marketplace}:${item.item_id}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      offers.push({
         provider: 'ebay',
-        marketplace: 'ebay.de',
-        seller_name: cached.seller_name || 'Sägenspezi (eBay)',
-        brand: cached.brand || 'Sägenspezi',
-        item_id: cached.item_id,
-        part_number: normPart,
-        item_price: cached.item_price,
-        shipping_cost_nl: cached.shipping_cost_nl,
-        currency: cached.currency || 'EUR',
+        marketplace: marketplace === 'EBAY_NL' ? 'ebay.nl' : 'ebay.de',
+        seller_name: item.seller_name || '',
+        brand: /^(?:stihl|oem)$/i.test(item.brand || '') ? '' : (item.brand || ''),
+        item_id: item.item_id,
+        part_number: part,
+        item_price: item.item_price,
+        shipping_cost_nl: item.shipping_cost_nl,
+        currency: item.currency || 'EUR',
         ships_to_nl: true,
         shipping_status: 'SHIPS_TO_NL_CONFIRMED',
-        url: cached.affiliate_url || cached.item_url,
+        url,
         link_type: 'DIRECT_EBAY_ITEM',
         product_verified: true,
         placement: 'verified_product_card_ebay'
-      }
-    ];
+      });
+    }
+    return offers;
   }
 
-  /**
-   * Asynchronous live search against eBay Browse API.
-   * Used by daily sync batch jobs and inventory auditors.
-   *
-   * @param {Object} params
-   * @param {string} params.partNumber
-   * @returns {Promise<Array<Object>>}
-   */
   async searchLiveOffers(params = {}) {
-    const normPart = PartNormalizer.normalizePartNumber(params.partNumber);
-    if (!normPart) return [];
-
-    const res = await this.apiClient.searchItems({ partNumber: normPart });
-    if (!res.success || !Array.isArray(res.items)) {
-      return [];
-    }
-
-    return res.items.filter(i => i.ships_to_nl);
+    if (!this.isEnabled()) return [];
+    const part = PartNormalizer.normalizePartNumber(params.partNumber);
+    if (!part) return [];
+    const result = await this.apiClient.searchItems({ partNumber: part });
+    return result.success && Array.isArray(result.items) ? result.items.filter(item => item.ships_to_nl === true) : [];
   }
 }

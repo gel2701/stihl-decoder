@@ -66,25 +66,27 @@ export class EbaySyncEngine {
 
       matchedCount += res.items.length;
 
-      // Select best matching item with valid NL delivery
-      const validCandidate = res.items.find(item => item.ships_to_nl);
-      if (validCandidate) {
-        validNlShippingCount++;
-        activeOffers.push({
-          part_number: normPart,
-          marketplace: 'ebay.de',
-          item_id: validCandidate.item_id,
-          title: validCandidate.title,
-          seller_name: validCandidate.seller_name,
-          item_price: validCandidate.item_price,
-          currency: validCandidate.currency,
-          shipping_cost_nl: validCandidate.shipping_cost_nl,
-          ships_to_nl: true,
-          shipping_status: 'SHIPS_TO_NL_CONFIRMED',
-          affiliate_url: validCandidate.affiliate_url,
-          condition: validCandidate.condition,
-          synced_at: new Date().toISOString()
-        });
+      // Phase 76C: collect ALL valid NL-shipping offers (1:N multi-offer architecture)
+      const validCandidates = res.items.filter(item => item.ships_to_nl);
+      if (validCandidates.length > 0) {
+        validNlShippingCount += validCandidates.length;
+        for (const validCandidate of validCandidates) {
+          activeOffers.push({
+            part_number: normPart,
+            marketplace: 'ebay.de',
+            item_id: validCandidate.item_id,
+            title: validCandidate.title,
+            seller_name: validCandidate.seller_name,
+            item_price: validCandidate.item_price,
+            currency: validCandidate.currency,
+            shipping_cost_nl: validCandidate.shipping_cost_nl,
+            ships_to_nl: true,
+            shipping_status: 'SHIPS_TO_NL_CONFIRMED',
+            affiliate_url: validCandidate.affiliate_url,
+            condition: validCandidate.condition,
+            synced_at: new Date().toISOString()
+          });
+        }
       } else {
         deactivatedCount++;
       }
