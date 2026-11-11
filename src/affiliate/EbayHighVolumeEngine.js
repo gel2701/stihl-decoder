@@ -48,7 +48,23 @@ export class EbayHighVolumeEngine {
    * @returns {Object|null} validated offer or null if rejected
    */
   validateOffer(item, targetPart, classification = {}) {
-    if (!item || !item.itemId) return null;
+    if (!item || !(item.itemId || item.item_id)) return null;
+    // Normalize: raw Browse API shape or client-parsed shape (EbayBrowseApiClient.parseItemSummaries)
+    const shippingOptions = Array.isArray(item.shippingOptions)
+      ? item.shippingOptions
+      : (item.ships_to_nl === true ? [{ shipToLocations: ['NL'], shippingCost: { value: item.shipping_cost_nl } }] : []);
+    item = {
+      itemId: item.itemId ?? item.item_id,
+      title: item.title || '',
+      mpn: item.mpn ?? '',
+      seller: item.seller ?? { username: item.seller_name },
+      price: item.price?.value != null ? item.price : { value: item.item_price, currency: item.currency },
+      shippingOptions,
+      estimatedAvailabilities: item.estimatedAvailabilities,
+      itemAffiliateWebUrl: item.itemAffiliateWebUrl ?? item.affiliate_url,
+      condition: item.condition,
+      quantity: item.quantity
+    };
     const title = String(item.title || '').toLowerCase();
     const mpn = String(item.mpn || '').toLowerCase();
     const targetFormatted = targetPart.slice(0, 4) + ' ' + targetPart.slice(4, 7) + ' ' + targetPart.slice(7);

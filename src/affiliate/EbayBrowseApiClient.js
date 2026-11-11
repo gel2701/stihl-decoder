@@ -109,7 +109,9 @@ export class EbayBrowseApiClient {
         if (this.lastQueryAt && wait > 0) await this.sleepFn(wait);
         const url = new URL(this.browseApiEndpoint);
         url.searchParams.set('q', query);
-        url.searchParams.set('filter', `deliveryCountry:NL,sellers:{${this.defaultSeller}}`);
+        // Phase 76E: per-call seller — 'ALL'/null searches every suitable seller
+        const sellerFilter = seller && seller !== 'ALL' ? `,sellers:{${seller}}` : '';
+        url.searchParams.set('filter', `deliveryCountry:NL${sellerFilter}`);
         url.searchParams.set('limit', String(Math.max(1, Math.min(10, Number(searchParams.limit) || 10))));
         this.lastQueryAt = Date.now();
         const response = await this.fetchFn(url.toString(), {
@@ -164,17 +166,25 @@ export class EbayBrowseApiClient {
         const locations = option.shipToLocations;
         return (Array.isArray(locations) && locations.some(loc => loc === 'NL' || loc?.country === 'NL')) || locations?.country === 'NL' || option.shippingDestination?.country === 'NL';
       });
-      if (!shipping) continue;
+      // Explicit non-NL destinations fail closed; unknown destinations are kept but flagged unconfirmed
+      const destinations = options.flatMap(option => {
+        const locations = option.shipToLocations;
+        if (Array.isArray(locations)) return locations.map(loc => (typeof loc === 'string' ? loc : loc?.country));
+        if (locations?.country) return [locations.country];
+        return option.shippingDestination?.country ? [option.shippingDestination.country] : [];
+      }).filter(Boolean);
+      if (destinations.length > 0 && destinations.every(country => country !== 'NL')) continue;
       const amount = value => value != null && /^\d+(?:\.\d+)?$/.test(String(value)) ? Number(value) : null;
       seen.add(item.itemId);
       results.push({
         item_id: item.itemId,
         title: item.title ?? '',
+        mpn: item.mpn ?? '',
         seller_name: item.seller?.username ?? '',
         item_price: amount(item.price?.value),
         currency: item.price?.currency ?? null,
         shipping_cost_nl: shipping ? amount(shipping.shippingCost?.value) : null,
-        ships_to_nl: true,
+        ships_to_nl: Boolean(shipping),
         item_url: affiliateUrl,
         affiliate_url: affiliateUrl,
         image_url: item.image?.imageUrl ?? null,
