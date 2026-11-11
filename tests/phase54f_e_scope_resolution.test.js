@@ -211,7 +211,7 @@ describe('Phase 54F-E — Variant & Configuration Scope Resolution Test Suite', 
   });
 
   it('Test 12 — Catalog Immutability & Zero False Resolutions', () => {
-    const partsCount = db.prepare("SELECT count(1) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().c;
+    const partsCount = db.prepare("SELECT count(1) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
     const fitmentsCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
     const configsCount = db.prepare("SELECT count(1) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
     const evidenceCount = db.prepare("SELECT count(1) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

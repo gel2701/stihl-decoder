@@ -396,7 +396,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
   const phase56hResults = JSON.parse(fs.readFileSync(path.join(rootDir, 'output', 'phase56h', 'SECTION_RESOLUTION_RESULTS.json'), 'utf8'));
 
   // 1. Verify Canonical Invariants & Freeze Counts
-  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().c;
+  const canonicalPartsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
   const canonicalFitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configurationsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
@@ -661,7 +661,7 @@ export function buildPhase56KExternalEvidencePilot({ write = true } = {}) {
 
   let variantAAll = 0;
   let variantBAll = 0;
-  const allPartsRows = db.prepare("SELECT part_number FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050' ORDER BY part_number").all();
+  const allPartsRows = db.prepare("SELECT part_number FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055') ORDER BY part_number").all();
   for (const r of allPartsRows) {
     const v = getDeterministicQueryVariant(PartNormalizer.normalizePartNumber(r.part_number));
     if (v === QUERY_VARIANTS.VARIANT_A) variantAAll++;

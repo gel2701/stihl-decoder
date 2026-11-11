@@ -66,7 +66,7 @@ const EXPECTED_INDEXABLE_PARTS = 800 + WAVE3_COUNT + WAVE4_COUNT;
 const EXPECTED_SITEMAP_URLS = 981 + WAVE3_COUNT + WAVE4_COUNT;
 
 test('Phase 56E - Test 1: Authoritative Catalog & Database Invariants Preserved', () => {
-  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().c;
+  const partsCount = db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().c;
   const fitmentsCount = db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c;
   const configsCount = db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c;
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;

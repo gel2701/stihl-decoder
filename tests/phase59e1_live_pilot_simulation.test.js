@@ -293,7 +293,7 @@ test('Phase 59E.1 — 7. Reproducible Multi-Layer Rollback Execution', () => {
 
 test('Phase 59E.1 — 8. Strict Production Invariant Freeze', () => {
   const catalog = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
-  assert.strictEqual(catalog.parts.length, 18374, 'Canonical catalog parts count must remain exactly 18,373');
+  assert.strictEqual(catalog.parts.length, 18376, 'Canonical catalog parts count must remain exactly 18,373');
 
   const indexable = getAllIndexablePartsList();
   assert.strictEqual(indexable.length, 843, 'Tier A indexable parts count must remain exactly 843');

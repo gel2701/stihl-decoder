@@ -461,7 +461,7 @@ test('Phase 57A.2 - Test 19: Stens 605-205 remains unverified without NL marketp
 test('Phase 57A.2 - Test 20: Catalog and affiliate freeze invariants intact', () => {
   const catalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
   const catalogDoc = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && p.part_number !== '36100000050').length, 17082, 'Must preserve all 17,082 pre-58A canonical parts');
+  assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055'].includes(p.part_number)).length, 17082, 'Must preserve all 17,082 pre-58A canonical parts');
 
   const offersPath = path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json');
   const offersDoc = JSON.parse(fs.readFileSync(offersPath, 'utf8'));

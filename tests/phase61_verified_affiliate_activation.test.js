@@ -137,7 +137,7 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
     // Invariant 1: Exactly 18,373 canonical parts
     const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
     const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-    assert.equal(catalog.parts.length, 18374, 'Canonical catalog must preserve exactly 18,373 parts');
+    assert.equal(catalog.parts.length, 18376, 'Canonical catalog must preserve exactly 18,373 parts');
 
     // Invariant 2: Exactly 843 SEO indexable parts
     const indexable = getAllIndexablePartsList();

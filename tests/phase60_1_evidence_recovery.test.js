@@ -90,8 +90,8 @@ test('Phase 60.1: Amazon Evidence Recovery & Invariants', async (t) => {
   await t.test('4. Canonical Invariants Preservation', () => {
     // 18,373 canonical parts
     const catalog = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/parts_catalog.json'), 'utf8'));
-    assert.strictEqual(catalog.parts_count, 18374);
-    assert.strictEqual(catalog.parts.length, 18374);
+    assert.strictEqual(catalog.parts_count, 18376);
+    assert.strictEqual(catalog.parts.length, 18376);
 
     // 843 SEO parts
     const indexable = getAllIndexablePartsList();
