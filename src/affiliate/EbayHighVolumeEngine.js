@@ -6,6 +6,7 @@
  * Checkpoint-resume, multi-vendor search, strict matching, API backoff.
  */
 
+import fs from 'fs';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 
 export class EbayHighVolumeEngine {
@@ -13,8 +14,10 @@ export class EbayHighVolumeEngine {
     if (!options.apiClient) throw new Error('[EbayHighVolumeEngine] apiClient is required');
     this.apiClient = options.apiClient;
     this.batchDelayMs = options.batchDelayMs ?? 100;
+    this.backoffBaseMs = options.backoffBaseMs ?? 1000;
     this.checkpointIntervalMs = options.checkpointIntervalMs ?? 5000;
     this.vendors = options.vendors ?? ['saegenspezi_de', 'ebay_shop_seller', 'general_parts_nl'];
+    this.marketplaces = options.marketplaces ?? ['EBAY_NL', 'EBAY_DE'];
     this.classifications = new Map(); // part → { type: 'spark_plug' | 'carburetor' | 'unknown', confidence: 0–1 }
     this.activeOffers = new Map(); // part → [{ vendor, marketplace, item_id, price, ... }]
     this.rejectedOffers = new Map(); // part → [{ reason, item_id, vendor, ... }]
@@ -70,16 +73,21 @@ export class EbayHighVolumeEngine {
     );
     if (!shippingToNl) return null;
 
-    // Rule 4: Affiliate URL must be present and valid
+    // Rule 4: Affiliate URL must be present, on eBay, HTTPS and carry the EPN campaign ID
     if (!item.itemAffiliateWebUrl || typeof item.itemAffiliateWebUrl !== 'string') return null;
+    let parsedAff;
     try {
-      new URL(item.itemAffiliateWebUrl);
+      parsedAff = new URL(item.itemAffiliateWebUrl);
     } catch {
       return null;
     }
+    const campaignId = process.env.EBAY_EPN_CAMPAIGN_ID || '';
+    const hasEbayHost = parsedAff.protocol === 'https:' && /^(?:[a-z0-9-]+\.)*ebay\.(?:de|nl|com)$/i.test(parsedAff.hostname);
+    if (!hasEbayHost) return null;
+    if (campaignId && !parsedAff.searchParams.getAll('campid').includes(campaignId)) return null;
 
-    // Rule 5: Bundle/set detection — reject if quantity > 1 or "bundle/set/kit" in title
-    if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b/.test(title) && !inMpn) return null;
+    // Rule 5: Bundle/set detection — kits are never auto-accepted as single-part matches
+    if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\btune-up\b/.test(title)) return null;
     if (item.quantity && item.quantity > 1) return null;
 
     // Passed all gates
@@ -111,6 +119,7 @@ export class EbayHighVolumeEngine {
     const resumeFrom = options.resumeFrom ?? checkpoint.partIndex;
 
     const activeOffers = [];
+    const seen = new Set();
     const rejectedOffers = [];
     const metrics = {
       scanned_parts: 0,
@@ -134,7 +143,7 @@ export class EbayHighVolumeEngine {
       const classification = this.classifyPart(part, knownParts);
 
       // Search across multiple marketplaces and vendors
-      for (const marketplace of ['EBAY_NL', 'EBAY_DE']) {
+      for (const marketplace of this.marketplaces) {
         for (const vendor of this.vendors) {
           metrics.total_searches++;
           let retries = 0;
@@ -145,15 +154,16 @@ export class EbayHighVolumeEngine {
               const res = await this.apiClient.searchItems({
                 partNumber: part,
                 seller: vendor,
+                marketplace,
                 limit: 10
               });
 
               if (!res.success) {
                 if (res.errors?.some(e => e.includes('429'))) {
                   // Rate limit — exponential backoff
-                  const backoffMs = Math.min(1000 * Math.pow(2, retries), 30000);
+                  const backoffMs = Math.min(this.backoffBaseMs * Math.pow(2, retries), 30000);
                   metrics.backoff_delays++;
-                  await new Promise(resolve => setTimeout(resolve, backoffMs));
+                  if (backoffMs > 0) await new Promise(resolve => setTimeout(resolve, backoffMs));
                   retries++;
                   continue;
                 }
@@ -168,12 +178,12 @@ export class EbayHighVolumeEngine {
                 const validated = this.validateOffer(item, part, classification);
                 if (validated) {
                   metrics.offers_validated++;
-                  activeOffers.push({
-                    part_number: part,
-                    marketplace,
-                    vendor,
-                    ...validated
-                  });
+                  const offer = { part_number: part, marketplace, vendor, ...validated };
+                  const key = `${offer.marketplace}:${offer.item_id}`;
+                  if (!seen.has(key)) {
+                    seen.add(key);
+                    activeOffers.push(offer);
+                  }
                 } else {
                   metrics.offers_rejected++;
                   rejectedOffers.push({
@@ -195,7 +205,7 @@ export class EbayHighVolumeEngine {
           }
 
           // API rate-limit respect
-          await new Promise(resolve => setTimeout(resolve, this.batchDelayMs));
+          if (this.batchDelayMs > 0) await new Promise(resolve => setTimeout(resolve, this.batchDelayMs));
         }
       }
 
@@ -255,5 +265,53 @@ export class EbayHighVolumeEngine {
       }
     }
     return consolidated;
+  }
+
+  /**
+   * Persist batch state (results + checkpoint) so restarts can resume.
+   * @param {string} filePath target JSON file
+   * @param {Object} state { summary, active_offers, rejected_offers, checkpoints, next_part_index }
+   */
+  saveState(filePath, state) {
+    const payload = {
+      saved_at: new Date().toISOString(),
+      campaign_id: process.env.EBAY_EPN_CAMPAIGN_ID || null,
+      next_part_index: state.next_part_index ?? 0,
+      summary: state.summary ?? {},
+      checkpoints: state.checkpoints ?? this.checkpoints,
+      active_offers: state.active_offers ?? [],
+      rejected_offers: state.rejected_offers ?? []
+    };
+    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
+    return payload;
+  }
+
+  /**
+   * Load persisted state; drops expired offers so stale listings never resurface.
+   * @param {string} filePath
+   * @param {Object} [options] { maxAgeMs } default 24h
+   * @returns {Object|null} state with fresh offers or null when unreadable
+   */
+  static loadState(filePath, options = {}) {
+    const maxAgeMs = options.maxAgeMs ?? 24 * 60 * 60 * 1000;
+    try {
+      const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const savedAt = Date.parse(parsed.saved_at || '');
+      const ageOk = Number.isFinite(savedAt) ? Date.now() - savedAt <= maxAgeMs : false;
+      const active = Array.isArray(parsed.active_offers) ? parsed.active_offers : [];
+      const fresh = ageOk ? active : [];
+      return {
+        saved_at: parsed.saved_at || null,
+        next_part_index: Number(parsed.next_part_index) || 0,
+        summary: parsed.summary || {},
+        checkpoints: Array.isArray(parsed.checkpoints) ? parsed.checkpoints : [],
+        active_offers: fresh,
+        expired_offers_dropped: active.length - fresh.length,
+        rejected_offers: Array.isArray(parsed.rejected_offers) ? parsed.rejected_offers : [],
+        state_fresh: ageOk
+      };
+    } catch {
+      return null;
+    }
   }
 }
