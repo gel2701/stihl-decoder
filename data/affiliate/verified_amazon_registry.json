@@ -91,13 +91,13 @@
   "metrics": {
     "total_registered": 127,
     "staged": 0,
-    "verified": 4,
-    "active": 69,
+    "verified": 5,
+    "active": 68,
     "active_nl": 53,
-    "active_de": 16,
+    "active_de": 15,
     "research_required": 54,
     "suspended": 0,
-    "last_updated": "2026-11-11T12:17:52.575Z"
+    "last_updated": "2026-11-11T12:37:17.014Z"
   },
   "offers": [
     {
@@ -1474,20 +1474,17 @@
       "manufacturer_part_number": "0000-350-3500-SPEZI",
       "product_title": "Sägenspezi Kraftstoffschlauch und Benzinfilter/Sägenspezi Kraftstofffilter Set passend für Stihl 025 MS250 MS 250",
       "package_quantity": 1,
-      "package_type": "Replacement kit",
+      "package_type": "HOSE_AND_FILTER_SET",
       "ean_gtin": null,
       "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "model_compatibility": [
-        "MS 250",
-        "025"
-      ],
+      "model_compatibility": "MS 250 / 025",
       "item_price": 6.48,
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_cost_nl": 10,
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
+      "shipping_cost_nl": null,
       "currency": "EUR",
-      "pilot_eligible": true,
-      "pilot_active": true,
+      "pilot_eligible": false,
+      "pilot_active": false,
       "kill_switch_id": "KILL_PILOT_DE_00003503500",
       "verifiable_evidence_sources": [
         {
@@ -1498,21 +1495,26 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Amazon.de titel noemt uitsluitend STIHL 025 / MS 250. Geen bewijs voor MS 170, MS 210 of MS 230; compatibiliteit beperkt tot MS 250 / 025. Set (slang + filter), geen 1:1 bewezen STIHL-onderdeelnummer.",
+      "compatibility_proof": "Uitsluitend bewezen voor STIHL 025 / MS 250 volgens Amazon.de producttitel (Sägenspezi Kraftstoffschlauch und Benzinfilter Set passend für Stihl 025 MS250 MS 250). Geen 1:1 OEM-vervanger voor los aanzuigfilter 0000 350 3500.",
       "asin_product_identity_proof": "Amazon.de ASIN B00SVDWDRG verifiziert für Sägenspezi Kraftstofffilter passend für STIHL 025 MS 250",
       "independent_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
       "direct_affiliate_url": "https://www.amazon.de/dp/B00SVDWDRG?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3500&tag=srihldecode00-21",
       "verification_date": "2026-11-11",
-      "status": "ACTIVE",
-      "status_reason": "Active for MS 250 / 025 only (Phase 75D correction): listing title states MS 250; MS 170 not proven.",
+      "status": "VERIFIED",
+      "status_reason": "Inactief gehouden op 0000 350 3500: betreft een gecombineerde brandstofslang- en filterset voor STIHL 025 / MS 250 en geen exacte 1:1 OEM-vervanger voor het losse aanzuigfilter 0000 350 3500.",
       "shipping_destination_country": "NL",
-      "shipping_checked_at": "2026-11-11",
+      "shipping_checked_at": "2026-11-09",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
-      "shipping_evidence_description": "Amazon.de store Sägenspezi bevestigt expliciet levering naar Nederland voor B00SVDWDRG (€10 standaard verzendkosten).",
+      "shipping_evidence_description": "Amazon.de productpagina B00SVDWDRG toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
       "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
-      "evidence_audit_category": "VERIFIED_ACTIVE",
-      "focus_model": "MS 250"
+      "evidence_audit_category": "VERIFIED_INACTIVE",
+      "product_relationship": "ACCESSORY_BUNDLE_HOSE_AND_FILTER_SET",
+      "focus_model": "MS 250",
+      "machine_compatibility": [
+        "MS 250",
+        "025"
+      ]
     },
     {
       "part_number": "36360000050",
@@ -9008,20 +9010,52 @@
       "seller_name": "Amazon",
       "seller_id": "AMZN-DE",
       "manufacturer_part_number": "1130 007 4100",
-      "product_title": "STIHL Servicekit Onderhoudsset 6 voor MS 170, MS 180",
+      "product_title": "STIHL Service Kit 6 (1130 007 4100) — uitsluitend voor MS 170 (< 501926833 of < 806742306) & MS 180 (< 507001102 of < 808408057) zonder 2-MIX",
       "package_quantity": 1,
       "package_type": "SINGLE_UNIT",
+      "kit_contents": [
+        "Vliesluchtfilter",
+        "Bougie",
+        "Brandstoffilter"
+      ],
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "compatibility_type": "VARIANT_AND_SERIAL_RESTRICTED_OEM",
+      "auto_confirm_on_unknown_variant": false,
       "focus_model": "MS 170",
       "model_compatibility": [
-        "MS 170",
-        "MS 180"
+        "MS 170 zonder 2-MIX (machinenummer < 501926833 of < 806742306, afhankelijk van de serienummerreeks)",
+        "MS 180 zonder 2-MIX (machinenummer < 507001102 of < 808408057, afhankelijk van de serienummerreeks)"
       ],
       "machine_compatibility": [
-        "MS 170",
-        "MS 180"
+        "MS 170 zonder 2-MIX (machinenummer < 501926833 of < 806742306)",
+        "MS 180 zonder 2-MIX (machinenummer < 507001102 of < 808408057)"
       ],
+      "serial_number_restrictions": {
+        "MS 170": {
+          "required_variant": "zonder 2-MIX",
+          "excluded_variants": [
+            "2-MIX"
+          ],
+          "serial_boundaries_by_series": [
+            "< 501926833",
+            "< 806742306"
+          ],
+          "auto_confirm_on_unknown_variant": false
+        },
+        "MS 180": {
+          "required_variant": "zonder 2-MIX",
+          "excluded_variants": [
+            "2-MIX"
+          ],
+          "serial_boundaries_by_series": [
+            "< 507001102",
+            "< 808408057"
+          ],
+          "auto_confirm_on_unknown_variant": false
+        }
+      },
+      "compatibility_conditions": "Uitsluitend geschikt voor MS 170 zonder 2-MIX (machinenummer < 501926833 of < 806742306, afhankelijk van de serienummerreeks) en MS 180 zonder 2-MIX (machinenummer < 507001102 of < 808408057, afhankelijk van de serienummerreeks). Bij onbekende machine-uitvoering geen automatische bevestiging dat deze kit past.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_cost_nl": 6.99,
@@ -9029,14 +9063,29 @@
       "pilot_eligible": true,
       "pilot_active": true,
       "kill_switch_id": "KILL_PILOT_11300074100",
-      "compatibility_proof": "STIHL Service Kit 6 (1130 007 4100) bevat vlies-luchtfilter, bougie en brandstoffilter specifiek voor conventionele STIHL MS 170 en MS 180.",
-      "asin_product_identity_proof": "Corroborated by Amazon.de listing B094WCY9ZY, OEM part number 1130 007 4100.",
+      "compatibility_proof": "STIHL Nederland bevestigt voor Service Kit 6 (1130 007 4100, inhoud: vliesluchtfilter, bougie en brandstoffilter): geschikt voor MS 170 zonder 2-MIX (machinenummer < 501926833 of < 806742306, afhankelijk van de serienummerreeks) en MS 180 zonder 2-MIX (machinenummer < 507001102 of < 808408057, afhankelijk van de serienummerreeks). Geen automatische bevestiging bij onbekende machine-uitvoering.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de listing B094WCY9ZY (STIHL Service Kit 6, OEM part number 1130 007 4100) and official STIHL Nederland specification (https://www.stihl.nl/nl/ap/service-kit-6-129947).",
       "independent_evidence_url": "https://www.amazon.de/dp/B094WCY9ZY",
       "verifiable_evidence_sources": [
+        {
+          "source_name": "STIHL Nederland Officiële Productpagina — Service Kit 6",
+          "source_type": "MANUFACTURER_SPECIFICATION",
+          "source_url": "https://www.stihl.nl/nl/ap/service-kit-6-129947",
+          "url": "https://www.stihl.nl/nl/ap/service-kit-6-129947",
+          "claim": "STIHL Service Kit 6 (1130 007 4100, inhoud: vliesluchtfilter, bougie en brandstoffilter) voor MS 170 zonder 2-MIX (< 501926833 of < 806742306) en MS 180 zonder 2-MIX (< 507001102 of < 808408057).",
+          "verified_attributes": [
+            "part_number",
+            "kit_contents",
+            "model_compatibility",
+            "serial_number_restrictions"
+          ]
+        },
         {
           "source_name": "Amazon.de Verified Listing",
           "source_type": "AMAZON_MARKETPLACE_LISTING",
           "source_url": "https://www.amazon.de/dp/B094WCY9ZY",
+          "url": "https://www.amazon.de/dp/B094WCY9ZY",
+          "claim": "Amazon.de ASIN B094WCY9ZY — STIHL Service Kit 6 (1130 007 4100)",
           "verified_attributes": [
             "asin",
             "part_number",
@@ -9049,7 +9098,7 @@
       "search_fallback_url": "https://www.amazon.de/s?k=Stihl+Service+Kit+6&tag=srihldecode00-21",
       "verification_date": "2026-11-11",
       "status": "ACTIVE",
-      "status_reason": "Genuine STIHL Service Kit 6 for MS 170 and MS 180",
+      "status_reason": "Genuine STIHL Service Kit 6 (1130 007 4100) for MS 170 / MS 180 zonder 2-MIX with explicit official serial number boundaries",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "shipping_checked_at": "2026-11-11",
       "shipping_evidence_url": "https://www.amazon.de/dp/B094WCY9ZY",
