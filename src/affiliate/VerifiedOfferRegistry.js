@@ -35,7 +35,7 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 60;
+export const MAX_PILOT_ACTIVE_OFFERS = 100;
 
 export const COMMERCIAL_MILESTONES = Object.freeze({
   MILESTONE_50: 50,

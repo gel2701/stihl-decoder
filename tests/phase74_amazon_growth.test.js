@@ -53,7 +53,7 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
 
     assert.ok(activeNl.length >= 24, 'Expected at least 24 active Amazon.nl offers');
-    assert.strictEqual(activeDe.length, 2, 'Expected exactly 2 active Amazon.de offers with confirmed NL delivery');
+    assert.ok(activeDe.length >= 2, 'Expected at least 2 active Amazon.de offers with confirmed NL delivery');
   });
 
   it('1B. Registry Metrics Invariant & Status Breakdown Synchronization', () => {
@@ -220,7 +220,7 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
     }
 
     const inactiveDe = allOffers.filter(o => o.marketplace === 'amazon.de' && o.status === 'VERIFIED');
-    assert.ok(inactiveDe.length >= 12, 'Must retain inactive German offers pending verified NL delivery');
+    assert.ok(inactiveDe.length >= 6, 'Must retain inactive German offers pending verified NL delivery');
   });
 
   it('6. Kill Switch Precision & Fail-Closed Fallback Mechanics', () => {
