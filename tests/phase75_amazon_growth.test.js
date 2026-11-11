@@ -104,7 +104,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
     const approvedManufacturers = new Set([
       'STIHL', 'Oregon', 'NGK', 'Bosch', 'Walbro', 'Zama', 'Champion',
-      'Haishine', 'MCHNIC', 'Trade-Shop', 'MospdyGear', 'YOUSHARES', 'Yingshop', 'vhbw', 'ECSiNG', 'Sägenspezi'
+      'Haishine', 'MCHNIC', 'Trade-Shop', 'MospdyGear', 'YOUSHARES', 'Yingshop', 'vhbw', 'ECSiNG', 'Sägenspezi', 'RUURUU'
     ]);
 
     for (const offer of activeOffers) {
@@ -218,5 +218,40 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(resolvedOffers.length, 1);
     assert.strictEqual(resolvedOffers[0].asin, 'B001RM8J76');
     assert.strictEqual(resolvedOffers[0].link_type, 'DIRECT_ASIN');
+  });
+
+  it('8. Phase 75E: MS 170 Final Commercial Gaps (Oil Pickup Filter 1123 640 3800 & 40 cm Saw Chains 3636 000 0055 / 3610 000 0055)', () => {
+    const registry = new VerifiedOfferRegistry({
+      productionActivationAllowed: true,
+      maxActiveOffersAllowed: 100
+    });
+    registry.loadFromFile();
+
+    // 1. Oil pickup filter 1123 640 3800 -> RUURUU B0FP2XR798 (amazon.de, 2-pack, ships to NL)
+    const oilFilterOffer = registry.getActiveOffer('11236403800', 'amazon.de');
+    assert.ok(oilFilterOffer, '1123 640 3800 must have an active offer on amazon.de');
+    assert.strictEqual(oilFilterOffer.asin, 'B0FP2XR798');
+    assert.strictEqual(oilFilterOffer.brand, 'RUURUU');
+    assert.strictEqual(oilFilterOffer.package_quantity, 2);
+    assert.strictEqual(oilFilterOffer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+    assert.strictEqual(oilFilterOffer.affiliate_tag, 'srihldecode00-21');
+
+    // 2. 40 cm 3/8" P 1.3 mm 55 DL saw chain 3636 000 0055 -> Oregon 91PX055E B005MCM2YS (amazon.de, ships to NL)
+    assert.ok(canonicalPartSet.has('36360000055'), '3636 000 0055 must exist in canonical parts catalog');
+    const chain13Offer = registry.getActiveOffer('36360000055', 'amazon.de');
+    assert.ok(chain13Offer, '3636 000 0055 must have an active offer on amazon.de');
+    assert.strictEqual(chain13Offer.asin, 'B005MCM2YS');
+    assert.strictEqual(chain13Offer.brand, 'Oregon');
+    assert.strictEqual(chain13Offer.manufacturer_part_number, '91PX055E');
+    assert.strictEqual(chain13Offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
+    assert.strictEqual(chain13Offer.affiliate_tag, 'srihldecode00-21');
+
+    // 3. 40 cm 3/8" P 1.1 mm 55 DL saw chain 3610 000 0055 -> Oregon 90PX055E B013KONKZY (canonical part present, offer verified inactive due to missing buybox/NL shipping)
+    assert.ok(canonicalPartSet.has('36100000055'), '3610 000 0055 must exist in canonical parts catalog');
+    const chain11Record = registry.getOffer('36100000055', 'amazon.de', 'B013KONKZY');
+    assert.ok(chain11Record, 'Oregon 90PX055E record must exist for 3610 000 0055');
+    assert.strictEqual(chain11Record.status, 'VERIFIED');
+    assert.notStrictEqual(chain11Record.status, 'ACTIVE');
+    assert.strictEqual(registry.getActiveOffer('36100000055', 'amazon.de'), null, '3610 000 0055 must not resolve as active without confirmed NL delivery');
   });
 });

@@ -37,7 +37,7 @@ const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
 test('Phase 54F-A: Core Database & Catalog Freezes Intact', () => {
-  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().count;
   const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
   const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
   const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
@@ -333,7 +333,7 @@ test('Phase 54F-A-R1: New Part Candidate Isolation (Section 57)', () => {
   assert.strictEqual(manifest.unique_new_part_candidates, 318, 'Must record 318 unique new part candidates');
 
   // Verify database parts count is strictly 17082 (pre-58A cohort)
-  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number != '36100000050'").get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055')").get().count;
   assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
 
   // Verify accepted canonical evidence does NOT contain new part candidates

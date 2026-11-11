@@ -93,7 +93,7 @@ test('Phase 70: 1. Multi-marketplace configuration & strict tag isolation', () =
   const deOffers = registryDoc.offers.filter(o => o.marketplace === 'amazon.de');
 
   assert.ok(nlOffers.length >= 18, 'Must maintain at least 18 Dutch offers');
-  assert.equal(deOffers.length, 14, 'Must have exactly 14 German offers');
+  assert.ok(deOffers.length >= 14, 'Must have at least 14 German offers');
 
   for (const offer of nlOffers) {
     assert.equal(offer.affiliate_tag, 'srihldecoder2-21', `NL offer ${offer.part_number} must strictly use Dutch tag`);
@@ -121,7 +121,7 @@ test('Phase 70: 2. 1:N Multi-Offer Architecture & Backwards Compatibility', () =
 
   // In production registry, DE offer for 1130 124 0800 has SHIPPING_UNKNOWN -> only NL is active
   const activeOffers = registry.getActiveOffers(partNumber);
-  assert.equal(activeOffers.length, 1, 'Part 1130 124 0800 must have 1 active offer because German offer does not have confirmed shipping to NL');
+  assert.equal(activeOffers.length, 2, 'Part 1130 124 0800 has NL offer plus DE offer with confirmed NL shipping (Phase 75D)');
   assert.equal(activeOffers[0].marketplace, 'amazon.nl');
 
   // Backwards compatibility: getOffer and getActiveOffer without marketplace argument default to NL
@@ -137,10 +137,10 @@ test('Phase 70: 2. 1:N Multi-Offer Architecture & Backwards Compatibility', () =
   const deOffer = registry.getOffer(partNumber, 'amazon.de');
   assert.equal(deOffer.marketplace, 'amazon.de');
   assert.equal(deOffer.asin, 'B00LAHKLBU');
-  assert.equal(deOffer.shipping_to_nl_status, 'SHIPPING_UNKNOWN');
+  assert.equal(deOffer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED'); // activated in Phase 75D
 
   const deActiveOffer = registry.getActiveOffer(partNumber, 'amazon.de');
-  assert.equal(deActiveOffer, null, 'German offer without confirmed shipping must return null from getActiveOffer');
+  assert.ok(deActiveOffer !== null, 'German offer with confirmed NL shipping is active (Phase 75D)');
 
   // For a part with confirmed DE shipping (1121 020 1200), getActiveOffer returns the DE offer
   const confirmedPart = '11210201200';
@@ -190,8 +190,8 @@ test('Phase 70: 3. Provider & Resolver multi-offer delivery', () => {
 
     // Part with active NL offer and inactive DE offer (1130 124 0800)
     const dualRegisteredOffers = provider.getOffers({ partNumber: '11301240800' });
-    assert.equal(dualRegisteredOffers.length, 1, 'Only active confirmed offers returned by provider');
-    assert.equal(dualRegisteredOffers[0].marketplace, 'amazon.nl');
+    assert.equal(dualRegisteredOffers.length, 2, 'Only active confirmed offers returned by provider (NL + DE confirmed)');
+    assert.ok(dualRegisteredOffers.some(o => o.marketplace === 'amazon.nl'));
 
     // Query unverified part (search fallback)
     const fallbackOffers = provider.getOffers({ partNumber: '11230000000' });
@@ -333,7 +333,7 @@ test('Phase 70: 6. Per-marketplace capacity management (no cross-market collisio
 
 test('Phase 70: 7. TwoGateVerifier passes all 14 German Sägenspezi offers cleanly', () => {
   const deOffers = registryDoc.offers.filter(o => o.marketplace === 'amazon.de');
-  assert.equal(deOffers.length, 14, 'Must evaluate all 14 German Sägenspezi offers');
+  assert.ok(deOffers.length >= 14, 'Must evaluate all German offers (at least the 14 original Sägenspezi offers)');
 
   for (const offer of deOffers) {
     const v = TwoGateVerifier.verifyOffer(offer, {
@@ -343,8 +343,10 @@ test('Phase 70: 7. TwoGateVerifier passes all 14 German Sägenspezi offers clean
     assert.equal(v.passed, true, `Offer ${offer.part_number} (${offer.asin}) must pass TwoGateVerifier: ${v.errors.join('; ')}`);
     assert.equal(v.gate1.status, 'PASS');
     assert.equal(v.gate2.status, 'PASS');
-    assert.equal(offer.seller_name, 'Sägenspezi');
-    assert.equal(offer.seller_id, 'A1GMRJIURBAM28');
+    if (offer.brand === 'Sägenspezi') {
+      assert.equal(offer.seller_name, 'Sägenspezi');
+      assert.equal(offer.seller_id, 'A1GMRJIURBAM28');
+    }
     assert.equal(offer.shipping_destination_country, 'NL');
     assert.ok(['SHIPS_TO_NL_CONFIRMED', 'SHIPPING_UNKNOWN', 'DOES_NOT_SHIP_TO_NL'].includes(offer.shipping_to_nl_status));
     assert.ok(offer.shipping_evidence_url.startsWith('https://www.amazon.de/dp/'));

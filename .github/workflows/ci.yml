@@ -98,8 +98,8 @@ jobs:
       - name: Seed SQLite database from canonical JSON
         run: node data/seed.cjs
 
-      - name: Install Playwright Chromium with system dependencies
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium || npx playwright install chromium
 
       - name: Run Playwright Critical Browser E2E Journeys
         run: npm run test:e2e

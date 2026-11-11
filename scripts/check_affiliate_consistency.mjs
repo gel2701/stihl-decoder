@@ -1,4 +1,4 @@
-/**
+﻿/**
  * scripts/check_affiliate_consistency.mjs
  *
  * Phase 60Q: Cross-Manifest Contradiction & Data Integrity Checker
@@ -29,6 +29,12 @@ const rootDir = path.resolve(__dirname, '..');
 
 // Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE confirmed shipping)
 const AUTHORIZED_PILOT_PARTS = new Set([
+  '11236403800', // Phase 75E MS 170 oil pickup filter (RUURUU B0FP2XR798)
+  '36360000055', // Phase 75E MS 170 40cm 3/8" P 1.3mm 55DL saw chain (Oregon 91PX055E B005MCM2YS)
+  '11236402003', // Phase 75D MS 170 coverage
+  '11300074100', // Phase 75D MS 170 coverage
+  '30050003905', // Phase 75D MS 170 coverage
+  '30050003909', // Phase 75D MS 170 coverage
   '11104007005', // Bosch WSR6F (B0068M5NAG)
   '00004007000', // NGK BPMR7A (B001RM8J76)
   '00004007011', // NGK CMR6H (B001RMA5S2)
@@ -47,8 +53,8 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '00003503500', // vhbw Brandstoffilter MS 170 / MS 250 / FS 55 (B0874SJ4CK)
   '00003503521', // Haishine Brandstoffilter zuigkop FS 460 / MS 261 (B0HLBXNGQQ)
   '11231950400', // ECSiNG Starter katrol / veer kit FS 55 / MS 170 (B0BG49Y65H)
-  '11210201200', // Sägenspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
-  '11230302003', // Sägenspezi Kolben 40mm MS 210 (B00LAHGFRO)
+  '11210201200', // SÃ¤genspezi Zylinder Kolben Set MS 260 44mm (B00PGX7STM)
+  '11230302003', // SÃ¤genspezi Kolben 40mm MS 210 (B00LAHGFRO)
   '00006421223', // Oregon 68210 Rim Sprocket 3/8" 7T SD7 MS 440 (B00455Q028)
   '00006421231', // Oregon 18720 Rim Sprocket 3/8" 7T SM7 MS 261 / MS 290 (B000IBWVWG)
   '07811201109', // STIHL MultiLub Tandwielvet 80g Tube HS 45 (B007TK174M)
@@ -82,22 +88,22 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '30030003313', // STIHL Zaagblad Light 04 40cm MS 261 / MS 260 (B00474601A)
   // Phase 75B Commercial Expansion: Oregon 90PX050E chain for 3610 000 0050
   '36100000050', // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
-  // Phase 75C Expansion: 4 Amazon.nl verified parts + 6 Sägenspezi Amazon.de parts
+  // Phase 75C Expansion: 4 Amazon.nl verified parts + 6 SÃ¤genspezi Amazon.de parts
   '36100000044', // Oregon 90PX044E Zaagketting 30cm (B002X3IIYC)
   '41303506200', // Walbro 188-512-1 / Stens 615-764 Primerbalg (B0773YKFX3)
-  '11230071060', // C·T·S / Walbro K20-WAT Carburateurset (B073NJNXMF)
+  '11230071060', // CÂ·TÂ·S / Walbro K20-WAT Carburateurset (B073NJNXMF)
   '40037102115', // STIHL AutoCut 46-2 Maaikop (B01BBVB4HY)
-  '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
-  '11304001302', // Sägenspezi Zündmodul MS 170 / MS 180 (B00LAHQD8A)
-  '11231200605', // Sägenspezi Vergaser MS 250 (B00LAHQRM2)
-  '11211200611', // Sägenspezi Carburateur MS 260 (B07MM5R1KG)
-  '11230071000', // Sägenspezi Kettingspanner zijdelings ombouwkit (B07F6CH3BV)
-  '11231412200'  // Sägenspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
+  '11301200603', // SÃ¤genspezi Vergaser MS 170 (B00LAHQK2Y)
+  '11304001302', // SÃ¤genspezi ZÃ¼ndmodul MS 170 / MS 180 (B00LAHQD8A)
+  '11231200605', // SÃ¤genspezi Vergaser MS 250 (B00LAHQRM2)
+  '11211200611', // SÃ¤genspezi Carburateur MS 260 (B07MM5R1KG)
+  '11230071000', // SÃ¤genspezi Kettingspanner zijdelings ombouwkit (B07F6CH3BV)
+  '11231412200'  // SÃ¤genspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
 ]);
 
 export function checkAffiliateConsistency() {
   console.log('===============================================================');
-  console.log('🛡️  PHASE 60Q: CROSS-MANIFEST AFFILIATE CONSISTENCY CHECKER');
+  console.log('ðŸ›¡ï¸  PHASE 60Q: CROSS-MANIFEST AFFILIATE CONSISTENCY CHECKER');
   console.log('===============================================================\n');
 
   const catalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
@@ -126,7 +132,7 @@ export function checkAffiliateConsistency() {
   for (const manifest of manifestFiles) {
     const fullPath = path.join(rootDir, manifest.name);
     if (!fs.existsSync(fullPath)) {
-      console.log(`⏩ Skipping optional/missing manifest: ${manifest.name}`);
+      console.log(`â© Skipping optional/missing manifest: ${manifest.name}`);
       continue;
     }
 
@@ -142,7 +148,7 @@ export function checkAffiliateConsistency() {
       ? doc
       : (doc.parts || doc.offers || doc.verified_offers || doc.candidates || doc.items || doc.rejected_or_pending || []);
 
-    console.log(`▶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
+    console.log(`â–¶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
 
     // Audit registry metrics synchronization (Phase 74B invariant)
     if (manifest.type === 'REGISTRY' && doc.metrics) {
@@ -338,7 +344,7 @@ export function checkAffiliateConsistency() {
   }
 
   console.log('\n===============================================================');
-  console.log('📊 AUDIT SUMMARY REPORT');
+  console.log('ðŸ“Š AUDIT SUMMARY REPORT');
   console.log('===============================================================');
   console.log(`TOTAL_RECORDS_SCANNED       : ${totalScanned}`);
   console.log(`CONTRADICTION_VIOLATIONS    : ${contradictions.length}`);
@@ -348,7 +354,7 @@ export function checkAffiliateConsistency() {
   console.log('===============================================================\n');
 
   if (contradictions.length > 0 || gtinErrors.length > 0 || unverifiedActives.length > 0 || unauthorizedActives.length > 0) {
-    console.error('❌ CONSISTENCY AUDIT FAILED:');
+    console.error('âŒ CONSISTENCY AUDIT FAILED:');
     for (const c of contradictions) console.error(`  - [CONTRADICTION] ${c.file} (${c.part_number || 'N/A'}): ${c.error}`);
     for (const g of gtinErrors) console.error(`  - [GTIN ERROR] ${g.file} (${g.part_number}): ${g.gtin} - ${g.error}`);
     for (const u of unverifiedActives) console.error(`  - [UNVERIFIED ACTIVE] ${u.file} (${u.part_number}): ${u.error}`);
@@ -356,7 +362,7 @@ export function checkAffiliateConsistency() {
     return { success: false, contradictions, gtinErrors, unverifiedActives, unauthorizedActives };
   }
 
-  console.log('✅ ALL AFFILIATE MANIFESTS, GTINS, AND OFFERS ARE 100% CONSISTENT AND VERIFIED CLEAN!\n');
+  console.log('âœ… ALL AFFILIATE MANIFESTS, GTINS, AND OFFERS ARE 100% CONSISTENT AND VERIFIED CLEAN!\n');
   return { success: true, contradictions, gtinErrors, unverifiedActives, unauthorizedActives };
 }
 
