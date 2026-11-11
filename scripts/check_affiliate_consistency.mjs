@@ -84,7 +84,7 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '36100000050', // Oregon 90PX050E Zaagketting 35cm 3/8" LP 1.1mm 50DL (B00HQ63YUY)
   // Phase 75C Expansion: 4 Amazon.nl verified parts + 6 Sägenspezi Amazon.de parts
   '36100000044', // Oregon 90PX044E Zaagketting 30cm (B002X3IIYC)
-  '00003506201', // Walbro 188-512-1 Primerbalg (B0773YKFX3)
+  '41303506200', // Walbro 188-512-1 / Stens 615-764 Primerbalg (B0773YKFX3)
   '11230071060', // C·T·S / Walbro K20-WAT Carburateurset (B073NJNXMF)
   '40037102115', // STIHL AutoCut 46-2 Maaikop (B01BBVB4HY)
   '11301200603', // Sägenspezi Vergaser MS 170 (B00LAHQK2Y)
