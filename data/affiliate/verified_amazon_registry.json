@@ -66,7 +66,11 @@
       "36100000050",
       "41303506200",
       "11230071060",
-      "40037102115"
+      "40037102115",
+      "11236402003",
+      "11300074100",
+      "30050003905",
+      "30050003909"
     ],
     "max_active_offers_allowed": 100,
     "max_active_offers_per_marketplace": {
@@ -85,15 +89,15 @@
     "shipping_policy": "SHIPS_TO_NL_CONFIRMED_REQUIRED_FOR_GERMAN_DIRECT_CTA"
   },
   "metrics": {
-    "total_registered": 121,
+    "total_registered": 127,
     "staged": 0,
-    "verified": 6,
-    "active": 61,
+    "verified": 4,
+    "active": 69,
     "active_nl": 53,
-    "active_de": 8,
+    "active_de": 16,
     "research_required": 54,
     "suspended": 0,
-    "last_updated": "2026-11-10T23:53:53.411Z"
+    "last_updated": "2026-11-11T12:17:52.575Z"
   },
   "offers": [
     {
@@ -1332,11 +1336,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 170 / 017 / MS 180",
       "item_price": 7.48,
-      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
-      "shipping_cost_nl": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": 10,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": false,
+      "pilot_active": true,
       "kill_switch_id": "KILL_PILOT_DE_11301240800",
       "verifiable_evidence_sources": [
         {
@@ -1352,15 +1356,15 @@
       "independent_evidence_url": "https://www.amazon.de/dp/B00LAHKLBU",
       "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHKLBU?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1130+124+0800&tag=srihldecode00-21",
-      "verification_date": "2026-11-09",
-      "status": "VERIFIED",
-      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified active German affiliate offer with confirmed delivery to Netherlands (€10 merchant shipping).",
       "shipping_destination_country": "NL",
-      "shipping_checked_at": "2026-11-09",
+      "shipping_checked_at": "2026-11-11",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHKLBU",
-      "shipping_evidence_description": "Amazon.de productpagina toont 'Vergelijkbare artikelen worden verzonden naar Nederland' op de standaardweergave; verzendstatus voor individuele koopopties van Sägenspezi naar Nederland is zonder bestelproces niet met zekerheid vastgesteld.",
+      "shipping_evidence_description": "Amazon.de store Sägenspezi bevestigt expliciet levering naar Nederland voor B00LAHKLBU (€10 standaard verzendkosten).",
       "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "11231201613",
@@ -1476,11 +1480,11 @@
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "model_compatibility": "MS 250 / 025 / MS 230 / MS 210",
       "item_price": 6.48,
-      "shipping_to_nl_status": "SHIPPING_UNKNOWN",
-      "shipping_cost_nl": null,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_cost_nl": 10,
       "currency": "EUR",
       "pilot_eligible": true,
-      "pilot_active": false,
+      "pilot_active": true,
       "kill_switch_id": "KILL_PILOT_DE_00003503500",
       "verifiable_evidence_sources": [
         {
@@ -1496,15 +1500,15 @@
       "independent_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
       "direct_affiliate_url": "https://www.amazon.de/dp/B00SVDWDRG?tag=srihldecode00-21",
       "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3500&tag=srihldecode00-21",
-      "verification_date": "2026-11-09",
-      "status": "VERIFIED",
-      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified active German affiliate offer with confirmed delivery to Netherlands (€10 merchant shipping).",
       "shipping_destination_country": "NL",
-      "shipping_checked_at": "2026-11-09",
+      "shipping_checked_at": "2026-11-11",
       "shipping_evidence_url": "https://www.amazon.de/dp/B00SVDWDRG",
-      "shipping_evidence_description": "Amazon.de productpagina B00SVDWDRG toont 'Alle koopopties bekijken' zonder buybox of openbare verzendindicatie naar Nederland.",
+      "shipping_evidence_description": "Amazon.de store Sägenspezi bevestigt expliciet levering naar Nederland voor B00SVDWDRG (€10 standaard verzendkosten).",
       "fulfillment_context": "Merchant Fulfilled (Sägenspezi)",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "evidence_audit_category": "VERIFIED_ACTIVE"
     },
     {
       "part_number": "36360000050",
@@ -8862,6 +8866,372 @@
       "status_reason": "Verified active affiliate offer: genuine STIHL AutoCut 46-2 matching 4003 710 2115.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED"
+    },
+    {
+      "part_number": "11236402003",
+      "part_number_formatted": "1123 640 2003",
+      "asin": "B006WVO0QQ",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "STIHL",
+      "brand": "STIHL",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-DE",
+      "manufacturer_part_number": "1123 640 2073",
+      "product_title": "stihl Kettingwiel 3/8 verdeling 6 tanden 1123 640 2073",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018",
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018",
+        "MS 210",
+        "MS 230",
+        "MS 250"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 6.99,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11236402003",
+      "compatibility_proof": "STIHL 1123 640 2073 (vervangt 1123 640 2003) is het originele 3/8\" Picco 6-tands kettingwiel voor MS 170, 017, MS 180.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de listing B006WVO0QQ, OEM part number 1123 640 2073.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B006WVO0QQ",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Verified Listing",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B006WVO0QQ",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B006WVO0QQ?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Stihl+11236402073&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Genuine STIHL 3/8\" Picco 6T chain sprocket for MS 170",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B006WVO0QQ",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B006WVO0QQ (EUR 6.99 shipping)."
+    },
+    {
+      "part_number": "11236402003",
+      "part_number_formatted": "1123 640 2003",
+      "asin": "B00LAHPOEO",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1123 640 2003",
+      "product_title": "Sägenspezi Kettenrad 3/8\"P 6Z passend für Stihl 017 MS 170 MS170",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "017"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "017"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11236402003_DE",
+      "compatibility_proof": "Sägenspezi Kettenrad 3/8\"P 6Z passend für Stihl 017 MS 170 MS170",
+      "asin_product_identity_proof": "Corroborated by Amazon.de listing B00LAHPOEO from official Sägenspezi store.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHPOEO",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Sägenspezi Store",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHPOEO",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHPOEO?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Saegenspezi+Kettenrad+MS+170&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 3/8\"P 6Z chain sprocket for STIHL MS 170",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHPOEO",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B00LAHPOEO (EUR 10 shipping)."
+    },
+    {
+      "part_number": "11300074100",
+      "part_number_formatted": "1130 007 4100",
+      "asin": "B094WCY9ZY",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "STIHL",
+      "brand": "STIHL",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-DE",
+      "manufacturer_part_number": "1130 007 4100",
+      "product_title": "STIHL Servicekit Onderhoudsset 6 voor MS 170, MS 180",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 6.99,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11300074100",
+      "compatibility_proof": "STIHL Service Kit 6 (1130 007 4100) bevat vlies-luchtfilter, bougie en brandstoffilter specifiek voor conventionele STIHL MS 170 en MS 180.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de listing B094WCY9ZY, OEM part number 1130 007 4100.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B094WCY9ZY",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Verified Listing",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B094WCY9ZY",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B094WCY9ZY?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Stihl+Service+Kit+6&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Genuine STIHL Service Kit 6 for MS 170 and MS 180",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B094WCY9ZY",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B094WCY9ZY (EUR 6.99 shipping)."
+    },
+    {
+      "part_number": "30050003905",
+      "part_number_formatted": "3005 000 3905",
+      "asin": "B001FUATK0",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Oregon Tool",
+      "brand": "Oregon",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-DE",
+      "manufacturer_part_number": "124MLEA074",
+      "product_title": "Oregon 124MLEA074 Zaagblad 30 cm (12 inch) 3/8\" LP 1,1 mm A074",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 6.99,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_30050003905",
+      "compatibility_proof": "Oregon 124MLEA074 is direct manufacturer replacement for STIHL 3005 000 3905 Rollomatic E Mini 30cm 1.1mm A074 on MS 170.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de ASIN B001FUATK0.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B001FUATK0",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Verified Listing",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B001FUATK0",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B001FUATK0?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Oregon+124MLEA074&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Oregon 30cm 1.1mm guide bar for STIHL MS 170",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B001FUATK0",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B001FUATK0 (EUR 6.99 shipping)."
+    },
+    {
+      "part_number": "30050003909",
+      "part_number_formatted": "3005 000 3909",
+      "asin": "B001FUCM1E",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Oregon Tool",
+      "brand": "Oregon",
+      "seller_name": "Amazon",
+      "seller_id": "AMZN-DE",
+      "manufacturer_part_number": "144MLEA074",
+      "product_title": "Oregon 144MLEA074 Zaagblad Micro-Lite 35 cm (14 inch) 3/8\" LP 1,1 mm A074",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "017",
+        "018"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 6.99,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_30050003909",
+      "compatibility_proof": "Oregon 144MLEA074 is direct manufacturer replacement for STIHL 3005 000 3909 Rollomatic E Mini 35cm 1.1mm A074 on MS 170.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de ASIN B001FUCM1E.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B001FUCM1E",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Verified Listing",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B001FUCM1E",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B001FUCM1E?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Oregon+144MLEA074&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Oregon 35cm 1.1mm guide bar for STIHL MS 170",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B001FUCM1E",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B001FUCM1E (EUR 6.99 shipping)."
+    },
+    {
+      "part_number": "11301200603",
+      "part_number_formatted": "1130 120 0603",
+      "asin": "B074CJTFJY",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1130 120 0603",
+      "product_title": "Sägenspezi Vergaser mit Kompensatoranschluss 3 Einstellschrauben passend für Stihl 017 MS 170 MS170",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 170",
+      "model_compatibility": [
+        "MS 170",
+        "017"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "017"
+      ],
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_11301200603_COMP",
+      "compatibility_proof": "Sägenspezi Vergaser mit Kompensatoranschluss 3 Einstellschrauben passend für Stihl 017 MS 170 MS170.",
+      "asin_product_identity_proof": "Corroborated by Amazon.de ASIN B074CJTFJY from official Sägenspezi store.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B074CJTFJY",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Amazon.de Sägenspezi Store",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B074CJTFJY",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B074CJTFJY?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=Saegenspezi+Vergaser+Kompensator+MS+170&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi carburetor with compensator for STIHL MS 170",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B074CJTFJY",
+      "shipping_evidence_description": "Amazon.de listing check reports delivery to the Netherlands for B074CJTFJY (EUR 10 shipping)."
     }
   ]
 }
