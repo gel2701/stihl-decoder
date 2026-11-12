@@ -1,0 +1,375 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77D",
+  "generated_at_utc": "2026-11-12T23:15:01.116Z",
+  "read_only": true,
+  "database_mutated": false,
+  "priority_source": "Opdracht Phase 77D (voorlopige commerciële rangorde), getoetst aan historische GSC/traffic-data en aanboddekking",
+  "aggregate": {
+    "models": 9,
+    "catalog_parts_per_model_sum": 2168,
+    "distinct_catalog_parts_union": 1487,
+    "active_offer_parts_per_model_sum": 76,
+    "distinct_parts_with_active_offer_union": 44,
+    "distinct_parts_search_fallback_only_union": 1443,
+    "search_fallback_only_parts_per_model_sum": 2092,
+    "concrete_section_parts_per_model_sum": 381,
+    "active_offers_registry": 99,
+    "verified_staged_registry": 3,
+    "research_required_registry": 55
+  },
+  "models": [
+    {
+      "rank": 1,
+      "model_name": "MS 440",
+      "canonical_id": "stihl_ms_440",
+      "fitment_id": "ms_440",
+      "slug": "ms-440",
+      "category": "Kettingzaag",
+      "catalog_parts": 277,
+      "base_variant_parts": 277,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 509,
+        "ghs": 13
+      },
+      "service_parts": 186,
+      "concrete_section_parts": 4,
+      "concrete_sections": 3,
+      "concrete_section_names": [
+        "Cylinder",
+        "Rewind starter",
+        "Tank housing"
+      ],
+      "configurations": 16,
+      "variants": 1,
+      "active_offers": {
+        "total": 10,
+        "amazon_nl": 4,
+        "amazon_de": 6
+      },
+      "buy_coverage_pct": 3.61,
+      "search_fallback_only_parts": 267,
+      "verified_staged_offers": 0,
+      "research_required_offers": 7,
+      "indexable_parts": 61,
+      "historical_commercial_score": 76,
+      "historical_views": 27
+    },
+    {
+      "rank": 2,
+      "model_name": "MS 170",
+      "canonical_id": "stihl_ms_170",
+      "fitment_id": "ms_170",
+      "slug": "ms-170",
+      "category": "Kettingzaag",
+      "catalog_parts": 248,
+      "base_variant_parts": 214,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 676,
+        "official_stihl": 5,
+        "ghs": 29
+      },
+      "service_parts": 180,
+      "concrete_section_parts": 10,
+      "concrete_sections": 4,
+      "concrete_section_names": [
+        "Service Kits",
+        "Cylinder",
+        "Rewind Starter",
+        "Muffler"
+      ],
+      "configurations": 16,
+      "variants": 3,
+      "active_offers": {
+        "total": 17,
+        "amazon_nl": 10,
+        "amazon_de": 8
+      },
+      "buy_coverage_pct": 6.85,
+      "search_fallback_only_parts": 231,
+      "verified_staged_offers": 1,
+      "research_required_offers": 3,
+      "indexable_parts": 37,
+      "historical_commercial_score": 93,
+      "historical_views": 27
+    },
+    {
+      "rank": 3,
+      "model_name": "BG 86",
+      "canonical_id": "stihl_bg_86",
+      "fitment_id": "bg_86",
+      "slug": "bg-86",
+      "category": "Bladblazer",
+      "catalog_parts": 169,
+      "base_variant_parts": 140,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 541,
+        "ghs": 5,
+        "official_stihl": 1
+      },
+      "service_parts": 128,
+      "concrete_section_parts": 87,
+      "concrete_sections": 12,
+      "concrete_section_names": [
+        "Rewind Starter",
+        "Air Filter a",
+        "Crankcase",
+        "Ignition System",
+        "Nozzle",
+        "Gutter Cleaning",
+        "Carburetor C1M-S141E",
+        "Fan Housing Outer",
+        "Handle Frame",
+        "Service Kits",
+        "Air Filter",
+        "Fan Housing"
+      ],
+      "configurations": 2,
+      "variants": 2,
+      "active_offers": {
+        "total": 8,
+        "amazon_nl": 8,
+        "amazon_de": 0
+      },
+      "buy_coverage_pct": 4.73,
+      "search_fallback_only_parts": 161,
+      "verified_staged_offers": 0,
+      "research_required_offers": 1,
+      "indexable_parts": 81,
+      "historical_commercial_score": null,
+      "historical_views": null
+    },
+    {
+      "rank": 4,
+      "model_name": "MS 461",
+      "canonical_id": "stihl_ms_461",
+      "fitment_id": "ms_461",
+      "slug": "ms-461",
+      "category": "Kettingzaag",
+      "catalog_parts": 263,
+      "base_variant_parts": 263,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 481,
+        "ghs": 4
+      },
+      "service_parts": 174,
+      "concrete_section_parts": 2,
+      "concrete_sections": 2,
+      "concrete_section_names": [
+        "Rewind starter",
+        "Tank housing"
+      ],
+      "configurations": 15,
+      "variants": 1,
+      "active_offers": {
+        "total": 8,
+        "amazon_nl": 3,
+        "amazon_de": 5
+      },
+      "buy_coverage_pct": 3.04,
+      "search_fallback_only_parts": 255,
+      "verified_staged_offers": 0,
+      "research_required_offers": 4,
+      "indexable_parts": 60,
+      "historical_commercial_score": null,
+      "historical_views": null
+    },
+    {
+      "rank": 5,
+      "model_name": "BR 600",
+      "canonical_id": "stihl_br_600",
+      "fitment_id": "br_600",
+      "slug": "br-600",
+      "category": "Bladblazer",
+      "catalog_parts": 239,
+      "base_variant_parts": 239,
+      "fitment_rows_by_source": {
+        "ghs": 1,
+        "sparepartsworld": 238
+      },
+      "service_parts": 160,
+      "concrete_section_parts": 151,
+      "concrete_sections": 12,
+      "concrete_section_names": [
+        "Rewind Starter",
+        "Air Filter",
+        "Carburetor C1Q-S99",
+        "Fan Housing",
+        "Cylinder",
+        "Valve Timing Gear",
+        "Muffler",
+        "Fuel Tank",
+        "Engine",
+        "Control Handle",
+        "Pleated Hose",
+        "Bike Handle"
+      ],
+      "configurations": 0,
+      "variants": 1,
+      "active_offers": {
+        "total": 2,
+        "amazon_nl": 2,
+        "amazon_de": 0
+      },
+      "buy_coverage_pct": 0.84,
+      "search_fallback_only_parts": 237,
+      "verified_staged_offers": 0,
+      "research_required_offers": 2,
+      "indexable_parts": 49,
+      "historical_commercial_score": 75,
+      "historical_views": 27
+    },
+    {
+      "rank": 6,
+      "model_name": "MS 390",
+      "canonical_id": "stihl_ms_390",
+      "fitment_id": "ms_390",
+      "slug": "ms-390",
+      "category": "Kettingzaag",
+      "catalog_parts": 213,
+      "base_variant_parts": 213,
+      "fitment_rows_by_source": {
+        "ghs": 4,
+        "sparepartsworld": 209
+      },
+      "service_parts": 148,
+      "concrete_section_parts": 5,
+      "concrete_sections": 2,
+      "concrete_section_names": [
+        "Cylinder",
+        "Handle housing"
+      ],
+      "configurations": 11,
+      "variants": 1,
+      "active_offers": {
+        "total": 5,
+        "amazon_nl": 5,
+        "amazon_de": 0
+      },
+      "buy_coverage_pct": 2.35,
+      "search_fallback_only_parts": 208,
+      "verified_staged_offers": 1,
+      "research_required_offers": 7,
+      "indexable_parts": 61,
+      "historical_commercial_score": null,
+      "historical_views": null
+    },
+    {
+      "rank": 7,
+      "model_name": "MS 361",
+      "canonical_id": "stihl_ms_361",
+      "fitment_id": "ms_361",
+      "slug": "ms-361",
+      "category": "Kettingzaag",
+      "catalog_parts": 278,
+      "base_variant_parts": 248,
+      "fitment_rows_by_source": {
+        "ghs": 4,
+        "sparepartsworld": 1144
+      },
+      "service_parts": 190,
+      "concrete_section_parts": 9,
+      "concrete_sections": 3,
+      "concrete_section_names": [
+        "Crankcase",
+        "Rewind Starter",
+        "Tank Housing"
+      ],
+      "configurations": 18,
+      "variants": 4,
+      "active_offers": {
+        "total": 6,
+        "amazon_nl": 3,
+        "amazon_de": 3
+      },
+      "buy_coverage_pct": 2.16,
+      "search_fallback_only_parts": 272,
+      "verified_staged_offers": 0,
+      "research_required_offers": 7,
+      "indexable_parts": 60,
+      "historical_commercial_score": 82,
+      "historical_views": 27
+    },
+    {
+      "rank": 8,
+      "model_name": "HS 45",
+      "canonical_id": "stihl_hs_45",
+      "fitment_id": "hs_45",
+      "slug": "hs-45",
+      "category": "Heggenschaar",
+      "catalog_parts": 205,
+      "base_variant_parts": 177,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 295,
+        "ghs": 12
+      },
+      "service_parts": 149,
+      "concrete_section_parts": 99,
+      "concrete_sections": 9,
+      "concrete_section_names": [
+        "Rewind Starter - Handle Housing",
+        "Air Filter - Fuel Tank",
+        "Crankcase - Cylinder",
+        "Ignition System - Muffler",
+        "Gear Head",
+        "Carburetor C1Q-S49B",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ],
+      "configurations": 0,
+      "variants": 2,
+      "active_offers": {
+        "total": 6,
+        "amazon_nl": 6,
+        "amazon_de": 0
+      },
+      "buy_coverage_pct": 2.93,
+      "search_fallback_only_parts": 199,
+      "verified_staged_offers": 0,
+      "research_required_offers": 1,
+      "indexable_parts": 78,
+      "historical_commercial_score": null,
+      "historical_views": null
+    },
+    {
+      "rank": 9,
+      "model_name": "MS 250",
+      "canonical_id": "stihl_ms_250",
+      "fitment_id": "ms_250",
+      "slug": "ms-250",
+      "category": "Kettingzaag",
+      "catalog_parts": 276,
+      "base_variant_parts": 236,
+      "fitment_rows_by_source": {
+        "sparepartsworld": 660,
+        "ghs": 9
+      },
+      "service_parts": 197,
+      "concrete_section_parts": 14,
+      "concrete_sections": 6,
+      "concrete_section_names": [
+        "CLutch",
+        "Engine",
+        "Fan housing with rewind starter",
+        "Muffler",
+        "Oil pump",
+        "Handle housing"
+      ],
+      "configurations": 17,
+      "variants": 3,
+      "active_offers": {
+        "total": 14,
+        "amazon_nl": 10,
+        "amazon_de": 5
+      },
+      "buy_coverage_pct": 5.07,
+      "search_fallback_only_parts": 262,
+      "verified_staged_offers": 1,
+      "research_required_offers": 7,
+      "indexable_parts": 63,
+      "historical_commercial_score": 95,
+      "historical_views": 27
+    }
+  ]
+}
