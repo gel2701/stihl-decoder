@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77C",
+  "generated_at_utc": "2026-11-12T21:32:25.102Z",
+  "read_only": true,
+  "tiers": {
+    "metadata": "Counted directly from stored registries/artifacts; no network, no image inspection.",
+    "sample_estimate": "Extrapolated from a bounded, deterministic sample of source URLs.",
+    "individually_verified": "Fetched, hashed and (for two of them) visually inspected.",
+    "derived_link": "Section identity derived from another source for the same model + part; never VERIFIED."
+  },
+  "claims": [
+    {
+      "claim": "2,376 unique GHS diagram URLs",
+      "reported": 2376,
+      "recomputed": 2376,
+      "tier": "metadata",
+      "verdict": "CONFIRMED",
+      "detail": "2377 configuration rows reference 2376 unique URLs"
+    },
+    {
+      "claim": "42 of 61 pilot URLs are placeholders",
+      "reported": "42/61",
+      "recomputed": "42/61",
+      "tier": "individually_verified",
+      "verdict": "CONFIRMED",
+      "detail": "placeholder SHA-256 471fbc2a20707535…"
+    },
+    {
+      "claim": "1,993 potentially linkable fitments",
+      "reported": 1993,
+      "recomputed": 1993,
+      "tier": "metadata (ungated upper bound)",
+      "verdict": "CONFIRMED_AS_UPPER_BOUND",
+      "detail": "Upper bound before the variant/ambiguity gates; the safe count is lower (see candidates)."
+    },
+    {
+      "claim": "775 involved parts",
+      "reported": 775,
+      "recomputed": 775,
+      "tier": "metadata (ungated upper bound)",
+      "verdict": "CONFIRMED_AS_UPPER_BOUND"
+    },
+    {
+      "claim": "223 involved models",
+      "reported": 223,
+      "recomputed": 223,
+      "tier": "metadata (ungated upper bound)",
+      "verdict": "CONFIRMED_AS_UPPER_BOUND"
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "C1",
+      "what": "Phase 77A reports 512 linked parts, but the linked_sections payload contains a different number of distinct part numbers.",
+      "values": {
+        "reported_in_77a": 512,
+        "distinct_in_linked_sections": 512
+      },
+      "resolution": "77A counts one part per linked section (a part can appear in several sections). The distinct count is authoritative for coverage."
+    },
+    {
+      "id": "C2",
+      "what": "Phase 77A reports 710 linked positions; the distinct position tuples in the payload can differ from the section-row sum.",
+      "values": {
+        "reported_in_77a": 710,
+        "distinct_in_linked_sections": 710
+      },
+      "resolution": "Position tuples are unique per (model, section, position); coverage statements must use the distinct set."
+    },
+    {
+      "id": "C3",
+      "what": "Phase 77B quotes 1,993 fitments / 775 parts / 223 models as if they were usable links.",
+      "values": {
+        "ungated": {
+          "fitments": 1993,
+          "parts": 775,
+          "models": 223
+        }
+      },
+      "resolution": "These are ungated upper bounds. Phase 77C applies the five gates and reports the safe subset separately."
+    }
+  ],
+  "data_integrity": {
+    "catalog_parts": 18377,
+    "fitments": 181394,
+    "active_offers": 99,
+    "active_offers_nl": 53,
+    "active_offers_de": 46
+  }
+}

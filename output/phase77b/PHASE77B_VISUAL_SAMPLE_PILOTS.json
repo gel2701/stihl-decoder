@@ -1,0 +1,1181 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77B",
+  "generated_at_utc": "2026-11-12T21:20:29.920Z",
+  "read_only": true,
+  "policy": {
+    "images_written_to_repository": 0,
+    "storage": "OS temp directory only; every file deleted immediately after hashing",
+    "published_or_hotlinked": false,
+    "sample_size": 61,
+    "sampling": "deterministic every 1th asset of 61 exploded-view assets"
+  },
+  "totals": {
+    "sampled": 61,
+    "fetched_and_hashed": 61,
+    "fetch_failed": 0,
+    "unique_hashes": 20,
+    "repeated_hashes": 1,
+    "placeholder_candidates": 42,
+    "total_bytes_hashed": 45499082
+  },
+  "duplicate_groups": [
+    {
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "count": 42,
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "asset_ids": [
+        "ghs-065e0d8d03f3de27",
+        "ghs-0841d41ff3e66e25",
+        "ghs-0f43ed7b70a48de8",
+        "ghs-1087d9440aa3de52",
+        "ghs-1b9317548b9d172f",
+        "ghs-2539dc804abcc4ba",
+        "ghs-291e98466e29dcb5",
+        "ghs-29d90fe1f95b9973",
+        "ghs-29da4d77ec58735f",
+        "ghs-2f9cec1522cdd249",
+        "ghs-302d16e20304f536",
+        "ghs-307e4c4bcf373cf1",
+        "ghs-326ef0fde8579e4d",
+        "ghs-380a35bb1226c5db",
+        "ghs-3eecf61abd538d12",
+        "ghs-44d7ea6958de58c4",
+        "ghs-4d8e527305cd06af",
+        "ghs-58710b60c9d114a9",
+        "ghs-6829ff32dd296ebf",
+        "ghs-6a535e041fae7cab",
+        "ghs-6c0dfd43840fad99",
+        "ghs-91c9d62b36e8945e",
+        "ghs-9313748322415e20",
+        "ghs-98f0a99fb5050e60",
+        "ghs-9a201ac3183f1b14",
+        "ghs-a09e0ed9692fcf73",
+        "ghs-a670c1dd64a290d7",
+        "ghs-a78d5c9990b86524",
+        "ghs-a7bedcc2af958ac2",
+        "ghs-b52d249ce6d5b065",
+        "ghs-b5afcb87de3e650f",
+        "ghs-b96e4063ac84ba1c",
+        "ghs-bcc59c12045eeac4",
+        "ghs-c0da5561ea66d813",
+        "ghs-c5b1411269597ab8",
+        "ghs-caa43fd1fa29382a",
+        "ghs-cc5b322a9f091dc2",
+        "ghs-d45dd82e7e5e9d2f",
+        "ghs-df22fd640bdc9fc2",
+        "ghs-e832c5a068692f2a",
+        "ghs-f04980cc921802c2",
+        "ghs-f1513ea402f01e16"
+      ],
+      "models": [
+        "ms_170",
+        "ms_260",
+        "ms_261",
+        "026"
+      ]
+    }
+  ],
+  "sample": [
+    {
+      "asset_id": "ghs-0455a166721d8c92",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Chain brake"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_e.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 57074,
+      "width": 700,
+      "height": 700,
+      "sha256": "637b3b0fb8c761a31b9e7e5ec31c341fb45dd6f67fa337d69198230704d96755",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-065e0d8d03f3de27",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Motor housing"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_a.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-0841d41ff3e66e25",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Shroud, Carburetor box cover"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_q.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-0f43ed7b70a48de8",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Cleaning products"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_y.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-1087d9440aa3de52",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Throttle control"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_r.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-1b9317548b9d172f",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Carburetor 1141/46, C1Q-S211, C1Q-S178"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_m.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-1c3c55b31d581546",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Oil pump, Clutch"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_c.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 52032,
+      "width": 700,
+      "height": 700,
+      "sha256": "3c7d534d174dc288f8dceb3036ea7a91fef6710056acf354d59639ceb8750d3d",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-21e9a1438afcfafb",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Tools, Extras"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_r.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 47673,
+      "width": 700,
+      "height": 700,
+      "sha256": "021d9b435ecccce5a03c28385d70d1a3f63330a4b36d2b34766cb1da94b0411e",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-230aecdfa8dacf5d",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Carburetor WT-426 1 62 154 675, 2 62 187 361 (07.2004)"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_n.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 44846,
+      "width": 700,
+      "height": 700,
+      "sha256": "7843e02595af446e7a5c1d31e25f3a34703b74b99eaaa9be09a333c8c9fbe917",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-2539dc804abcc4ba",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Oil pump"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_c.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-290a63ef6982e091",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Miscellaneous lubricants and greases"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_x.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 19247,
+      "width": 700,
+      "height": 700,
+      "sha256": "bb5c6f4218d321eb71340caacd42bb62e5a772ca3082f085f2bb356c9c7986d5",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-291e98466e29dcb5",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "2-in-1 laser"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_q.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-29641679dc24e51a",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Cylinder, Muffler"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_b.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 50460,
+      "width": 700,
+      "height": 700,
+      "sha256": "8f1fd54ceb9434ea1062104048bca261ee62ce66a145c75505e1bffdc66293a0",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-29d90fe1f95b9973",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Carburetor C1Q-S57, C1Q-S57, C1Q-S264"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_m.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-29da4d77ec58735f",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Cleaning products"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_v.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-2f9cec1522cdd249",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Tank housing"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_h.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-2fa09818b97aa971",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Tank housing"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_j.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 47092,
+      "width": 700,
+      "height": 700,
+      "sha256": "21a36f692e793b76a7c53fc0145d79504c7e1b641defc0be3a8619d1c4c30768",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-302d16e20304f536",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Carburettor WT-427, WT-581, WT-590 1 62 154 675, 2 62 187 361 (07.2004)"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_o.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-307e4c4bcf373cf1",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Tank housing"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_j.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-326ef0fde8579e4d",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Clutch, Chain sprocket"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_d.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-380a35bb1226c5db",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Muffler"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_d.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-3eecf61abd538d12",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Cylinder"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_b.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-44d7ea6958de58c4",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Cylinder, Muffler"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_b.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-4a5935addad731ce",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Clutch, Chain sprocket"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_d.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 39280,
+      "width": 700,
+      "height": 700,
+      "sha256": "1c2d160de30dfea222945a3bc14a7cad3abf3fefe09699ef30e8afcd216cb347",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-4d8e527305cd06af",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Chain brake"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_e.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-58710b60c9d114a9",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Ignition system, Wiring harness"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_f.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-5c3a00caed573588",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Tools, Extras"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_r.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 46943,
+      "width": 700,
+      "height": 700,
+      "sha256": "d117f6287d8a811043c2a9db42121ded52bcd4fd92500e64fd9ff35f0cef0e29",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-66555c54b3795e2a",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Crankcase"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_a.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 53504,
+      "width": 700,
+      "height": 700,
+      "sha256": "4fc34becc3987d59d6639adac1244f784c3b0a0418766540dde09860ea7309a1",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-6829ff32dd296ebf",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Shroud, Carburetor box cover"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_p.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-6a535e041fae7cab",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "2-in-1 laser"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_t.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-6c0dfd43840fad99",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Crankcase"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_a.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-8665dcbf0ff28d77",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Oil pump"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_c.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 45863,
+      "width": 700,
+      "height": 700,
+      "sha256": "0a48ec75082ddb8a43befc11688c478d6088945e423efb5dc050af272ce5de1a",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-8aab09b47cb937e5",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Carburetor WT-426"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_m.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 41918,
+      "width": 700,
+      "height": 700,
+      "sha256": "5bbc327c59f8adcb8ef0604a84eae957dc188a4240456beb9f8cdf1940b8ee53",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-91c9d62b36e8945e",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Handle frame, Tools"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_p.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-9313748322415e20",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Shroud, Air baffle"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_k.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-98f0a99fb5050e60",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Air filter, Shroud"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_k.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-9a201ac3183f1b14",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Quick chain tensioner"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_j.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-a09e0ed9692fcf73",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Rewind starter"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_h.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-a670c1dd64a290d7",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "AV system, Handlebar"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_j.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-a78d5c9990b86524",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Tools, Extras"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_t.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-a7bedcc2af958ac2",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Rewind starter"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_h.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-b52d249ce6d5b065",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Rewind starter, Hand guard"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_g.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-b5afcb87de3e650f",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "AV system"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_k.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-b96e4063ac84ba1c",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Ignition system"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_g.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-bcc59c12045eeac4",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Ignition system"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_g.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-c0da5561ea66d813",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Hand guard, Chain brake"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_h.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-c5b1411269597ab8",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Chain brake"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_d.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-c9c92833c0f4903d",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Air filter, Throttle control"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_l.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 68248,
+      "width": 700,
+      "height": 700,
+      "sha256": "243f9af8e61d07e73fe272ee88020400eaed06582f506dbe886ab18cddaad0e5",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-caa43fd1fa29382a",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Chain tensioner, Chain sprocket cover"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_e.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-cb286f823db6742f",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Carburetor WTE-1, WTE-2, WTE-4, WTE-11"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_m.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 47897,
+      "width": 700,
+      "height": 700,
+      "sha256": "bf3fe0695cdff063c612edbe6c6645e95fd7a67c6befc3884326117d6ae9f2fc",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-cc5b322a9f091dc2",
+      "model_ids": [
+        "026"
+      ],
+      "section_titles": [
+        "Carburetor WT-427, WT-590, WT-195, WT-155"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_n.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-d45dd82e7e5e9d2f",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Miscellaneous lubricants and greases"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_u.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-d5b2619dca9b0a16",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "AV system, Handlebar"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_k.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 54338,
+      "width": 700,
+      "height": 700,
+      "sha256": "abb1245666573d0f19464675af15cc0a08431a14403c904c2452742a157779cd",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-df22fd640bdc9fc2",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Ignition system, AV system"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_g.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-e772b65ae3e423bd",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Crankcase"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_a.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 69534,
+      "width": 700,
+      "height": 700,
+      "sha256": "41bc96baa9fb7a5718cc250e774266328605d810e324961e1a30de1aa8bc3f22",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-e832c5a068692f2a",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "2-in-1 laser"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_u.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-ebbbd7a42220ce41",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Carburetor C1Q-S137, C1Q-S137 BR"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_o.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 44134,
+      "width": 700,
+      "height": 700,
+      "sha256": "b7cfbfb6401ffc6ff8ce532d2c22769b3a1cc07acf9c9a57a39a82b9574e6d17",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-f04980cc921802c2",
+      "model_ids": [
+        "ms_170"
+      ],
+      "section_titles": [
+        "Rewind starter"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms170_e.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-f1513ea402f01e16",
+      "model_ids": [
+        "ms_260"
+      ],
+      "section_titles": [
+        "Air filter, Throttle control"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_l.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 1060768,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "REPEATED_NON_UNIQUE_IMAGE"
+    },
+    {
+      "asset_id": "ghs-f57573a5047e1ad9",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Carburetor bracket, Air filter"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_l.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 46677,
+      "width": 700,
+      "height": 700,
+      "sha256": "043ae8375f9e960052f123959c02e9919edfd1589989dbe4fbd9bc9397f2bd60",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    },
+    {
+      "asset_id": "ghs-fcec55a97a24f3cc",
+      "model_ids": [
+        "ms_261"
+      ],
+      "section_titles": [
+        "Cylinder, Muffler"
+      ],
+      "url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_b.jpg",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 70066,
+      "width": 1000,
+      "height": 1000,
+      "sha256": "9de5e4d689b4b5e05a7986d32c8c8dac66ff7cccf62f1c6d1553b3cecf54042a",
+      "fetch_status": "FETCHED_AND_HASHED",
+      "visual_classification": "UNIQUE_IMAGE_NEEDS_VISUAL_REVIEW"
+    }
+  ]
+}
