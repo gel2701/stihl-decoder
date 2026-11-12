@@ -1,0 +1,837 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77D",
+  "generated_at_utc": "2026-11-12T23:15:01.116Z",
+  "read_only": true,
+  "scoring_model": {
+    "total": 100,
+    "components": {
+      "model_priority": {
+        "max": 20,
+        "rule": "rangorde 1-9 uit de opdracht: 20,18,16,14,12,10,8,6,4"
+      },
+      "demand": {
+        "max": 30,
+        "rule": "historische onderdeelweergaven geschaald naar 30, anders categorie-intentieprior (max 18)"
+      },
+      "offer_gap": {
+        "max": 25,
+        "rule": "geen directe ACTIVE-link=25, één marktplaats=15, beide marktplaatsen gedekt=0"
+      },
+      "technical_certainty": {
+        "max": 15,
+        "rule": "concrete GHS-sectie=15, alleen sectiesleutel=9, alleen catalogus=5"
+      },
+      "actionability": {
+        "max": 10,
+        "rule": "VERIFIED staged-aanbod=10, RESEARCH_REQUIRED kandidaat=5, niets=0"
+      }
+    },
+    "exclusions": "Bevestigingsmateriaal (bouten, moeren, ringen, schroeven) is uitgesloten vanwege lage koopintentie.",
+    "caveat": "Geen live GSC-data; de score meet verwachte verbeterwaarde (vraag x modelprioriteit x koopgat), geen omzetprognose. Onderdelen die al op beide marktplaatsen actief zijn scoren bewust laag: daar valt geen dekking meer te winnen."
+  },
+  "counts": {
+    "scored_service_parts": 1121,
+    "top_25": 25,
+    "active_both_in_top_25": 0,
+    "active_single_market_in_top_25": 1,
+    "staged_in_top_25": 0,
+    "research_in_top_25": 4,
+    "no_offer_in_top_25": 20
+  },
+  "top_25": [
+    {
+      "rank": 1,
+      "part_number": "42821410300",
+      "part_number_display": null,
+      "part_name": "Stihl Air Filter",
+      "category": "filter",
+      "model": "BR 600",
+      "model_rank": 5,
+      "catalog_parts_on_model": 239,
+      "offer_status": "RESEARCH_REQUIRED",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter",
+      "is_indexable": true,
+      "historical_part_views": 27,
+      "demand_basis": "GSC_HISTORICAL_PART_VIEWS",
+      "score_components": {
+        "model_priority": 12,
+        "demand": 27,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 5
+      },
+      "commercial_score": 84,
+      "models": [
+        "BR 600"
+      ],
+      "next_action": "ASIN-identiteit onafhankelijk onderbouwen of laten vallen; tot die tijd zoekfallback."
+    },
+    {
+      "rank": 2,
+      "part_number": "11280292301",
+      "part_number_display": null,
+      "part_name": "Stihl Cylinder Gasket 0.5Mm",
+      "category": "cilinder_zuiger",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "RESEARCH_REQUIRED",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": true,
+      "has_concrete_section": true,
+      "section_key": "cylinder",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 15.3,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 5
+      },
+      "commercial_score": 80.3,
+      "models": [
+        "MS 440"
+      ],
+      "next_action": "ASIN-identiteit onafhankelijk onderbouwen of laten vallen; tot die tijd zoekfallback."
+    },
+    {
+      "rank": 3,
+      "part_number": "11281201602",
+      "part_number_display": null,
+      "part_name": "Stihl Air Filter",
+      "category": "filter",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "RESEARCH_REQUIRED",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": true,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 5
+      },
+      "commercial_score": 77,
+      "models": [
+        "MS 440"
+      ],
+      "next_action": "ASIN-identiteit onafhankelijk onderbouwen of laten vallen; tot die tijd zoekfallback."
+    },
+    {
+      "rank": 4,
+      "part_number": "11280802104",
+      "part_number_display": null,
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "category": "starter",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "rewind_starter",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 76.2,
+      "models": [
+        "MS 440"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 5,
+      "part_number": "00004007000",
+      "part_number_display": null,
+      "part_name": "Spark plug NGK BPMR7A",
+      "category": "bougie",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "ACTIVE_NL_ONLY",
+      "offer_marketplaces": [
+        "amazon.nl"
+      ],
+      "asin": "B001RM8J76",
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": true,
+      "historical_part_views": 27,
+      "demand_basis": "GSC_HISTORICAL_PART_VIEWS",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 27,
+        "offer_gap": 15,
+        "technical_certainty": 9,
+        "actionability": 5
+      },
+      "commercial_score": 76,
+      "models": [
+        "MS 440",
+        "MS 170",
+        "MS 461",
+        "MS 390",
+        "MS 361",
+        "HS 45",
+        "MS 250"
+      ],
+      "next_action": "Al gedekt op NL; tweede marktplaats toevoegen levert de resterende dekking."
+    },
+    {
+      "rank": 6,
+      "part_number": "11300074101",
+      "part_number_display": null,
+      "part_name": "Service Kit 7 (Air Filter Fleece, Spark Plug Bosch WSR6F, Fuel Pickup Body)",
+      "category": "bougie",
+      "model": "MS 170",
+      "model_rank": 2,
+      "catalog_parts_on_model": 248,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "service_kits",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 18,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 76,
+      "models": [
+        "MS 170"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 7,
+      "part_number": "11300074103",
+      "part_number_display": null,
+      "part_name": "Service Kit 45 (Air Filter Fleece, Spark Plug Bosch WSR6F, Fuel Pickup Body)",
+      "category": "bougie",
+      "model": "MS 170",
+      "model_rank": 2,
+      "catalog_parts_on_model": 248,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "service_kits",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 18,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 76,
+      "models": [
+        "MS 170"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 8,
+      "part_number": "11281903400",
+      "part_number_display": null,
+      "part_name": "Stihl 11281903400 Starter Grip Elastostart 3.5mm for MS390 MS400 MS440 MS441 MS460 MS500i",
+      "category": "starter",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "RESEARCH_REQUIRED",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": true,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 5
+      },
+      "commercial_score": 75.2,
+      "models": [
+        "MS 440",
+        "MS 461",
+        "MS 390",
+        "MS 361"
+      ],
+      "next_action": "ASIN-identiteit onafhankelijk onderbouwen of laten vallen; tot die tijd zoekfallback."
+    },
+    {
+      "rank": 9,
+      "part_number": "11300802110",
+      "part_number_display": null,
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "category": "starter",
+      "model": "MS 170",
+      "model_rank": 2,
+      "catalog_parts_on_model": 248,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "rewind_starter",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 18,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74.2,
+      "models": [
+        "MS 170"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 10,
+      "part_number": "42411200606",
+      "part_number_display": null,
+      "part_name": "Stihl 42411200606 Carburetor C1M-S228B for SH 86 Vacuum Shredder / BG 86 Blower",
+      "category": "carburateur",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter_a",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 11,
+      "part_number": "42411401002",
+      "part_number_display": null,
+      "part_name": "Stihl Filter Cover",
+      "category": "filter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter_a",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 12,
+      "part_number": "42411402800",
+      "part_number_display": null,
+      "part_name": "Stihl Filter Housing",
+      "category": "filter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 13,
+      "part_number": "42411402803",
+      "part_number_display": null,
+      "part_name": "Stihl Filter Housing",
+      "category": "filter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter_a",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 14,
+      "part_number": "42411404401",
+      "part_number_display": null,
+      "part_name": "Stihl Air Filter",
+      "category": "filter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "air_filter",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 15,
+      "part_number": "42414051000",
+      "part_number_display": null,
+      "part_name": "Stihl Spark Plug Boot",
+      "category": "bougie",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "ignition_system",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 74,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 16,
+      "part_number": "11300201207",
+      "part_number_display": null,
+      "part_name": "Stihl Cylinder And Piston 37Mm",
+      "category": "cilinder_zuiger",
+      "model": "MS 170",
+      "model_rank": 2,
+      "catalog_parts_on_model": 248,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "cylinder",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 18,
+        "demand": 15.3,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 73.3,
+      "models": [
+        "MS 170"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 17,
+      "part_number": "11201958200",
+      "part_number_display": null,
+      "part_name": "Stihl 11201958200 Starter Rope 3 x 1060mm for BT 45 FS 55 BG 86",
+      "category": "starter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "rewind_starter",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 72.2,
+      "models": [
+        "BG 86",
+        "HS 45"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 18,
+      "part_number": "42410802110",
+      "part_number_display": null,
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "category": "starter",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "rewind_starter",
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 72.2,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 19,
+      "part_number": "42414001320",
+      "part_number_display": null,
+      "part_name": "Stihl Ignition Module",
+      "category": "ontsteking",
+      "model": "BG 86",
+      "model_rank": 3,
+      "catalog_parts_on_model": 169,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": true,
+      "section_key": "ignition_system",
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 16,
+        "demand": 16.2,
+        "offer_gap": 25,
+        "technical_certainty": 15,
+        "actionability": 0
+      },
+      "commercial_score": 72.2,
+      "models": [
+        "BG 86"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 20,
+      "part_number": "00001410601",
+      "part_number_display": null,
+      "part_name": "Stihl Prefilter",
+      "category": "filter",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440",
+        "MS 461"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 21,
+      "part_number": "00006421239",
+      "part_number_display": null,
+      "part_name": "Stihl 00006421239 Rim Sprocket .325\" 9T",
+      "category": "ketting_tandwiel",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440",
+        "MS 461",
+        "MS 361"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 22,
+      "part_number": "11226480403",
+      "part_number_display": null,
+      "part_name": "Stihl Chain Sprocket Cover",
+      "category": "ketting_tandwiel",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440",
+        "MS 461"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 23,
+      "part_number": "11256401701",
+      "part_number_display": null,
+      "part_name": "Stihl Chain Sprocket Cover",
+      "category": "ketting_tandwiel",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": true,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 24,
+      "part_number": "11280071000",
+      "part_number_display": null,
+      "part_name": "Stihl 11280071000 Rim Sprocket Kit Chainsaw Parts 3/8\" 7T MS361 / MS361C MS440 MS460  MS362 / MS362C MS441 / MS441C",
+      "category": "ketting_tandwiel",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440",
+        "MS 361"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    },
+    {
+      "rank": 25,
+      "part_number": "11280071001",
+      "part_number_display": null,
+      "part_name": "Stihl Rim Sprocket Kit 3/8\" 8T",
+      "category": "ketting_tandwiel",
+      "model": "MS 440",
+      "model_rank": 1,
+      "catalog_parts_on_model": 277,
+      "offer_status": "NO_OFFER",
+      "offer_marketplaces": [],
+      "asin": null,
+      "phase73_candidate": false,
+      "has_concrete_section": false,
+      "section_key": null,
+      "is_indexable": false,
+      "historical_part_views": null,
+      "demand_basis": "CATEGORY_INTENT_PRIOR",
+      "score_components": {
+        "model_priority": 20,
+        "demand": 18,
+        "offer_gap": 25,
+        "technical_certainty": 9,
+        "actionability": 0
+      },
+      "commercial_score": 72,
+      "models": [
+        "MS 440",
+        "MS 361"
+      ],
+      "next_action": "Nog geen aanbod: eerst externe productbron vinden, geen ASIN verzinnen."
+    }
+  ]
+}

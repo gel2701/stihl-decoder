@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77D",
+  "generated_at_utc": "2026-11-12T23:15:01.116Z",
+  "policy": {
+    "accepted_section_sources": [
+      "ghs"
+    ],
+    "rejected_sections": [
+      "general_unresolved",
+      "model_parts_breakdown"
+    ],
+    "label": "DERIVED_FROM_SECTION_EVIDENCE",
+    "never": "VERIFIED",
+    "database_mutated": false,
+    "applied_to_database": false
+  },
+  "models": [
+    {
+      "model_name": "MS 440",
+      "canonical_id": "stihl_ms_440",
+      "fitment_id": "ms_440",
+      "concrete_sections": 3,
+      "concrete_section_parts": 4,
+      "catalog_parts": 277,
+      "coverage_pct": 1.44,
+      "section_names": [
+        "Cylinder",
+        "Rewind starter",
+        "Tank housing"
+      ]
+    },
+    {
+      "model_name": "MS 170",
+      "canonical_id": "stihl_ms_170",
+      "fitment_id": "ms_170",
+      "concrete_sections": 4,
+      "concrete_section_parts": 10,
+      "catalog_parts": 248,
+      "coverage_pct": 4.03,
+      "section_names": [
+        "Service Kits",
+        "Cylinder",
+        "Rewind Starter",
+        "Muffler"
+      ]
+    },
+    {
+      "model_name": "BG 86",
+      "canonical_id": "stihl_bg_86",
+      "fitment_id": "bg_86",
+      "concrete_sections": 12,
+      "concrete_section_parts": 87,
+      "catalog_parts": 169,
+      "coverage_pct": 51.48,
+      "section_names": [
+        "Rewind Starter",
+        "Air Filter a",
+        "Crankcase",
+        "Ignition System",
+        "Nozzle",
+        "Gutter Cleaning",
+        "Carburetor C1M-S141E",
+        "Fan Housing Outer",
+        "Handle Frame",
+        "Service Kits",
+        "Air Filter",
+        "Fan Housing"
+      ]
+    },
+    {
+      "model_name": "MS 461",
+      "canonical_id": "stihl_ms_461",
+      "fitment_id": "ms_461",
+      "concrete_sections": 2,
+      "concrete_section_parts": 2,
+      "catalog_parts": 263,
+      "coverage_pct": 0.76,
+      "section_names": [
+        "Rewind starter",
+        "Tank housing"
+      ]
+    },
+    {
+      "model_name": "BR 600",
+      "canonical_id": "stihl_br_600",
+      "fitment_id": "br_600",
+      "concrete_sections": 12,
+      "concrete_section_parts": 151,
+      "catalog_parts": 239,
+      "coverage_pct": 63.18,
+      "section_names": [
+        "Rewind Starter",
+        "Air Filter",
+        "Carburetor C1Q-S99",
+        "Fan Housing",
+        "Cylinder",
+        "Valve Timing Gear",
+        "Muffler",
+        "Fuel Tank",
+        "Engine",
+        "Control Handle",
+        "Pleated Hose",
+        "Bike Handle"
+      ]
+    },
+    {
+      "model_name": "MS 390",
+      "canonical_id": "stihl_ms_390",
+      "fitment_id": "ms_390",
+      "concrete_sections": 2,
+      "concrete_section_parts": 5,
+      "catalog_parts": 213,
+      "coverage_pct": 2.35,
+      "section_names": [
+        "Cylinder",
+        "Handle housing"
+      ]
+    },
+    {
+      "model_name": "MS 361",
+      "canonical_id": "stihl_ms_361",
+      "fitment_id": "ms_361",
+      "concrete_sections": 3,
+      "concrete_section_parts": 9,
+      "catalog_parts": 278,
+      "coverage_pct": 3.24,
+      "section_names": [
+        "Crankcase",
+        "Rewind Starter",
+        "Tank Housing"
+      ]
+    },
+    {
+      "model_name": "HS 45",
+      "canonical_id": "stihl_hs_45",
+      "fitment_id": "hs_45",
+      "concrete_sections": 9,
+      "concrete_section_parts": 99,
+      "catalog_parts": 205,
+      "coverage_pct": 48.29,
+      "section_names": [
+        "Rewind Starter - Handle Housing",
+        "Air Filter - Fuel Tank",
+        "Crankcase - Cylinder",
+        "Ignition System - Muffler",
+        "Gear Head",
+        "Carburetor C1Q-S49B",
+        "Carburetor C1Q-S54",
+        "Carburetor C1Q-S70",
+        "Carburetor C1Q-S67"
+      ]
+    },
+    {
+      "model_name": "MS 250",
+      "canonical_id": "stihl_ms_250",
+      "fitment_id": "ms_250",
+      "concrete_sections": 6,
+      "concrete_section_parts": 14,
+      "catalog_parts": 276,
+      "coverage_pct": 5.07,
+      "section_names": [
+        "CLutch",
+        "Engine",
+        "Fan housing with rewind starter",
+        "Muffler",
+        "Oil pump",
+        "Handle housing"
+      ]
+    }
+  ],
+  "phase77c_candidates_in_artifact": 214,
+  "phase77c_candidates_reusable_for_priority_models": 0,
+  "phase77c_overlapping_models": [],
+  "phase77c_note": "De 214 kandidaten uit Phase 77C betreffen uitsluitend andere modellen (SE-stofzuigers); voor de negen prioriteitsmodellen is geen bestaande afgeleide koppeling van toepassing en zijn er in deze fase geen nieuwe afgeleid."
+}
