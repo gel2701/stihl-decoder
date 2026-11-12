@@ -2,6 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 const PORT = process.env.PLAYWRIGHT_PORT || 3108;
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || `http://localhost:${PORT}`;
+if (!/^http:\/\/(?:localhost|127\.0\.0\.1):\d+\/?$/.test(BASE_URL)) {
+  throw new Error('Playwright E2E requires a localhost base URL; use test:live-smoke for production');
+}
 
 export default defineConfig({
   testDir: './tests/e2e',

@@ -4,7 +4,7 @@ import { attachIntegrityGates } from './e2e-gates.js';
 test.describe('Phase 5 — Intelligent Parts Search E2E Journeys', () => {
 
   test('1. Central Parts Discovery hub (/onderdelen/) loads cleanly with curated categories', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdelen/');
     expect(response?.status()).toBe(200);
 
@@ -22,7 +22,7 @@ test.describe('Phase 5 — Intelligent Parts Search E2E Journeys', () => {
   });
 
   test('2. Exact Part Number Search displays exact match card with Bevestigde compatibiliteit', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdelen/?q=1123+160+2050');
     expect(response?.status()).toBe(200);
 
@@ -43,7 +43,7 @@ test.describe('Phase 5 — Intelligent Parts Search E2E Journeys', () => {
   });
 
   test('3. Superseded Part Number displays replacement alert banner', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdelen/?q=4203+400+1301');
     expect(response?.status()).toBe(200);
 
@@ -58,7 +58,7 @@ test.describe('Phase 5 — Intelligent Parts Search E2E Journeys', () => {
   });
 
   test('4. Text component search with machine type filter displays filtered table', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdelen/?q=luchtfilter&machine_type=kettingzagen');
     expect(response?.status()).toBe(200);
 

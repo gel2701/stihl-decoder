@@ -44,12 +44,23 @@ assert.strictEqual(writeHeadCalls, 1, 'Wrapped writeHead must preserve the under
 assert.ok(String(captured).includes('googletagmanager.com/gtag/js'), 'Direct writeHead HTML responses must receive the direct Google tag');
 assert.ok(String(captured).includes('data-stihl-ga4-consent-bootstrap'), 'Direct writeHead HTML responses must receive Consent Mode bootstrap');
 
+let testHtml = null;
+const testRes = {
+  getHeader: () => 'text/html',
+  end(chunk) { testHtml = String(chunk); }
+};
+installSiteAnalyticsResponseInjection(testRes, true);
+testRes.end(html);
+assert.ok(testHtml.includes('data-stihl-test-mode'), 'Trusted test mode must be marked for client click tracking');
+assert.ok(!testHtml.includes('googletagmanager.com') && !testHtml.includes('data-stihl-ga4-config'), 'Trusted test mode must omit GA4');
+assert.equal(injectSiteAnalyticsIntoHtml(testHtml, true), testHtml, 'Test injection must be idempotent');
+
 const serverSource = fs.readFileSync(new URL('../server.js', import.meta.url), 'utf8');
 const analyticsSource = fs.readFileSync(new URL('../src/components/SiteAnalytics.js', import.meta.url), 'utf8');
 const homepageSource = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.ok(serverSource.includes("'/src/components/SiteAnalytics.js'"), 'Analytics browser module must be publicly served');
-assert.ok(serverSource.includes('installSiteAnalyticsResponseInjection(res);'), 'Every request must install HTML analytics injection');
+assert.ok(serverSource.includes("process.env.NODE_ENV === 'test' && new URL(req.url, 'http://localhost').searchParams.get('test') === '1'"), 'Only server-controlled test mode may omit GA4');
 
 assert.strictEqual(GA_MEASUREMENT_ID, 'G-P2V0J69LDX', 'Expected GA4 measurement ID must be configured');
 assert.ok(SITE_ANALYTICS_TAGS.includes('googletagmanager.com/gtag/js'), 'Tag Assistant-visible Google tag must be server-injected');

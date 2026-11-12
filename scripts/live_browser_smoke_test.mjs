@@ -68,6 +68,11 @@ async function runLiveSmoke() {
   console.log('\n▶ Step 3: Launching Chromium browser with strict fail-closed integrity gates...');
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
+  await context.route(/https?:\/\/(?:[^/]+\.)?(?:googletagmanager\.com|google-analytics\.com|doubleclick\.net|clarity\.ms)(?:[/:?]|$)|https?:\/\/(?:www\.)?google\.com\/g\/collect/, route => route.fulfill({ status: 204, body: '' }));
+  await context.route(/https?:\/\/(?:www\.)?amazon\.(?:nl|de|com)(?:\/|$)/, route => route.abort());
+  await context.addInitScript(() => document.addEventListener('click', event => {
+    if (event.target instanceof Element && event.target.closest('a[href*="amazon."]')) event.preventDefault();
+  }, true));
   const page = await context.newPage();
 
   const pageErrors = [];
