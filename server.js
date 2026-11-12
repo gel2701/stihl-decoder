@@ -274,7 +274,7 @@ function isSameOriginRequest(req) {
 }
 
 const server = http.createServer(async (req, res) => {
-  installSiteAnalyticsResponseInjection(res);
+  installSiteAnalyticsResponseInjection(res, process.env.NODE_ENV === 'test' && new URL(req.url, 'http://localhost').searchParams.get('test') === '1');
   try {
   const forwardedHost = (req.headers['x-forwarded-host'] || req.headers.host || PRIMARY_HOST).toLowerCase();
   const forwardedProto = (req.headers['x-forwarded-proto'] || 'https').toLowerCase();
@@ -677,7 +677,7 @@ const server = http.createServer(async (req, res) => {
       const offerType = data.offer_type || (isProductVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK');
       const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
 
-      const isTestClick = Boolean(data.is_test || (req.url && req.url.includes('test=1')));
+      const isTestClick = process.env.NODE_ENV === 'test' && data.is_test === 1;
 
       const ua = req.headers['user-agent'] || '';
       const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);

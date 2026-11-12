@@ -4,7 +4,7 @@ import { attachIntegrityGates } from './e2e-gates.js';
 test.describe('Critical Homepage User Journeys', () => {
 
   test('A. Homepage laadt met HTTP 200, zonder errors en met kerncontrols', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     const response = await page.goto('/');
     expect(response?.status()).toBe(200);
@@ -22,7 +22,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('B. Serienummer analyse via klik op Analyseer toont resultaatkaart', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -42,7 +42,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('C. Serienummer analyse via Enter-toets levert hetzelfde resultaat', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -61,7 +61,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('D. Modelnaam analyse toont modelkaart met correcte specificaties', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -81,7 +81,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('E. Onderdeelnummer analyse toont waarschuwingskaart en modelgroep', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -101,7 +101,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('F. Model-only paspoort flow is direct zichtbaar en opslaan zonder serienummer werkt', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -138,7 +138,7 @@ test.describe('Critical Homepage User Journeys', () => {
   });
 
   test('G. Fase 3: Directe onderdelensectie toont direct bruikbare onderdelen voor gevonden model', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');

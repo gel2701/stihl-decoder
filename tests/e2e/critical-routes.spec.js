@@ -4,7 +4,7 @@ import { attachIntegrityGates } from './e2e-gates.js';
 test.describe('Critical Route User Journeys', () => {
 
   test('1. Paspoortpagina (/stihl-paspoort/) laadt met HTTP 200 en zero JS errors', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/stihl-paspoort/');
     expect(response?.status()).toBe(200);
 
@@ -21,7 +21,7 @@ test.describe('Critical Route User Journeys', () => {
   });
 
   test('2. Modelpagina (/kettingzagen/ms-261/) laadt met HTTP 200 en toont modeltitel', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/kettingzagen/ms-261/');
     expect(response?.status()).toBe(200);
 
@@ -34,7 +34,7 @@ test.describe('Critical Route User Journeys', () => {
   });
 
   test('3. Onderdelenpagina (/kettingzagen/ms-261/onderdelen/) laadt met HTTP 200', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/kettingzagen/ms-261/onderdelen/');
     expect(response?.status()).toBe(200);
 
@@ -47,7 +47,7 @@ test.describe('Critical Route User Journeys', () => {
   });
 
   test('4. Gidspagina (/gidsen/serienummer-locaties/) laadt met inhoud', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/gidsen/serienummer-locaties/');
     expect(response?.status()).toBe(200);
 
@@ -64,7 +64,7 @@ test.describe('Critical Route User Journeys', () => {
   });
 
   test('5. Accumachine (/bosmaaiers/fsa-45/) bevat zero benzine- of M-Tronic content', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/bosmaaiers/fsa-45/');
     expect(response?.status()).toBe(200);
 
@@ -96,7 +96,7 @@ test.describe('Critical Route User Journeys', () => {
   });
 
   test('7. Gepubliceerde startgids (/gidsen/stihl-kettingzaag-start-niet/) laadt met inhoud en zero JS errors', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/gidsen/stihl-kettingzaag-start-niet/');
     expect(response?.status()).toBe(200);
 
