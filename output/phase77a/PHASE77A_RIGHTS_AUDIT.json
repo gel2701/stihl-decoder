@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77A",
+  "generated_at_utc": "2026-11-12T21:12:55.307Z",
+  "read_only": true,
+  "policy": {
+    "published_images_in_this_phase": 0,
+    "publication_rule": "An image is only publishable with a documented licence or written permission. Public reachability or a Scribd subscription is not permission.",
+    "storage_rule": "Diagram references stay in the repository as URL + SHA-256 metadata only; artwork itself is not downloaded or republished."
+  },
+  "sources": [
+    {
+      "source_id": "ghs",
+      "display_name": "Garden Hire Spares (GHS) — STIHL IPL section pages",
+      "host": "www.gardenhirespares.co.uk",
+      "asset_count": 2376,
+      "rights_holder": "ANDREAS STIHL AG & Co. KG (artwork); GHS (page/photography layer)",
+      "licence_info": "No reuse, sublicence or publication grant found in the harvested rows or on the merchant pages. Reseller terms do not transfer IPL artwork rights.",
+      "publication_status": "RIGHTS_UNKNOWN",
+      "publication_rationale": "Publicly reachable pixels are not a publication licence. A paid Scribd subscription or open web access does not grant republication rights either.",
+      "allowed_on_public_site": false,
+      "storage": "REFERENCE_ONLY (URL + hash stored, image never downloaded into the repo)"
+    },
+    {
+      "source_id": "stihl_ipl",
+      "display_name": "STIHL official Illustrated Parts Lists",
+      "host": "stihl.com",
+      "asset_count": 0,
+      "rights_holder": "ANDREAS STIHL AG & Co. KG",
+      "licence_info": "Copyrighted dealer documentation; no licensed feed or written permission on file.",
+      "publication_status": "PUBLICATION_RESTRICTED",
+      "publication_rationale": "Explicitly proprietary; publishing requires a licence agreement with STIHL.",
+      "allowed_on_public_site": false,
+      "storage": "NOT_PRESENT_IN_REPOSITORY"
+    },
+    {
+      "source_id": "archive_org_local_library",
+      "display_name": "Local STIHL archive (batch2 local library + archive.org copies)",
+      "host": "local-archive",
+      "asset_count": 0,
+      "document_count": 2582,
+      "rights_holder": "Various (STIHL, dealers, forum uploaders, archive.org uploaders)",
+      "licence_info": "No per-file licence recorded; archive.org items differ per item and forum attachments carry uploader terms only.",
+      "publication_status": "RIGHTS_UNKNOWN",
+      "publication_rationale": "Document metadata exists, but the PDFs themselves are not in this checkout and carry no licence metadata.",
+      "allowed_on_public_site": false,
+      "storage": "METADATA_ONLY_IN_THIS_CHECKOUT"
+    },
+    {
+      "source_id": "local_pdf_documents",
+      "display_name": "PDF documents present in the repository (data/)",
+      "host": "local-file",
+      "asset_count": 3,
+      "document_count": 3,
+      "rights_holder": "ANDREAS STIHL AG & Co. KG",
+      "licence_info": "Manuals/instruction documents; no publication licence recorded.",
+      "publication_status": "PUBLICATION_RESTRICTED",
+      "publication_rationale": "Instruction manuals are not IPLs and remain STIHL copyright.",
+      "allowed_on_public_site": false,
+      "storage": "LOCAL_RESEARCH_ONLY"
+    },
+    {
+      "source_id": "repo_site_assets",
+      "display_name": "Own site icons (favicons/PWA)",
+      "host": "first-party",
+      "asset_count": 0,
+      "rights_holder": "StihlDecoder (own work)",
+      "licence_info": "Own assets, publication allowed.",
+      "publication_status": "PUBLICATION_ALLOWED",
+      "publication_rationale": "First-party icons, not diagrams.",
+      "allowed_on_public_site": true,
+      "storage": "REPOSITORY"
+    }
+  ],
+  "statuses": {
+    "PUBLICATION_ALLOWED": 0,
+    "RIGHTS_UNKNOWN": 2376,
+    "PUBLICATION_RESTRICTED": 3
+  },
+  "conclusion": {
+    "images_with_established_publication_rights": 0,
+    "legally_publishable_diagrams": 0,
+    "next_step": "Obtain a written licence or a licensed parts-catalog feed (STIHL dealer/IPL access or a vendor that permits sublicensing of diagram images)."
+  }
+}
