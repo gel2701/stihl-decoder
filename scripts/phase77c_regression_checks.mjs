@@ -14,7 +14,9 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const outDir = path.join(root, 'output', 'phase77c');
+const outDirArg = process.argv.find(arg => arg.startsWith('--out-dir='));
+const outDir = path.join(root, outDirArg ? outDirArg.slice('--out-dir='.length) : path.join('output', 'phase77c'));
+const outFileName = process.argv.find(arg => arg.startsWith('--out-name='))?.slice('--out-name='.length) || 'PHASE77C_REGRESSION_CHECKS.json';
 fs.mkdirSync(outDir, { recursive: true });
 
 process.env.AMAZON_AFFILIATE_ENABLED = process.env.AMAZON_AFFILIATE_ENABLED || 'true';
@@ -113,12 +115,12 @@ record(
   `generated=${sitemapUrls}, committed=${committedSitemap ?? 'not present'}`
 );
 
-const researchOnlyPaths = ['output/phase77a/', 'output/phase77b/', 'output/phase77c/', 'scripts/phase77a_', 'scripts/phase77b_', 'scripts/phase77c_'];
+const researchOnlyPatterns = [/^output\/phase77[a-z]\//, /^scripts\/phase77[a-z]_/, /^reports\/phase77[a-z]_/];
 const statusOut = git('git status --porcelain') ?? '';
-const changed = statusOut.split('\n').map(l => l.slice(3).trim()).filter(Boolean);
+const changed = statusOut.split('\n').map(l => l.replace(/^[ MADRCU?!]{1,2}\s+/, '').trim()).filter(Boolean);
 const committedDiff = git(`git diff --name-only ${BASE_REF || 'HEAD'}...HEAD`) ?? '';
 const changedAll = [...new Set([...changed, ...committedDiff.split('\n').filter(Boolean)])];
-const outsideResearch = changedAll.filter(file => !researchOnlyPaths.some(prefix => file.startsWith(prefix)));
+const outsideResearch = changedAll.filter(file => !researchOnlyPatterns.some(pattern => pattern.test(file)));
 record(
   'BRANCH_SCOPE',
   'Branch only contains research files (working tree + committed diff vs base)',
@@ -135,6 +137,6 @@ const payload = {
   result: failed.length === 0 ? 'PASS' : 'FAIL',
   checks
 };
-fs.writeFileSync(path.join(outDir, 'PHASE77C_REGRESSION_CHECKS.json'), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+fs.writeFileSync(path.join(outDir, outFileName), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(payload, null, 2));
 process.exit(failed.length === 0 ? 0 : 1);
