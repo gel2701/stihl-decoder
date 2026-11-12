@@ -79,7 +79,7 @@
     ]
   }
   </script>
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 
@@ -212,7 +212,7 @@
         </button>
 
         <!-- 3. Technische informatie -->
-        <a href="/gidsen/serienummer-locaties/" id="tab-intent-partno" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="partno" aria-pressed="false">
+        <a href="/gidsen/serienummer-locaties/" id="tab-intent-partno" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="partno">
           <div class="flex items-center gap-2.5">
             <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 text-lg group-hover:scale-105 transition">📖</span>
             <div>
@@ -1402,7 +1402,14 @@
       let manualModelOverride = null;
       let currentSelectedModelSlug = null;
       let allSearchIdentities = [];
-      fetch('/api/models').then(r => r.json()).then(data => { allSearchIdentities = data; }).catch(() => {});
+      let modelIdentitiesPromise;
+      function loadModelIdentities() {
+        modelIdentitiesPromise ||= fetch('/api/models').then(r => r.json()).then(data => {
+          allSearchIdentities = data;
+          return data;
+        }).catch(() => []);
+        return modelIdentitiesPromise;
+      }
       const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
 
       function setActiveIntentTab(activeTab) {
@@ -1411,10 +1418,10 @@
           const isActive = (tab === activeTab);
           if (isActive) {
             tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-orange-500/40 bg-orange-600/20 text-orange-400 flex items-center gap-1.5 shadow-sm';
-            tab.setAttribute('aria-pressed', 'true');
+               if (tab.tagName === 'BUTTON') tab.setAttribute('aria-pressed', 'true');
           } else {
             tab.className = 'intent-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border border-gray-800 bg-gray-950/70 text-gray-400 hover:text-orange-400 hover:border-orange-500/30 flex items-center gap-1.5';
-            tab.setAttribute('aria-pressed', 'false');
+               if (tab.tagName === 'BUTTON') tab.setAttribute('aria-pressed', 'false');
           }
         });
       }
@@ -2994,6 +3001,7 @@
 
       function openGlobalSearchModal() {
         if (!searchModal) return;
+        loadModelIdentities().then(() => renderSearchResults(searchInput?.value || ''));
         searchModal.classList.remove('hidden');
         if (manualInputPanel) manualInputPanel.classList.add('hidden');
         if (searchInput) {
@@ -3085,7 +3093,8 @@
       }
 
       if (btnManualApply && manualTextInput) {
-        btnManualApply.addEventListener('click', () => {
+        btnManualApply.addEventListener('click', async () => {
+          await loadModelIdentities();
           const rawText = manualTextInput.value.trim();
           if (!rawText) return;
 

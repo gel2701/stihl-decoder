@@ -76,7 +76,7 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -248,7 +248,7 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
   }
   </script>
   ` : ''}
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>

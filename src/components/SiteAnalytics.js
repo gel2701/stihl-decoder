@@ -195,7 +195,7 @@
         </div>
         <div style="display:flex;gap:8px;margin-left:auto">
           <button id="cookie-reject-btn" type="button" style="border:1px solid #404040;background:#262626;color:#f5f5f5;border-radius:10px;padding:8px 13px;font-weight:700;cursor:pointer">Weigeren</button>
-          <button id="cookie-accept-btn" type="button" style="border:1px solid #f97316;background:#ea580c;color:#fff;border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer">Accepteren</button>
+          <button id="cookie-accept-btn" type="button" style="border:1px solid #c2410c;background:#c2410c;color:#fff;border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer">Accepteren</button>
         </div>
       </div>`;
 

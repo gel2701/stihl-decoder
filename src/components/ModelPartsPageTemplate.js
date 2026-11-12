@@ -99,10 +99,10 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   const configTabsHtml = configurations.length > 0 ? `
     <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 space-y-3">
       <div class="flex items-center justify-between">
-        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+        <h2 class="text-sm font-bold text-white flex items-center gap-2">
           <span>⚙️ Beschikbare Uitvoeringen & Configuraties</span>
           <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${configurations.length} uitvoeringen</span>
-        </h3>
+        </h2>
         ${selectedConfig ? `<a href="?" class="text-2xs text-orange-400 hover:underline">Toon basisuitvoering</a>` : ''}
       </div>
       <p class="text-xs text-gray-400">
@@ -155,10 +155,10 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
     <!-- Maintenance & Wear Parts Highlight (Evidence-Backed) -->
     <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-5 space-y-3">
       <div class="flex items-center justify-between border-b border-gray-800 pb-2">
-        <h3 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+        <h2 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
           <span>🔧 Veelgezochte Onderhouds- & Slijtagedelen</span>
           <span class="text-2xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Canonieke Selectie</span>
-        </h3>
+        </h2>
         <span class="text-2xs text-gray-400">STIHL ${model.model_name}</span>
       </div>
       <p class="text-xs text-gray-400 leading-relaxed">
@@ -173,7 +173,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <div>
               <div class="flex items-center justify-between">
                 <a href="/onderdeelnummer/${p.part_number}/" class="text-2xs font-mono font-bold text-orange-400 hover:underline">STIHL ${p.part_number_display || p.part_number}</a>
-                <span class="text-3xs font-mono text-gray-500 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
+                <span class="text-3xs font-mono text-gray-300 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
               </div>
               <a href="/onderdeelnummer/${p.part_number}/" class="text-xs font-semibold text-white hover:text-orange-300 transition block truncate mt-1">${p.part_name}</a>
               <div class="text-3xs text-gray-400 mt-0.5">Sectie: ${p.section_name}</div>
@@ -212,7 +212,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             href="#section-${idx}"
             class="px-2.5 py-1 rounded-lg text-2xs font-semibold bg-gray-950 border border-gray-800 text-gray-300 hover:text-white hover:border-orange-500 transition"
           >
-            ${sec.section_name} <span class="text-gray-500 font-mono">(${sec.parts.length})</span>
+            ${sec.section_name} <span class="text-gray-300 font-mono">(${sec.parts.length})</span>
           </a>
         `).join('')}
       </div>
@@ -305,7 +305,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
 <html lang="nl" class="dark">
 <head>
   ${seoMetaHtml}
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>

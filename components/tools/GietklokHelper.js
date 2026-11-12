@@ -68,13 +68,13 @@ export function renderGietklokHelperHtml(year = 21, month = 5, dialType = 'dots'
             <circle cx="100" cy="100" r="28" fill="#111111" stroke="#444444" stroke-width="2" />
             <text x="100" y="106" text-anchor="middle" font-size="20" font-weight="900" fill="#ffffff" font-family="monospace">${year.toString().padStart(2, '0')}</text>
           </svg>
-          <span class="text-xs text-neutral-500 mt-2">Klik op een maandcijfer om te wijzigen</span>
+          <span class="text-xs text-neutral-300 mt-2">Klik op een maandcijfer om te wijzigen</span>
         </div>
 
         <!-- Controls & Output -->
         <div class="space-y-4">
           <div>
-            <label class="text-xs text-neutral-400 font-bold block uppercase tracking-wider mb-1">
+            <label for="gietklok-year-input" class="text-xs text-neutral-400 font-bold block uppercase tracking-wider mb-1">
               Jaartal in het midden (2 cijfers)
             </label>
             <input id="gietklok-year-input" type="number" min="70" max="99" value="${year}" class="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 font-mono text-lg text-white focus:outline-none focus:border-orange-500" />
