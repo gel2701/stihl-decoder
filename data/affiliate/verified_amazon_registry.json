@@ -143,18 +143,67 @@
         ],
         "notes": "Deactivated from 1123 007 1060 (Walbro K20-WAT); verify exact Zama OEM repair kit reference or accessory relationship before activation."
       }
+    ],
+    "phase76_ms440_fs460_parked_research_backlog": [
+      {
+        "model": "MS 440 / 044",
+        "category": "Losse Vollmeißel zaagketting 50 cm (3/8\" 1,6 mm 72 TG)",
+        "candidate_asin": "B00LAHOD5A",
+        "candidate_part_numbers": [
+          "3621 000 0072"
+        ],
+        "status": "PARKED_FOR_LATER_RESEARCH",
+        "reason": "B00LAHOD5A is een Vollmeißel (36 RS 72 = 3621 000 0072) ketting; in parts_catalog.json staat alleen 3652 000 0072 (36 RM 72 Halbmeißel). Geen tandtype-mismatch forceren."
+      },
+      {
+        "model": "MS 440 / 044",
+        "category": "Oliepomp compleet & olieaanzuigfilter",
+        "candidate_asin": "B00LAHRD6G",
+        "candidate_part_numbers": [
+          "1128 640 3205",
+          "1128 640 3206",
+          "1117 640 3800"
+        ],
+        "status": "PARKED_FOR_LATER_RESEARCH",
+        "reason": "B00LAHRD6G is een keuzepagina (\"verschillende modellen selecteerbaar\") zonder vastgestelde MS 440 child-ASIN; wormwiel 1128 640 7112 (B00LAHFW96) is wel geactiveerd."
+      },
+      {
+        "model": "MS 440 / 044",
+        "category": "HD2 hoofdluchtfilter & ontstekingsmodule",
+        "candidate_part_numbers": [
+          "0000 140 4407",
+          "1128 120 1602",
+          "0000 400 1300"
+        ],
+        "status": "PARKED_FOR_LATER_RESEARCH",
+        "reason": "Nog geen geverifieerde Amazon.nl/Amazon.de aanbieding met bewezen NL-verzending voor het losse HD2 filterelement of ontstekingsmodule 0000 400 1300."
+      },
+      {
+        "model": "FS 460",
+        "category": "Maaidraad (2,7 mm / 3,0 mm), maaimessen, carburateur (WTF) en M-Tronic ontstekingsmodule",
+        "candidate_part_numbers": [
+          "0000 930 2227",
+          "0000 930 2340",
+          "4119 713 4100",
+          "4147 120 0603",
+          "4147 007 1700",
+          "4147 400 4711"
+        ],
+        "status": "PARKED_FOR_LATER_RESEARCH",
+        "reason": "Sägenspezi voert geen FS 460 bosmaaier-assortiment; eerdere Amazon.nl kandidaten zijn geparkeerd als RESEARCH_REQUIRED totdat onafhankelijke ASIN- en verzendverificatie beschikbaar is."
+      }
     ]
   },
   "metrics": {
-    "total_registered": 142,
+    "total_registered": 157,
     "staged": 0,
     "verified": 3,
-    "active": 84,
+    "active": 99,
     "active_nl": 53,
-    "active_de": 31,
+    "active_de": 46,
     "research_required": 55,
     "suspended": 0,
-    "last_updated": "2026-11-11T21:13:09.748Z"
+    "last_updated": "2026-11-11T21:40:49.529Z"
   },
   "offers": [
     {
@@ -184,7 +233,7 @@
           "retrieved_at": "2026-11-01"
         }
       ],
-      "compatibility_proof": "Bosch 0242240506 WSR6F is the direct manufacturer equivalent for STIHL 1110 400 7005, compatible with STIHL MS 260, MS 440, FS 80.",
+      "compatibility_proof": "Bosch 0242240506 WSR6F is the direct manufacturer equivalent for STIHL 1110 400 7005, compatible with STIHL MS 260, MS 440, FS 80 (ook geschikt voor MS 440 en 044).",
       "asin_product_identity_proof": "Bosch Zündkerze WSR6F (Herstellernummer: 0 242 240 506 / 0242240506, Kurznummer: WSR6F, Bestellnummer: 7547, EAN: 3165141051063). Technische specificaties: M14x1.25 schroefdraad, 9.5 mm schroefdraadlengte, 19 mm sleutelwijdte, 0.5 mm elektrodenafstand, 1-polig, ontstoord (5 kOhm). Bevestigt 1-op-1 ASIN B0068M5NAG als authentieke Bosch fabriekseenheid.",
       "independent_evidence_url": "https://www.motointegrator.de/artikel/468993-zuendkerze-bosch-0-242-240-506-1-stueck",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21",
@@ -219,7 +268,7 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
         "MS 250",
@@ -232,7 +281,9 @@
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "FS 55"
+        "FS 55",
+        "MS 440",
+        "044"
       ],
       "machine_compatibility": [
         "MS 250",
@@ -245,7 +296,9 @@
         "MS 180 (zonder 2-MIX)",
         "017",
         "018",
-        "FS 55"
+        "FS 55",
+        "MS 440",
+        "044"
       ]
     },
     {
@@ -275,7 +328,7 @@
           "retrieved_at": "2026-11-01"
         }
       ],
-      "compatibility_proof": "NGK 6703 BPMR7A is the direct manufacturer equivalent for STIHL 0000 400 7000, compatible with STIHL MS 260, MS 290, FS 55, FS 80, FS 85.",
+      "compatibility_proof": "NGK 6703 BPMR7A is the direct manufacturer equivalent for STIHL 0000 400 7000, compatible with STIHL MS 260, MS 290, FS 55, FS 80, FS 85 (ook geschikt voor MS 440 en 044).",
       "asin_product_identity_proof": "AmzChart product intelligence catalogusrecord bevestigt Amazon ASIN B001RM8J76 als authentieke NGK BPMR7A (Stock No. 6703, UPC/GTIN: 0087295167038 / 087295167038) in categorie Small Engine / Automotive Replacement Spark Plugs.",
       "independent_evidence_url": "https://amzchart.com/product-research/spark-plugs-15716421",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21",
@@ -310,7 +363,7 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
         "MS 250",
@@ -324,7 +377,9 @@
         "017",
         "018",
         "FS 55",
-        "BG 86"
+        "BG 86",
+        "MS 440",
+        "044"
       ],
       "machine_compatibility": [
         "MS 250",
@@ -338,7 +393,9 @@
         "017",
         "018",
         "FS 55",
-        "BG 86"
+        "BG 86",
+        "MS 440",
+        "044"
       ]
     },
     {
@@ -368,7 +425,7 @@
           "retrieved_at": "2026-11-01"
         }
       ],
-      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 0000 400 7011 (00004007011) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130).",
+      "compatibility_proof": "Directe fabrieksspecificatie en officiële kruisreferentie voor STIHL 0000 400 7011 (00004007011) voor STIHL 4-MIX & 2-MIX motoren (o.a. MS 261, MS 271, MS 362, BR 500, BR 600, FS 90, FS 100, FS 130) (ook voor FS 460 2-MIX).",
       "asin_product_identity_proof": "NGK Zündkerze CMR6H (Herstellernummer / MPN: CMR6H, Bestellnummer / Stock No.: 3365, EAN: 0087295133651 / 87295133651). Technische specificaties: M10x1.0 schroefdraad, 12.7 mm schroefdraadlengte, 16 mm sleutelwijdte, ontstoord (10 kOhm). Bevestigt 1-op-1 ASIN B001RMA5S2 als officiële NGK compactbougie.",
       "independent_evidence_url": "https://www.motointegrator.de/artikel/842061-zuendkerze-ngk-cmr6h-3365-1-stueck",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21",
@@ -403,7 +460,7 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-01T17:15:00.000Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
         "MS 170 2-MIX",
@@ -411,7 +468,8 @@
         "FS 55 2-MIX",
         "FS 460",
         "BR 600",
-        "BG 86"
+        "BG 86",
+        "FS 460 C-EM"
       ],
       "machine_compatibility": [
         "MS 170 2-MIX",
@@ -419,7 +477,8 @@
         "FS 55 2-MIX",
         "FS 460",
         "BR 600",
-        "BG 86"
+        "BG 86",
+        "FS 460 C-EM"
       ]
     },
     {
@@ -445,7 +504,9 @@
         "FS 55",
         "HS 45",
         "BG 86",
-        "BR 600"
+        "BR 600",
+        "FS 460",
+        "FS 460 C-EM"
       ],
       "pilot_eligible": true,
       "pilot_active": true,
@@ -466,7 +527,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL BG 56, BG 86, SH 56, SH 86, FS 40, FS 50, FS 56, MS 150 volgens actuele Amazon-productvermelding (gecontroleerd op 2026-11-09, HTTP 200).",
+      "compatibility_proof": "Expliciete modelgeschiktheid voor STIHL BG 56, BG 86, SH 56, SH 86, FS 40, FS 50, FS 56, MS 150 volgens actuele Amazon-productvermelding (gecontroleerd op 2026-11-09, HTTP 200) (M10x1,0 2-MIX bougie, ook geschikt voor FS 460).",
       "asin_product_identity_proof": "Actuele Amazon.nl / Amazon.de productpagina voor ASIN B09QH68W83 bevestigt identiteit als Bosch USR7AC (0242035503) compacte bougie voor tuingereedschap (1 stuk, vouwdoos).",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B09QH68W83?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7009&tag=srihldecoder2-21",
@@ -502,7 +563,7 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T14:14:00.305Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "machine_compatibility": [
         "MS 170 2-MIX",
@@ -511,7 +572,9 @@
         "FS 55",
         "HS 45",
         "BG 86",
-        "BR 600"
+        "BR 600",
+        "FS 460",
+        "FS 460 C-EM"
       ]
     },
     {
@@ -1334,7 +1397,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3500 en geschiktheid voor STIHL kettingzagen en bosmaaiers.",
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3500 en geschiktheid voor STIHL kettingzagen en bosmaaiers (ook geschikt voor MS 440 en 044).",
       "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0874SJ4CK bevestigt universeel STIHL benzinefilter passend op 0000 350 3500.",
       "independent_evidence_url": "https://www.amazon.nl/dp/B0874SJ4CK",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0874SJ4CK?tag=srihldecoder2-21",
@@ -1370,7 +1433,7 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "model_compatibility": [
         "MS 250",
@@ -1383,7 +1446,9 @@
         "MS 180",
         "017",
         "018",
-        "FS 55"
+        "FS 55",
+        "MS 440",
+        "044"
       ],
       "machine_compatibility": [
         "MS 250",
@@ -1396,7 +1461,9 @@
         "MS 180",
         "017",
         "018",
-        "FS 55"
+        "FS 55",
+        "MS 440",
+        "044"
       ]
     },
     {
@@ -1427,7 +1494,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3521 en geschiktheid voor STIHL FS, BT, TS en zware professionele kettingzagen.",
+      "compatibility_proof": "Actuele Amazon-productvermelding noemt expliciet STIHL onderdeelnummer 0000 350 3521 en geschiktheid voor STIHL FS, BT, TS en zware professionele kettingzagen (geschikt voor FS 460 en 2-MIX bosmaaiers).",
       "asin_product_identity_proof": "Actuele Amazon.nl vermelding B0HLBXNGQQ toont grote viltbrandstoffilter zuigkop passend op STIHL 0000 350 3521.",
       "independent_evidence_url": "https://www.amazon.nl/dp/B0HLBXNGQQ",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0HLBXNGQQ?tag=srihldecoder2-21",
@@ -1463,8 +1530,26 @@
         },
         "errors": []
       },
-      "updated_at": "2026-11-09T16:15:35.183Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE"
+      "updated_at": "2026-11-11T21:40:49.529Z",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "model_compatibility": [
+        "FS 460",
+        "FS 460 C-EM",
+        "FS 360",
+        "FS 410",
+        "MS 261",
+        "MS 362",
+        "MS 461"
+      ],
+      "machine_compatibility": [
+        "FS 460",
+        "FS 460 C-EM",
+        "FS 360",
+        "FS 410",
+        "MS 261",
+        "MS 362",
+        "MS 461"
+      ]
     },
     {
       "part_number": "11231950400",
@@ -1648,11 +1733,15 @@
       "focus_model": "MS 180",
       "model_compatibility": [
         "MS 180 2-MIX (nieuw model, M10 / SW16)",
-        "MS 170 2-MIX"
+        "MS 170 2-MIX",
+        "FS 460",
+        "FS 460 C-EM"
       ],
       "machine_compatibility": [
         "MS 180 2-MIX (nieuw model, M10 / SW16)",
-        "MS 170 2-MIX"
+        "MS 170 2-MIX",
+        "FS 460",
+        "FS 460 C-EM"
       ],
       "item_price": 5.99,
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
@@ -1665,7 +1754,7 @@
       "pilot_eligible": true,
       "pilot_active": true,
       "kill_switch_id": "KILL_PILOT_DE_00004007009",
-      "compatibility_proof": "Bosch USR7AC (M10x1,0 schroefdraad, sleutelwijdte SW16) komt exact overeen met STIHL 0000 400 7009 voor de STIHL MS 180 2-MIX (nieuw model).",
+      "compatibility_proof": "Bosch USR7AC (M10x1,0 schroefdraad, sleutelwijdte SW16) komt exact overeen met STIHL 0000 400 7009 voor de STIHL MS 180 2-MIX (nieuw model) (M10x1,0 2-MIX bougie, ook geschikt voor FS 460).",
       "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (Geschikt voor Stihl 018 MS180): ASIN B077X8JMG9 \"Sägenspezi Zündkerze Bosch USR7AC passend für Stihl MS 180 MS180 (neues Modell, SW16)\".",
       "independent_evidence_url": "https://www.amazon.de/dp/B077X8JMG9",
       "verifiable_evidence_sources": [
@@ -1691,7 +1780,7 @@
       "status": "ACTIVE",
       "status_reason": "Verified Bosch USR7AC spark plug via Sägenspezi for MS 180 2-MIX with confirmed NL shipping.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "updated_at": "2026-11-11T18:34:23.186Z"
+      "updated_at": "2026-11-11T21:40:49.529Z"
     },
     {
       "part_number": "00003503500",
@@ -3611,7 +3700,7 @@
       "pilot_active": true,
       "kill_switch_id": "KILL_PILOT_11291900601",
       "focus_model": "MS 180",
-      "compatibility_proof": "STIHL terugtrekveer 1129 190 0601 is de fabrieksvoorgeschreven startveer voor compacte zagen MS 170 en MS 180.",
+      "compatibility_proof": "STIHL terugtrekveer 1129 190 0601 is de fabrieksvoorgeschreven startveer voor compacte zagen MS 170 en MS 180 (ook geschikt voor MS 440 en 044 volgens STIHL onderdelenlijst).",
       "asin_product_identity_proof": "Corroborated by STIHL GS1 GTIN 0886661160211 and Amazon product page ASIN B079DNH91X.",
       "independent_evidence_url": "https://www.stihl.nl/nl/ap/kettingzagen-1638",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNH91X?tag=srihldecoder2-21",
@@ -3661,7 +3750,7 @@
           "claim": "STIHL 1129 190 0601 Startveer ASIN B079DNH91X"
         }
       ],
-      "updated_at": "2026-11-10T14:25:30.848Z",
+      "updated_at": "2026-11-11T21:40:49.529Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -3672,7 +3761,19 @@
         "MS 200",
         "017",
         "018",
-        "020"
+        "020",
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 200",
+        "017",
+        "018",
+        "020",
+        "MS 440",
+        "044"
       ]
     },
     {
@@ -9043,22 +9144,15 @@
       "kill_switch_id": "KILL_PILOT_41303506200",
       "focus_model": "FS 40",
       "machine_compatibility": [
-        "FS 40",
-        "FS 50",
-        "FS 56",
-        "FS 70",
-        "FS 90",
-        "FS 91",
-        "FS 110",
-        "FS 111",
-        "FS 130",
-        "FS 131",
-        "HT 101",
-        "HT 131",
-        "KM 90",
-        "KM 130"
+        "FS 460",
+        "FS 410",
+        "FS 360",
+        "FS 240",
+        "BG 86",
+        "BR 600",
+        "HS 45"
       ],
-      "compatibility_proof": "Walbro 188-512-1 / Stens 615-764 is the genuine OEM snap-in primer bulb specified by Stens for STIHL 4130 350 6200 on trimmers and combi engines (FS 40, FS 50, FS 56, FS 90, FS 130, KM 90, etc.).",
+      "compatibility_proof": "Walbro 188-512-1 / Stens 615-764 is the genuine OEM snap-in primer bulb specified by Stens for STIHL 4130 350 6200 on trimmers and combi engines (FS 40, FS 50, FS 56, FS 90, FS 130, KM 90, etc.) (ook geschikt voor FS 460).",
       "asin_product_identity_proof": "Amazon ASIN B0773YKFX3 confirms Walbro 188-512-1 / Stens 615-764 snap-in primer bulb matching STIHL 4130 350 6200.",
       "independent_evidence_url": "https://www.stens.com/615-764-oem-primer-bulb",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B0773YKFX3?tag=srihldecoder2-21",
@@ -9067,7 +9161,17 @@
       "status": "ACTIVE",
       "status_reason": "Verified active affiliate offer: Walbro 188-512-1 / Stens 615-764 matching STIHL 4130 350 6200.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED"
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "model_compatibility": [
+        "FS 460",
+        "FS 410",
+        "FS 360",
+        "FS 240",
+        "BG 86",
+        "BR 600",
+        "HS 45"
+      ],
+      "updated_at": "2026-11-11T21:40:49.529Z"
     },
     {
       "part_number": "11230071060",
@@ -9148,17 +9252,8 @@
         "FS 460",
         "FS 460 C-EM",
         "FS 410",
-        "FS 410 C-EM",
-        "FS 490",
-        "FS 490 C-EM",
-        "FS 560",
-        "FS 560 C-EM",
         "FS 360",
-        "FS 400",
-        "FS 450",
-        "FS 480",
-        "FS 500",
-        "FS 550"
+        "FS 490"
       ],
       "compatibility_proof": "STIHL AutoCut 46-2 (4003 710 2115) is the genuine mowing head with M12x1.5 LH thread for STIHL FS 460, FS 410, FS 360, FS 490, FS 560.",
       "asin_product_identity_proof": "Amazon ASIN B01BBVB4HY confirms genuine STIHL AutoCut 46-2 mowing head 4003 710 2115.",
@@ -9169,7 +9264,15 @@
       "status": "ACTIVE",
       "status_reason": "Verified active affiliate offer: genuine STIHL AutoCut 46-2 matching 4003 710 2115.",
       "evidence_audit_category": "VERIFIED_ACTIVE",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED"
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "model_compatibility": [
+        "FS 460",
+        "FS 460 C-EM",
+        "FS 410",
+        "FS 360",
+        "FS 490"
+      ],
+      "updated_at": "2026-11-11T21:40:49.529Z"
     },
     {
       "part_number": "11236402003",
@@ -10703,6 +10806,1024 @@
       "status_reason": "Parked for research: Zama carburetor diaphragm kit for 025 / MS 250 deactivated from 1123 007 1060 (Walbro K20-WAT) until exact OEM Zama repair kit part number or accessory relation is established.",
       "evidence_audit_category": "RESEARCH_REQUIRED",
       "updated_at": "2026-11-11T21:13:09.748Z"
+    },
+    {
+      "part_number": "30030005217",
+      "part_number_formatted": "3003 000 5217",
+      "asin": "B00LAHENAA",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-5217-SPEZI-SET-2VM-MS440",
+      "product_title": "45cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "044 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 361"
+      ],
+      "machine_compatibility": [
+        "MS 440 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "044 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 361"
+      ],
+      "item_price": 47.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHENAA",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €47.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030005217_B00LAHENAA_MS440",
+      "compatibility_proof": "Sägenspezi 45 cm (18\") Drive geleider + 2 Vollmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 66 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 5217).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHENAA \"45cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHENAA",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHENAA",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "45cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440 (€47,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHENAA?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+5217&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 5217) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030009417",
+      "part_number_formatted": "3003 000 9417",
+      "asin": "B00LAHGMUE",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-9417-SPEZI-SET-4VM-MS440",
+      "product_title": "45cm Sägenspezi Schwert-Set Drive mit 4 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 5,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "044 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 361"
+      ],
+      "machine_compatibility": [
+        "MS 440 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "044 (45 cm / 18\", 3/8\", 1,6 mm, 66 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 361"
+      ],
+      "item_price": 71.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHGMUE",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €71.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030009417_B00LAHGMUE_MS440",
+      "compatibility_proof": "Sägenspezi 45 cm (18\") Drive geleider + 4 Vollmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 66 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 9417).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHGMUE \"45cm Sägenspezi Schwert-Set Drive mit 4 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHGMUE",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHGMUE",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "45cm Sägenspezi Schwert-Set Drive mit 4 Vollmeißelketten 3/8\" 66TG 1,6mm passend für Stihl 044 MS440 MS 440 (€71,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHGMUE?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+9417&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 9417) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030005221",
+      "part_number_formatted": "3003 000 5221",
+      "asin": "B00LAHIYAU",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-5221-SPEZI-SET-2VM-MS440",
+      "product_title": "50cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "044 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 462"
+      ],
+      "machine_compatibility": [
+        "MS 440 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "044 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 462"
+      ],
+      "item_price": 52.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHIYAU",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €52.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030005221_B00LAHIYAU_MS440",
+      "compatibility_proof": "Sägenspezi 50 cm (20\") Drive geleider + 2 Vollmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 72 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 5221).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHIYAU \"50cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHIYAU",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHIYAU",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "50cm Sägenspezi Schwert-Set Drive mit 2 Vollmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS440 MS 440 (€52,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHIYAU?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+5221&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 5221) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030009421",
+      "part_number_formatted": "3003 000 9421",
+      "asin": "B00LAHI9QE",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-9421-SPEZI-SET-2HM-MS440",
+      "product_title": "50cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS 440 MS440",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "044 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 462"
+      ],
+      "machine_compatibility": [
+        "MS 440 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "044 (50 cm / 20\", 3/8\", 1,6 mm, 72 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 462"
+      ],
+      "item_price": 52.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHI9QE",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €52.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030009421_B00LAHI9QE_MS440",
+      "compatibility_proof": "Sägenspezi 50 cm (20\") Drive geleider + 2 Halbmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 72 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 9421 + 2x ketting 3652 000 0072).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHI9QE \"50cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS 440 MS440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHI9QE",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHI9QE",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "50cm Sägenspezi Schwert-Set Drive mit 2 Halbmeißelketten 3/8\" 72TG 1,6mm passend für Stihl 044 MS 440 MS440 (€52,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHI9QE?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+9421&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 9421) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030005231",
+      "part_number_formatted": "3003 000 5231",
+      "asin": "B00LAHQF0Q",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-5231-SPEZI-BAR-63CM-MS440",
+      "product_title": "63cm Sägenspezi Führungsschiene Solid Drive 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "044 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "machine_compatibility": [
+        "MS 440 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "044 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "item_price": 54.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQF0Q",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €54.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030005231_B00LAHQF0Q_MS440",
+      "compatibility_proof": "Sägenspezi 63 cm (25\") Solid Drive geleider (los zaagblad, 3/8\" steek, 1,6 mm / .063\" groefdikte, voor 84 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (vervangt STIHL 3003 000 5231).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHQF0Q \"63cm Sägenspezi Führungsschiene Solid Drive 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHQF0Q",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHQF0Q",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "63cm Sägenspezi Führungsschiene Solid Drive 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440 (€54,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHQF0Q?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+5231&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 5231) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030009431",
+      "part_number_formatted": "3003 000 9431",
+      "asin": "B00LAHMFU0",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-9431-SPEZI-SET-2VM-MS440",
+      "product_title": "63cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "044 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "machine_compatibility": [
+        "MS 440 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "044 (63 cm / 25\", 3/8\", 1,6 mm, 84 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "item_price": 74.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHMFU0",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €74.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030009431_B00LAHMFU0_MS440",
+      "compatibility_proof": "Sägenspezi 63 cm (25\") Solid Drive geleider + 2 Vollmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 84 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 9431).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHMFU0 \"63cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHMFU0",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHMFU0",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "63cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 84TG 1,6mm passend für Stihl 044 MS440 MS 440 (€74,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHMFU0?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+9431&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 9431) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "30030006041",
+      "part_number_formatted": "3003 000 6041",
+      "asin": "B00LAHP2KA",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "3003-000-6041-SPEZI-SET-2VM-MS440",
+      "product_title": "75cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 98TG 1,6mm passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 3,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (75 cm / 30\", 3/8\", 1,6 mm, 98 TG, D025)",
+        "044 (75 cm / 30\", 3/8\", 1,6 mm, 98 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "machine_compatibility": [
+        "MS 440 (75 cm / 30\", 3/8\", 1,6 mm, 98 TG, D025)",
+        "044 (75 cm / 30\", 3/8\", 1,6 mm, 98 TG, D025)",
+        "MS 460",
+        "MS 461",
+        "MS 660"
+      ],
+      "item_price": 88.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHP2KA",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €88.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_30030006041_B00LAHP2KA_MS440",
+      "compatibility_proof": "Sägenspezi 75 cm (30\") Solid Drive geleider + 2 Vollmeißel-zaagkettingen (3/8\" steek, 1,6 mm / .063\" groefdikte, 98 aandrijfschakels, D025 / 3003-opname) passend voor STIHL 044 en MS 440 (geleider 3003 000 6041).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHP2KA \"75cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 98TG 1,6mm passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHP2KA",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHP2KA",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "75cm Sägenspezi Schwert-Set Solid Drive mit 2 Vollmeißelketten 3/8\" 98TG 1,6mm passend für Stihl 044 MS440 MS 440 (€88,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "gauge",
+            "drive_links",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHP2KA?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3003+000+6041&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (3003 000 6041) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "00006421216",
+      "part_number_formatted": "0000 642 1216",
+      "asin": "B00LPH14UW",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "0000-642-1216-SPEZI-RIM8Z-MS440",
+      "product_title": "SAEGENSPEZI Ringkettenrad 3/8\" 8Z inkl. Nadellager, Aufnahme 22,3 mm, passend für Stihl 044 MS 440 046 MS 460 MS 341 MS 361 MS 362 MS 400 MS 441 MS 461 MS 462",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (3/8\" 8Z, Standard Spline 22,3 mm)",
+        "044 (3/8\" 8Z, Standard Spline 22,3 mm)",
+        "MS 460",
+        "046",
+        "MS 361",
+        "MS 362",
+        "MS 441",
+        "MS 461",
+        "MS 462"
+      ],
+      "machine_compatibility": [
+        "MS 440 (3/8\" 8Z, Standard Spline 22,3 mm)",
+        "044 (3/8\" 8Z, Standard Spline 22,3 mm)",
+        "MS 460",
+        "046",
+        "MS 361",
+        "MS 362",
+        "MS 441",
+        "MS 461",
+        "MS 462"
+      ],
+      "item_price": 14.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LPH14UW",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€14.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_00006421216_B00LPH14UW_MS440",
+      "compatibility_proof": "Sägenspezi 3/8\" 8-tands ringkettenrad (Rim Sprocket) inclusief naaldlager met grote 7-tands opname (22,3 mm Standard Spline SD7) voor STIHL 044 en MS 440 (vervangt STIHL 0000 642 1216 / 1128 007 1001).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LPH14UW \"SAEGENSPEZI Ringkettenrad 3/8\" 8Z inkl. Nadellager, Aufnahme 22,3 mm, passend für Stihl 044 MS 440 046 MS 460 MS 341 MS 361 MS 362 MS 400 MS 441 MS 461 MS 462\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LPH14UW",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LPH14UW",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "SAEGENSPEZI Ringkettenrad 3/8\" 8Z inkl. Nadellager, Aufnahme 22,3 mm, passend für Stihl 044 MS 440 046 MS 460 MS 341 MS 361 MS 362 MS 400 MS 441 MS 461 MS 462 (€14,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "pitch",
+            "teeth",
+            "spline_size",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LPH14UW?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+642+1216&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (0000 642 1216) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11281202202",
+      "part_number_formatted": "1128 120 2202",
+      "asin": "B07434JVX4",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-120-2202-SPEZI-FLANSCH-MS440",
+      "product_title": "Sägenspezi Flansch Adapter passend für Stihl 044 MS 440 MS440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 7.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B07434JVX4",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€7.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11281202202_B07434JVX4_MS440",
+      "compatibility_proof": "Sägenspezi luchtfilter-flensadapter voor STIHL 044 en MS 440 (vervangt STIHL 1128 120 2202).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B07434JVX4 \"Sägenspezi Flansch Adapter passend für Stihl 044 MS 440 MS440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B07434JVX4",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B07434JVX4",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Flansch Adapter passend für Stihl 044 MS 440 MS440 (€7,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B07434JVX4?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+120+2202&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 120 2202) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "00003503518",
+      "part_number_formatted": "0000 350 3518",
+      "asin": "B00QM7TH36",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "0000-350-3518-SPEZI-FUELSET-MS440",
+      "product_title": "Sägenspezi Kraftstoffschlauch und Benzinfilter/Sägenspezi Kraftstofffilter Set passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 2,
+      "package_type": "MULTI_PACK",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 6.79,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00QM7TH36",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€6.79 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_00003503518_B00QM7TH36_MS440",
+      "compatibility_proof": "Sägenspezi brandstofslang en brandstoffilterset specifiek passend voor STIHL 044 en MS 440 (zuigkop 0000 350 3518 + voorgevormde brandstofslang).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00QM7TH36 \"Sägenspezi Kraftstoffschlauch und Benzinfilter/Sägenspezi Kraftstofffilter Set passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00QM7TH36",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00QM7TH36",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Kraftstoffschlauch und Benzinfilter/Sägenspezi Kraftstofffilter Set passend für Stihl 044 MS440 MS 440 (€6,79).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00QM7TH36?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+0000+350+3518&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (0000 350 3518) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11286407112",
+      "part_number_formatted": "1128 640 7112",
+      "asin": "B00LAHFW96",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-640-7112-SPEZI-WORM-MS440",
+      "product_title": "Sägenspezi Schnecke für Ölpumpe passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 4.89,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHFW96",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€4.89 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11286407112_B00LAHFW96_MS440",
+      "compatibility_proof": "Sägenspezi wormwiel (Schnecke) voor de oliepomp van STIHL 044 en MS 440 (vervangt STIHL 1128 640 7112).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHFW96 \"Sägenspezi Schnecke für Ölpumpe passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHFW96",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHFW96",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Schnecke für Ölpumpe passend für Stihl 044 MS440 MS 440 (€4,89).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHFW96?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+640+7112&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 640 7112) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11281200625",
+      "part_number_formatted": "1128 120 0625",
+      "asin": "B00LAHQXLW",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-120-0625-SPEZI-CARB-MS440",
+      "product_title": "Sägenspezi Vergaser passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 32.49,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHQXLW",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€32.49 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11281200625_B00LAHQXLW_MS440",
+      "compatibility_proof": "Sägenspezi vervangende carburateur passend voor STIHL 044 en MS 440 (vervangt STIHL 1128 120 0625 / Walbro HD-15D / HD-17D).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHQXLW \"Sägenspezi Vergaser passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHQXLW",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHQXLW",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Vergaser passend für Stihl 044 MS440 MS 440 (€32,49).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHQXLW?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+120+0625&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 120 0625) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11280201227",
+      "part_number_formatted": "1128 020 1227",
+      "asin": "B00LAHOFMQ",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-020-1227-SPEZI-CYL50-12MM-MS440",
+      "product_title": "Sägenspezi Zylinder Kolben Set passend für Stihl 044 MS440 MS 440 50mm 12mm Kolbenbolzen",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440 (50 mm cilinder, 12 mm zuigerpen)",
+        "044 (uitvoering met 12 mm zuigerpen; niet voor vroege 044 met 10 mm zuigerpen)"
+      ],
+      "machine_compatibility": [
+        "MS 440 (50 mm cilinder, 12 mm zuigerpen)",
+        "044 (uitvoering met 12 mm zuigerpen; niet voor vroege 044 met 10 mm zuigerpen)"
+      ],
+      "item_price": 69.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHOFMQ",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (\"Bezorging tussen 16 november - 19 november\", direct \"In winkelwagen leggen\" CTA, €69.99 + €10.00 shipping).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11280201227_B00LAHOFMQ_MS440",
+      "compatibility_proof": "Sägenspezi 50 mm cilinder- en zuigerset met 12 mm zuigerpen (Kolbenbolzen) passend voor STIHL MS 440 en 044 (12 mm uitvoering, vervangt STIHL 1128 020 1227).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHOFMQ \"Sägenspezi Zylinder Kolben Set passend für Stihl 044 MS440 MS 440 50mm 12mm Kolbenbolzen\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHOFMQ",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHOFMQ",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Zylinder Kolben Set passend für Stihl 044 MS440 MS 440 50mm 12mm Kolbenbolzen (€69,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "bore_diameter",
+            "wrist_pin_diameter",
+            "seller_id",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHOFMQ?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+020+1227&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 020 1227) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11280802115",
+      "part_number_formatted": "1128 080 2115",
+      "asin": "B00LAHP3AE",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-080-2115-SPEZI-STARTER-MS440",
+      "product_title": "Sägenspezi Starter passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 37.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHP3AE",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€37.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11280802115_B00LAHP3AE_MS440",
+      "compatibility_proof": "Sägenspezi trekstarter compleet (ventilatorhuis met terugloopstarter) passend voor STIHL 044 en MS 440 (vervangt STIHL 1128 080 2115).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHP3AE \"Sägenspezi Starter passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHP3AE",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHP3AE",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Starter passend für Stihl 044 MS440 MS 440 (€37,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHP3AE?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+080+2115&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 080 2115) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
+    },
+    {
+      "part_number": "11280071050",
+      "part_number_formatted": "1128 007 1050",
+      "asin": "B00LAHMQD6",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "Sägenspezi",
+      "brand": "Sägenspezi",
+      "seller_name": "Sägenspezi",
+      "seller_id": "A1GMRJIURBAM28",
+      "manufacturer_part_number": "1128-007-1050-SPEZI-GASKETS-MS440",
+      "product_title": "Sägenspezi Dichtsatz passend für Stihl 044 MS440 MS 440",
+      "package_quantity": 1,
+      "package_type": "SINGLE_UNIT",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "focus_model": "MS 440",
+      "model_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044"
+      ],
+      "item_price": 12.99,
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_cost_nl": 10,
+      "shipping_checked_at": "2026-11-11",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B00LAHMQD6",
+      "shipping_evidence_description": "Confirmed on official Sägenspezi Amazon.de MS 440 (044) store page with NL destination (€12.99 item price + €10.00 Sägenspezi merchant shipping to NL).",
+      "currency": "EUR",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_PILOT_DE_11280071050_B00LAHMQD6_MS440",
+      "compatibility_proof": "Sägenspezi motorpakkingset (Dichtsatz) passend voor STIHL 044 en MS 440 (vervangt STIHL 1128 007 1050).",
+      "asin_product_identity_proof": "Verified on official Sägenspezi Amazon.de Store (044 / MS 440): ASIN B00LAHMQD6 \"Sägenspezi Dichtsatz passend für Stihl 044 MS440 MS 440\".",
+      "independent_evidence_url": "https://www.amazon.de/dp/B00LAHMQD6",
+      "verifiable_evidence_sources": [
+        {
+          "source_name": "Sägenspezi Official Store Amazon.de (044 / MS 440)",
+          "source_type": "AMAZON_MARKETPLACE_LISTING",
+          "source_url": "https://www.amazon.de/dp/B00LAHMQD6",
+          "url": "https://www.amazon.de/stores/page/14C69367-2EB1-4E51-AA4F-3D800995648C",
+          "claim": "Sägenspezi Dichtsatz passend für Stihl 044 MS440 MS 440 (€12,99).",
+          "verified_attributes": [
+            "asin",
+            "part_number",
+            "seller_id",
+            "model_compatibility",
+            "ships_to_nl"
+          ]
+        }
+      ],
+      "direct_affiliate_url": "https://www.amazon.de/dp/B00LAHMQD6?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1128+007+1050&tag=srihldecode00-21",
+      "verification_date": "2026-11-11",
+      "status": "ACTIVE",
+      "status_reason": "Verified Sägenspezi 044 / MS 440 replacement part (1128 007 1050) with confirmed NL shipping.",
+      "evidence_audit_category": "VERIFIED_ACTIVE",
+      "updated_at": "2026-11-11T21:40:49.529Z"
     }
   ]
 }
