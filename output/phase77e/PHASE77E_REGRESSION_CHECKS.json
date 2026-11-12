@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77E",
+  "generated_at_utc": "2026-11-12T23:34:38.337Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "id": "ACTIVE_WITHIN_CAPS",
+      "description": "ACTIVE offers stay within the 100 total and per-marketplace caps",
+      "status": "PASS",
+      "detail": "total=99/100, NL=53/100, DE=46/50"
+    },
+    {
+      "id": "MARKETPLACE_TAGS",
+      "description": "Every ACTIVE offer carries the tag of its own marketplace",
+      "status": "PASS",
+      "detail": "all tags correct"
+    },
+    {
+      "id": "REGISTRY_UNCHANGED",
+      "description": "The offer registry is unchanged: Phase 77E refused to promote unproven candidates",
+      "status": "PASS",
+      "detail": "identical to main"
+    },
+    {
+      "id": "RESOLVER",
+      "description": "A verified ACTIVE part resolves to a direct NL link; an unverified part falls back to search",
+      "status": "PASS",
+      "detail": "direct=DIRECT_ASIN/amazon.nl, fallback=SEARCH_FALLBACK"
+    },
+    {
+      "id": "PART_PAGE_BUY_BUTTON",
+      "description": "An ACTIVE offer still renders a direct buy button on its part page",
+      "status": "PASS",
+      "detail": "direct marker=true"
+    },
+    {
+      "id": "PRODUCTION_CODE_UNCHANGED",
+      "description": "Passport, decoder, affiliate engine and homepage are untouched",
+      "status": "PASS",
+      "detail": "no diff vs main"
+    },
+    {
+      "id": "SEO_SITEMAP",
+      "description": "Sitemap keeps the canonical 1,024 URLs",
+      "status": "PASS",
+      "detail": "generated=1024"
+    },
+    {
+      "id": "POLICY_UNCHANGED",
+      "description": "Registry caps and marketplace limits are unchanged",
+      "status": "PASS",
+      "detail": "total=100, NL=100, DE=50; registry=identical to main"
+    },
+    {
+      "id": "BRANCH_SCOPE",
+      "description": "Only the registry offer set and Phase 77E research artifacts changed",
+      "status": "PASS",
+      "detail": "3 allowed files"
+    }
+  ]
+}
