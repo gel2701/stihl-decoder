@@ -31,6 +31,22 @@ const PREFLIGHT = args.includes('--preflight');
 const SELECT_ONLY = args.includes('--select-only');
 const RESET = args.includes('--reset');
 
+// Phase 76E: --limit N and --run-id X
+function readArg(name) {
+  const i = args.indexOf(name);
+  return i >= 0 ? args[i + 1] : null;
+}
+const LIMIT = readArg('--limit') !== null ? Number(readArg('--limit')) : null;
+const RUN_ID = readArg('--run-id');
+if (LIMIT !== null && (!Number.isInteger(LIMIT) || LIMIT < 1)) {
+  console.error(`ABORT: --limit must be a positive integer, got "${LIMIT}"`);
+  process.exit(1);
+}
+if (RUN_ID && !/^[A-Za-z0-9._-]+$/.test(RUN_ID)) {
+  console.error(`ABORT: --run-id must be alphanumeric with ._- only, got "${RUN_ID}"`);
+  process.exit(1);
+}
+
 const CAMPAIGN = process.env.EBAY_EPN_CAMPAIGN_ID || '';
 const EXPECTED_CAMPAIGN = '5339245312';
 if (!SELECT_ONLY && CAMPAIGN !== EXPECTED_CAMPAIGN) {
@@ -73,13 +89,16 @@ function selectParts() {
     selected.push(...items.slice(0, quota));
   }
   const unique = [...new Map(selected.map(p => [p.part_number, p])).values()];
-  if (unique.length !== 100) {
-    console.error(`ABORT: expected 100 selected parts, got ${unique.length}`);
+  const expected = LIMIT ?? 100;
+  const limited = LIMIT !== null ? unique.slice(0, LIMIT) : unique;
+  if (limited.length !== expected) {
+    console.error(`ABORT: expected ${expected} selected parts, got ${limited.length}`);
     process.exit(1);
   }
-  return unique.map(p => ({
+  return limited.map(p => ({
     part_number: p.part_number,
     display: p.part_number_display || p.part_number,
+    description: p.display_name || p.category || '',
     category: p.category,
     queue_rank: p.queue_rank
   }));
@@ -103,7 +122,7 @@ if (PREFLIGHT) {
 }
 
 const parts = selectParts();
-console.log(`Pilot selection: ${parts.length} parts across ${QUOTA ? Object.keys(QUOTA).length : 0} categories`);
+console.log(`Pilot selection: ${parts.length} parts across ${Object.keys(QUOTA).length} categories${LIMIT !== null ? ` (limit=${LIMIT})` : ''}${RUN_ID ? ` run_id=${RUN_ID}` : ''}`);
 
 const engine = new EbayHighVolumeEngine({
   apiClient,
@@ -114,12 +133,15 @@ const engine = new EbayHighVolumeEngine({
   checkpointIntervalMs: 10000
 });
 
+// Phase 76E: knownParts enables classifyPart product-type control
+const knownParts = parts.map(p => ({ part_number: p.part_number, description: `${p.description} ${p.category}` }));
+
 // Phase 76E: persist checkpoints/results on the Render persistent disk when available
 const persistentRoot = process.env.RENDER_DISK_PATH || (fs.existsSync('/var/data') ? '/var/data' : null);
 const outDir = persistentRoot ? path.join(persistentRoot, 'phase76e') : path.join(rootDir, 'output', 'phase76e');
 fs.mkdirSync(outDir, { recursive: true });
 console.log(`Output directory: ${outDir}`);
-const statePath = path.join(outDir, 'pilot_100_state.json');
+const statePath = path.join(outDir, `pilot_100_state${RUN_ID ? `_${RUN_ID}` : ''}.json`);
 const CHUNK = 10;
 
 // Resume from checkpoint unless --reset
@@ -133,24 +155,31 @@ if (!RESET) {
 }
 
 const seenOffers = new Set();
+const seenReviews = new Set();
 const allOffers = [];
+const allReviews = [];
 const allRejections = [];
-const totals = { api_calls: 0, offers_found: 0, offers_validated: 0, offers_rejected: 0, backoff_delays: 0, errors: [] };
+const totals = { api_calls: 0, offers_found: 0, offers_validated: 0, offers_reviewed: 0, offers_rejected: 0, backoff_delays: 0, errors: [] };
 const startedAt = Date.now();
 let lastSavedIndex = offset;
 
 try {
 for (let cursor = offset; cursor < parts.length; cursor += CHUNK) {
   const chunk = parts.slice(cursor, cursor + CHUNK).map(p => p.part_number);
-  const res = await engine.processBatch(chunk, { maxItems: CHUNK, knownParts: [] });
+  const res = await engine.processBatch(chunk, { maxItems: CHUNK, knownParts });
   for (const offer of res.active_offers) {
     const key = `${offer.marketplace}:${offer.item_id}`;
     if (!seenOffers.has(key)) { seenOffers.add(key); allOffers.push(offer); }
+  }
+  for (const offer of res.review_offers || []) {
+    const key = `${offer.marketplace}:${offer.item_id}`;
+    if (!seenReviews.has(key)) { seenReviews.add(key); allReviews.push(offer); }
   }
   allRejections.push(...res.rejected_offers);
   totals.api_calls += res.summary.api_calls;
   totals.offers_found += res.summary.offers_found;
   totals.offers_validated += res.summary.offers_validated;
+  totals.offers_reviewed += res.summary.offers_reviewed || 0;
   totals.offers_rejected += res.summary.offers_rejected;
   totals.backoff_delays += res.summary.backoff_delays;
   totals.errors.push(...res.metrics.errors);
@@ -160,6 +189,7 @@ for (let cursor = offset; cursor < parts.length; cursor += CHUNK) {
     next_part_index: next,
     summary: { ...totals, processed_parts: next, duration_ms: Date.now() - startedAt },
     active_offers: allOffers,
+    review_offers: allReviews,
     rejected_offers: allRejections,
     checkpoints: engine.checkpoints
   });
@@ -174,6 +204,7 @@ for (let cursor = offset; cursor < parts.length; cursor += CHUNK) {
       next_part_index: lastSavedIndex,
       summary: { ...totals, processed_parts: lastSavedIndex, duration_ms: Date.now() - startedAt },
       active_offers: allOffers,
+      review_offers: allReviews,
       rejected_offers: allRejections,
       checkpoints: engine.checkpoints
     });
@@ -181,9 +212,10 @@ for (let cursor = offset; cursor < parts.length; cursor += CHUNK) {
   process.exit(1);
 }
 
-// Classification: AUTO_ACCEPT = exact MPN match, REVIEW = title-only match, REJECT = validation failed
-const autoAccept = allOffers.filter(o => o.validation_confidence >= 0.98);
-const review = allOffers.filter(o => o.validation_confidence < 0.98);
+// Classification: ACCEPT = exact MPN match (only these may enter active_offers),
+// REVIEW = title-only match (kept out of active_offers), REJECT = validation failed
+const autoAccept = allOffers.filter(o => o.decision === 'ACCEPT');
+const review = allReviews;
 const reject = allRejections.filter(r => r.reason === 'validation_failed');
 const partsWithAccepted = new Set(allOffers.map(o => o.part_number));
 const validAffiliateLinks = allOffers.filter(o => o.affiliate_url && o.affiliate_url.includes(`campid=${CAMPAIGN}`));
@@ -194,6 +226,8 @@ const summary = {
   schema_version: '1.0.0',
   phase: '76E',
   generated_at: new Date().toISOString(),
+  run_id: RUN_ID || null,
+  limit: LIMIT,
   campaign_id: CAMPAIGN,
   pilot_size: parts.length,
   parts_processed_this_run: processedParts,
@@ -201,9 +235,10 @@ const summary = {
   api_calls: totals.api_calls,
   offers_found: totals.offers_found,
   offers_validated: totals.offers_validated,
+  offers_reviewed: totals.offers_reviewed,
   offers_rejected: totals.offers_rejected,
   classification: {
-    AUTO_ACCEPT: autoAccept.length,
+    ACCEPT: autoAccept.length,
     REVIEW: review.length,
     REJECT: reject.length
   },
@@ -220,13 +255,14 @@ const summary = {
 };
 
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
-const resultsPath = path.join(outDir, `pilot_100_results_${stamp}.json`);
+const resultsPath = path.join(outDir, `pilot_100_results${RUN_ID ? `_${RUN_ID}` : ''}_${stamp}.json`);
 summary.output_files.results = path.relative(rootDir, resultsPath);
 
 fs.writeFileSync(resultsPath, JSON.stringify({
   summary,
   parts,
   accepted_offers: allOffers,
+  review_offers: allReviews,
   rejected_offers: allRejections
 }, null, 2), 'utf8');
 

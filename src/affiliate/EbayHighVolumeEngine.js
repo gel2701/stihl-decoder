@@ -71,8 +71,9 @@ export class EbayHighVolumeEngine {
     const targetCompact = targetPart.replace(/[\s-]/g, '');
 
     // Rule 1: Part number must be in MPN or title (explicit reference, not incidental mention)
-    const inMpn = mpn && new RegExp(`(^|\\D)${targetFormatted}(\\D|$)`).test(mpn);
-    const inTitle = new RegExp(`(^|\\D)${targetFormatted}(\\D|$)`).test(title);
+    const separatorRegex = targetFormatted.replace(/\s/g, '[\\s-]*');
+    const inMpn = mpn && new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(mpn);
+    const inTitle = new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(title);
     if (!inMpn && !inTitle) return null;
 
     // Rule 2: Type classification — reject if conflicting type in title
@@ -106,8 +107,11 @@ export class EbayHighVolumeEngine {
     if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\btune-up\b/.test(title)) return null;
     if (item.quantity && item.quantity > 1) return null;
 
-    // Passed all gates
+    // Passed all gates — explicit decision: only exact-MPN matches are auto-ACCEPT,
+    // title-only matches go to REVIEW (never into active_offers), failures return null (REJECT).
     return {
+      decision: inMpn ? 'ACCEPT' : 'REVIEW',
+      match_basis: inMpn ? 'MPN_EXACT' : 'TITLE_ONLY',
       item_id: item.itemId,
       title: item.title || '',
       mpn: mpn,
@@ -135,6 +139,7 @@ export class EbayHighVolumeEngine {
     const resumeFrom = options.resumeFrom ?? checkpoint.partIndex;
 
     const activeOffers = [];
+    const reviewOffers = [];
     const seen = new Set();
     const rejectedOffers = [];
     const metrics = {
@@ -142,6 +147,7 @@ export class EbayHighVolumeEngine {
       total_searches: 0,
       offers_found: 0,
       offers_validated: 0,
+      offers_reviewed: 0,
       offers_rejected: 0,
       errors: [],
       api_calls: 0,
@@ -189,16 +195,25 @@ export class EbayHighVolumeEngine {
 
               metrics.api_calls++;
 
-              // Validate each item
+              // Classification: ACCEPT/REVIEW/REJECT — only ACCEPT may enter active_offers
               for (const item of res.items || []) {
                 const validated = this.validateOffer(item, part, classification);
-                if (validated) {
+                if (validated && validated.decision === 'ACCEPT') {
                   metrics.offers_validated++;
                   const offer = { part_number: part, marketplace, vendor, ...validated };
                   const key = `${offer.marketplace}:${offer.item_id}`;
                   if (!seen.has(key)) {
                     seen.add(key);
                     activeOffers.push(offer);
+                  }
+                } else if (validated && validated.decision === 'REVIEW') {
+                  // Title-only match — needs manual review, never auto-accepted
+                  metrics.offers_reviewed++;
+                  const offer = { part_number: part, marketplace, vendor, ...validated };
+                  const key = `${offer.marketplace}:${offer.item_id}`;
+                  if (!seen.has(key)) {
+                    seen.add(key);
+                    reviewOffers.push(offer);
                   }
                 } else {
                   metrics.offers_rejected++;
@@ -233,6 +248,7 @@ export class EbayHighVolumeEngine {
           partIndex: i + 1,
           processedCount: metrics.scanned_parts,
           activeCount: activeOffers.length,
+          reviewCount: reviewOffers.length,
           rejectedCount: rejectedOffers.length
         });
         lastCheckpoint = now;
@@ -247,12 +263,14 @@ export class EbayHighVolumeEngine {
         api_calls: metrics.api_calls,
         offers_found: metrics.offers_found,
         offers_validated: metrics.offers_validated,
+        offers_reviewed: metrics.offers_reviewed,
         offers_rejected: metrics.offers_rejected,
         errors_count: metrics.errors.length,
         backoff_delays: metrics.backoff_delays,
         duration_ms: Date.now() - startTime
       },
       active_offers: activeOffers,
+      review_offers: reviewOffers,
       rejected_offers: rejectedOffers,
       metrics,
       checkpoints: this.checkpoints
@@ -296,6 +314,7 @@ export class EbayHighVolumeEngine {
       summary: state.summary ?? {},
       checkpoints: state.checkpoints ?? this.checkpoints,
       active_offers: state.active_offers ?? [],
+      review_offers: state.review_offers ?? [],
       rejected_offers: state.rejected_offers ?? []
     };
     fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
@@ -323,6 +342,7 @@ export class EbayHighVolumeEngine {
         checkpoints: Array.isArray(parsed.checkpoints) ? parsed.checkpoints : [],
         active_offers: fresh,
         expired_offers_dropped: active.length - fresh.length,
+        review_offers: Array.isArray(parsed.review_offers) ? parsed.review_offers : [],
         rejected_offers: Array.isArray(parsed.rejected_offers) ? parsed.rejected_offers : [],
         state_fresh: ageOk
       };
