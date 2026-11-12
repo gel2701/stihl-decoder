@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77D",
+  "generated_at_utc": "2026-11-12T23:15:01.116Z",
+  "read_only": true,
+  "live_gsc": {
+    "status": "NOT_CONFIGURED",
+    "configured": false,
+    "missing_credentials": [
+      "GSC_ACCESS_TOKEN",
+      "GSC_SITE_URL"
+    ],
+    "note": "Geen OAuth-token in deze omgeving; de API-integratielaag faalt veilig gesloten en er zijn geen verzonnen GSC-cijfers gebruikt.",
+    "required_scope": "https://www.googleapis.com/auth/webmasters.readonly",
+    "required_env_vars": [
+      "GSC_ACCESS_TOKEN",
+      "GSC_SITE_URL"
+    ]
+  },
+  "stored_historical_gsc_baseline": {
+    "provenance": "GSC-metingen 1 augustus t/m 31 oktober 2026, vastgelegd in PHASE60_1_COMMERCIAL_VALIDATION.md",
+    "rows": [
+      {
+        "subject": "/bosmaaiers/fs-460/onderdelen/",
+        "impressions": 315,
+        "clicks": 0,
+        "average_position": 9.36,
+        "ctr_pct": 0,
+        "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+      },
+      {
+        "subject": "stihl fs 460 c onderdelen",
+        "impressions": 283,
+        "clicks": 0,
+        "average_position": 9.12,
+        "ctr_pct": 0,
+        "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+      },
+      {
+        "subject": "/kettingzagen/ms-440/onderdelen/",
+        "impressions": 277,
+        "clicks": 2,
+        "average_position": 11.4,
+        "ctr_pct": 0.72,
+        "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+      },
+      {
+        "subject": "/kettingzagen/ms-170/onderdelen/",
+        "impressions": 150,
+        "clicks": 3,
+        "average_position": 8.7,
+        "ctr_pct": 2,
+        "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+      }
+    ]
+  },
+  "demand_sources": [
+    {
+      "source": "GSC_HISTORICAL_BASELINE",
+      "status": "AVAILABLE",
+      "granularity": "pagina/query-niveau, geaggregeerd per rapportregel",
+      "limitation": "Niet live op te vragen; alleen de vier vastgelegde regels zijn reproduceerbaar."
+    },
+    {
+      "source": "HISTORICAL_SITE_TRAFFIC_INDEX",
+      "status": "DECLARED_ONLY",
+      "provenance": "PHASE60_COMMERCIAL_OPPORTUNITIES.json meta.real_traffic_sources",
+      "declared_volume": "117.474 zoekopdrachten, 114.667 onderdeelweergaven, 2.860 modelweergaven (3 november 2026)",
+      "limitation": "De onderliggende analytics_events-tabel bevat in deze checkout 0 rijen; de volumes zijn dus niet opnieuw te berekenen en worden uitsluitend als historisch cijfer geciteerd."
+    },
+    {
+      "source": "SITE_SEARCH_QUERIES",
+      "status": "EMPTY",
+      "limitation": "Geen zoekterm-dataset in de checkout; geen termen verzonnen."
+    }
+  ],
+  "priority_models": [
+    {
+      "rank": 1,
+      "model_name": "MS 440",
+      "canonical_id": "stihl_ms_440",
+      "fitment_id": "ms_440",
+      "historical_ranking": 76,
+      "historical_views": 27,
+      "historical_searches": 26,
+      "gsc_baseline_rows": [
+        {
+          "subject": "/kettingzagen/ms-440/onderdelen/",
+          "impressions": 277,
+          "clicks": 2,
+          "average_position": 11.4,
+          "ctr_pct": 0.72,
+          "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "model_name": "MS 170",
+      "canonical_id": "stihl_ms_170",
+      "fitment_id": "ms_170",
+      "historical_ranking": 93,
+      "historical_views": 27,
+      "historical_searches": 27,
+      "gsc_baseline_rows": [
+        {
+          "subject": "/kettingzagen/ms-170/onderdelen/",
+          "impressions": 150,
+          "clicks": 3,
+          "average_position": 8.7,
+          "ctr_pct": 2,
+          "source": "PHASE60_1_COMMERCIAL_VALIDATION.md (GSC baseline 2026-08-01..2026-10-31)"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "model_name": "BG 86",
+      "canonical_id": "stihl_bg_86",
+      "fitment_id": "bg_86",
+      "historical_ranking": null,
+      "historical_views": null,
+      "historical_searches": null,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 4,
+      "model_name": "MS 461",
+      "canonical_id": "stihl_ms_461",
+      "fitment_id": "ms_461",
+      "historical_ranking": null,
+      "historical_views": null,
+      "historical_searches": null,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 5,
+      "model_name": "BR 600",
+      "canonical_id": "stihl_br_600",
+      "fitment_id": "br_600",
+      "historical_ranking": 75,
+      "historical_views": 27,
+      "historical_searches": 27,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 6,
+      "model_name": "MS 390",
+      "canonical_id": "stihl_ms_390",
+      "fitment_id": "ms_390",
+      "historical_ranking": null,
+      "historical_views": null,
+      "historical_searches": null,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 7,
+      "model_name": "MS 361",
+      "canonical_id": "stihl_ms_361",
+      "fitment_id": "ms_361",
+      "historical_ranking": 82,
+      "historical_views": 27,
+      "historical_searches": 27,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 8,
+      "model_name": "HS 45",
+      "canonical_id": "stihl_hs_45",
+      "fitment_id": "hs_45",
+      "historical_ranking": null,
+      "historical_views": null,
+      "historical_searches": null,
+      "gsc_baseline_rows": []
+    },
+    {
+      "rank": 9,
+      "model_name": "MS 250",
+      "canonical_id": "stihl_ms_250",
+      "fitment_id": "ms_250",
+      "historical_ranking": 95,
+      "historical_views": 27,
+      "historical_searches": 27,
+      "gsc_baseline_rows": []
+    }
+  ],
+  "intent_classification": {
+    "method": "Commerciële intentie is afgeleid uit de queryvorm (model + \"onderdelen\"), niet uit losse vertoningen.",
+    "confirmed_commercial_queries": [
+      "/bosmaaiers/fs-460/onderdelen/",
+      "stihl fs 460 c onderdelen",
+      "/kettingzagen/ms-440/onderdelen/",
+      "/kettingzagen/ms-170/onderdelen/"
+    ],
+    "click_potential_note": "De GSC-baseline laat zien dat posities 8-11 veel vertoningen maar bijna geen klikken opleveren; de winst zit in titel/CTR en in directe koopdekking, niet in extra paginas."
+  }
+}
