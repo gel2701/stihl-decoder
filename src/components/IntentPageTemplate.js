@@ -196,21 +196,43 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
     <!-- Breadcrumbs -->
     ${breadcrumbsHtml}
 
-    <!-- Header & Hero -->
-    <header class="space-y-2">
-      <div class="flex items-center gap-2">
+    <!-- Header & Hero (Phase 79: gratis machinepaspoort centraal) -->
+    <header id="nieuw" class="bg-neutral-900 border border-orange-500/40 rounded-2xl p-5 sm:p-7 space-y-4 stihl-orange-glow">
+      <div class="flex flex-wrap items-center gap-2">
         <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 inline-block">
-          Machine Dossier
+          Gratis Machinepaspoort
         </span>
         <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-          Lokaal & Privé
+          Lokaal &amp; Privé
+        </span>
+        <span class="px-2.5 py-0.5 rounded-full text-2xs font-mono font-semibold bg-orange-500/10 text-orange-300 border border-orange-500/20">
+          Ook zonder serienummer
         </span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        STIHL Machine Dossier & Paspoort Hub
-      </h1>
-      <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        Beheer uw eigen STIHL-machines, houd een gestructureerde onderhoudshistorie en herinneringen bij, en raadpleeg direct officiële, geverifieerde fabrieksspecificaties.
+      <div class="space-y-2">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          STIHL Machinepaspoort maken
+        </h1>
+        <p class="text-sm text-gray-300 leading-relaxed max-w-3xl">
+          Maak in een minuut een digitaal paspoort van je STIHL-machine. Handig voor onderhoud, je eigen administratie en verkoop via Marktplaats of Facebook Marketplace.
+        </p>
+      </div>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-xs text-gray-300">
+        <li>✓ Gratis, zonder account of registratie</li>
+        <li>✓ Geen verplicht serienummer</li>
+        <li>✓ Je machinegegevens blijven op dit apparaat</li>
+        <li>✓ PNG downloaden voor je verkoopadvertentie</li>
+      </ul>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2.5 pt-1">
+        <button id="btn-open-create-modal" type="button" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition cursor-pointer shadow-md shadow-orange-600/30">
+          Nieuw Machinepaspoort maken
+        </button>
+        <a href="#dossier-grid" class="text-xs text-neutral-300 hover:text-orange-400 font-bold px-4 py-3 rounded-xl border border-neutral-700 bg-neutral-950 transition text-center">
+          Mijn opgeslagen machines bekijken
+        </a>
+      </div>
+      <p class="text-2xs text-neutral-400 leading-relaxed">
+        Een machinepaspoort is geen eigendomsbewijs. De bewijsstatus laat zien wat feitelijk bekend is: alleen het model, een door jou opgegeven model, of een serienummer dat wel of niet officieel is bevestigd.
       </p>
     </header>
 
@@ -299,12 +321,12 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       <div class="space-y-1">
         <h3 id="empty-title" class="text-base font-bold text-white">Nog geen machines opgeslagen</h3>
         <p id="empty-desc" class="text-xs text-neutral-400 max-w-md mx-auto leading-relaxed">
-          Voeg uw eerste STIHL-machine toe om onderhoudsnotities bij te houden en altijd direct toegang te hebben tot geverifieerde fabrieksspecificaties.
+          Kies je model en maak direct een gratis machinepaspoort. Een serienummer is niet verplicht en je gegevens blijven op dit apparaat.
         </p>
       </div>
       <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
         <button id="btn-empty-add" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition cursor-pointer shadow-md">
-          ➕ Voeg je eerste machine toe
+          ➕ Nieuw Machinepaspoort maken
         </button>
         <a href="/" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-xs px-5 py-3 rounded-xl transition text-center">
           🔍 Serienummer decoderen
@@ -635,6 +657,10 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         <button id="btn-close-passport" class="text-neutral-400 hover:text-white text-lg font-bold p-1 cursor-pointer">✕</button>
       </div>
       <div id="passport-preview-container" class="py-2"></div>
+      <label for="check-show-serial-export" class="flex items-center gap-2 text-2xs text-neutral-300 cursor-pointer">
+        <input type="checkbox" id="check-show-serial-export" class="w-4 h-4 rounded border-neutral-700 bg-neutral-950 text-orange-600 focus:ring-orange-500">
+        <span>Serienummer tonen op gedeelde afbeelding (standaard afgeschermd)</span>
+      </label>
       <div class="flex items-center justify-between pt-3 border-t border-neutral-800">
         <div class="flex items-center gap-2">
           <button id="btn-print-passport" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl transition cursor-pointer text-xs flex items-center gap-1.5">
@@ -835,7 +861,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           document.getElementById('empty-desc').textContent = 'Er zijn momenteel geen machines die voldoen aan het geselecteerde onderhoudsfilter.';
         } else {
           document.getElementById('empty-title').textContent = 'Nog geen machines opgeslagen';
-          document.getElementById('empty-desc').textContent = 'Voeg uw eerste STIHL-machine toe om onderhoudsnotities bij te houden en altijd direct toegang te hebben tot geverifieerde fabrieksspecificaties.';
+          document.getElementById('empty-desc').textContent = 'Kies je model en maak direct een gratis machinepaspoort. Een serienummer is niet verplicht en je gegevens blijven op dit apparaat.';
         }
         return;
       }
@@ -1402,6 +1428,9 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       } else if (location.hash.startsWith('#passport=')) {
         const targetId = decodeURIComponent(location.hash.substring(10));
         openPassportModal(targetId);
+      } else if (location.hash === '#nieuw') {
+        document.getElementById('modal-add')?.classList.remove('hidden');
+        window.trackStihlEvent?.('passport_cta_click', { placement: 'passport_hub_deeplink' });
       } else if (location.hash.startsWith('#dossier=')) {
         const targetId = decodeURIComponent(location.hash.substring(9));
         openDossierDetail(targetId);
@@ -1437,9 +1466,11 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       const openAdd = () => {
         document.getElementById('add-error').classList.add('hidden');
         document.getElementById('modal-add').classList.remove('hidden');
+        window.trackStihlEvent?.('passport_started', { placement: 'passport_hub' });
       };
       document.getElementById('btn-open-add')?.addEventListener('click', openAdd);
       document.getElementById('btn-empty-add')?.addEventListener('click', openAdd);
+      document.getElementById('btn-open-create-modal')?.addEventListener('click', openAdd);
 
       const closeAdd = () => document.getElementById('modal-add').classList.add('hidden');
       document.getElementById('btn-close-add')?.addEventListener('click', closeAdd);
@@ -1502,6 +1533,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           closeAdd();
           document.getElementById('form-add-machine').reset();
           renderDossierList();
+          window.trackStihlEvent?.('passport_created', { placement: 'passport_hub', serial_present: Boolean(serial) });
         } catch (err) {
           const errDiv = document.getElementById('add-error');
           errDiv.textContent = err.message || 'Opslaan op dit apparaat is niet beschikbaar.';
@@ -1688,7 +1720,11 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       document.getElementById('btn-print-passport')?.addEventListener('click', () => window.print());
       document.getElementById('btn-download-passport')?.addEventListener('click', () => {
         if (activePassportDossier) {
-          downloadStihlPassportImage(activePassportDossier);
+          const showSerial = document.getElementById('check-show-serial-export')?.checked === true;
+          downloadStihlPassportImage(activePassportDossier, { showSerial });
+          if (window.trackStihlEvent) {
+            window.trackStihlEvent('passport_download', { placement: 'passport_hub', serial_masked: !showSerial });
+          }
         }
       });
 
