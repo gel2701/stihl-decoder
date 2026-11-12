@@ -210,6 +210,14 @@ test.describe('Critical Homepage User Journeys', () => {
     await expect(passportCard).toBeVisible();
     await expect(passportCard).toContainText('Maak gratis Machinepaspoort');
 
+    // Complete the real consent flow before interacting with the passport form.
+    // Rejecting optional analytics must never prevent creating or downloading a passport.
+    const rejectCookies = page.locator('#cookie-reject-btn');
+    if (await rejectCookies.isVisible()) {
+      await rejectCookies.click();
+      await expect(page.locator('#cookie-consent-banner')).toBeHidden();
+    }
+
     await passportCard.click();
     await page.waitForURL('**/stihl-paspoort/**');
     await expect(page.locator('#btn-open-create-modal')).toBeVisible();
