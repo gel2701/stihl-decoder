@@ -103,6 +103,9 @@ export class EbayBrowseApiClient {
     // Phase 76D: maxQueries bounds fan-out for large batches (default full ladder)
     queries = queries.slice(0, Math.max(1, Math.min(queries.length, Number(searchParams.maxQueries) || queries.length)));
     const items = new Map();
+    // Phase 76G: funnel instrumentation — raw API results vs client-passed results
+    const rawSummaries = [];
+    const rawUnique = new Set();
     for (const query of queries) {
       try {
         const wait = 1000 - (Date.now() - this.lastQueryAt);
@@ -118,49 +121,82 @@ export class EbayBrowseApiClient {
           headers: {
             Authorization: `Bearer ${token}`,
             'X-EBAY-C-MARKETPLACE-ID': marketplaceId,
-            'X-EBAY-C-ENDUSERCTX': `affiliateCampaignId=${this.epnCampaignId}`
+            // Phase 76G: contextualLocation=country=NL is required for eBay to return
+            // NL shipping options; without it item summaries omit shipping proof.
+            'X-EBAY-C-ENDUSERCTX': `affiliateCampaignId=${this.epnCampaignId},contextualLocation=country%3DNL`
           }
         });
         if (!response.ok) return fail(`eBay Browse API returned HTTP ${response.status}`);
         const body = await response.json();
-        for (const item of this.parseItemSummaries(body.itemSummaries, compact, searchParams.verifiedSubstitutes)) {
-          if (!items.has(item.item_id)) items.set(item.item_id, item);
+        for (const raw of (Array.isArray(body.itemSummaries) ? body.itemSummaries : [])) {
+          rawSummaries.push(raw);
+          if (raw?.itemId) rawUnique.add(raw.itemId);
         }
       } catch {
         return fail('eBay Browse API request failed.');
       }
     }
-    const result = { success: true, items: [...items.values()], total: items.size, errors: [] };
+    const parse = this.parseItemSummariesDetailed(rawSummaries, compact, searchParams.verifiedSubstitutes);
+    for (const item of parse.items) {
+      if (!items.has(item.item_id)) items.set(item.item_id, item);
+    }
+    const stats = {
+      raw_count: rawSummaries.length,
+      raw_unique_count: rawUnique.size,
+      client_passed_count: items.size,
+      client_rejected_count: parse.rejected_count,
+      client_rejection_reasons: parse.rejection_reasons,
+      query_count: queries.length
+    };
+    const result = { success: true, items: [...items.values()], total: items.size, errors: [], stats };
     this.partCache.set(key, result);
     return result;
   }
 
    parseItemSummaries(itemSummaries, targetPartNumber = '', verifiedSubstitutes = []) {
+    return this.parseItemSummariesDetailed(itemSummaries, targetPartNumber, verifiedSubstitutes).items;
+  }
+
+  /**
+   * Phase 76G: parse raw Browse item summaries and record WHY each candidate
+   * was dropped, so 100% rejection is diagnosable per funnel step.
+   * @returns {{items: Array<Object>, rejected_count: number, rejection_reasons: Object<string, number>}}
+   */
+  parseItemSummariesDetailed(itemSummaries, targetPartNumber = '', verifiedSubstitutes = []) {
     const results = [];
     const seen = new Set();
+    const rejection_reasons = {};
+    let rejected_count = 0;
+    const reject = reason => {
+      rejected_count++;
+      rejection_reasons[reason] = (rejection_reasons[reason] || 0) + 1;
+    };
     const codes = [targetPartNumber, ...(Array.isArray(verifiedSubstitutes) ? verifiedSubstitutes.slice(0, 2) : [])].map(code => String(code).replace(/[\s-]/g, '')).filter(code => /^\d{11}$/.test(code));
-    const targetCompact = targetPartNumber.replace(/[\s-]/g, '');
     for (const item of (Array.isArray(itemSummaries) ? itemSummaries : [])) {
-      if (!item?.itemId || seen.has(item.itemId)) continue;
+      if (!item?.itemId) { reject('MISSING_REQUIRED_DATA'); continue; }
+      if (seen.has(item.itemId)) { reject('DUPLICATE_ITEM'); continue; }
       const affiliateUrl = this.buildAffiliateUrl(item.itemAffiliateWebUrl);
-      if (!affiliateUrl) continue;
-      // Fail-closed: MPN must be exactly the target part number, OR title must contain ONLY part number as standalone (not bundle/set/kit)
+      if (!affiliateUrl) {
+        // Affiliate URL absent, unsafe, wrong host or wrong campaign ID
+        reject(typeof item.itemAffiliateWebUrl === 'string' && item.itemAffiliateWebUrl.includes('campid=') ? 'CAMPAIGN_ID_MISMATCH' : 'AFFILIATE_URL_INVALID');
+        continue;
+      }
+      // Fail-closed: MPN must be exactly the target part number, OR title must contain the part number standalone (not bundle/set/kit)
       const title = String(item.title || '').toLowerCase();
       const mpn = String(item.mpn || '').toLowerCase();
       const compactMpn = mpn.replace(/[\s-]/g, '');
       const hasExactMpn = codes.some(code => code === compactMpn);
-      const hasStandalonePartNumber = codes.some(code => {
+      const containsPartNumber = codes.some(code => {
         const formatted = code.slice(0, 4) + ' ' + code.slice(4, 7) + ' ' + code.slice(7);
-        // Title must contain the part number
-        if (!new RegExp(`(^|\\D)${formatted.replace(/\s/g, '[\\s-]*')}(\\D|$)`).test(title)) return false;
-        // But reject if it's part of a kit/bundle
-        if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\bcombi\b/.test(title)) return false;
-        return true;
+        return new RegExp(`(^|\\D)${formatted.replace(/\s/g, '[\\s-]*')}(\\D|$)`).test(title);
       });
-      if (!hasExactMpn && !hasStandalonePartNumber) continue;
-      // Reject if title mentions conflicting type (carburetor in spark plug query)
-      if (/vergaser|carburetor|carb/.test(title) && codes.some(c => c === targetCompact)) continue;
-      if (item.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) continue;
+      const isBundleTitle = /\bkit\b|\bset\b|\bbundle\b|\bpack\b|\bcombi\b/.test(title);
+      if (!hasExactMpn && !containsPartNumber) { reject('PART_NUMBER_MISMATCH'); continue; }
+      // Phase 76G: product-type conflict is decided by EbayHighVolumeEngine.classifyPart
+      // (client has no part classification). Bundle/kit with title-only match fails closed here;
+      // bundle titles with exact MPN reach the engine, which records BUNDLE_OR_KIT itself.
+      if (!hasExactMpn && isBundleTitle) { reject('BUNDLE_OR_KIT'); continue; }
+      if (item.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) { reject('OUT_OF_STOCK'); continue; }
       const options = Array.isArray(item.shippingOptions) ? item.shippingOptions : [];
       const shipping = options.find(option => {
         const locations = option.shipToLocations;
@@ -173,7 +209,7 @@ export class EbayBrowseApiClient {
         if (locations?.country) return [locations.country];
         return option.shippingDestination?.country ? [option.shippingDestination.country] : [];
       }).filter(Boolean);
-      if (destinations.length > 0 && destinations.every(country => country !== 'NL')) continue;
+      if (destinations.length > 0 && destinations.every(country => country !== 'NL')) { reject('SHIPPING_NOT_CONFIRMED'); continue; }
       const amount = value => value != null && /^\d+(?:\.\d+)?$/.test(String(value)) ? Number(value) : null;
       seen.add(item.itemId);
       results.push({
@@ -185,12 +221,14 @@ export class EbayBrowseApiClient {
         currency: item.price?.currency ?? null,
         shipping_cost_nl: shipping ? amount(shipping.shippingCost?.value) : null,
         ships_to_nl: Boolean(shipping),
+        shipping_known: destinations.length > 0,
+        shipping_destinations: destinations,
         item_url: affiliateUrl,
         affiliate_url: affiliateUrl,
         image_url: item.image?.imageUrl ?? null,
         condition: item.condition ?? null
       });
     }
-    return results;
+    return { items: results, rejected_count, rejection_reasons };
   }
 }

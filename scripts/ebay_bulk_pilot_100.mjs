@@ -88,9 +88,27 @@ function selectParts() {
     const items = (byCategory.get(category) || []).sort((a, b) => a.queue_rank - b.queue_rank);
     selected.push(...items.slice(0, quota));
   }
-  const unique = [...new Map(selected.map(p => [p.part_number, p])).values()];
+
+  // Phase 76G: spread 10-onderdelenpilot over meerdere categorieën (runden)
+  function selectSpread(limit) {
+    const lists = Object.keys(QUOTA).map(cat => ({ cat, items: (byCategory.get(cat) || []).slice().sort((a, b) => a.queue_rank - b.queue_rank) }));
+    const out = []; const seen = new Set(); let idx = 0;
+    while (out.length < limit && idx < lists.length * limit) {
+      const list = lists[idx % lists.length];
+      if (list.items.length) {
+        const item = list.items.shift();
+        if (!seen.has(item.part_number)) {
+          seen.add(item.part_number); out.push(item);
+        }
+      }
+      idx++;
+    }
+    return out;
+  }
+
   const expected = LIMIT ?? 100;
-  const limited = LIMIT !== null ? unique.slice(0, LIMIT) : unique;
+  const unique = [...new Map(selected.map(p => [p.part_number, p])).values()];
+  const limited = LIMIT !== null ? selectSpread(LIMIT) : unique;
   if (limited.length !== expected) {
     console.error(`ABORT: expected ${expected} selected parts, got ${limited.length}`);
     process.exit(1);
@@ -133,8 +151,8 @@ const engine = new EbayHighVolumeEngine({
   checkpointIntervalMs: 10000
 });
 
-// Phase 76E: knownParts enables classifyPart product-type control
-const knownParts = parts.map(p => ({ part_number: p.part_number, description: `${p.description} ${p.category}` }));
+// Phase 76E/76G: knownParts enables classifyPart product-type control (category + description)
+const knownParts = parts.map(p => ({ part_number: p.part_number, description: p.description, category: p.category }));
 
 // Phase 76E: persist checkpoints/results on the Render persistent disk when available
 const persistentRoot = process.env.RENDER_DISK_PATH || (fs.existsSync('/var/data') ? '/var/data' : null);
@@ -159,7 +177,10 @@ const seenReviews = new Set();
 const allOffers = [];
 const allReviews = [];
 const allRejections = [];
-const totals = { api_calls: 0, offers_found: 0, offers_validated: 0, offers_reviewed: 0, offers_rejected: 0, backoff_delays: 0, errors: [] };
+const totals = { api_calls: 0, raw_results: 0, client_passed: 0, client_rejected: 0, offers_found: 0, offers_validated: 0, offers_reviewed: 0, offers_rejected: 0, backoff_delays: 0, errors: [] };
+const clientRejectionReasons = {};
+const rejectionsByReason = {};
+const firstBlockingSteps = {};
 const startedAt = Date.now();
 let lastSavedIndex = offset;
 
@@ -177,10 +198,22 @@ for (let cursor = offset; cursor < parts.length; cursor += CHUNK) {
   }
   allRejections.push(...res.rejected_offers);
   totals.api_calls += res.summary.api_calls;
+  totals.raw_results += res.summary.raw_results || 0;
+  totals.client_passed += res.summary.client_passed || 0;
+  totals.client_rejected += res.summary.client_rejected || 0;
   totals.offers_found += res.summary.offers_found;
   totals.offers_validated += res.summary.offers_validated;
   totals.offers_reviewed += res.summary.offers_reviewed || 0;
   totals.offers_rejected += res.summary.offers_rejected;
+  for (const [code, n] of Object.entries(res.summary.client_rejection_reasons || {})) {
+    clientRejectionReasons[code] = (clientRejectionReasons[code] || 0) + n;
+  }
+  for (const [code, n] of Object.entries(res.summary.rejections_by_reason || {})) {
+    rejectionsByReason[code] = (rejectionsByReason[code] || 0) + n;
+  }
+  for (const [code, n] of Object.entries(res.summary.first_blocking_steps || {})) {
+    firstBlockingSteps[code] = (firstBlockingSteps[code] || 0) + n;
+  }
   totals.backoff_delays += res.summary.backoff_delays;
   totals.errors.push(...res.metrics.errors);
   const next = Math.min(cursor + CHUNK, parts.length);
@@ -223,20 +256,31 @@ const durationMs = Date.now() - startedAt;
 const processedParts = parts.length - offset;
 
 const summary = {
-  schema_version: '1.0.0',
-  phase: '76E',
+  schema_version: '1.1.0',
+  phase: '76G',
   generated_at: new Date().toISOString(),
   run_id: RUN_ID || null,
   limit: LIMIT,
   campaign_id: CAMPAIGN,
   pilot_size: parts.length,
+  selected_categories: [...new Set(parts.map(p => p.category))],
   parts_processed_this_run: processedParts,
   parts_total_in_selection: parts.length,
   api_calls: totals.api_calls,
+  funnel: {
+    raw_results: totals.raw_results,
+    client_passed: totals.client_passed,
+    client_rejected: totals.client_rejected,
+    client_rejection_reasons: clientRejectionReasons,
+    after_engine_validation: totals.offers_found,
+    engine_rejections: totals.offers_rejected
+  },
   offers_found: totals.offers_found,
   offers_validated: totals.offers_validated,
   offers_reviewed: totals.offers_reviewed,
   offers_rejected: totals.offers_rejected,
+  rejections_by_reason: rejectionsByReason,
+  first_blocking_steps: firstBlockingSteps,
   classification: {
     ACCEPT: autoAccept.length,
     REVIEW: review.length,
