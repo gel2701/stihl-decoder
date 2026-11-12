@@ -50,7 +50,7 @@
   let clarityLoaded = false;
 
   function loadClarityWithConsent() {
-    if (clarityLoaded || getConsent() !== 'granted') return;
+    if (testMode || clarityLoaded || getConsent() !== 'granted') return;
     if (document.querySelector('script[data-stihl-clarity]')) return;
     clarityLoaded = true;
     window.clarity = window.clarity || function() {
