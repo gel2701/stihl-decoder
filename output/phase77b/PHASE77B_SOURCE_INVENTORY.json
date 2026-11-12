@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77B",
+  "generated_at_utc": "2026-11-12T21:22:38.706Z",
+  "read_only": true,
+  "local_windows_archives": {
+    "reachable_from_this_environment": false,
+    "probed_paths": [
+      {
+        "path": "C:\\Users\\GelliusSnippe\\.agents\\stihl_scribd_documents_output",
+        "exists": false
+      },
+      {
+        "path": "stihl_archive_downloads",
+        "exists": false
+      },
+      {
+        "path": "stihl_gardenhirespares_output",
+        "exists": false
+      },
+      {
+        "path": "stihl_models_full_documentation_archive",
+        "exists": false
+      },
+      {
+        "path": "data",
+        "exists": true
+      },
+      {
+        "path": "output",
+        "exists": true
+      },
+      {
+        "path": "reports",
+        "exists": true
+      },
+      {
+        "path": "docs",
+        "exists": true
+      }
+    ],
+    "note": "No Windows mount exists in this Linux checkout; the originals must be inventoried on the host with PHASE77A_ARCHIVE_ROOTS."
+  },
+  "sources": [
+    {
+      "source_id": "ghs_catalog",
+      "display_name": "Garden Hire Spares STIHL IPL section pages (harvested metadata)",
+      "documents": 3143,
+      "diagram_urls": 2376,
+      "verified_real_diagrams": "19 unique in 61 pilot URLs / 14 in 30 random URLs",
+      "placeholder_share_pct": 68.85,
+      "models": 224,
+      "positions_in_source": "visible on the artwork (printed numbers), not stored as data",
+      "licence_marks": "GHS watermark on every sheet; no licence statement in the harvest",
+      "rights_status": "RIGHTS_UNKNOWN"
+    },
+    {
+      "source_id": "local_archive_library",
+      "display_name": "Local STIHL archive library (batch2 + archive.org + forum metadata)",
+      "documents": 2582,
+      "diagram_urls": 0,
+      "verified_real_diagrams": "not verifiable: files are absent from this checkout",
+      "placeholder_share_pct": null,
+      "models": null,
+      "positions_in_source": "unknown (page index has no part numbers)",
+      "licence_marks": "no per-file licence metadata recorded",
+      "rights_status": "RIGHTS_UNKNOWN"
+    },
+    {
+      "source_id": "local_pdfs",
+      "display_name": "PDFs present in the repository",
+      "documents": 3,
+      "diagram_urls": 0,
+      "verified_real_diagrams": "0 — both extracted images are product photos (visually checked)",
+      "placeholder_share_pct": null,
+      "models": null,
+      "positions_in_source": "none",
+      "licence_marks": "STIHL copyright, no licence statement",
+      "rights_status": "PUBLICATION_RESTRICTED"
+    },
+    {
+      "source_id": "stihl_official_ipl",
+      "display_name": "STIHL official Illustrated Parts Lists",
+      "documents": 0,
+      "diagram_urls": 0,
+      "verified_real_diagrams": "0 — no IPL artwork in the repository",
+      "placeholder_share_pct": null,
+      "models": null,
+      "positions_in_source": "n/a",
+      "licence_marks": "proprietary",
+      "rights_status": "PUBLICATION_RESTRICTED"
+    }
+  ],
+  "registries": {
+    "archive_org_and_forum": {
+      "documents": 792,
+      "parts_lists": 9,
+      "pdf_documents": 78
+    },
+    "local_archive_library": {
+      "documents": 1790,
+      "parts_lists": 421,
+      "pdf_documents": 317
+    },
+    "local_pdf_batch": {
+      "documents": 78,
+      "parts_lists": 0,
+      "pdf_documents": 78
+    }
+  },
+  "visual_verification": {
+    "placeholder_hash": "471fbc2a207075352f52180d89a713c45aaa92d3cd7a60ef211bac5396f741c9",
+    "random_sample": {
+      "sampled": 30,
+      "fetched": 30,
+      "placeholders": 16,
+      "real_unique": 14,
+      "placeholder_share_pct": 53.33,
+      "real_share_pct": 46.67,
+      "real_bytes_median": 42594,
+      "real_dimensions": [
+        "700x554",
+        "700x700",
+        "560x560",
+        "240x240"
+      ]
+    },
+    "pilot_sample": {
+      "sampled": 61,
+      "fetched": 61,
+      "placeholders": 42,
+      "real_unique": 19,
+      "placeholder_share_pct": 68.85,
+      "real_share_pct": 31.15,
+      "real_bytes_median": 47673,
+      "real_dimensions": [
+        "700x700",
+        "1000x1000"
+      ]
+    },
+    "estimated_real_sheets_of_2376": 1109,
+    "visually_inspected": [
+      {
+        "asset": "ms_261 section B",
+        "result": "PLACEHOLDER (\"GHS — Image coming soon\")"
+      },
+      {
+        "asset": "026 chain brake",
+        "result": "REAL exploded view, 700x700, position numbers visible"
+      },
+      {
+        "asset": "ms_261 oil pump/clutch",
+        "result": "REAL exploded view, 700x700, position numbers visible"
+      },
+      {
+        "asset": "PDF source_b_0458-737-5521-C.pdf image 1",
+        "result": "PRODUCT_PHOTO (MS 500i chainsaw), not a diagram"
+      },
+      {
+        "asset": "PDF USG_Manual.pdf image 1",
+        "result": "PRODUCT_PHOTO (USG grinder), not a diagram"
+      }
+    ]
+  },
+  "pilot_availability": [
+    {
+      "model_key": "ms_170",
+      "model_label": "MS 170",
+      "assets": 14,
+      "sampled_assets": 12,
+      "verified_real_diagrams": 1,
+      "verified_placeholders": 11,
+      "unverified_assets": 2,
+      "verification_scope": "PARTIAL_SAMPLE"
+    },
+    {
+      "model_key": "ms_261",
+      "model_label": "MS 261",
+      "assets": 17,
+      "sampled_assets": 17,
+      "verified_real_diagrams": 5,
+      "verified_placeholders": 12,
+      "unverified_assets": 0,
+      "verification_scope": "COMPLETE"
+    },
+    {
+      "model_key": "ms_260",
+      "model_label": "026 / MS 260",
+      "assets": 32,
+      "sampled_assets": 32,
+      "verified_real_diagrams": 13,
+      "verified_placeholders": 19,
+      "unverified_assets": 0,
+      "verification_scope": "COMPLETE"
+    },
+    {
+      "model_key": "fs_55",
+      "model_label": "FS 55",
+      "assets": 0,
+      "sampled_assets": 0,
+      "verified_real_diagrams": 0,
+      "verified_placeholders": 0,
+      "unverified_assets": 0,
+      "verification_scope": "PARTIAL_SAMPLE"
+    },
+    {
+      "model_key": "hs_81",
+      "model_label": "HS 81",
+      "assets": 0,
+      "sampled_assets": 0,
+      "verified_real_diagrams": 0,
+      "verified_placeholders": 0,
+      "unverified_assets": 0,
+      "verification_scope": "PARTIAL_SAMPLE"
+    }
+  ],
+  "viewer_suitability": {
+    "technically_suitable_images_sampled": 33,
+    "resolution": {
+      "700x554": 1,
+      "700x700": 25,
+      "560x560": 3,
+      "240x240": 3,
+      "1000x1000": 1
+    },
+    "watermark": "GHS logo watermark across the drawing",
+    "position_numbers_in_artwork": true,
+    "hotspot_coordinates_available": false,
+    "viewer_ready": true,
+    "verdict": "SUITABLE_WITH_LIMITATIONS",
+    "limitations": [
+      "700x700 is low for deep zoom",
+      "no x/y coordinates per position, so hotspots need a mapping pass",
+      "watermark and third-party page layout",
+      "publication blocked by rights"
+    ],
+    "publishable_now": 0
+  }
+}
