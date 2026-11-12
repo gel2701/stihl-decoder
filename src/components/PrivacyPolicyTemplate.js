@@ -61,7 +61,7 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
         <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
           Wettelijke Informatie
         </span>
-        <span class="text-xs text-gray-400">Laatst bijgewerkt: oktober 2026</span>
+        <span class="text-xs text-gray-400">Laatst bijgewerkt: november 2026</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
         Privacy- & Cookiebeleid
@@ -140,6 +140,12 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
           </p>
         </div>
         <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800">
+          <h4 class="font-bold text-white text-sm mb-1">Microsoft Clarity (sessieopnamen en klikgedrag)</h4>
+          <p class="text-gray-400 leading-relaxed">
+            Alleen na uw expliciete analytische toestemming laden wij Microsoft Clarity (project <code class="text-amber-400">zc7idfdot7</code>). Clarity helpt ons via geaggregeerde klikpatronen, scrollgedrag, heatmaps en sessieopnamen te begrijpen waar bezoekers vastlopen. Hierbij kunnen gebruiksgegevens en technische apparaatgegevens door Microsoft worden verwerkt. Voer geen wachtwoorden of andere vertrouwelijke gegevens in die u niet wilt delen in een sessieopname. Meer informatie: <a href="https://privacy.microsoft.com/nl-nl/privacystatement" rel="noopener noreferrer" class="underline">Privacyverklaring Microsoft</a>.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800">
           <h4 class="font-bold text-white text-sm mb-1">Amazon Affiliate &amp; Externe Links (Cookies van derden)</h4>
           <p class="text-gray-400 leading-relaxed">
             Wanneer u besluit door te klikken naar Amazon, verlaat u onze website. Amazon kan eigen tracking- en sessiecookies plaatsen conform het Amazon privacy- en cookiebeleid om eventuele kwalificerende aankopen toe te wijzen.
@@ -215,6 +221,7 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
         if (typeof gtag === 'function') {
           gtag('consent', 'update', { analytics_storage: 'granted' });
         }
+        if (typeof window.initGoogleAnalytics === 'function') window.initGoogleAnalytics();
         updateDisplay();
         alert('Cookie-toestemming is opgeslagen als toegestaan.');
       });
@@ -230,7 +237,8 @@ export function renderPrivacyPolicyHtml(baseUrl = PRIMARY_ORIGIN) {
           gtag('consent', 'update', { analytics_storage: 'denied' });
         }
         updateDisplay();
-        alert('Cookie-toestemming is ingetrokken / geweigerd.');
+        // Reload removes any previously loaded Clarity recorder immediately.
+        window.location.reload();
       });
     })();
   </script>
