@@ -626,11 +626,14 @@ assert(htmlWithAffiliate.includes('part_number=11270201216'), 'Redirect URL must
 assert(htmlWithAffiliate.includes('marketplace=amazon.nl'), 'Redirect URL must include marketplace parameter');
 assert(htmlWithAffiliate.includes('offer_type=SEARCH_LINK'), 'Redirect URL must include offer_type parameter');
 
-// Verify placement: "Zoek dit onderdeel online" must come AFTER "Montagelocatie &amp; tekeningposities"
+// Verify placement (Phase 79B): the commercial section sits directly under the part
+// header, above the technical diagram section and the full compatible-model list.
 const diagramIdx = htmlWithAffiliate.indexOf('Montagelocatie &amp; tekeningposities');
 const searchSectionIdx = htmlWithAffiliate.indexOf('Zoek dit onderdeel online');
+const modelsIdx = htmlWithAffiliate.indexOf('Geschikte STIHL Modellen');
 assert(diagramIdx !== -1 && searchSectionIdx !== -1, 'Both sections must be present');
-assert(searchSectionIdx > diagramIdx, 'Commercial section must be below technical diagram section');
+assert(searchSectionIdx < diagramIdx, 'Commercial section must be above the technical diagram section (Phase 79B)');
+assert(diagramIdx < modelsIdx, 'The full model list must stay below the technical sections');
 
 // B. When affiliate is disabled
 process.env.AMAZON_AFFILIATE_ENABLED = 'false';

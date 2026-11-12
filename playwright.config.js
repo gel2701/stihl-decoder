@@ -43,6 +43,7 @@ export default defineConfig({
     env: {
       PORT: String(PORT),
       NODE_ENV: 'test',
+      AMAZON_AFFILIATE_ENABLED: process.env.AMAZON_AFFILIATE_ENABLED || 'true',
       AMAZON_ASSOCIATE_TAG: process.env.AMAZON_ASSOCIATE_TAG || ['srihldecoder2', '21'].join('-')
     }
   }

@@ -183,15 +183,45 @@ export function checkPartSupersession(canonicalPartNo) {
   return null;
 }
 
+export const AMAZON_MARKETPLACE_TAGS = {
+  'amazon.nl': 'srihldecoder2-21',
+  'amazon.de': 'srihldecode00-21'
+};
+
 /**
- * Resolves purchase offer for a part (active ASIN offer or compliant search fallback).
+ * Returns the affiliate tag that belongs to the given marketplace.
+ * Tags are never mixed between marketplaces.
+ * @param {string} [marketplace]
+ * @returns {string}
+ */
+export function getAmazonTagForMarketplace(marketplace = 'amazon.nl') {
+  const mkt = String(marketplace || 'amazon.nl').trim().toLowerCase();
+  if (mkt === 'amazon.de') {
+    return process.env.AMAZON_ASSOCIATE_TAG_DE || AMAZON_MARKETPLACE_TAGS['amazon.de'];
+  }
+  return process.env.AMAZON_ASSOCIATE_TAG_NL || process.env.AMAZON_ASSOCIATE_TAG || AMAZON_MARKETPLACE_TAGS['amazon.nl'];
+}
+
+function orderOffersByMarketplace(offers) {
+  const rank = (offer) => {
+    const mkt = String(offer.marketplace || 'amazon.nl').toLowerCase();
+    if (mkt === 'amazon.nl') return 0;
+    if (mkt === 'amazon.de') return 1;
+    return 2;
+  };
+  return [...offers].sort((a, b) => rank(a) - rank(b));
+}
+
+/**
+ * Resolves purchase offer(s) for a part across all marketplaces.
+ * All ACTIVE, Two-Gate verified offers are returned (Amazon.nl first, then Amazon.de).
+ * Falls back to a compliant targeted search when no direct offer is eligible.
  */
 export function resolvePurchaseOffer(partNumber, partName = '') {
   const norm = PartNormalizer.normalizePartNumber(partNumber);
   if (!norm) return null;
 
-  const partnerTag = process.env.AMAZON_ASSOCIATE_TAG || '';
-  const provider = new AmazonAffiliateProvider({ partnerTag });
+  const provider = new AmazonAffiliateProvider({ partnerTag: process.env.AMAZON_ASSOCIATE_TAG || '' });
 
   if (defaultVerifiedOfferRegistry.offers.size === 0) {
     try {
@@ -201,32 +231,78 @@ export function resolvePurchaseOffer(partNumber, partName = '') {
     }
   }
 
-  // 1. Check if direct ASIN offer exists in registry
-  const activeOffer = defaultVerifiedOfferRegistry.getActiveOffer(norm);
-  if (activeOffer) {
+  // 1. All ACTIVE offers across marketplaces (Amazon.nl first, then Amazon.de)
+  const activeOffers = typeof defaultVerifiedOfferRegistry.getActiveOffers === 'function'
+    ? defaultVerifiedOfferRegistry.getActiveOffers(norm)
+    : [];
+  if (activeOffers.length > 0) {
+    const offers = orderOffersByMarketplace(activeOffers).map((offer) => {
+      const marketplace = String(offer.marketplace || 'amazon.nl').toLowerCase();
+      const tag = offer.affiliate_tag || getAmazonTagForMarketplace(marketplace);
+      return {
+        provider: 'amazon',
+        marketplace,
+        asin: offer.asin,
+        tag,
+        url: `https://${marketplace}/dp/${offer.asin}?tag=${encodeURIComponent(tag)}`,
+        brand: offer.brand || offer.manufacturer || null,
+        label: marketplace === 'amazon.de'
+          ? `Koop op Amazon.de (${offer.brand || 'Vervanger'})`
+          : `Koop op Amazon (${offer.brand || 'Vervanger'})`,
+        is_direct: true
+      };
+    });
+    const primary = offers[0];
     return {
       type: 'DIRECT_ASIN',
       tier: COMMERCIAL_TIERS.DIRECT_VERIFIED,
-      url: `https://${activeOffer.marketplace || 'www.amazon.nl'}/dp/${activeOffer.asin}?tag=${encodeURIComponent(partnerTag)}`,
-      asin: activeOffer.asin,
-      marketplace: activeOffer.marketplace || 'www.amazon.nl',
-      label: `Koop op Amazon (${activeOffer.brand || 'Vervanger'})`,
-      brand: activeOffer.brand,
-      is_direct: true
+      url: primary.url,
+      asin: primary.asin,
+      marketplace: primary.marketplace,
+      label: primary.label,
+      brand: primary.brand,
+      is_direct: true,
+      offers
     };
   }
 
-  // 2. Safe compliant targeted search
-  const fallbackUrl = provider.buildSearchUrl(norm, partnerTag, { partName });
+  // 2. Safe compliant targeted search (Amazon.nl), plus Amazon.de when configured
+  const nlTag = getAmazonTagForMarketplace('amazon.nl');
+  const fallbackUrl = provider.buildSearchUrl(norm, nlTag, { partName });
+  const offers = [{
+    provider: 'amazon',
+    marketplace: 'amazon.nl',
+    asin: null,
+    tag: nlTag,
+    url: fallbackUrl,
+    brand: null,
+    label: 'Zoek op Amazon',
+    is_direct: false
+  }];
+  const deTag = process.env.AMAZON_ASSOCIATE_TAG_DE;
+  if (deTag && typeof provider.buildSearchUrl === 'function') {
+    offers.push({
+      provider: 'amazon',
+      marketplace: 'amazon.de',
+      asin: null,
+      tag: deTag,
+      url: provider.buildSearchUrl(norm, deTag, { partName }, {}, 'amazon.de'),
+      brand: null,
+      label: 'Zoek op Amazon.de',
+      is_direct: false
+    });
+  }
+
   return {
     type: 'SEARCH_FALLBACK',
     tier: COMMERCIAL_TIERS.TARGETED_SEARCH,
     url: fallbackUrl,
     asin: null,
-    marketplace: 'www.amazon.nl',
+    marketplace: 'amazon.nl',
     label: 'Zoek op Amazon',
     brand: null,
-    is_direct: false
+    is_direct: false,
+    offers
   };
 }
 
