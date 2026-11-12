@@ -18,8 +18,8 @@ It incorporates core principles from modern software engineering methodologies (
    - Exactly **18,373 canonical parts** in `data/parts_catalog.json` and SQLite.
    - Exactly **843 indexable SEO parts** in `src/seo/PartIndexationRegistry.js`.
    - Exactly **1,024 sitemap URLs** in `sitemap.xml`.
-   - Exactly **3 active live pilot ASINs** (`11104007005`, `00004007000`, `00004007011`) unless explicit operator approval is granted.
-   - Tag must always be `srihldecoder2-21`.
+   - Live direct offers are governed by the **ACTIVE** registry and existing runtime eligibility gates (Two-Gate verification, per-marketplace caps, applicable shipping evidence, kill-switches, and any explicit operator whitelist). Do not reinstate the historical three-ASIN pilot whitelist as a default.
+   - Affiliate tags must match their marketplace: Amazon.nl `srihldecoder2-21`; Amazon.de `srihldecode00-21`. Never use an NL tag on a DE direct link.
    - Formulation must always be `Bevestigde compatibiliteit`, never `Gegarandeerd passend op`.
 3. **Minimal, Targeted Changes**: Prefer surgical, focused edits over wide-ranging refactors or file rewrites. Do not change line endings or reformat unrelated code.
 4. **Reuse Existing Infrastructure**: Never construct parallel verification engines or duplicate validation logic. Extend `TwoGateVerifier.js`, `GtinValidator.js`, and `HistoricalMismatches.js`.
