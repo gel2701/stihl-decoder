@@ -13,7 +13,7 @@ html, body {
   overflow-x: hidden;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  font-family: 'DM Sans', sans-serif;
+  font-family: system-ui, sans-serif;
   background-color: var(--stihl-dark);
   color: #F9FAFB;
   font-size: 16px;
@@ -21,7 +21,7 @@ html, body {
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: ui-monospace, monospace;
 }
 
 /* Safe Area Inset Support & Responsive Layout Containers */
@@ -112,6 +112,22 @@ img, svg, canvas {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #FF6600;
+}
+
+.bg-orange-600.text-white, #cookie-accept-btn {
+  background-color: #c2410c;
+}
+
+.bg-orange-600.text-white:hover {
+  background-color: #9a3412;
+}
+
+footer.text-gray-500, footer .text-gray-500 {
+  color: #9ca3af;
+}
+
+#cookie-consent-banner #cookie-accept-btn {
+  background-color: #c2410c;
 }
 
 /* Gietklok Dial Animation */

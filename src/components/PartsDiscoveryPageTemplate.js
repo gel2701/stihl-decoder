@@ -148,7 +148,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
 <html lang="nl" class="dark">
 <head>
   ${seoMetaHtml}
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -440,10 +440,10 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
       <!-- Text Search Results Table & Cards -->
       <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-5 space-y-4">
         <div class="flex justify-between items-center border-b border-gray-800 pb-2.5">
-          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <h2 class="text-sm font-bold text-white flex items-center gap-2">
             <span>📋 Tekstzoekresultaten voor "${rawQuery}":</span>
             <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2 py-0.5 rounded border border-gray-800">${searchOutput.total_matches} onderdelen</span>
-          </h3>
+          </h2>
           <span class="text-2xs text-gray-400">Geverifieerde cataloguskoppelingen</span>
         </div>
 

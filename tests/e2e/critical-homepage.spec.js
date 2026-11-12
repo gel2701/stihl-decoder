@@ -15,6 +15,15 @@ test.describe('Critical Homepage User Journeys', () => {
     await expect(input).toBeVisible();
     await expect(btn).toBeVisible();
     await expect(btn).toHaveText(/Zoeken|Analyseer/);
+    expect(await page.locator('script[src*="cdn.tailwindcss.com"]').count()).toBe(0);
+    await expect(page.locator('link[rel="stylesheet"][href="/css/tailwind.css"]')).toHaveCount(1);
+    const modelRequests = [];
+    page.on('request', request => {
+      if (request.url().includes('/api/models')) modelRequests.push(request.url());
+    });
+    await page.reload();
+    await page.waitForTimeout(300);
+    expect(modelRequests).toHaveLength(0);
 
     // Wait a brief moment to ensure all async browser modules load completely
     await page.waitForTimeout(500);

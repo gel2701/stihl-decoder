@@ -1157,7 +1157,7 @@ const server = http.createServer(async (req, res) => {
   <meta name="description" content="${valuationState.metaDescription}">
   <link rel="canonical" href="${PRIMARY_ORIGIN}/waarde/${modelSlug}/">
   <meta name="robots" content="${valuationState.robotsContent}">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -1304,7 +1304,7 @@ function renderPartNumberHubHtml(database, baseUrl) {
   <script type="application/ld+json">
 ${JSON.stringify(jsonLd, null, 2)}
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -1480,7 +1480,7 @@ function renderPartNumberSeriesHtml(seriesCode, database, baseUrl) {
   <script type="application/ld+json">
 ${JSON.stringify(jsonLd, null, 2)}
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -1578,7 +1578,7 @@ function renderNotFound(res) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 - Pagina niet gevonden | STIHLDecoder.nl</title>
   <meta name="robots" content="noindex, follow">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
