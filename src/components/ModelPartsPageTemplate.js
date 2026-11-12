@@ -260,9 +260,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                   ${sec.parts.map(p => {
                     const safeSectionCtx = (sec.section_name || '').replace(/'/g, "\\'");
                     const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
-                    const clickHandler = `if(window.trackStihlEvent){window.trackStihlEvent('model_to_part_click', {model: '${safeModelId}', part_number: '${p.part_number}', section_context: '${safeSectionCtx}', commercial_tier: '${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}', seo_tier: '${p.seo_tier || 'SEO_TIER_C'}', wave_identifier: '${p.wave_identifier || 'none'}', page_path: window.location.pathname});}`;
+                    const clickHandler = `window.trackModelPartClick?.('${p.part_number}','${safeSectionCtx}','${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}','${p.seo_tier || 'SEO_TIER_C'}','${p.wave_identifier || 'none'}')`;
                     const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-                    const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, placement: 'model_parts_table', page_path: window.location.pathname, model: '${safeModelId}', section_context: '${safeSectionCtx}'});}` : '';
+                    const affiliateClick = offer ? `window.trackModelAffiliateClick?.(this,event,'${p.part_number}','${safeSectionCtx}','${offer.marketplace || 'amazon.nl'}','${offer.type}','${offer.asin || ''}',${offer.is_direct})` : '';
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -307,7 +307,6 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   ${seoMetaHtml}
   <link rel="preload" href="/css/tailwind.css" as="style">
   <link rel="stylesheet" href="/css/tailwind.css">
-  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
 
@@ -530,6 +529,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
 
   <script>
     (function() {
+      window.trackModelPartClick = function(partNumber, section, commercialTier, seoTier, wave) {
+        window.trackStihlEvent?.('model_to_part_click', {model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', part_number: partNumber, section_context: section, commercial_tier: commercialTier, seo_tier: seoTier, wave_identifier: wave, page_path: window.location.pathname});
+      };
+      window.trackModelAffiliateClick = function(el, ev, partNumber, section, marketplace, offerType, asin, verified) {
+        window.handleAffiliateClick?.(el, ev, {provider: 'amazon', marketplace, part_number: partNumber, offer_type: offerType, asin_if_known: asin, product_verified: verified, placement: 'model_parts_table', page_path: window.location.pathname, model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', section_context: section});
+      };
       window.handleAffiliateClick = function(el, ev, data) {
         try {
           var consent = null;

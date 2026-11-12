@@ -90,6 +90,28 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
       db.close();
     }
 
+    const tableLink = page.locator('tbody a[href^="/onderdeelnummer/"]').first();
+    const partClicks = await page.evaluate(() => {
+      window.__partClicks = [];
+      window.trackStihlEvent = (name, data) => window.__partClicks.push({ name, data });
+      document.addEventListener('click', event => {
+        if (event.target.closest('tbody a[href^="/onderdeelnummer/"]')) event.preventDefault();
+      });
+      return window.__partClicks;
+    });
+    await tableLink.dispatchEvent('click');
+    const captured = await page.evaluate(() => window.__partClicks);
+    expect(captured).toHaveLength(1);
+    expect(captured[0].name).toBe('model_to_part_click');
+    expect(captured[0].data.part_number).toMatch(/^\d{11}$/);
+    expect(partClicks).toHaveLength(0);
+
+    const tableAffiliate = page.locator('tbody a[href*="amazon.nl"]').first();
+    await tableAffiliate.dispatchEvent('click');
+    await expect.poll(() => trackRequests.length).toBe(2);
+    expect(trackRequests[1].postData.is_test).toBe(1);
+    expect(trackRequests[1].postData.part_number).toMatch(/^\d{11}$/);
+
     gates.assertClean('Model Parts Affiliate Tracking');
   });
 
