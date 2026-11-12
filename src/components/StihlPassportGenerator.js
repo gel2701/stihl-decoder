@@ -317,6 +317,88 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
   };
 }
 
+// Phase 79: Shared-image evidence states. A shared passport must never claim a
+// stronger evidence level than the stored data justifies.
+export const PASSPORT_EVIDENCE_STATES = {
+  MODEL_ONLY: 'MODEL_ONLY',
+  USER_CONFIRMED_MODEL: 'USER_CONFIRMED_MODEL',
+  SERIAL_UNVERIFIED: 'SERIAL_UNVERIFIED',
+  SERIAL_OFFICIAL: 'SERIAL_OFFICIAL'
+};
+
+export const PASSPORT_EVIDENCE_LABELS = {
+  MODEL_ONLY: 'Alleen model bekend',
+  USER_CONFIRMED_MODEL: 'Model door gebruiker opgegeven',
+  SERIAL_UNVERIFIED: 'Serienummer aanwezig, niet officieel bevestigd',
+  SERIAL_OFFICIAL: 'Serienummer officieel geverifieerd'
+};
+
+export const PASSPORT_EVIDENCE_BADGES = {
+  MODEL_ONLY: 'ALLEEN MODEL BEKEND',
+  USER_CONFIRMED_MODEL: 'MODEL DOOR GEBRUIKER',
+  SERIAL_UNVERIFIED: 'SERIENUMMER NIET BEVESTIGD',
+  SERIAL_OFFICIAL: 'OFFICIEEL GEVERIFIEERD'
+};
+
+export const MASKED_SERIAL_TEXT = '•••••••••  (afgeschermd)';
+export const PASSPORT_EXPORT_BRAND = 'Gemaakt met STIHLDecoder.nl';
+export const PASSPORT_EXPORT_DISCLAIMER = 'Geen eigendomsbewijs. Gebaseerd op door jou opgegeven gegevens en openbare modelinformatie.';
+
+export function resolvePassportEvidenceState(passport = {}) {
+  if (passport.passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
+    return PASSPORT_EVIDENCE_STATES.SERIAL_OFFICIAL;
+  }
+  if (passport.hasSerial) {
+    return PASSPORT_EVIDENCE_STATES.SERIAL_UNVERIFIED;
+  }
+  if (passport.identityStatus === 'EXACT_MODEL_IDENTIFIED') {
+    return PASSPORT_EVIDENCE_STATES.MODEL_ONLY;
+  }
+  return PASSPORT_EVIDENCE_STATES.USER_CONFIRMED_MODEL;
+}
+
+/**
+ * Pure export model for the shareable PNG. Kept free of DOM access so the
+ * privacy and evidence rules can be verified in Node.
+ * Default: the serial number is masked on the shared image.
+ */
+export function buildPassportExportModel(data = {}, options = {}) {
+  const passport = buildPassportViewModel(data);
+  const showSerial = options.showSerial === true && passport.hasSerial;
+  const serialMasked = passport.hasSerial && !showSerial;
+  const evidenceState = resolvePassportEvidenceState(passport);
+  const safeModelSlug = String(passport.modelSlug || 'model')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'model';
+  const dateStamp = new Date().toISOString().slice(0, 10);
+
+  return {
+    passport,
+    model: passport.model,
+    modelTitle: passport.model.startsWith('STIHL') ? passport.model : `STIHL ${passport.model}`,
+    identityLine: `${passport.identityTitle}: ${passport.identityLabel}`,
+    evidenceState,
+    evidenceLabel: PASSPORT_EVIDENCE_LABELS[evidenceState],
+    evidenceBadge: PASSPORT_EVIDENCE_BADGES[evidenceState],
+    hasSerial: passport.hasSerial,
+    showSerial,
+    serialMasked,
+    serialText: !passport.hasSerial ? 'Nog niet toegevoegd' : (showSerial ? passport.formattedSerial : MASKED_SERIAL_TEXT),
+    serialCaption: serialMasked ? 'Serienummer bewust verborgen op deze afbeelding' : '',
+    originText: serialMasked ? 'Afgeschermd op deze afbeelding' : passport.country,
+    yearsText: passport.years,
+    specLines: (passport.technicalSpecRows || []).slice(0, 4),
+    hasTechnicalSpecs: passport.hasTechnicalSpecs,
+    technicalFallback: passport.identityExplanation,
+    publicUrl: passport.publicUrl,
+    qrUrl: passport.qrUrl,
+    brandLine: PASSPORT_EXPORT_BRAND,
+    disclaimer: PASSPORT_EXPORT_DISCLAIMER,
+    filename: `STIHL_Machinepaspoort_${safeModelSlug}_${dateStamp}.png`
+  };
+}
+
 export function renderStihlPassportHtml(data, databaseOrResult = null) {
   const passport = buildPassportViewModel(data, databaseOrResult);
   const {
@@ -460,28 +542,36 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
   `;
 }
 
-export function downloadStihlPassportImage(data) {
-  const passport = buildPassportViewModel(data);
-  const {
-    serial,
-    hasSerial,
-    formattedSerial,
-    passportMode,
-    model,
-    identityTitle,
-    identityLabel,
-    identityExplanation,
-    country,
-    years,
-    technicalSpecRows,
-    hasTechnicalSpecs,
-    publicUrl
-  } = passport;
+function fitCanvasText(ctx, text, maxWidth, baseFont, minSize = 11) {
+  const source = String(text || '');
+  const sizeMatch = baseFont.match(/(\d+)px/);
+  const baseSize = sizeMatch ? Number(sizeMatch[1]) : 16;
+  const fontFor = (px) => baseFont.replace(/\d+px/, `${px}px`);
+  let size = baseSize;
+  ctx.font = fontFor(size);
+  while (size > minSize && ctx.measureText(source).width > maxWidth) {
+    size -= 1;
+    ctx.font = fontFor(size);
+  }
+  let value = source;
+  if (ctx.measureText(value).width > maxWidth) {
+    while (value.length > 4 && ctx.measureText(`${value}…`).width > maxWidth) {
+      value = value.slice(0, -1);
+    }
+    value = `${value}…`;
+  }
+  return value;
+}
 
+export function downloadStihlPassportImage(data, options = {}) {
+  if (typeof document === 'undefined') return;
+
+  const exportModel = buildPassportExportModel(data, options);
+  const { passport } = exportModel;
   const theftCheck = passport.theftCheck || {
     userSelfReported: false,
     checkedAt: new Date().toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-    statusLabel: hasSerial ? 'Niet gecontroleerd via StopHeling' : 'Niet gecontroleerd (geen serienummer)'
+    statusLabel: exportModel.hasSerial ? 'Niet gecontroleerd via StopHeling' : 'Niet gecontroleerd (geen serienummer)'
   };
 
   const canvas = document.createElement('canvas');
@@ -500,92 +590,110 @@ export function downloadStihlPassportImage(data) {
     ctx.fillStyle = '#ea580c';
     ctx.fillRect(0, 0, 1200, 12);
 
-    // Header Text
+    // Header
     ctx.fillStyle = '#f97316';
     ctx.font = 'bold 22px monospace';
-    ctx.fillText(passportMode === 'MODEL_ONLY' ? 'STIHL MODELPASPOORT' : 'STIHL MACHINEPASPOORT', 60, 75);
+    ctx.fillText('STIHL MACHINEPASPOORT', 60, 70);
 
     ctx.fillStyle = '#ffffff';
     ctx.font = '900 44px sans-serif';
-    ctx.fillText(model.startsWith('STIHL') ? model : `STIHL ${model}`, 60, 130);
+    ctx.fillText(fitCanvasText(ctx, exportModel.modelTitle, 700, '900 44px sans-serif', 26), 60, 126);
 
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText(`${identityTitle}: ${identityLabel}`, 60, 155);
+    ctx.fillText(fitCanvasText(ctx, exportModel.identityLine, 700, '16px sans-serif', 12), 60, 154);
 
-    // Source-status badge
-    ctx.fillStyle = '#ea580c20';
-    ctx.fillRect(900, 50, 240, 42);
-    ctx.fillStyle = '#fb923c';
+    // Evidence-status badge (right aligned, never stronger than the stored data)
     ctx.font = 'bold 15px sans-serif';
-    ctx.fillText(passportMode === 'OFFICIAL_SERIAL_VERIFIED' ? 'OFFICIEEL STIHL' : (passportMode === 'MODEL_ONLY' ? 'MODELPASPOORT' : 'INDICATIEF OVERZICHT'), 925, 76);
+    const badgeText = exportModel.evidenceBadge;
+    const badgeWidth = Math.min(Math.max(ctx.measureText(badgeText).width + 40, 240), 350);
+    const badgeX = 1140 - badgeWidth;
+    ctx.fillStyle = '#ea580c33';
+    ctx.fillRect(badgeX, 46, badgeWidth, 44);
+    ctx.fillStyle = '#fb923c';
+    ctx.fillText(badgeText, badgeX + 20, 74);
 
     // Stop Heling Banner Box
     ctx.fillStyle = '#171717';
-    ctx.fillRect(60, 160, 1080, 80);
+    ctx.fillRect(60, 176, 1080, 76);
     ctx.fillStyle = '#a3a3a3';
-    ctx.font = 'bold 16px sans-serif';
-    ctx.fillText('STOP HELING DIEFSTALCONTROLE STATUS', 90, 195);
+    ctx.font = 'bold 15px sans-serif';
+    ctx.fillText('STOP HELING DIEFSTALCONTROLE STATUS', 90, 206);
     ctx.fillStyle = '#ffffff';
     ctx.font = '600 20px sans-serif';
-    ctx.fillText(hasSerial ? theftCheck.statusLabel : 'Niet van toepassing (geen serienummer geregistreerd)', 90, 225);
-
+    ctx.fillText(
+      fitCanvasText(
+        ctx,
+        exportModel.hasSerial ? theftCheck.statusLabel : 'Niet van toepassing (geen serienummer geregistreerd)',
+        720,
+        '600 20px sans-serif',
+        13
+      ),
+      90,
+      236
+    );
     ctx.fillStyle = '#737373';
-    ctx.font = '16px monospace';
-    ctx.fillText(hasSerial ? `Datum: ${theftCheck.checkedAt || '—'}` : 'Status: Geen serienummer', 840, 210);
+    ctx.font = '15px monospace';
+    ctx.fillText(exportModel.hasSerial ? `Datum: ${theftCheck.checkedAt || '—'}` : 'Status: Geen serienummer', 880, 212);
 
-    // Grid Cards
+    // Card grid: serial number (masked by default) & origin
     ctx.fillStyle = '#171717';
-    ctx.fillRect(60, 260, 525, 140);
+    ctx.fillRect(60, 268, 525, 132);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Serienummer', 90, 295);
+    ctx.fillText('Serienummer', 90, 300);
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 34px monospace';
-    ctx.fillText(formattedSerial, 90, 350);
+    ctx.fillText(fitCanvasText(ctx, exportModel.serialText, 455, 'bold 34px monospace', 20), 90, 352);
+    if (exportModel.serialCaption) {
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = '13px sans-serif';
+      ctx.fillText(fitCanvasText(ctx, exportModel.serialCaption, 455, '13px sans-serif', 10), 90, 380);
+    }
 
     ctx.fillStyle = '#171717';
-    ctx.fillRect(615, 260, 525, 140);
+    ctx.fillRect(615, 268, 525, 132);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Herkomst / Fabriek', 645, 295);
+    ctx.fillText('Herkomst / Fabriek', 645, 300);
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 28px sans-serif';
-    ctx.fillText(country, 645, 350);
+    ctx.font = 'bold 26px sans-serif';
+    ctx.fillText(fitCanvasText(ctx, exportModel.originText, 455, 'bold 26px sans-serif', 16), 645, 352);
 
+    // Card grid: year & evidence status
     ctx.fillStyle = '#171717';
-    ctx.fillRect(60, 420, 525, 140);
+    ctx.fillRect(60, 416, 525, 132);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText('Bouwjaar', 90, 455);
+    ctx.fillText('Bouwjaar', 90, 448);
     ctx.fillStyle = '#fb923c';
-    ctx.font = 'bold 32px sans-serif';
-    ctx.fillText(years, 90, 510);
+    ctx.font = 'bold 26px sans-serif';
+    ctx.fillText(fitCanvasText(ctx, exportModel.yearsText, 455, 'bold 26px sans-serif', 15), 90, 500);
 
     ctx.fillStyle = '#171717';
-    ctx.fillRect(615, 420, 525, 140);
+    ctx.fillRect(615, 416, 525, 132);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText(identityTitle, 645, 455);
+    ctx.fillText('Bewijsstatus', 645, 448);
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 24px sans-serif';
-    ctx.fillText(identityLabel, 645, 505);
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillText(fitCanvasText(ctx, exportModel.evidenceLabel, 455, 'bold 22px sans-serif', 14), 645, 500);
 
-    // Category Specific Full Row Card
+    // Technical specifications (fitted so every line stays inside the card)
     ctx.fillStyle = '#171717';
-    ctx.fillRect(60, 580, 1080, 120);
+    ctx.fillRect(60, 564, 1080, 150);
     ctx.fillStyle = '#a3a3a3';
     ctx.font = '16px sans-serif';
-    ctx.fillText(hasTechnicalSpecs ? 'Technische specificaties' : 'Technische specificatiesstatus', 90, 615);
+    ctx.fillText(exportModel.hasTechnicalSpecs ? 'Technische specificaties' : 'Technische specificatiesstatus', 90, 596);
     ctx.fillStyle = '#fb923c';
-    if (hasTechnicalSpecs) {
-      ctx.font = 'bold 22px monospace';
-      technicalSpecRows.slice(0, 3).forEach((row, index) => {
-        ctx.fillText(row, 90, 655 + (index * 28));
+    if (exportModel.hasTechnicalSpecs) {
+      ctx.font = 'bold 20px monospace';
+      exportModel.specLines.forEach((row, index) => {
+        ctx.fillText(fitCanvasText(ctx, row, 1000, 'bold 20px monospace', 12), 90, 630 + (index * 26));
       });
     } else {
-      ctx.font = 'bold 20px sans-serif';
-      ctx.fillText(identityExplanation, 90, 665, 980);
+      ctx.font = '600 19px sans-serif';
+      ctx.fillText(fitCanvasText(ctx, exportModel.technicalFallback, 1000, '600 19px sans-serif', 13), 90, 646);
     }
 
     // Footer Divider
@@ -596,35 +704,35 @@ export function downloadStihlPassportImage(data) {
     ctx.lineTo(1140, 730);
     ctx.stroke();
 
-    // Footer Text & Domain
-    ctx.fillStyle = '#737373';
-    ctx.font = '16px sans-serif';
-    ctx.fillText('Onafhankelijk STIHL machinepaspoort op basis van geverifieerde gegevens', 60, 770);
+    // Footer: brand mention, honest disclaimer and public domain
     ctx.fillStyle = '#f97316';
-    ctx.font = 'bold 24px monospace';
-    ctx.fillText('www.stihldecoder.nl', 60, 810);
-    ctx.fillStyle = '#525252';
-    ctx.font = '14px sans-serif';
-    ctx.fillText('Scan QR-code voor de modelpagina of het live controlerapport', 60, 840);
+    ctx.font = 'bold 26px monospace';
+    ctx.fillText(exportModel.brandLine, 60, 768);
 
-    // Draw QR Code
+    ctx.fillStyle = '#737373';
+    ctx.font = '15px sans-serif';
+    ctx.fillText(fitCanvasText(ctx, exportModel.disclaimer, 880, '15px sans-serif', 11), 60, 798);
+
+    ctx.fillStyle = '#a3a3a3';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('www.stihldecoder.nl — onafhankelijk STIHL machinepaspoort', 60, 830);
+
+    // Draw QR Code (always points to the public model page, never to a private dossier)
     if (qrImageElement) {
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(1000, 745, 140, 140);
-      ctx.drawImage(qrImageElement, 1010, 755, 120, 120);
+      ctx.fillRect(1000, 742, 140, 140);
+      ctx.drawImage(qrImageElement, 1010, 752, 120, 120);
     }
 
-    const fileSerial = serial || 'model';
     const link = document.createElement('a');
-    link.download = `STIHL_Machinepaspoort_${fileSerial}_${model.replace(/\s+/g, '_')}.png`;
+    link.download = exportModel.filename;
     link.href = canvas.toDataURL('image/png');
     link.click();
   }
 
   const qrImg = new Image();
   qrImg.crossOrigin = 'anonymous';
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(publicUrl)}`;
   qrImg.onload = () => renderCanvasAndDownload(qrImg);
   qrImg.onerror = () => renderCanvasAndDownload(null);
-  qrImg.src = qrUrl;
+  qrImg.src = exportModel.qrUrl.replace('size=100x100', 'size=120x120');
 }

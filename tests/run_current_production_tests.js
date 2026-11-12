@@ -130,7 +130,8 @@ export const currentProductionSuites = [
   'tests/phase72_amazon_growth.test.js',
   'tests/phase73_amazon_100.test.js',
   'tests/phase74_amazon_growth.test.js',
-  'tests/phase75_amazon_growth.test.js'
+  'tests/phase75_amazon_growth.test.js',
+  'tests/phase79_passport_visibility.test.js'
 ];
 
 console.log('===============================================================');
