@@ -275,12 +275,12 @@ test('Phase 56B - Test 7: 100% Search Fallback Availability for All 17,082 Parts
 test('Phase 56B - Test 8: UI Hierarchy & Content Safety', () => {
   const html = renderPartDetailPageHtml('11181953500', database, PRIMARY_ORIGIN);
 
-  // Hierarchy check: Technical data appears BEFORE commercial offer
+  // Hierarchy check (Phase 79B): commercial CTA appears before the full model list
   const modelsIdx = html.indexOf('Geschikte STIHL Modellen');
   const offersIdx = html.indexOf('Zoek dit onderdeel online');
   assert.ok(modelsIdx > -1, 'Models section must exist');
   assert.ok(offersIdx > -1, 'Commercial section must exist');
-  assert.ok(modelsIdx < offersIdx, 'Technical compatibility must appear before commercial CTA');
+  assert.ok(offersIdx < modelsIdx, 'Commercial CTA must appear before the full model list (Phase 79B)');
 
   // Search fallback copy check
   assert.match(html, /Zoek op Amazon\.nl/);

@@ -210,18 +210,32 @@
           </p>
         </button>
 
-        <!-- 3. Technische informatie -->
-        <a href="/gidsen/serienummer-locaties/" id="tab-intent-partno" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-gray-800 bg-gray-950/80 hover:border-orange-500/50 hover:bg-orange-950/20 group flex flex-col justify-between min-h-[100px]" data-intent="partno">
-          <div class="flex items-center gap-2.5">
-            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 text-lg group-hover:scale-105 transition">📖</span>
-            <div>
-              <span class="text-sm font-bold text-white group-hover:text-orange-400 transition block">Technische informatie</span>
-              <span class="text-3xs text-orange-400/80 uppercase font-mono tracking-wider font-semibold">Specificaties & Gidsen</span>
+        <!-- 3. Machinepaspoort maken (Phase 79: volwaardige hoofdfunctie) -->
+        <a href="/stihl-paspoort/#nieuw" id="tab-intent-passport" class="intent-tab p-4 rounded-xl text-left transition cursor-pointer border border-orange-500/40 bg-gradient-to-br from-orange-950/40 to-gray-950/80 hover:border-orange-500 hover:bg-orange-950/30 group flex flex-col justify-between min-h-[100px]" aria-label="Gratis STIHL Machinepaspoort maken">
+          <div class="space-y-2.5">
+            <div class="flex items-center gap-2.5">
+              <span class="p-2 rounded-lg bg-orange-500/15 text-orange-400 border border-orange-500/30 text-lg group-hover:scale-105 transition">📄</span>
+              <div>
+                <span class="text-sm font-bold text-white group-hover:text-orange-400 transition block">Gratis STIHL Machinepaspoort</span>
+                <span class="text-3xs text-orange-400/80 uppercase font-mono tracking-wider font-semibold">Ook zonder serienummer</span>
+              </div>
             </div>
+            <p class="text-2xs text-gray-400 leading-relaxed">
+              Maak een digitaal paspoort van je STIHL-machine. Handig voor onderhoud, eigen administratie en verkoop via Marktplaats of Facebook Marketplace.
+            </p>
           </div>
-          <p class="text-2xs text-gray-400 mt-2.5 leading-relaxed">
-            Toegang tot afstelwaarden, zaaguitrusting, handleidingen en serienummerlocaties.
-          </p>
+          <span class="mt-2.5 inline-flex items-center justify-center gap-1.5 w-full bg-orange-600 group-hover:bg-orange-500 text-white text-2xs font-bold px-3 py-2 rounded-lg transition">
+            Maak gratis Machinepaspoort <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Technische informatie blijft als secundaire link bereikbaar -->
+      <div class="mt-3.5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 max-w-3xl mx-auto text-2xs">
+        <a href="/gidsen/serienummer-locaties/" id="tab-intent-partno" data-intent="partno" class="inline-flex items-center gap-1.5 text-gray-300 hover:text-orange-400 font-semibold transition">
+          <span aria-hidden="true">📖</span>
+          <span>Technische informatie — afstelwaarden, specificaties &amp; gidsen</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -989,7 +1003,11 @@
             </div>
 
             <!-- Download onafhankelijk rapport -->
-            <div class="pt-2 flex justify-end">
+            <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <label for="check-show-serial-export" class="flex items-center gap-2 text-2xs text-gray-300 cursor-pointer">
+                <input type="checkbox" id="check-show-serial-export" class="w-4 h-4 rounded border-gray-700 bg-gray-900 text-orange-500 focus:ring-orange-500">
+                <span>Serienummer tonen op gedeelde afbeelding</span>
+              </label>
               <button id="download-passport-btn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs rounded-xl flex items-center gap-2 transition cursor-pointer min-h-[44px]" aria-label="Download onafhankelijk rapport als afbeelding">
                 <span>📷 Download onafhankelijk rapport als afbeelding</span>
               </button>
@@ -1383,7 +1401,6 @@
       const clearBtn = document.getElementById('clear-btn');
       const tabParts = document.getElementById('tab-intent-parts');
       const tabSerial = document.getElementById('tab-intent-serial');
-      const tabPartNo = document.getElementById('tab-intent-partno');
       const searchHelperText = document.getElementById('search-helper-text');
       const resultCard = document.getElementById('result-card');
       const warningCard = document.getElementById('warning-card');
@@ -1412,7 +1429,7 @@
       const decodeEndpoint = window.STIHL_CLIENT_CONFIG?.decodeEndpoint || '/api/decode';
 
       function setActiveIntentTab(activeTab) {
-        [tabParts, tabSerial, tabPartNo].forEach(tab => {
+        [tabParts, tabSerial].forEach(tab => {
           if (!tab) return;
           const isActive = (tab === activeTab);
           if (isActive) {
@@ -1488,7 +1505,7 @@
         } else if (intent === 'part') {
           if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
           if (searchBtn) searchBtn.setAttribute('aria-label', 'Onderdeelnummer opzoeken');
-          setActiveIntentTab(tabPartNo);
+          setActiveIntentTab(null);
           if (searchHelperText) {
             searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
           }
@@ -2492,25 +2509,6 @@
         });
       }
 
-      if (tabPartNo) {
-        tabPartNo.addEventListener('click', () => {
-          setActiveIntentTab(tabPartNo);
-          if (inputEl) {
-            inputEl.placeholder = 'Bijv. 1121 021 0800 of 1123 020 1200...';
-            inputEl.focus();
-          }
-          if (searchHelperText) {
-            searchHelperText.innerText = 'Voer een 11-cijferig onderdeelnummer in om pasvorm en compatibele modellen te controleren.';
-          }
-          if (inputEl && inputEl.value.trim()) {
-            updateDynamicSearchButton();
-          } else {
-            const searchBtnText = document.getElementById('search-btn-text');
-            if (searchBtnText) searchBtnText.innerText = 'Zoek onderdeel';
-          }
-        });
-      }
-
       // Parameter Ingestion (Phase 49A)
       try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -2788,6 +2786,16 @@
         }
       });
 
+      // Phase 79: homepage Machinepaspoort entry measurement (consent-gated, no personal data)
+      const passportEntry = document.getElementById('tab-intent-passport');
+      if (passportEntry) {
+        passportEntry.addEventListener('click', () => {
+          if (window.trackStihlEvent) {
+            window.trackStihlEvent('passport_cta_click', { placement: 'homepage_hero', page_path: window.location.pathname });
+          }
+        });
+      }
+
       // Download Passport Image button
       const downloadBtn = document.getElementById('download-passport-btn');
       if (downloadBtn) {
@@ -2799,6 +2807,7 @@
           const codeVal = inputEl ? inputEl.value.trim() : '';
           const cleanSerial = codeVal.replace(/[^0-9]/g, '') || currentSerial;
           const isSelfChecked = userCheckbox ? userCheckbox.checked : false;
+          const showSerialOnImage = document.getElementById('check-show-serial-export')?.checked === true;
           downloadStihlPassportImage({
             ...(currentDecodeResult || {}),
             cleanedSerial: cleanSerial,
@@ -2813,7 +2822,10 @@
                 ? 'Zelf gerapporteerd door bezoeker (Niet geverifieerd door STIHL Decoder)'
                 : 'Niet gecontroleerd via StopHeling'
             }
-          });
+          }, { showSerial: showSerialOnImage });
+          if (window.trackStihlEvent) {
+            window.trackStihlEvent('passport_download', { placement: 'homepage_decoder', serial_masked: !showSerialOnImage });
+          }
         });
       }
 

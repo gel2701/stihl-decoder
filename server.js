@@ -33,9 +33,13 @@ import { defaultVerifiedOfferRegistry } from './src/affiliate/VerifiedOfferRegis
 // Phase 59E.1: Controlled Amazon ASIN Live Pilot Launch (3 vetted spark plugs)
 if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
   defaultVerifiedOfferRegistry.productionActivationAllowed = true;
+  // Phase 79B hotfix: direct-link eligibility comes from the registry data itself
+  // (status ACTIVE + runtime Two-Gate verification + per-marketplace caps + NL
+  // shipping proof). The old hardcoded 3-part fallback whitelist hid 83 of the 86
+  // active parts behind a search fallback. An explicit operator override still wins.
   defaultVerifiedOfferRegistry.activeWhitelist = process.env.AMAZON_PILOT_ACTIVE_PARTS
     ? new Set(process.env.AMAZON_PILOT_ACTIVE_PARTS.split(',').map(s => PartNormalizer.normalizePartNumber(s.trim())).filter(Boolean))
-    : new Set(['11104007005', '00004007000', '00004007011']);
+    : null;
 }
 
 // Eager database initialization

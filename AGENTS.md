@@ -7,7 +7,7 @@ All coding agents working on this repository must read, adhere to, and execute t
 [`.agents/skills/stihldecoder-quality-gate/SKILL.md`](.agents/skills/stihldecoder-quality-gate/SKILL.md)
 
 ## Key Directives:
-1. **Preserve Invariants**: 18,373 canonical parts, 843 SEO parts, 1,024 sitemap URLs, exactly 3 active pilot ASINs.
+1. **Preserve Invariants**: 18,373 canonical parts, 843 SEO parts, 1,024 sitemap URLs, active Amazon offers must match the registry ACTIVE set and runtime eligibility gates (Two-Gate, per-marketplace caps, NL shipping for DE, kill-switches, optional explicit operator whitelist); do not reinstate the legacy 3-ASIN pilot default.
 2. **Staged Testing Workflow**: Run Stage A (`node scripts/check_affiliate_consistency.mjs`) and Stage B (`node tests/affiliate_quality_gate.test.js`) before full production test suites.
 3. **Dual-Gate Verification**: Every Amazon offer must pass Gate 1 (Technical) and Gate 2 (Product/Compatibility) via `TwoGateVerifier.js`. Unverified ASINs must fail closed to `ASIN_IDENTITY_UNVERIFIED`.
 4. **No Self-Certified ASINs**: Never rely on freeform text, generic HTTPS URLs, untrusted source types, or `asin_identity_corroborated: true` booleans. Corroboration must link the exact ASIN to the manufacturer, MPN, and physical product via authoritative external catalog/merchant sources. Manufacturer pages with no ASIN must fail closed with `ASIN_IDENTITY_UNVERIFIED`.

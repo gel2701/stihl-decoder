@@ -182,4 +182,65 @@ test.describe('Critical Homepage User Journeys', () => {
     gates.assertClean('Phase 3 Direct Parts Journey');
   });
 
+  test('H. Machinepaspoort is direct zichtbaar en de PNG-export werkt zonder serienummer', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+
+    // Deterministic QR image so the canvas export never depends on a third party
+    const qrPng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
+    await page.context().route(/api\.qrserver\.com/, route => route.fulfill({
+      status: 200,
+      contentType: 'image/png',
+      headers: { 'access-control-allow-origin': '*' },
+      body: qrPng
+    }));
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+
+    const passportCard = page.locator('#tab-intent-passport');
+    await expect(passportCard).toBeVisible();
+    await expect(passportCard).toContainText('Gratis STIHL Machinepaspoort');
+    await expect(passportCard).toContainText('Ook zonder serienummer');
+    await expect(passportCard).toContainText('Maak gratis Machinepaspoort');
+    await expect(passportCard).toHaveAttribute('href', '/stihl-paspoort/#nieuw');
+    await expect(page.locator('#tab-intent-partno')).toBeVisible();
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+    await expect(passportCard).toBeVisible();
+    await expect(passportCard).toContainText('Maak gratis Machinepaspoort');
+
+    // Complete the real consent flow before interacting with the passport form.
+    // Rejecting optional analytics must never prevent creating or downloading a passport.
+    const rejectCookies = page.locator('#cookie-reject-btn');
+    if (await rejectCookies.isVisible()) {
+      await rejectCookies.click();
+      await expect(page.locator('#cookie-consent-banner')).toBeHidden();
+    }
+
+    await passportCard.click();
+    await page.waitForURL('**/stihl-paspoort/**');
+    await expect(page.locator('#btn-open-create-modal')).toBeVisible();
+    await expect(page.locator('#modal-add')).toBeVisible();
+
+    await page.selectOption('#select-model', 'ms-440');
+    await page.check('#check-confirm-model');
+    await page.click('#form-add-machine button[type="submit"]');
+
+    const passportBtn = page.locator('#dossier-grid button', { hasText: 'Paspoort bekijken' }).first();
+    await expect(passportBtn).toBeVisible();
+    await passportBtn.click();
+
+    await expect(page.locator('#modal-passport')).toBeVisible();
+    await expect(page.locator('#passport-preview-container')).toContainText('Nog niet toegevoegd');
+    await expect(page.locator('#check-show-serial-export')).not.toBeChecked();
+
+    const downloadPromise = page.waitForEvent('download', { timeout: 20000 });
+    await page.click('#btn-download-passport');
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toMatch(/^STIHL_Machinepaspoort_ms-440_\d{4}-\d{2}-\d{2}\.png$/);
+
+    gates.assertClean('Phase 79 Passport Journey');
+  });
+
 });

@@ -243,12 +243,14 @@ test('Phase 56A - Test 8: Part Detail Page Content Architecture & Safety', () =>
   assert.match(html, /<h1[^>]*>[\s\S]*?STIHL \d{4} \d{3} \d{4}[\s\S]*?<\/h1>/);
   assert.match(html, /<meta\s+name="description"\s+content="Bekijk op welke STIHL machines onderdeel/);
 
-  // 3. Technical Content Hierarchy: Models & Sections BEFORE Commercial CTA
+  // 3. Content hierarchy (Phase 79B): commercial CTA directly under the header,
+  //    the full compatible-model list is the final content block.
   const modelsIdx = html.indexOf('Geschikte STIHL Modellen');
   const offersIdx = html.indexOf('Zoek dit onderdeel online');
   assert.ok(modelsIdx > -1, 'Compatible models section must exist');
   assert.ok(offersIdx > -1, 'Commercial offers section must exist');
-  assert.ok(modelsIdx < offersIdx, 'Technical compatibility MUST appear before commercial CTA');
+  assert.ok(offersIdx < modelsIdx, 'Commercial CTA must appear before the full model list (Phase 79B)');
+  assert.ok(html.indexOf('Controleer compatibiliteit vóór aankoop') > offersIdx, 'Compatibility warning follows the CTA');
 
   // 4. Zero False Claims / Price / Availability
   assert.strictEqual(html.includes('Op voorraad'), false, 'Must not claim in-stock without live API');
