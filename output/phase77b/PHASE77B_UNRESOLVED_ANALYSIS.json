@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77B",
+  "generated_at_utc": "2026-11-12T21:22:38.706Z",
+  "read_only": true,
+  "totals": {
+    "fitments": 181394,
+    "unresolved": 170503,
+    "unresolved_pct": 94
+  },
+  "by_source": [
+    {
+      "source_id": "sparepartsworld",
+      "fitments": 175054,
+      "unresolved": 170494,
+      "unresolved_pct": 97.4,
+      "with_configuration_key": 90171,
+      "models": 901
+    },
+    {
+      "source_id": "ghs",
+      "fitments": 6288,
+      "unresolved": 0,
+      "unresolved_pct": 0,
+      "with_configuration_key": 0,
+      "models": 608
+    },
+    {
+      "source_id": "official_stihl",
+      "fitments": 52,
+      "unresolved": 9,
+      "unresolved_pct": 17.31,
+      "with_configuration_key": 0,
+      "models": 28
+    }
+  ],
+  "top_configuration_keys_without_section": [
+    {
+      "configuration_key": "LOOP_HANDLE",
+      "fitments": 4639
+    },
+    {
+      "configuration_key": "RIDE_ON_MOWER_RT",
+      "fitments": 3471
+    },
+    {
+      "configuration_key": "ELECTRIC",
+      "fitments": 2780
+    },
+    {
+      "configuration_key": "D",
+      "fitments": 2494
+    },
+    {
+      "configuration_key": "GARDEN",
+      "fitments": 2344
+    },
+    {
+      "configuration_key": "COLD_WATER_ELECTRIC",
+      "fitments": 2148
+    },
+    {
+      "configuration_key": "W",
+      "fitments": 2124
+    },
+    {
+      "configuration_key": "CORDLESS",
+      "fitments": 2096
+    },
+    {
+      "configuration_key": "PLUS_ELECTRIC",
+      "fitments": 1940
+    },
+    {
+      "configuration_key": "WRAP_HANDLE",
+      "fitments": 1838
+    },
+    {
+      "configuration_key": "ZL",
+      "fitments": 1647
+    },
+    {
+      "configuration_key": "ZL_RIDE_ON_MOWER_RT",
+      "fitments": 1644
+    },
+    {
+      "configuration_key": "SHORT_SHAFT",
+      "fitments": 1558
+    },
+    {
+      "configuration_key": "COMFORT",
+      "fitments": 1383
+    },
+    {
+      "configuration_key": "BACKPACK",
+      "fitments": 1361
+    }
+  ],
+  "explanation": {
+    "primary_cause": "The dominant source (sparepartsworld, 96.5% of fitments) publishes part rows without a diagram section. Its configuration keys are machine variants (LOOP_HANDLE, ELECTRIC, D), not sections, so section_key cannot be derived from that source.",
+    "secondary_cause": "81,565 of those fitments carry no configuration key at all; the source page is a single model-wide parts list.",
+    "fail_closed_behaviour": "The importer correctly refuses to guess and stores general_unresolved instead of inventing a section.",
+    "enrichment_state": {
+      "section_contexts_rows": 814,
+      "scope_resolutions": 0
+    }
+  },
+  "local_pdf_page_index": {
+    "pages": 6560,
+    "with_usable_heading": 3073,
+    "with_models": 1397
+  },
+  "improvement_levers": [
+    {
+      "rank": 1,
+      "action": "Treat missing artwork as a data quality problem: replace placeholder URLs per model before counting coverage",
+      "measured_effect": "42 of 61 pilot URLs are placeholders (68.85%); the real sheet count is ~1109 of 2376",
+      "coverage_gain_parts": 0,
+      "coverage_after_pct": 2.79,
+      "effort": "LOW",
+      "risk": "NONE (verification only)"
+    },
+    {
+      "rank": 2,
+      "action": "Reuse resolved GHS section identity for sparepartsworld rows with the same model + part number",
+      "measured_effect": "1993 fitments, 775 parts, 223 models can move out of general_unresolved",
+      "coverage_gain_parts": 766,
+      "coverage_after_pct": 6.95,
+      "effort": "MEDIUM",
+      "risk": "MEDIUM — must be stored as DERIVED_FROM_SECTION_EVIDENCE, never as verified"
+    },
+    {
+      "rank": 3,
+      "action": "Resolve section identity at the source: harvest GHS section pages including their position tables",
+      "measured_effect": "Would bind every GHS section (2,376 URLs) to positions instead of the current 235",
+      "coverage_gain_parts": null,
+      "effort": "HIGH",
+      "risk": "HIGH — new acquisition + rights still unresolved"
+    },
+    {
+      "rank": 4,
+      "action": "Recover sections from the local archive PDFs (78 documents) once the files are available",
+      "measured_effect": "6560 indexed pages, but only 3073 have a usable heading and 1397 carry model metadata, and 0 carry part numbers",
+      "coverage_gain_parts": null,
+      "effort": "HIGH",
+      "risk": "MEDIUM — needs OCR plus the actual PDF files"
+    }
+  ],
+  "derived_section_reuse": {
+    "candidate_fitments": 1993,
+    "candidate_parts": 775,
+    "candidate_models": 223,
+    "required_status_label": "DERIVED_FROM_SECTION_EVIDENCE",
+    "never_store_as": "VERIFIED"
+  }
+}

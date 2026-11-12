@@ -1,0 +1,983 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77B",
+  "generated_at_utc": "2026-11-12T21:22:38.706Z",
+  "read_only": true,
+  "catalog_baseline": {
+    "parts": 18377,
+    "fitments": 181394
+  },
+  "metadata_level": {
+    "linked_sections": 235,
+    "linked_positions": 710,
+    "linked_parts": 512,
+    "coverage_pct": 2.79
+  },
+  "verified_level": {
+    "linked_sections_real": 9,
+    "linked_sections_placeholder": 20,
+    "linked_sections_unsampled": 206,
+    "verified_positions": 132,
+    "verified_parts": 112,
+    "coverage_pct": 0.61
+  },
+  "models": {
+    "with_diagram_metadata": 224,
+    "fully_linkable": 0,
+    "fully_linkable_ids": [],
+    "per_model": [
+      {
+        "model_id": "009",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 2,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "017",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 2,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "018",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "021",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 4,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "023",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 5,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "024",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "025",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 4,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "026",
+        "linked_sections": 4,
+        "verified_real_sections": 1,
+        "placeholder_sections": 3,
+        "unsampled_sections": 0,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "029",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "034",
+        "linked_sections": 7,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 7,
+        "positions": 68,
+        "parts": 70,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "036",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 8,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "038",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 5,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "039",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "044",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 5,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "046",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 8,
+        "parts": 8,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "051",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 0,
+        "parts": 0,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "064",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 14,
+        "parts": 13,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "066",
+        "linked_sections": 8,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 8,
+        "positions": 18,
+        "parts": 17,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "070",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 11,
+        "parts": 12,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "08",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 6,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "084",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 3,
+        "parts": 3,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "088",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "bg_45",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "e_14",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 0,
+        "parts": 0,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "e_140",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "e_160",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "e_20",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "e_220",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "fsb_km",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ht_131",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 3,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ht_km",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 2,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "km_100",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 3,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "km_131",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 2,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "km_85",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 2,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "km_90",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 7,
+        "parts": 9,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_170",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 1,
+        "unsampled_sections": 0,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_180",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_200",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_201",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_210",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 1,
+        "unsampled_sections": 5,
+        "positions": 10,
+        "parts": 10,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_211",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 2,
+        "parts": 3,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_230",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 12,
+        "parts": 12,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_231",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 8,
+        "parts": 8,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_240",
+        "linked_sections": 5,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 5,
+        "positions": 7,
+        "parts": 7,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_250",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 10,
+        "parts": 11,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_251",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 9,
+        "parts": 9,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_260",
+        "linked_sections": 9,
+        "verified_real_sections": 4,
+        "placeholder_sections": 5,
+        "unsampled_sections": 0,
+        "positions": 132,
+        "parts": 132,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_261",
+        "linked_sections": 11,
+        "verified_real_sections": 4,
+        "placeholder_sections": 7,
+        "unsampled_sections": 0,
+        "positions": 132,
+        "parts": 132,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_270",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 5,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_271",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 6,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_280",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 3,
+        "parts": 3,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_290",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 3,
+        "parts": 3,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_291",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 6,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_310",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 4,
+        "parts": 4,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_311",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_340",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 0,
+        "parts": 0,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_341",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 5,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_360",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 7,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_361",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 1,
+        "unsampled_sections": 2,
+        "positions": 8,
+        "parts": 8,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_362",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 11,
+        "parts": 11,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_380",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 2,
+        "parts": 2,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_390",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 5,
+        "parts": 5,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_391",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_440",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 1,
+        "unsampled_sections": 2,
+        "positions": 3,
+        "parts": 3,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_441",
+        "linked_sections": 3,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 3,
+        "positions": 6,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_460",
+        "linked_sections": 5,
+        "verified_real_sections": 0,
+        "placeholder_sections": 1,
+        "unsampled_sections": 4,
+        "positions": 8,
+        "parts": 8,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_461",
+        "linked_sections": 2,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 2,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_640",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 10,
+        "parts": 10,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_650",
+        "linked_sections": 5,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 5,
+        "positions": 6,
+        "parts": 6,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_660",
+        "linked_sections": 8,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 8,
+        "positions": 12,
+        "parts": 13,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ms_880",
+        "linked_sections": 4,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 4,
+        "positions": 8,
+        "parts": 8,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "mse_220",
+        "linked_sections": 1,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 1,
+        "positions": 1,
+        "parts": 1,
+        "fully_linkable": false
+      },
+      {
+        "model_id": "ts_410",
+        "linked_sections": 6,
+        "verified_real_sections": 0,
+        "placeholder_sections": 0,
+        "unsampled_sections": 6,
+        "positions": 53,
+        "parts": 54,
+        "fully_linkable": false
+      }
+    ]
+  },
+  "position_match": {
+    "positions_bound_to_a_real_diagram": 132,
+    "positions_bound_to_placeholder_or_unsampled": 578,
+    "artwork_level_verification": "NOT_POSSIBLE — position numbers are printed on the drawing; the catalog stores numbers without coordinates"
+  },
+  "examples": [
+    {
+      "model_id": "ms_261",
+      "ghs_section": "C — Oil pump, Clutch",
+      "catalog_section": "oil_pump_clutch — Oil Pump. Clutch",
+      "diagram_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms261_c.jpg",
+      "diagram_rights": "RIGHTS_UNKNOWN",
+      "confidence": "SECTION_AND_VARIANT_MATCH",
+      "catalog_positions_in_section": 30,
+      "offer_backed_positions_in_section": 1,
+      "positions": [
+        {
+          "position": "1",
+          "part_number": "11416403200",
+          "part_name": "Stihl Oil Pump",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "2",
+          "part_number": "00009580408",
+          "part_name": "Stihl Washer",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "3",
+          "part_number": "00009972002",
+          "part_name": "Stihl Compression Spring",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "4",
+          "part_number": "11216470603",
+          "part_name": "Stihl Pump Piston",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "5",
+          "part_number": "11216419400",
+          "part_name": "Stihl Bearing Bushing",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "6",
+          "part_number": "96469450160",
+          "part_name": "Stihl O-Ring Din3771-S4X2",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "26",
+          "part_number": "00006421231",
+          "part_name": "Stihl 00006421231 Rim Sprocket 3/8\" 7T",
+          "active_amazon_offers": [
+            {
+              "marketplace": "amazon.nl",
+              "asin": "B000IBWVWG",
+              "affiliate_tag": "srihldecoder2-21"
+            }
+          ]
+        }
+      ],
+      "viewer_chain_complete": true
+    },
+    {
+      "model_id": "ms_260",
+      "ghs_section": "J — Tank housing",
+      "catalog_section": "tank_housing — Tank Housing",
+      "diagram_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms260_j.jpg",
+      "diagram_rights": "RIGHTS_UNKNOWN",
+      "confidence": "SECTION_AND_VARIANT_MATCH",
+      "catalog_positions_in_section": 16,
+      "offer_backed_positions_in_section": 1,
+      "positions": [
+        {
+          "position": "1",
+          "part_number": "11213500834",
+          "part_name": "Stihl Tank Housing",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "2",
+          "part_number": "11211226600",
+          "part_name": "Stihl Collar Screw",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "3",
+          "part_number": "00009677247",
+          "part_name": "Stihl Warning Pictogram Ms",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "4",
+          "part_number": "00003505800",
+          "part_name": "Stihl 00003505800 Tank Vent For MS261 MS271 MS291 MS362 MS400 MS462",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "6",
+          "part_number": "11217912800",
+          "part_name": "Stihl Stop Buffer",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "7",
+          "part_number": "00003500533",
+          "part_name": "Stihl 00003500533 Oil Tank Cap for MS171 MS200 MS261 MS362 MS462 MS500i",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "15",
+          "part_number": "00003503518",
+          "part_name": "Stihl 00003503518 Pickup Body for MS200 MS231 MS380 MS400 MS440 MS441",
+          "active_amazon_offers": [
+            {
+              "marketplace": "amazon.de",
+              "asin": "B00QM7TH36",
+              "affiliate_tag": "srihldecode00-21"
+            }
+          ]
+        }
+      ],
+      "viewer_chain_complete": true
+    },
+    {
+      "model_id": "044",
+      "ghs_section": "B — Cylinder",
+      "catalog_section": "cylinder — Cylinder",
+      "diagram_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/4/044cylinder.jpg",
+      "diagram_rights": "RIGHTS_UNKNOWN",
+      "confidence": "SECTION_AND_VARIANT_MATCH",
+      "catalog_positions_in_section": 3,
+      "offer_backed_positions_in_section": 1,
+      "positions": [
+        {
+          "position": "1",
+          "part_number": "11280201227",
+          "part_name": "Stihl Cylinder And Piston 50Mm",
+          "active_amazon_offers": [
+            {
+              "marketplace": "amazon.de",
+              "asin": "B00LAHOFMQ",
+              "affiliate_tag": "srihldecode00-21"
+            }
+          ]
+        },
+        {
+          "position": "6",
+          "part_number": "11280292301",
+          "part_name": "Stihl Cylinder Gasket 0.5Mm",
+          "active_amazon_offers": []
+        },
+        {
+          "position": "44",
+          "part_number": "11280292302",
+          "part_name": "Stihl Cylinder Gasket 1Mm",
+          "active_amazon_offers": []
+        }
+      ],
+      "viewer_chain_complete": true
+    },
+    {
+      "model_id": "ms_440",
+      "ghs_section": "B — Cylinder",
+      "catalog_section": "cylinder — Cylinder",
+      "diagram_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/m/s/ms440_b.jpg",
+      "diagram_rights": "RIGHTS_UNKNOWN",
+      "confidence": "SECTION_AND_VARIANT_MATCH",
+      "catalog_positions_in_section": 2,
+      "offer_backed_positions_in_section": 1,
+      "positions": [
+        {
+          "position": "1",
+          "part_number": "11280201227",
+          "part_name": "Stihl Cylinder And Piston 50Mm",
+          "active_amazon_offers": [
+            {
+              "marketplace": "amazon.de",
+              "asin": "B00LAHOFMQ",
+              "affiliate_tag": "srihldecode00-21"
+            }
+          ]
+        },
+        {
+          "position": "9",
+          "part_number": "11280292301",
+          "part_name": "Stihl Cylinder Gasket 0.5Mm",
+          "active_amazon_offers": []
+        }
+      ],
+      "viewer_chain_complete": true
+    },
+    {
+      "model_id": "026",
+      "ghs_section": "B — Cylinder, Muffler",
+      "catalog_section": "cylinder — Cylinder",
+      "diagram_url": "https://www.gardenhirespares.co.uk/media/catalog/product/cache/52e9459b2885810d8c25f2dc39403969/0/2/026_b.jpg",
+      "diagram_rights": "RIGHTS_UNKNOWN",
+      "confidence": "SECTION_AND_VARIANT_MATCH",
+      "catalog_positions_in_section": 1,
+      "offer_backed_positions_in_section": 1,
+      "positions": [
+        {
+          "position": "OFFICIAL_REF",
+          "part_number": "11210201200",
+          "part_name": "Cylinder with piston 44mm",
+          "active_amazon_offers": [
+            {
+              "marketplace": "amazon.de",
+              "asin": "B00PGX7STM",
+              "affiliate_tag": "srihldecode00-21"
+            }
+          ]
+        }
+      ],
+      "viewer_chain_complete": true
+    }
+  ]
+}
