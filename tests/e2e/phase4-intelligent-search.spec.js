@@ -4,7 +4,7 @@ import { attachIntegrityGates } from './e2e-gates.js';
 test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', () => {
 
   test('Journey 1: Autocomplete suggestions appear during typing and can be selected via click', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -37,7 +37,7 @@ test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', ()
   });
 
   test('Journey 2: Keyboard navigation in autocomplete (ArrowDown + Enter)', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -59,7 +59,7 @@ test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', ()
   });
 
   test('Journey 3: Typo recovery (MS 26O -> MS 260) shows typo notice banner and direct parts', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -83,7 +83,7 @@ test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', ()
   });
 
   test('Journey 4: Ambiguous query (MS 26) shows disambiguation cards and allows selecting candidate', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -115,7 +115,7 @@ test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', ()
   });
 
   test('Journey 5: Bounded fuzzy suggestion (MS 2500 -> suggests MS 250 in empty state)', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -140,7 +140,7 @@ test.describe('Phase 4: Intelligent Search & Model Recognition E2E Journeys', ()
   });
 
   test('Journey 6: 11-digit part number guard (never matches model or disambiguation)', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');

@@ -15,7 +15,7 @@ const affiliateTypes = ['affiliate_click', 'amazon_verified_product_click', 'ama
 
 function affiliateRows() {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT event_id, event_type, metadata_json FROM analytics_events WHERE event_type IN (?, ?, ?)`, affiliateTypes, (error, rows) => {
+    db.all(`SELECT event_id, event_type, is_test, metadata_json FROM analytics_events WHERE event_type IN (?, ?, ?)`, affiliateTypes, (error, rows) => {
       if (error) reject(error);
       else resolve(rows);
     });
@@ -101,6 +101,26 @@ test('public affiliate endpoints discard all claims, never write events, and kee
   }
 });
 
+test('test query disables GA4 only in server-controlled test environment', async () => {
+  const production = await request('/?test=1', 'GET');
+  assert.equal(production.status, 200);
+  assert.ok(production.body.includes('data-stihl-ga4-config'));
+
+  process.env.NODE_ENV = 'test';
+  try {
+    const automated = await request('/?test=1', 'GET');
+    assert.equal(automated.status, 200);
+    assert.ok(automated.body.includes('data-stihl-test-mode'));
+    assert.ok(!automated.body.includes('googletagmanager.com/gtag/js'));
+
+    const ordinary = await request('/', 'GET');
+    assert.equal(ordinary.status, 200);
+    assert.ok(ordinary.body.includes('data-stihl-ga4-config'));
+  } finally {
+    process.env.NODE_ENV = 'production';
+  }
+});
+
 test('first-party consent cookie indicator authorizes analytics recording on /api/affiliate/track', async () => {
   resetAffiliateRateLimits();
   const marker = `phase683_verified_${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -128,7 +148,40 @@ test('first-party consent cookie indicator authorizes analytics recording on /ap
 
   const after = await affiliateRows();
   assert.equal(after.length, before.length + 2, 'Must record primary and specific affiliate events');
-  assert.ok(after.some(r => r.event_id === marker));
+  assert.ok(after.some(r => r.event_id === marker && r.is_test === 0));
+
+  for (const [suffix, is_test] of [['?test=1', 0], ['', 1]]) {
+    const testMarker = `${marker}_${suffix ? 'query' : 'body'}`;
+    const testResult = await request('/api/affiliate/track' + suffix, 'POST', JSON.stringify({
+      event_id: testMarker,
+      is_test,
+      destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21'
+    }), {
+      'Content-Type': 'application/json',
+      'Cookie': 'stihl_cookie_consent=granted',
+      'User-Agent': 'Mozilla/5.0 Test'
+    });
+    assert.equal(testResult.status, 202);
+    assert.ok((await affiliateRows()).some(r => r.event_id === testMarker && r.is_test === 0));
+  }
+
+  process.env.NODE_ENV = 'test';
+  try {
+    const testMarker = `${marker}_trusted`;
+    const testResult = await request('/api/affiliate/track', 'POST', JSON.stringify({
+      event_id: testMarker,
+      is_test: 1,
+      destination_url: 'https://www.amazon.nl/dp/B0068M5NAG?tag=srihldecoder2-21'
+    }), {
+      'Content-Type': 'application/json',
+      'Cookie': 'stihl_cookie_consent=granted',
+      'User-Agent': 'Mozilla/5.0 Test'
+    });
+    assert.equal(testResult.status, 202);
+    assert.ok((await affiliateRows()).some(r => r.event_id === testMarker && r.is_test === 1));
+  } finally {
+    process.env.NODE_ENV = 'production';
+  }
 
   // 2. With denied consent cookie (stihl_cookie_consent=denied)
   const deniedMarker = `phase683_denied_${Date.now()}`;
@@ -146,5 +199,5 @@ test('first-party consent cookie indicator authorizes analytics recording on /ap
   assert.deepEqual(JSON.parse(deniedResult.body), { success: true, recorded: false });
 
   const afterDenied = await affiliateRows();
-  assert.equal(afterDenied.length, after.length, 'Must not record events when cookie is denied');
+  assert.equal(afterDenied.length, after.length + 6, 'Must not record events when cookie is denied');
 });

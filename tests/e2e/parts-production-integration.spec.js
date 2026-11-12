@@ -4,7 +4,7 @@ import { attachIntegrityGates } from './e2e-gates.js';
 test.describe('Phase 52C — Parts Production Integration Journeys', () => {
 
   test('1. Homepage Part Number Search shows enriched part warning card and compatible models', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     await page.goto('/');
 
     const input = page.locator('#code-input');
@@ -26,7 +26,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
   });
 
   test('2. Model Parts Page (/kettingzagen/ms-261/onderdelen/) loads with canonical catalog table', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/kettingzagen/ms-261/onderdelen/');
     expect(response?.status()).toBe(200);
 
@@ -44,7 +44,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
   });
 
   test('3. Model with multiple configurations allows filtering without error', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/kettingzagen/ms-261/onderdelen/?config=vw');
     expect(response?.status()).toBe(200);
 
@@ -59,7 +59,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
   });
 
   test('4. Dedicated Part Detail Page (/onderdeelnummer/11210071001/) loads with noindex and compatible models', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdeelnummer/11210071001/');
     expect(response?.status()).toBe(200);
 
@@ -77,7 +77,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
   });
 
   test('5. Unknown Part Number (/onderdeelnummer/99999999999/) returns clean fail-closed view', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
     const response = await page.goto('/onderdeelnummer/99999999999/');
     expect(response?.status()).toBe(200);
 
@@ -89,6 +89,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
   });
 
   test('6. Zero External Scraping Requests during parts browsing', async ({ page }) => {
+    await attachIntegrityGates(page);
     const externalRequests = [];
     page.on('request', req => {
       const u = req.url();

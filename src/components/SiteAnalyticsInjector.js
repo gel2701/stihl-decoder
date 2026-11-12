@@ -42,28 +42,32 @@ export const SITE_ANALYTICS_TAGS = `
   </script>
   <script defer src="/src/components/SiteAnalytics.js" data-stihl-site-analytics="1"></script>`;
 
-export function injectSiteAnalyticsIntoHtml(html) {
+export function injectSiteAnalyticsIntoHtml(html, testMode = false) {
   if (typeof html !== 'string' || !html) return html;
-  if (html.includes('data-stihl-ga4-consent-bootstrap')) return html;
+  if (html.includes('data-stihl-ga4-consent-bootstrap') || html.includes('data-stihl-test-mode')) return html;
+
+  const tags = testMode
+    ? '<script data-stihl-test-mode="1">window.__stihlTestMode = true;</script><script defer src="/src/components/SiteAnalytics.js" data-stihl-site-analytics="1"></script>'
+    : SITE_ANALYTICS_TAGS;
 
   if (html.includes('</head>')) {
     return html.replace(
       '</head>',
-      `${SITE_ANALYTICS_TAGS}\n</head>`
+      `${tags}\n</head>`
     );
   }
 
   if (html.includes('</body>')) {
     return html.replace(
       '</body>',
-      `${SITE_ANALYTICS_TAGS}\n</body>`
+      `${tags}\n</body>`
     );
   }
 
-  return `${html}\n${SITE_ANALYTICS_TAGS}`;
+  return `${html}\n${tags}`;
 }
 
-export function installSiteAnalyticsResponseInjection(res) {
+export function installSiteAnalyticsResponseInjection(res, testMode = false) {
   if (!res || res.__siteAnalyticsInjectionInstalled) return;
   res.__siteAnalyticsInjectionInstalled = true;
 
@@ -104,7 +108,7 @@ export function installSiteAnalyticsResponseInjection(res) {
         : (typeof chunk === 'string' ? chunk : null);
 
       if (html !== null) {
-        chunk = injectSiteAnalyticsIntoHtml(html);
+        chunk = injectSiteAnalyticsIntoHtml(html, testMode);
       }
     }
 

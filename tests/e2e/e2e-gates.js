@@ -3,7 +3,16 @@
  * Enforces Zero JavaScript Errors and Zero Failed Own-Origin Requests
  */
 
-export function attachIntegrityGates(page, allowed404Urls = []) {
+export async function attachIntegrityGates(page, allowed404Urls = []) {
+  await page.context().route(/https?:\/\/(?:[^/]+\.)?(?:googletagmanager\.com|google-analytics\.com|doubleclick\.net|clarity\.ms)(?:[/:?]|$)|https?:\/\/(?:www\.)?google\.com\/g\/collect/, route => route.fulfill({ status: 204, body: '' }));
+  await page.context().route(/https?:\/\/(?:www\.)?amazon\.(?:nl|de|com)(?:\/|$)/, route => route.abort());
+  await page.addInitScript(() => document.addEventListener('click', event => {
+    if (event.target instanceof Element && event.target.closest('a[href*="amazon."]')) event.preventDefault();
+  }, true));
+  if (process.env.PLAYWRIGHT_BASE_URL && !/^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/?$/i.test(process.env.PLAYWRIGHT_BASE_URL)) {
+    await page.context().route('**/api/affiliate/track', route => route.fulfill({ status: 202, contentType: 'application/json', body: '{"success":true,"recorded":false}' }));
+  }
+
   const pageErrors = [];
   const consoleErrors = [];
   const failedRequests = [];

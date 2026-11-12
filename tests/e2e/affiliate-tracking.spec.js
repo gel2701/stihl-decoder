@@ -6,7 +6,7 @@ import { getDatabasePath } from '../../src/databaseConfig.js';
 test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
 
   test('A. Outbound affiliate clicks on model parts page fire non-blocking beacon with test flag and no PII', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     // Simulate explicit visitor cookie consent
     await page.addInitScript(() => {
@@ -94,7 +94,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   });
 
   test('B. Rapid double-click debounce prevents duplicate beacon transmissions', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     // Simulate explicit visitor cookie consent
     await page.addInitScript(() => {
@@ -126,7 +126,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   });
 
   test('C. Parts discovery page (/onderdelen/) tracks affiliate clicks with model attribution', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     // Simulate explicit visitor cookie consent
     await page.addInitScript(() => {
@@ -157,7 +157,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   });
 
   test('D. Without consent (clean session), clicking affiliate link with ?test=1 sends ZERO tracking requests', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     const trackRequests = [];
     await page.route('**/api/affiliate/track', async (route) => {
@@ -184,7 +184,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   });
 
   test('E. When consent is denied, clicking affiliate link with ?test=1 sends ZERO tracking requests', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     // Explicitly denied consent
     await page.addInitScript(() => {
@@ -209,7 +209,7 @@ test.describe('Phase 60.1: Affiliate Tracking & Conversion Measurement', () => {
   });
 
   test('F. Without consent, client-side data.is_test dispatch sends ZERO tracking requests', async ({ page }) => {
-    const gates = attachIntegrityGates(page);
+    const gates = await attachIntegrityGates(page);
 
     const trackRequests = [];
     await page.route('**/api/affiliate/track', async (route) => {

@@ -4,6 +4,7 @@
  */
 (() => {
   const CONSENT_KEY = 'stihl_cookie_consent';
+  const testMode = window.__stihlTestMode === true;
 
   function getConsent() {
     try {
@@ -34,6 +35,7 @@
   }
 
   function updateAnalyticsConsent(granted) {
+    if (testMode) return;
     ensureGtag();
     window.gtag('consent', 'update', {
       analytics_storage: granted ? 'granted' : 'denied',
@@ -68,7 +70,7 @@
   };
 
   window.trackStihlEvent = function trackStihlEvent(eventName, params = {}) {
-    if (getConsent() === 'granted' && typeof window.gtag === 'function') {
+    if (!testMode && getConsent() === 'granted' && typeof window.gtag === 'function') {
       window.gtag('event', eventName, {
         ...params,
         transport_type: 'beacon'
@@ -144,7 +146,7 @@
   }
 
   function trackSiteClick(event) {
-    if (getConsent() !== 'granted' || typeof window.gtag !== 'function') return;
+    if (testMode || getConsent() !== 'granted' || typeof window.gtag !== 'function') return;
 
     const origin = event.target;
     if (!(origin instanceof Element)) return;
