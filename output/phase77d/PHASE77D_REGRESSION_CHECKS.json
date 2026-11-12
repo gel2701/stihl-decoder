@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77C",
+  "generated_at_utc": "2026-11-12T23:14:55.917Z",
+  "read_only": true,
+  "result": "PASS",
+  "checks": [
+    {
+      "id": "ACTIVE_OFFERS",
+      "description": "99 active Amazon offers are preserved (53 Amazon.nl / 46 Amazon.de)",
+      "status": "PASS",
+      "detail": "99 active (53 NL / 46 DE)"
+    },
+    {
+      "id": "EVIDENCE_UNCHANGED",
+      "description": "Evidence registry is byte-identical to the base branch",
+      "status": "PASS",
+      "detail": "identical to main"
+    },
+    {
+      "id": "RESOLVER",
+      "description": "Affiliate resolver returns direct NL/DE offers and a search fallback without a direct offer",
+      "status": "PASS",
+      "detail": "NL=DIRECT_ASIN/amazon.nl, DE=DIRECT_ASIN/amazon.de, fallback=SEARCH_FALLBACK"
+    },
+    {
+      "id": "BUY_BUTTONS",
+      "description": "Direct buy button still renders above the full model list",
+      "status": "PASS",
+      "detail": "buy=6067, models=20249"
+    },
+    {
+      "id": "PASSPORT_UNCHANGED",
+      "description": "Passport/homepage/CSS production files are not part of this branch",
+      "status": "PASS",
+      "detail": "no diff"
+    },
+    {
+      "id": "SERIAL_UNCHANGED",
+      "description": "Serial number decoder code is unchanged",
+      "status": "PASS",
+      "detail": "identical to main"
+    },
+    {
+      "id": "SEO_SITEMAP",
+      "description": "Generated sitemap keeps the canonical 1,024 URL surface (and matches the committed file when present)",
+      "status": "PASS",
+      "detail": "generated=1024, committed=not present"
+    },
+    {
+      "id": "BRANCH_SCOPE",
+      "description": "Branch only contains research files (working tree + committed diff vs base)",
+      "status": "PASS",
+      "detail": "24 research files vs main"
+    }
+  ]
+}
