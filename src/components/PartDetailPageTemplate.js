@@ -299,6 +299,28 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
         Canonieke referentie voor STIHL onderdeelnummer <strong>${formattedPartNo}</strong>. Controleer altijd het typeplaatje en de specifieke machine-uitvoering vóór montage.
       </p>
     </header>
+    <!-- Compact purchase actions: visible immediately on mobile before technical details. -->
+    ${offers.length > 0 ? `
+    <nav aria-label="Snel bestellen" class="rounded-xl border border-orange-500/30 bg-orange-950/20 p-3 sm:p-4">
+      <div class="flex flex-wrap items-center gap-2 mb-2">
+        <span class="text-sm font-bold text-white">Direct bestellen</span>
+        <span class="text-xs text-gray-300">Prijs en beschikbaarheid bij Amazon</span>
+      </div>
+      <div class="flex flex-col sm:flex-row flex-wrap gap-2">
+        ${offers.map(offer => {
+          const isDirect = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
+          const market = offer.marketplace === 'amazon.de' ? 'amazon.de' : 'amazon.nl';
+          const kind = isDirect ? 'MANUAL_ASIN' : 'SEARCH_LINK';
+          const label = isDirect ? `Bekijk op Amazon.${market.slice(-2)}` : 'Zoek op Amazon';
+          return `<a href="${offer.url}" target="_blank" rel="sponsored nofollow noopener"
+            data-part-number="${resolved.part_number}" data-marketplace="${market}" data-offer-type="${kind}"
+            class="flex items-center justify-center min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-lg text-sm font-bold ${isDirect ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-white'}"
+            onclick="window.handleAffiliateClick?.(this,event,{provider:'amazon',marketplace:'${market}',part_number:'${resolved.part_number}',offer_type:'${kind}',asin_if_known:'${offer.asin || ''}',product_verified:${isDirect},placement:'part_detail_quick_buy',page_path:window.location.pathname});">
+            ${label} ↗</a>`;
+        }).join('')}
+      </div>
+      <p class="text-2xs text-gray-400 mt-2">Affiliatelinks. Controleer de uitvoering en compatibiliteit vóór bestellen.</p>
+    </nav>` : ''}
 ${supersessionHtml}
 
     ${offers.length > 0 ? (() => {
