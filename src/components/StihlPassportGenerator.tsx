@@ -6,6 +6,8 @@ export interface PassportData {
   modelName: string;
   categorySlug?: string | null;
   modelSlug?: string | null;
+  publicPassportUrl?: string | null;
+  passportUrl?: string | null;
   country?: string | null;
   productionYears?: string | null;
   passportMode?: 'MODEL_ONLY' | 'MODEL_WITH_SERIAL' | 'OFFICIAL_SERIAL_VERIFIED';
@@ -15,6 +17,15 @@ export interface PassportData {
   powerKw?: number | null;
   displacementCc?: number | null;
   chainInfo?: string;
+  salesListing?: {
+    askingPrice?: string | null;
+    condition?: string | null;
+    location?: string | null;
+    sellerRole?: string | null;
+    verificationBadge?: string | null;
+    photos?: any[];
+    photosReachable?: boolean;
+  } | null;
   theftCheck?: {
     isStolen?: boolean;
     userSelfReported?: boolean;
@@ -53,9 +64,11 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
   // CRITICAL PRIVACY GATE: NEVER include serial numbers or query params in external QR requests!
   const safeCatSlug = data.categorySlug || 'kettingzagen';
   const safeModelSlug = data.modelSlug || (data.modelName ? data.modelName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : '');
-  const publicTargetUrl = (safeCatSlug && safeModelSlug)
-    ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
-    : 'https://www.stihldecoder.nl/';
+  const publicTargetUrl = data.publicPassportUrl || data.passportUrl || (
+    (safeCatSlug && safeModelSlug)
+      ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
+      : 'https://www.stihldecoder.nl/'
+  );
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicTargetUrl)}`;
 
   const technicalRows = [
@@ -66,7 +79,7 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
 
   let badgeText = 'INDICATIEF OVERZICHT';
   if (passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
-    badgeText = '✓ OFFICIEEL STIHL';
+    badgeText = '✓ MY STIHL MODELKOPPELING';
   } else if (passportMode === 'MODEL_ONLY') {
     badgeText = 'MODELPASPOORT';
   } else if (isSelfReported) {
@@ -166,13 +179,35 @@ export const StihlPassportGenerator: React.FC<{ data: PassportData }> = ({ data 
               </span>
             )}
           </div>
+          {data.salesListing && (
+            <div className="bg-gradient-to-r from-orange-950/40 via-neutral-900 to-neutral-900/90 p-3 rounded-xl border border-orange-500/40 col-span-2 space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-orange-400 font-bold">🏷️ Geverifieerde Verkoopmachine</span>
+                {data.salesListing.askingPrice && (
+                  <span className="bg-orange-500/20 text-orange-300 border border-orange-500/30 px-2.5 py-0.5 rounded-full text-xs font-black font-mono">
+                    {data.salesListing.askingPrice}
+                  </span>
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-[11px] pt-1 border-t border-neutral-800">
+                <div>
+                  <span className="text-neutral-400 block">Conditie:</span>
+                  <span className="text-white font-semibold">{data.salesListing.condition || 'Niet gespecificeerd'}</span>
+                </div>
+                <div>
+                  <span className="text-neutral-400 block">Locatie:</span>
+                  <span className="text-white font-semibold">{data.salesListing.location || 'Niet gespecificeerd'}</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Footer / Watermerk met QR-code */}
         <div className="flex justify-between items-center border-t border-neutral-800/80 pt-3 text-xs text-neutral-400">
           <div>
             <p className="font-semibold text-neutral-300">Onafhankelijk rapport op basis van bekende serienummer- en herkomstdata</p>
-            <p className="text-[10px] text-neutral-500">Scan QR-code voor live rapport en aanvullende handmatige controle</p>
+            <p className="text-[10px] text-neutral-500">Onafhankelijke verificatie — géén officieel STIHL-certificaat</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">

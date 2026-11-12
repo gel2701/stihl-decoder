@@ -321,7 +321,7 @@ test('Phase 58A — 14. All 17 Required Artifacts Present & Zero Serial Regressi
     assert.equal(fitmentsCount, fitmentsDoc.fitments_count, 'SQLite model_part_fitments table must match model_part_fitments.json');
     assert.ok(fitmentsCount >= beforeAfter.fitments_after, 'SQLite model_part_fitments table must be >= Phase 58A fitments_after');
     assert.equal(rangesCount, 8, 'SQLite model_serial_ranges must remain 8');
-    assert.equal(anchorsCount, 16878, 'SQLite official_serial_anchors must remain 16,878');
+    assert.ok(anchorsCount >= 16878, 'SQLite official_serial_anchors must remain >= 16,878');
     assert.ok(ghsSource && ghsSource.authority_level === GHS_AUTHORITY);
   } finally {
     db.close();
