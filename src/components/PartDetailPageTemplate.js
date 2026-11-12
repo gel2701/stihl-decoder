@@ -301,102 +301,6 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     </header>
 ${supersessionHtml}
 
-    <!-- Compatible Models Section -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-bold text-white flex items-center gap-2">
-          <span>Geschikte STIHL Modellen</span>
-          <span class="text-xs font-mono text-gray-400 bg-gray-900 border border-gray-800 px-2.5 py-0.5 rounded-full">${compatibleModels.length} modellen</span>
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        ${compatibleModels.map(m => {
-          const modelObj = (database?.models || []).find(mod => {
-            const mSlug = (mod.slug || mod.id).toLowerCase().replace(/[^a-z0-9]+/g, '_');
-            return mSlug === m.model_id;
-          });
-          const isPublishedPartsModel = Boolean(
-            modelObj &&
-            modelObj.data_status !== 'EVIDENCE_STORE_LINKED' &&
-            PartCatalogResolver.hasPartsForModel(modelObj, database)
-          );
-          const safePath = isPublishedPartsModel ? getSafeModelPath(modelObj) : null;
-          const safeModelId = (m.model_id || '').replace(/'/g, "\\'");
-          const safeSectionCtx = (m.sections?.[0] || primarySectionContext || '').replace(/'/g, "\\'");
-          const backlinkClick = `if(window.trackStihlEvent){window.trackStihlEvent('part_to_model_click', {part_number: '${resolved.part_number}', model: '${safeModelId}', section_context: '${safeSectionCtx}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}', wave_identifier: '${waveIdentifier}', page_path: window.location.pathname});}`;
-          return `
-            <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-4 space-y-2 hover:border-gray-700 transition">
-              <div class="flex justify-between items-start">
-                <span class="font-bold text-white text-sm">${m.model_name}</span>
-                <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${m.fitment_count} posities</span>
-              </div>
-              ${(m.variants && m.variants.length > 0) ? `
-                <div class="text-2xs text-gray-400">
-                  <span class="text-gray-500 block">Variant:</span>
-                  <span>${m.variants.join(', ')}</span>
-                </div>
-              ` : ''}
-              ${(m.configurations && m.configurations.length > 0) ? `
-                <div class="text-2xs text-gray-400">
-                  <span class="text-gray-500 block">Uitvoering:</span>
-                  <span>${m.configurations.join(', ')}</span>
-                </div>
-              ` : ''}
-              ${safePath ? `
-                <div class="pt-1">
-                  <a href="${safePath}onderdelen/" class="text-xs font-semibold text-orange-400 hover:underline" onclick="${backlinkClick}">
-                    Bekijk alle onderdelen voor ${m.model_name} →
-                  </a>
-                </div>
-              ` : ''}
-            </div>
-          `;
-        }).join('')}
-      </div>
-    </section>
-
-    ${(resolved.technical_profile?.supersession?.public_active && resolved.technical_profile.supersession.applicability !== 'EVIDENCE_ONLY_SCOPE_UNRESOLVED') ? `
-    <!-- Technical Supersession Notice -->
-    <section class="bg-blue-950/40 border border-blue-800/60 rounded-2xl p-5 space-y-2 text-xs">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-        <h3 class="font-bold text-white text-sm">Opvolgend Onderdeelnummer</h3>
-        <span class="text-3xs font-mono px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/60">Officieel STIHL Bulletin</span>
-      </div>
-      <p class="text-gray-300 leading-relaxed">
-        ${resolved.technical_profile.supersession.scope?.serial_condition?.serial
-          ? `STIHL technische documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) vermeldt voor deze toepassing een wijziging vanaf serienummer <strong>${resolved.technical_profile.supersession.scope.serial_condition.serial}</strong> naar onderdeel: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`
-          : `Volgens officiële STIHL documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) is onderdeel <strong>${formattedPartNo}</strong> vervangen door: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`}
-      </p>
-      <p class="text-2xs text-gray-400">
-        Controleer altijd machinenummer en specifieke configuratie voorafgaand aan montage.
-      </p>
-    </section>
-    ` : ''}
-
-    ${sectionMap.size > 0 ? `
-    <!-- Diagram Sections & Positions -->
-    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs">
-      <h3 class="text-base font-bold text-white">Montagelocatie &amp; tekeningposities</h3>
-      ${renderDiagramAvailabilityNoticeHtml({ className: 'mb-3' })}
-      <div class="space-y-4">
-        ${Array.from(sectionMap.entries()).map(([secName, fList]) => `
-          <div class="border-b border-gray-800/80 pb-3 last:border-b-0 space-y-1.5">
-            <div class="font-semibold text-orange-300 text-xs">${secName}</div>
-            <div class="flex flex-wrap gap-2 text-2xs text-gray-400">
-              ${fList.map(f => `
-                <span class="bg-gray-950 px-2 py-1 rounded border border-gray-800 font-mono">
-                  ${f.canonical_model_id.replace(/_/g, ' ').toUpperCase()}${f.diagram_position ? ` (Pos. ${f.diagram_position})` : ''}
-                </span>
-              `).join('')}
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    </section>
-    ` : ''}
-
     ${offers.length > 0 ? (() => {
       const hasVerifiedOffer = offers.some(o => o.match_type === 'MANUAL_ASIN' || o.is_verified === true);
       const sectionTitle = hasVerifiedOffer ? 'Waar te koop — Beschikbare Aanbiedingen' : 'Zoek dit onderdeel online';
@@ -576,6 +480,147 @@ ${supersessionHtml}
       ${renderAffiliateDisclosureHtml({ className: 'mt-3' })}
     </section>
     `;})() : ''}
+
+    <!-- Compatibility warning directly below the purchase options -->
+    <section class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5 text-xs text-amber-200 space-y-2">
+      <h2 class="font-bold text-amber-400 text-sm">Controleer compatibiliteit vóór aankoop</h2>
+      <p class="leading-relaxed">
+        Dit onderdeel is gedocumenteerd voor ${compatibleModels.length} STIHL model${compatibleModels.length === 1 ? '' : 'len'}. Controleer altijd het typeplaatje, de exacte machine-uitvoering en het serienummer.
+      </p>
+      ${/service\s*kit|onderhoudset/i.test(displayPartName || '') ? `
+      <p class="text-amber-100/90 leading-relaxed">
+        <strong>Servicekit:</strong> deze set bevat meerdere onderdelen en is niet automatisch universeel passend. Controleer de variant en de exacte inhoud van de kit voor jouw machine-uitvoering vóór aankoop.
+      </p>` : ''}
+      <a href="#geschikte-modellen" class="inline-block text-amber-300 underline font-semibold hover:text-amber-200">Bekijk de volledige lijst geschikte modellen →</a>
+    </section>
+
+    <!-- Compact technical reference -->
+    <section class="bg-gray-900/70 border border-gray-800 rounded-2xl p-5 space-y-3 text-xs">
+      <h2 class="text-base font-bold text-white">Technische specificaties</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div>
+          <span class="text-gray-400 block">Onderdeelnummer</span>
+          <span class="font-mono font-bold text-white">${formattedPartNo}</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block">Onderdeel</span>
+          <span class="text-gray-200 font-semibold">${displayPartName}</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block">Sectie</span>
+          <span class="text-gray-200">${primarySectionContext || 'Niet gespecificeerd'}</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block">Gedocumenteerde modellen</span>
+          <span class="text-gray-200">${compatibleModels.length}</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block">Montageposities</span>
+          <span class="text-gray-200">${fitments.length}</span>
+        </div>
+      </div>
+    </section>
+
+
+    ${(resolved.technical_profile?.supersession?.public_active && resolved.technical_profile.supersession.applicability !== 'EVIDENCE_ONLY_SCOPE_UNRESOLVED') ? `
+    <!-- Technical Supersession Notice -->
+    <section class="bg-blue-950/40 border border-blue-800/60 rounded-2xl p-5 space-y-2 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+        <h3 class="font-bold text-white text-sm">Opvolgend Onderdeelnummer</h3>
+        <span class="text-3xs font-mono px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/60">Officieel STIHL Bulletin</span>
+      </div>
+      <p class="text-gray-300 leading-relaxed">
+        ${resolved.technical_profile.supersession.scope?.serial_condition?.serial
+          ? `STIHL technische documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) vermeldt voor deze toepassing een wijziging vanaf serienummer <strong>${resolved.technical_profile.supersession.scope.serial_condition.serial}</strong> naar onderdeel: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`
+          : `Volgens officiële STIHL documentatie (${resolved.technical_profile.supersession.source_document || 'Service Bulletin'}) is onderdeel <strong>${formattedPartNo}</strong> vervangen door: ${resolved.technical_profile.supersession.target_in_catalog ? `<a href="/onderdeelnummer/${resolved.technical_profile.supersession.replaced_by}/" class="font-mono font-bold text-orange-400 hover:underline">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by} →</a>` : `<span class="font-mono font-bold text-orange-300">${PartNormalizer.formatPartNumber(resolved.technical_profile.supersession.replaced_by) || resolved.technical_profile.supersession.replaced_by}</span>`}.`}
+      </p>
+      <p class="text-2xs text-gray-400">
+        Controleer altijd machinenummer en specifieke configuratie voorafgaand aan montage.
+      </p>
+    </section>
+    ` : ''}
+
+    ${sectionMap.size > 0 ? `
+    <!-- Diagram Sections & Positions -->
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4 text-xs">
+      <h3 class="text-base font-bold text-white">Montagelocatie &amp; tekeningposities</h3>
+      ${renderDiagramAvailabilityNoticeHtml({ className: 'mb-3' })}
+      <div class="space-y-4">
+        ${Array.from(sectionMap.entries()).map(([secName, fList]) => `
+          <div class="border-b border-gray-800/80 pb-3 last:border-b-0 space-y-1.5">
+            <div class="font-semibold text-orange-300 text-xs">${secName}</div>
+            <div class="flex flex-wrap gap-2 text-2xs text-gray-400">
+              ${fList.map(f => `
+                <span class="bg-gray-950 px-2 py-1 rounded border border-gray-800 font-mono">
+                  ${f.canonical_model_id.replace(/_/g, ' ').toUpperCase()}${f.diagram_position ? ` (Pos. ${f.diagram_position})` : ''}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+    ` : ''}
+
+
+    <!-- Compatible Models Section -->
+    <section id="geschikte-modellen" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>Geschikte STIHL Modellen</span>
+          <span class="text-xs font-mono text-gray-400 bg-gray-900 border border-gray-800 px-2.5 py-0.5 rounded-full">${compatibleModels.length} modellen</span>
+        </h2>
+      </div>
+
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Volledige lijst van machines waarin dit onderdeel volgens de catalogus voorkomt. Controleer altijd je eigen uitvoering en serienummer.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        ${compatibleModels.map(m => {
+          const modelObj = (database?.models || []).find(mod => {
+            const mSlug = (mod.slug || mod.id).toLowerCase().replace(/[^a-z0-9]+/g, '_');
+            return mSlug === m.model_id;
+          });
+          const isPublishedPartsModel = Boolean(
+            modelObj &&
+            modelObj.data_status !== 'EVIDENCE_STORE_LINKED' &&
+            PartCatalogResolver.hasPartsForModel(modelObj, database)
+          );
+          const safePath = isPublishedPartsModel ? getSafeModelPath(modelObj) : null;
+          const safeModelId = (m.model_id || '').replace(/'/g, "\\'");
+          const safeSectionCtx = (m.sections?.[0] || primarySectionContext || '').replace(/'/g, "\\'");
+          const backlinkClick = `if(window.trackStihlEvent){window.trackStihlEvent('part_to_model_click', {part_number: '${resolved.part_number}', model: '${safeModelId}', section_context: '${safeSectionCtx}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}', wave_identifier: '${waveIdentifier}', page_path: window.location.pathname});}`;
+          return `
+            <div class="bg-gray-900/70 border border-gray-800 rounded-xl p-4 space-y-2 hover:border-gray-700 transition">
+              <div class="flex justify-between items-start">
+                <span class="font-bold text-white text-sm">${m.model_name}</span>
+                <span class="text-2xs font-mono text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">${m.fitment_count} posities</span>
+              </div>
+              ${(m.variants && m.variants.length > 0) ? `
+                <div class="text-2xs text-gray-400">
+                  <span class="text-gray-500 block">Variant:</span>
+                  <span>${m.variants.join(', ')}</span>
+                </div>
+              ` : ''}
+              ${(m.configurations && m.configurations.length > 0) ? `
+                <div class="text-2xs text-gray-400">
+                  <span class="text-gray-500 block">Uitvoering:</span>
+                  <span>${m.configurations.join(', ')}</span>
+                </div>
+              ` : ''}
+              ${safePath ? `
+                <div class="pt-1">
+                  <a href="${safePath}onderdelen/" class="text-xs font-semibold text-orange-400 hover:underline" onclick="${backlinkClick}">
+                    Bekijk alle onderdelen voor ${m.model_name} →
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </section>
 
     <!-- Verification Disclaimer -->
     <section class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5 text-xs text-amber-200 space-y-2">

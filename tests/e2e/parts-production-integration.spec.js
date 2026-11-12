@@ -1,5 +1,20 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { attachIntegrityGates } from './e2e-gates.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const rootDir = path.resolve(path.dirname(__filename), '..', '..');
+const registryDoc = JSON.parse(
+  fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8')
+);
+
+const activeOffer = (partNumber, marketplace) => registryDoc.offers.find(
+  offer => offer.status === 'ACTIVE' &&
+    String(offer.part_number) === partNumber &&
+    String(offer.marketplace || 'amazon.nl').toLowerCase() === marketplace
+);
 
 test.describe('Phase 52C — Parts Production Integration Journeys', () => {
 
@@ -103,6 +118,91 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
     await page.goto('/onderdeelnummer/11210071001/');
 
     expect(externalRequests.length).toBe(0);
+  });
+
+  test('7. Phase 79B — direct Amazon buy button sits above the full model list', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+    const offer = activeOffer('11104007005', 'amazon.nl');
+    expect(offer).toBeTruthy();
+
+    const response = await page.goto('/onderdeelnummer/11104007005/');
+    expect(response?.status()).toBe(200);
+
+    const buyButton = page.locator(
+      'a[data-part-number="11104007005"][data-offer-type="MANUAL_ASIN"][data-marketplace="amazon.nl"]'
+    ).first();
+    await expect(buyButton).toBeVisible();
+    const href = await buyButton.getAttribute('href');
+    expect(href).toContain(offer.asin);
+    expect(href).toContain(`tag=${offer.affiliate_tag}`);
+    await expect(buyButton).toHaveAttribute('rel', /sponsored/);
+
+    await expect(page.locator('text=Controleer compatibiliteit vóór aankoop').first()).toBeVisible();
+    await expect(page.locator('#geschikte-modellen')).toBeAttached();
+
+    const buyBox = await buyButton.boundingBox();
+    const modelsBox = await page.locator('#geschikte-modellen').boundingBox();
+    expect(buyBox.y).toBeLessThan(modelsBox.y);
+
+    await page.waitForTimeout(300);
+    gates.assertClean('Phase 79B Buy Button Order');
+  });
+
+  test('8. Phase 79B — buy button is visible without scrolling on a mobile viewport', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/onderdeelnummer/11104007005/');
+
+    const buyButton = page.locator('a[data-part-number="11104007005"][data-offer-type="MANUAL_ASIN"]').first();
+    await expect(buyButton).toBeVisible();
+
+    const buyBox = await buyButton.boundingBox();
+    expect(buyBox.y).toBeLessThan(844);
+    expect(buyBox.width).toBeGreaterThan(280);
+
+    await page.waitForTimeout(300);
+    gates.assertClean('Phase 79B Mobile Buy Button');
+  });
+
+  test('9. Phase 79B — Amazon.de only part links to the German marketplace with the DE tag', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+    const offer = activeOffer('30050003905', 'amazon.de');
+    expect(offer).toBeTruthy();
+
+    await page.goto('/onderdeelnummer/30050003905/');
+
+    const deButton = page.locator(
+      'a[data-part-number="30050003905"][data-offer-type="MANUAL_ASIN"][data-marketplace="amazon.de"]'
+    ).first();
+    await expect(deButton).toBeVisible();
+    const href = await deButton.getAttribute('href');
+    expect(href).toContain(offer.asin);
+    expect(href).toContain(`tag=${offer.affiliate_tag}`);
+
+    await page.waitForTimeout(300);
+    gates.assertClean('Phase 79B Amazon.de Buy Button');
+  });
+
+  test('10. Phase 79B — both marketplaces are offered when both are verified', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+    const nlOffer = activeOffer('11301240800', 'amazon.nl');
+    const deOffer = activeOffer('11301240800', 'amazon.de');
+    expect(nlOffer && deOffer).toBeTruthy();
+
+    await page.goto('/onderdeelnummer/11301240800/');
+
+    const nlButton = page.locator('a[data-marketplace="amazon.nl"][data-offer-type="MANUAL_ASIN"]').first();
+    const deButton = page.locator('a[data-marketplace="amazon.de"][data-offer-type="MANUAL_ASIN"]').first();
+    await expect(nlButton).toBeVisible();
+    await expect(deButton).toBeVisible();
+
+    const nlHref = await nlButton.getAttribute('href');
+    const deHref = await deButton.getAttribute('href');
+    expect(nlHref).toContain(`tag=${nlOffer.affiliate_tag}`);
+    expect(deHref).toContain(`tag=${deOffer.affiliate_tag}`);
+
+    await page.waitForTimeout(300);
+    gates.assertClean('Phase 79B Both Marketplaces');
   });
 
 });
