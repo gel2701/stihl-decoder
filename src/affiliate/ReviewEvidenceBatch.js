@@ -96,15 +96,19 @@ export class ReviewEvidenceBatch {
         }
         stats.processed_candidates++;
         const marketplace = String(offer.marketplace || offer.marketplaceId || 'EBAY_DE').toUpperCase();
-        if (!byItem.has(itemId)) {
-          byItem.set(itemId, {
+        // Candidate identity is part_number + marketplace + item_id. Grouping on
+        // item_id alone merged the same listing's NL and DE offers into one
+        // record and silently dropped the second marketplace relation.
+        const groupKey = `${marketplace}:${itemId}`;
+        if (!byItem.has(groupKey)) {
+          byItem.set(groupKey, {
             item_id: itemId,
             marketplace,
             offers: [],
             parts: new Map()
           });
         }
-        const entry = byItem.get(itemId);
+        const entry = byItem.get(groupKey);
         if (!entry.parts.has(part)) {
           entry.parts.set(part, { candidate, offer });
         } else {

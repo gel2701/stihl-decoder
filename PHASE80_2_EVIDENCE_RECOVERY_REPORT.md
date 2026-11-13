@@ -66,9 +66,30 @@ behouden en hoeveel dubbele (part, listing)-paren zijn samengevoegd.
 Uitvoer: `phase80_2_recovery_<stamp>.json` + `.md` met de tien verplichte cijfers en de top-5
 blokkades.
 
+## 2b. Correcties in de eindronde (Phase 80.2 Final)
+
+**A. Volledig getItem-bewijs.** De oude teller `listingsWithEvidence` telde een titelmatch mee als
+bewijs (`|| title_has_target_part`). Dat is nu gesplitst, per unieke listing
+(`marketplace + item_id`):
+
+| Teller | Betekenis |
+|---|---|
+| `1_listings_with_stored_getitem_detail` | listing heeft een opgeslagen getItem-detail (registry/run-cache/netwerk) |
+| `1_listings_with_mpn_evidence` | MPN daadwerkelijk aanwezig (product-container, top-level of aspect) |
+| `1_listings_title_match_only` | alleen een titelreferentie, géén MPN-bewijs |
+| `1_listings_with_confirmed_nl_shipping` | NL-levering bevestigd voor die listing |
+
+`1_listings_with_full_getitem_evidence` blijft bestaan als alias van de eerste teller, zodat
+oudere rapporten leesbaar blijven.
+
+**B. Deduplicatie.** Kandidaatidentiteit is nu expliciet `part_number + marketplace + item_id`:
+zowel in de recovery-tool als in `ReviewEvidenceBatch` (dat groepeerde op `item_id` alleen en
+daarmee de NL- en DE-relatie van dezelfde listing samenvoegde). Het rapport vermeldt
+`identity_key` en `items_on_multiple_marketplaces`.
+
 ## 3. Bewijs dat de reparaties werken (offline, deterministisch)
 
-`tests/phase80_2_evidence_recovery.test.js` (7/7):
+`tests/phase80_2_evidence_recovery.test.js` (9/9):
 
 1. `getItem` vraagt `fieldgroups=PRODUCT` en leest MPN/GTIN/brand/aspecten uit `product`.
 2. MPN die **alleen** in `localizedAspects` staat is nog steeds het identiteitsbewijs.
@@ -77,7 +98,9 @@ blokkades.
 5. Recovery-run met alleen registry-bewijs → ACTIVE, 0 getItem-calls, bewijs aangevuld.
 6. CLI end-to-end: rapport + input + registry → 1 ACTIVE, 1 uniek onderdeel, 1 record op disk,
    1 resolver-link, 1 dubbel paar samengevoegd.
-7. Eén listing bewezen voor twee onderdelen: beide relaties behouden, alleen het bewezen onderdeel
+7. Zelfde listing op EBAY_DE én EBAY_NL: twee relaties, twee ACTIVE-records, 0 duplicaten.
+8. Titelmatch wordt apart geteld van opgeslagen getItem-bewijs (1 detail, 1 MPN, 1 titel-only).
+9. Eén listing bewezen voor twee onderdelen: beide relaties behouden, alleen het bewezen onderdeel
    ACTIVE, het andere aantoonbaar REJECTED (conflict), niets stilzwijgend weggegooid.
 
 De bestaande test `phase76c` (76C.13) codeerde de fout zelf: die eiste dat `quantity: 4` een
@@ -121,13 +144,14 @@ flag aan staat (na herstart).
 
 | Check | Resultaat |
 |---|---|
-| `tests/phase80_2_evidence_recovery.test.js` | 7/7 |
+| `tests/phase80_2_evidence_recovery.test.js` | 9/9 |
 | `tests/phase80_affiliate_activation.test.js` | 12/12 |
 | `tests/phase80_1_activation_pipeline.test.js` | 8/8 |
 | `npm run test:gate` | exit 0 |
 | Volledige suite `node tests/run_current_production_tests.js` | **121 suites, 121 pass, 0 fail** (exit 0) |
 | Live ACTIVE-aanbiedingen op Render | **niet uitgevoerd** (geen toegang tot `/var/data`) |
-| Merge PR #146 | niet uitgevoerd (geen merge-tool); branch is groen gepusht |
+| GitHub Actions / PR #148 undraften / mergen | **niet uitgevoerd**: `gh` is aanwezig maar niet ingelogd, `cloud_git` kan alleen pushen. Geen CI-status en geen merge uitgevoerd. |
+| Render draait mergecommit | **niet gecontroleerd** (geen Render-toegang) |
 
 ## 7. Eerlijkheid over het succes criterium
 

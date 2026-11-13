@@ -35,6 +35,7 @@ import {
 import { AffiliateOfferResolver } from '../src/affiliate/AffiliateOfferResolver.js';
 import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
+import { SHIPPING_STATUS } from '../src/affiliate/EbayShippingEvidence.js';
 
 const args = process.argv.slice(2);
 const readArg = name => {
@@ -95,6 +96,7 @@ const byPart = new Map();
 let pairsSeen = 0;
 let duplicatePairs = 0;
 const pairKeys = new Set();
+const marketplacesPerItem = new Map();
 const invalid = [];
 for (const offer of offers) {
   const part = PartNormalizer.normalizePartNumber(offer.part_number);
@@ -102,13 +104,19 @@ for (const offer of offers) {
   if (!part) { invalid.push({ reason: 'INVALID_PART', offer: offer.title || null }); continue; }
   if (!itemId) { invalid.push({ reason: 'MISSING_ITEM_ID', part }); continue; }
   pairsSeen++;
-  const pairKey = `${part}:${itemId}`;
+  // Candidate identity is part_number + marketplace + item_id: the same listing
+  // can be valid for a part on both EBAY_NL and EBAY_DE, and one listing can
+  // serve several parts. Dropping either dimension loses a real offer relation.
+  const marketplace = String(offer.marketplace || offer.marketplaceId || 'EBAY_DE').toUpperCase();
+  const pairKey = `${part}:${marketplace}:${itemId}`;
   if (pairKeys.has(pairKey)) { duplicatePairs++; continue; }
   pairKeys.add(pairKey);
+  if (!marketplacesPerItem.has(itemId)) marketplacesPerItem.set(itemId, new Set());
+  marketplacesPerItem.get(itemId).add(marketplace);
   if (!byPart.has(part)) {
     byPart.set(part, { part_number: part, description: offer.title || '', category: offer.category || '', models: [], existing: [] });
   }
-  byPart.get(part).existing.push(offer);
+  byPart.get(part).existing.push({ ...offer, marketplace });
 }
 
 let candidates = [...byPart.values()];
@@ -174,7 +182,25 @@ const topBlockers = Object.entries(result.blocker_counts)
   .slice(0, 5)
   .map(([step, count]) => ({ step, count, kind: (result.shipping_blockers[step] ? 'SHIPPING' : 'IDENTITY') }));
 
-const listingsWithEvidence = result.diagnostics.filter(d => d.evidence_source && d.evidence.aspects_count >= 0 && d.evidence.mpn_values.length > 0 || d.evidence.title_has_target_part).length;
+// Listing-level evidence counters. A title that mentions the part number is NOT
+// getItem proof: it is reported separately and never counted as stored detail.
+const byItem = new Map();
+for (const diagnostic of result.diagnostics) {
+  const key = `${diagnostic.marketplace}:${diagnostic.item_id}`;
+  const entry = byItem.get(key) || { hasDetail: false, hasMpn: false, titleOnly: false, shippingConfirmed: false };
+  const hasStoredDetail = ['REGISTRY', 'RUN_CACHE', 'GET_ITEM'].includes(diagnostic.evidence_source);
+  const hasMpn = diagnostic.evidence.mpn_values.length > 0 || diagnostic.evidence.mpn_in_aspects === true;
+  if (hasStoredDetail) entry.hasDetail = true;
+  if (hasMpn) entry.hasMpn = true;
+  if (!hasMpn && diagnostic.evidence.title_has_target_part) entry.titleOnly = true;
+  if (diagnostic.shipping_status === SHIPPING_STATUS.CONFIRMED) entry.shippingConfirmed = true;
+  byItem.set(key, entry);
+}
+const listingsWithGetItemDetail = [...byItem.values()].filter(entry => entry.hasDetail).length;
+const listingsWithMpnEvidence = [...byItem.values()].filter(entry => entry.hasMpn).length;
+const listingsTitleMatchOnly = [...byItem.values()].filter(entry => entry.titleOnly && !entry.hasMpn).length;
+const listingsWithConfirmedShipping = [...byItem.values()].filter(entry => entry.shippingConfirmed).length;
+const itemsOnMultipleMarketplaces = [...marketplacesPerItem.values()].filter(set => set.size > 1).length;
 
 const provablyWrong = result.rejected.filter(item => (item.reason_codes || []).some(code =>
   ['CONTRADICTORY_MATCH', 'CONFLICTING_MPN', 'CONFLICTING_TITLE_PART_NUMBER', 'PART_NUMBER_MISMATCH', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH'].includes(code)
@@ -190,8 +216,12 @@ const summary = {
   activation_blocker: /^\d+$/.test(CAMPAIGN) ? null : 'EBAY_EPN_CAMPAIGN_ID_MISSING',
   sources: { report: REPORT_PATH, inputs: INPUT_PATHS, evidence: EVIDENCE, store: STORE },
   required_report: {
-    '1_listings_with_full_getitem_evidence': listingsWithEvidence,
     '1_listings_processed': result.unique_items,
+    '1_listings_with_stored_getitem_detail': listingsWithGetItemDetail,
+    '1_listings_with_mpn_evidence': listingsWithMpnEvidence,
+    '1_listings_title_match_only': listingsTitleMatchOnly,
+    '1_listings_with_confirmed_nl_shipping': listingsWithConfirmedShipping,
+    '1_listings_with_full_getitem_evidence': listingsWithGetItemDetail,
     '2_top_blockers': topBlockers,
     '3_evidence_records_reused': result.get_item_reused,
     '4_candidates_enriched_from_stored_evidence': result.evidence_completed,
@@ -205,6 +235,8 @@ const summary = {
   coverage: {
     candidate_pairs_from_sources: pairsSeen,
     duplicate_part_item_pairs_dropped: duplicatePairs,
+    identity_key: 'part_number + marketplace + item_id',
+    items_on_multiple_marketplaces: itemsOnMultipleMarketplaces,
     unique_listings: result.unique_items,
     unique_parts: candidates.length,
     invalid_records: invalid.length,
@@ -258,7 +290,10 @@ const md = [
   '| # | Metric | Value |',
   '|---|---|---|',
   `| 1 | Listings processed | ${summary.required_report['1_listings_processed']} |`,
-  `| 1 | Listings with complete getItem evidence | ${summary.required_report['1_listings_with_full_getitem_evidence']} |`,
+  `| 1a | Listings with stored getItem detail | ${summary.required_report['1_listings_with_stored_getitem_detail']} |`,
+  `| 1b | Listings with actual MPN evidence | ${summary.required_report['1_listings_with_mpn_evidence']} |`,
+  `| 1c | Listings with title match only | ${summary.required_report['1_listings_title_match_only']} |`,
+  `| 1d | Listings with confirmed NL shipping | ${summary.required_report['1_listings_with_confirmed_nl_shipping']} |`,
   `| 3 | Evidence records reused | ${summary.required_report['3_evidence_records_reused']} |`,
   `| 4 | Candidates enriched from stored evidence | ${summary.required_report['4_candidates_enriched_from_stored_evidence']} |`,
   `| 5 | New ACTIVE offers | ${summary.required_report['5_new_active_offers']} |`,

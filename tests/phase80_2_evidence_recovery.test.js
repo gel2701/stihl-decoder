@@ -250,6 +250,11 @@ test('82.6 recovery CLI: report + input + registry produce activation, diagnosis
   assert.equal(report.required_report['10_resolver_links'], 1);
   assert.equal(report.coverage.candidate_pairs_from_sources, 2);
   assert.equal(report.coverage.duplicate_part_item_pairs_dropped, 1, 'the same part+listing from two sources is one pair');
+  assert.equal(report.coverage.identity_key, 'part_number + marketplace + item_id');
+  assert.equal(report.required_report['1_listings_with_stored_getitem_detail'], 1);
+  assert.equal(report.required_report['1_listings_with_mpn_evidence'], 1);
+  assert.equal(report.required_report['1_listings_title_match_only'], 0);
+  assert.equal(report.required_report['1_listings_with_confirmed_nl_shipping'], 1);
   assert.equal(report.chain.resolver_status, 'VERIFIED');
 
   const store = loadEbayOfferStore(storePath);
@@ -258,7 +263,102 @@ test('82.6 recovery CLI: report + input + registry produce activation, diagnosis
   assert.ok(store.offers[0].affiliate_url.includes('campid='));
 });
 
-test('82.7 one listing proven for two parts keeps both relations in one recovery run', async () => {
+test('82.7 candidate identity includes the marketplace: one listing stays two relations', () => {
+  const dir = tmpDir();
+  const evidencePath = path.join(dir, 'evidence.json');
+  const storePath = path.join(dir, 'offers.json');
+  const outDir = path.join(dir, 'out');
+  const inputPath = path.join(dir, 'input.json');
+  fs.writeFileSync(evidencePath, JSON.stringify({
+    items: {
+      [ITEM]: {
+        item_id: ITEM,
+        title: getItemResponse().title,
+        mpn: '0000 400 7000',
+        mpns: ['0000 400 7000'],
+        aspects: getItemResponse().localizedAspects,
+        shipping_options: getItemResponse().shippingOptions,
+        affiliate_url: affUrl(),
+        fetched_at: new Date().toISOString()
+      }
+    }
+  }), 'utf8');
+  fs.writeFileSync(inputPath, JSON.stringify({
+    review_offers: [
+      reviewOffer({ marketplace: 'EBAY_DE' }),
+      reviewOffer({ marketplace: 'EBAY_NL' })
+    ]
+  }), 'utf8');
+
+  const res = spawnSync(process.execPath, [
+    'scripts/phase80_2_evidence_recovery.mjs',
+    '--input', inputPath,
+    '--evidence', evidencePath,
+    '--store', storePath,
+    '--out-dir', outDir
+  ], { cwd: projectRoot, env: { ...process.env }, encoding: 'utf8' });
+  assert.equal(res.status, 0, res.stderr);
+  const report = JSON.parse(res.stdout);
+  assert.equal(report.coverage.candidate_pairs_from_sources, 2);
+  assert.equal(report.coverage.duplicate_part_item_pairs_dropped, 0, 'same item on another marketplace is not a duplicate');
+  assert.equal(report.coverage.items_on_multiple_marketplaces, 1);
+  assert.equal(report.required_report['5_new_active_offers'], 2);
+  const store = loadEbayOfferStore(storePath);
+  assert.deepEqual(store.offers.map(offer => offer.marketplace).sort(), ['EBAY_DE', 'EBAY_NL']);
+});
+
+test('82.8 title-only listings are counted separately from stored getItem evidence', () => {
+  const dir = tmpDir();
+  const evidencePath = path.join(dir, 'evidence.json');
+  const storePath = path.join(dir, 'offers.json');
+  const outDir = path.join(dir, 'out');
+  const inputPath = path.join(dir, 'input.json');
+  const titleOnlyItem = 'v1|999|0';
+  fs.writeFileSync(evidencePath, JSON.stringify({
+    items: {
+      [ITEM]: {
+        item_id: ITEM,
+        title: getItemResponse().title,
+        mpn: '0000 400 7000',
+        mpns: ['0000 400 7000'],
+        aspects: getItemResponse().localizedAspects,
+        shipping_options: getItemResponse().shippingOptions,
+        affiliate_url: affUrl(),
+        fetched_at: new Date().toISOString()
+      }
+    }
+  }), 'utf8');
+  fs.writeFileSync(inputPath, JSON.stringify({
+    review_offers: [
+      reviewOffer(),
+      reviewOffer({
+        part_number: '00004007011',
+        item_id: titleOnlyItem,
+        title: 'Zündkerze passend für STIHL 0000 400 7011',
+        affiliate_url: affUrl('999'),
+        itemAffiliateWebUrl: affUrl('999')
+      })
+    ]
+  }), 'utf8');
+
+  const res = spawnSync(process.execPath, [
+    'scripts/phase80_2_evidence_recovery.mjs',
+    '--input', inputPath,
+    '--evidence', evidencePath,
+    '--store', storePath,
+    '--out-dir', outDir
+  ], { cwd: projectRoot, env: { ...process.env }, encoding: 'utf8' });
+  assert.equal(res.status, 0, res.stderr);
+  const report = JSON.parse(res.stdout);
+  assert.equal(report.required_report['1_listings_processed'], 2);
+  assert.equal(report.required_report['1_listings_with_stored_getitem_detail'], 1, 'only the registry-backed listing has detail');
+  assert.equal(report.required_report['1_listings_with_mpn_evidence'], 1);
+  assert.equal(report.required_report['1_listings_title_match_only'], 1, 'a title reference is not getItem proof');
+  assert.equal(report.required_report['1_listings_with_full_getitem_evidence'], 1);
+  assert.equal(report.required_report['7_remaining_needs_evidence'], 1);
+});
+
+test('82.9 one listing proven for two parts keeps both relations in one recovery run', async () => {
   const registry = new EbayEvidenceRegistry({ path: null });
   registry.record(ITEM, {
     item_id: ITEM,
