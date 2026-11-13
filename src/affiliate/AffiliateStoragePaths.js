@@ -75,6 +75,19 @@ export function getEbayEvidenceRegistryPath(env = process.env, exists = fs.exist
 }
 
 /**
+ * Persistent NL shipping evidence per marketplace + item id.
+ *
+ * @param {Object} [env]
+ * @param {(p: string) => boolean} [exists]
+ * @returns {string}
+ */
+export function getEbayShippingEvidencePath(env = process.env, exists = fs.existsSync) {
+  const override = typeof env.EBAY_SHIPPING_EVIDENCE_PATH === 'string' ? env.EBAY_SHIPPING_EVIDENCE_PATH.trim() : '';
+  if (override) return path.resolve(override);
+  return path.join(getAffiliateDataDir(env, exists), 'ebay_shipping_evidence.json');
+}
+
+/**
  * Batch reports: <persistent root>/phase80 on Render, output/phase80 locally.
  *
  * @param {Object} [env]

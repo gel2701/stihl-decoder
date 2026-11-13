@@ -30,8 +30,11 @@ import { saveEbayOfferStore, loadEbayOfferStore } from '../src/affiliate/EbayOff
 import {
   getEbayOfferStorePath,
   getEbayEvidenceRegistryPath,
+  getEbayShippingEvidencePath,
   getPhase80OutputDir
 } from '../src/affiliate/AffiliateStoragePaths.js';
+import { EbayShippingEvidenceRegistry } from '../src/affiliate/EbayShippingEvidenceRegistry.js';
+import { ShippingRecovery, applyShippingEvidence } from '../src/affiliate/ShippingRecovery.js';
 import { AffiliateOfferResolver } from '../src/affiliate/AffiliateOfferResolver.js';
 import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
@@ -53,6 +56,13 @@ const STORE = readArg('--store') || getEbayOfferStorePath();
 const OUT_DIR = readArg('--out-dir') || getPhase80OutputDir();
 const LIMIT = readArg('--limit') ? Number(readArg('--limit')) : 0;
 const CAMPAIGN = process.env.EBAY_EPN_CAMPAIGN_ID || '';
+// Phase 80.3: renew NL delivery proof for the known listings with an official
+// deliveryCountry:NL Browse search. Never a discovery search: only the stored
+// part/marketplace/item pairs are verified.
+const VERIFY_SHIPPING = args.includes('--verify-shipping');
+const SHIPPING_EVIDENCE = readArg('--shipping-evidence') || getEbayShippingEvidencePath();
+const MAX_PARTS = readArg('--max-parts') ? Number(readArg('--max-parts')) : 10;
+const MARKETS = readArg('--markets') ? String(readArg('--markets')).split(',').map(m => m.trim()).filter(Boolean) : null;
 
 if (!REPORT_PATH && INPUT_PATHS.length === 0) {
   console.error('ABORT: pass --report <batch json> and/or --input <offers json>');
@@ -123,6 +133,7 @@ let candidates = [...byPart.values()];
 
 // Catalog models (part -> STIHL model ids) for structured corroboration.
 const catalogModels = new Map();
+const verifiedSupersessions = new Map();
 try {
   const dbPath = path.resolve(process.cwd(), 'data', 'stihl_database.db');
   if (fs.existsSync(dbPath)) {
@@ -133,6 +144,11 @@ try {
     for (const row of db.prepare('SELECT part_number, canonical_model_id FROM model_part_fitments').all()) {
       if (!catalogModels.has(row.part_number)) catalogModels.set(row.part_number, new Set());
       catalogModels.get(row.part_number).add(row.canonical_model_id);
+    }
+    // Catalog-declared supersessions are the only verified replacement references
+    // this repository holds; seller text alone never approves an equivalent.
+    for (const row of db.prepare("SELECT DISTINCT part_number, superseded_by FROM model_part_fitments WHERE superseded_by IS NOT NULL AND superseded_by <> ''").all()) {
+      if (/^\d{11}$/.test(row.superseded_by)) verifiedSupersessions.set(row.part_number, row.superseded_by);
     }
     db.close();
   }
@@ -147,6 +163,17 @@ if (LIMIT > 0) candidates = candidates.slice(0, LIMIT);
 
 if (CAMPAIGN) process.env.EBAY_ENABLED = 'true';
 
+if (VERIFY_SHIPPING) {
+  const missing = [];
+  if (!process.env.EBAY_CLIENT_ID) missing.push('EBAY_CLIENT_ID');
+  if (!process.env.EBAY_CLIENT_SECRET) missing.push('EBAY_CLIENT_SECRET');
+  if (!/^\d+$/.test(CAMPAIGN)) missing.push('EBAY_EPN_CAMPAIGN_ID');
+  if (missing.length > 0) {
+    console.error(`ABORT: --verify-shipping requires ${missing.join(', ')}`);
+    process.exit(1);
+  }
+}
+
 const apiClient = new EbayBrowseApiClient({});
 const engine = new EbayHighVolumeEngine({
   apiClient,
@@ -156,6 +183,32 @@ const engine = new EbayHighVolumeEngine({
   enrich: false,
   evidenceRegistry
 });
+// Phase 80.3 — targeted NL delivery recovery before re-adjudication. Reuses the
+// stored getItem evidence; no getItem is requested here.
+let shippingVerification = null;
+let shippingEvidenceApplied = 0;
+let shippingRegistrySummary = null;
+if (VERIFY_SHIPPING) {
+  const shippingRegistry = new EbayShippingEvidenceRegistry({ path: SHIPPING_EVIDENCE });
+  const pending = [];
+  for (const candidate of candidates) {
+    for (const offer of candidate.existing) {
+      pending.push({
+        part_number: candidate.part_number,
+        marketplace: String(offer.marketplace || offer.marketplaceId || 'EBAY_DE').toUpperCase(),
+        item_id: offer.item_id || offer.itemId,
+        title: offer.title || ''
+      });
+    }
+  }
+  const recovery = new ShippingRecovery({ apiClient, registry: shippingRegistry, seller: 'ALL', limit: 10 });
+  shippingVerification = await recovery.verifyListings(pending, { maxParts: MAX_PARTS, markets: MARKETS });
+  const applied = applyShippingEvidence(candidates, shippingVerification.records);
+  shippingEvidenceApplied = applied.applied;
+  shippingRegistry.save(SHIPPING_EVIDENCE);
+  shippingRegistrySummary = { ...shippingRegistry.summary(), path: SHIPPING_EVIDENCE };
+}
+
 const batch = new ReviewEvidenceBatch({ engine, evidenceRegistry, batchDelayMs: 0 });
 const result = await batch.run(candidates, { live: false, allowSearchFallback: false });
 
@@ -202,6 +255,32 @@ const listingsTitleMatchOnly = [...byItem.values()].filter(entry => entry.titleO
 const listingsWithConfirmedShipping = [...byItem.values()].filter(entry => entry.shippingConfirmed).length;
 const itemsOnMultipleMarketplaces = [...marketplacesPerItem.values()].filter(set => set.size > 1).length;
 
+// Phase 80.3 — the 19 CONFLICTING_MPN rejections: report whether the listing also
+// names an OEM number that the catalog itself registers as a supersession of the
+// target. No auto-approval: only references the repository already verified are
+// listed as legitimate equivalents.
+const conflictDiagnostics = result.diagnostics.filter(diagnostic =>
+  (diagnostic.reason_codes || []).includes('CONFLICTING_MPN')
+  || (diagnostic.reason_codes || []).includes('CONFLICTING_TITLE_PART_NUMBER')
+  || diagnostic.first_blocking_step === 'CONTRADICTORY_MATCH');
+const mpnConflicts = conflictDiagnostics.map(diagnostic => {
+  const part = diagnostic.part_number;
+  const superseded = verifiedSupersessions.get(part) || null;
+  const declared = (diagnostic.evidence?.mpn_values || [])
+    .flatMap(value => String(value).replace(/[^0-9]/g, ' ').trim().split(/\s+/))
+    .filter(value => /^\d{11}$/.test(value));
+  return {
+    part_number: part,
+    item_id: diagnostic.item_id,
+    marketplace: diagnostic.marketplace,
+    title: diagnostic.title,
+    declared_mpn_values: diagnostic.evidence?.mpn_values || [],
+    verified_supersession: superseded,
+    contradicts_verified_supersession: Boolean(superseded && declared.includes(superseded)),
+    base_part_in_catalog: catalogModels.has(part)
+  };
+});
+
 const provablyWrong = result.rejected.filter(item => (item.reason_codes || []).some(code =>
   ['CONTRADICTORY_MATCH', 'CONFLICTING_MPN', 'CONFLICTING_TITLE_PART_NUMBER', 'PART_NUMBER_MISMATCH', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH'].includes(code)
 ));
@@ -215,6 +294,23 @@ const summary = {
   campaign_id_configured: /^\d+$/.test(CAMPAIGN),
   activation_blocker: /^\d+$/.test(CAMPAIGN) ? null : 'EBAY_EPN_CAMPAIGN_ID_MISSING',
   sources: { report: REPORT_PATH, inputs: INPUT_PATHS, evidence: EVIDENCE, store: STORE },
+  shipping_verification: shippingVerification ? {
+    enabled: true,
+    evidence_path: SHIPPING_EVIDENCE,
+    max_parts: MAX_PARTS,
+    markets: MARKETS || 'ALL_FROM_INPUT',
+    searched_parts: shippingVerification.searched_parts,
+    searched_groups: shippingVerification.searched_groups,
+    searched_pairs: shippingVerification.searched_pairs,
+    confirmed_pairs: shippingVerification.confirmed_pairs,
+    not_returned_pairs: shippingVerification.not_returned_pairs,
+    restricted_pairs: shippingVerification.restricted_pairs,
+    unconfirmed_pairs: shippingVerification.unconfirmed_pairs,
+    error_pairs: shippingVerification.error_pairs,
+    errors: shippingVerification.errors.slice(0, 20),
+    evidence_applied_to_offers: shippingEvidenceApplied,
+    registry: shippingRegistrySummary
+  } : { enabled: false },
   required_report: {
     '1_listings_processed': result.unique_items,
     '1_listings_with_stored_getitem_detail': listingsWithGetItemDetail,
@@ -222,9 +318,13 @@ const summary = {
     '1_listings_title_match_only': listingsTitleMatchOnly,
     '1_listings_with_confirmed_nl_shipping': listingsWithConfirmedShipping,
     '1_listings_with_full_getitem_evidence': listingsWithGetItemDetail,
+    '2_listings_rechecked_with_nl_filter': shippingVerification ? shippingVerification.searched_pairs : 0,
+    '2_listings_confirmed_nl_shipping_now': shippingVerification ? shippingVerification.confirmed_pairs : 0,
     '2_top_blockers': topBlockers,
     '3_evidence_records_reused': result.get_item_reused,
     '4_candidates_enriched_from_stored_evidence': result.evidence_completed,
+    '4_mpn_conflicts_analysed': mpnConflicts.length,
+    '4_conflicts_naming_a_verified_supersession': mpnConflicts.filter(conflict => conflict.contradicts_verified_supersession).length,
     '5_new_active_offers': result.accepted.length,
     '6_unique_parts_buyable': uniqueActiveParts.size,
     '7_remaining_needs_evidence': result.needs_evidence.length,
@@ -242,6 +342,11 @@ const summary = {
     invalid_records: invalid.length,
     item_relations: result.item_relations.length,
     relations_preserved: result.item_relations.every(rel => rel.part_numbers.length >= 1)
+  },
+  mpn_conflicts: {
+    analysed: mpnConflicts.length,
+    verified_supersessions_in_catalog: verifiedSupersessions.size,
+    details: mpnConflicts.slice(0, 100)
   },
   blockers: {
     by_first_step: result.blocker_counts,
@@ -303,6 +408,14 @@ const md = [
   `| 9 | ACTIVE records on disk | ${summary.required_report['9_active_records_on_disk']} |`,
   `| 10 | Resolver links | ${summary.required_report['10_resolver_links']} |`,
   '',
+  ...(shippingVerification ? [
+    '## NL shipping verification (Browse deliveryCountry:NL)',
+    '',
+    `Rechecked pairs: ${shippingVerification.searched_pairs} across ${shippingVerification.searched_parts} parts / ${shippingVerification.searched_groups} part+marketplace searches.`,
+    `Confirmed NL delivery: ${shippingVerification.confirmed_pairs}; not returned: ${shippingVerification.not_returned_pairs}; explicit non-NL: ${shippingVerification.restricted_pairs}; no filter evidence: ${shippingVerification.unconfirmed_pairs}; API errors: ${shippingVerification.error_pairs}.`,
+    `Evidence attached to offers: ${shippingEvidenceApplied}. Stored in ${SHIPPING_EVIDENCE}.`,
+    ''
+  ] : []),
   '## Top blockers',
   '',
   '| Rule | Kind | Count |',
