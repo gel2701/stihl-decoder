@@ -89,7 +89,9 @@ if (REQUIRE_LIVE && !hasCredentials) {
   process.exit(1);
 }
 const LIVE = !OFFLINE && hasCredentials;
-if (LIVE) process.env.EBAY_ENABLED = 'true';
+// In-process only: live runs need the API, offline runs only need the resolver to
+// be able to read the store so the chain (store -> resolver -> link) is verified.
+if (LIVE || /^\d+$/.test(CAMPAIGN)) process.env.EBAY_ENABLED = 'true';
 
 /**
  * Catalog model relations (part -> models) from the seeded SQLite database.
@@ -260,7 +262,7 @@ const uniqueActiveParts = new Set(accepted.map(offer => offer.part_number));
 // resolve them into product-card offer descriptors.
 let resolverResolvedOffers = 0;
 let resolverStatus = 'SKIPPED_NO_ACCEPTED_OFFERS';
-if (LIVE && uniqueActiveParts.size > 0) {
+if (uniqueActiveParts.size > 0) {
   const resolver = new AffiliateOfferResolver({
     ebayStorePath: STORE,
     verifiedRegistry: new VerifiedOfferRegistry({ productionActivationAllowed: false })
