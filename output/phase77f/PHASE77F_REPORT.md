@@ -1,57 +1,69 @@
-# Phase 77F — Affiliate recovery & activation
+# Phase 77F (final) — ASIN-identiteitsherstel
 
-Datum: 2026-11-13T00:02:41.200Z
-Modus: APPLY · nieuwe ACTIVE-offers: 2
+Datum: 2026-11-13T00:38:40.876Z
+Modus: APPLY
 
-## 1. Meetbare resultaten
+## 1. Uitkomst
 
 | Metric | Waarde |
 |---|---|
-| Nieuwe ACTIVE-links | 2 |
-| Nieuwe onderdelen met directe koopknop | 2 |
-| Kandidaten met automatisch aangevuld bewijs | 2 |
-| Kandidaten dat NEEDS_EVIDENCE blijft | 1 |
-| Afgekeurd (tegenstrijdig product/GTIN) | 2 |
-| Geen kandidaat (werkvoorraad) | 20 |
-| Al ACTIVE | 1 |
-| Nieuwe ACTIVE-total | 101 / 110 |
+| Werkelijk nieuwe ACTIVE-links | **0** |
+| Kandidaten naar NEEDS_EVIDENCE | 2 |
+| Totaal ACTIVE-aanbiedingen | 99 (NL 53 · DE 46) |
+| Capaciteitsplafond | totaal 110 · NL 110 · DE 50 |
 
-Geactiveerd:
-- `42821410300` — amazon.nl — ASIN B079DM989K — tag srihldecoder2-21
-- `11281903400` — amazon.nl — ASIN B079DNL88M — tag srihldecoder2-21
+## 2. Bewijs per ASIN
 
-## 2. Dekking per GSC-prioriteitsmodel
+### 42821410300 → B079DM989K
 
-| Model | Onderdelen | Direct vóór | Direct na | Winst | Dekking |
-|---|---|---|---|---|---|
-| MS 440 | 277 | 10 | 11 | +1 | 3.97% |
-| MS 170 | 248 | 17 | 17 | +0 | 6.85% |
-| BG 86 | 169 | 8 | 8 | +0 | 4.73% |
-| MS 461 | 263 | 8 | 9 | +1 | 3.42% |
-| BR 600 | 239 | 2 | 3 | +1 | 1.26% |
-| MS 390 | 213 | 5 | 6 | +1 | 2.82% |
-| MS 361 | 278 | 6 | 7 | +1 | 2.52% |
-| HS 45 | 205 | 6 | 6 | +0 | 2.93% |
-| MS 250 | 276 | 14 | 14 | +0 | 5.07% |
+- Opgeslagen GTIN: `0886661160136`
+- Bewijsbronnen: AMAZON_PRODUCT_PAGE https://www.amazon.nl/dp/B079DM989K
+- Onafhankelijke bronnen: 0 · daarvan noemen de ASIN: 0
+- Two-Gate na herbeoordeling: FAIL — ASIN_IDENTITY_UNVERIFIED: ASIN B079DM989K lacks external machine-verifiable proof linking it to physical product.; Missing verifiable Amazon product listing URL or proof.
+- Verdict: **NEEDS_EVIDENCE**
+- Toelichting: STIHL-documentatie en distributeurs (DIY Spare Parts, L&S, OakTen) bevestigen 4282 141 0300 en BR 500/550/600/700, maar noemen de ASIN niet.
 
-## 3. Bewijsaanvulling en bronzoektocht
+### 11281903400 → B079DNL88M
 
-- Bronnen die automatisch zijn doorzocht: registry (157 records), phase73/66/69-kandidaten, opgeslagen typed listing-bronnen, catalogus en fitments.
-- Amazon.nl/.de rechtstreeks: **HTTP 503**; via reader-proxy: **HTTP 503**. Creators API: **niet geconfigureerd** (niet gesimuleerd).
-- Daarom zijn **geen nieuwe ASINs** gevonden; de twee herstelde kandidaten gebruiken het al opgeslagen bewijs van het type `AMAZON_LISTING_COMPATIBLE` (typed listing-URL voor dezelfde ASIN + compatibiliteitsbewijs dat model en onderdeelnummer noemt).
-- Resterende blokkade: voor 20 onderdelen bestaat geen aanduiding van een product, en zonder leesbare marketplace of API is een ASIN niet te onderbouwen.
+- Opgeslagen GTIN: `0795711104948` · extern opgegeven GTIN: `795711121587` (wijkt af)
+- Bewijsbronnen: AMAZON_PRODUCT_PAGE https://www.amazon.nl/dp/B079DNL88M
+- Onafhankelijke bronnen: 0 · daarvan noemen de ASIN: 0
+- Two-Gate na herbeoordeling: FAIL — ASIN_IDENTITY_UNVERIFIED: ASIN B079DNL88M lacks external machine-verifiable proof linking it to physical product.; Missing verifiable Amazon product listing URL or proof.
+- Verdict: **NEEDS_EVIDENCE**
+- Toelichting: Techniekwebshop bevestigt EAN 795711121587 voor 1128 190 3400; deze bron noemt de ASIN niet en wijkt af van de opgeslagen GTIN.
 
-## 4. Afgekeurde kandidaten
 
-De twee eerdere matches met verdachte GTIN blijven afgekeurd; de bijbehorende STIHL-onderdelen (`11281201602`, `11280292301`) staan in de werkvoorraad voor nieuwe ASINs.
+## 3. Bronzoektocht (geen fictieve verificatie)
 
-## 5. Zichtbaarheid van de nieuwe links
+- web_search index — "B079DM989K" / "B079DNL88M" / 795711121587 → NO_ASIN_CITING_PAGE
+- amazon.nl/dp/<ASIN> — directe productpagina → HTTP 200 maar Captcha-pagina (geen productinhoud)
+- lite/html.duckduckgo.com — beide ASINs → HTTP 202 zonder resultaten (bot-challenge)
+- bing.com/search — beide ASINs + EAN → irrelevante resultaten (gedegradeerde SERP)
+- mojeek.com — beide ASINs → HTTP 403
+- Creators API — ASIN → GTIN/MPN → NIET_GECONFIGUREERD (geen credentials, niet gesimuleerd)
 
-- `42821410300`: centrale zoeker gevonden met DIRECT_ASIN; resolver DIRECT_ASIN (amazon.nl, tag undefined); onderdeelpagina directe knop=true, directe link=true; modelpagina's: br_600 ✓.
-- `11281903400`: centrale zoeker gevonden met DIRECT_ASIN; resolver DIRECT_ASIN (amazon.nl, tag undefined); onderdeelpagina directe knop=true, directe link=true; modelpagina's: ms_440 ✓, ms_461 ✓, ms_390 ✓, ms_361 ✓.
+De externe bronnen bevestigen het STIHL-onderdeel en de machinecompatibiliteit, maar geen enkele bron koppelt de ASIN aan MPN/GTIN. Omdat de eigen Amazon-vermelding niet als onafhankelijk bewijs mag gelden, blijven beide kandidaten behouden als NEEDS_EVIDENCE en zijn ze niet geactiveerd.
 
-## 6. Capaciteit
+## 4. Dekking per prioriteitsmodel (directe kooplinks)
 
-- Totaal/NL: 100 → **110**; DE blijft **50**. De DE-limiet is expliciet vastgelegd in `MAX_ACTIVE_OFFERS_PER_MARKETPLACE` zodat de globale verhoging DE niet verruimt.
-- Veiligheidsvoorwaarden ongewijzigd: Two-Gate, NL-shipping voor DE, kill-switches, per-marketplace caps en affiliate-disclosures.
-- De oude limiettests zijn bijgewerkt naar de constante; de guard-logica en alle overige asserties zijn niet verzwakt.
+| Model | Onderdelen | Directe aanbiedingen | Dekking |
+|---|---|---|---|
+| MS 440 | 277 | 10 | 3.61% |
+| MS 170 | 248 | 17 | 6.85% |
+| BG 86 | 169 | 8 | 4.73% |
+| MS 461 | 263 | 8 | 3.04% |
+| BR 600 | 239 | 2 | 0.84% |
+| MS 390 | 213 | 5 | 2.35% |
+| MS 361 | 278 | 6 | 2.16% |
+| HS 45 | 205 | 6 | 2.93% |
+| MS 250 | 276 | 14 | 5.07% |
+
+## 5. Resterende NEEDS_EVIDENCE
+
+- `42821410300` (B079DM989K) — wacht op een externe catalogus/merchant die ASIN + MPN/GTIN samen noemt.
+- `11281903400` (B079DNL88M) — wacht op een externe catalogus/merchant die ASIN + MPN/GTIN samen noemt.
+
+## 6. Capaciteit en veiligheid
+
+- Plafond totaal/NL 110, DE 50; DE-erft nooit een hoger globaal plafond.
+- Two-Gate, kill-switches, NL-shipping-eis voor DE en de autorisatielijst zijn niet versoepeld.

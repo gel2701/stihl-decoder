@@ -30,7 +30,7 @@ test('OAuth uses client credentials and scope, caches token', async () => {
   assert.equal(new URLSearchParams(calls[0][1].body).get('scope'), 'https://api.ebay.com/oauth/api_scope');
   assert.equal(calls[0][1].headers.Authorization, `Basic ${Buffer.from('id:secret').toString('base64')}`);
   assert.deepEqual(calls.slice(1).map(([url]) => new URL(url).searchParams.get('q')), ['1121 020 1200', part, `STIHL ${part}`]);
-  assert.equal(calls[1][1].headers['X-EBAY-C-ENDUSERCTX'], `affiliateCampaignId=${campaign}`);
+  assert.equal(calls[1][1].headers['X-EBAY-C-ENDUSERCTX'], `affiliateCampaignId=${campaign},contextualLocation=country%3DNL`);
   assert.equal(calls[1][1].headers['X-EBAY-C-MARKETPLACE-ID'], 'EBAY_DE');
   await api.searchItems({ partNumber: part });
   assert.equal(calls.length, 4);
