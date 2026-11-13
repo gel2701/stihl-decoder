@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "81",
+  "generated_at": "2026-11-13T06:55:27.551Z",
+  "mode": "ANALYSIS",
+  "storage": {
+    "persistent": false,
+    "source": "PROJECT_DATA",
+    "offer_store": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_offers.json"
+  },
+  "inputs": {
+    "gsc_addendum": "output/phase77d/PHASE77D_LIVE_GSC_ADDENDUM.md",
+    "gsc_rows": 11,
+    "phase60_models": 20,
+    "catalog_models": 110
+  },
+  "reuse": {
+    "amazon_active_offers": 99,
+    "amazon_active_parts": 86,
+    "amazon_verified_staged": 3,
+    "amazon_research_required": 55,
+    "ebay_active_offers_store": 769,
+    "ebay_active_parts_store": 92,
+    "ebay_active_parts_live_hint": 10,
+    "ebay_parts_used_total": 102,
+    "union_direct_parts": 185
+  },
+  "priority_models": 25,
+  "priority_models_by_evidence": {
+    "GSC_MEASURED": 9,
+    "COMMERCIAL_RANKED": 13,
+    "CATALOG_ONLY": 3
+  },
+  "priority_union_parts": 3109,
+  "priority_union_parts_with_direct_link": 148,
+  "queue_size": 120,
+  "queue_start": 0,
+  "queue_frozen": false,
+  "queue_by_tier": {
+    "COMMERCIAL_HIGH": 100,
+    "COMMERCIAL_UNKNOWN": 20
+  },
+  "queue_indexable": 61,
+  "activation_blocker": null
+}
