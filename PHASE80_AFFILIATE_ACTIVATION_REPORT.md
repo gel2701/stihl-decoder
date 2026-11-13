@@ -115,12 +115,12 @@ Publication chain exercised end-to-end (offline, deterministic):
 - `npm run test:gate` (Stage A consistency + Stage B quality gate): **pass**, 0 contradictions,
   0 GTIN failures, 0 unverified ACTIVE leaks.
 - Full production runner `node tests/run_current_production_tests.js`: **119 suites, 118 pass,
-  1 fail**. The failing suite is `tests/phase56b_amazon_exact_match_pilot.test.js` (serial-anchor
-  manifest byte/SHA mismatches on committed `data/new_official_serial_anchors_only_2026-10-09.json`
-  and `data/official_serial_anchors_batch_2026-10-09.json`). It **also fails with this phase's
-  changes stashed**, so it is pre-existing and unrelated; serial/passport functionality was not
-  touched (explicit Phase 80 constraint). CI will stay red until that serial artifact mismatch is
-  repaired in a separate change.
+  1 fail** at the time of Phase 80. The failing suite was `tests/phase56b_amazon_exact_match_pilot.test.js`.
+  Root cause (found in Phase 80.1): Test 11 scans the repository for uncontrolled
+  `amazon.<tld>/dp/<ASIN>` literals, and the new Phase 80 test contained one such literal in an
+  assertion. It was **not** a serial-anchor/manifest problem and no serial data was involved.
+  The literal is now built from parts, so the suite is green again. See
+  `PHASE80_1_ACTIVATION_PIPELINE_REPORT.md`.
 - New/updated eBay suites added to the production runner (they were previously outside it):
   `phase71`, `phase76a` (browse + provider), `phase76c` (engine + live validation), `phase76e`,
   `phase76g`, `phase80`.

@@ -2,41 +2,57 @@
 /**
  * scripts/phase80_evidence_batch.mjs
  *
- * Phase 80 — Evidence-completing affiliate activation batch.
+ * Phase 80.1 — Evidence-completing activation batch.
  *
- * Runs against existing candidates (Phase 76G REVIEW offers, saved checkpoints,
- * a GSC priority queue or a plain part list) and completes missing evidence
- * instead of discarding candidates:
+ * Two distinct input shapes, two distinct strategies:
  *
- *   search/:  filter=deliveryCountry:NL  -> NL shipping evidence
- *   getItem:  MPN / GTIN / aspects / model compatibility / shipping
+ *  A. Input with EXISTING review offers (Phase 76G state/results):
+ *     reuse the stored item ids and shipping data, call getItem only for the
+ *     candidates that lack product/shipping evidence, one call per unique
+ *     listing (shared across all part relations). A Browse search happens only
+ *     when the stored listing no longer exists (getItem 404/no item).
  *
- * Only ACCEPT is written to the canonical offer store. Everything else is
+ *  B. Input with part numbers only (GSC priority queue / part list):
+ *     search Browse for those parts (deliveryCountry:NL) and enrich as needed.
+ *
+ * Only `decision: ACCEPT` is written to the canonical store. Everything else is
  * reported as NEEDS_EVIDENCE or REJECTED with the concrete missing evidence.
+ *
+ * Storage (see AffiliateStoragePaths):
+ *   Render:  /var/data/affiliate/ebay_offers.json
+ *            /var/data/affiliate/ebay_evidence_registry.json
+ *            /var/data/phase80/
+ *   Local:   data/affiliate/... and output/phase80/
  *
  * Modes:
  *   (default)   live when EBAY_* credentials are present, otherwise offline
  *   --offline   never calls eBay; re-adjudicates stored evidence only
  *   --live      require credentials (abort when missing)
  *
- * The process sets EBAY_ENABLED=true in-process only, exactly like the Phase 76
- * pilot: the deployed environment keeps EBAY_ENABLED=false for visitors.
+ * The process sets EBAY_ENABLED=true in-process only; the deployed environment
+ * keeps EBAY_ENABLED=false for public visitors.
  */
 
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
 
 import { EbayBrowseApiClient } from '../src/affiliate/EbayBrowseApiClient.js';
 import { EbayHighVolumeEngine } from '../src/affiliate/EbayHighVolumeEngine.js';
 import { EbayEvidenceRegistry } from '../src/affiliate/EbayEvidenceRegistry.js';
-import { saveEbayOfferStore, loadEbayOfferStore, defaultEbayOfferStorePath } from '../src/affiliate/EbayOfferStore.js';
-import { MATCH_TYPES, OFFER_STATUSES } from '../src/affiliate/OfferEvidenceMatcher.js';
+import { ReviewEvidenceBatch } from '../src/affiliate/ReviewEvidenceBatch.js';
+import { saveEbayOfferStore, loadEbayOfferStore } from '../src/affiliate/EbayOfferStore.js';
+import {
+  getEbayOfferStorePath,
+  getEbayEvidenceRegistryPath,
+  getPhase80OutputDir,
+  resolveStorageRoot
+} from '../src/affiliate/AffiliateStoragePaths.js';
+import { AffiliateOfferResolver } from '../src/affiliate/AffiliateOfferResolver.js';
+import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
+import { OFFER_STATUSES } from '../src/affiliate/OfferEvidenceMatcher.js';
 import { PartNormalizer } from '../src/parts/PartNormalizer.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
 const readArg = name => {
   const i = args.indexOf(name);
@@ -45,16 +61,22 @@ const readArg = name => {
 
 const OFFLINE = args.includes('--offline');
 const REQUIRE_LIVE = args.includes('--live');
-const LIMIT = readArg('--limit') !== null ? Number(readArg('--limit')) : 100;
+const LIMIT = readArg('--limit') !== null ? Number(readArg('--limit')) : 184;
+const MAX_GET_ITEMS = readArg('--max-get-items') !== null ? Number(readArg('--max-get-items')) : 250;
 const INPUT = readArg('--input');
-const STORE = readArg('--store') || defaultEbayOfferStorePath;
-const EVIDENCE = readArg('--evidence') || path.resolve(rootDir, 'data', 'affiliate', 'ebay_evidence_registry.json');
+const STORE = readArg('--store') || getEbayOfferStorePath();
+const EVIDENCE = readArg('--evidence') || getEbayEvidenceRegistryPath();
 const GSC = readArg('--gsc');
-const OUT_DIR = readArg('--out-dir') || path.resolve(rootDir, 'output', 'phase80');
+const OUT_DIR = readArg('--out-dir') || getPhase80OutputDir();
 const CAMPAIGN = process.env.EBAY_EPN_CAMPAIGN_ID || '';
+const storage = resolveStorageRoot();
 
 if (!Number.isFinite(LIMIT) || LIMIT < 1) {
   console.error('ABORT: --limit must be a positive integer');
+  process.exit(1);
+}
+if (!Number.isFinite(MAX_GET_ITEMS) || MAX_GET_ITEMS < 1) {
+  console.error('ABORT: --max-get-items must be a positive integer');
   process.exit(1);
 }
 
@@ -70,13 +92,12 @@ const LIVE = !OFFLINE && hasCredentials;
 if (LIVE) process.env.EBAY_ENABLED = 'true';
 
 /**
- * Loads catalog model relations (part -> models) from the seeded SQLite
- * database. Optional: without it, corroboration falls back to models supplied
- * by the input queue.
+ * Catalog model relations (part -> models) from the seeded SQLite database.
+ * Optional: without it, corroboration falls back to models from the input queue.
  */
 function loadCatalogModels() {
   const models = new Map();
-  const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
+  const dbPath = path.resolve(process.cwd(), 'data', 'stihl_database.db');
   if (!fs.existsSync(dbPath)) return models;
   try {
     const require = createRequire(import.meta.url);
@@ -111,10 +132,9 @@ function loadCandidates(inputPath) {
     if (!byPart.has(part)) {
       byPart.set(part, {
         part_number: part,
-        description: entry.display_name || entry.description || '',
+        description: entry.display_name || entry.description || entry.title || '',
         category: entry.category || '',
         models: Array.isArray(entry.models) ? entry.models : [],
-        queue_rank: entry.queue_rank ?? null,
         existing: []
       });
     }
@@ -154,26 +174,68 @@ const engine = new EbayHighVolumeEngine({
   evidenceRegistry
 });
 
+for (const candidate of candidates) {
+  if (candidate.models.length === 0) candidate.models = catalogModels.get(candidate.part_number) || [];
+}
+
+const existingCandidates = candidates.filter(candidate => candidate.existing.length > 0);
+const partOnlyCandidates = candidates.filter(candidate => candidate.existing.length === 0);
+
+const startedAt = Date.now();
 const accepted = [];
 const needsEvidence = [];
 const rejected = [];
 const perPart = [];
-const startedAt = Date.now();
+let batchStats = {
+  processed_candidates: 0,
+  unique_items: 0,
+  invalid_candidates: 0,
+  get_item_requests: 0,
+  get_item_network_calls: 0,
+  get_item_reused: 0,
+  deferred_get_items: 0,
+  evidence_completed: 0,
+  item_unavailable: 0,
+  search_fallbacks: 0,
+  item_relations: []
+};
 
-for (const candidate of candidates) {
-  const part = candidate.part_number;
-  const models = candidate.models.length > 0 ? candidate.models : (catalogModels.get(part) || []);
-  const knownParts = [{ part_number: part, description: candidate.description, category: candidate.category, models }];
-  const classification = engine.classifyPart(part, knownParts);
+// A. Existing review offers: no new Browse search, getItem only.
+if (existingCandidates.length > 0) {
+  const batch = new ReviewEvidenceBatch({
+    engine,
+    evidenceRegistry,
+    batchDelayMs: LIVE ? 120 : 0
+  });
+  const result = await batch.run(existingCandidates, {
+    live: LIVE,
+    allowSearchFallback: LIVE,
+    maxGetItems: MAX_GET_ITEMS
+  });
+  accepted.push(...result.accepted);
+  needsEvidence.push(...result.needs_evidence);
+  rejected.push(...result.rejected);
+  perPart.push(...result.per_part);
+  const { accepted: _a, needs_evidence: _n, rejected: _r, per_part: _p, item_relations, ...counters } = result;
+  batchStats = { ...batchStats, ...counters, item_relations };
+}
 
-  if (LIVE) {
+// B. Parts without stored offers: Browse search (bounded by --limit).
+if (LIVE && partOnlyCandidates.length > 0) {
+  for (const candidate of partOnlyCandidates) {
+    const part = candidate.part_number;
     const res = await engine.processBatch([part], {
       maxItems: 1,
-      knownParts,
+      knownParts: [{
+        part_number: part,
+        description: candidate.description,
+        category: candidate.category,
+        models: candidate.models
+      }],
       evidenceRegistry,
       enrich: true
     });
-    accepted.push(...res.active_offers.map(offer => ({ ...offer, catalog_models: models })));
+    accepted.push(...res.active_offers);
     needsEvidence.push(...res.review_offers);
     rejected.push(...res.rejected_offers);
     perPart.push({
@@ -185,46 +247,7 @@ for (const candidate of candidates) {
       evidence_enriched: res.summary.evidence_enriched,
       evidence_reused: res.summary.evidence_reused
     });
-    continue;
   }
-
-  // Offline: re-adjudicate stored candidates only. A previously stored getItem
-  // evidence record may already close the gap; nothing is fetched.
-  let active = 0;
-  let needs = 0;
-  let rejectedCount = 0;
-  let completed = 0;
-  for (const existing of candidate.existing) {
-    const detail = evidenceRegistry.get(existing.item_id);
-    const item = detail ? { ...existing, item_detail: detail } : existing;
-    const verdict = engine.evaluateOffer(item, part, classification);
-    if (verdict.decision === 'ACCEPT') {
-      active++;
-      if (detail) completed++;
-      accepted.push({ part_number: part, marketplace: item.marketplace || 'EBAY_DE', ...verdict.offer });
-    } else if (verdict.decision === 'REVIEW') {
-      needs++;
-      needsEvidence.push({ part_number: part, ...verdict.offer, reason_codes: verdict.reason_codes, enrichment: { attempted: false } });
-    } else {
-      rejectedCount++;
-      rejected.push({
-        part_number: part,
-        item_id: existing.item_id ?? existing.itemId,
-        primary_reason: verdict.first_blocking_step,
-        reason_codes: verdict.reason_codes,
-        status: OFFER_STATUSES.REJECTED
-      });
-    }
-  }
-  perPart.push({
-    part_number: part,
-    gsc_priority: gscPriority.has(part),
-    active,
-    needs_evidence: needs,
-    rejected: rejectedCount,
-    evidence_enriched: completed,
-    evidence_reused: candidate.existing.filter(existing => Boolean(evidenceRegistry.get(existing.item_id))).length
-  });
 }
 
 const storeResult = saveEbayOfferStore(STORE, accepted, { campaignId: CAMPAIGN });
@@ -232,43 +255,77 @@ const storeDoc = loadEbayOfferStore(STORE);
 evidenceRegistry.save(EVIDENCE);
 
 const uniqueActiveParts = new Set(accepted.map(offer => offer.part_number));
-const gscCovered = [...uniqueActiveParts].filter(part => gscPriority.has(part));
-const reusedEvidence = perPart.reduce((sum, entry) => sum + (entry.evidence_reused || 0), 0);
-const completedEvidence = perPart.reduce((sum, entry) => sum + (entry.evidence_enriched || 0), 0);
+
+// Chain verification: a fresh resolver must read the persisted ACTIVE offers and
+// resolve them into product-card offer descriptors.
+let resolverResolvedOffers = 0;
+let resolverStatus = 'SKIPPED_NO_ACCEPTED_OFFERS';
+if (LIVE && uniqueActiveParts.size > 0) {
+  const resolver = new AffiliateOfferResolver({
+    ebayStorePath: STORE,
+    verifiedRegistry: new VerifiedOfferRegistry({ productionActivationAllowed: false })
+  });
+  resolverStatus = resolver.providers.has('ebay') ? 'VERIFIED' : 'PROVIDER_DISABLED';
+  for (const part of uniqueActiveParts) {
+    const offers = resolver.resolveOffers({ partNumber: part, partName: '' });
+    resolverResolvedOffers += offers.filter(offer => offer.provider === 'ebay').length;
+  }
+}
 
 const report = {
-  schema_version: '1.0.0',
-  phase: '80',
+  schema_version: '1.1.0',
+  phase: '80.1',
   generated_at: new Date().toISOString(),
   live_api: LIVE,
   campaign_id_configured: /^\d+$/.test(CAMPAIGN),
-  activation_blocker: LIVE ? null : (hasCredentials ? 'OFFLINE_REQUESTED' : 'EBAY_CREDENTIALS_MISSING'),
-  input: INPUT ? path.relative(rootDir, INPUT) : null,
+  activation_blocker: LIVE ? null : (!hasCredentials ? 'EBAY_CREDENTIALS_MISSING' : 'OFFLINE_REQUESTED'),
+  input: INPUT ? path.relative(process.cwd(), INPUT) : null,
   limit: LIMIT,
-  scanned_parts: candidates.length,
+  storage: {
+    persistent: storage.persistent,
+    root: path.relative(process.cwd(), storage.root) || storage.root,
+    source: storage.source,
+    offer_store: STORE,
+    evidence_registry: EVIDENCE,
+    output_dir: OUT_DIR
+  },
+  exchange: {
+    input_selection: existingCandidates.length > 0 ? 'EXISTING_REVIEW_OFFERS' : 'PART_LIST',
+    parts_in_batch: candidates.length,
+    parts_with_existing_offers: existingCandidates.length,
+    parts_without_existing_offers: partOnlyCandidates.length
+  },
   metrics: {
-    new_active_affiliate_links: accepted.length,
+    review_candidates_processed: batchStats.processed_candidates,
+    unique_listings: batchStats.unique_items,
+    get_item_requests: batchStats.get_item_requests,
+    get_item_network_calls: batchStats.get_item_network_calls,
+    evidence_reused: batchStats.get_item_reused,
+    candidates_evidence_completed: batchStats.evidence_completed,
+    new_active: accepted.length,
     new_unique_parts_with_direct_offer: uniqueActiveParts.size,
-    gsc_priority_parts_covered: gscCovered.length,
-    candidates_evidence_completed: completedEvidence,
-    reused_evidence_records: reusedEvidence,
+    gsc_priority_parts_covered: [...uniqueActiveParts].filter(part => gscPriority.has(part)).length,
     remaining_needs_evidence: needsEvidence.length,
     rejected_candidates: rejected.length,
+    item_unavailable: batchStats.item_unavailable,
+    search_fallbacks_for_unavailable_listings: batchStats.search_fallbacks,
+    deferred_get_items: batchStats.deferred_get_items,
+    offers_on_persistent_disk: storeDoc.offers.length,
+    resolver_resolved_offers: resolverResolvedOffers,
     active_preserved_in_store: storeResult.preserved
   },
-  store: {
-    path: path.relative(rootDir, STORE),
-    written: storeResult.written,
-    rejected_by_store_guard: storeResult.rejected,
-    preserved: storeResult.preserved,
-    total_offers: storeDoc.offers.length
+  chain: {
+    resolver_status: resolverStatus,
+    store_written: storeResult.written,
+    store_rejected_by_guard: storeResult.rejected
   },
   evidence_registry: evidenceRegistry.summary(),
-  duration_ms: Date.now() - startedAt,
-  per_part: perPart.slice(0, 200),
-  accepted_offers: accepted.slice(0, 200),
-  needs_evidence_offers: needsEvidence.slice(0, 200),
-  rejected_offers: rejected.slice(0, 200)
+  item_relations: batchStats.item_relations.slice(0, 300),
+  per_part: perPart.slice(0, 300),
+  accepted_offers: accepted.slice(0, 300),
+  needs_evidence_offers: needsEvidence.slice(0, 300),
+  rejected_offers: rejected.slice(0, 300),
+  duration_ms: Date.now() - startedAt
 };
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -279,10 +336,11 @@ fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n', 'utf8');
 console.log(JSON.stringify({
   live_api: report.live_api,
   activation_blocker: report.activation_blocker,
-  scanned_parts: report.scanned_parts,
+  storage: report.storage,
+  exchange: report.exchange,
   metrics: report.metrics,
-  store: report.store,
-  report: path.relative(rootDir, reportPath)
+  chain: report.chain,
+  report: path.relative(process.cwd(), reportPath)
 }, null, 2));
 
 if (!LIVE && !hasCredentials) {

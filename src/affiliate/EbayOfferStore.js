@@ -17,16 +17,12 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { MATCH_TYPES, OFFER_STATUSES } from './OfferEvidenceMatcher.js';
 import { SHIPPING_STATUS } from './EbayShippingEvidence.js';
+import { getEbayOfferStorePath } from './AffiliateStoragePaths.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export const defaultEbayOfferStorePath = path.resolve(__dirname, '..', '..', 'data', 'affiliate', 'ebay_offers.json');
 export const EBAY_OFFER_STORE_SCHEMA_VERSION = '1.0.0';
 
 const ALLOWED_MARKETPLACES = new Set(['EBAY_NL', 'EBAY_DE']);
@@ -37,12 +33,16 @@ const ACTIVE_MATCH_TYPES = new Set([
 ]);
 
 /**
+ * Composite key: one listing can legitimately be proven for more than one
+ * canonical part number, so part_number is part of the identity.
+ *
  * @param {string} itemId
  * @param {string} marketplace
+ * @param {string} [partNumber]
  * @returns {string}
  */
-export function ebayOfferKey(itemId, marketplace) {
-  return `${String(marketplace || '').toUpperCase()}:${String(itemId || '')}`;
+export function ebayOfferKey(itemId, marketplace, partNumber = '') {
+  return `${String(partNumber || '')}:${String(marketplace || '').toUpperCase()}:${String(itemId || '')}`;
 }
 
 /**
@@ -108,8 +108,14 @@ export function toCanonicalEbayOffer(offer, options = {}) {
     ? Number(offer.shipping_cost_nl ?? offer.shipping_cost)
     : null;
 
+  const relatedParts = [...new Set([
+    part,
+    ...(Array.isArray(offer.related_part_numbers) ? offer.related_part_numbers.map(p => PartNormalizer.normalizePartNumber(p)).filter(Boolean) : [])
+  ])];
+
   return {
     part_number: part,
+    related_part_numbers: relatedParts,
     item_id: itemId,
     marketplace,
     marketplace_id: marketplace,
@@ -145,7 +151,7 @@ export function toCanonicalEbayOffer(offer, options = {}) {
  * @param {string} [filePath]
  * @returns {{ schema_version: string, updated_at: string|null, offers: Array<Object> }}
  */
-export function loadEbayOfferStore(filePath = defaultEbayOfferStorePath) {
+export function loadEbayOfferStore(filePath = getEbayOfferStorePath()) {
   try {
     if (!filePath || !fs.existsSync(filePath)) {
       return { schema_version: EBAY_OFFER_STORE_SCHEMA_VERSION, updated_at: null, offers: [] };
@@ -170,12 +176,12 @@ export function loadEbayOfferStore(filePath = defaultEbayOfferStorePath) {
  * @param {Object} [options]
  * @returns {{ written: number, preserved: number, rejected: number, doc: Object }}
  */
-export function saveEbayOfferStore(filePath, offers = [], options = {}) {
+export function saveEbayOfferStore(filePath = getEbayOfferStorePath(), offers = [], options = {}) {
   const existing = loadEbayOfferStore(filePath);
   const merged = new Map();
   for (const record of existing.offers) {
     if (!record || typeof record !== 'object') continue;
-    const key = ebayOfferKey(record.item_id, record.marketplace);
+    const key = ebayOfferKey(record.item_id, record.marketplace, record.part_number);
     merged.set(key, record);
   }
   let written = 0;
@@ -187,7 +193,11 @@ export function saveEbayOfferStore(filePath, offers = [], options = {}) {
       rejected++;
       continue;
     }
-    const key = ebayOfferKey(canonical.item_id, canonical.marketplace);
+    const key = ebayOfferKey(canonical.item_id, canonical.marketplace, canonical.part_number);
+    const previous = merged.get(key);
+    if (previous && Array.isArray(previous.related_part_numbers)) {
+      canonical.related_part_numbers = [...new Set([...previous.related_part_numbers, ...canonical.related_part_numbers])];
+    }
     merged.set(key, canonical);
     preservedKeys.delete(key);
     written++;
@@ -220,7 +230,7 @@ export function saveEbayOfferStore(filePath, offers = [], options = {}) {
  * @param {string} [filePath]
  * @returns {Map<string, Array<Object>>}
  */
-export function loadEbayCachedOffers(filePath = defaultEbayOfferStorePath) {
+export function loadEbayCachedOffers(filePath = getEbayOfferStorePath()) {
   const map = new Map();
   const doc = loadEbayOfferStore(filePath);
   for (const offer of doc.offers) {

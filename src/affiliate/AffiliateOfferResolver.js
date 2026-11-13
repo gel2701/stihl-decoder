@@ -10,7 +10,8 @@ import { fileURLToPath } from 'url';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES } from './AmazonAffiliateProvider.js';
 import { EbayAffiliateProvider } from './EbayAffiliateProvider.js';
-import { defaultEbayOfferStorePath, loadEbayCachedOffers } from './EbayOfferStore.js';
+import { loadEbayCachedOffers } from './EbayOfferStore.js';
+import { getEbayOfferStorePath } from './AffiliateStoragePaths.js';
 import { VerifiedOfferRegistry, defaultVerifiedOfferRegistry } from './VerifiedOfferRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,7 +30,7 @@ export class AffiliateOfferResolver {
   constructor(options = {}) {
     this.overridesPath = options.overridesPath || defaultOverridesPath;
     this.registryPath = options.registryPath || null;
-    this.ebayStorePath = options.ebayStorePath || defaultEbayOfferStorePath;
+    this.ebayStorePath = options.ebayStorePath || getEbayOfferStorePath();
     this.verifiedRegistry = options.verifiedRegistry || defaultVerifiedOfferRegistry;
     this.providers = new Map();
     this.manualOverridesMap = new Map();

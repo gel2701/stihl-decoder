@@ -17,7 +17,8 @@ import { EbayBrowseApiClient } from './EbayBrowseApiClient.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { MATCH_TYPES } from './OfferEvidenceMatcher.js';
 import { SHIPPING_STATUS } from './EbayShippingEvidence.js';
-import { loadEbayCachedOffers, defaultEbayOfferStorePath } from './EbayOfferStore.js';
+import { loadEbayCachedOffers } from './EbayOfferStore.js';
+import { getEbayOfferStorePath } from './AffiliateStoragePaths.js';
 
 const partInTitle = (title, part) => new RegExp(`(^|\\D)${part.slice(0, 4)}[\\s-]*${part.slice(4, 7)}[\\s-]*${part.slice(7)}(?!\\d)`).test(title);
 
@@ -50,7 +51,7 @@ export class EbayAffiliateProvider extends AffiliateProvider {
    * @param {string} [filePath]
    * @returns {Map<string, Array<Object>>}
    */
-  loadFromStore(filePath = defaultEbayOfferStorePath) {
+  loadFromStore(filePath = getEbayOfferStorePath()) {
     const map = loadEbayCachedOffers(filePath);
     this.cachedOffers = map;
     return map;

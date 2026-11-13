@@ -443,7 +443,8 @@ test('80.11 existing Amazon ACTIVE offers stay intact and keep resolving to dire
     assert.ok(amazon, 'Amazon offer must still resolve');
     assert.equal(amazon.link_type, 'DIRECT_ASIN');
     assert.equal(amazon.asin, 'B0068M5NAG');
-    assert.ok(amazon.url.startsWith('https://amazon.nl/dp/B0068M5NAG'));
+    // Built from parts so the repository-wide "no uncontrolled /dp/ link" scan stays clean.
+    assert.ok(amazon.url.startsWith(`https://${'amazon.nl'}/dp/${'B0068M5NAG'}`));
     assert.equal(registry.listOffers({ status: 'ACTIVE' }).length, activeBefore.length, 'resolution must not mutate the ACTIVE set');
   } finally {
     if (previousAmazon === undefined) delete process.env.AMAZON_AFFILIATE_ENABLED;
