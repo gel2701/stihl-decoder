@@ -1,0 +1,940 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "80",
+  "generated_at": "2026-11-13T01:13:32.260Z",
+  "live_api": false,
+  "campaign_id_configured": false,
+  "activation_blocker": "EBAY_CREDENTIALS_MISSING",
+  "input": "output/phase56a/AMAZON_VERIFICATION_QUEUE.json",
+  "limit": 100,
+  "scanned_parts": 100,
+  "metrics": {
+    "new_active_affiliate_links": 0,
+    "new_unique_parts_with_direct_offer": 0,
+    "gsc_priority_parts_covered": 0,
+    "candidates_evidence_completed": 0,
+    "reused_evidence_records": 0,
+    "remaining_needs_evidence": 0,
+    "rejected_candidates": 0,
+    "active_preserved_in_store": 0
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "written": 0,
+    "rejected_by_store_guard": 0,
+    "preserved": 0,
+    "total_offers": 0
+  },
+  "evidence_registry": {
+    "size": 0,
+    "hits": 0,
+    "misses": 0,
+    "recorded": 0
+  },
+  "duration_ms": 2,
+  "per_part": [
+    {
+      "part_number": "11181953500",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00004007000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11284051000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00009302208",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11131214705",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11131958200",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001958200",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00004007025",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00004007026",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00003503518",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41291214700",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00009302203",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11281902900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11236403200",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11281903400",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41400292300",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11201958200",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11071958200",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41331212700",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00006421223",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11256401701",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001903400",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11231602050",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11411214730",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41804051000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00006421234",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00006421236",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41401490602",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41370202800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41370292300",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41284051000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11257909906",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41440292301",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00006421240",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41471904012",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11291214800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00003503502",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41401953400",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11176403800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11201214805",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11291620800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11211623201",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11226495000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11251490601",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41801214800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41801214801",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001404407",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41403587702",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371900400",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11217909912",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371490600",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41441490600",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11211620802",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "12086403250",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11217909904",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11411201600",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11411404400",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371602900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001201653",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00006421231",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11080292300",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11201214700",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11250071000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11250071001",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11250071002",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11257909904",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11257909910",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371200628",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371200636",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41801200619",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11226480403",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41340802101",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001903401",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11256402004",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41401242800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "42414051000",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "65031214700",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "65031292500",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "00001903404",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11141214800",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11216402005",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11256402005",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11180292306",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11190292301",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11226401707",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11416402001",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41401904009",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11231290905",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41141491205",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11201290905",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "42291290901",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41291290902",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41281290900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41401290900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41331290901",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11411290900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41801290901",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41801290903",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41371290900",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41281602001",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    }
+  ],
+  "accepted_offers": [],
+  "needs_evidence_offers": [],
+  "rejected_offers": []
+}

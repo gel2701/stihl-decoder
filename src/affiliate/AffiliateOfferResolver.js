@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { AmazonAffiliateProvider, AMAZON_MATCH_TYPES } from './AmazonAffiliateProvider.js';
 import { EbayAffiliateProvider } from './EbayAffiliateProvider.js';
+import { defaultEbayOfferStorePath, loadEbayCachedOffers } from './EbayOfferStore.js';
 import { VerifiedOfferRegistry, defaultVerifiedOfferRegistry } from './VerifiedOfferRegistry.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,10 +23,13 @@ export class AffiliateOfferResolver {
    * @param {string} [options.overridesPath]
    * @param {string} [options.registryPath]
    * @param {Object} [options.verifiedRegistry]
+   * @param {Map<string, Array<Object>>} [options.ebayCachedOffers] already-loaded eBay offers
+   * @param {string} [options.ebayStorePath] canonical eBay offer store path
    */
   constructor(options = {}) {
     this.overridesPath = options.overridesPath || defaultOverridesPath;
     this.registryPath = options.registryPath || null;
+    this.ebayStorePath = options.ebayStorePath || defaultEbayOfferStorePath;
     this.verifiedRegistry = options.verifiedRegistry || defaultVerifiedOfferRegistry;
     this.providers = new Map();
     this.manualOverridesMap = new Map();
@@ -37,8 +41,14 @@ export class AffiliateOfferResolver {
     });
     this.registerProvider(this.amazonProvider);
     if (process.env.EBAY_ENABLED === 'true') {
-      const ebayProvider = new EbayAffiliateProvider({ cachedOffers: options.ebayCachedOffers });
-      if (ebayProvider.isEnabled()) this.registerProvider(ebayProvider);
+      // Phase 80: read the adjudicated offer store so ACTIVE eBay offers reach
+      // the public chain without re-running a weaker product match.
+      const cachedOffers = options.ebayCachedOffers || loadEbayCachedOffers(this.ebayStorePath);
+      const ebayProvider = new EbayAffiliateProvider({ cachedOffers });
+      if (ebayProvider.isEnabled()) {
+        this.ebayProvider = ebayProvider;
+        this.registerProvider(ebayProvider);
+      }
     }
   }
 

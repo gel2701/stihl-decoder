@@ -1,13 +1,57 @@
 /**
  * src/affiliate/EbayHighVolumeEngine.js
  *
- * Phase 76C — High-Volume eBay Affiliate Engine
- * Batches 100–5,000+ canonical STIHL parts against eBay.nl and eBay.de.
- * Checkpoint-resume, multi-vendor search, strict matching, API backoff.
+ * Phase 76C/76G — High-Volume eBay Affiliate Engine
+ * Phase 80 — Evidence-completing activation pipeline.
+ *
+ * Batches 100–5,000+ canonical STIHL parts against eBay.nl and eBay.de with
+ * checkpoint-resume, multi-vendor search, strict matching and API backoff.
+ *
+ * Phase 80 changes:
+ *  - ONE canonical decision: OfferEvidenceMatcher (identity) +
+ *    EbayShippingEvidence (NL delivery). No layer re-decides with less data.
+ *  - A REVIEW candidate is no longer a dead end: when evidence is missing the
+ *    engine asks eBay getItem for the item detail and re-adjudicates with that
+ *    evidence (cached in EbayEvidenceRegistry, so nothing is fetched twice).
+ *  - Only ACCEPT becomes ACTIVE. REVIEW is stored as NEEDS_EVIDENCE.
+ *  - Offers carry the exact fields the public provider and store read
+ *    (affiliate_url, itemAffiliateWebUrl, item_url, marketplace, shipping_status,
+ *    match_type, decision, status, evidence).
  */
 
 import fs from 'fs';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
+import {
+  classifyOffer,
+  MATCH_TYPES,
+  OFFER_STATUSES,
+  extractPartNumbers,
+  isBundleTitle
+} from './OfferEvidenceMatcher.js';
+import {
+  evaluateShippingEvidence,
+  SHIPPING_STATUS
+} from './EbayShippingEvidence.js';
+
+const MATCH_BASIS_BY_TYPE = Object.freeze({
+  [MATCH_TYPES.EXACT_MPN]: 'MPN_EXACT',
+  [MATCH_TYPES.EXACT_PART_NUMBER_WITH_CORROBORATION]: 'PART_NUMBER_CORROBORATED',
+  [MATCH_TYPES.VERIFIED_REPLACEMENT]: 'VERIFIED_REPLACEMENT',
+  [MATCH_TYPES.TITLE_ONLY_NEEDS_EVIDENCE]: 'TITLE_ONLY'
+});
+
+const STATUS_BY_DECISION = Object.freeze({
+  ACCEPT: OFFER_STATUSES.ACTIVE,
+  REVIEW: OFFER_STATUSES.NEEDS_EVIDENCE,
+  REJECT: OFFER_STATUSES.REJECTED
+});
+
+const REJECT_CODES = new Set([
+  'MISSING_REQUIRED_DATA', 'PART_NUMBER_MISMATCH', 'CONFLICTING_MPN',
+  'CONFLICTING_TITLE_PART_NUMBER', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT',
+  'OUT_OF_STOCK', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH',
+  'CONTRADICTORY_MATCH'
+]);
 
 export class EbayHighVolumeEngine {
   constructor(options = {}) {
@@ -18,7 +62,10 @@ export class EbayHighVolumeEngine {
     this.checkpointIntervalMs = options.checkpointIntervalMs ?? 5000;
     this.vendors = options.vendors ?? ['saegenspezi_de', 'ebay_shop_seller', 'general_parts_nl'];
     this.marketplaces = options.marketplaces ?? ['EBAY_NL', 'EBAY_DE'];
-    this.classifications = new Map(); // part → { type: 'spark_plug' | 'carburetor' | 'unknown', confidence: 0–1 }
+    this.enrichByDefault = options.enrich ?? true;
+    this.maxEnrichments = options.maxEnrichments ?? 250;
+    this.evidenceRegistry = options.evidenceRegistry || null;
+    this.classifications = new Map(); // part → { type, confidence, models }
     this.activeOffers = new Map(); // part → [{ vendor, marketplace, item_id, price, ... }]
     this.rejectedOffers = new Map(); // part → [{ reason, item_id, vendor, ... }]
     this.checkpoints = []; // { timestamp, partIndex, processedCount }
@@ -28,26 +75,31 @@ export class EbayHighVolumeEngine {
    * Classify a part number into a category for stricter matching.
    * Phase 76G: concrete product-type words only. "saw" inside "chainsaw" must
    * never classify a part as saw_chain — category and explicit part-type words win.
+   * Phase 80: also carries the catalog model relations used as corroboration.
    * @param {string} part 11-digit number
-   * @param {Array} knownParts canonical database ({part_number, description, category})
-   * @returns {Object} { type: string, confidence: number }
+   * @param {Array} knownParts canonical database ({part_number, description, category, models})
+   * @returns {Object} { type: string, confidence: number, models: string[] }
    */
   classifyPart(part, knownParts = []) {
     const match = knownParts.find(p => PartNormalizer.normalizePartNumber(p.part_number) === part);
-    if (!match) return { type: 'unknown', confidence: 0 };
+    if (!match) return { type: 'unknown', confidence: 0, models: [] };
+    const models = Array.isArray(match.models)
+      ? match.models
+      : (Array.isArray(match.model_ids) ? match.model_ids : (Array.isArray(match.compatible_models) ? match.compatible_models : []));
+    const base = { models };
     const desc = String(match.description || '').toLowerCase();
     const category = String(match.category || '').toLowerCase();
     const hay = `${category} ${desc}`;
     // Ordered, most specific first. Word-bounded patterns — no bare 'saw', no bare 'chain', no bare 'carb', no bare 'plug'.
-    if (/\bbougie\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bglühkerze\b|\bgluehkerze\b/.test(hay)) return { type: 'spark_plug', confidence: 0.95 };
-    if (/\bcarburateur(\w*)\b|\bcarburetor\b|\bvergaser\b|\bvergaserkit\b/.test(hay)) return { type: 'carburetor', confidence: 0.95 };
-    if (/\bluchtfilter\b|\bair\s*filter\b|\bluftfilter\b/.test(hay)) return { type: 'air_filter', confidence: 0.9 };
-    if (/\bsaw\s*chain\b|\bsägekette\b|\bsaegekette\b|\bzaagketting\b|\bchainsaw\s*chain\b/.test(hay)) return { type: 'saw_chain', confidence: 0.9 };
-    if (/\bstarter\b|\bstartkoord\b|\bstartkoord\b|\brewind\s*starter\b|\brecoil\s*starter\b/.test(hay)) return { type: 'starter', confidence: 0.9 };
-    if (/\boliepomp\b|\boil\s*pump\b|\bölpumpe\b|\bolpumpe\b/.test(hay)) return { type: 'oil_pump', confidence: 0.9 };
-    if (/\bbrandstoffilter\b|\bfuel\s*filter\b|\bkraftstoffilter\b|\bpickup\s*body\b/.test(hay)) return { type: 'fuel_filter', confidence: 0.9 };
-    if (/\bkoppeling\b|\bclutch\b/.test(hay)) return { type: 'clutch', confidence: 0.9 };
-    return { type: 'generic_part', confidence: 0.8 };
+    if (/\bbougie\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bglühkerze\b|\bgluehkerze\b/.test(hay)) return { type: 'spark_plug', confidence: 0.95, ...base };
+    if (/\bcarburateur(\w*)\b|\bcarburetor\b|\bvergaser\b|\bvergaserkit\b/.test(hay)) return { type: 'carburetor', confidence: 0.95, ...base };
+    if (/\bluchtfilter\b|\bair\s*filter\b|\bluftfilter\b/.test(hay)) return { type: 'air_filter', confidence: 0.9, ...base };
+    if (/\bsaw\s*chain\b|\bsägekette\b|\bsaegekette\b|\bzaagketting\b|\bchainsaw\s*chain\b/.test(hay)) return { type: 'saw_chain', confidence: 0.9, ...base };
+    if (/\bstarter\b|\bstartkoord\b|\bstartkoord\b|\brewind\s*starter\b|\brecoil\s*starter\b/.test(hay)) return { type: 'starter', confidence: 0.9, ...base };
+    if (/\boliepomp\b|\boil\s*pump\b|\bölpumpe\b|\bolpumpe\b/.test(hay)) return { type: 'oil_pump', confidence: 0.9, ...base };
+    if (/\bbrandstoffilter\b|\bfuel\s*filter\b|\bkraftstoffilter\b|\bpickup\s*body\b/.test(hay)) return { type: 'fuel_filter', confidence: 0.9, ...base };
+    if (/\bkoppeling\b|\bclutch\b/.test(hay)) return { type: 'clutch', confidence: 0.9, ...base };
+    return { type: 'generic_part', confidence: 0.8, ...base };
   }
 
   /**
@@ -60,71 +112,106 @@ export class EbayHighVolumeEngine {
   }
 
   /**
-   * Phase 76G — central diagnostic validation.
-   * Fail-closed: every check that fails is recorded as a reason code; the first
-   * blocking step is reported. Only a clean candidate can become ACCEPT.
+   * Central validation. Fail-closed: every failed check becomes a reason code and
+   * the first blocking step is reported.
    *
    * Reason codes: MISSING_REQUIRED_DATA, PART_NUMBER_MISMATCH, CONFLICTING_MPN,
    * CONFLICTING_TITLE_PART_NUMBER, PRODUCT_TYPE_CONFLICT, BUNDLE_OR_KIT,
-   * OUT_OF_STOCK, AFFILIATE_URL_INVALID, CAMPAIGN_ID_MISMATCH, SHIPPING_NOT_CONFIRMED.
+   * OUT_OF_STOCK, AFFILIATE_URL_INVALID, CAMPAIGN_ID_MISMATCH,
+   * CONTRADICTORY_MATCH, SHIPPING_NOT_CONFIRMED.
    *
-   * @returns {{decision: 'ACCEPT'|'REVIEW'|'REJECT', reason_codes: string[], first_blocking_step: string|null, offer: Object|null}}
+   * @returns {{decision: 'ACCEPT'|'REVIEW'|'REJECT', reason_codes: string[], first_blocking_step: string|null, offer: Object|null, match_type: string|null, status: string, evidence_gaps: string[]}}
    */
   evaluateOffer(item, targetPart, classification = {}) {
     const reason_codes = [];
     const add = code => { if (!reason_codes.includes(code)) reason_codes.push(code); };
 
     if (!item || !(item.itemId || item.item_id)) {
-      return { decision: 'REJECT', reason_codes: ['MISSING_REQUIRED_DATA'], first_blocking_step: 'MISSING_REQUIRED_DATA', offer: null };
+      return {
+        decision: 'REJECT', reason_codes: ['MISSING_REQUIRED_DATA'], first_blocking_step: 'MISSING_REQUIRED_DATA',
+        offer: null, match_type: null, status: OFFER_STATUSES.REJECTED, evidence_gaps: []
+      };
     }
 
-    // Normalize: raw Browse API shape or client-parsed shape (EbayBrowseApiClient.parseItemSummaries)
-    const rawShipping = Array.isArray(item.shippingOptions) ? item.shippingOptions : null;
+    // Normalize: raw Browse API shape, client-parsed shape, or an enriched item
+    // carrying getItem detail (item_detail / itemDetail).
+    const detail = item.item_detail || item.itemDetail || null;
+    const detailShipping = Array.isArray(detail?.shipping_options)
+      ? detail.shipping_options
+      : (Array.isArray(detail?.shippingOptions) ? detail.shippingOptions : []);
+    const rawShipping = Array.isArray(item.shippingOptions)
+      ? item.shippingOptions
+      : (Array.isArray(item.shipping_options) ? item.shipping_options : (detailShipping.length > 0 ? detailShipping : null));
     const shippingOptions = rawShipping
       ? rawShipping
       : (item.ships_to_nl === true ? [{ shipToLocations: ['NL'], shippingCost: { value: item.shipping_cost_nl } }] : []);
+    const aspects = [
+      ...(Array.isArray(item.aspects) ? item.aspects : []),
+      ...(Array.isArray(detail?.aspects) ? detail.aspects : [])
+    ];
     const norm = {
       itemId: item.itemId ?? item.item_id,
-      title: item.title || '',
-      mpn: item.mpn ?? '',
+      title: item.title || detail?.title || '',
+      mpn: item.mpn || detail?.mpn || '',
       seller: item.seller ?? { username: item.seller_name },
-      price: item.price?.value != null ? item.price : { value: item.item_price, currency: item.currency },
+      price: item.price?.value != null ? item.price : { value: item.item_price ?? detail?.price, currency: item.currency ?? detail?.currency },
       shippingOptions,
-      estimatedAvailabilities: item.estimatedAvailabilities,
-      itemAffiliateWebUrl: item.itemAffiliateWebUrl ?? item.affiliate_url,
-      condition: item.condition,
-      quantity: item.quantity
+      itemDetailShippingOptions: detailShipping,
+      estimatedAvailabilities: item.estimatedAvailabilities ?? detail?.availability,
+      itemAffiliateWebUrl: item.itemAffiliateWebUrl ?? item.affiliate_url ?? detail?.affiliate_url ?? '',
+      condition: item.condition ?? detail?.condition,
+      quantity: item.quantity ?? detail?.quantity,
+      brand: item.brand ?? detail?.brand ?? '',
+      manufacturer: item.manufacturer ?? detail?.manufacturer ?? '',
+      gtin: item.gtin ?? detail?.gtin ?? null,
+      aspects,
+      marketplace: item.marketplace || item.marketplaceId || detail?.marketplace || null,
+      shippingEvidence: item.shipping_evidence?.browse_delivery
+        || item.browse_delivery_evidence
+        || detail?.shipping_evidence?.browse_delivery
+        || null,
+      verifiedReplacements: Array.isArray(item.verified_replacements) ? item.verified_replacements : []
     };
     const title = String(norm.title || '').toLowerCase();
-    const mpn = String(norm.mpn || '').toLowerCase();
     const targetCompact = String(targetPart).replace(/[\s-]/g, '');
-    const targetFormatted = targetPart.slice(0, 4) + ' ' + targetPart.slice(4, 7) + ' ' + targetPart.slice(7);
+    const targetFormatted = targetCompact.slice(0, 4) + ' ' + targetCompact.slice(4, 7) + ' ' + targetCompact.slice(7);
 
-    if (!title) add('MISSING_REQUIRED_DATA');
+    if (!norm.title) add('MISSING_REQUIRED_DATA');
 
-    // Rule 1: target part number must be an explicit reference in MPN or title
+    // --- Identity: one canonical decision -----------------------------------
+    const identity = classifyOffer({
+      targetPart: targetCompact,
+      title: norm.title,
+      mpn: norm.mpn,
+      gtin: norm.gtin,
+      aspects: norm.aspects,
+      brand: norm.brand,
+      manufacturer: norm.manufacturer,
+      catalogModels: Array.isArray(classification.models) ? classification.models : [],
+      verifiedReplacements: norm.verifiedReplacements
+    });
+    for (const code of identity.reason_codes) add(code);
+
+    // Rule 1 (diagnostic): target part number must be an explicit reference.
     const separatorRegex = targetFormatted.replace(/\s/g, '[\\s-]*');
-    const inMpn = Boolean(mpn) && new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(mpn);
+    const inMpn = Boolean(norm.mpn) && new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(String(norm.mpn).toLowerCase());
     const inTitle = new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(title);
     if (!inMpn && !inTitle) add('PART_NUMBER_MISMATCH');
 
-    // Rule 1b: conflicting part numbers. Exact MPN is not enough when the title
-    // or MPN references a different canonical 11-digit STIHL part number.
-    const extractPartNumbers = text => {
-      const found = new Set();
-      const formatted = /(?<!\d)(\d{4})[\s-]*(\d{3})[\s-]*(\d{4})(?!\d)/g;
-      let m;
-      while ((m = formatted.exec(text))) found.add(`${m[1]}${m[2]}${m[3]}`);
-      const compact = /(?<!\d)(\d{11})(?!\d)/g;
-      while ((m = compact.exec(text))) found.add(m[1]);
-      return [...found];
-    };
-    const mpnNumbers = extractPartNumbers(mpn);
+    // Rule 1b: conflicting part numbers anywhere in the listing. Part numbers
+    // registered as verified replacements of the target are not conflicts.
+    const allowedReplacementNumbers = new Set(norm.verifiedReplacements
+      .filter(replacement => replacement?.verified === true
+        && String(replacement.part_number || '').replace(/[\s-]/g, '') === targetCompact)
+      .map(replacement => String(replacement.replacement_part_number || '').replace(/[\s-]/g, ''))
+      .filter(part => /^\d{11}$/.test(part)));
+    const isAllowedReference = number => number === targetCompact || allowedReplacementNumbers.has(number);
+    const mpnNumbers = extractPartNumbers(norm.mpn);
     const titleNumbers = extractPartNumbers(title);
-    if (mpnNumbers.some(n => n !== targetCompact)) add('CONFLICTING_MPN');
-    if (titleNumbers.some(n => n !== targetCompact)) add('CONFLICTING_TITLE_PART_NUMBER');
+    if (mpnNumbers.some(n => !isAllowedReference(n))) add('CONFLICTING_MPN');
+    if (titleNumbers.some(n => !isAllowedReference(n))) add('CONFLICTING_TITLE_PART_NUMBER');
 
-    // Rule 2: product type — reject conflicting types in the title
+    // Rule 2: product type — reject conflicting types in the title.
     const expectedType = classification?.type;
     const TYPE_CONFLICTS = {
       spark_plug: /\bcarburetor\b|\bvergaser\b|\bair\s*filter\b|\bluftfilter\b|\bsaw\s*chain\b|\bzaagketting\b/,
@@ -139,11 +226,14 @@ export class EbayHighVolumeEngine {
     if (expectedType && TYPE_CONFLICTS[expectedType] && TYPE_CONFLICTS[expectedType].test(title)) add('PRODUCT_TYPE_CONFLICT');
 
     // Rule 3: bundle/kit, multi-quantity and availability
-    if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\btune-up\b/.test(title)) add('BUNDLE_OR_KIT');
+    if (isBundleTitle(title)) add('BUNDLE_OR_KIT');
     if (norm.quantity && norm.quantity > 1) add('BUNDLE_OR_KIT');
-    if (norm.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) add('OUT_OF_STOCK');
+    if (Array.isArray(norm.estimatedAvailabilities)
+      && norm.estimatedAvailabilities.some(a => (typeof a === 'string' ? a : a?.estimatedAvailabilityStatus) === 'OUT_OF_STOCK')
+      && !Array.isArray(detail?.availability)) add('OUT_OF_STOCK');
 
     // Rule 4: affiliate URL must be present, on eBay, HTTPS and carry exactly the EPN campaign ID
+    const campaignId = process.env.EBAY_EPN_CAMPAIGN_ID || '';
     let parsedAff = null;
     if (!norm.itemAffiliateWebUrl || typeof norm.itemAffiliateWebUrl !== 'string') {
       add('AFFILIATE_URL_INVALID');
@@ -157,86 +247,169 @@ export class EbayHighVolumeEngine {
     if (parsedAff) {
       const hasEbayHost = parsedAff.protocol === 'https:' && /^(?:[a-z0-9-]+\.)*ebay\.(?:de|nl|com)$/i.test(parsedAff.hostname);
       if (!hasEbayHost) add('AFFILIATE_URL_INVALID');
-      const campaignId = process.env.EBAY_EPN_CAMPAIGN_ID || '';
       const campids = parsedAff.searchParams.getAll('campid');
       if (!campaignId || campids.length !== 1 || campids[0] !== campaignId) add('CAMPAIGN_ID_MISMATCH');
     }
 
-    // Rule 5: NL shipping must be confirmed. Unknown shipping -> REVIEW (never ACCEPT);
-    // explicit non-NL destinations are a hard reject. No assumptions about shipping.
-    const destinations = norm.shippingOptions.flatMap(opt => {
-      const locations = opt.shipToLocations;
-      if (Array.isArray(locations)) return locations.map(loc => (typeof loc === 'string' ? loc : loc?.country));
-      if (locations?.country) return [locations.country];
-      return opt.shippingDestination?.country ? [opt.shippingDestination.country] : [];
-    }).filter(Boolean);
-    const shippingToNl = destinations.includes('NL');
-    const explicitNonNl = destinations.length > 0 && !shippingToNl;
-    if (!shippingToNl) add('SHIPPING_NOT_CONFIRMED');
+    // Rule 5: NL shipping evidence (item options first, deliveryCountry filter second).
+    const shipping = evaluateShippingEvidence({
+      shippingOptions: norm.shippingOptions,
+      itemDetailShippingOptions: norm.itemDetailShippingOptions,
+      browseDeliveryEvidence: norm.shippingEvidence
+    });
+    if (shipping.status !== SHIPPING_STATUS.CONFIRMED) add('SHIPPING_NOT_CONFIRMED');
 
-    const REJECT_CODES = new Set([
-      'MISSING_REQUIRED_DATA', 'PART_NUMBER_MISMATCH', 'CONFLICTING_MPN',
-      'CONFLICTING_TITLE_PART_NUMBER', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT',
-      'OUT_OF_STOCK', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH'
-    ]);
+    const evidenceGaps = [...(identity.evidence_gaps || [])];
+    if (shipping.status !== SHIPPING_STATUS.CONFIRMED) evidenceGaps.push('SHIPPING_TO_NL');
+
     const blocking = reason_codes.find(code => REJECT_CODES.has(code)) || null;
     if (blocking) {
-      return { decision: 'REJECT', reason_codes, first_blocking_step: blocking, offer: null };
+      return {
+        decision: 'REJECT', reason_codes, first_blocking_step: blocking, offer: null,
+        match_type: identity.match_type, status: OFFER_STATUSES.REJECTED, evidence_gaps: evidenceGaps
+      };
     }
-    if (!shippingToNl) {
-      if (explicitNonNl) {
-        return { decision: 'REJECT', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED', offer: null };
-      }
-      // Shipping data missing/unconfirmed — needs verification, never auto-accepted.
-      return { decision: 'REVIEW', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED', offer: this.buildOffer(norm, inMpn, false) };
+    if (shipping.status === SHIPPING_STATUS.DOES_NOT_SHIP) {
+      return {
+        decision: 'REJECT', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED', offer: null,
+        match_type: identity.match_type, status: OFFER_STATUSES.REJECTED, evidence_gaps: evidenceGaps
+      };
     }
-    const decision = inMpn ? 'ACCEPT' : 'REVIEW';
+    if (shipping.status === SHIPPING_STATUS.UNKNOWN) {
+      return {
+        decision: 'REVIEW', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED',
+        offer: this.buildOffer(norm, inMpn, false, { identity, shipping, decision: 'REVIEW', evidenceGaps }),
+        match_type: identity.match_type, status: OFFER_STATUSES.NEEDS_EVIDENCE, evidence_gaps: evidenceGaps
+      };
+    }
+    if (identity.status !== OFFER_STATUSES.ACTIVE) {
+      // Shipping is proven; only product-identity corroboration is missing.
+      return {
+        decision: 'REVIEW', reason_codes,
+        first_blocking_step: 'PRODUCT_IDENTITY_EVIDENCE_MISSING',
+        offer: this.buildOffer(norm, inMpn, true, { identity, shipping, decision: 'REVIEW', evidenceGaps }),
+        match_type: identity.match_type, status: OFFER_STATUSES.NEEDS_EVIDENCE, evidence_gaps: evidenceGaps
+      };
+    }
     return {
-      decision,
-      reason_codes,
-      first_blocking_step: null,
-      offer: this.buildOffer(norm, inMpn, true)
+      decision: 'ACCEPT', reason_codes, first_blocking_step: null,
+      offer: this.buildOffer(norm, inMpn, true, { identity, shipping, decision: 'ACCEPT', evidenceGaps }),
+      match_type: identity.match_type, status: OFFER_STATUSES.ACTIVE, evidence_gaps: evidenceGaps
     };
   }
 
   /**
-   * Builds the normalized offer payload for ACCEPT/REVIEW decisions.
+   * Builds the canonical offer payload for ACCEPT/REVIEW decisions.
+   * Field names are the contract every consumer reads:
+   * affiliate_url / itemAffiliateWebUrl / item_url, marketplace, part_number,
+   * decision, status, match_type, shipping_status, evidence.
+   *
    * @private
    */
-  buildOffer(item, inMpn, shipsToNl) {
+  buildOffer(item, inMpn, shipsToNl, extra = {}) {
+    const decision = extra.decision || (inMpn ? 'ACCEPT' : 'REVIEW');
+    const matchType = extra.identity?.match_type ?? (inMpn ? MATCH_TYPES.EXACT_MPN : MATCH_TYPES.TITLE_ONLY_NEEDS_EVIDENCE);
+    const shippingStatus = extra.shipping?.status
+      ?? (shipsToNl ? SHIPPING_STATUS.CONFIRMED : SHIPPING_STATUS.UNKNOWN);
+    const affiliateUrl = item.itemAffiliateWebUrl || '';
     return {
-      decision: inMpn ? 'ACCEPT' : 'REVIEW',
-      match_basis: inMpn ? 'MPN_EXACT' : 'TITLE_ONLY',
+      decision,
+      status: STATUS_BY_DECISION[decision] || OFFER_STATUSES.NEEDS_EVIDENCE,
+      match_type: matchType,
+      match_basis: MATCH_BASIS_BY_TYPE[matchType] || (inMpn ? 'MPN_EXACT' : 'TITLE_ONLY'),
       item_id: item.itemId,
       title: item.title || '',
-      mpn: item.mpn,
+      mpn: item.mpn || '',
+      brand: item.brand || '',
+      manufacturer: item.manufacturer || '',
+      gtin: item.gtin || null,
       seller_name: item.seller?.username || '',
       price: item.price?.value ? Number(item.price.value) : null,
+      item_price: item.price?.value ? Number(item.price.value) : null,
       currency: item.price?.currency || 'EUR',
       shipping_cost: item.shippingOptions?.[0]?.shippingCost?.value ? Number(item.shippingOptions[0].shippingCost.value) : null,
+      shipping_cost_nl: extra.shipping?.shipping_cost_nl ?? null,
       ships_to_nl: Boolean(shipsToNl),
+      shipping_status: shippingStatus,
+      shipping_evidence: extra.shipping?.evidence || null,
       condition: item.condition || 'NEW',
-      affiliate_url: item.itemAffiliateWebUrl,
-      validation_confidence: inMpn ? 0.98 : 0.85
+      marketplace: item.marketplace || null,
+      marketplaceId: item.marketplace || null,
+      item_url: affiliateUrl || null,
+      affiliate_url: affiliateUrl,
+      itemAffiliateWebUrl: affiliateUrl,
+      evidence: {
+        product: {
+          match_type: matchType,
+          corroboration: extra.identity?.corroboration || [],
+          contradictory_part_numbers: extra.identity?.contradictory_part_numbers || []
+        },
+        shipping: extra.shipping?.evidence || null,
+        affiliate: { campaign_id: process.env.EBAY_EPN_CAMPAIGN_ID || null, url_source: 'itemAffiliateWebUrl' }
+      },
+      evidence_gaps: Array.isArray(extra.evidenceGaps) ? extra.evidenceGaps : [],
+      checked_at: new Date().toISOString(),
+      validation_confidence: decision === 'ACCEPT' ? (matchType === MATCH_TYPES.EXACT_MPN ? 0.98 : 0.95) : 0.85
     };
+  }
+
+  /**
+   * Fetches item detail for a candidate that still needs product or shipping
+   * evidence. Uses the shared evidence registry first so the same listing is
+   * never verified twice, then getItem with its own in-memory cache.
+   *
+   * @param {Object} item
+   * @param {Object} [options]
+   * @returns {Promise<{ item: Object, source: 'REGISTRY'|'GET_ITEM' }|null>}
+   */
+  async enrichCandidate(item, options = {}) {
+    const itemId = item?.itemId ?? item?.item_id;
+    if (typeof itemId !== 'string' || !itemId) return null;
+    const marketplace = item.marketplace || item.marketplaceId || null;
+    const registry = options.evidenceRegistry || this.evidenceRegistry;
+    let detail = registry && typeof registry.get === 'function' ? registry.get(itemId) : null;
+    let source = 'REGISTRY';
+    if (!detail) {
+      if (!this.apiClient || typeof this.apiClient.getItem !== 'function') return null;
+      const res = await this.apiClient.getItem(itemId, { marketplace });
+      if (!res || !res.success || !res.item) return null;
+      detail = res.item;
+      source = 'GET_ITEM';
+      if (registry && typeof registry.record === 'function') registry.record(itemId, detail);
+    }
+    const merged = {
+      ...item,
+      item_detail: detail,
+      mpn: item.mpn || detail.mpn || '',
+      gtin: item.gtin || detail.gtin || null,
+      brand: item.brand || detail.brand || '',
+      manufacturer: item.manufacturer || detail.manufacturer || '',
+      aspects: [...(Array.isArray(item.aspects) ? item.aspects : []), ...(Array.isArray(detail.aspects) ? detail.aspects : [])],
+      itemAffiliateWebUrl: item.itemAffiliateWebUrl || item.affiliate_url || detail.affiliate_url || ''
+    };
+    return { item: merged, source, evidence_reused: source === 'REGISTRY' };
   }
 
   /**
    * Batch-process canonical parts across multiple marketplaces and vendors.
    * @param {Array<string>} canonicalParts 11-digit STIHL part numbers
-   * @param {Object} options { maxItems, knownParts, checkpoint, resumeFrom }
-   * @returns {Promise<Object>} summary with active_offers, rejected, metrics
+   * @param {Object} options { maxItems, knownParts, checkpoint, resumeFrom, enrich, maxEnrichments, evidenceRegistry }
+   * @returns {Promise<Object>} summary with active_offers, review_offers, rejected_offers, metrics
    */
   async processBatch(canonicalParts = [], options = {}) {
     const maxItems = Math.min(options.maxItems || 5000, canonicalParts.length);
     const knownParts = options.knownParts || [];
     const checkpoint = options.checkpoint || { partIndex: 0, processedParts: 0 };
     const resumeFrom = options.resumeFrom ?? checkpoint.partIndex;
+    const enrich = options.enrich ?? this.enrichByDefault;
+    const maxEnrichments = options.maxEnrichments ?? this.maxEnrichments;
+    const evidenceRegistry = options.evidenceRegistry || this.evidenceRegistry;
 
     const activeOffers = [];
     const reviewOffers = [];
     const seen = new Set();
     const rejectedOffers = [];
+    let enrichmentsUsed = 0;
     const metrics = {
       scanned_parts: 0,
       total_searches: 0,
@@ -252,7 +425,11 @@ export class EbayHighVolumeEngine {
       first_blocking_steps: {},
       errors: [],
       api_calls: 0,
-      backoff_delays: 0
+      backoff_delays: 0,
+      enrichment_attempts: 0,
+      evidence_enriched: 0,
+      evidence_reused: 0,
+      needs_evidence: 0
     };
 
     const startTime = Date.now();
@@ -278,7 +455,8 @@ export class EbayHighVolumeEngine {
                 partNumber: part,
                 seller: vendor,
                 marketplace,
-                limit: 10
+                limit: 10,
+                catalogModels: classification.models
               });
 
               if (!res.success) {
@@ -309,24 +487,52 @@ export class EbayHighVolumeEngine {
               }
 
               // Classification: ACCEPT/REVIEW/REJECT — only ACCEPT may enter active_offers
-              for (const item of res.items || []) {
-                const verdict = this.evaluateOffer(item, part, classification);
+              for (const rawItem of res.items || []) {
+                let item = { ...rawItem, marketplace: rawItem.marketplace || marketplace };
+                let verdict = this.evaluateOffer(item, part, classification);
+                let enrichment = null;
+
+                // Phase 80: missing evidence is completed, not punished. Only
+                // candidates whose identity/shipping evidence is the blocker are
+                // enriched; contradictory matches stay rejected.
+                const missingEvidence = verdict.decision === 'REVIEW'
+                  && verdict.evidence_gaps.length > 0
+                  && enrich
+                  && enrichmentsUsed < maxEnrichments;
+                if (missingEvidence) {
+                  enrichmentsUsed++;
+                  metrics.enrichment_attempts++;
+                  enrichment = await this.enrichCandidate(item, { evidenceRegistry });
+                  if (enrichment) {
+                    if (enrichment.evidence_reused) metrics.evidence_reused++;
+                    item = enrichment.item;
+                    verdict = this.evaluateOffer(item, part, classification);
+                  }
+                }
+
                 if (verdict.decision === 'ACCEPT') {
                   metrics.offers_validated++;
-                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer };
+                  if (enrichment && enrichment.item) metrics.evidence_enriched++;
+                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer, marketplace, marketplaceId: marketplace };
                   const key = `${offer.marketplace}:${offer.item_id}`;
                   if (!seen.has(key)) {
                     seen.add(key);
                     activeOffers.push(offer);
                   }
                 } else if (verdict.decision === 'REVIEW') {
-                  // Unconfirmed data — needs manual review, never auto-accepted
+                  // Unconfirmed data — needs evidence, never auto-accepted and
+                  // never stored as ACTIVE.
                   metrics.offers_reviewed++;
-                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer, reason_codes: verdict.reason_codes };
+                  metrics.needs_evidence++;
+                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer, marketplace, marketplaceId: marketplace, reason_codes: verdict.reason_codes };
                   const key = `${offer.marketplace}:${offer.item_id}`;
                   if (!seen.has(key)) {
                     seen.add(key);
-                    reviewOffers.push(offer);
+                    reviewOffers.push({
+                      ...offer,
+                      status: OFFER_STATUSES.NEEDS_EVIDENCE,
+                      enrichment: enrichment ? { attempted: true, source: enrichment.source, evidence_reused: Boolean(enrichment.evidence_reused) } : { attempted: false }
+                    });
                   }
                 } else {
                   metrics.offers_rejected++;
@@ -344,7 +550,9 @@ export class EbayHighVolumeEngine {
                     mpn: item.mpn || '',
                     reason: 'validation_failed',
                     primary_reason: firstStep,
-                    reason_codes: verdict.reason_codes
+                    reason_codes: verdict.reason_codes,
+                    match_type: verdict.match_type,
+                    status: OFFER_STATUSES.REJECTED
                   });
                 }
               }
@@ -393,6 +601,10 @@ export class EbayHighVolumeEngine {
         offers_rejected: metrics.offers_rejected,
         rejections_by_reason: metrics.rejections_by_reason,
         first_blocking_steps: metrics.first_blocking_steps,
+        enrichment_attempts: metrics.enrichment_attempts,
+        evidence_enriched: metrics.evidence_enriched,
+        evidence_reused: metrics.evidence_reused,
+        needs_evidence: metrics.needs_evidence,
         errors_count: metrics.errors.length,
         backoff_delays: metrics.backoff_delays,
         duration_ms: Date.now() - startTime

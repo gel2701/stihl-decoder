@@ -131,6 +131,14 @@ export const currentProductionSuites = [
   'tests/phase73_amazon_100.test.js',
   'tests/phase74_amazon_growth.test.js',
   'tests/phase75_amazon_growth.test.js',
+  'tests/phase71_ebay_affiliate_adapter.test.js',
+  'tests/phase76a_ebay_browse.test.js',
+  'tests/phase76a_ebay_provider.test.js',
+  'tests/phase76c_high_volume_engine.test.js',
+  'tests/phase76c_ebay_live_offer_validation.test.js',
+  'tests/phase76e_pilot_fixes.test.js',
+  'tests/phase76g_offer_validation.test.js',
+  'tests/phase80_affiliate_activation.test.js',
   'tests/phase79b_amazon_buy_buttons.test.js',
   'tests/phase79_passport_visibility.test.js'
 ];
