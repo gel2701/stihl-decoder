@@ -304,18 +304,26 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
     <nav aria-label="Snel bestellen" class="rounded-xl border border-orange-500/30 bg-orange-950/20 p-3 sm:p-4">
       <div class="flex flex-wrap items-center gap-2 mb-2">
         <span class="text-sm font-bold text-white">Direct bestellen</span>
-        <span class="text-xs text-gray-300">Prijs en beschikbaarheid bij Amazon</span>
+        <span class="text-xs text-gray-300">Prijs en beschikbaarheid bij de webshop</span>
       </div>
       <div class="flex flex-col sm:flex-row flex-wrap gap-2">
         ${offers.map(offer => {
-          const isDirect = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
-          const market = offer.marketplace === 'amazon.de' ? 'amazon.de' : 'amazon.nl';
-          const kind = isDirect ? 'MANUAL_ASIN' : 'SEARCH_LINK';
-          const label = isDirect ? `Bekijk op Amazon.${market.slice(-2)}` : 'Zoek op Amazon';
+          // The quick-buy nav renders every provider, so label, marketplace and
+          // click tracking must come from the offer itself. Using Amazon defaults
+          // here labelled eBay links as "Bekijk op Amazon.nl" and attributed the
+          // click to Amazon.
+          const providerId = String(offer.provider || 'amazon').toLowerCase();
+          const isEbay = providerId === 'ebay';
+          const market = offer.marketplace || (isEbay ? 'ebay.nl' : 'amazon.nl');
+          const isDirect = isEbay ? true : Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
+          const kind = isEbay ? (offer.match_type || 'DIRECT_EBAY_ITEM') : (isDirect ? 'MANUAL_ASIN' : 'SEARCH_LINK');
+          const label = offer.label || (isEbay
+            ? `Bekijk op ${market}`
+            : (isDirect ? `Bekijk op Amazon.${market.slice(-2)}` : 'Zoek op Amazon'));
           return `<a href="${offer.url}" target="_blank" rel="sponsored nofollow noopener"
-            data-part-number="${resolved.part_number}" data-marketplace="${market}" data-offer-type="${kind}"
+            data-part-number="${resolved.part_number}" data-provider="${providerId}" data-marketplace="${market}" data-offer-type="${kind}"
             class="flex items-center justify-center min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-lg text-sm font-bold ${isDirect ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-white'}"
-            onclick="window.handleAffiliateClick?.(this,event,{provider:'amazon',marketplace:'${market}',part_number:'${resolved.part_number}',offer_type:'${kind}',asin_if_known:'${offer.asin || ''}',product_verified:${isDirect},placement:'part_detail_quick_buy',page_path:window.location.pathname});">
+            onclick="window.handleAffiliateClick?.(this,event,{provider:'${providerId}',marketplace:'${market}',part_number:'${resolved.part_number}',offer_type:'${kind}',asin_if_known:'${offer.asin || ''}',product_verified:${isDirect},placement:'part_detail_quick_buy',page_path:window.location.pathname});">
             ${label} ↗</a>`;
         }).join('')}
       </div>
@@ -453,6 +461,7 @@ ${supersessionHtml}
                   data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
                   data-tracking-url="/api/affiliate/track"
                   data-part-number="${resolved.part_number}"
+                  data-provider="${offer.provider || 'amazon'}"
                   data-marketplace="${offer.marketplace || 'amazon.nl'}"
                   data-offer-type="MANUAL_ASIN"
                   data-placement="${placement}"
@@ -488,6 +497,7 @@ ${supersessionHtml}
               data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
               data-tracking-url="/api/affiliate/track"
               data-part-number="${resolved.part_number}"
+              data-provider="${offer.provider || 'amazon'}"
               data-marketplace="${offer.marketplace || 'amazon.nl'}"
               data-offer-type="SEARCH_LINK"
               data-placement="search_fallback"

@@ -142,6 +142,7 @@ export const currentProductionSuites = [
   'tests/phase80_1_activation_pipeline.test.js',
   'tests/phase80_2_evidence_recovery.test.js',
   'tests/phase80_3_shipping_recovery.test.js',
+  'tests/phase80_4_public_activation.test.js',
   'tests/phase79b_amazon_buy_buttons.test.js',
   'tests/phase79_passport_visibility.test.js'
 ];
