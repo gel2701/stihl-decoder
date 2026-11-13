@@ -1,6 +1,6 @@
 # Phase 77F (final) — ASIN-identiteitsherstel
 
-Datum: 2026-11-13T00:38:40.876Z
+Datum: 2026-11-13T00:41:09.651Z
 Modus: APPLY
 
 ## 1. Uitkomst
@@ -19,6 +19,7 @@ Modus: APPLY
 - Opgeslagen GTIN: `0886661160136`
 - Bewijsbronnen: AMAZON_PRODUCT_PAGE https://www.amazon.nl/dp/B079DM989K
 - Onafhankelijke bronnen: 0 · daarvan noemen de ASIN: 0
+- OEM/variant/bundel: GENUINE_STIHL · quantity 1 · multipack false → single piece, geen bundel of multiverpakking in titel/verpakking
 - Two-Gate na herbeoordeling: FAIL — ASIN_IDENTITY_UNVERIFIED: ASIN B079DM989K lacks external machine-verifiable proof linking it to physical product.; Missing verifiable Amazon product listing URL or proof.
 - Verdict: **NEEDS_EVIDENCE**
 - Toelichting: STIHL-documentatie en distributeurs (DIY Spare Parts, L&S, OakTen) bevestigen 4282 141 0300 en BR 500/550/600/700, maar noemen de ASIN niet.
@@ -28,6 +29,7 @@ Modus: APPLY
 - Opgeslagen GTIN: `0795711104948` · extern opgegeven GTIN: `795711121587` (wijkt af)
 - Bewijsbronnen: AMAZON_PRODUCT_PAGE https://www.amazon.nl/dp/B079DNL88M
 - Onafhankelijke bronnen: 0 · daarvan noemen de ASIN: 0
+- OEM/variant/bundel: GENUINE_STIHL · quantity 1 · multipack false → single piece, geen bundel of multiverpakking in titel/verpakking
 - Two-Gate na herbeoordeling: FAIL — ASIN_IDENTITY_UNVERIFIED: ASIN B079DNL88M lacks external machine-verifiable proof linking it to physical product.; Missing verifiable Amazon product listing URL or proof.
 - Verdict: **NEEDS_EVIDENCE**
 - Toelichting: Techniekwebshop bevestigt EAN 795711121587 voor 1128 190 3400; deze bron noemt de ASIN niet en wijkt af van de opgeslagen GTIN.

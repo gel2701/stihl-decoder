@@ -95,6 +95,12 @@ const evaluations = CANDIDATES.map(candidate => {
     evidence_sources: sources.map(s => ({ type: s.type, url: s.url })),
     independent_sources: independentSources.length,
     independent_sources_citing_asin: asinCitingIndependent.length,
+    oem_brand_classification: offer.oem_brand_classification || null,
+    package_quantity: offer.package_quantity ?? null,
+    is_multipack: offer.is_multipack ?? null,
+    variant_bundle_check: (offer.package_quantity === 1 && offer.is_multipack === false)
+      ? 'single piece, geen bundel of multiverpakking in titel/verpakking'
+      : 'variant/bundel controle nodig',
     two_gate_passed: verification.passed,
     two_gate_errors: verification.errors,
     verdict,
@@ -211,6 +217,7 @@ ${evaluations.map(e => `### ${e.part_number} → ${e.asin}
 - Opgeslagen GTIN: \`${e.stored_gtin || 'geen'}\`${e.external_gtin ? ` · extern opgegeven GTIN: \`${e.external_gtin}\` (${e.gtin_discrepancy ? 'wijkt af' : 'gelijk'})` : ''}
 - Bewijsbronnen: ${e.evidence_sources.map(s => `${s.type} ${s.url}`).join('; ') || 'geen'}
 - Onafhankelijke bronnen: ${e.independent_sources} · daarvan noemen de ASIN: ${e.independent_sources_citing_asin}
+- OEM/variant/bundel: ${e.oem_brand_classification || 'onbekend'} · quantity ${e.package_quantity ?? '?'} · multipack ${e.is_multipack} → ${e.variant_bundle_check}
 - Two-Gate na herbeoordeling: ${e.two_gate_passed ? 'PASS' : 'FAIL'} — ${e.two_gate_errors.join('; ') || 'geen fouten'}
 - Verdict: **${e.verdict}**
 - Toelichting: ${e.note}
