@@ -281,6 +281,28 @@ const mpnConflicts = conflictDiagnostics.map(diagnostic => {
   };
 });
 
+// Phase 80.4 — explain why more delivery confirmations can be recorded than are
+// confirmed at final adjudication: shipping verification covers every known
+// part+marketplace+item pair, including pairs that are later rejected on product
+// identity. Evidence is kept; the decision is not changed.
+let shippingConfirmedNotActive = null;
+if (shippingVerification) {
+  const confirmedKeys = new Set(shippingVerification.per_pair
+    .filter(pair => pair.outcome === 'CONFIRMED_NL')
+    .map(pair => `${pair.part_number}:${pair.marketplace}:${pair.item_id}`));
+  const byReason = {};
+  let count = 0;
+  for (const diagnostic of result.diagnostics) {
+    const key = `${diagnostic.part_number}:${diagnostic.marketplace}:${diagnostic.item_id}`;
+    if (!confirmedKeys.has(key)) continue;
+    if (diagnostic.final_decision === 'ACCEPT') continue;
+    count++;
+    const reason = diagnostic.first_blocking_step || 'UNKNOWN';
+    byReason[reason] = (byReason[reason] || 0) + 1;
+  }
+  shippingConfirmedNotActive = { count, by_reason: byReason };
+}
+
 const provablyWrong = result.rejected.filter(item => (item.reason_codes || []).some(code =>
   ['CONTRADICTORY_MATCH', 'CONFLICTING_MPN', 'CONFLICTING_TITLE_PART_NUMBER', 'PART_NUMBER_MISMATCH', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH'].includes(code)
 ));
@@ -321,6 +343,8 @@ const summary = {
     '2_listings_rechecked_with_nl_filter': shippingVerification ? shippingVerification.searched_pairs : 0,
     '2_listings_confirmed_nl_shipping_now': shippingVerification ? shippingVerification.confirmed_pairs : 0,
     '2_top_blockers': topBlockers,
+    '4_shipping_confirmed_but_not_active': shippingConfirmedNotActive ? shippingConfirmedNotActive.count : 0,
+    '4_shipping_confirmed_but_not_active_by_reason': shippingConfirmedNotActive ? shippingConfirmedNotActive.by_reason : {},
     '3_evidence_records_reused': result.get_item_reused,
     '4_candidates_enriched_from_stored_evidence': result.evidence_completed,
     '4_mpn_conflicts_analysed': mpnConflicts.length,
@@ -343,6 +367,7 @@ const summary = {
     item_relations: result.item_relations.length,
     relations_preserved: result.item_relations.every(rel => rel.part_numbers.length >= 1)
   },
+  shipping_confirmed_not_active: shippingConfirmedNotActive,
   mpn_conflicts: {
     analysed: mpnConflicts.length,
     verified_supersessions_in_catalog: verifiedSupersessions.size,

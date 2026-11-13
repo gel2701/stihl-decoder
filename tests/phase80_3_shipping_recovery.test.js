@@ -230,7 +230,62 @@ test('83.5 renewed shipping evidence plus stored getItem detail becomes ACTIVE w
   assert.ok(store.offers[0].affiliate_url.includes(`campid=${CAMPAIGN}`));
 });
 
-test('83.6 the recovery CLI refuses targeted shipping verification without credentials', () => {
+test('83.6 a conflicting listing keeps its delivery evidence but is never activated', async () => {
+  const otherPart = '00004007011';
+  const registry = new EbayEvidenceRegistry({ path: null });
+  registry.record(ITEM, {
+    item_id: ITEM,
+    marketplace: 'EBAY_DE',
+    title: `Zündkerze STIHL ${otherPart}`,
+    mpn: otherPart,
+    mpns: [otherPart],
+    aspects: [],
+    shipping_options: [],
+    affiliate_url: affUrl(),
+    fetched_at: now()
+  });
+  const candidates = [{
+    part_number: PART,
+    description: 'Zündkerze',
+    category: 'bougie',
+    models: [],
+    existing: [{
+      part_number: PART,
+      item_id: ITEM,
+      marketplace: 'EBAY_DE',
+      title: `Zündkerze STIHL ${otherPart}`,
+      affiliate_url: affUrl(),
+      itemAffiliateWebUrl: affUrl(),
+      ships_to_nl: false,
+      shipping_status: SHIPPING_STATUS.UNKNOWN
+    }]
+  }];
+
+  // Delivery evidence is confirmed for this listing (it is deliverable), which is
+  // why a confirmed-delivery count can exceed the number of activated offers.
+  const applied = applyShippingEvidence(candidates, [{
+    item_id: ITEM,
+    marketplace: 'EBAY_DE',
+    confirmed: true,
+    confirmed_at: now(),
+    filter: 'deliveryCountry:NL',
+    api_status: 200
+  }]);
+  assert.equal(applied.applied, 1);
+
+  const engine = new EbayHighVolumeEngine({
+    apiClient: { searchItems: async () => { throw new Error('no network'); }, getItem: async () => { throw new Error('no getItem'); } },
+    batchDelayMs: 0
+  });
+  const batch = new ReviewEvidenceBatch({ engine, evidenceRegistry: registry, batchDelayMs: 0 });
+  const result = await batch.run(candidates, { live: false });
+  assert.equal(result.accepted.length, 0, 'shipping proof never overrides a contradictory identity');
+  assert.equal(result.rejected.length, 1);
+  assert.ok(result.rejected[0].reason_codes.includes('CONFLICTING_MPN'));
+  assert.ok(candidates[0].existing[0].shipping_evidence.browse_delivery.confirmed, 'evidence is preserved');
+});
+
+test('83.7 the recovery CLI refuses targeted shipping verification without credentials', () => {
   const dir = tmpDir();
   const inputPath = path.join(dir, 'input.json');
   fs.writeFileSync(inputPath, JSON.stringify({ review_offers: [] }), 'utf8');
