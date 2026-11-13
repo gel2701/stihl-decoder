@@ -60,6 +60,11 @@ export class ReviewEvidenceBatch {
     const perPart = new Map();
     const relations = new Map(); // itemId -> { marketplace, part_numbers:Set }
     const runCache = new Map();
+    const diagnostics = [];
+    const blockerCounts = {};
+    const reasonCounts = {};
+    const identityBlockers = {};
+    const shippingBlockers = {};
     const stats = {
       processed_candidates: 0,
       unique_items: 0,
@@ -138,7 +143,9 @@ export class ReviewEvidenceBatch {
         } else {
           stats.get_item_requests++;
           if (this.batchDelayMs > 0) await this.sleepFn(this.batchDelayMs);
-          const res = await this.apiClient.getItem(entry.item_id, { marketplace: entry.marketplace });
+          // PRODUCT field group: mpns/gtins/aspects. Without it the seller-declared
+          // MPN is usually missing and identity can never be proven.
+          const res = await this.apiClient.getItem(entry.item_id, { marketplace: entry.marketplace, fieldgroupsProduct: true });
           if (res && res.success && res.item) {
             stats.get_item_network_calls++;
             detail = res.item;
@@ -187,6 +194,48 @@ export class ReviewEvidenceBatch {
         const baseline = this.engine.evaluateOffer(baseItem, part, classification);
         const finalItem = detail ? { ...baseItem, item_detail: detail } : baseItem;
         const verdict = detail ? this.engine.evaluateOffer(finalItem, part, classification) : baseline;
+        const blocker = verdict.decision === 'ACCEPT'
+          ? null
+          : (verdict.first_blocking_step || verdict.reason_codes?.[0] || 'UNKNOWN');
+        if (blocker) {
+          blockerCounts[blocker] = (blockerCounts[blocker] || 0) + 1;
+          const bucket = blocker === 'SHIPPING_NOT_CONFIRMED' || blocker === 'SHIPPING_TO_NL'
+            ? shippingBlockers
+            : identityBlockers;
+          bucket[blocker] = (bucket[blocker] || 0) + 1;
+        }
+        for (const code of (verdict.reason_codes || [])) {
+          reasonCounts[code] = (reasonCounts[code] || 0) + 1;
+        }
+        const detailAspects = Array.isArray(detail?.aspects) ? detail.aspects : [];
+        diagnostics.push({
+          part_number: part,
+          item_id: entry.item_id,
+          marketplace: entry.marketplace,
+          title: baseItem.title || detail?.title || '',
+          related_part_numbers: relatedParts,
+          evidence_source: evidenceSource,
+          evidence: {
+            mpn_declared: Boolean(baseItem.mpn || detail?.mpn),
+            mpn_values: [...new Set([baseItem.mpn, detail?.mpn, ...(Array.isArray(detail?.mpns) ? detail.mpns : [])].filter(Boolean))],
+            mpn_from_product_container: Array.isArray(detail?.mpns) && detail.mpns.length > 0,
+            mpn_in_aspects: detailAspects.some(aspect => /^(?:mpn|hersteller|manufacturer|part|artikel|referenz|teilenummer|onderdeelnummer)/i.test(String(aspect?.name || ''))),
+            aspects_count: detailAspects.length,
+            shipping_options_count: (Array.isArray(detail?.shipping_options) ? detail.shipping_options.length : 0)
+              + (Array.isArray(baseItem.shipping_options) ? baseItem.shipping_options.length : 0)
+              + (Array.isArray(baseItem.shippingOptions) ? baseItem.shippingOptions.length : 0),
+            affiliate_url_present: Boolean(baseItem.affiliate_url || baseItem.itemAffiliateWebUrl || detail?.affiliate_url),
+            title_has_target_part: new RegExp(String(part).replace(/\s/g, '')).test(String(baseItem.title || detail?.title || '').replace(/[\s-]/g, ''))
+          },
+          baseline_decision: baseline.decision,
+          final_decision: verdict.decision,
+          match_type: verdict.match_type || null,
+          first_blocking_step: blocker,
+          reason_codes: verdict.reason_codes || [],
+          evidence_gaps: verdict.evidence_gaps || [],
+          shipping_status: verdict.offer?.shipping_status || null,
+          evidence_completed: Boolean(detail) && baseline.decision !== 'ACCEPT' && verdict.decision === 'ACCEPT'
+        });
 
         if (verdict.decision === 'ACCEPT') {
           const offerOut = {
@@ -235,7 +284,13 @@ export class ReviewEvidenceBatch {
       needs_evidence: needsEvidence,
       rejected,
       per_part: [...perPart.values()],
-      item_relations: [...relations.values()].map(rel => ({ ...rel, part_numbers: [...rel.part_numbers] }))
+      item_relations: [...relations.values()].map(rel => ({ ...rel, part_numbers: [...rel.part_numbers] })),
+      diagnostics,
+      blocker_counts: blockerCounts,
+      reason_counts: reasonCounts,
+      identity_blockers: identityBlockers,
+      shipping_blockers: shippingBlockers,
+      rejected_with_missing_evidence_only: rejected.filter(item => (item.reason_codes || []).every(code => code === 'SHIPPING_NOT_CONFIRMED')).length
     };
   }
 }

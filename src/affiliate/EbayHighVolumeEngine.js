@@ -53,6 +53,66 @@ const REJECT_CODES = new Set([
   'CONTRADICTORY_MATCH'
 ]);
 
+function asBrowseEvidence(candidate) {
+  if (!candidate || typeof candidate !== 'object' || candidate.confirmed !== true) return null;
+  if (candidate.source === 'BROWSE_DELIVERY_COUNTRY_FILTER'
+    || candidate.delivery_country === 'NL'
+    || typeof candidate.filter === 'string') return candidate;
+  return null;
+}
+
+/**
+ * Collects the NL delivery evidence that was already recorded for a listing.
+ *
+ * Existing review offers store it in different shapes depending on when they
+ * were produced (`shipping_evidence.browse_delivery`, `evidence.shipping`, a flat
+ * `browse_delivery_evidence`, or just a confirmed shipping status). Dropping any
+ * of those shapes silently turned proven NL delivery back into "unknown".
+ *
+ * @param {Object} item stored offer / summary item
+ * @param {Object|null} detail getItem detail
+ * @param {{ marketplace?: string|null }} [context]
+ * @returns {Object|null} browse delivery evidence or null
+ */
+export function priorDeliveryEvidence(item = {}, detail = null, context = {}) {
+  const candidates = [
+    item?.shipping_evidence?.browse_delivery,
+    item?.shipping_evidence,
+    item?.browse_delivery_evidence,
+    item?.evidence?.shipping?.browse_delivery,
+    item?.evidence?.shipping,
+    detail?.shipping_evidence?.browse_delivery,
+    detail?.browse_delivery_evidence,
+    detail?.evidence?.shipping?.browse_delivery
+  ];
+  for (const candidate of candidates) {
+    const evidence = asBrowseEvidence(candidate);
+    if (evidence) return evidence;
+  }
+  // Explicitly recorded confirmation from an earlier canonical decision. Only
+  // reused when it carries a timestamp, so stale delivery claims expire.
+  const status = item?.shipping_status || detail?.shipping_status;
+  if (status === SHIPPING_STATUS.CONFIRMED) {
+    const confirmedAt = item?.shipping_confirmed_at || item?.checked_at || item?.verified_at
+      || item?.updated_at || detail?.fetched_at || null;
+    if (confirmedAt) {
+      return {
+        source: 'PRIOR_BATCH_RECORD',
+        delivery_country: 'NL',
+        filter: 'deliveryCountry:NL',
+        marketplace: context.marketplace || item?.marketplace || null,
+        api_status: 200,
+        confirmed: true,
+        confirmed_at: confirmedAt,
+        item_count: 0,
+        queries: [],
+        end_user_context: null
+      };
+    }
+  }
+  return null;
+}
+
 export class EbayHighVolumeEngine {
   constructor(options = {}) {
     if (!options.apiClient) throw new Error('[EbayHighVolumeEngine] apiClient is required');
@@ -142,17 +202,38 @@ export class EbayHighVolumeEngine {
     const rawShipping = Array.isArray(item.shippingOptions)
       ? item.shippingOptions
       : (Array.isArray(item.shipping_options) ? item.shipping_options : (detailShipping.length > 0 ? detailShipping : null));
+    const targetCompact = String(targetPart).replace(/[\s-]/g, '');
+    // A recorded NL confirmation from an earlier batch is evidence, but only as
+    // an explicit confirmation with a timestamp (never inferred from a bare flag).
+    const priorConfirmed = item.ships_to_nl === true
+      && (item.shipping_status === undefined || item.shipping_status === SHIPPING_STATUS.CONFIRMED);
     const shippingOptions = rawShipping
       ? rawShipping
-      : (item.ships_to_nl === true ? [{ shipToLocations: ['NL'], shippingCost: { value: item.shipping_cost_nl } }] : []);
+      : (priorConfirmed ? [{ shipToLocations: ['NL'], shippingCost: { value: item.shipping_cost_nl } }] : []);
+    // Evidence is read from every shape eBay and older batches produced: a
+    // normalized record (`aspects`), a raw getItem response (`localizedAspects`)
+    // or the product container. Reading only `aspects` dropped the MPN aspect of
+    // records that had already been fetched.
     const aspects = [
       ...(Array.isArray(item.aspects) ? item.aspects : []),
-      ...(Array.isArray(detail?.aspects) ? detail.aspects : [])
+      ...(Array.isArray(item.localizedAspects) ? item.localizedAspects : []),
+      ...(Array.isArray(detail?.aspects) ? detail.aspects : []),
+      ...(Array.isArray(detail?.localizedAspects) ? detail.localizedAspects : []),
+      ...(Array.isArray(detail?.product?.aspects) ? detail.product.aspects : [])
     ];
+    // Any seller-declared MPN equal to the target wins over other declared MPNs,
+    // so a listing that lists several compatible numbers is still provable.
+    const declaredMpns = [
+      item.mpn,
+      detail?.mpn,
+      ...(Array.isArray(detail?.mpns) ? detail.mpns : []),
+      ...(Array.isArray(detail?.product?.mpns) ? detail.product.mpns : [])
+    ].filter(value => typeof value === 'string' && value.trim());
+    const mpnForTarget = declaredMpns.find(value => extractPartNumbers(value).includes(targetCompact));
     const norm = {
       itemId: item.itemId ?? item.item_id,
       title: item.title || detail?.title || '',
-      mpn: item.mpn || detail?.mpn || '',
+      mpn: mpnForTarget || declaredMpns[0] || '',
       seller: item.seller ?? { username: item.seller_name },
       price: item.price?.value != null ? item.price : { value: item.item_price ?? detail?.price, currency: item.currency ?? detail?.currency },
       shippingOptions,
@@ -166,14 +247,12 @@ export class EbayHighVolumeEngine {
       gtin: item.gtin ?? detail?.gtin ?? null,
       aspects,
       marketplace: item.marketplace || item.marketplaceId || detail?.marketplace || null,
-      shippingEvidence: item.shipping_evidence?.browse_delivery
-        || item.browse_delivery_evidence
-        || detail?.shipping_evidence?.browse_delivery
-        || null,
+      shippingEvidence: priorDeliveryEvidence(item, detail, {
+        marketplace: item.marketplace || item.marketplaceId || detail?.marketplace || null
+      }),
       verifiedReplacements: Array.isArray(item.verified_replacements) ? item.verified_replacements : []
     };
     const title = String(norm.title || '').toLowerCase();
-    const targetCompact = String(targetPart).replace(/[\s-]/g, '');
     const targetFormatted = targetCompact.slice(0, 4) + ' ' + targetCompact.slice(4, 7) + ' ' + targetCompact.slice(7);
 
     if (!norm.title) add('MISSING_REQUIRED_DATA');
@@ -225,9 +304,10 @@ export class EbayHighVolumeEngine {
     };
     if (expectedType && TYPE_CONFLICTS[expectedType] && TYPE_CONFLICTS[expectedType].test(title)) add('PRODUCT_TYPE_CONFLICT');
 
-    // Rule 3: bundle/kit, multi-quantity and availability
+    // Rule 3: bundle/kit from the title only. Browse `quantity` is the available
+    // stock count, not a multipack: treating stock > 1 as a bundle used to turn
+    // every enriched REVIEW candidate into a REJECT.
     if (isBundleTitle(title)) add('BUNDLE_OR_KIT');
-    if (norm.quantity && norm.quantity > 1) add('BUNDLE_OR_KIT');
     if (Array.isArray(norm.estimatedAvailabilities)
       && norm.estimatedAvailabilities.some(a => (typeof a === 'string' ? a : a?.estimatedAvailabilityStatus) === 'OUT_OF_STOCK')
       && !Array.isArray(detail?.availability)) add('OUT_OF_STOCK');

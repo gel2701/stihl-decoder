@@ -26,6 +26,75 @@ import {
   SHIPPING_STATUS
 } from './EbayShippingEvidence.js';
 
+const MPN_ASPECT_NAME = /^(?:mpn|manufacturer\s*part\s*number|hersteller-?nummer|herstellernummer|artikelnummer|referenznummer|part\s*number|teilenummer|onderdeelnummer)$/i;
+const GTIN_ASPECT_NAME = /^(?:gtin(?:-?13|-?14)?|ean(?:-?code)?|upc|isbn)$/i;
+const BRAND_ASPECT_NAME = /^(?:brand|marke|merk|manufacturer|hersteller)$/i;
+
+/**
+ * @param {*} values
+ * @returns {string[]}
+ */
+function uniqueStrings(values) {
+  const out = [];
+  for (const value of (Array.isArray(values) ? values : [])) {
+    if (typeof value !== 'string') continue;
+    const trimmed = value.trim();
+    if (trimmed && !out.includes(trimmed)) out.push(trimmed);
+  }
+  return out;
+}
+
+/**
+ * Flattens every aspect eBay can return for one item: the localizedAspects list
+ * (always present) plus the `product` container's aspects and aspect groups
+ * (only with fieldgroups=PRODUCT). Localized aspect objects use name/value or
+ * localizedName/localizedValues depending on the container.
+ *
+ * @param {Object} raw getItem response
+ * @returns {Array<{ name: string, value: string }>}
+ */
+export function normalizeDetailAspects(raw) {
+  if (!raw || typeof raw !== 'object') return [];
+  const out = [];
+  const seen = new Set();
+  const add = aspect => {
+    if (!aspect || typeof aspect !== 'object') return;
+    const name = String(aspect.name ?? aspect.localizedName ?? '').trim();
+    if (!name) return;
+    const values = [
+      aspect.value,
+      ...(Array.isArray(aspect.values) ? aspect.values : []),
+      ...(Array.isArray(aspect.localizedValues) ? aspect.localizedValues : [])
+    ];
+    for (const value of values) {
+      const text = typeof value === 'string' ? value.trim() : (value != null && typeof value !== 'object' ? String(value) : '');
+      if (!text) continue;
+      const key = `${name}\u0000${text}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ name, value: text });
+    }
+  };
+  for (const aspect of (Array.isArray(raw.localizedAspects) ? raw.localizedAspects : [])) add(aspect);
+  const product = raw.product && typeof raw.product === 'object' ? raw.product : null;
+  for (const aspect of (Array.isArray(product?.aspects) ? product.aspects : [])) add(aspect);
+  for (const group of (Array.isArray(product?.aspectGroups) ? product.aspectGroups : [])) {
+    for (const aspect of (Array.isArray(group?.aspects) ? group.aspects : [])) add(aspect);
+  }
+  return out;
+}
+
+/**
+ * @param {Array<{ name: string, value: string }>} aspects
+ * @param {RegExp} pattern
+ * @returns {string[]}
+ */
+export function aspectValues(aspects, pattern) {
+  return (Array.isArray(aspects) ? aspects : [])
+    .filter(aspect => pattern.test(aspect.name))
+    .map(aspect => aspect.value);
+}
+
 export class EbayBrowseApiClient {
   constructor(options = {}) {
     this.clientId = options.clientId ?? process.env.EBAY_CLIENT_ID;
@@ -243,7 +312,9 @@ export class EbayBrowseApiClient {
    * @param {string} itemId
    * @param {Object} [options]
    * @param {string} [options.marketplace] EBAY_NL | EBAY_DE
-   * @param {boolean} [options.fieldgroupsProduct] request the PRODUCT field group
+   * @param {boolean} [options.fieldgroupsProduct=true] request the PRODUCT field group
+   *   (adds the `product` container with mpns/gtins/aspects; without it the
+   *   seller-declared MPN is often missing and identity can never be proven)
    * @param {boolean} [options.force] bypass the in-memory cache
    * @returns {Promise<{ success: boolean, item: Object|null, cached: boolean, errors: string[] }>}
    */
@@ -261,7 +332,7 @@ export class EbayBrowseApiClient {
     if (!token) return fail(this.lastAuthError || 'Unable to acquire OAuth token for eBay Browse API.');
     try {
       const url = new URL(`${this.itemDetailEndpoint}/${encodeURIComponent(itemId)}`);
-      if (options.fieldgroupsProduct === true) url.searchParams.set('fieldgroups', 'PRODUCT');
+      if (options.fieldgroupsProduct !== false) url.searchParams.set('fieldgroups', 'PRODUCT');
       const response = await this.fetchFn(url.toString(), {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -290,18 +361,33 @@ export class EbayBrowseApiClient {
    */
   parseItemDetail(raw, marketplaceId = null) {
     if (!raw || typeof raw !== 'object' || !raw.itemId) return null;
-    const aspects = Array.isArray(raw.localizedAspects)
-      ? raw.localizedAspects.map(a => ({ name: a?.name || a?.localizedName || '', value: a?.value || '' })).filter(a => a.name && a.value)
-      : [];
+    const aspects = normalizeDetailAspects(raw);
+    const product = raw.product && typeof raw.product === 'object' ? raw.product : null;
+    // eBay returns the seller-declared MPN/GTIN in different places depending on
+    // the item: the top-level fields, the `product` container (only with
+    // fieldgroups=PRODUCT) or, when no ePID is linked, the localizedAspects.
+    // Reading only raw.mpn used to lose the identity proof for most listings.
+    const declaredMpns = uniqueStrings([
+      raw.mpn,
+      ...(Array.isArray(product?.mpns) ? product.mpns : []),
+      ...aspectValues(aspects, MPN_ASPECT_NAME)
+    ]);
+    const declaredGtins = uniqueStrings([
+      raw.gtin,
+      ...(Array.isArray(product?.gtins) ? product.gtins : []),
+      ...aspectValues(aspects, GTIN_ASPECT_NAME)
+    ]);
     const shippingOptions = Array.isArray(raw.shippingOptions) ? raw.shippingOptions : [];
     const destinations = collectShippingDestinations(shippingOptions);
     return {
       item_id: raw.itemId,
       marketplace: marketplaceId,
       title: typeof raw.title === 'string' ? raw.title : '',
-      mpn: typeof raw.mpn === 'string' ? raw.mpn : '',
-      gtin: typeof raw.gtin === 'string' ? raw.gtin : null,
-      brand: typeof raw.brand === 'string' ? raw.brand : '',
+      mpn: declaredMpns[0] || '',
+      mpns: declaredMpns,
+      gtin: declaredGtins[0] || null,
+      gtins: declaredGtins,
+      brand: uniqueStrings([raw.brand, product?.brand, ...aspectValues(aspects, BRAND_ASPECT_NAME)])[0] || '',
       manufacturer: typeof raw.manufacturer === 'string' ? raw.manufacturer : '',
       aspects,
       shipping_options: shippingOptions,
@@ -309,11 +395,16 @@ export class EbayBrowseApiClient {
       shipping_cost_nl: destinations.costs.NL ?? null,
       affiliate_url: this.buildAffiliateUrl(raw.itemAffiliateWebUrl),
       item_url: typeof raw.itemWebUrl === 'string' ? raw.itemWebUrl : null,
+      // Browse `quantity` is AVAILABLE STOCK, never a multipack signal.
       quantity: Number.isFinite(Number(raw.quantity)) ? Number(raw.quantity) : null,
+      available_quantity: Number.isFinite(Number(raw.quantity)) ? Number(raw.quantity) : null,
       condition: raw.condition ?? null,
       seller_name: raw.seller?.username ?? '',
+      seller_feedback_percentage: Number.isFinite(Number(raw.seller?.feedbackPercentage)) ? Number(raw.seller.feedbackPercentage) : null,
       price: raw.price?.value != null ? Number(raw.price.value) : null,
       currency: raw.price?.currency ?? null,
+      // Browse `quantity` is the AVAILABLE STOCK, never a multipack signal.
+      available_quantity: Number.isFinite(Number(raw.quantity)) ? Number(raw.quantity) : null,
       availability: Array.isArray(raw.estimatedAvailabilities)
         ? raw.estimatedAvailabilities.map(a => a?.estimatedAvailabilityStatus).filter(Boolean)
         : [],

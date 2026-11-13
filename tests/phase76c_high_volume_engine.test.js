@@ -150,11 +150,15 @@ test('Phase 76C.12: conflicting product types are rejected (carburetor vs spark 
   assert.ok(engine.validateOffer(goodItem('11210000000'), '11210000000', sparkPlug));
 });
 
-test('Phase 76C.13: bundle/kit and multi-quantity offers are rejected', () => {
+test('Phase 76C.13: bundle/kit offers are rejected, available stock is not a bundle', () => {
   const engine = makeEngine();
   const bundle = { ...goodItem('11210000000'), title: 'Zündkerze 1121 000 0000 Tune-up Kit' };
   assert.equal(engine.validateOffer(bundle, '11210000000', {}), null);
-  assert.equal(engine.validateOffer({ ...goodItem('11210000000'), quantity: 4 }, '11210000000', {}), null);
+  const multipack = { ...goodItem('11210000000'), title: 'Zündkerze 1121 000 0000 2er Pack' };
+  assert.equal(engine.validateOffer(multipack, '11210000000', {}), null, 'explicit multipack title must reject');
+  // Phase 80.2: Browse `quantity` is the AVAILABLE STOCK, not a multipack. Treating
+  // stock > 1 as a bundle rejected every enriched listing that was in stock.
+  assert.ok(engine.validateOffer({ ...goodItem('11210000000'), quantity: 4 }, '11210000000', {}));
   assert.ok(engine.validateOffer(goodItem('11210000000'), '11210000000', {}));
 });
 
