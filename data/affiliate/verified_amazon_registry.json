@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "phase": "73",
+  "phase": "77F",
   "generated_at": "2026-11-10T00:03:07.632Z",
   "policy": {
     "pilot_name": "Phase 73 Amazon Affiliate Growth Engine — 100 Links Milestone & GSC Priority Expansion",
@@ -76,11 +76,26 @@
       "11301402803",
       "36360000044",
       "11301200608",
-      "30050004713"
+      "30050004713",
+      "30030005217",
+      "30030009417",
+      "30030005221",
+      "30030009421",
+      "30030005231",
+      "30030009431",
+      "30030006041",
+      "00006421216",
+      "11281202202",
+      "00003503518",
+      "11286407112",
+      "11281200625",
+      "11280201227",
+      "11280802115",
+      "11280071050"
     ],
-    "max_active_offers_allowed": 100,
+    "max_active_offers_allowed": 110,
     "max_active_offers_per_marketplace": {
-      "amazon.nl": 100,
+      "amazon.nl": 110,
       "amazon.de": 50
     },
     "default_marketplace": "amazon.nl",
@@ -201,9 +216,10 @@
     "active": 99,
     "active_nl": 53,
     "active_de": 46,
-    "research_required": 55,
+    "research_required": 53,
+    "asin_identity_unverified": 2,
     "suspended": 0,
-    "last_updated": "2026-11-11T21:40:49.529Z"
+    "last_updated": "2026-11-13T00:41:09.785Z"
   },
   "offers": [
     {
@@ -4014,18 +4030,18 @@
       "ean_gtin": "0886661160136",
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
+      "pilot_eligible": false,
       "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_42821410300",
       "focus_model": "BR 600",
       "compatibility_proof": "STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700",
-      "asin_product_identity_proof": "ASIN B079DM989K matches STIHL 4282 141 0300 filter",
+      "asin_product_identity_proof": null,
       "independent_evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
       "direct_affiliate_url": "https://amazon.nl/dp/B079DM989K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4282%20141%200300&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "ASIN_IDENTITY_UNVERIFIED",
+      "status_reason": "Phase 77F final: geen onafhankelijke bron koppelt deze ASIN aan MPN/GTIN; de eigen Amazon-vermelding geldt niet als onafhankelijk bewijs. Kandidaat behouden (NEEDS_EVIDENCE).",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4036,23 +4052,28 @@
           "affiliate_tag_valid": true,
           "part_number_canonical": true,
           "catalog_grounded": true,
-          "provenance_fields_present": true
+          "provenance_fields_present": true,
+          "gtin_valid": true
         },
         "errors": []
       },
       "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "oem_taxonomy_valid": true,
           "manufacturer_mpn_proof": true,
           "compatibility_proof": true,
-          "asin_product_identity_proof": true,
+          "asin_product_identity_proof": false,
           "known_mismatch_absent": true,
           "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
+          "independent_sources_corroborated": false,
+          "packaging_valid": true
         },
-        "errors": []
+        "errors": [
+          "ASIN_IDENTITY_UNVERIFIED: ASIN B079DM989K lacks external machine-verifiable proof linking it to physical product.",
+          "Missing verifiable Amazon product listing URL or proof."
+        ]
       },
       "verifiable_evidence_sources": [
         {
@@ -4063,8 +4084,49 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "updated_at": "2026-11-13T00:41:09.784Z",
+      "evidence_audit_category": "ASIN_IDENTITY_UNVERIFIED",
+      "asin_identity_unverified": true,
+      "recovery_audit": {
+        "phase": "77F",
+        "checked_at": "2026-11-13T00:41:09.784Z",
+        "verdict": "NEEDS_EVIDENCE",
+        "search_attempts": [
+          {
+            "source": "web_search index",
+            "query": "\"B079DM989K\" / \"B079DNL88M\" / 795711121587",
+            "outcome": "NO_ASIN_CITING_PAGE"
+          },
+          {
+            "source": "amazon.nl/dp/<ASIN>",
+            "query": "directe productpagina",
+            "outcome": "HTTP 200 maar Captcha-pagina (geen productinhoud)"
+          },
+          {
+            "source": "lite/html.duckduckgo.com",
+            "query": "beide ASINs",
+            "outcome": "HTTP 202 zonder resultaten (bot-challenge)"
+          },
+          {
+            "source": "bing.com/search",
+            "query": "beide ASINs + EAN",
+            "outcome": "irrelevante resultaten (gedegradeerde SERP)"
+          },
+          {
+            "source": "mojeek.com",
+            "query": "beide ASINs",
+            "outcome": "HTTP 403"
+          },
+          {
+            "source": "Creators API",
+            "query": "ASIN → GTIN/MPN",
+            "outcome": "NIET_GECONFIGUREERD (geen credentials, niet gesimuleerd)"
+          }
+        ],
+        "external_part_evidence": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
+        "gtin_discrepancy": false,
+        "note": "STIHL-documentatie en distributeurs (DIY Spare Parts, L&S, OakTen) bevestigen 4282 141 0300 en BR 500/550/600/700, maar noemen de ASIN niet."
+      }
     },
     {
       "part_number": "11216402004",
@@ -4983,7 +5045,7 @@
       "ean_gtin": "0795711104948",
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
+      "pilot_eligible": false,
       "pilot_active": false,
       "kill_switch_id": "KILL_AMAZON_NL_11281903400",
       "focus_model": "MS 440",
@@ -4991,13 +5053,13 @@
       "item_price": null,
       "shipping_cost_nl": null,
       "compatibility_proof": "STIHL ElastoStart 1128 190 3400 schokabsorberende startergreep voor STIHL MS 440, MS 390, MS 461.",
-      "asin_product_identity_proof": "ASIN B079DNL88M bevestigd als originele STIHL ElastoStart startergreep MPN 11281903400.",
+      "asin_product_identity_proof": null,
       "independent_evidence_url": "https://www.amazon.nl/dp/B079DNL88M",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL88M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+190+3400&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "ASIN_IDENTITY_UNVERIFIED",
+      "status_reason": "Phase 77F final: geen onafhankelijke bron koppelt deze ASIN aan MPN/GTIN; de eigen Amazon-vermelding geldt niet als onafhankelijk bewijs. Kandidaat behouden (NEEDS_EVIDENCE).",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5013,7 +5075,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-10T00:02:27.209Z",
+      "updated_at": "2026-11-13T00:41:09.785Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -5023,25 +5085,71 @@
           "affiliate_tag_valid": true,
           "part_number_canonical": true,
           "catalog_grounded": true,
-          "provenance_fields_present": true
+          "provenance_fields_present": true,
+          "gtin_valid": true
         },
         "errors": []
       },
       "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
+        "status": "FAIL",
+        "passed": false,
         "checks": {
           "oem_taxonomy_valid": true,
           "manufacturer_mpn_proof": true,
           "compatibility_proof": true,
-          "asin_product_identity_proof": true,
+          "asin_product_identity_proof": false,
           "known_mismatch_absent": true,
           "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
+          "independent_sources_corroborated": false,
+          "packaging_valid": true
         },
-        "errors": []
+        "errors": [
+          "ASIN_IDENTITY_UNVERIFIED: ASIN B079DNL88M lacks external machine-verifiable proof linking it to physical product.",
+          "Missing verifiable Amazon product listing URL or proof."
+        ]
       },
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "evidence_audit_category": "ASIN_IDENTITY_UNVERIFIED",
+      "asin_identity_unverified": true,
+      "recovery_audit": {
+        "phase": "77F",
+        "checked_at": "2026-11-13T00:41:09.785Z",
+        "verdict": "NEEDS_EVIDENCE",
+        "search_attempts": [
+          {
+            "source": "web_search index",
+            "query": "\"B079DM989K\" / \"B079DNL88M\" / 795711121587",
+            "outcome": "NO_ASIN_CITING_PAGE"
+          },
+          {
+            "source": "amazon.nl/dp/<ASIN>",
+            "query": "directe productpagina",
+            "outcome": "HTTP 200 maar Captcha-pagina (geen productinhoud)"
+          },
+          {
+            "source": "lite/html.duckduckgo.com",
+            "query": "beide ASINs",
+            "outcome": "HTTP 202 zonder resultaten (bot-challenge)"
+          },
+          {
+            "source": "bing.com/search",
+            "query": "beide ASINs + EAN",
+            "outcome": "irrelevante resultaten (gedegradeerde SERP)"
+          },
+          {
+            "source": "mojeek.com",
+            "query": "beide ASINs",
+            "outcome": "HTTP 403"
+          },
+          {
+            "source": "Creators API",
+            "query": "ASIN → GTIN/MPN",
+            "outcome": "NIET_GECONFIGUREERD (geen credentials, niet gesimuleerd)"
+          }
+        ],
+        "external_part_evidence": null,
+        "gtin_discrepancy": true,
+        "note": "Techniekwebshop bevestigt EAN 795711121587 voor 1128 190 3400; deze bron noemt de ASIN niet en wijkt af van de opgeslagen GTIN."
+      }
     },
     {
       "part_number": "11280201227",
@@ -11825,5 +11933,6 @@
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "updated_at": "2026-11-11T21:40:49.529Z"
     }
-  ]
+  ],
+  "exported_at": "2026-11-13T00:41:09.785Z"
 }

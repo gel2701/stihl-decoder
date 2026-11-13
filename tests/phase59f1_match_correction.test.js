@@ -111,7 +111,7 @@ test('Phase 59F.1 — 3. Forensic Re-Verification of 0000 400 7009 (Bosch USR7AC
 test('Phase 59F.1 — 4. Preservation of the 3 Live Pilot Offers in Production', () => {
   const runtimeDoc = JSON.parse(fs.readFileSync(RUNTIME_REGISTRY_PATH, 'utf8'));
   assert.strictEqual(runtimeDoc.policy.production_activation_allowed, true);
-  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= 100);
+  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= MAX_PILOT_ACTIVE_OFFERS);
   assert.ok(['11104007005', '00004007000', '00004007011'].every(p => runtimeDoc.policy.pilot_activated_parts.includes(p)));
 
   const registry = new VerifiedOfferRegistry({

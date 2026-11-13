@@ -50,7 +50,7 @@ test('Phase 59F — 1. Preservation of the 3 Live Pilot Offers in Production', (
 
   assert.strictEqual(runtimeDoc.policy.production_activation_allowed, true);
   assert.ok(['11104007005', '00004007000', '00004007011'].every(p => runtimeDoc.policy.pilot_activated_parts.includes(p)));
-  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= 100);
+  assert.ok(runtimeDoc.policy.max_active_offers_allowed <= MAX_PILOT_ACTIVE_OFFERS);
 
   const registry = new VerifiedOfferRegistry({
     registryPath: RUNTIME_REGISTRY_PATH,

@@ -35,7 +35,14 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 100;
+export const MAX_PILOT_ACTIVE_OFFERS = 110;
+
+// Phase 77F: the total/NL ceiling moved to 110, but the German marketplace keeps
+// its own (lower) ceiling so raising the global number can never widen DE.
+export const MAX_ACTIVE_OFFERS_PER_MARKETPLACE = Object.freeze({
+  'amazon.nl': 110,
+  'amazon.de': 50
+});
 
 export const COMMERCIAL_MILESTONES = Object.freeze({
   MILESTONE_50: 50,
@@ -90,10 +97,17 @@ export class VerifiedOfferRegistry {
     );
     this.maxActiveOffersPerMarketplace = {
       'amazon.nl': options.maxActiveOffersPerMarketplace?.['amazon.nl'] ?? (
-        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL, 10) : this.maxActiveOffersAllowed
+        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL
+          ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL, 10)
+          : (options.maxActiveOffersAllowed !== undefined
+            ? this.maxActiveOffersAllowed
+            : (MAX_ACTIVE_OFFERS_PER_MARKETPLACE['amazon.nl'] ?? this.maxActiveOffersAllowed))
       ),
+      // DE keeps its own lower ceiling: a caller-provided global cap never widens it.
       'amazon.de': options.maxActiveOffersPerMarketplace?.['amazon.de'] ?? (
-        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE, 10) : this.maxActiveOffersAllowed
+        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE
+          ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE, 10)
+          : (MAX_ACTIVE_OFFERS_PER_MARKETPLACE['amazon.de'] ?? this.maxActiveOffersAllowed)
       ),
       ...(options.maxActiveOffersPerMarketplace || {})
     };

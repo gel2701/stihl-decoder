@@ -16,7 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { TwoGateVerifier } from '../src/affiliate/TwoGateVerifier.js';
-import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
+import { VerifiedOfferRegistry, MAX_PILOT_ACTIVE_OFFERS } from '../src/affiliate/VerifiedOfferRegistry.js';
 import { checkHistoricalMismatch } from '../src/affiliate/HistoricalMismatches.js';
 import { validateGtin } from '../src/affiliate/GtinValidator.js';
 import { getAllIndexablePartsList } from '../src/seo/PartIndexationRegistry.js';
@@ -122,7 +122,7 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
     const activeData = JSON.parse(fs.readFileSync(activeRegistryPath, 'utf8'));
     const activeOffers = (activeData.offers || []).filter(o => o.status === 'ACTIVE');
     const activeNL = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
-    assert.ok(activeNL.length <= 100, 'Active offers must be within policy cap');
+    assert.ok(activeNL.length <= MAX_PILOT_ACTIVE_OFFERS, 'Active offers must be within policy cap');
 
     const activeParts = activeOffers.map(o => o.part_number);
     assert.ok(['00004007000', '00004007011', '11104007005'].every(p => activeParts.includes(p)), 'Baseline 3 pilot parts remain active');
