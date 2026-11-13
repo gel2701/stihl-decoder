@@ -357,11 +357,11 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 99, 'Total active offers must equal 99 (53 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 101, 'Total active offers must equal 101 (55 NL + 46 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 53, 'Active NL offers must equal 53');
+    assert.strictEqual(activeNl.length, 55, 'Active NL offers must equal 55');
     assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de

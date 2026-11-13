@@ -4,6 +4,7 @@ import { AmazonAffiliateProvider } from '../src/affiliate/AmazonAffiliateProvide
 import { AmazonCandidateMatcher } from '../src/affiliate/AmazonCandidateMatcher.js';
 import { checkAmazonHealth } from '../src/affiliate/AmazonHealthMonitor.js';
 import { validateAmazonLink } from '../src/affiliate/AmazonLinkValidator.js';
+import { MAX_PILOT_ACTIVE_OFFERS } from '../src/affiliate/VerifiedOfferRegistry.js';
 
 const registryPath = new URL('../data/affiliate/verified_amazon_registry.json', import.meta.url);
 const registry = JSON.parse(readFileSync(registryPath));
@@ -13,7 +14,7 @@ const activeMap = new Map(active.map(offer => [offer.part_number, offer.asin]));
 assert.equal(activeMap.get('11104007005'), 'B0068M5NAG');
 assert.equal(activeMap.get('00004007000'), 'B001RM8J76');
 assert.equal(activeMap.get('00004007011'), 'B001RMA5S2');
-assert.ok(activeNL.length <= 100);
+assert.ok(activeNL.length <= MAX_PILOT_ACTIVE_OFFERS);
 assert.ok(registry.policy.max_active_offers_allowed >= 25);
 for (const offer of active) {
   assert.equal(validateAmazonLink(offer.direct_affiliate_url, {

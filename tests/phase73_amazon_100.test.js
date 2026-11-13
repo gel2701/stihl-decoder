@@ -115,7 +115,7 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
 
   it('4. GSC Priority Model Coverage & FS 80 Gap Status (Truthful Commercial Metrics)', () => {
     const report = generateCommercialReport();
-    assert.strictEqual(report.milestones.milestone_100.achieved, false, 'Milestone 100 must be marked not achieved');
+    assert.strictEqual(report.milestones.milestone_100.achieved, true, 'Milestone 100 is achieved and must be reported truthfully');
     assert.ok(report.milestones.milestone_100.current >= 20, 'Current active offers must be at least 20');
 
     const fs80Coverage = report.gsc_model_coverage.find(m => m.model_name === 'FS 80');

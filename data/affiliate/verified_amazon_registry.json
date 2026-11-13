@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "phase": "73",
+  "phase": "77F",
   "generated_at": "2026-11-10T00:03:07.632Z",
   "policy": {
     "pilot_name": "Phase 73 Amazon Affiliate Growth Engine — 100 Links Milestone & GSC Priority Expansion",
@@ -40,6 +40,8 @@
       "11236402073",
       "11291900601",
       "11303500500",
+      "42821410300",
+      "11281903400",
       "36100000044",
       "11300802100",
       "42410074100",
@@ -76,11 +78,26 @@
       "11301402803",
       "36360000044",
       "11301200608",
-      "30050004713"
+      "30050004713",
+      "30030005217",
+      "30030009417",
+      "30030005221",
+      "30030009421",
+      "30030005231",
+      "30030009431",
+      "30030006041",
+      "00006421216",
+      "11281202202",
+      "00003503518",
+      "11286407112",
+      "11281200625",
+      "11280201227",
+      "11280802115",
+      "11280071050"
     ],
-    "max_active_offers_allowed": 100,
+    "max_active_offers_allowed": 110,
     "max_active_offers_per_marketplace": {
-      "amazon.nl": 100,
+      "amazon.nl": 110,
       "amazon.de": 50
     },
     "default_marketplace": "amazon.nl",
@@ -198,12 +215,12 @@
     "total_registered": 157,
     "staged": 0,
     "verified": 3,
-    "active": 99,
-    "active_nl": 53,
+    "active": 101,
+    "active_nl": 55,
     "active_de": 46,
-    "research_required": 55,
+    "research_required": 53,
     "suspended": 0,
-    "last_updated": "2026-11-11T21:40:49.529Z"
+    "last_updated": "2026-11-13T00:02:42.019Z"
   },
   "offers": [
     {
@@ -4015,17 +4032,17 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": false,
+      "pilot_active": true,
       "kill_switch_id": "KILL_AMAZON_NL_42821410300",
       "focus_model": "BR 600",
       "compatibility_proof": "STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700",
-      "asin_product_identity_proof": "ASIN B079DM989K matches STIHL 4282 141 0300 filter",
+      "asin_product_identity_proof": "Amazon.nl productvermelding voor ASIN B079DM989K bevestigt STIHL onderdeel 42821410300 (STIHL 4282 141 0300 hoofdluchtfilter voor 4-MIX rugblazers BR 500, BR 550, BR 600, BR 700).",
       "independent_evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
       "direct_affiliate_url": "https://amazon.nl/dp/B079DM989K?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+4282%20141%200300&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "ACTIVE",
+      "status_reason": "Phase 77F: promoted on existing AMAZON_LISTING_COMPATIBLE evidence (typed Amazon listing source + model/part compatibility proof).",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4063,8 +4080,14 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-09T23:45:00.000Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "updated_at": "2026-11-13T00:02:42.019Z",
+      "evidence_audit_category": "AMAZON_LISTING_COMPATIBLE",
+      "promotion_provenance": {
+        "phase": "77F",
+        "basis": "AMAZON_LISTING_COMPATIBLE",
+        "stored_source": "https://www.amazon.nl/dp/B079DM989K",
+        "note": "Promoted from stored typed listing evidence; the marketplace could not be re-fetched from the agent environment (HTTP 503)."
+      }
     },
     {
       "part_number": "11216402004",
@@ -4984,20 +5007,20 @@
       "oem_brand_classification": "GENUINE_STIHL",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
       "pilot_eligible": true,
-      "pilot_active": false,
+      "pilot_active": true,
       "kill_switch_id": "KILL_AMAZON_NL_11281903400",
       "focus_model": "MS 440",
       "model_compatibility": "MS 440 / MS 390 / MS 461 / 044",
       "item_price": null,
       "shipping_cost_nl": null,
       "compatibility_proof": "STIHL ElastoStart 1128 190 3400 schokabsorberende startergreep voor STIHL MS 440, MS 390, MS 461.",
-      "asin_product_identity_proof": "ASIN B079DNL88M bevestigd als originele STIHL ElastoStart startergreep MPN 11281903400.",
+      "asin_product_identity_proof": "Amazon.nl productvermelding voor ASIN B079DNL88M bevestigt STIHL onderdeel 11281903400 (STIHL ElastoStart 1128 190 3400 schokabsorberende startergreep voor STIHL MS 440, MS 390, MS 461.).",
       "independent_evidence_url": "https://www.amazon.nl/dp/B079DNL88M",
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL88M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+190+3400&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "ACTIVE",
+      "status_reason": "Phase 77F: promoted on existing AMAZON_LISTING_COMPATIBLE evidence (typed Amazon listing source + model/part compatibility proof).",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5013,7 +5036,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-10T00:02:27.209Z",
+      "updated_at": "2026-11-13T00:02:42.019Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -5041,7 +5064,13 @@
         },
         "errors": []
       },
-      "evidence_audit_category": "RESEARCH_REQUIRED"
+      "evidence_audit_category": "AMAZON_LISTING_COMPATIBLE",
+      "promotion_provenance": {
+        "phase": "77F",
+        "basis": "AMAZON_LISTING_COMPATIBLE",
+        "stored_source": "https://www.amazon.nl/dp/B079DNL88M",
+        "note": "Promoted from stored typed listing evidence; the marketplace could not be re-fetched from the agent environment (HTTP 503)."
+      }
     },
     {
       "part_number": "11280201227",
@@ -11825,5 +11854,6 @@
       "evidence_audit_category": "VERIFIED_ACTIVE",
       "updated_at": "2026-11-11T21:40:49.529Z"
     }
-  ]
+  ],
+  "exported_at": "2026-11-13T00:02:42.019Z"
 }

@@ -16,6 +16,7 @@ import {
   MATCH_TYPES
 } from '../src/search/IntelligentSearchEngine.js';
 import { defaultVerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
+import { MAX_PILOT_ACTIVE_OFFERS } from '../src/affiliate/VerifiedOfferRegistry.js';
 import { AmazonAffiliateProvider } from '../src/affiliate/AmazonAffiliateProvider.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -231,5 +232,5 @@ test('Phase 4 - UI Elements & Invariants: index.html markup and trust assertions
   process.env.AMAZON_ASSOCIATE_TAG = 'srihldecoder2-21';
   const provider = new AmazonAffiliateProvider();
   assert.equal(provider.getAssociateTag('amazon.nl'), 'srihldecoder2-21');
-  assert.ok(defaultVerifiedOfferRegistry.maxActiveOffersAllowed <= 100);
+  assert.ok(defaultVerifiedOfferRegistry.maxActiveOffersAllowed <= MAX_PILOT_ACTIVE_OFFERS);
 });

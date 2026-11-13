@@ -29,6 +29,9 @@ const rootDir = path.resolve(__dirname, '..');
 
 // Mandatory authorized pilot ASINs (Phase 59E baseline + Phase 69C/D expansion + Phase 70 DE confirmed shipping)
 const AUTHORIZED_PILOT_PARTS = new Set([
+  // Phase 77F recovery: stored AMAZON_LISTING_COMPATIBLE evidence, Two-Gate passed
+  '42821410300', // STIHL Luftfilter BR 600 (B079DM989K, Amazon.nl)
+  '11281903400', // STIHL ElastoStart startergreep MS 440/461/390/361 (B079DNL88M, Amazon.nl)
   // Phase 76 MS 440 / 044 Commercial Expansion (15 Sägenspezi Amazon.de offers)
   '30030005217', // 45cm Schwert-Set Drive + 2 Vollmeißelketten 3/8" 66TG 1.6mm (B00LAHENAA)
   '30030009417', // 45cm Schwert-Set Drive + 4 Vollmeißelketten 3/8" 66TG 1.6mm (B00LAHGMUE)

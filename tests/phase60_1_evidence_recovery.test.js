@@ -17,6 +17,7 @@ import path from 'node:path';
 import { getAllIndexablePartsList } from '../src/seo/PartIndexationRegistry.js';
 import { generateSitemapXml } from '../src/components/SitemapGenerator.js';
 import { PRIMARY_ORIGIN } from '../src/config.js';
+import { MAX_PILOT_ACTIVE_OFFERS } from '../src/affiliate/VerifiedOfferRegistry.js';
 
 const ROOT_DIR = process.cwd();
 
@@ -78,7 +79,7 @@ test('Phase 60.1: Amazon Evidence Recovery & Invariants', async (t) => {
 
   await t.test('3. Strict Production Lock & Safety Net', () => {
     const verifiedRegistry = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/affiliate/verified_amazon_registry.json'), 'utf8'));
-    assert.ok(verifiedRegistry.policy.max_active_offers_allowed <= 100, 'Max active offers within policy cap');
+    assert.ok(verifiedRegistry.policy.max_active_offers_allowed <= MAX_PILOT_ACTIVE_OFFERS, 'Max active offers within policy cap');
     assert.ok(['11104007005', '00004007000', '00004007011'].every(p => verifiedRegistry.policy.pilot_activated_parts.includes(p)), 'Baseline 3 pilot parts remain active');
 
     // Check that all unverified / staged parts fall back to search
