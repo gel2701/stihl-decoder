@@ -26,34 +26,64 @@ export class EbayHighVolumeEngine {
 
   /**
    * Classify a part number into a category for stricter matching.
+   * Phase 76G: concrete product-type words only. "saw" inside "chainsaw" must
+   * never classify a part as saw_chain — category and explicit part-type words win.
    * @param {string} part 11-digit number
-   * @param {Array} knownParts canonical database
+   * @param {Array} knownParts canonical database ({part_number, description, category})
    * @returns {Object} { type: string, confidence: number }
    */
   classifyPart(part, knownParts = []) {
     const match = knownParts.find(p => PartNormalizer.normalizePartNumber(p.part_number) === part);
     if (!match) return { type: 'unknown', confidence: 0 };
     const desc = String(match.description || '').toLowerCase();
-    if (/spark.*plug|zündkerze|spark|plug/.test(desc)) return { type: 'spark_plug', confidence: 0.95 };
-    if (/carburetor|vergaser|carb/.test(desc)) return { type: 'carburetor', confidence: 0.95 };
-    if (/chain|kette|saw|kettingzaag/.test(desc)) return { type: 'saw_chain', confidence: 0.9 };
+    const category = String(match.category || '').toLowerCase();
+    const hay = `${category} ${desc}`;
+    // Ordered, most specific first. Word-bounded patterns — no bare 'saw', no bare 'chain', no bare 'carb', no bare 'plug'.
+    if (/\bbougie\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bglühkerze\b|\bgluehkerze\b/.test(hay)) return { type: 'spark_plug', confidence: 0.95 };
+    if (/\bcarburateur(\w*)\b|\bcarburetor\b|\bvergaser\b|\bvergaserkit\b/.test(hay)) return { type: 'carburetor', confidence: 0.95 };
+    if (/\bluchtfilter\b|\bair\s*filter\b|\bluftfilter\b/.test(hay)) return { type: 'air_filter', confidence: 0.9 };
+    if (/\bsaw\s*chain\b|\bsägekette\b|\bsaegekette\b|\bzaagketting\b|\bchainsaw\s*chain\b/.test(hay)) return { type: 'saw_chain', confidence: 0.9 };
+    if (/\bstarter\b|\bstartkoord\b|\bstartkoord\b|\brewind\s*starter\b|\brecoil\s*starter\b/.test(hay)) return { type: 'starter', confidence: 0.9 };
+    if (/\boliepomp\b|\boil\s*pump\b|\bölpumpe\b|\bolpumpe\b/.test(hay)) return { type: 'oil_pump', confidence: 0.9 };
+    if (/\bbrandstoffilter\b|\bfuel\s*filter\b|\bkraftstoffilter\b|\bpickup\s*body\b/.test(hay)) return { type: 'fuel_filter', confidence: 0.9 };
+    if (/\bkoppeling\b|\bclutch\b/.test(hay)) return { type: 'clutch', confidence: 0.9 };
     return { type: 'generic_part', confidence: 0.8 };
   }
 
   /**
-   * Validates an offer against strict matching rules fail-closed.
-   * @param {Object} item raw eBay Browse API item
-   * @param {string} targetPart canonical part number
-   * @param {Object} classification part type classification
-   * @returns {Object|null} validated offer or null if rejected
+   * Backwards-compatible wrapper: returns the validated offer object for
+   * ACCEPT/REVIEW and null for REJECT. Use evaluateOffer() for diagnostics.
+   * @returns {Object|null}
    */
   validateOffer(item, targetPart, classification = {}) {
-    if (!item || !(item.itemId || item.item_id)) return null;
+    return this.evaluateOffer(item, targetPart, classification).offer;
+  }
+
+  /**
+   * Phase 76G — central diagnostic validation.
+   * Fail-closed: every check that fails is recorded as a reason code; the first
+   * blocking step is reported. Only a clean candidate can become ACCEPT.
+   *
+   * Reason codes: MISSING_REQUIRED_DATA, PART_NUMBER_MISMATCH, CONFLICTING_MPN,
+   * CONFLICTING_TITLE_PART_NUMBER, PRODUCT_TYPE_CONFLICT, BUNDLE_OR_KIT,
+   * OUT_OF_STOCK, AFFILIATE_URL_INVALID, CAMPAIGN_ID_MISMATCH, SHIPPING_NOT_CONFIRMED.
+   *
+   * @returns {{decision: 'ACCEPT'|'REVIEW'|'REJECT', reason_codes: string[], first_blocking_step: string|null, offer: Object|null}}
+   */
+  evaluateOffer(item, targetPart, classification = {}) {
+    const reason_codes = [];
+    const add = code => { if (!reason_codes.includes(code)) reason_codes.push(code); };
+
+    if (!item || !(item.itemId || item.item_id)) {
+      return { decision: 'REJECT', reason_codes: ['MISSING_REQUIRED_DATA'], first_blocking_step: 'MISSING_REQUIRED_DATA', offer: null };
+    }
+
     // Normalize: raw Browse API shape or client-parsed shape (EbayBrowseApiClient.parseItemSummaries)
-    const shippingOptions = Array.isArray(item.shippingOptions)
-      ? item.shippingOptions
+    const rawShipping = Array.isArray(item.shippingOptions) ? item.shippingOptions : null;
+    const shippingOptions = rawShipping
+      ? rawShipping
       : (item.ships_to_nl === true ? [{ shipToLocations: ['NL'], shippingCost: { value: item.shipping_cost_nl } }] : []);
-    item = {
+    const norm = {
       itemId: item.itemId ?? item.item_id,
       title: item.title || '',
       mpn: item.mpn ?? '',
@@ -65,61 +95,126 @@ export class EbayHighVolumeEngine {
       condition: item.condition,
       quantity: item.quantity
     };
-    const title = String(item.title || '').toLowerCase();
-    const mpn = String(item.mpn || '').toLowerCase();
+    const title = String(norm.title || '').toLowerCase();
+    const mpn = String(norm.mpn || '').toLowerCase();
+    const targetCompact = String(targetPart).replace(/[\s-]/g, '');
     const targetFormatted = targetPart.slice(0, 4) + ' ' + targetPart.slice(4, 7) + ' ' + targetPart.slice(7);
-    const targetCompact = targetPart.replace(/[\s-]/g, '');
 
-    // Rule 1: Part number must be in MPN or title (explicit reference, not incidental mention)
+    if (!title) add('MISSING_REQUIRED_DATA');
+
+    // Rule 1: target part number must be an explicit reference in MPN or title
     const separatorRegex = targetFormatted.replace(/\s/g, '[\\s-]*');
-    const inMpn = mpn && new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(mpn);
+    const inMpn = Boolean(mpn) && new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(mpn);
     const inTitle = new RegExp(`(^|\\D)${separatorRegex}(\\D|$)`).test(title);
-    if (!inMpn && !inTitle) return null;
+    if (!inMpn && !inTitle) add('PART_NUMBER_MISMATCH');
 
-    // Rule 2: Type classification — reject if conflicting type in title
-    const { type: expectedType } = classification;
-    if (expectedType === 'spark_plug' && /vergaser|carburetor|carb|kit/.test(title)) return null;
-    if (expectedType === 'carburetor' && /zündkerze|spark.*plug/.test(title)) return null;
-    if (expectedType === 'saw_chain' && /vergaser|carburetor/.test(title)) return null;
+    // Rule 1b: conflicting part numbers. Exact MPN is not enough when the title
+    // or MPN references a different canonical 11-digit STIHL part number.
+    const extractPartNumbers = text => {
+      const found = new Set();
+      const formatted = /(?<!\d)(\d{4})[\s-]*(\d{3})[\s-]*(\d{4})(?!\d)/g;
+      let m;
+      while ((m = formatted.exec(text))) found.add(`${m[1]}${m[2]}${m[3]}`);
+      const compact = /(?<!\d)(\d{11})(?!\d)/g;
+      while ((m = compact.exec(text))) found.add(m[1]);
+      return [...found];
+    };
+    const mpnNumbers = extractPartNumbers(mpn);
+    const titleNumbers = extractPartNumbers(title);
+    if (mpnNumbers.some(n => n !== targetCompact)) add('CONFLICTING_MPN');
+    if (titleNumbers.some(n => n !== targetCompact)) add('CONFLICTING_TITLE_PART_NUMBER');
 
-    // Rule 3: Availability and shipping
-    if (item.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) return null;
-    const shippingToNl = Array.isArray(item.shippingOptions) && item.shippingOptions.some(opt =>
-      (Array.isArray(opt.shipToLocations) && opt.shipToLocations.includes('NL')) ||
-      opt.shippingDestination?.country === 'NL'
-    );
-    if (!shippingToNl) return null;
+    // Rule 2: product type — reject conflicting types in the title
+    const expectedType = classification?.type;
+    const TYPE_CONFLICTS = {
+      spark_plug: /\bcarburetor\b|\bvergaser\b|\bair\s*filter\b|\bluftfilter\b|\bsaw\s*chain\b|\bzaagketting\b/,
+      carburetor: /\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bair\s*filter\b|\bluftfilter\b|\bsaw\s*chain\b|\bzaagketting\b/,
+      air_filter: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bsaw\s*chain\b|\bzaagketting\b/,
+      saw_chain: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bair\s*filter\b|\bluftfilter\b/,
+      starter: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b|\bair\s*filter\b|\bluftfilter\b|\bsaw\s*chain\b|\bzaagketting\b/,
+      oil_pump: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b/,
+      fuel_filter: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b/,
+      clutch: /\bcarburetor\b|\bvergaser\b|\bspark\s*plug\b|\bzündkerze\b|\bzuendkerze\b/
+    };
+    if (expectedType && TYPE_CONFLICTS[expectedType] && TYPE_CONFLICTS[expectedType].test(title)) add('PRODUCT_TYPE_CONFLICT');
 
-    // Rule 4: Affiliate URL must be present, on eBay, HTTPS and carry the EPN campaign ID
-    if (!item.itemAffiliateWebUrl || typeof item.itemAffiliateWebUrl !== 'string') return null;
-    let parsedAff;
-    try {
-      parsedAff = new URL(item.itemAffiliateWebUrl);
-    } catch {
-      return null;
+    // Rule 3: bundle/kit, multi-quantity and availability
+    if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\btune-up\b/.test(title)) add('BUNDLE_OR_KIT');
+    if (norm.quantity && norm.quantity > 1) add('BUNDLE_OR_KIT');
+    if (norm.estimatedAvailabilities?.some(a => a.estimatedAvailabilityStatus === 'OUT_OF_STOCK')) add('OUT_OF_STOCK');
+
+    // Rule 4: affiliate URL must be present, on eBay, HTTPS and carry exactly the EPN campaign ID
+    let parsedAff = null;
+    if (!norm.itemAffiliateWebUrl || typeof norm.itemAffiliateWebUrl !== 'string') {
+      add('AFFILIATE_URL_INVALID');
+    } else {
+      try {
+        parsedAff = new URL(norm.itemAffiliateWebUrl);
+      } catch {
+        add('AFFILIATE_URL_INVALID');
+      }
     }
-    const campaignId = process.env.EBAY_EPN_CAMPAIGN_ID || '';
-    const hasEbayHost = parsedAff.protocol === 'https:' && /^(?:[a-z0-9-]+\.)*ebay\.(?:de|nl|com)$/i.test(parsedAff.hostname);
-    if (!hasEbayHost) return null;
-    if (campaignId && !parsedAff.searchParams.getAll('campid').includes(campaignId)) return null;
+    if (parsedAff) {
+      const hasEbayHost = parsedAff.protocol === 'https:' && /^(?:[a-z0-9-]+\.)*ebay\.(?:de|nl|com)$/i.test(parsedAff.hostname);
+      if (!hasEbayHost) add('AFFILIATE_URL_INVALID');
+      const campaignId = process.env.EBAY_EPN_CAMPAIGN_ID || '';
+      const campids = parsedAff.searchParams.getAll('campid');
+      if (!campaignId || campids.length !== 1 || campids[0] !== campaignId) add('CAMPAIGN_ID_MISMATCH');
+    }
 
-    // Rule 5: Bundle/set detection — kits are never auto-accepted as single-part matches
-    if (/\bkit\b|\bset\b|\bbundle\b|\bpack\b|\btune-up\b/.test(title)) return null;
-    if (item.quantity && item.quantity > 1) return null;
+    // Rule 5: NL shipping must be confirmed. Unknown shipping -> REVIEW (never ACCEPT);
+    // explicit non-NL destinations are a hard reject. No assumptions about shipping.
+    const destinations = norm.shippingOptions.flatMap(opt => {
+      const locations = opt.shipToLocations;
+      if (Array.isArray(locations)) return locations.map(loc => (typeof loc === 'string' ? loc : loc?.country));
+      if (locations?.country) return [locations.country];
+      return opt.shippingDestination?.country ? [opt.shippingDestination.country] : [];
+    }).filter(Boolean);
+    const shippingToNl = destinations.includes('NL');
+    const explicitNonNl = destinations.length > 0 && !shippingToNl;
+    if (!shippingToNl) add('SHIPPING_NOT_CONFIRMED');
 
-    // Passed all gates — explicit decision: only exact-MPN matches are auto-ACCEPT,
-    // title-only matches go to REVIEW (never into active_offers), failures return null (REJECT).
+    const REJECT_CODES = new Set([
+      'MISSING_REQUIRED_DATA', 'PART_NUMBER_MISMATCH', 'CONFLICTING_MPN',
+      'CONFLICTING_TITLE_PART_NUMBER', 'PRODUCT_TYPE_CONFLICT', 'BUNDLE_OR_KIT',
+      'OUT_OF_STOCK', 'AFFILIATE_URL_INVALID', 'CAMPAIGN_ID_MISMATCH'
+    ]);
+    const blocking = reason_codes.find(code => REJECT_CODES.has(code)) || null;
+    if (blocking) {
+      return { decision: 'REJECT', reason_codes, first_blocking_step: blocking, offer: null };
+    }
+    if (!shippingToNl) {
+      if (explicitNonNl) {
+        return { decision: 'REJECT', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED', offer: null };
+      }
+      // Shipping data missing/unconfirmed — needs verification, never auto-accepted.
+      return { decision: 'REVIEW', reason_codes, first_blocking_step: 'SHIPPING_NOT_CONFIRMED', offer: this.buildOffer(norm, inMpn, false) };
+    }
+    const decision = inMpn ? 'ACCEPT' : 'REVIEW';
+    return {
+      decision,
+      reason_codes,
+      first_blocking_step: null,
+      offer: this.buildOffer(norm, inMpn, true)
+    };
+  }
+
+  /**
+   * Builds the normalized offer payload for ACCEPT/REVIEW decisions.
+   * @private
+   */
+  buildOffer(item, inMpn, shipsToNl) {
     return {
       decision: inMpn ? 'ACCEPT' : 'REVIEW',
       match_basis: inMpn ? 'MPN_EXACT' : 'TITLE_ONLY',
       item_id: item.itemId,
       title: item.title || '',
-      mpn: mpn,
+      mpn: item.mpn,
       seller_name: item.seller?.username || '',
       price: item.price?.value ? Number(item.price.value) : null,
       currency: item.price?.currency || 'EUR',
       shipping_cost: item.shippingOptions?.[0]?.shippingCost?.value ? Number(item.shippingOptions[0].shippingCost.value) : null,
-      ships_to_nl: true,
+      ships_to_nl: Boolean(shipsToNl),
       condition: item.condition || 'NEW',
       affiliate_url: item.itemAffiliateWebUrl,
       validation_confidence: inMpn ? 0.98 : 0.85
@@ -145,10 +240,16 @@ export class EbayHighVolumeEngine {
     const metrics = {
       scanned_parts: 0,
       total_searches: 0,
+      raw_results: 0,
+      client_passed: 0,
+      client_rejected: 0,
+      client_rejection_reasons: {},
       offers_found: 0,
       offers_validated: 0,
       offers_reviewed: 0,
       offers_rejected: 0,
+      rejections_by_reason: {},
+      first_blocking_steps: {},
       errors: [],
       api_calls: 0,
       backoff_delays: 0
@@ -194,22 +295,34 @@ export class EbayHighVolumeEngine {
               }
 
               metrics.api_calls++;
+              // Phase 76G funnel: raw API results vs client filter vs engine validation
+              if (res.stats) {
+                metrics.raw_results += res.stats.raw_count || 0;
+                metrics.client_passed += res.stats.client_passed_count || 0;
+                metrics.client_rejected += res.stats.client_rejected_count || 0;
+                for (const [code, n] of Object.entries(res.stats.client_rejection_reasons || {})) {
+                  metrics.client_rejection_reasons[code] = (metrics.client_rejection_reasons[code] || 0) + n;
+                }
+              } else {
+                metrics.raw_results += res.items?.length || 0;
+                metrics.client_passed += res.items?.length || 0;
+              }
 
               // Classification: ACCEPT/REVIEW/REJECT — only ACCEPT may enter active_offers
               for (const item of res.items || []) {
-                const validated = this.validateOffer(item, part, classification);
-                if (validated && validated.decision === 'ACCEPT') {
+                const verdict = this.evaluateOffer(item, part, classification);
+                if (verdict.decision === 'ACCEPT') {
                   metrics.offers_validated++;
-                  const offer = { part_number: part, marketplace, vendor, ...validated };
+                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer };
                   const key = `${offer.marketplace}:${offer.item_id}`;
                   if (!seen.has(key)) {
                     seen.add(key);
                     activeOffers.push(offer);
                   }
-                } else if (validated && validated.decision === 'REVIEW') {
-                  // Title-only match — needs manual review, never auto-accepted
+                } else if (verdict.decision === 'REVIEW') {
+                  // Unconfirmed data — needs manual review, never auto-accepted
                   metrics.offers_reviewed++;
-                  const offer = { part_number: part, marketplace, vendor, ...validated };
+                  const offer = { part_number: part, marketplace, vendor, ...verdict.offer, reason_codes: verdict.reason_codes };
                   const key = `${offer.marketplace}:${offer.item_id}`;
                   if (!seen.has(key)) {
                     seen.add(key);
@@ -217,12 +330,21 @@ export class EbayHighVolumeEngine {
                   }
                 } else {
                   metrics.offers_rejected++;
+                  for (const code of verdict.reason_codes) {
+                    metrics.rejections_by_reason[code] = (metrics.rejections_by_reason[code] || 0) + 1;
+                  }
+                  const firstStep = verdict.first_blocking_step || 'MISSING_REQUIRED_DATA';
+                  metrics.first_blocking_steps[firstStep] = (metrics.first_blocking_steps[firstStep] || 0) + 1;
                   rejectedOffers.push({
                     part_number: part,
                     marketplace,
                     vendor,
-                    item_id: item.itemId,
-                    reason: 'validation_failed'
+                    item_id: item.itemId ?? item.item_id,
+                    title: item.title || '',
+                    mpn: item.mpn || '',
+                    reason: 'validation_failed',
+                    primary_reason: firstStep,
+                    reason_codes: verdict.reason_codes
                   });
                 }
               }
@@ -261,10 +383,16 @@ export class EbayHighVolumeEngine {
         scanned_parts: metrics.scanned_parts,
         total_searches: metrics.total_searches,
         api_calls: metrics.api_calls,
+        raw_results: metrics.raw_results,
+        client_passed: metrics.client_passed,
+        client_rejected: metrics.client_rejected,
+        client_rejection_reasons: metrics.client_rejection_reasons,
         offers_found: metrics.offers_found,
         offers_validated: metrics.offers_validated,
         offers_reviewed: metrics.offers_reviewed,
         offers_rejected: metrics.offers_rejected,
+        rejections_by_reason: metrics.rejections_by_reason,
+        first_blocking_steps: metrics.first_blocking_steps,
         errors_count: metrics.errors.length,
         backoff_delays: metrics.backoff_delays,
         duration_ms: Date.now() - startTime
