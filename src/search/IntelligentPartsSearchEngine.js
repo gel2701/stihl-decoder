@@ -20,6 +20,7 @@ import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { defaultVerifiedOfferRegistry } from '../affiliate/VerifiedOfferRegistry.js';
 import { AmazonAffiliateProvider, COMMERCIAL_TIERS, extractTargetedSearchKeywords } from '../affiliate/AmazonAffiliateProvider.js';
+import { defaultResolverInstance } from '../affiliate/AffiliateOfferResolver.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { SectionResolutionRegistry } from '../parts/SectionResolutionRegistry.js';
 
@@ -207,17 +208,19 @@ function orderOffersByMarketplace(offers) {
     const mkt = String(offer.marketplace || 'amazon.nl').toLowerCase();
     if (mkt === 'amazon.nl') return 0;
     if (mkt === 'amazon.de') return 1;
-    return 2;
+    if (mkt === 'ebay.nl') return 2;
+    if (mkt === 'ebay.de') return 3;
+    return 4;
   };
   return [...offers].sort((a, b) => rank(a) - rank(b));
 }
 
 /**
- * Resolves purchase offer(s) for a part across all marketplaces.
- * All ACTIVE, Two-Gate verified offers are returned (Amazon.nl first, then Amazon.de).
+ * Resolves purchase offer(s) for a part across all marketplaces and providers.
+ * All ACTIVE, verified direct offers (Amazon.nl, Amazon.de, eBay.nl, eBay.de) are returned.
  * Falls back to a compliant targeted search when no direct offer is eligible.
  */
-export function resolvePurchaseOffer(partNumber, partName = '') {
+export function resolvePurchaseOffer(partNumber, partName = '', options = {}) {
   const norm = PartNormalizer.normalizePartNumber(partNumber);
   if (!norm) return null;
 
@@ -231,38 +234,65 @@ export function resolvePurchaseOffer(partNumber, partName = '') {
     }
   }
 
-  // 1. All ACTIVE offers across marketplaces (Amazon.nl first, then Amazon.de)
-  const activeOffers = typeof defaultVerifiedOfferRegistry.getActiveOffers === 'function'
+  // 1a. All ACTIVE Amazon offers across marketplaces (Amazon.nl first, then Amazon.de)
+  const activeAmazonOffers = typeof defaultVerifiedOfferRegistry.getActiveOffers === 'function'
     ? defaultVerifiedOfferRegistry.getActiveOffers(norm)
     : [];
-  if (activeOffers.length > 0) {
-    const offers = orderOffersByMarketplace(activeOffers).map((offer) => {
-      const marketplace = String(offer.marketplace || 'amazon.nl').toLowerCase();
-      const tag = offer.affiliate_tag || getAmazonTagForMarketplace(marketplace);
-      return {
-        provider: 'amazon',
-        marketplace,
-        asin: offer.asin,
-        tag,
-        url: `https://${marketplace}/dp/${offer.asin}?tag=${encodeURIComponent(tag)}`,
-        brand: offer.brand || offer.manufacturer || null,
-        label: marketplace === 'amazon.de'
-          ? `Koop op Amazon.de (${offer.brand || 'Vervanger'})`
-          : `Koop op Amazon (${offer.brand || 'Vervanger'})`,
-        is_direct: true
-      };
-    });
-    const primary = offers[0];
+  const amazonOffers = orderOffersByMarketplace(activeAmazonOffers).map((offer) => {
+    const marketplace = String(offer.marketplace || 'amazon.nl').toLowerCase();
+    const tag = offer.affiliate_tag || getAmazonTagForMarketplace(marketplace);
     return {
-      type: 'DIRECT_ASIN',
+      provider: 'amazon',
+      marketplace,
+      asin: offer.asin,
+      tag,
+      url: `https://${marketplace}/dp/${offer.asin}?tag=${encodeURIComponent(tag)}`,
+      brand: offer.brand || offer.manufacturer || null,
+      label: marketplace === 'amazon.de'
+        ? `Koop op Amazon.de (${offer.brand || 'Vervanger'})`
+        : `Koop op Amazon (${offer.brand || 'Vervanger'})`,
+      is_direct: true
+    };
+  });
+
+  // 1b. All ACTIVE eBay offers from the canonical eBay offer store (eBay.nl first, then eBay.de)
+  const ebayProvider = options.ebayProvider || defaultResolverInstance.ebayProvider;
+  const rawEbayOffers = (ebayProvider && typeof ebayProvider.isEnabled === 'function' && ebayProvider.isEnabled())
+    ? ebayProvider.getOffers({ canonicalPartNumber: norm, partNumber: norm, partName })
+    : [];
+  const ebayOffers = orderOffersByMarketplace(Array.isArray(rawEbayOffers) ? rawEbayOffers : []).map((offer) => {
+    const marketplace = String(offer.marketplace || 'ebay.nl').toLowerCase();
+    return {
+      provider: 'ebay',
+      marketplace,
+      item_id: offer.item_id || null,
+      asin: null,
+      tag: null,
+      url: offer.url || offer.affiliate_url,
+      brand: offer.brand || offer.seller_name || null,
+      seller_name: offer.seller_name || '',
+      item_price: offer.item_price ?? offer.price ?? null,
+      currency: offer.currency || 'EUR',
+      label: offer.label || `Bekijk op ${marketplace}`,
+      is_direct: true
+    };
+  });
+
+  const combinedDirectOffers = [...amazonOffers, ...ebayOffers];
+  if (combinedDirectOffers.length > 0) {
+    const primary = combinedDirectOffers[0];
+    return {
+      type: primary.provider === 'ebay' ? 'DIRECT_EBAY_ITEM' : 'DIRECT_ASIN',
+      provider: primary.provider,
       tier: COMMERCIAL_TIERS.DIRECT_VERIFIED,
       url: primary.url,
-      asin: primary.asin,
+      asin: primary.asin || null,
+      item_id: primary.item_id || null,
       marketplace: primary.marketplace,
       label: primary.label,
       brand: primary.brand,
       is_direct: true,
-      offers
+      offers: combinedDirectOffers
     };
   }
 

@@ -367,14 +367,26 @@ export function getDirectPartsForModel(modelInput, options = {}, database = null
         ? `${canonicalPartsPath}#section-${candidate.section_index}`
         : null;
 
-      // Commercial purchase offer (Amazon affiliate)
-      const offers = affiliateResolver.resolveOffers({
+      // Commercial purchase offer (Amazon & eBay affiliate)
+      const resolverToUse = options.affiliateResolver || affiliateResolver;
+      const offers = resolverToUse.resolveOffers({
         partNumber: candidate.part_number,
         partName: candidate.part_name,
         model: canonicalModelId
       });
 
       const primaryOffer = (offers && offers.length > 0) ? offers[0] : null;
+      const isDirectOffer = Boolean(primaryOffer && (
+        primaryOffer.link_type === 'DIRECT_ASIN' ||
+        primaryOffer.link_type === 'DIRECT_EBAY_ITEM' ||
+        primaryOffer.is_verified === true
+      ));
+      const isEbayOffer = Boolean(primaryOffer && primaryOffer.provider === 'ebay');
+      const purchaseLabel = primaryOffer
+        ? (isDirectOffer
+            ? (isEbayOffer ? (primaryOffer.label || `Bekijk op ${primaryOffer.marketplace || 'ebay.nl'}`) : 'Bekijk product op Amazon')
+            : 'Zoek op Amazon')
+        : null;
 
       selectedParts.push({
         slot: rule.slot,
@@ -394,7 +406,10 @@ export function getDirectPartsForModel(modelInput, options = {}, database = null
         diagram_label: diagramUrl ? 'Onderdelenlijst met tekeningposities' : null,
         part_detail_url: `/onderdeelnummer/${candidate.part_number}/`,
         purchase_url: primaryOffer ? primaryOffer.url : null,
-        purchase_label: primaryOffer ? (primaryOffer.link_type === 'DIRECT_ASIN' ? 'Bekijk product op Amazon' : 'Zoek op Amazon') : null,
+        purchase_provider: primaryOffer ? (primaryOffer.provider || 'amazon') : null,
+        purchase_marketplace: primaryOffer ? (primaryOffer.marketplace || null) : null,
+        purchase_label: purchaseLabel,
+        is_direct_offer: isDirectOffer,
         is_direct_asin: primaryOffer ? primaryOffer.link_type === 'DIRECT_ASIN' : false
       });
     }

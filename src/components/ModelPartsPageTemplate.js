@@ -167,7 +167,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
         ${maintenanceParts.map(p => {
           const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${(model.slug || model.model_name || '').replace(/'/g, "\\'")}', section_context: '${p.section_name}'});}` : '';
+          const offerProvider = offer?.provider || 'amazon';
+          const isEbayOffer = offerProvider === 'ebay';
+          const offerMarket = offer?.marketplace || (isEbayOffer ? 'ebay.nl' : 'amazon.nl');
+          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offerProvider}', marketplace: '${offerMarket}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${(model.slug || model.model_name || '').replace(/'/g, "\\'")}', section_context: '${p.section_name}'});}` : '';
+          const btnTitle = offer ? (offer.is_direct ? `Directe Aankoop op ${offerMarket}` : `Alleen zoekopdracht op ${offerMarket} (geen vooraf bevestigd aanbod)`) : '';
+          const btnLabel = offer ? (offer.is_direct ? (isEbayOffer ? `🛒 Directe Koop (${offerMarket})` : '🛒 Directe Koop') : '🛒 Zoek op Amazon (zoekopdracht)') : '';
           return `
           <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2">
             <div>
@@ -179,17 +184,20 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
               <div class="text-3xs text-gray-400 mt-0.5">Sectie: ${p.section_name}</div>
             </div>
             ${offer ? `
-              <div class="pt-2 border-t border-gray-900 flex items-center justify-between">
+              <div class="pt-2 border-t border-gray-900 flex items-center justify-between gap-2">
                 <a href="/onderdeelnummer/${p.part_number}/" class="text-3xs text-gray-400 hover:underline">Details →</a>
                 <a
                   href="${offer.url}"
                   target="_blank"
-                  rel="nofollow sponsored"
-                  class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1"
+                  rel="sponsored nofollow noopener"
+                  data-provider="${offerProvider}"
+                  data-marketplace="${offerMarket}"
+                  data-offer-type="${offer.type}"
+                  class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1"
                   onclick="${affiliateClick}"
-                  title="${offer.is_direct ? 'Directe Aankoop op Amazon' : 'Zoek op Amazon'}"
+                  title="${btnTitle}"
                 >
-                  <span>${offer.is_direct ? '🛒 Directe Koop' : '🛒 Zoek op Amazon'}</span>
+                  <span>${btnLabel}</span>
                   <span class="opacity-70 text-3xs">↗</span>
                 </a>
               </div>
@@ -262,7 +270,12 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                     const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
                     const clickHandler = `window.trackModelPartClick?.('${p.part_number}','${safeSectionCtx}','${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}','${p.seo_tier || 'SEO_TIER_C'}','${p.wave_identifier || 'none'}')`;
                     const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-                    const affiliateClick = offer ? `window.trackModelAffiliateClick?.(this,event,'${p.part_number}','${safeSectionCtx}','${offer.marketplace || 'amazon.nl'}','${offer.type}','${offer.asin || ''}',${offer.is_direct})` : '';
+                    const offerProvider = offer?.provider || 'amazon';
+                    const isEbayOffer = offerProvider === 'ebay';
+                    const offerMarket = offer?.marketplace || (isEbayOffer ? 'ebay.nl' : 'amazon.nl');
+                    const affiliateClick = offer ? `window.trackModelAffiliateClick?.(this,event,'${p.part_number}','${safeSectionCtx}','${offerMarket}','${offer.type}','${offer.asin || ''}',${offer.is_direct},'${offerProvider}')` : '';
+                    const btnTitle = offer ? (offer.is_direct ? `Directe Aankoop op ${offerMarket}` : `Alleen zoekopdracht op ${offerMarket} (geen vooraf bevestigd aanbod)`) : '';
+                    const btnLabel = offer ? (offer.is_direct ? (isEbayOffer ? `🛒 Directe Koop (${offerMarket})` : '🛒 Directe Koop') : '🛒 Zoek op Amazon (zoekopdracht)') : '';
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -281,11 +294,14 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                             href="${offer.url}"
                             target="_blank"
                             rel="sponsored nofollow noopener"
-                            class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1 min-h-[30px]"
+                            data-provider="${offerProvider}"
+                            data-marketplace="${offerMarket}"
+                            data-offer-type="${offer.type}"
+                            class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1 min-h-[30px]"
                             onclick="${affiliateClick}"
-                            title="${offer.is_direct ? 'Directe Aankoop op Amazon.nl' : 'Zoek op Amazon.nl'}"
+                            title="${btnTitle}"
                           >
-                            <span>${offer.is_direct ? '🛒 Directe Koop' : '🛒 Zoek op Amazon'}</span>
+                            <span>${btnLabel}</span>
                             <span class="opacity-70 text-3xs">↗</span>
                           </a>
                         ` : ''}
@@ -532,8 +548,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       window.trackModelPartClick = function(partNumber, section, commercialTier, seoTier, wave) {
         window.trackStihlEvent?.('model_to_part_click', {model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', part_number: partNumber, section_context: section, commercial_tier: commercialTier, seo_tier: seoTier, wave_identifier: wave, page_path: window.location.pathname});
       };
-      window.trackModelAffiliateClick = function(el, ev, partNumber, section, marketplace, offerType, asin, verified) {
-        window.handleAffiliateClick?.(el, ev, {provider: 'amazon', marketplace, part_number: partNumber, offer_type: offerType, asin_if_known: asin, product_verified: verified, placement: 'model_parts_table', page_path: window.location.pathname, model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', section_context: section});
+      window.trackModelAffiliateClick = function(el, ev, partNumber, section, marketplace, offerType, asin, verified, provider) {
+        var resolvedProvider = provider || (String(marketplace || '').indexOf('ebay') !== -1 ? 'ebay' : 'amazon');
+        window.handleAffiliateClick?.(el, ev, {provider: resolvedProvider, marketplace, part_number: partNumber, offer_type: offerType, asin_if_known: asin, product_verified: verified, placement: 'model_parts_table', page_path: window.location.pathname, model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', section_context: section});
       };
       window.handleAffiliateClick = function(el, ev, data) {
         try {
