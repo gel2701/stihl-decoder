@@ -430,13 +430,16 @@ export function getPartAffiliateOffers(partNumber, partName = '', options = {}) 
     if (!itemId || seenEbayIds.has(itemId)) continue;
     seenEbayIds.add(itemId);
 
-    if (!directByMarketplace.has('ebay.nl')) {
-      const marketplace = String(offer.marketplace || 'ebay.nl').toLowerCase();
-      directByMarketplace.set('ebay.nl', {
+    const rawMkt = String(offer.marketplace || (offer.marketplace_id === 'EBAY_DE' ? 'ebay.de' : 'ebay.nl')).toLowerCase();
+    const marketplace = rawMkt === 'ebay.de' ? 'ebay.de' : 'ebay.nl';
+    const displayMkt = marketplace === 'ebay.de' ? 'eBay.de' : 'eBay.nl';
+
+    if (!directByMarketplace.has(marketplace)) {
+      directByMarketplace.set(marketplace, {
         type: 'DIRECT_EBAY_ITEM',
         provider: 'ebay',
         marketplace,
-        display_marketplace: 'eBay.nl',
+        display_marketplace: displayMkt,
         asin: null,
         item_id: itemId,
         tag: null,
@@ -445,7 +448,7 @@ export function getPartAffiliateOffers(partNumber, partName = '', options = {}) 
         seller_name: offer.seller_name || '',
         item_price: offer.item_price ?? offer.price ?? null,
         currency: offer.currency || 'EUR',
-        label: 'Koop bij eBay.nl',
+        label: `Koop bij ${displayMkt}`,
         is_direct: true,
         is_verified: true,
         offer_type: 'DIRECT_EBAY_ITEM'
@@ -454,7 +457,7 @@ export function getPartAffiliateOffers(partNumber, partName = '', options = {}) 
   }
 
   const direct_offers = [];
-  for (const mkt of ['amazon.nl', 'amazon.de', 'ebay.nl']) {
+  for (const mkt of ['amazon.nl', 'amazon.de', 'ebay.nl', 'ebay.de']) {
     if (directByMarketplace.has(mkt)) {
       direct_offers.push(directByMarketplace.get(mkt));
     }

@@ -33,9 +33,12 @@ function renderSingleButton(offer, ctx) {
   const modelContext = ctx.modelContext || '';
   const compact = Boolean(ctx.compact);
 
+  const fallbackMarket = marketplace === 'amazon.de'
+    ? 'Amazon.de'
+    : (marketplace === 'ebay.de' ? 'eBay.de' : (provider === 'ebay' ? 'eBay.nl' : 'Amazon.nl'));
   const label = offer.label || (isDirect
-    ? `Koop bij ${offer.display_marketplace || (marketplace === 'amazon.de' ? 'Amazon.de' : (provider === 'ebay' ? 'eBay.nl' : 'Amazon.nl'))}`
-    : `Zoek op ${offer.display_marketplace || (marketplace === 'amazon.de' ? 'Amazon.de' : (provider === 'ebay' ? 'eBay.nl' : 'Amazon.nl'))}`);
+    ? `Koop bij ${offer.display_marketplace || fallbackMarket}`
+    : `Zoek op ${offer.display_marketplace || fallbackMarket}`);
 
   const title = isDirect
     ? `Directe aankoop op ${offer.display_marketplace || marketplace}`

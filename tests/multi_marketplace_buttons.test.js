@@ -6,9 +6,11 @@ import { fileURLToPath } from 'node:url';
 
 import {
   getPartAffiliateOffers,
+  getPartAffiliateOffer,
   resolvePurchaseOffer
 } from '../src/search/IntelligentPartsSearchEngine.js';
 import { EbayAffiliateProvider } from '../src/affiliate/EbayAffiliateProvider.js';
+import { validateEbayAffiliateUrl } from '../src/affiliate/EbayOfferStore.js';
 import { VerifiedOfferRegistry } from '../src/affiliate/VerifiedOfferRegistry.js';
 import { renderMultiMarketplaceButtonsHtml } from '../src/components/MarketplaceButtons.js';
 import { renderModelPartsPageHtml } from '../src/components/ModelPartsPageTemplate.js';
@@ -499,4 +501,62 @@ test('13. Regressie: ModelPartsPageTemplate, PartsDiscoveryPageTemplate en Direc
     assert.ok(Array.isArray(directResult.parts[0].purchase_offers.direct_offers));
     assert.ok(Array.isArray(directResult.parts[0].purchase_offers.search_offers));
   });
+});
+
+test('14. eBay.de aanbieding wordt gelabeld als Koop bij eBay.de en nooit als eBay.nl', () => {
+  const part = '11231602050';
+  const registry = makeRegistry([]);
+  const ebay = makeMockEbayProvider({
+    [part]: [makeEbayOffer(part, 'v1|999888777666|0', 'ebay.de')]
+  }, true);
+
+  withEnv({
+    AFFILIATE_ENABLED: 'true',
+    AMAZON_AFFILIATE_ENABLED: 'true',
+    AMAZON_ASSOCIATE_TAG: 'srihldecoder2-21',
+    EBAY_ENABLED: 'true',
+    EBAY_AFFILIATE_ENABLED: 'true',
+    EBAY_EPN_CAMPAIGN_ID: '5339245312'
+  }, () => {
+    const res = getPartAffiliateOffers(part, 'Koppelingsveer', { verifiedRegistry: registry, ebayProvider: ebay });
+    const ebayDe = res.direct_offers.find(o => o.provider === 'ebay');
+    assert.ok(ebayDe, 'eBay.de offer must be present');
+    assert.equal(ebayDe.marketplace, 'ebay.de');
+    assert.equal(ebayDe.display_marketplace, 'eBay.de');
+    assert.equal(ebayDe.label, 'Koop bij eBay.de');
+    assert.ok(!res.direct_offers.some(o => o.label === 'Koop bij eBay.nl'));
+    assert.ok(res.search_offers.some(o => o.label === 'Zoek op eBay.nl'));
+  });
+});
+
+test('15. eBay-zoekaffiliate-URL voldoet aan EPN-spec en validateEbayAffiliateUrl', () => {
+  const ebay = new EbayAffiliateProvider();
+  withEnv({
+    EBAY_ENABLED: 'true',
+    EBAY_AFFILIATE_ENABLED: 'true',
+    EBAY_EPN_CAMPAIGN_ID: '5339245312'
+  }, () => {
+    const offer = ebay.buildSearchOffer({ canonicalPartNumber: '11231602050', partName: 'Koppelingsveer' });
+    assert.ok(offer, 'buildSearchOffer must return offer when EPN is configured');
+    const check = validateEbayAffiliateUrl(offer.url, '5339245312');
+    assert.equal(check.valid, true, `URL must pass validateEbayAffiliateUrl: ${check.reason || ''}`);
+    const parsed = new URL(offer.url);
+    assert.equal(parsed.hostname, 'www.ebay.nl');
+    assert.equal(parsed.pathname, '/sch/i.html');
+    assert.equal(parsed.searchParams.get('mkevt'), '1');
+    assert.equal(parsed.searchParams.get('mkcid'), '1');
+    assert.equal(parsed.searchParams.get('mkrid'), '1346-53482-19255-0');
+    assert.equal(parsed.searchParams.get('campid'), '5339245312');
+    assert.equal(parsed.searchParams.get('toolid'), '10049');
+  });
+});
+
+test('16. Backward compatibility: getPartAffiliateOffer behoudt oorspronkelijke contract', () => {
+  assert.equal(getPartAffiliateOffer, resolvePurchaseOffer);
+  const offer = getPartAffiliateOffer('11231602050', 'Koppelingsveer');
+  assert.ok(offer);
+  assert.equal(typeof offer.url, 'string');
+  assert.equal(typeof offer.type, 'string');
+  assert.equal(typeof offer.is_direct, 'boolean');
+  assert.ok(Array.isArray(offer.offers));
 });

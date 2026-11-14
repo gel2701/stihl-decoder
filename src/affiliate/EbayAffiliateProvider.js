@@ -18,7 +18,7 @@ import { EbayBrowseApiClient } from './EbayBrowseApiClient.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { MATCH_TYPES } from './OfferEvidenceMatcher.js';
 import { SHIPPING_STATUS } from './EbayShippingEvidence.js';
-import { loadEbayCachedOffers } from './EbayOfferStore.js';
+import { loadEbayCachedOffers, validateEbayAffiliateUrl } from './EbayOfferStore.js';
 import { getEbayOfferStorePath } from './AffiliateStoragePaths.js';
 
 const partInTitle = (title, part) => new RegExp(`(^|\\D)${part.slice(0, 4)}[\\s-]*${part.slice(4, 7)}[\\s-]*${part.slice(7)}(?!\\d)`).test(title);
@@ -67,6 +67,9 @@ export class EbayAffiliateProvider extends AffiliateProvider {
     url.searchParams.set('toolid', '10049');
 
     const finalUrl = url.toString();
+    const validation = validateEbayAffiliateUrl(finalUrl, process.env.EBAY_EPN_CAMPAIGN_ID);
+    if (!validation.valid) return null;
+
     return {
       provider: 'ebay',
       marketplace: 'ebay.nl',
