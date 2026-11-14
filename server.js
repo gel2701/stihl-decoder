@@ -1206,19 +1206,53 @@ const server = http.createServer(async (req, res) => {
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      if (err.code === 'ENOENT') {
+  fs.stat(filePath, (statErr, stats) => {
+    if (statErr) {
+      if (statErr.code === 'ENOENT') {
         res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
         res.end('<h1>404 Niet Gevonden</h1><p>De gevraagde pagina bestaat niet op STIHLDecoder.nl.</p>');
       } else {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end(`Server Fout: ${err.code}`);
+        res.end(`Server Fout: ${statErr.code}`);
       }
-    } else {
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content);
+      return;
     }
+
+    const etag = `W/"${stats.size}-${Math.floor(stats.mtimeMs)}"`;
+    let cacheControl = 'public, max-age=0, must-revalidate';
+    if (ext === '.css' || ext === '.js' || ext === '.mjs') {
+      cacheControl = 'public, max-age=3600, stale-while-revalidate=86400';
+    } else if (ext === '.png' || ext === '.ico' || ext === '.svg' || ext === '.webp' || ext === '.jpg' || ext === '.jpeg' || ext === '.woff2' || ext === '.webmanifest') {
+      cacheControl = 'public, max-age=604800, stale-while-revalidate=86400';
+    }
+
+    if (req.headers['if-none-match'] === etag) {
+      res.writeHead(304, {
+        'ETag': etag,
+        'Cache-Control': cacheControl
+      });
+      res.end();
+      return;
+    }
+
+    fs.readFile(filePath, (err, content) => {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+          res.end('<h1>404 Niet Gevonden</h1><p>De gevraagde pagina bestaat niet op STIHLDecoder.nl.</p>');
+        } else {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Server Fout: ${err.code}`);
+        }
+      } else {
+        res.writeHead(200, {
+          'Content-Type': contentType,
+          'Cache-Control': cacheControl,
+          'ETag': etag
+        });
+        res.end(content);
+      }
+    });
   });
   } catch (err) {
     console.error('Unhandled request error:', err);
