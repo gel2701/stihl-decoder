@@ -243,4 +243,73 @@ test.describe('Critical Homepage User Journeys', () => {
     gates.assertClean('Phase 79 Passport Journey');
   });
 
+  test('I. Phase 81.2: Directe onderdelenresultaten direct onder zoekveld (desktop, mobiel, Enter, laadstatus)', async ({ page }) => {
+    const gates = await attachIntegrityGates(page);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+
+    const input = page.locator('#code-input');
+    const loadingState = page.locator('#decode-loading-state');
+    const directPartsSection = page.locator('#model-direct-parts-section');
+    const directPartsHeading = page.locator('#model-direct-parts-heading');
+    const specsDetails = page.locator('#model-specs-details');
+    const allPartsBtn = page.locator('#model-direct-parts-all-btn');
+
+    // Simulate slow /api/decode on first request to verify immediate loading indicator
+    let delayedOnce = false;
+    await page.route('**/api/decode?*', async (route) => {
+      if (!delayedOnce) {
+        delayedOnce = true;
+        await new Promise((resolve) => setTimeout(resolve, 350));
+      }
+      await route.continue();
+    });
+
+    await input.fill('MS 261');
+    await input.press('Enter');
+
+    await expect(loadingState).toBeVisible({ timeout: 2000 });
+    await expect(directPartsSection).toBeVisible({ timeout: 5000 });
+    await expect(loadingState).toBeHidden();
+
+    // Direct parts heading shows model & receives accessible keyboard focus
+    await expect(directPartsHeading).toContainText('Onderdelen voor STIHL MS 261');
+    await expect(directPartsHeading).toBeFocused();
+
+    // Collapsible specs start collapsed and sit BELOW direct parts
+    await expect(specsDetails).toBeVisible();
+    const isSpecsOpen = await specsDetails.evaluate((el) => el.open);
+    expect(isSpecsOpen).toBe(false);
+
+    const partsBox = await directPartsSection.boundingBox();
+    const specsBox = await specsDetails.boundingBox();
+    expect(partsBox).not.toBeNull();
+    expect(specsBox).not.toBeNull();
+    expect(partsBox.y).toBeLessThan(specsBox.y);
+
+    // Expanding specs works
+    await specsDetails.locator('summary').click();
+    expect(await specsDetails.evaluate((el) => el.open)).toBe(true);
+
+    // All parts CTA points to MS 261 parts page
+    await expect(allPartsBtn).toBeVisible();
+    await expect(allPartsBtn).toContainText('Bekijk alle onderdelen voor MS 261');
+    await expect(allPartsBtn).toHaveAttribute('href', '/kettingzagen/ms-261/onderdelen/');
+
+    // Consecutive search on mobile viewport
+    await page.setViewportSize({ width: 390, height: 844 });
+    await input.fill('FS 55');
+    await page.locator('#search-btn').click();
+
+    await expect(directPartsHeading).toContainText('Onderdelen voor STIHL FS 55', { timeout: 5000 });
+    expect(await specsDetails.evaluate((el) => el.open)).toBe(false);
+
+    // Unknown query shows clear empty state
+    await input.fill('ONBEKEND_MODEL_XYZ_999');
+    await page.locator('#search-btn').click();
+    await expect(page.locator('#empty-state')).toBeVisible({ timeout: 5000 });
+
+    gates.assertClean('Phase 81.2 Homepage Direct Parts UX Journey');
+  });
+
 });
