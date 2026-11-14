@@ -15,7 +15,7 @@ It incorporates core principles from modern software engineering methodologies (
 
 1. **Inspect Before Changing**: Read and understand the existing production implementation (`TwoGateVerifier.js`, `VerifiedOfferRegistry.js`, `AmazonProductionOfferContract.js`, `HistoricalMismatches.js`) before modifying code.
 2. **Preserve Canonical Invariants**:
-   - Exactly **18,373 canonical parts** in `data/parts_catalog.json` and SQLite.
+   - Exactly **18,397 canonical parts** in `data/parts_catalog.json` and SQLite.
    - Exactly **843 indexable SEO parts** in `src/seo/PartIndexationRegistry.js`.
    - Exactly **1,024 sitemap URLs** in `sitemap.xml`.
    - Live direct offers are governed by the **ACTIVE** registry and existing runtime eligibility gates (Two-Gate verification, per-marketplace caps, applicable shipping evidence, kill-switches, and any explicit operator whitelist). Do not reinstate the historical three-ASIN pilot whitelist as a default.

@@ -7,7 +7,7 @@
  * 3. Operator Authorization Guardrail: Exactly 2 staged verified candidates awaiting operator approval (0000 400 7009 & 0000 642 1240).
  * 4. Production Pilot Immutability: Exactly 3 active pilot ASINs in live registry (zero unauthorized activations).
  * 5. Search Console Baseline & Funnel Measurement Integrity: Real data from 1 Aug - 31 Oct 2026.
- * 6. Production Invariants: 18,373 canonical parts, 843 SEO indexable parts, 1,024 sitemap URLs, tag srihldecoder2-21, "Bevestigde compatibiliteit".
+ * 6. Production Invariants: 18,397 canonical parts, 843 SEO indexable parts, 1,024 sitemap URLs, tag srihldecoder2-21, "Bevestigde compatibiliteit".
  */
 
 import test from 'node:test';
@@ -134,10 +134,10 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
   });
 
   await t.test('5. Canonical Data & SEO Invariants Preservation', () => {
-    // Invariant 1: Exactly 18,373 canonical parts
+    // Invariant 1: Exactly 18,397 canonical parts
     const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
     const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-    assert.equal(catalog.parts.length, 18377, 'Canonical catalog must preserve exactly 18,373 parts');
+    assert.equal(catalog.parts.length, 18397, 'Canonical catalog must preserve exactly 18,397 parts');
 
     // Invariant 2: Exactly 843 SEO indexable parts
     const indexable = getAllIndexablePartsList();

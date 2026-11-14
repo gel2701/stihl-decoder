@@ -144,6 +144,7 @@ export const currentProductionSuites = [
   'tests/phase80_3_shipping_recovery.test.js',
   'tests/phase80_4_public_activation.test.js',
   'tests/phase81_gsc_first_scaling.test.js',
+  'tests/phase83_catalog_supersession_integrity.test.js',
   'tests/phase81_1_offer_visibility.test.js',
   'tests/phase81_2_homepage_parts_ux.test.js',
   'tests/phase79b_amazon_buy_buttons.test.js',

@@ -1,0 +1,124 @@
+{
+  "phase": "83",
+  "title": "Catalog Expansion, Supersession Migration & Affiliate Recovery",
+  "generated_at": "2026-11-14T23:30:00.000Z",
+  "baseline_phase82": {
+    "ebay_active_offers": 1646,
+    "ebay_parts_with_direct_offer": 200,
+    "amazon_active_offers": 99,
+    "amazon_parts_with_direct_offer": 86,
+    "catalog_parts": 18377,
+    "ebay_needs_evidence_candidates": 1196,
+    "supersession_targets_missing": 8,
+    "production_verified": "Public part pages 11280292301 (144 eBay links) and 11301214702 (0) confirm the Phase 82 store merge was executed; /api/version commit bbd4fcd, deployed 2026-11-14T22:26:37Z."
+  },
+  "catalog_count_audit": {
+    "question": "Waarom 18.377 records tegenover een invariant van 18.373?",
+    "answer": "De 18.373 kwam uit Phase 58a1 (commit 4d72110). Daarna zijn vier gedocumenteerde zaagketting-SKU's toegevoegd: 3610 000 0050 (Phase 75b), 3610 000 0055 en 3636 000 0055 (Phase 75e), 3636 000 0044 (Phase 75f). Alle 18.377 records zijn 11-cijferig, er zijn geen duplicaten en er is nooit een record verwijderd. De testasserties stonden al op 18.377; alleen comments, AGENTS.md en de skill noemden nog 18.373.",
+    "method": "git show <commit>:data/parts_catalog.json op 6023dc3, 4d72110, d34b786, 521fac9, 5ffef05, 0a7e0cb; set-diff op part_number",
+    "history": [
+      { "commit": "6023dc3", "phase": "58a GHS import", "parts": 17837 },
+      { "commit": "4d72110", "phase": "58a1 GHS recovery", "parts": 18373 },
+      { "commit": "d34b786", "phase": "60.1", "parts": 18373 },
+      { "commit": "521fac9", "phase": "75b", "parts": 18374 },
+      { "commit": "5ffef05", "phase": "75e", "parts": 18376 },
+      { "commit": "0a7e0cb", "phase": "75f", "parts": 18377 }
+    ],
+    "four_added_parts": [
+      "36100000050",
+      "36360000055",
+      "36100000055",
+      "36360000044"
+    ],
+    "duplicates": 0,
+    "malformed": 0,
+    "removed_records_ever": 0
+  },
+  "deliverables": {
+    "1_catalog_count": {
+      "explained": true,
+      "new_baseline": 18397,
+      "regression_protection": "tests/phase83_catalog_supersession_integrity.test.js + data/parts_catalog_baseline_phase83.json"
+    },
+    "2_new_catalog_parts": {
+      "count": 20,
+      "supersession_targets": 6,
+      "superseded_source_parts": 14,
+      "evidence": "official STIHL technical information documents in data/parts_supersessions.json (EXPLICIT_SOURCE_TEXT)",
+      "artifact": "output/phase83/PHASE83_SUPERSESSION_MIGRATION.json",
+      "script": "scripts/apply_phase83_supersession_catalog.mjs"
+    },
+    "3_new_supersession_records": {
+      "relations_total": 22,
+      "numbers_added": 20,
+      "active_in_catalog_before": 4,
+      "active_in_catalog_after": 11,
+      "parked_needs_evidence": 4,
+      "parked_reason": "Officiële TI noemt alleen 'the version' zonder componentnaam: 4804 007 1000 → 4804 007 1002 en 4203 350 0501 → 4203 350 0502."
+    },
+    "4_new_model_compatibility_relations": {
+      "count": 0,
+      "reason": "Geen fitment-relatie geschreven: een supersession-verklaring bewijst niet dat elke toepassing van het oude onderdeel het nieuwe accepteert. De twee expliciet gescopete relaties (SR 320/400, BR 320/400) blijven via parts_supersessions.json doorzoekbaar; fitment-shards en de 181.394-telling zijn ongewijzigd."
+    },
+    "5_new_active_ebay_offers": {
+      "count": 2,
+      "parts": 1,
+      "part_numbers": ["42031402803"],
+      "marketplace": "EBAY_NL",
+      "campaign_id": "5339245312",
+      "shipping": "SHIPS_TO_NL_CONFIRMED (2/2)",
+      "match_type": "EXACT_MPN",
+      "artifact": "output/phase83/ebay_offers_phase83.json"
+    },
+    "6_new_active_amazon_offers": {
+      "count": 0,
+      "reason": "Amazon PA-API niet beschikbaar; een publieke fetch van amazon.de/dp/B013KONKZY levert 3.817 bytes zonder buybox of verzendinformatie (bot-blokkade), dus buybox- en NL-leveringsbewijs kan niet worden verkregen. De 3 VERIFIED-kandidaten blijven geblokkeerd, de 55 RESEARCH_REQUIRED missen ASIN-identiteit. Niets ongeverifieerd geactiveerd.",
+      "registry_unchanged": "99 ACTIVE / 86 onderdelen"
+    },
+    "7_new_parts_with_direct_purchase": {
+      "count": 1,
+      "part_numbers": ["42031402803"]
+    },
+    "8_evidence_completed_candidates": {
+      "count": 0,
+      "total_candidates": 1196,
+      "grouping": {
+        "LISTING_MPN": 1196,
+        "MODEL_COMPATIBILITY_CORROBORATION": 1196
+      },
+      "explanation": "Alle 1.196 kandidaten bevatten hun eigen STIHL-nummer in de titel, maar de listing-MPN is van een aftermarket-maker (bijv. Stens 623-370) en er is geen lokale of openbare bron die die MPN aan het STIHL-nummer koppelt. De engine houdt ze daarom terecht op NEEDS_EVIDENCE; 0 zijn geactiveerd."
+    },
+    "9_remaining_needs_evidence": {
+      "ebay_candidates": 1196,
+      "supersession_numbers_parked": 4
+    },
+    "10_production_publication": {
+      "catalog": "publicatie via deploy van data/parts_catalog.json (geen store-merge nodig)",
+      "ebay_offers": 2,
+      "pending_action": "Render Shell store-merge + service restart voor de 2 nieuwe aanbiedingen (verwacht written: 2, preserved: 1646, total: 1648)"
+    }
+  },
+  "gsc_model_coverage": {
+    "artifact": "output/phase83/PHASE83_GSC_MODEL_COVERAGE.json",
+    "priority_models": 17,
+    "catalog_parts_in_priority_models": 4601,
+    "direct_parts_before_phase83": 252,
+    "direct_parts_after_phase83": 252,
+    "note": "Het nieuwe onderdeel 42031402803 hoort bij BR 320/400 en SR 320/400, die niet in de GSC-prioriteitenlijst zitten; daarom geen delta in de 17 gemeten modellen."
+  },
+  "quality_gates": {
+    "stage_a_check_affiliate_consistency": "exit 0",
+    "stage_b_affiliate_quality_gate": "7/7",
+    "phase83_catalog_supersession_integrity": "5/5",
+    "affected_suites": [
+      "phase52b_full_parts_catalog",
+      "phase54c_parts_seo",
+      "phase54e_parts_technical_enrichment",
+      "phase58a_ghs_catalog_harvest",
+      "phase5_intelligent_parts_search",
+      "phase59d1_production_readiness_consistency",
+      "phase61_verified_affiliate_activation",
+      "phase6_catalog_coverage_quality"
+    ]
+  }
+}
