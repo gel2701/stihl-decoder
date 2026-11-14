@@ -271,7 +271,16 @@
     </section>
 
     <!-- Results Section -->
-    <section id="results-container" class="space-y-6">
+    <section id="results-container" class="space-y-6 scroll-mt-24">
+
+      <!-- Visible Loading State (Phase 81.2) -->
+      <div id="decode-loading-state" role="status" aria-live="polite" class="hidden bg-gray-900/90 border border-orange-500/40 rounded-2xl p-6 sm:p-8 flex items-center justify-center gap-3 text-sm font-semibold text-orange-300">
+        <svg class="w-5 h-5 animate-spin text-orange-400 shrink-0" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+        <span id="decode-loading-text">Onderdelen en modelgegevens worden gezocht...</span>
+      </div>
 
       <!-- Empty State -->
       <div id="empty-state" class="bg-gray-900/60 border border-gray-800 rounded-2xl p-10 text-center space-y-3">
@@ -425,19 +434,70 @@
           </div>
         </div>
 
-        <!-- LAAG 2: SPECIFICATIES MET TELLER (SCHONER GETOOND) -->
+        <!-- LAAG 2: DIRECTE ONDERDELENRESULTATEN (DIRECT ZICHTBAAR ONDER ZOEKVELD) -->
         <div class="space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+          <div id="model-direct-parts-section" class="hidden bg-gray-950/90 border border-orange-500/30 rounded-2xl p-5 sm:p-6 space-y-4 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
+              <div>
+                <h4 id="model-direct-parts-heading" tabindex="-1" class="text-base sm:text-lg font-bold text-white flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-orange-500/60 rounded-lg">
+                  <span>⚙️ Onderdelen voor STIHL <span id="model-direct-parts-title-model" class="text-orange-400"></span></span>
+                </h4>
+                <p class="text-2xs text-gray-400 mt-0.5">Veelgezochte onderhouds- en slijtageonderdelen met gecontroleerde compatibiliteit.</p>
+              </div>
+              <span class="text-3xs font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 self-start sm:self-auto">
+                ✓ Bevestigde selectie
+              </span>
+            </div>
+
+            <!-- Compact Parts Cards Grid -->
+            <div id="model-direct-parts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Doorklik naar volledige onderdelencatalogus -->
+            <div class="pt-3 border-t border-gray-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p class="text-2xs text-gray-400">
+                Zoek je andere onderdelen, behuizingen of revisiesets voor deze machine?
+              </p>
+              <a id="model-direct-parts-all-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-md shadow-orange-600/20 transition flex items-center justify-center gap-2 min-h-[44px] whitespace-nowrap">
+                <span>Bekijk alle onderdelen voor <span id="model-direct-parts-btn-model"></span> →</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bottom Parts Banner (Fallback when no direct wear parts) -->
+          <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-orange-400 flex items-center gap-1.5">
+                  <span>⚙️ Passende STIHL Onderdelen</span>
+                </span>
+                <span class="text-3xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium">Onderdelencatalogus</span>
+              </div>
+              <p id="model-card-parts-banner-desc" class="text-gray-300 text-2xs leading-relaxed">
+                Zoekt u vervangende onderdelen, zaagkettingen, filters of onderhoudssets voor dit model? Bekijk het complete overzicht van passende onderdelen.
+              </p>
+            </div>
+            <a id="model-card-bottom-parts-btn" href="#" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition whitespace-nowrap self-start sm:self-center min-h-[44px] flex items-center">
+              Bekijk onderdelen →
+            </a>
+          </div>
+        </div>
+
+        <!-- LAAG 3: SPECIFICATIES & AFSTELWAARDEN (INKLAPBAAR ONDER ONDERDELEN) -->
+        <details id="model-specs-details" class="group bg-gray-950/60 border border-gray-800 rounded-2xl p-4 sm:p-5">
+          <summary class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 cursor-pointer list-none select-none min-h-[44px]">
+            <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-2">
               <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              <span>Specificaties & Afstelwaarden</span>
+              <span>Specificaties &amp; Afstelwaarden</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform inline-block ml-1" aria-hidden="true">▾</span>
             </h4>
             <span id="model-specs-count-badge" class="text-2xs font-semibold px-2.5 py-0.5 rounded-full bg-gray-950 text-gray-400 border border-gray-800 self-start sm:self-auto">
               Specificaties beschikbaar
             </span>
-          </div>
+          </summary>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 mt-4 border-t border-gray-800/80">
             <!-- Section 1: Motor -->
             <div id="model-sec-motor" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
               <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
@@ -468,7 +528,7 @@
             <div id="model-sec-fuel" class="bg-gray-950 rounded-xl p-4 sm:p-5 border border-gray-800 space-y-3">
               <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
                 <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Brandstof & Onderhoud
+                Brandstof &amp; Onderhoud
               </h5>
               <div class="grid grid-cols-2 gap-3 text-xs">
                 <div id="model-spec-spark-box">
@@ -538,57 +598,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
-        <!-- LAAG 3: DIRECTE ONDERDELENSECTIE & MACHINEPASPOORT BANNER -->
+        <!-- MACHINEPASPOORT BANNER -->
         <div class="space-y-4 pt-2">
-          <!-- FASE 3: DIRECTE ONDERDELENSECTIE OP MODELRESULTAAT -->
-          <div id="model-direct-parts-section" class="hidden bg-gray-950/90 border border-orange-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-800 pb-3">
-              <div>
-                <h4 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                  <span>⚙️ Onderdelen voor jouw STIHL <span id="model-direct-parts-title-model" class="text-orange-400"></span></span>
-                </h4>
-                <p class="text-2xs text-gray-400 mt-0.5">Veelgezochte onderhouds- en slijtageonderdelen met gecontroleerde compatibiliteit.</p>
-              </div>
-              <span class="text-3xs font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 self-start sm:self-auto">
-                ✓ Bevestigde selectie
-              </span>
-            </div>
-
-            <!-- Compact Parts Cards Grid -->
-            <div id="model-direct-parts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              <!-- Dynamically populated -->
-            </div>
-
-            <!-- Doorklik naar volledige onderdelencatalogus -->
-            <div class="pt-3 border-t border-gray-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <p class="text-2xs text-gray-400">
-                Zoek je andere onderdelen, behuizingen of revisiesets voor deze machine?
-              </p>
-              <a id="model-direct-parts-all-btn" href="#" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-md shadow-orange-600/20 transition flex items-center justify-center gap-2 min-h-[44px] whitespace-nowrap">
-                <span>Bekijk alle onderdelen voor <span id="model-direct-parts-btn-model"></span> →</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Bottom Parts Banner (Fallback when no direct wear parts) -->
-          <div id="model-card-parts-banner" class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-orange-400 flex items-center gap-1.5">
-                  <span>⚙️ Passende STIHL Onderdelen</span>
-                </span>
-                <span class="text-3xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30 font-medium">Onderdelencatalogus</span>
-              </div>
-              <p id="model-card-parts-banner-desc" class="text-gray-300 text-2xs leading-relaxed">
-                Zoekt u vervangende onderdelen, zaagkettingen, filters of onderhoudssets voor dit model? Bekijk het complete overzicht van passende onderdelen.
-              </p>
-            </div>
-            <a id="model-card-bottom-parts-btn" href="#" class="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow transition whitespace-nowrap self-start sm:self-center min-h-[44px] flex items-center">
-              Bekijk onderdelen →
-            </a>
-          </div>
 
           <!-- Machinepaspoort Banner -->
           <div class="bg-gradient-to-r from-orange-950/40 via-gray-900 to-gray-900 border border-orange-500/30 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
@@ -1623,7 +1636,7 @@
               </div>
 
               ${safePurchaseUrl ? `
-                <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" class="text-2xs font-bold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40' : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700'} px-2.5 py-1 rounded-lg border transition flex items-center gap-1 min-h-[36px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
+                <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" data-provider="${escapeHtml(p.purchase_provider || 'amazon')}" data-marketplace="${escapeHtml(p.purchase_marketplace || '')}" title="${(p.is_direct_offer || p.is_direct_asin) ? `Directe aankoop via ${escapeHtml(p.purchase_marketplace || 'webshop')}` : 'Alleen zoekopdracht op Amazon (geen vooraf bevestigd aanbod)'}" class="text-2xs font-bold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40' : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700'} px-2.5 py-1 rounded-lg border transition flex items-center gap-1 min-h-[36px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
                   <span>${(p.is_direct_offer || p.is_direct_asin) ? `🛒 ${safePurchaseLabel}` : `🔍 ${safePurchaseLabel} (zoekopdracht)`}</span>
                 </a>
               ` : ''}
@@ -1658,8 +1671,30 @@
         containerEl.classList.remove('hidden');
       }
 
+      let activeDecodeRequestId = 0;
+
+      function focusAndScrollToResult(scrollEl, focusEl) {
+        if (scrollEl) {
+          const headerEl = document.querySelector('header');
+          const headerHeight = headerEl ? headerEl.getBoundingClientRect().height : 72;
+          const rect = scrollEl.getBoundingClientRect();
+          const targetTop = Math.max(0, rect.top + window.scrollY - headerHeight - 16);
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        }
+        if (focusEl && typeof focusEl.focus === 'function') {
+          if (!focusEl.hasAttribute('tabindex')) {
+            focusEl.setAttribute('tabindex', '-1');
+          }
+          focusEl.focus({ preventScroll: true });
+        }
+      }
+
       async function handleDecode() {
         const val = inputEl.value.trim();
+        const requestId = ++activeDecodeRequestId;
+        const loadingStateEl = document.getElementById('decode-loading-state');
+        const loadingTextEl = document.getElementById('decode-loading-text');
+        const searchBtnText = document.getElementById('search-btn-text');
 
         // Reset visibility of all cards
         resultCard.classList.add('hidden');
@@ -1667,6 +1702,7 @@
         counterfeitCard.classList.add('hidden');
         modelCard.classList.add('hidden');
         emptyState.classList.add('hidden');
+        if (loadingStateEl) loadingStateEl.classList.add('hidden');
         if (safePreviewCard) safePreviewCard.classList.add('hidden');
         const modelDirectPartsSec = document.getElementById('model-direct-parts-section');
         const resDirectPartsSec = document.getElementById('res-direct-parts-section');
@@ -1724,7 +1760,24 @@
 
         if (!val) {
           emptyState.classList.remove('hidden');
+          focusAndScrollToResult(emptyState, emptyTitle);
           return;
+        }
+
+        // Immediate visible loading state (Phase 81.2)
+        if (loadingTextEl) {
+          loadingTextEl.innerText = `Onderdelen en gegevens zoeken voor "${val}"...`;
+        }
+        if (loadingStateEl) {
+          loadingStateEl.classList.remove('hidden');
+          focusAndScrollToResult(loadingStateEl, null);
+        }
+        if (searchBtn) {
+          searchBtn.disabled = true;
+          searchBtn.setAttribute('aria-busy', 'true');
+        }
+        if (searchBtnText) {
+          searchBtnText.innerText = 'Zoeken...';
         }
 
         let res = null;
@@ -1735,18 +1788,37 @@
           }
           res = await response.json();
         } catch (err) {
+          if (requestId !== activeDecodeRequestId) return;
+          if (loadingStateEl) loadingStateEl.classList.add('hidden');
           showToast('De analyse kon niet worden uitgevoerd. Probeer het opnieuw.');
           if (emptyTitle) emptyTitle.innerText = 'De analyse kon niet worden uitgevoerd. Probeer het opnieuw.';
           if (emptyDesc) emptyDesc.innerText = 'Controleer uw verbinding of probeer het over enkele ogenblikken nogmaals.';
           emptyState.classList.remove('hidden');
+          focusAndScrollToResult(emptyState, emptyTitle);
           return;
+        } finally {
+          if (requestId === activeDecodeRequestId) {
+            if (loadingStateEl) loadingStateEl.classList.add('hidden');
+            if (searchBtn) {
+              searchBtn.disabled = false;
+              searchBtn.setAttribute('aria-busy', 'false');
+            }
+            if (typeof updateDynamicSearchButton === 'function') {
+              updateDynamicSearchButton();
+            } else if (searchBtnText) {
+              searchBtnText.innerText = 'Zoeken';
+            }
+          }
         }
+
+        if (requestId !== activeDecodeRequestId) return;
 
         // CASE 1: Counterfeit / Fake Serial Number
         if (res && res.isCounterfeit) {
           document.getElementById('counterfeit-risk-badge').innerText = 'VERDACHT SERIENUMMER';
           document.getElementById('counterfeit-reason').innerText = res.error || 'Dit serienummer is als ongeldig of verdacht namaak (kloon) aangemerkt.';
           counterfeitCard.classList.remove('hidden');
+          focusAndScrollToResult(counterfeitCard, counterfeitCard.querySelector('h3'));
           return;
         }
 
@@ -1798,7 +1870,10 @@
             });
           }
 
-          if (disambiguationCard) disambiguationCard.classList.remove('hidden');
+          if (disambiguationCard) {
+            disambiguationCard.classList.remove('hidden');
+            focusAndScrollToResult(disambiguationCard, disambiguationCard.querySelector('h3'));
+          }
           return;
         }
 
@@ -1840,6 +1915,7 @@
           }
 
           warningCard.classList.remove('hidden');
+          focusAndScrollToResult(warningCard, document.getElementById('warn-part-no'));
           return;
         }
 
@@ -2008,13 +2084,22 @@
             modelSpecsBadge.innerText = `${totalModelSpecs} van 14 specificaties beschikbaar`;
           }
 
+          const modelSpecsDetails = document.getElementById('model-specs-details');
+          if (modelSpecsDetails) modelSpecsDetails.open = false;
+
           modelCard.classList.remove('hidden');
+          const hasDirectPartsVisible = modelDirectPartsSec && !modelDirectPartsSec.classList.contains('hidden');
+          focusAndScrollToResult(
+            hasDirectPartsVisible ? modelDirectPartsSec : modelCard,
+            hasDirectPartsVisible ? document.getElementById('model-direct-parts-heading') : document.getElementById('model-title-display')
+          );
           return;
         }
 
         // CASE 4: Recognized Serial Number -> FULL PASSPORT & SERIAL BREAKPOINTS ENGINE
         if (res && res.type === 'SERIAL_NUMBER') {
           renderSerialResult(res);
+          focusAndScrollToResult(resultCard, document.getElementById('res-model'));
           return;
         }
 
@@ -2039,6 +2124,7 @@
           emptySuggestionsContainer.classList.remove('hidden');
         }
         emptyState.classList.remove('hidden');
+        focusAndScrollToResult(emptyState, emptyTitle);
       }
 
       function renderSerialResult(res) {
