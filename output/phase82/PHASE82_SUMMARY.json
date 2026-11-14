@@ -1,0 +1,106 @@
+{
+  "phase": "82",
+  "title": "STIHL Catalog Expansion & Affiliate Activation",
+  "generated_at": "2026-11-14T22:00:00.000Z",
+  "baseline_before": {
+    "ebay_active_offers": 866,
+    "ebay_parts_with_direct_offer": 102,
+    "amazon_active_offers": 99,
+    "amazon_parts_with_direct_offer": 86,
+    "catalog_parts": 18377,
+    "canonical_parts_invariant": 18373
+  },
+  "after": {
+    "ebay_active_offers": 1646,
+    "ebay_parts_with_direct_offer": 200,
+    "amazon_active_offers": 99,
+    "amazon_parts_with_direct_offer": 86,
+    "catalog_parts": 18377
+  },
+  "deliverables": {
+    "1_new_catalog_parts": {
+      "count": 0,
+      "reason": "Alle 1.420 onderdelen uit geaccepteerde officiele harvest-observaties staan al in de catalogus (0 ontbrekend). De enige gedocumenteerde maar ontbrekende nummers zijn 8 supersession-doelen; die toevoegen doorbreekt de canonical invariant 18.373 en vereist een aparte catalogusmigratie. In deze omgeving zijn geen nieuwe officiele IPL-documenten beschikbaar; er zijn geen onbewezen onderdelen toegevoegd.",
+      "evidence": "output/phase82/PHASE82_CATALOG_AUDIT.json"
+    },
+    "2_new_confirmed_model_compatibility_relations": {
+      "count": 0,
+      "note": "Geen nieuwe fitment-relaties geschreven (fitments staan in 8 gecomprimeerde shards met een vaste telling). Wel zijn 98 bestaande onderdelen nieuw ontsloten als koopbaar onderdeel; hun bestaande, gedocumenteerde fitments beslaan 290 modellen.",
+      "models_touched_by_new_direct_links": 290,
+      "priority_models_touched": 17
+    },
+    "3_new_active_ebay_offers": {
+      "count": 780,
+      "unique_parts": 98,
+      "marketplace_split": {
+        "EBAY_NL": 512,
+        "EBAY_DE": 268
+      },
+      "campaign_id": "5339245312",
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED (780/780)",
+      "resolver_status": "VERIFIED",
+      "overlap_with_phase81_parts": 0,
+      "evidence": "output/phase82/ebay_offers_phase82.json"
+    },
+    "4_new_active_amazon_offers": {
+      "count": 0,
+      "reason": "De 3 VERIFIED-kandidaten hebben geen actieve buybox en geen bevestigde NL-levering; de 55 RESEARCH_REQUIRED missen onafhankelijk ASIN-identiteitsbewijs. Amazon PA-API is hier niet beschikbaar; niets ongeverifieerd geactiveerd.",
+      "evidence": "output/phase82/PHASE82_AMAZON_AUDIT.json"
+    },
+    "5_additional_unique_parts_with_direct_purchase": {
+      "count": 98,
+      "parts": "output/phase82/PHASE82_EBAY_PARTS.json"
+    },
+    "6_gsc_model_coverage_growth": {
+      "priority_models_with_new_direct_links": 17,
+      "priority_models_requested": 17,
+      "new_parts_per_priority_model": {
+        "ms_440": 5,
+        "ms_170": 3,
+        "ms_361": 7,
+        "br_600": 5,
+        "ms_250": 7,
+        "bg_86": 3,
+        "ms_461": 6,
+        "ms_390": 9,
+        "hs_45": 9,
+        "ms_260": 10,
+        "ms_180": 4,
+        "ms_261": 7,
+        "fs_55": 14,
+        "fs_85": 12,
+        "fs_350": 8,
+        "ts_420": 5,
+        "ms_661": 4
+      },
+      "evidence": "output/phase82/PHASE82_MODEL_COVERAGE.json"
+    },
+    "7_candidates_with_evidence_completed": {
+      "count": 780,
+      "note": "780 listings kregen volledig bewijs (identiteit + NL-verzending) en zijn geactiveerd."
+    },
+    "8_remaining_needs_evidence": {
+      "count_total_after_phase82": 1196,
+      "new_this_phase": 612,
+      "grouping": {
+        "MATCH_TITLE_ONLY_NEEDS_EVIDENCE": 612
+      },
+      "distinct_parts": 90,
+      "note": "Alle nieuwe restcandidaten zijn titel-only matches: geen onderdeelnummer/MPN of EAN in de listing, dus geen identiteitsbewijs. Ze blijven NEEDS_EVIDENCE (niet afgewezen).",
+      "evidence": "output/phase82/PHASE82_NEEDS_EVIDENCE_GROUPS.json"
+    },
+    "9_published_parts_and_buy_links": {
+      "published_via_deploy": "catalogus en code (geen cataloguswijzigingen in deze fase)",
+      "published_ebay_offers": 780,
+      "pending_action": "De 780 aanbiedingen moeten in de productie-store op /var/data worden gemerged (Render Shell) en de service moet herstarten; daarna 1.646 ACTIVE eBay-aanbiedingen op 200 onderdelen."
+    }
+  },
+  "execution": {
+    "queue_file": "output/phase82/PHASE82_REMAINING_QUEUE.json",
+    "parts_in_queue": 109,
+    "parts_searched": 109,
+    "chunks": 7,
+    "duration_note": "7 live chunks van 15-19 onderdelen, checkpoint per chunk; geen HTTP 429 opgetreden.",
+    "rejected_candidates_this_phase": 116
+  }
+}
