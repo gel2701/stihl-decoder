@@ -315,10 +315,14 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
               <a
                 href="${exactMatchResult.purchase_offer.url}"
                 target="_blank"
-                rel="nofollow sponsored"
-                class="px-4 py-2.5 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-1.5 min-h-[44px]"
+                rel="sponsored nofollow noopener"
+                data-provider="${exactMatchResult.purchase_offer.provider || 'amazon'}"
+                data-marketplace="${exactMatchResult.purchase_offer.marketplace || 'amazon.nl'}"
+                data-offer-type="${exactMatchResult.purchase_offer.type}"
+                class="px-4 py-2.5 ${exactMatchResult.purchase_offer.is_direct ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700'} font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-1.5 min-h-[44px]"
+                title="${exactMatchResult.purchase_offer.is_direct ? `Directe Aankoop op ${exactMatchResult.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
               >
-                <span>🛒 ${exactMatchResult.purchase_offer.label}</span>
+                <span>${exactMatchResult.purchase_offer.is_direct ? `🛒 ${exactMatchResult.purchase_offer.label}` : `🔍 ${exactMatchResult.purchase_offer.label} (zoekopdracht)`}</span>
                 <span class="text-2xs opacity-70">↗</span>
               </a>
             ` : ''}
@@ -485,11 +489,15 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                   <a
                     href="${p.purchase_offer.url}"
                     target="_blank"
-                    rel="nofollow sponsored"
-                    class="px-3 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/40 rounded-lg text-2xs font-bold transition flex items-center gap-1 min-h-[36px]"
-                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
+                    rel="sponsored nofollow noopener"
+                    data-provider="${p.purchase_offer.provider || 'amazon'}"
+                    data-marketplace="${p.purchase_offer.marketplace || 'amazon.nl'}"
+                    data-offer-type="${p.purchase_offer.type}"
+                    class="px-3 py-1 ${p.purchase_offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition flex items-center gap-1 min-h-[36px]"
+                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${p.purchase_offer.provider || 'amazon'}', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
+                    title="${p.purchase_offer.is_direct ? `Directe Aankoop op ${p.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
                   >
-                    <span>${p.purchase_offer.is_direct ? '🛒 Directe Aankoop' : 'Zoek op Amazon'}</span>
+                    <span>${p.purchase_offer.is_direct ? (p.purchase_offer.provider === 'ebay' ? `🛒 Directe Aankoop (${p.purchase_offer.marketplace || 'ebay.nl'})` : '🛒 Directe Aankoop') : '🔍 Zoek op Amazon (zoekopdracht)'}</span>
                     <span>↗</span>
                   </a>
                 ` : ''}
@@ -543,12 +551,15 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                         <a
                           href="${p.purchase_offer.url}"
                           target="_blank"
-                          rel="nofollow sponsored"
-                          class="px-2.5 py-1 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30 rounded-lg text-2xs font-bold transition whitespace-nowrap inline-flex items-center gap-1 min-h-[30px]"
-                          onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: 'amazon', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
-                          title="Bekijk op Amazon"
+                          rel="sponsored nofollow noopener"
+                          data-provider="${p.purchase_offer.provider || 'amazon'}"
+                          data-marketplace="${p.purchase_offer.marketplace || 'amazon.nl'}"
+                          data-offer-type="${p.purchase_offer.type}"
+                          class="px-2.5 py-1 ${p.purchase_offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition whitespace-nowrap inline-flex items-center gap-1 min-h-[30px]"
+                          onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${p.purchase_offer.provider || 'amazon'}', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
+                          title="${p.purchase_offer.is_direct ? `Directe Aankoop op ${p.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
                         >
-                          <span>🛒 Amazon</span>
+                          <span>${p.purchase_offer.is_direct ? (p.purchase_offer.provider === 'ebay' ? `🛒 Directe Koop (${p.purchase_offer.marketplace || 'ebay.nl'})` : '🛒 Directe Koop') : '🔍 Zoek op Amazon (zoekopdracht)'}</span>
                           <span class="opacity-70 text-3xs">↗</span>
                         </a>
                       ` : ''}

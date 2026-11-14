@@ -355,10 +355,16 @@ ${supersessionHtml}
       </p>
       <div class="space-y-4">
         ${offers.map(offer => {
-          const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
-          const isGerman = offer.marketplace === 'amazon.de';
+          const providerId = String(offer.provider || 'amazon').toLowerCase();
+          const isEbay = providerId === 'ebay';
+          const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN' || isEbay);
+          const marketplace = offer.marketplace || (isEbay ? 'ebay.nl' : 'amazon.nl');
+          const isGerman = marketplace === 'amazon.de' || marketplace === 'ebay.de';
+          const marketplaceDisplay = isEbay
+            ? (marketplace === 'ebay.de' ? 'eBay.de' : 'eBay.nl')
+            : (marketplace === 'amazon.de' ? 'Amazon.de' : 'Amazon.nl');
           const buttonText = offer.label || (isVerified
-            ? (isGerman ? 'Bekijk bij Sägenspezi op Amazon.de' : 'Bekijk dit onderdeel op Amazon.nl')
+            ? (isEbay ? `Bekijk op ${marketplace}` : (isGerman ? 'Bekijk bij Sägenspezi op Amazon.de' : 'Bekijk dit onderdeel op Amazon.nl'))
             : (isGerman ? 'Zoek op Amazon.de' : 'Zoek op Amazon.nl'));
           const productTitle = offer.title || (isVerified ? `${offer.brand || offer.seller_name || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
           const oemLabel = (offer.oem_brand_classification === 'GENUINE_STIHL' || offer.oem_brand_classification === 'GENUINE_STIHL_OEM')
@@ -369,21 +375,24 @@ ${supersessionHtml}
                 ? `Aftermarket (${offer.brand || 'Kwaliteitsvervanger'})`
                 : 'Kwaliteitsvervanger'));
           const descriptionText = offer.description || (isVerified
-            ? (isGerman
-                ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd (verkoper: ${offer.seller_name || 'Sägenspezi'}). Verzending naar Nederland is bevestigd.`
-                : 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.')
+            ? (isEbay
+                ? `Directe aanbieding op ${marketplaceDisplay}${offer.seller_name ? ` (verkoper: ${offer.seller_name})` : ''}. Verzending naar Nederland is bevestigd; controleer onderdeelnummer en machine-uitvoering vóór aankoop.`
+                : (isGerman
+                    ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd (verkoper: ${offer.seller_name || 'Sägenspezi'}). Verzending naar Nederland is bevestigd.`
+                    : 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'))
             : `U opent een dynamische zoekopdracht op ${isGerman ? 'Amazon.de' : 'Amazon.nl'} voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
           const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
-          const placement = isVerified ? (isGerman ? 'verified_product_card_de' : 'verified_product_card') : 'search_fallback';
+          const offerType = offer.match_type || (isVerified ? (isEbay ? 'DIRECT_EBAY_ITEM' : 'MANUAL_ASIN') : 'SEARCH_LINK');
+          const placement = isVerified ? (isEbay ? 'verified_product_card_ebay' : (isGerman ? 'verified_product_card_de' : 'verified_product_card')) : 'search_fallback';
 
           const redirectParams = new URLSearchParams({
             url: offer.url,
             part_number: resolved.part_number,
             model: compatibleModels[0]?.model_id || '',
-            provider: offer.provider || 'amazon',
-            marketplace: offer.marketplace || 'amazon.nl',
-            offer_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
-            match_type: offer.match_type || (isVerified ? 'MANUAL_ASIN' : 'SEARCH_LINK'),
+            provider: providerId,
+            marketplace: marketplace,
+            offer_type: offerType,
+            match_type: offerType,
             asin_if_known: offer.asin || '',
             product_verified: isVerified ? 'true' : 'false',
             placement: placement,
@@ -396,15 +405,16 @@ ${supersessionHtml}
           const safePrimarySec = (primarySectionContext || '').replace(/'/g, "\\'");
 
           if (isVerified) {
-            // Enhanced Verified Product Card (Phase 68A / Phase 70 Multi-Marketplace)
+            // Enhanced Verified Product Card (Phase 68A / Phase 70 Multi-Marketplace / Phase 81.1 eBay)
+            const hasNlShipping = offer.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED' || offer.ships_to_nl === true;
             return `
             <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border ${isGerman ? 'border-amber-500/30 hover:border-amber-500/50' : 'border-emerald-500/30 hover:border-emerald-500/50'} shadow-sm transition space-y-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
                   <span class="text-3xs font-mono font-bold px-2 py-0.5 rounded-full ${isGerman ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'}">
-                    ✓ ${isGerman ? 'Directe Link (Amazon.de)' : 'Geverifieerd Product (Directe Link)'}
+                    ✓ ${isEbay ? `Directe Link (${marketplaceDisplay})` : (isGerman ? 'Directe Link (Amazon.de)' : 'Geverifieerd Product (Directe Link)')}
                   </span>
-                  ${isGerman && offer.seller_name ? `
+                  ${(isEbay || isGerman) && offer.seller_name ? `
                   <span class="text-3xs font-mono px-2 py-0.5 rounded bg-amber-950/40 text-amber-200 border border-amber-700/40 font-semibold">
                     Verkoper: ${offer.seller_name}
                   </span>
@@ -413,13 +423,13 @@ ${supersessionHtml}
                     ${oemLabel}
                   </span>
                   `}
-                  ${offer.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED' ? `
+                  ${hasNlShipping ? `
                   <span class="text-3xs font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/30">
                     🇳🇱 Verzending naar NL bevestigd
                   </span>
                   ` : ''}
                 </div>
-                <span class="text-3xs text-gray-400 font-mono">ASIN: ${offer.asin || '—'} · ${isGerman ? 'Amazon.de' : 'Amazon.nl'}</span>
+                <span class="text-3xs text-gray-400 font-mono">${isEbay ? `eBay Item: ${offer.item_id || '—'} · ${marketplaceDisplay}` : `ASIN: ${offer.asin || '—'} · ${marketplaceDisplay}`}</span>
               </div>
 
               <div>
@@ -429,8 +439,8 @@ ${supersessionHtml}
 
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-2xs border-t border-gray-800/60">
                 <div>
-                  <span class="text-gray-400 block font-medium">Fabrikant/Merk:</span>
-                  <span class="text-gray-200 font-bold">${offer.manufacturer || offer.brand || (offer.seller_name || 'Fabrikant')}</span>
+                  <span class="text-gray-400 block font-medium">${isEbay ? 'Aanbieder / Merk:' : 'Fabrikant/Merk:'}</span>
+                  <span class="text-gray-200 font-bold">${offer.manufacturer || offer.brand || offer.seller_name || (isEbay ? marketplaceDisplay : 'Fabrikant')}</span>
                 </div>
                 <div>
                   <span class="text-gray-400 block font-medium">Fabrikantcode (MPN):</span>
@@ -450,7 +460,11 @@ ${supersessionHtml}
 
               <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-800/40">
                 <span class="text-3xs text-gray-400 leading-tight">
-                  ${isGerman ? `Directe productpagina op Amazon.de (verkoper: ${offer.seller_name || 'Amazon marketplace'}). Verzending naar Nederland gecontroleerd. Actuele prijs en beschikbaarheid op Amazon.` : `Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims. Actuele prijs en beschikbaarheid op Amazon.`}
+                  ${isEbay
+                    ? `Directe aanbieding op ${marketplaceDisplay}${offer.seller_name ? ` (verkoper: ${offer.seller_name})` : ''}. Verzending naar Nederland bevestigd. Actuele prijs en beschikbaarheid op eBay.`
+                    : (isGerman
+                        ? `Directe productpagina op Amazon.de (verkoper: ${offer.seller_name || 'Amazon marketplace'}). Verzending naar Nederland gecontroleerd. Actuele prijs en beschikbaarheid op Amazon.`
+                        : `Directe productpagina op Amazon.nl (${offer.brand || 'Fabrikant'} verpakking). Geen onbevestigde prijs of voorraadclaims. Actuele prijs en beschikbaarheid op Amazon.`)}
                 </span>
                 <a
                   href="${offer.url}"
@@ -461,11 +475,11 @@ ${supersessionHtml}
                   data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
                   data-tracking-url="/api/affiliate/track"
                   data-part-number="${resolved.part_number}"
-                  data-provider="${offer.provider || 'amazon'}"
-                  data-marketplace="${offer.marketplace || 'amazon.nl'}"
-                  data-offer-type="MANUAL_ASIN"
+                  data-provider="${providerId}"
+                  data-marketplace="${marketplace}"
+                  data-offer-type="${offerType}"
                   data-placement="${placement}"
-                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'MANUAL_ASIN', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
                 >
                   <span>${buttonText}</span>
                   <span aria-hidden="true">↗</span>
@@ -480,12 +494,12 @@ ${supersessionHtml}
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
-                <span class="font-bold text-white text-sm capitalize">${offer.marketplace || offer.provider}</span>
+                <span class="font-bold text-white text-sm capitalize">${marketplace}</span>
                 <span class="text-3xs font-mono px-2 py-0.5 rounded bg-gray-900 text-amber-300/90 border border-amber-600/30">Amazon-zoekopdracht (Niet vooraf gecontroleerd)</span>
               </div>
               <div class="text-2xs text-gray-400">
                 ${descriptionText}
-                <span class="block text-gray-400 mt-0.5">Dit betreft een dynamische zoekopdracht. Controleer altijd zelf de pasvorm en productspecificaties vóór aankoop.</span>
+                <span class="block text-gray-400 mt-0.5">Dit betreft slechts een dynamische zoekopdracht, geen geverifieerd direct aanbod. Controleer altijd zelf de pasvorm en productspecificaties vóór aankoop.</span>
               </div>
             </div>
             <a
@@ -497,13 +511,13 @@ ${supersessionHtml}
               data-affiliate-endpoint="/api/affiliate/out?${redirectParams.toString()}"
               data-tracking-url="/api/affiliate/track"
               data-part-number="${resolved.part_number}"
-              data-provider="${offer.provider || 'amazon'}"
-              data-marketplace="${offer.marketplace || 'amazon.nl'}"
+              data-provider="${providerId}"
+              data-marketplace="${marketplace}"
               data-offer-type="SEARCH_LINK"
               data-placement="search_fallback"
-              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${offer.provider}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
-              <span>Zoek op Amazon.nl ↗</span>
+              <span>${buttonText} ↗</span>
             </a>
           </div>
           `;
