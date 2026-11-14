@@ -10,7 +10,7 @@
     "scope_unresolved_count": 11,
     "global_explicit_count": 0,
     "invalid_relations_count": 0,
-    "active_in_catalog_count": 4,
+    "active_in_catalog_count": 11,
     "self_loops": 0,
     "cycles": 0,
     "conflicts": 0
@@ -210,10 +210,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "42267922700",
@@ -235,10 +235,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "11280300404",
@@ -264,10 +264,10 @@
           "raw_text": "from serial number 1 54 517 175"
         }
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "11291201606",
@@ -290,10 +290,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "11220211101",
@@ -313,9 +313,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -336,9 +336,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -366,10 +366,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
+      "source_in_catalog": true,
       "target_in_catalog": true,
-      "catalog_status": "SOURCE_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "42037006306",
@@ -392,10 +392,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "42031402800",
@@ -420,10 +420,10 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
-      "active_in_catalog": false
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
+      "active_in_catalog": true
     },
     {
       "from_part": "41166400104",
@@ -443,9 +443,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -466,9 +466,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -489,9 +489,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -535,9 +535,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     },
     {
@@ -581,9 +581,9 @@
         "configuration_keys": [],
         "serial_condition": null
       },
-      "source_in_catalog": false,
-      "target_in_catalog": false,
-      "catalog_status": "BOTH_NOT_IN_CATALOG",
+      "source_in_catalog": true,
+      "target_in_catalog": true,
+      "catalog_status": "ACTIVE_IN_CATALOG",
       "active_in_catalog": false
     }
   ]

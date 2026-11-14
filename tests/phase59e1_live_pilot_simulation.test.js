@@ -11,11 +11,11 @@
  *    - 0000 400 7000 -> https://amazon.nl/dp/B001RM8J76?tag=srihldecoder2-21
  *    - 0000 400 7011 -> https://amazon.nl/dp/B001RMA5S2?tag=srihldecoder2-21
  * 4. Granular whitelisting: individual activation control (1, 2, or 3 parts).
- * 5. Universal search fallback: all non-activated parts (and all 18,373 catalog parts) retain valid search links.
+ * 5. Universal search fallback: all non-activated parts (and all 18,397 catalog parts) retain valid search links.
  * 6. Fault tolerance & fail-closed fallback: corrupted, stale or missing records automatically fallback to search.
  * 7. Multi-layer kill switch reproducibility: instant rollback to search fallback.
  * 8. Telemetry, privacy & disclosure invariant: direct Amazon URL (0 redirects), transparent badging, zero PII.
- * 9. Production invariant preservation: 18,373 parts, 843 SEO parts, 1,024 sitemap URLs.
+ * 9. Production invariant preservation: 18,397 parts, 843 SEO parts, 1,024 sitemap URLs.
  */
 
 import test from 'node:test';
@@ -293,7 +293,7 @@ test('Phase 59E.1 — 7. Reproducible Multi-Layer Rollback Execution', () => {
 
 test('Phase 59E.1 — 8. Strict Production Invariant Freeze', () => {
   const catalog = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
-  assert.strictEqual(catalog.parts.length, 18377, 'Canonical catalog parts count must remain exactly 18,373');
+  assert.strictEqual(catalog.parts.length, 18397, 'Canonical catalog parts count must remain exactly 18,397');
 
   const indexable = getAllIndexablePartsList();
   assert.strictEqual(indexable.length, 843, 'Tier A indexable parts count must remain exactly 843');
