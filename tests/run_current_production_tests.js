@@ -147,7 +147,8 @@ export const currentProductionSuites = [
   'tests/phase81_1_offer_visibility.test.js',
   'tests/phase81_2_homepage_parts_ux.test.js',
   'tests/phase79b_amazon_buy_buttons.test.js',
-  'tests/phase79_passport_visibility.test.js'
+  'tests/phase79_passport_visibility.test.js',
+  'tests/multi_marketplace_buttons.test.js'
 ];
 
 console.log('===============================================================');

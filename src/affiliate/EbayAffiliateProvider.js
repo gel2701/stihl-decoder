@@ -13,11 +13,12 @@
  */
 
 import { AffiliateProvider } from './AffiliateProvider.js';
+import { extractTargetedSearchKeywords } from './AmazonAffiliateProvider.js';
 import { EbayBrowseApiClient } from './EbayBrowseApiClient.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { MATCH_TYPES } from './OfferEvidenceMatcher.js';
 import { SHIPPING_STATUS } from './EbayShippingEvidence.js';
-import { loadEbayCachedOffers } from './EbayOfferStore.js';
+import { loadEbayCachedOffers, validateEbayAffiliateUrl } from './EbayOfferStore.js';
 import { getEbayOfferStorePath } from './AffiliateStoragePaths.js';
 
 const partInTitle = (title, part) => new RegExp(`(^|\\D)${part.slice(0, 4)}[\\s-]*${part.slice(4, 7)}[\\s-]*${part.slice(7)}(?!\\d)`).test(title);
@@ -40,6 +41,59 @@ export class EbayAffiliateProvider extends AffiliateProvider {
       process.env.EBAY_AFFILIATE_ENABLED !== 'false' &&
       process.env.EBAY_EPN_CAMPAIGN_ID === '5339245312' &&
       Boolean(process.env.EBAY_CLIENT_ID?.trim() && process.env.EBAY_CLIENT_SECRET?.trim());
+  }
+
+  isSearchAffiliateEnabled() {
+    return process.env.EBAY_ENABLED === 'true' &&
+      process.env.EBAY_AFFILIATE_ENABLED !== 'false' &&
+      process.env.EBAY_EPN_CAMPAIGN_ID === '5339245312';
+  }
+
+  buildSearchOffer(params = {}) {
+    if (!this.isSearchAffiliateEnabled()) return null;
+    const part = PartNormalizer.normalizePartNumber(params.canonicalPartNumber || params.partNumber);
+    if (!part) return null;
+
+    const formattedPart = PartNormalizer.formatPartNumber(part);
+    const keywords = extractTargetedSearchKeywords(params.partName);
+    const query = keywords ? `STIHL ${formattedPart} ${keywords}` : `STIHL ${formattedPart}`;
+
+    const url = new URL('https://www.ebay.nl/sch/i.html');
+    url.searchParams.set('_nkw', query);
+    url.searchParams.set('mkevt', '1');
+    url.searchParams.set('mkcid', '1');
+    url.searchParams.set('mkrid', '1346-53482-19255-0');
+    url.searchParams.set('campid', String(process.env.EBAY_EPN_CAMPAIGN_ID));
+    url.searchParams.set('toolid', '10049');
+
+    const finalUrl = url.toString();
+    const validation = validateEbayAffiliateUrl(finalUrl, process.env.EBAY_EPN_CAMPAIGN_ID);
+    if (!validation.valid) return null;
+
+    return {
+      provider: 'ebay',
+      marketplace: 'ebay.nl',
+      marketplace_id: 'EBAY_NL',
+      part_number: part,
+      asin: null,
+      item_id: null,
+      url: finalUrl,
+      affiliate_url: finalUrl,
+      link_type: 'SEARCH_FALLBACK',
+      tier: 'TARGETED_SEARCH',
+      match_type: 'SEARCH_LINK',
+      offer_type: 'SEARCH_LINK',
+      is_direct: false,
+      is_verified: false,
+      product_verified: false,
+      confidence: 'SEARCH_FALLBACK',
+      label: 'Zoek op eBay.nl',
+      badge_label: 'eBay-zoekopdracht',
+      cta_aria_label: `Zoek STIHL onderdeel ${formattedPart} op eBay.nl`,
+      description: `Zoek op eBay.nl naar STIHL onderdeel ${formattedPart}. De beschikbaarheid en exacte overeenkomst zijn niet vooraf bevestigd.`,
+      rel: 'sponsored nofollow noopener',
+      target: '_blank'
+    };
   }
 
   setCachedOffers(map) {

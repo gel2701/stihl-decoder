@@ -127,7 +127,7 @@ describe('Phase 60: Commercial Growth Engine & FS 460 Monetization', () => {
       const html = renderModelPartsPageHtml(fs460Model, database);
 
       assert.ok(html.includes('<th class="py-2 pl-3 text-right w-36">Aankoop</th>'), 'Aankoop column header must be present');
-      assert.ok(html.includes('🛒 Directe Koop') || html.includes('🛒 Zoek op Amazon'), 'Amazon buy buttons must be rendered');
+      assert.ok(html.includes('Koop bij Amazon.nl') || html.includes('Zoek op Amazon.nl'), 'Amazon buy/search buttons must be rendered');
       assert.ok(html.includes('window.handleAffiliateClick'), 'Tracking script must be present on model parts page');
       assert.ok(html.includes('/api/affiliate/track'), 'Beacon endpoint must be present');
     });

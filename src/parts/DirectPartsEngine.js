@@ -9,6 +9,7 @@
 import { PartCatalogResolver } from './PartCatalogResolver.js';
 import { PartNormalizer } from './PartNormalizer.js';
 import { AffiliateOfferResolver } from '../affiliate/AffiliateOfferResolver.js';
+import { getPartAffiliateOffers } from '../search/IntelligentPartsSearchEngine.js';
 import {
   getSafeModelPartsPath,
   getSafeCategorySlug,
@@ -388,6 +389,11 @@ export function getDirectPartsForModel(modelInput, options = {}, database = null
             : 'Zoek op Amazon')
         : null;
 
+      const purchaseOffers = getPartAffiliateOffers(candidate.part_number, candidate.part_name, {
+        ebayProvider: resolverToUse?.ebayProvider,
+        verifiedRegistry: resolverToUse?.verifiedRegistry
+      });
+
       selectedParts.push({
         slot: rule.slot,
         category_label: rule.categoryLabel || rule.label,
@@ -409,6 +415,7 @@ export function getDirectPartsForModel(modelInput, options = {}, database = null
         purchase_provider: primaryOffer ? (primaryOffer.provider || 'amazon') : null,
         purchase_marketplace: primaryOffer ? (primaryOffer.marketplace || null) : null,
         purchase_label: purchaseLabel,
+        purchase_offers: purchaseOffers,
         is_direct_offer: isDirectOffer,
         is_direct_asin: primaryOffer ? primaryOffer.link_type === 'DIRECT_ASIN' : false
       });

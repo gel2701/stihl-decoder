@@ -20,6 +20,7 @@ import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
 import { defaultVerifiedOfferRegistry } from '../affiliate/VerifiedOfferRegistry.js';
 import { AmazonAffiliateProvider, COMMERCIAL_TIERS, extractTargetedSearchKeywords } from '../affiliate/AmazonAffiliateProvider.js';
+import { EbayAffiliateProvider } from '../affiliate/EbayAffiliateProvider.js';
 import { defaultResolverInstance } from '../affiliate/AffiliateOfferResolver.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { SectionResolutionRegistry } from '../parts/SectionResolutionRegistry.js';
@@ -339,6 +340,199 @@ export function resolvePurchaseOffer(partNumber, partName = '', options = {}) {
 export const getPartAffiliateOffer = resolvePurchaseOffer;
 
 /**
+ * Multi-marketplace affiliate offer resolver for commercial part cards.
+ * Collects all eligible ACTIVE direct offers (Amazon.nl, Amazon.de, eBay.nl)
+ * and builds compliant search fallbacks only for marketplaces without direct offers
+ * and with valid affiliate configuration.
+ *
+ * @param {string} partNumber
+ * @param {string} [partName]
+ * @param {Object} [options]
+ * @returns {Object|null}
+ */
+export function getPartAffiliateOffers(partNumber, partName = '', options = {}) {
+  const norm = PartNormalizer.normalizePartNumber(partNumber);
+  if (!norm) return null;
+
+  if (process.env.AFFILIATE_ENABLED === 'false' || process.env.AFFILIATE_ENABLED === '0') {
+    return {
+      part_number: norm,
+      direct_offers: [],
+      search_offers: [],
+      all_offers: [],
+      primary_offer: null,
+      direct_marketplace_count: 0,
+      has_direct_offers: false
+    };
+  }
+
+  const registry = options.verifiedRegistry || defaultVerifiedOfferRegistry;
+  if (registry && registry.offers && registry.offers.size === 0 && typeof registry.loadFromFile === 'function') {
+    try {
+      registry.loadFromFile();
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  const amazonEnabled = process.env.AMAZON_AFFILIATE_ENABLED !== 'false' && process.env.AMAZON_AFFILIATE_ENABLED !== '0';
+  const amazonProvider = new AmazonAffiliateProvider({
+    partnerTag: process.env.AMAZON_ASSOCIATE_TAG || '',
+    verifiedRegistry: registry
+  });
+
+  const directByMarketplace = new Map();
+  const seenAsin = new Set();
+
+  // 1a. Amazon ACTIVE offers (Amazon.nl, Amazon.de) — Two-Gate, caps, NL shipping, kill-switches enforced by registry
+  if (amazonEnabled && registry && typeof registry.getActiveOffers === 'function') {
+    const activeAmazonOffers = orderOffersByMarketplace(registry.getActiveOffers(norm));
+    for (const offer of activeAmazonOffers) {
+      const marketplace = String(offer.marketplace || 'amazon.nl').toLowerCase();
+      if (marketplace !== 'amazon.nl' && marketplace !== 'amazon.de') continue;
+      const asin = String(offer.asin || '').trim().toUpperCase();
+      if (!asin) continue;
+      const dedupeKey = `${marketplace}:${asin}`;
+      if (seenAsin.has(dedupeKey)) continue;
+      seenAsin.add(dedupeKey);
+
+      if (!directByMarketplace.has(marketplace)) {
+        const tag = offer.affiliate_tag || getAmazonTagForMarketplace(marketplace);
+        const displayMkt = marketplace === 'amazon.de' ? 'Amazon.de' : 'Amazon.nl';
+        directByMarketplace.set(marketplace, {
+          type: 'DIRECT_ASIN',
+          provider: 'amazon',
+          marketplace,
+          display_marketplace: displayMkt,
+          asin,
+          item_id: null,
+          tag,
+          url: `https://${marketplace}/dp/${asin}?tag=${encodeURIComponent(tag)}`,
+          brand: offer.brand || offer.manufacturer || null,
+          label: `Koop bij ${displayMkt}`,
+          is_direct: true,
+          is_verified: true,
+          offer_type: 'DIRECT_ASIN'
+        });
+      }
+    }
+  }
+
+  // 1b. eBay ACTIVE offers (eBay.nl preferred, or eBay.de with confirmed NL shipping)
+  const ebayProvider = options.ebayProvider || defaultResolverInstance.ebayProvider || new EbayAffiliateProvider();
+  const rawEbayOffers = (ebayProvider && typeof ebayProvider.isEnabled === 'function' && ebayProvider.isEnabled())
+    ? ebayProvider.getOffers({ canonicalPartNumber: norm, partNumber: norm, partName })
+    : [];
+  const orderedEbay = orderOffersByMarketplace(Array.isArray(rawEbayOffers) ? rawEbayOffers : []);
+  const seenEbayIds = new Set();
+  for (const offer of orderedEbay) {
+    const itemId = String(offer.item_id || '').trim();
+    if (!itemId || seenEbayIds.has(itemId)) continue;
+    seenEbayIds.add(itemId);
+
+    const rawMkt = String(offer.marketplace || (offer.marketplace_id === 'EBAY_DE' ? 'ebay.de' : 'ebay.nl')).toLowerCase();
+    const marketplace = rawMkt === 'ebay.de' ? 'ebay.de' : 'ebay.nl';
+    const displayMkt = marketplace === 'ebay.de' ? 'eBay.de' : 'eBay.nl';
+
+    if (!directByMarketplace.has(marketplace)) {
+      directByMarketplace.set(marketplace, {
+        type: 'DIRECT_EBAY_ITEM',
+        provider: 'ebay',
+        marketplace,
+        display_marketplace: displayMkt,
+        asin: null,
+        item_id: itemId,
+        tag: null,
+        url: offer.url || offer.affiliate_url,
+        brand: offer.brand || offer.seller_name || null,
+        seller_name: offer.seller_name || '',
+        item_price: offer.item_price ?? offer.price ?? null,
+        currency: offer.currency || 'EUR',
+        label: `Koop bij ${displayMkt}`,
+        is_direct: true,
+        is_verified: true,
+        offer_type: 'DIRECT_EBAY_ITEM'
+      });
+    }
+  }
+
+  const direct_offers = [];
+  for (const mkt of ['amazon.nl', 'amazon.de', 'ebay.nl', 'ebay.de']) {
+    if (directByMarketplace.has(mkt)) {
+      direct_offers.push(directByMarketplace.get(mkt));
+    }
+  }
+
+  // 2. Search fallbacks ONLY for marketplaces without direct offers & with valid affiliate config
+  const search_offers = [];
+
+  if (!directByMarketplace.has('amazon.nl') && amazonEnabled) {
+    const nlTag = amazonProvider.getAssociateTag('amazon.nl') || getAmazonTagForMarketplace('amazon.nl');
+    if (nlTag) {
+      search_offers.push({
+        type: 'SEARCH_FALLBACK',
+        provider: 'amazon',
+        marketplace: 'amazon.nl',
+        display_marketplace: 'Amazon.nl',
+        asin: null,
+        item_id: null,
+        tag: nlTag,
+        url: amazonProvider.buildSearchUrl(norm, nlTag, { partName }, {}, 'amazon.nl'),
+        brand: null,
+        label: 'Zoek op Amazon.nl',
+        is_direct: false,
+        is_verified: false,
+        offer_type: 'SEARCH_LINK'
+      });
+    }
+  }
+
+  if (!directByMarketplace.has('amazon.de') && amazonEnabled) {
+    const deTag = amazonProvider.getAssociateTag('amazon.de');
+    if (deTag) {
+      search_offers.push({
+        type: 'SEARCH_FALLBACK',
+        provider: 'amazon',
+        marketplace: 'amazon.de',
+        display_marketplace: 'Amazon.de',
+        asin: null,
+        item_id: null,
+        tag: deTag,
+        url: amazonProvider.buildSearchUrl(norm, deTag, { partName }, {}, 'amazon.de'),
+        brand: null,
+        label: 'Zoek op Amazon.de',
+        is_direct: false,
+        is_verified: false,
+        offer_type: 'SEARCH_LINK'
+      });
+    }
+  }
+
+  if (!directByMarketplace.has('ebay.nl') && ebayProvider && typeof ebayProvider.buildSearchOffer === 'function') {
+    const ebaySearch = ebayProvider.buildSearchOffer({ canonicalPartNumber: norm, partNumber: norm, partName });
+    if (ebaySearch) {
+      search_offers.push({
+        ...ebaySearch,
+        type: 'SEARCH_FALLBACK',
+        display_marketplace: 'eBay.nl',
+        offer_type: 'SEARCH_LINK'
+      });
+    }
+  }
+
+  const all_offers = [...direct_offers, ...search_offers];
+  return {
+    part_number: norm,
+    direct_offers,
+    search_offers,
+    all_offers,
+    primary_offer: direct_offers[0] || search_offers[0] || null,
+    direct_marketplace_count: direct_offers.length,
+    has_direct_offers: direct_offers.length > 0
+  };
+}
+
+/**
  * Enriches a resolved part for search presentation.
  */
 export function enrichSearchResultPart(partObj, database = null) {
@@ -350,6 +544,7 @@ export function enrichSearchResultPart(partObj, database = null) {
   const category = classifyPartCategory(cleanName);
   const supersession = checkPartSupersession(partNo);
   const purchaseOffer = resolvePurchaseOffer(partNo, cleanName);
+  const purchaseOffers = getPartAffiliateOffers(partNo, cleanName);
 
   // Determine compatible models
   let compatibleModels = [];
@@ -422,6 +617,7 @@ export function enrichSearchResultPart(partObj, database = null) {
     diagram_position: diagramPosition,
     part_detail_url: `/onderdeelnummer/${partNo}/`,
     purchase_offer: purchaseOffer,
+    purchase_offers: purchaseOffers,
     supersession: supersession
   };
 }

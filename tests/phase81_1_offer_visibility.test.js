@@ -152,9 +152,9 @@ test('81.1 ModelPartsPageTemplate shows proven eBay direct offers instead of fal
     assert.equal(offer.type, 'DIRECT_EBAY_ITEM', 'resolvePurchaseOffer must return type: DIRECT_EBAY_ITEM');
 
     const html = renderModelPartsPageHtml(targetModel, database, PRIMARY_ORIGIN);
-    assert.ok(html.includes('🛒 Directe Koop (ebay.nl)'), 'Model parts page must render direct eBay buy button');
+    assert.ok(html.includes('🛒 Koop bij eBay.nl'), 'Model parts page must render direct eBay buy button');
     assert.ok(html.includes('data-provider="ebay"'), 'Model parts page must attribute eBay button to ebay');
-    assert.ok(html.includes('(zoekopdracht)'), 'Parts without proven direct offer must indicate search is a zoekopdracht');
+    assert.ok(html.includes('zoekopdracht'), 'Parts without proven direct offer must indicate search is a zoekopdracht');
   });
 });
 
@@ -166,13 +166,13 @@ test('81.1 PartsDiscoveryPageTemplate renders eBay direct offers and marks searc
 
   withEbayOffers({ [partNumber]: ebayOffers }, () => {
     const html = renderPartsDiscoveryPageHtml(partNumber, database, PRIMARY_ORIGIN);
-    assert.ok(html.includes('Bekijk op ebay.nl'), 'Discovery page exact match must show eBay direct CTA');
+    assert.ok(html.includes('Koop bij eBay.nl'), 'Discovery page exact match must show eBay direct CTA');
     assert.ok(html.includes('data-provider="ebay"'), 'Discovery page must tag eBay CTA with data-provider="ebay"');
     assert.ok(!html.includes('<span>🛒 Amazon</span>'), 'Discovery page must not mislabel search fallback as 🛒 Amazon');
   });
 
   const fallbackHtml = renderPartsDiscoveryPageHtml('11231602050', database, PRIMARY_ORIGIN);
-  assert.ok(fallbackHtml.includes('(zoekopdracht)'), 'Discovery page must label search fallback as (zoekopdracht)');
+  assert.ok(fallbackHtml.includes('Zoek op Amazon.nl') && fallbackHtml.includes('zoekopdracht'), 'Discovery page must label search fallback as Zoek op Amazon.nl (zoekopdracht)');
 });
 
 test('81.1 DirectPartsEngine preserves eBay direct offer label instead of overwriting with Zoek op Amazon', () => {
