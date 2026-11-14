@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-11-14T22:11:36.730Z",
+  "registry_total": 157,
+  "active_offers": 99,
+  "active_parts": 86,
+  "verified_offers": 3,
+  "verified_blocked": [
+    {
+      "asin": "B00LAHKSDQ",
+      "part": "11231201613",
+      "marketplace": "amazon.de",
+      "status_reason": "Verified Sägenspezi catalog match; inactive pending confirmed shipping to NL.",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN"
+    },
+    {
+      "asin": "B00SVDWDRG",
+      "part": "00003503500",
+      "marketplace": "amazon.de",
+      "status_reason": "Inactief gehouden op 0000 350 3500: betreft een gecombineerde brandstofslang- en filterset voor STIHL 025 / MS 250 en geen exacte 1:1 OEM-vervanger voor het losse aanzuigfilter 0000 350 3500.",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN"
+    },
+    {
+      "asin": "B013KONKZY",
+      "part": "36100000055",
+      "marketplace": "amazon.de",
+      "status_reason": "Verified product identity for STIHL 3610 000 0055 (Oregon 90PX055E), kept inactive pending active buybox and confirmed NL delivery on Amazon.de.",
+      "shipping_to_nl_status": "SHIPPING_UNKNOWN"
+    }
+  ],
+  "research_required": 55,
+  "research_grouped_by_shipping": {
+    "SHIPS_TO_NL_CONFIRMED": 55
+  },
+  "research_grouped_by_evidence": {
+    "AMAZON_LISTING_COMPATIBLE": 55
+  },
+  "research_grouped_by_marketplace": {
+    "amazon.nl": 54,
+    "amazon.de": 1
+  },
+  "new_active_this_phase": 0,
+  "conclusion": "Geen nieuwe ASIN kon met onafhankelijk bewijs worden gecorrigeerd: de 3 VERIFIED-kandidaten hebben geen actieve buybox en geen bevestigde NL-levering, de 55 RESEARCH_REQUIRED missen ASIN-identiteitsbewijs. Amazon PA-API is in deze omgeving niet beschikbaar, dus er is niet geactiveerd."
+}
