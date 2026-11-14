@@ -1582,14 +1582,58 @@
           .replace(/'/g, '&#039;');
       }
 
+      function renderDirectPartOfferButton(o, safePartNo, partNumber) {
+        const provider = escapeHtml(o.provider || 'amazon');
+        const marketplace = escapeHtml(o.marketplace || (provider === 'ebay' ? 'ebay.nl' : 'amazon.nl'));
+        const isDirect = Boolean(o.is_direct);
+        const offerType = escapeHtml(o.offer_type || o.type || (isDirect ? (provider === 'ebay' ? 'DIRECT_EBAY_ITEM' : 'DIRECT_ASIN') : 'SEARCH_LINK'));
+        const label = escapeHtml(o.label || (isDirect ? `Koop bij ${marketplace}` : `Zoek op ${marketplace}`));
+        const title = isDirect
+          ? `Directe aankoop op ${marketplace}`
+          : `Alleen zoekopdracht op ${marketplace} (geen vooraf bevestigd aanbod)`;
+        const btnClass = isDirect
+          ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40'
+          : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700';
+        const icon = isDirect ? '🛒' : '🔍';
+        const url = escapeHtml(o.url || '');
+        const asin = escapeHtml(o.asin || '');
+        return `
+          <a href="${url}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeHtml(partNumber || '')}" data-provider="${provider}" data-marketplace="${marketplace}" data-offer-type="${offerType}" title="${escapeHtml(title)}" class="text-2xs font-bold ${btnClass} px-2.5 py-1.5 rounded-lg border transition inline-flex items-center justify-center gap-1 min-h-[44px] whitespace-nowrap" aria-label="${label} voor onderdeel ${safePartNo}" onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${provider}', marketplace: '${marketplace}', part_number: '${escapeHtml(partNumber || '')}', offer_type: '${offerType}', asin_if_known: '${asin}', product_verified: ${isDirect}, page_path: window.location.pathname});}">
+            <span>${icon} ${label}</span>
+          </a>
+        `;
+      }
+
       function renderDirectPartCard(p, modelName) {
         const safePartName = escapeHtml(p.part_name || 'Vervangingsonderdeel');
         const safePartNo = escapeHtml(p.part_number_display || p.part_number || '');
         const safeCategory = escapeHtml(p.category_label || p.wear_label || 'Onderdeel');
         const safeDiagSection = p.diagram_section_name ? escapeHtml(p.diagram_section_name) : null;
         const safeDiagPos = p.diagram_position ? escapeHtml(String(p.diagram_position)) : null;
-        const safePurchaseLabel = escapeHtml(p.purchase_label || 'Zoek op Amazon');
+        const safePurchaseLabel = escapeHtml(p.purchase_label || 'Zoek op Amazon.nl');
         const safePurchaseUrl = p.purchase_url ? escapeHtml(p.purchase_url) : null;
+
+        const multi = p.purchase_offers;
+        let offersHtml = '';
+        if (multi && (Array.isArray(multi.direct_offers) || Array.isArray(multi.search_offers))) {
+          const directList = Array.isArray(multi.direct_offers) ? multi.direct_offers : [];
+          const searchList = Array.isArray(multi.search_offers) ? multi.search_offers : [];
+          const directGroup = directList.length > 0
+            ? `<div class="flex flex-wrap gap-1.5" data-offer-group="direct">${directList.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number)).join('')}</div>`
+            : '';
+          const searchGroup = searchList.length > 0
+            ? `<div class="flex flex-wrap gap-1.5 ${directList.length > 0 ? 'pt-1.5 border-t border-gray-800/60' : ''}" data-offer-group="search">${searchList.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number)).join('')}</div>`
+            : '';
+          offersHtml = (directGroup || searchGroup)
+            ? `<div class="flex flex-col gap-1.5 w-full" data-multi-marketplace-buttons="true">${directGroup}${searchGroup}</div>`
+            : '';
+        } else if (safePurchaseUrl) {
+          offersHtml = `
+            <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" data-provider="${escapeHtml(p.purchase_provider || 'amazon')}" data-marketplace="${escapeHtml(p.purchase_marketplace || '')}" title="${(p.is_direct_offer || p.is_direct_asin) ? `Directe aankoop via ${escapeHtml(p.purchase_marketplace || 'webshop')}` : 'Alleen zoekopdracht op Amazon (geen vooraf bevestigd aanbod)'}" class="text-2xs font-bold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40' : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700'} px-2.5 py-1.5 rounded-lg border transition inline-flex items-center gap-1 min-h-[44px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
+              <span>${(p.is_direct_offer || p.is_direct_asin) ? `🛒 ${safePurchaseLabel}` : `🔍 ${safePurchaseLabel} (zoekopdracht)`}</span>
+            </a>
+          `;
+        }
 
         return `
           <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 flex flex-col justify-between space-y-3 hover:border-gray-700 transition">
@@ -1622,8 +1666,9 @@
             </div>
 
             <!-- Acties per onderdeel -->
-            <div class="pt-2.5 border-t border-gray-800/80 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
+            <div class="pt-2.5 border-t border-gray-800/80 flex flex-col gap-2">
+              ${offersHtml}
+              <div class="flex flex-wrap items-center justify-between gap-2">
                 <a href="${p.part_detail_url}" class="text-2xs font-semibold text-orange-400 hover:text-orange-300 hover:underline flex items-center gap-1 min-h-[36px] py-1" aria-label="Details voor onderdeel ${safePartNo}">
                   <span>Details & pasvorm →</span>
                 </a>
@@ -1634,12 +1679,6 @@
                   </a>
                 ` : ''}
               </div>
-
-              ${safePurchaseUrl ? `
-                <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" data-provider="${escapeHtml(p.purchase_provider || 'amazon')}" data-marketplace="${escapeHtml(p.purchase_marketplace || '')}" title="${(p.is_direct_offer || p.is_direct_asin) ? `Directe aankoop via ${escapeHtml(p.purchase_marketplace || 'webshop')}` : 'Alleen zoekopdracht op Amazon (geen vooraf bevestigd aanbod)'}" class="text-2xs font-bold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40' : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700'} px-2.5 py-1 rounded-lg border transition flex items-center gap-1 min-h-[36px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
-                  <span>${(p.is_direct_offer || p.is_direct_asin) ? `🛒 ${safePurchaseLabel}` : `🔍 ${safePurchaseLabel} (zoekopdracht)`}</span>
-                </a>
-              ` : ''}
             </div>
           </div>
         `;

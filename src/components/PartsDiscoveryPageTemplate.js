@@ -23,6 +23,8 @@ import { renderSeoMeta } from './SeoMeta.js';
 import { PRIMARY_ORIGIN } from '../config.js';
 import { getSafeModelPath, getSafeModelPartsPath } from '../publicationRules.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
+import { getPartAffiliateOffers } from '../search/IntelligentPartsSearchEngine.js';
+import { renderMultiMarketplaceButtonsHtml } from './MarketplaceButtons.js';
 import {
   searchIntelligentParts,
   checkPartSupersession,
@@ -310,22 +312,17 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
               </span>
             </div>
           </div>
-          <div class="shrink-0 flex flex-col sm:flex-row gap-2">
-            ${exactMatchResult.purchase_offer ? `
-              <a
-                href="${exactMatchResult.purchase_offer.url}"
-                target="_blank"
-                rel="sponsored nofollow noopener"
-                data-provider="${exactMatchResult.purchase_offer.provider || 'amazon'}"
-                data-marketplace="${exactMatchResult.purchase_offer.marketplace || 'amazon.nl'}"
-                data-offer-type="${exactMatchResult.purchase_offer.type}"
-                class="px-4 py-2.5 ${exactMatchResult.purchase_offer.is_direct ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700'} font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-1.5 min-h-[44px]"
-                title="${exactMatchResult.purchase_offer.is_direct ? `Directe Aankoop op ${exactMatchResult.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
-              >
-                <span>${exactMatchResult.purchase_offer.is_direct ? `🛒 ${exactMatchResult.purchase_offer.label}` : `🔍 ${exactMatchResult.purchase_offer.label} (zoekopdracht)`}</span>
-                <span class="text-2xs opacity-70">↗</span>
-              </a>
-            ` : ''}
+          <div class="shrink-0 flex flex-col gap-2">
+            ${renderMultiMarketplaceButtonsHtml(
+              exactMatchResult.purchase_offers || getPartAffiliateOffers(exactMatchResult.part_number, exactMatchResult.part_name),
+              {
+                partNumber: exactMatchResult.part_number,
+                sectionContext: exactMatchResult.diagram_section || '',
+                trackingMode: 'handleAffiliateClick',
+                compact: false,
+                align: 'start'
+              }
+            )}
             <a
               href="/onderdeelnummer/${exactMatchResult.part_number}/"
               class="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-orange-600/30 transition flex items-center justify-center gap-2 min-h-[44px]"
@@ -481,26 +478,22 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                 </div>
               ` : ''}
 
-              <div class="pt-1.5 flex items-center justify-between gap-2 border-t border-gray-900">
-                <a href="${p.part_detail_url}" class="text-xs text-orange-400 font-bold hover:underline py-1">
-                  Bekijk onderdeel →
-                </a>
-                ${p.purchase_offer ? `
-                  <a
-                    href="${p.purchase_offer.url}"
-                    target="_blank"
-                    rel="sponsored nofollow noopener"
-                    data-provider="${p.purchase_offer.provider || 'amazon'}"
-                    data-marketplace="${p.purchase_offer.marketplace || 'amazon.nl'}"
-                    data-offer-type="${p.purchase_offer.type}"
-                    class="px-3 py-1 ${p.purchase_offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition flex items-center gap-1 min-h-[36px]"
-                    onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${p.purchase_offer.provider || 'amazon'}', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
-                    title="${p.purchase_offer.is_direct ? `Directe Aankoop op ${p.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
-                  >
-                    <span>${p.purchase_offer.is_direct ? (p.purchase_offer.provider === 'ebay' ? `🛒 Directe Aankoop (${p.purchase_offer.marketplace || 'ebay.nl'})` : '🛒 Directe Aankoop') : '🔍 Zoek op Amazon (zoekopdracht)'}</span>
-                    <span>↗</span>
+              <div class="pt-2 space-y-2 border-t border-gray-900">
+                ${renderMultiMarketplaceButtonsHtml(
+                  p.purchase_offers || getPartAffiliateOffers(p.part_number, p.part_name),
+                  {
+                    partNumber: p.part_number,
+                    sectionContext: p.diagram_section || '',
+                    trackingMode: 'handleAffiliateClick',
+                    compact: false,
+                    align: 'start'
+                  }
+                )}
+                <div class="flex items-center justify-end">
+                  <a href="${p.part_detail_url}" class="text-xs text-orange-400 font-bold hover:underline py-1">
+                    Bekijk onderdeel →
                   </a>
-                ` : ''}
+                </div>
               </div>
             </div>
           `).join('')}
@@ -515,7 +508,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                 <th class="py-2 px-3">Omschrijving & Categorie</th>
                 <th class="py-2 px-3">Compatibiliteit</th>
                 <th class="py-2 px-3">Sectie / Positie</th>
-                <th class="py-2 pl-3 text-right w-36">Aankoop & Detail</th>
+                <th class="py-2 pl-3 text-right">Aankoop & Detail</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-800/50">
@@ -546,23 +539,17 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                     ${p.diagram_position ? `<div class="text-gray-400 font-bold">Positie #${p.diagram_position}</div>` : ''}
                   </td>
                   <td class="py-2.5 pl-3 text-right">
-                    <div class="flex items-center justify-end gap-2">
-                      ${p.purchase_offer ? `
-                        <a
-                          href="${p.purchase_offer.url}"
-                          target="_blank"
-                          rel="sponsored nofollow noopener"
-                          data-provider="${p.purchase_offer.provider || 'amazon'}"
-                          data-marketplace="${p.purchase_offer.marketplace || 'amazon.nl'}"
-                          data-offer-type="${p.purchase_offer.type}"
-                          class="px-2.5 py-1 ${p.purchase_offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition whitespace-nowrap inline-flex items-center gap-1 min-h-[30px]"
-                          onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${p.purchase_offer.provider || 'amazon'}', marketplace: '${p.purchase_offer.marketplace || 'amazon.nl'}', part_number: '${p.part_number}', offer_type: '${p.purchase_offer.type}', asin_if_known: '${p.purchase_offer.asin || ''}', product_verified: ${p.purchase_offer.is_direct}, page_path: window.location.pathname, section_context: '${(p.diagram_section || '').replace(/'/g, "\\'")}'});}"
-                          title="${p.purchase_offer.is_direct ? `Directe Aankoop op ${p.purchase_offer.marketplace || 'webshop'}` : 'Alleen zoekopdracht op Amazon (geen vooraf gecontroleerd aanbod)'}"
-                        >
-                          <span>${p.purchase_offer.is_direct ? (p.purchase_offer.provider === 'ebay' ? `🛒 Directe Koop (${p.purchase_offer.marketplace || 'ebay.nl'})` : '🛒 Directe Koop') : '🔍 Zoek op Amazon (zoekopdracht)'}</span>
-                          <span class="opacity-70 text-3xs">↗</span>
-                        </a>
-                      ` : ''}
+                    <div class="flex flex-col items-end gap-1.5">
+                      ${renderMultiMarketplaceButtonsHtml(
+                        p.purchase_offers || getPartAffiliateOffers(p.part_number, p.part_name),
+                        {
+                          partNumber: p.part_number,
+                          sectionContext: p.diagram_section || '',
+                          trackingMode: 'handleAffiliateClick',
+                          compact: true,
+                          align: 'end'
+                        }
+                      )}
                       <a
                         href="${p.part_detail_url}"
                         class="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-2xs rounded-lg transition whitespace-nowrap"

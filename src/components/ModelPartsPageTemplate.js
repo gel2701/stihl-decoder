@@ -19,7 +19,8 @@ import { PRIMARY_ORIGIN } from '../config.js';
 import { formatPublicTechnicalValue, getPublicTechnicalDisplayState } from '../publicEvidence.js';
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
-import { getPartAffiliateOffer } from '../search/IntelligentPartsSearchEngine.js';
+import { getPartAffiliateOffers } from '../search/IntelligentPartsSearchEngine.js';
+import { renderMultiMarketplaceButtonsHtml } from './MarketplaceButtons.js';
 import { renderDiagramAvailabilityNoticeHtml } from './DiagramAvailabilityNotice.js';
 
 function renderSafeTechnicalValue(model, field, database, formatter) {
@@ -166,42 +167,31 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
         ${maintenanceParts.map(p => {
-          const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-          const offerProvider = offer?.provider || 'amazon';
-          const isEbayOffer = offerProvider === 'ebay';
-          const offerMarket = offer?.marketplace || (isEbayOffer ? 'ebay.nl' : 'amazon.nl');
-          const affiliateClick = offer ? `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${offerProvider}', marketplace: '${offerMarket}', part_number: '${p.part_number}', offer_type: '${offer.type}', asin_if_known: '${offer.asin || ''}', product_verified: ${offer.is_direct}, page_path: window.location.pathname, model: '${(model.slug || model.model_name || '').replace(/'/g, "\\'")}', section_context: '${p.section_name}'});}` : '';
-          const btnTitle = offer ? (offer.is_direct ? `Directe Aankoop op ${offerMarket}` : `Alleen zoekopdracht op ${offerMarket} (geen vooraf bevestigd aanbod)`) : '';
-          const btnLabel = offer ? (offer.is_direct ? (isEbayOffer ? `🛒 Directe Koop (${offerMarket})` : '🛒 Directe Koop') : '🛒 Zoek op Amazon (zoekopdracht)') : '';
+          const multiOffer = getPartAffiliateOffers(p.part_number, p.part_name);
+          const buttonsHtml = renderMultiMarketplaceButtonsHtml(multiOffer, {
+            partNumber: p.part_number,
+            sectionContext: p.section_name,
+            modelContext: model.slug || model.model_name || '',
+            trackingMode: 'handleAffiliateClick',
+            compact: true,
+            align: 'start'
+          });
           return `
-          <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2">
+          <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2.5">
             <div>
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between gap-2">
                 <a href="/onderdeelnummer/${p.part_number}/" class="text-2xs font-mono font-bold text-orange-400 hover:underline">STIHL ${p.part_number_display || p.part_number}</a>
-                <span class="text-3xs font-mono text-gray-300 bg-gray-900 px-1.5 py-0.5 rounded">${p.wear_label}</span>
+                <span class="text-3xs font-mono text-gray-300 bg-gray-900 px-1.5 py-0.5 rounded shrink-0">${p.wear_label}</span>
               </div>
               <a href="/onderdeelnummer/${p.part_number}/" class="text-xs font-semibold text-white hover:text-orange-300 transition block truncate mt-1">${p.part_name}</a>
               <div class="text-3xs text-gray-400 mt-0.5">Sectie: ${p.section_name}</div>
             </div>
-            ${offer ? `
-              <div class="pt-2 border-t border-gray-900 flex items-center justify-between gap-2">
+            <div class="pt-2 border-t border-gray-900 space-y-2">
+              ${buttonsHtml}
+              <div class="flex items-center justify-end">
                 <a href="/onderdeelnummer/${p.part_number}/" class="text-3xs text-gray-400 hover:underline">Details →</a>
-                <a
-                  href="${offer.url}"
-                  target="_blank"
-                  rel="sponsored nofollow noopener"
-                  data-provider="${offerProvider}"
-                  data-marketplace="${offerMarket}"
-                  data-offer-type="${offer.type}"
-                  class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1"
-                  onclick="${affiliateClick}"
-                  title="${btnTitle}"
-                >
-                  <span>${btnLabel}</span>
-                  <span class="opacity-70 text-3xs">↗</span>
-                </a>
               </div>
-            ` : ''}
+            </div>
           </div>
         `;}).join('')}
       </div>
@@ -267,15 +257,15 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                 <tbody class="divide-y divide-gray-800/50">
                   ${sec.parts.map(p => {
                     const safeSectionCtx = (sec.section_name || '').replace(/'/g, "\\'");
-                    const safeModelId = (model.slug || model.id || '').replace(/'/g, "\\'");
                     const clickHandler = `window.trackModelPartClick?.('${p.part_number}','${safeSectionCtx}','${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}','${p.seo_tier || 'SEO_TIER_C'}','${p.wave_identifier || 'none'}')`;
-                    const offer = getPartAffiliateOffer(p.part_number, p.part_name);
-                    const offerProvider = offer?.provider || 'amazon';
-                    const isEbayOffer = offerProvider === 'ebay';
-                    const offerMarket = offer?.marketplace || (isEbayOffer ? 'ebay.nl' : 'amazon.nl');
-                    const affiliateClick = offer ? `window.trackModelAffiliateClick?.(this,event,'${p.part_number}','${safeSectionCtx}','${offerMarket}','${offer.type}','${offer.asin || ''}',${offer.is_direct},'${offerProvider}')` : '';
-                    const btnTitle = offer ? (offer.is_direct ? `Directe Aankoop op ${offerMarket}` : `Alleen zoekopdracht op ${offerMarket} (geen vooraf bevestigd aanbod)`) : '';
-                    const btnLabel = offer ? (offer.is_direct ? (isEbayOffer ? `🛒 Directe Koop (${offerMarket})` : '🛒 Directe Koop') : '🛒 Zoek op Amazon (zoekopdracht)') : '';
+                    const multiOffer = getPartAffiliateOffers(p.part_number, p.part_name);
+                    const buttonsHtml = renderMultiMarketplaceButtonsHtml(multiOffer, {
+                      partNumber: p.part_number,
+                      sectionContext: sec.section_name || '',
+                      trackingMode: 'model_table',
+                      compact: true,
+                      align: 'end'
+                    });
                     return `
                     <tr class="hover:bg-gray-800/40 transition">
                       <td class="py-2 pr-3 font-mono text-gray-400">${(p.diagram_position && PartNormalizer.isMeaningfulDiagramPosition(p.diagram_position)) ? p.diagram_position : '—'}</td>
@@ -288,23 +278,8 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                         ${p.configuration_name ? `<span class="ml-2 text-2xs font-mono text-gray-400 bg-gray-950 px-1.5 py-0.5 rounded border border-gray-800">${p.configuration_name}</span>` : ''}
                       </td>
                       <td class="py-2 px-3 text-center font-mono text-gray-400">${p.quantity || 1}</td>
-                      <td class="py-2 pl-3 text-right whitespace-nowrap">
-                        ${offer ? `
-                          <a
-                            href="${offer.url}"
-                            target="_blank"
-                            rel="sponsored nofollow noopener"
-                            data-provider="${offerProvider}"
-                            data-marketplace="${offerMarket}"
-                            data-offer-type="${offer.type}"
-                            class="px-2.5 py-1 ${offer.is_direct ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-300 border border-orange-500/40' : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'} rounded-lg text-2xs font-bold transition inline-flex items-center gap-1 min-h-[30px]"
-                            onclick="${affiliateClick}"
-                            title="${btnTitle}"
-                          >
-                            <span>${btnLabel}</span>
-                            <span class="opacity-70 text-3xs">↗</span>
-                          </a>
-                        ` : ''}
+                      <td class="py-2 pl-3 text-right">
+                        ${buttonsHtml}
                       </td>
                     </tr>
                   `;}).join('')}
