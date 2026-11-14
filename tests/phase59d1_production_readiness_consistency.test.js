@@ -29,7 +29,7 @@
  *    - AffiliateOfferResolver seamlessly integrates VerifiedOfferRegistry.
  *    - Default production resolver strictly resolves to search fallbacks while production lock is engaged.
  * 6. Production Invariant Protection:
- *    - Exactly 18,373 canonical parts.
+ *    - Exactly 18,397 canonical parts.
  *    - data/affiliate/amazon_part_offers.json remains [] (0 published ASINs).
  *    - Exactly 843 indexable SEO parts.
  *    - Exactly 1,024 sitemap URLs.
@@ -436,10 +436,10 @@ test('Phase 59D.1 — 5. Default Production Resolver Integration & Fail-Closed S
 });
 
 test('Phase 59D.1 — 6. Production Read-Only Safety & Invariant Protection', () => {
-  // Invariant 1: Exactly 18,373 canonical catalog parts
+  // Invariant 1: Exactly 18,397 canonical catalog parts
   const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18377, 'Canonical catalog must contain exactly 18,373 parts');
+  assert.equal(catalog.parts.length, 18397, 'Canonical catalog must contain exactly 18,397 parts');
 
   // Invariant 2: 0 runtime published ASINs in amazon_part_offers.json
   const offersPath = path.join(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');

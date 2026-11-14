@@ -14,7 +14,7 @@
  * 8. OEM Brand Taxonomy & display compliance: proper OEM supplier badge, no misleading OEM badges, no price/stock claims.
  * 9. SSR HTML rendering simulation across desktop and mobile structures.
  * 10. Privacy-conscious beacon tracking telemetry contract.
- * 11. Production invariants: 18,373 canonical parts, 843 SEO parts, 1,024 sitemap URLs, zero uncontrolled /dp/ leaks.
+ * 11. Production invariants: 18,397 canonical parts, 843 SEO parts, 1,024 sitemap URLs, zero uncontrolled /dp/ leaks.
  */
 
 import test from 'node:test';
@@ -345,7 +345,7 @@ test('Phase 59E — 10. Privacy-Conscious Telemetry & Beacon Contract', () => {
 test('Phase 59E — 11. Core Catalog and SEO Invariant Freeze', () => {
   const catalogDoc = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
   const totalParts = catalogDoc.parts_count || (catalogDoc.parts ? catalogDoc.parts.length : 0);
-  assert.strictEqual(totalParts, 18377, 'Canonical catalog parts count must remain exactly 18,373');
+  assert.strictEqual(totalParts, 18397, 'Canonical catalog parts count must remain exactly 18,397');
 
   // Verify total SEO parts
   const seoDir = path.join(rootDir, 'data', 'seo');

@@ -2,7 +2,7 @@
  * Intelligent Parts Search Engine for STIHLDecoder.nl
  * Phase 5 — Intelligent Parts Search & Multi-Dimensional Catalog Filtering
  *
- * Provides authoritative, verified parts discovery across all 18,373 canonical parts:
+ * Provides authoritative, verified parts discovery across all 18,397 canonical parts:
  * 1. Part Number Formats (compact, spaced, dashed, dotted, series-prefix)
  * 2. Multilingual Synonyms & Technical Components (Dutch, German, English)
  * 3. Verified Supersessions & Replacement Parts (data/parts_supersessions.json)

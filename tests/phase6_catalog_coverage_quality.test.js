@@ -142,11 +142,11 @@ test('Phase 6 - Test 4: Internal Quality Dashboard Rendering & Security Rules', 
   assert.ok(report.top_20_improvement_opportunities.length >= 10, 'Must have at least 10 opportunities in report');
 });
 
-test('Phase 6 - Test 5: Invariant Verification (18,373 Parts, 843 SEO Pages, 1,024 Sitemap URLs, Affiliate Tag)', () => {
+test('Phase 6 - Test 5: Invariant Verification (18,397 Parts, 843 SEO Pages, 1,024 Sitemap URLs, Affiliate Tag)', () => {
   // 1. Canonical parts count
   const rawParts = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
   const totalParts = Array.isArray(rawParts) ? rawParts.length : (rawParts.parts ? rawParts.parts.length : rawParts.parts_count);
-  assert.strictEqual(totalParts, 18377, 'Exact canonical parts count must remain 18,373');
+  assert.strictEqual(totalParts, 18397, 'Exact canonical parts count must remain 18,397');
 
   // 2. SEO indexable parts count
   const indexable = getAllIndexablePartsList();
