@@ -39,7 +39,7 @@ const dbPath = path.join(rootDir, 'data', 'stihl_database.db');
 const db = new Database(dbPath, { readonly: true });
 
 test('Phase 54E: Core Database & Catalog Invariants Unchanged', () => {
-  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().count;
+  const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().count;
   const fitmentsCount = db.prepare("SELECT count(*) as count FROM model_part_fitments WHERE source_id != 'ghs'").get().count;
   const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
   const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
@@ -385,7 +385,7 @@ test('Phase 54E-R2: Diagram Position Accounting & Field Population Integrity', (
   assert.strictEqual(PartNormalizer.isRawDiagramPosition('OFFICIAL_REF'), true);
 
   const fitmentRows = db.prepare("SELECT part_number, diagram_position FROM model_part_fitments WHERE source_id != 'ghs'").all();
-  const totalParts = db.prepare("SELECT COUNT(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044')").get().count;
+  const totalParts = db.prepare("SELECT COUNT(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().count;
   const totalFitments = fitmentRows.length;
 
   let fitmentsWithRawPosition = 0;

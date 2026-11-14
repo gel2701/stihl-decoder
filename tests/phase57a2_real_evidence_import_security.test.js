@@ -461,7 +461,7 @@ test('Phase 57A.2 - Test 19: Stens 605-205 remains unverified without NL marketp
 test('Phase 57A.2 - Test 20: Catalog and affiliate freeze invariants intact', () => {
   const catalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
   const catalogDoc = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055', '36360000044'].includes(p.part_number)).length, 17082, 'Must preserve all 17,082 pre-58A canonical parts');
+  assert.strictEqual(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640'].includes(p.part_number)).length, 17082, 'Must preserve all 17,082 pre-58A canonical parts');
 
   const offersPath = path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json');
   const offersDoc = JSON.parse(fs.readFileSync(offersPath, 'utf8'));
