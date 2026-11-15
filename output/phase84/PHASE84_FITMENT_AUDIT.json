@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "84",
+  "generated_at": "2026-11-15T02:12:59.932Z",
+  "fitments_before": 181394,
+  "fitments_after": 181394,
+  "new_fitments": 0,
+  "evidence_rows_without_exact_fitment_id": 1805,
+  "evidence_rows_without_any_relation": 0,
+  "variant_alias_rows": 1805,
+  "variant_alias_explanation": "Phase 54F evidence stores variant_key \"standard\" for the base model; the canonical fitment row already exists with variant_key \"base\". These are the same (part, model) relation, so writing them would duplicate semantics instead of adding a proven relation.",
+  "ghs_source_fitments_confirmed": 6288,
+  "conclusion": "Every documented (part, model) relation available locally already exists in model_part_fitments; no unproven or duplicate relation was written."
+}
