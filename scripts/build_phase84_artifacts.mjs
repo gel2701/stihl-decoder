@@ -362,9 +362,29 @@ for (const row of db.prepare('SELECT part_number, canonical_model_id FROM model_
   partModels.get(row.part_number).add(row.canonical_model_id);
 }
 
-const newDirectParts = [...new Set(phase84Offers.map(o => o.part_number))].sort();
+const offerParts = [...new Set(phase84Offers.map(o => o.part_number))].sort();
+
+// Parts that already had a proven ACTIVE offer before this phase (Phase 81/82/83 payloads).
+// Phase 84 may only claim a part as "newly buyable" when it is absent from all of them.
+const priorActivePayloads = [
+  'output/phase81/ebay_offers_phase81.json',
+  'output/phase82/ebay_offers_phase82.json',
+  'output/phase83/ebay_offers_phase83.json'
+].filter(rel => fs.existsSync(path.join(rootDir, rel)));
+const priorDirectParts = new Set();
+let priorOfferCount = 0;
+for (const rel of priorActivePayloads) {
+  for (const offer of readJson(rel).offers || []) {
+    if (offer.status !== 'ACTIVE') continue;
+    priorOfferCount += 1;
+    priorDirectParts.add(offer.part_number);
+  }
+}
+const newDirectParts = offerParts.filter(part => !priorDirectParts.has(part));
+const alreadyDirectParts = offerParts.filter(part => priorDirectParts.has(part));
+
 const modelsTouched = new Set();
-for (const part of newDirectParts) {
+for (const part of offerParts) {
   for (const model of partModels.get(part) || []) modelsTouched.add(model);
 }
 
@@ -393,8 +413,16 @@ const affiliateAudit = {
   parts_attempted: probeReport ? probeReport.exchange.parts_in_batch : 0,
   parts_completed: probeReport ? probeReport.per_part.length : 0,
   new_active_offers: phase84Offers.length,
-  new_active_parts: newDirectParts.length,
+  parts_with_new_offers: offerParts.length,
+  offer_parts: offerParts,
   new_direct_parts: newDirectParts,
+  parts_already_direct_before_phase84: alreadyDirectParts,
+  prior_active_offers_considered: priorOfferCount,
+  prior_payload_direct_parts: priorDirectParts.size,
+  // Verified production baseline (Phase 83 + live page check): 1.648 ACTIVE offers on 201 parts.
+  // All five Phase 84 offer parts already served a direct eBay link before this phase.
+  unique_parts_with_direct_purchase_before: 201,
+  unique_parts_with_direct_purchase_after: 201 + newDirectParts.length,
   accepted_by_match_and_shipping: acceptedByMatchType,
   needs_evidence_offers: probeReport ? probeReport.needs_evidence_offers.length : 0,
   needs_evidence_by_reason: needsEvidenceByReason,
@@ -413,13 +441,15 @@ writeJson('PHASE84_AFFILIATE_AUDIT.json', affiliateAudit);
 // ------------------------------------------------- 8. GSC coverage ---------
 const phase83Coverage = readJson('output/phase83/PHASE83_GSC_MODEL_COVERAGE.json');
 const coverageModels = {};
-for (const [model, row] of Object.entries(phase83Coverage.models)) {
+  for (const [model, row] of Object.entries(phase83Coverage.models)) {
   const newDirect = newDirectParts.filter(part => (partModels.get(part) || new Set()).has(model)).length;
+    const extraOffers = offerParts.filter(part => (partModels.get(part) || new Set()).has(model)).length;
   coverageModels[model] = {
     catalog_parts: row.catalog_parts,
     direct_before_phase84: row.direct_after_phase83,
     new_direct_phase84: newDirect,
     direct_after_phase84: row.direct_after_phase83 + newDirect,
+    parts_with_extra_offers_phase84: extraOffers,
     pct_before: row.catalog_parts ? Number(((row.direct_after_phase83 / row.catalog_parts) * 100).toFixed(2)) : 0,
     pct_after: row.catalog_parts
       ? Number((((row.direct_after_phase83 + newDirect) / row.catalog_parts) * 100).toFixed(2))
@@ -431,10 +461,11 @@ const coverageTotals = Object.values(coverageModels).reduce(
     acc.direct_before += row.direct_before_phase84;
     acc.direct_after += row.direct_after_phase84;
     acc.catalog_parts += row.catalog_parts;
+    acc.part_model_links_with_extra_offers += row.parts_with_extra_offers_phase84;
     if (row.new_direct_phase84 > 0) acc.models_with_new_direct += 1;
     return acc;
   },
-  { direct_before: 0, direct_after: 0, catalog_parts: 0, models_with_new_direct: 0 }
+  { direct_before: 0, direct_after: 0, catalog_parts: 0, models_with_new_direct: 0, part_model_links_with_extra_offers: 0 }
 );
 
 const gscCoverage = {
@@ -445,7 +476,9 @@ const gscCoverage = {
     'Latest measured GSC priority models (Phase 83 coverage file) + Phase 84 eBay ACTIVE payload; direct = part with a proven ACTIVE eBay offer',
   models: coverageModels,
   totals: coverageTotals,
-  models_touched_by_new_direct_parts: [...modelsTouched].sort()
+  models_touched_by_new_offers: [...modelsTouched].sort(),
+  note:
+    'All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is additional buy links (more listings) on the same parts.'
 };
 writeJson('PHASE84_GSC_MODEL_COVERAGE.json', gscCoverage);
 
@@ -467,6 +500,7 @@ const summary = {
     catalog_parts: counts.catalog_parts,
     fitments: counts.fitments,
     new_active_ebay_offers: phase84Offers.length,
+    parts_receiving_new_offers: offerParts.length,
     new_active_ebay_parts: newDirectParts.length,
     new_active_amazon_offers: 0
   },
@@ -474,7 +508,8 @@ const summary = {
     new_catalog_parts: 0,
     new_fitment_relations: 0,
     new_active_ebay_offers: phase84Offers.length,
-    new_parts_with_direct_purchase: newDirectParts.length
+    new_parts_with_direct_purchase: newDirectParts.length,
+    additional_active_offers_on_existing_direct_parts: phase84Offers.length
   },
   blockers: {
     archives_missing: archiveInventory.filter(a => a.status !== 'PRESENT').map(a => a.archive),

@@ -69,6 +69,8 @@ De vervangingsrichting en de brondocumenten zijn ongewijzigd; beide nummers blij
 
 Live run (`scripts/phase80_evidence_batch.mjs --live`) op de gedocumenteerde, nog niet doorzochte wachtrij `output/phase82/PHASE82_REMAINING_QUEUE.json` (109 onderdelen).
 
+**Correctie op een eerste aanname:** deze vijf onderdelen hadden al een bewezen ACTIVE-kooplink uit Phase 82 (41 aanbiedingen). Phase 84 voegt dus **extra aanbiedingen** toe op die onderdelen — geen nieuw koopbaar onderdeel. Dat is expliciet gecontroleerd: 0 van de 42 `item_id`'s komt voor in de Phase 81/82/83-payloads en alle vijf onderdelen staan in `output/phase82/ebay_offers_phase82.json`. De productiepagina's van deze onderdelen tonen al eBay-koopknoppen met `campid=5339245312`.
+
 | Onderdeel | Nieuwe ACTIVE aanbiedingen |
 |---|---:|
 | `11280292301` | 16 |
@@ -77,7 +79,7 @@ Live run (`scripts/phase80_evidence_batch.mjs --live`) op de gedocumenteerde, no
 | `41281290900` | 6 |
 | `42291290901` | 4 |
 
-- **42/42** `SHIPS_TO_NL_CONFIRMED`, campagnecode `5339245312` in elke affiliate-URL, resolverstatus `VERIFIED`, `store_rejected_by_guard = 0`.
+- **42/42** nieuwe listings, alle `SHIPS_TO_NL_CONFIRMED`, campagnecode `5339245312` in elke affiliate-URL, resolverstatus `VERIFIED`, `store_rejected_by_guard = 0`.
 - Matchbewijs: 39 × `EXACT_MPN`, 3 × `EXACT_PART_NUMBER_WITH_CORROBORATION`.
 - 33 kandidaten bleven `TITLE_ONLY_NEEDS_EVIDENCE` (geen zelfstandige MPN/GTIN-koppeling).
 - 12 kandidaten `REJECTED` met `CONFLICTING_MPN` (tegenstrijdig onderdeelnummer in de listing zelf).
@@ -95,12 +97,34 @@ Gemeten prioriteitsmodellen (17 modellen, 4.601 catalogusonderdelen):
 
 | Metric | Voor | Na |
 |---|---:|---:|
-| Onderdelen met directe koopmogelijkheid | 252 | **267** |
-| Modellen met nieuwe directe dekking | — | **11** (MS 440, BR 600, MS 250, BG 86, MS 461, MS 390, HS 45 +2, MS 260 +2, FS 55 +2, FS 85 +2, FS 350) |
+| Onderdelen met directe koopmogelijkheid | 252 | 252 |
+| Modellen met extra aanbiedingen op bestaande directe onderdelen | — | **11** (MS 440, BR 600, MS 250, BG 86, MS 461, MS 390, HS 45 +2, MS 260 +2, FS 55 +2, FS 85 +2, FS 350) |
+| Nieuwe ACTIVE eBay-aanbiedingen in deze modellen | — | 15 part-model-koppelingen |
+
+Omdat er geen nieuw koopbaar onderdeel bijkomt, blijft de directe onderdelen dekking per model gelijk; wat groeit is het aantal kooplinks (meer listings, dus meer prijs-/aanbiederskeuze) per onderdeel.
 
 ## 9. Publicatie
 
-De catalogus is niet gewijzigd, dus er is geen catalogusmigratie nodig. De 42 aanbiedingen staan in de repo-payload; de productiestore op de Render-persistente schijf moet één keer idempotent bijgewerkt worden (zie het importcommando in de PR-beschrijving). Bestaande 1.648 aanbiedingen worden daarbij behouden (`saveEbayOfferStore` is additief op `(item_id, marketplace, part_number)`).
+De catalogus is niet gewijzigd, dus er is geen catalogusmigratie nodig. De 42 aanbiedingen staan in de repo-payload; de productiestore op de Render-persistente schijf moet één keer idempotent bijgewerkt worden. Bestaande 1.648 aanbiedingen worden daarbij behouden (`saveEbayOfferStore` is additief op `(item_id, marketplace, part_number)`), verwacht totaal **1.690** ACTIVE aanbiedingen.
+
+Tot die import is uitgevoerd, is de fase-publicatie beperkt tot de code en de audit-artefacten; de nieuwe kooplinks zijn dan nog niet zichtbaar op STIHLDecoder.nl.
+
+## 9a. Metricstabel
+
+| Metric | Voor | Nieuw | Na |
+|---|---:|---:|---:|
+| Catalogusonderdelen | 18.397 | 0 | **18.397** |
+| Fitmentrelaties | 181.394 | 0 | **181.394** |
+| Nieuwe officiële bewijsrecords | — | 0 | 218.639 evidence-rijen ongewijzigd |
+| Nieuwe supersession-relaties | — | 0 | 22 relaties (11 actief in catalogus) |
+| Open supersession-doelen | 2 | — | **2** (`48040071002`, `42033500502`; TI noemt alleen "the version") |
+| Nieuwe ACTIVE eBay-aanbiedingen | 1.648 | **42** | 1.690 na store-import |
+| Nieuwe ACTIVE Amazon-aanbiedingen | 99 | 0 | 99 (PA-API niet beschikbaar) |
+| Unieke onderdelen met koopmogelijkheid | 201 | 0 | **201** |
+| Kandidaten automatisch verrijkt | — | 5 onderdelen / 42 nieuwe listings | 33 NEEDS_EVIDENCE, 12 REJECTED in dezelfde batch |
+| Resterende NEEDS_EVIDENCE | — | — | 33 title-only (batch), 104 ondoorzochte wachtrij-onderdelen (HTTP 429), 26 GHS-aftermarketnummers, 278 Phase 54F-kandidaten, 2 supersession-doelen |
+| GSC-modeldekking | 252 directe onderdelen | 0 | 252 (15 part-model-koppelingen met extra aanbiedingen) |
+| Productiepublicatie | — | — | merge `cd22ea6` live op STIHLDecoder.nl; aanbiedingen pas na store-import |
 
 ## 10. Tests
 
