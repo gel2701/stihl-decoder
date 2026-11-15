@@ -663,7 +663,13 @@ const server = http.createServer(async (req, res) => {
         'www.amazon.de',
         'amazon.de',
         'www.amazon.com',
-        'amazon.com'
+        'amazon.com',
+        'www.ebay.nl',
+        'ebay.nl',
+        'www.ebay.de',
+        'ebay.de',
+        'www.ebay.com',
+        'ebay.com'
       ]);
 
       let destinationHost = 'amazon.nl';
@@ -674,6 +680,13 @@ const server = http.createServer(async (req, res) => {
             destinationHost = destUrl.hostname.toLowerCase();
           }
         } catch {}
+      }
+      // eBay destinations were previously all recorded as amazon.nl, which
+      // inflated the Amazon click count and hid the eBay share of outbound
+      // clicks. Fall back to the claimed marketplace when the URL is unusable.
+      const isEbayClick = String(data.provider || '').toLowerCase() === 'ebay' || destinationHost.includes('ebay');
+      if (destinationHost === 'amazon.nl' && typeof data.marketplace === 'string' && /^ebay\.(nl|de|com)$/i.test(data.marketplace.trim())) {
+        destinationHost = data.marketplace.trim().toLowerCase();
       }
 
       const normPart = PartNormalizer.normalizePartNumber(data.part_number);
@@ -712,9 +725,9 @@ const server = http.createServer(async (req, res) => {
         event_id: data.event_id || null
       }, req.headers['user-agent'], isTestClick);
 
-      const specificEventType = isProductVerified
-        ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK
-        : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK;
+      const specificEventType = isEbayClick
+        ? (isProductVerified ? EVENT_TYPES.EBAY_VERIFIED_PRODUCT_CLICK : EVENT_TYPES.EBAY_SEARCH_FALLBACK_CLICK)
+        : (isProductVerified ? EVENT_TYPES.AMAZON_VERIFIED_PRODUCT_CLICK : EVENT_TYPES.AMAZON_SEARCH_FALLBACK_CLICK);
 
       logStihlEvent(specificEventType, {
         provider: data.provider || 'amazon',

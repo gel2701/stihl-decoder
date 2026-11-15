@@ -1646,32 +1646,26 @@
           const directList = Array.isArray(multi.direct_offers) ? multi.direct_offers : [];
           const searchList = Array.isArray(multi.search_offers) ? multi.search_offers : [];
           const hasDirect = directList.length > 0;
+          // Every verified direct offer stays visible: a buyer must see Amazon
+          // and eBay side by side instead of finding one behind a collapse.
           const primaryHtml = hasDirect
-            ? `<div class="flex flex-wrap gap-1.5" data-offer-group="direct">${renderDirectPartOfferButton(directList[0], safePartNo, p.part_number, 'primary')}</div>`
+            ? `<div class="flex flex-wrap gap-1.5" data-offer-group="direct" aria-label="Direct bestellen">${directList.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'primary')).join('')}</div>`
             : (searchList.length > 0
               ? `<div class="flex flex-wrap gap-1.5" data-offer-group="search">${renderDirectPartOfferButton(searchList[0], safePartNo, p.part_number, 'search-primary')}</div>`
               : '');
-          const secondaryDirect = hasDirect ? directList.slice(1) : [];
           const extraSearch = hasDirect ? searchList : searchList.slice(1);
-          const secondaryCount = secondaryDirect.length + extraSearch.length;
+          const secondaryCount = extraSearch.length;
           let secondaryHtml = '';
           if (secondaryCount > 0) {
-            const summaryLabel = secondaryDirect.length > 0
-              ? `Meer koopopties (+${secondaryCount})`
-              : (hasDirect ? `Meer opties (+${secondaryCount})` : `Meer zoekopties (+${secondaryCount})`);
-            const secDirectHtml = secondaryDirect.length > 0
-              ? `<div class="flex flex-wrap gap-1.5 pt-1.5">${secondaryDirect.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'secondary')).join('')}</div>`
-              : '';
-            const extraSearchHtml = extraSearch.length > 0
-              ? `<div class="flex flex-wrap gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'search-secondary')).join('')}</div>`
-              : '';
+            const summaryLabel = `Meer zoekopties (+${secondaryCount})`;
+            const extraSearchHtml = `<div class="flex flex-wrap gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'search-secondary')).join('')}</div>`;
             secondaryHtml = `
               <details class="w-full">
                 <summary class="cursor-pointer select-none inline-flex items-center justify-between gap-2 text-2xs font-medium text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-lg border border-gray-800 bg-gray-950/70 hover:bg-gray-900 transition min-h-[36px] w-full focus:outline-none focus:ring-2 focus:ring-orange-500/70">
                   <span>${summaryLabel}</span>
                   <span class="text-3xs opacity-70" aria-hidden="true">▾</span>
                 </summary>
-                <div class="space-y-1.5">${secDirectHtml}${extraSearchHtml}</div>
+                <div class="space-y-1.5">${extraSearchHtml}</div>
               </details>
             `;
           }
