@@ -43,11 +43,13 @@ console.log('\n▶ Test 2: Recursive browser module graph traversal & Node-built
 const moduleScriptMatch = indexHtml.match(/<script type="module">([\s\S]*?)<\/script>/);
 assert.ok(moduleScriptMatch, 'index.html must contain a <script type="module">');
 
-const rootImportRegex = /import\s+(?:\{[^}]*\}|\*\s+as\s+\w+|\w+)\s+from\s+['"]([^'"]+)['"]/g;
+const rootImportRegex = /(?:import\s+(?:\{[^}]*\}|\*\s+as\s+\w+|\w+)\s+from\s+|import\s*\(\s*)['"]([^'"]+)['"]/g;
 const rootModules = [];
 let match;
 while ((match = rootImportRegex.exec(moduleScriptMatch[1])) !== null) {
-  rootModules.push(match[1]);
+  if (!rootModules.includes(match[1])) {
+    rootModules.push(match[1]);
+  }
 }
 
 assert.ok(rootModules.length >= 4, `Must find root browser modules (found ${rootModules.length})`);

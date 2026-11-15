@@ -31,7 +31,6 @@ export const SITE_ANALYTICS_TAGS = `
       });
     })();
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}" data-stihl-ga4="${GA_MEASUREMENT_ID}"></script>
   <script data-stihl-ga4-config="1">
     window.gtag('js', new Date());
     window.gtag('config', '${GA_MEASUREMENT_ID}', {
@@ -39,6 +38,33 @@ export const SITE_ANALYTICS_TAGS = `
       page_path: window.location.pathname + window.location.search,
       page_location: window.location.href
     });
+    (function() {
+      var gaLoaded = false;
+      function loadGtagScript() {
+        if (gaLoaded || document.querySelector('script[data-stihl-ga4]')) return;
+        gaLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';
+        s.dataset.stihlGa4 = '${GA_MEASUREMENT_ID}';
+        document.head.appendChild(s);
+      }
+      function scheduleGtagLoad() {
+        if (typeof window.requestIdleCallback === 'function') {
+          window.requestIdleCallback(loadGtagScript, { timeout: 2500 });
+        } else {
+          setTimeout(loadGtagScript, 1200);
+        }
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function(evt) {
+        window.addEventListener(evt, loadGtagScript, { once: true, passive: true });
+      });
+      if (document.readyState === 'complete') {
+        scheduleGtagLoad();
+      } else {
+        window.addEventListener('load', scheduleGtagLoad, { once: true });
+      }
+    })();
   </script>
   <script defer src="/src/components/SiteAnalytics.js" data-stihl-site-analytics="1"></script>`;
 

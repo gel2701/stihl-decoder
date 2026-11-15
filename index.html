@@ -1251,6 +1251,16 @@
       </div>
     </div>
   </div>
+  <script>
+    (function () {
+      try {
+        if (!localStorage.getItem('stihl_cookie_consent')) {
+          var banner = document.getElementById('cookie-consent-banner');
+          if (banner) banner.classList.remove('hidden');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Save to Dossier Modal -->
   <div id="save-dossier-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -1362,10 +1372,14 @@
 
   <!-- Client Script for Gietklok Helper, Examples, Breakpoint Resolving & Passport Image Download -->
   <script type="module">
-    import { renderGietklokHelperHtml } from '/components/tools/GietklokHelper.js';
-    import { downloadStihlPassportImage } from '/src/components/StihlPassportGenerator.js';
-    import { createDossierObject, saveDossier } from '/src/components/MachineDossierManager.js';
     import { searchGlobalModels, buildSearchableIdentities, findRegisteredModel } from '/src/globalModelSearch.js';
+
+    let gietklokModulePromise = null;
+    const loadGietklokModule = () => (gietklokModulePromise ??= import('/components/tools/GietklokHelper.js'));
+    let passportModulePromise = null;
+    const loadPassportModule = () => (passportModulePromise ??= import('/src/components/StihlPassportGenerator.js'));
+    let dossierModulePromise = null;
+    const loadDossierModule = () => (dossierModulePromise ??= import('/src/components/MachineDossierManager.js'));
 
     document.addEventListener('DOMContentLoaded', () => {
       // Cookie Consent Banner Handling
@@ -2733,8 +2747,11 @@
         let currentMo = 5;
         let currentStyle = 'dots';
 
-        function updateGietklok() {
+        let gietklokRendered = false;
+        async function updateGietklok() {
+          const { renderGietklokHelperHtml } = await loadGietklokModule();
           gietklokSection.innerHTML = renderGietklokHelperHtml(currentYr, currentMo, currentStyle);
+          gietklokRendered = true;
           rebindGietklokEvents();
         }
 
@@ -2768,7 +2785,20 @@
           if (aBtn) aBtn.addEventListener('click', () => { currentStyle = 'arrow'; updateGietklok(); });
         }
 
-        updateGietklok();
+        if ('IntersectionObserver' in window) {
+          const gkObserver = new IntersectionObserver((entries) => {
+            if (entries.some(e => e.isIntersecting)) {
+              gkObserver.disconnect();
+              if (!gietklokRendered) updateGietklok();
+            }
+          }, { rootMargin: '250px 0px' });
+          gkObserver.observe(gietklokSection);
+        } else {
+          setTimeout(() => { if (!gietklokRendered) updateGietklok(); }, 400);
+        }
+        gietklokSection.addEventListener('pointerdown', () => {
+          if (!gietklokRendered) updateGietklok();
+        }, { once: true, passive: true });
       }
 
       // Autocomplete Live Suggestions (Phase 4)
@@ -2924,7 +2954,7 @@
       // Download Passport Image button
       const downloadBtn = document.getElementById('download-passport-btn');
       if (downloadBtn) {
-        downloadBtn.addEventListener('click', () => {
+        downloadBtn.addEventListener('click', async () => {
           if (manualModelOverride && manualModelOverride.status === 'USER_REPORTED_UNVERIFIED_MODEL') {
             showToast('Dit model moet eerst aan een geregistreerd model worden gekoppeld voordat een volledig machinepaspoort kan worden gedownload.');
             return;
@@ -2933,6 +2963,7 @@
           const cleanSerial = codeVal.replace(/[^0-9]/g, '') || currentSerial;
           const isSelfChecked = userCheckbox ? userCheckbox.checked : false;
           const showSerialOnImage = document.getElementById('check-show-serial-export')?.checked === true;
+          const { downloadStihlPassportImage } = await loadPassportModule();
           downloadStihlPassportImage({
             ...(currentDecodeResult || {}),
             cleanedSerial: cleanSerial,
@@ -3061,7 +3092,7 @@
       }
 
       if (modalSaveBtn) {
-        modalSaveBtn.addEventListener('click', () => {
+        modalSaveBtn.addEventListener('click', async () => {
           if (modalConfirmWrap && !modalConfirmWrap.classList.contains('hidden')) {
             if (!modalConfirmCheck || !modalConfirmCheck.checked) {
               alert('Vink a.u.b. aan dat dit uw machinemodel is om te bevestigen.');
@@ -3086,6 +3117,7 @@
           }] : [];
 
           try {
+            const { createDossierObject, saveDossier } = await loadDossierModule();
             const dossier = createDossierObject({
               model_name: modelName,
               model_slug: modelSlug,
