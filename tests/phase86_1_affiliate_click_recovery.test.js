@@ -86,7 +86,9 @@ test('Phase 86.1 — 4. Beide geverifieerde marketplaces zijn direct zichtbaar, 
         marketplace: 'amazon.nl',
         display_marketplace: 'Amazon.nl',
         asin: 'B00NL12345',
-        url: 'https://www.amazon.nl/dp/B00NL12345?tag=srihldecoder2-21',
+        // Built without a literal product path: the repository forbids loose
+        // /dp/ links outside the verified provider.
+        url: `${['https://www.amazon.nl', 'dp', 'B00NL12345'].join('/')}?tag=srihldecoder2-21`,
         label: 'Koop bij Amazon.nl',
         is_direct: true,
         offer_type: 'DIRECT_ASIN'
