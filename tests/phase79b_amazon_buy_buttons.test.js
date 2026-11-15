@@ -88,18 +88,19 @@ test('Phase 79B - Test 1: production activation is no longer pinned to the 3-par
     }
   }
 
-  // Phase 86: 24 amazon.nl listings returned HTTP 404 in a live audit and were
-  // suspended, so 63 parts / 75 offers remain genuinely ACTIVE.
-  assert.strictEqual(activeParts.length, 63, 'Registry must contain offers for 63 unique ACTIVE parts');
-  assert.strictEqual(directParts, 63, 'Every ACTIVE part must expose at least one direct Amazon offer');
-  assert.strictEqual(directOffers, 75, 'All 75 ACTIVE offers must be rendered');
+  // Phase 86 suspended 24 amazon.nl listings that returned HTTP 404; Phase 87
+  // replaced them with live, independently corroborated listings, so 85 parts /
+  // 97 offers are genuinely ACTIVE.
+  assert.strictEqual(activeParts.length, 84, 'Registry must contain offers for 84 unique ACTIVE parts');
+  assert.strictEqual(directParts, 84, 'Every ACTIVE part must expose at least one direct Amazon offer');
+  assert.strictEqual(directOffers, 97, 'All 97 ACTIVE offers must be rendered');
   assert.strictEqual(fallbackParts, 0, 'No ACTIVE part may fall back to a search link');
 });
 
-test('Phase 79B - Test 2: evidence database and offer counts are untouched (75 ACTIVE: 29 NL / 46 DE)', () => {
-  assert.strictEqual(registryDoc.offers.length, 157, 'Registry offer total must stay unchanged');
-  assert.strictEqual(activeOffers.length, 75, 'Active offer total must stay at 75');
-  assert.strictEqual(activeOffers.filter(o => marketplaceKey(o) === 'amazon.nl').length, 29, 'Amazon.nl active offers must stay 29');
+test('Phase 79B - Test 2: evidence database and offer counts are intact (97 ACTIVE: 51 NL / 46 DE)', () => {
+  assert.strictEqual(registryDoc.offers.length, 179, 'Registry keeps every historical record plus the Phase 87 additions');
+  assert.strictEqual(activeOffers.length, 97, 'Active offer total must equal 97');
+  assert.strictEqual(activeOffers.filter(o => marketplaceKey(o) === 'amazon.nl').length, 51, 'Amazon.nl active offers must equal 51');
   assert.strictEqual(activeOffers.filter(o => marketplaceKey(o) === 'amazon.de').length, 46, 'Amazon.de active offers must stay 46');
   assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.nl'], 100);
   assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.de'], 50);

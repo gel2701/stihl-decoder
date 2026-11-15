@@ -118,7 +118,20 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '11231200605', // SÃ¤genspezi Vergaser MS 250 (B00LAHQRM2)
   '11211200611', // SÃ¤genspezi Carburateur MS 260 (B07MM5R1KG)
   '11230071000', // SÃ¤genspezi Kettingspanner zijdelings ombouwkit (B07F6CH3BV)
-  '11231412200'  // SÃ¤genspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
+  '11231412200', // SÃ¤genspezi Ansaugstutzen MS 210 / MS 230 / MS 250 (B00LAHFB1U)
+  // Phase 87 Amazon recovery: replacement listings for delisted amazon.nl ASINs,
+  // each verified live in a browser with the exact STIHL number on the page and,
+  // where marked, corroborated by an independent dealer catalog.
+  '00003500527', // perfektGarten Tankdop FS 130 / TS 400 (B0G5PY252N, dealer-corroborated)
+  '00003500533', // perfektGarten Olietankdop KM 90 / FR 130 (B0BBMPZQH6, dealer-corroborated)
+  '11236402074', // Kitoo Kettingwiel .325 7T MS 250 (B007TK19WW, dealer-corroborated)
+  '11230201209', // Adefol Cilinderkit 42,5mm MS 250 (B0GT2Q39PW, dealer-corroborated)
+  '41370292300', // Gubeter Pakkingset FS 75 / FS 80 (B0BWSX4DWZ, dealer-corroborated)
+  '41371242800', // SHIHAOHZ Voorfilter FS 75 / FS 80 (B0HRFKS4ZS, dealer-corroborated)
+  '11281903400', // CCQDGMD ElastoStart MS 290 / MS 440 (B0FG7PKCLL, dealer-corroborated)
+  '11271201620', // HOHMI Luchtfilter MS 290 / MS 390 (B0C38W9LC3, dealer-corroborated)
+  '41401904009', // Cancanle Trekstarter FS 38 / FS 55 (B07BLSL3VM, dealer-corroborated)
+  '41340802101'  // CÂ·TÂ·S Trekstarterhuis FS 120 / FS 250 (B079WS2YNM, dealer-corroborated)
 ]);
 
 export function checkAffiliateConsistency() {

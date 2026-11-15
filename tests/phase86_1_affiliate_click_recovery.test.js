@@ -65,7 +65,15 @@ test('Phase 86.1 — 3. Gesuspendeerde Amazon-aanbiedingen worden nooit ongeveri
   assert.ok(audit.controls?.missing_asin_control?.http_status === 404);
 
   for (const offer of suspended) {
-    assert.equal(offer.previous_status, 'ACTIVE', 'suspension must record the previous lifecycle status');
+    // Phase 87 also suspended delisted candidate listings that never became ACTIVE;
+    // the invariant is that the lifecycle status before suspension is recorded, not that it was ACTIVE.
+    assert.ok(
+      ['ACTIVE', 'RESEARCH_REQUIRED'].includes(offer.previous_status),
+      'suspension must record the previous lifecycle status'
+    );
+    if (offer.previous_status === 'ACTIVE') {
+      assert.ok(offer.superseded_by_asin || offer.status_reason, 'a suspension of an ACTIVE listing must explain itself');
+    }
     assert.ok(offer.status_reason && offer.status_reason.length > 0, 'suspension must keep its written reason');
     assert.ok(Array.isArray(offer.verifiable_evidence_sources) && offer.verifiable_evidence_sources.length > 0, 'original evidence must be preserved');
 

@@ -25,7 +25,9 @@ try {
   assert.equal(report.mode, 'OFFLINE');
   assert.equal(report.records.find(r => r.part_number === '00004007000').part_name, 'Spark plug NGK BPMR7A');
   assert.equal(report.records.find(r => r.part_number === '00004007000').status, 'VERIFIED');
-  assert.equal(report.records.find(r => r.part_number === '00004007000').candidates[0].asin, 'B001RM8J76');
+  // Phase 87 added the Champion RCJ6Y offer for the same part, so the candidate order
+  // is no longer stable; the documented NGK record must still be present.
+  assert.ok(report.records.find(r => r.part_number === '00004007000').candidates.some(c => c.asin === 'B001RM8J76'));
   assert.equal(report.records.find(r => r.part_number === '00004007025').candidates[0].status, 'REJECTED');
   assert.equal(report.records.find(r => r.part_number === '00006421223').candidates.find(c => c.asin === 'B000IBWVWG').status, 'REJECTED');
   const p00006421240 = report.records.find(r => r.part_number === '00006421240');

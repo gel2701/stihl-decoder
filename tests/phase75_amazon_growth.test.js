@@ -110,7 +110,11 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
     const approvedManufacturers = new Set([
       'STIHL', 'Oregon', 'NGK', 'Bosch', 'Walbro', 'Zama', 'Champion',
-      'Haishine', 'MCHNIC', 'Trade-Shop', 'MospdyGear', 'YOUSHARES', 'Yingshop', 'vhbw', 'ECSiNG', 'Sägenspezi', 'RUURUU'
+      'Haishine', 'MCHNIC', 'Trade-Shop', 'MospdyGear', 'YOUSHARES', 'Yingshop', 'vhbw', 'ECSiNG', 'Sägenspezi', 'RUURUU',
+      // Phase 87 recovery brands: each one is the seller brand Amazon shows on the
+      // verified replacement listing for a delisted STIHL number.
+      'MAXPOWER', 'perfektGarten', 'Kitoo', 'QINYUN', 'YINETTECH', 'Adefol', 'Gubeter',
+      'SHIHAOHZ', 'CCQDGMD', 'EMSea', 'HOHMI', 'TOPINCN', 'Cancanle', 'C·T·S'
     ]);
 
     for (const offer of activeOffers) {
@@ -149,11 +153,22 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
           const brand = (offer.brand || offer.manufacturer || '').trim();
           return ['STIHL', 'Walbro', 'Oregon', 'Bosch', 'NGK'].some(b => brand.toLowerCase().includes(b.toLowerCase()));
         });
-        if (pn === '11236402073') {
-          // Its only genuine STIHL listing (amazon.nl B079DN88M2) is a live 404;
-          // the remaining live offers are Sägenspezi aftermarket units.
-          const suspended = regDoc.offers.find(o => o.part_number === pn && o.status === 'SUSPENDED');
-          assert.ok(suspended && suspended.suspension_reason === 'LISTING_NOT_AVAILABLE_404', 'The genuine 11236402073 listing must be suspended with 404 evidence');
+        if (isGenuine) continue;
+
+        // Phase 87: when the genuine listing itself is a confirmed 404, the live
+        // replacement must point at the suspended predecessor and carry recorded
+        // evidence (Amazon page check plus, where available, a dealer catalog).
+        const recovered = partOffers.find(o => o.supersedes_asin && o.status === 'ACTIVE');
+        if (recovered) {
+          const predecessor = regDoc.offers.find(o => o.part_number === pn && o.asin === recovered.supersedes_asin);
+          assert.ok(
+            predecessor && predecessor.status === 'SUSPENDED',
+            `Phase 87 replacement for ${pn} must keep the delisted predecessor suspended`
+          );
+          assert.ok(
+            Array.isArray(recovered.verifiable_evidence_sources) && recovered.verifiable_evidence_sources.length > 0,
+            `Phase 87 replacement for ${pn} must carry recorded evidence sources`
+          );
           continue;
         }
         assert.ok(isGenuine, `Phase 75 promoted part ${pn} must keep at least one genuine OEM / tier-1 active offer`);
@@ -219,11 +234,16 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(primaryResolved.asin, 'B001RM8J76');
     assert.strictEqual(primaryResolved.brand, 'NGK');
 
-    // 3. Champion RCJ6Y is quarantined in RESEARCH_REQUIRED
+    // 3. Champion RCJ6Y stays quarantined in RESEARCH_REQUIRED: Phase 87 documented
+    //    that the STIHL 0000 400 7000 is the NGK BPMR7A and that the Champion RCJ6Y is
+    //    its interchange, but the part already has a genuine NGK direct link, so the
+    //    equivalent adds no new purchasable coverage.
     const champRecord = registry.getOffer('00004007000', 'amazon.nl', 'B00IKF8TH8');
     assert.ok(champRecord, 'Champion record must exist in registry');
     assert.strictEqual(champRecord.status, 'RESEARCH_REQUIRED');
-    assert.notStrictEqual(champRecord.status, 'ACTIVE');
+    // The lifecycle loader rebuilds records, so read the note from the registry file itself.
+    const champDoc = regDoc.offers.find(o => o.asin === 'B00IKF8TH8');
+    assert.ok(/Niet geactiveerd/.test(champDoc.phase_87_review || ''), 'The Phase 87 review note must explain the refusal');
 
     // 4. Multi-offer listing for 0000 400 7000: active offers count is exactly 1 (NGK only)
     const activeSparkPlugs = registry.getActiveOffers('00004007000');
@@ -371,7 +391,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
   });
 
-  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (75 Active Offers: 29 NL + 46 DE after the Phase 86 availability audit)', () => {
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (97 Active Offers: 51 NL + 46 DE after the Phase 87 recovery)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -379,11 +399,11 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 75, 'Total active offers must equal 75 (29 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 97, 'Total active offers must equal 97 (51 NL + 46 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 29, 'Active NL offers must equal 29');
+    assert.strictEqual(activeNl.length, 51, 'Active NL offers must equal 51');
     assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de

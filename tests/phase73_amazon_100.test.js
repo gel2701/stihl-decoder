@@ -58,7 +58,9 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
 
     // Unproven offers held in RESEARCH_REQUIRED
     const unprovenOffers = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
-    assert.ok(unprovenOffers.length >= 50, 'Expected unproven candidate offers preserved in RESEARCH_REQUIRED');
+    // Phase 87 superseded 11 delisted candidates with evidenced replacements and
+    // activated one live candidate; 44 unproven records remain.
+    assert.ok(unprovenOffers.length >= 44, 'Expected unproven candidate offers preserved in RESEARCH_REQUIRED');
 
     // Preserved inactive German offers pending confirmed NL shipping
     const inactiveDe = allOffers.filter(o => o.marketplace === 'amazon.de' && o.status === 'VERIFIED');
@@ -125,7 +127,9 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
     // Verify evidence audit summary in commercial report
     assert.ok(report.evidence_audit_summary, 'Evidence audit summary must be present');
     assert.ok(report.evidence_audit_summary.verified_active_offers >= 20);
-    assert.ok(report.evidence_audit_summary.unproven_candidates >= 50);
+    // Phase 87 superseded 11 dead candidates with evidenced replacements and activated one;
+    // the remaining unproven stock is 44 records.
+    assert.ok(report.evidence_audit_summary.unproven_candidates >= 44);
     assert.ok(report.evidence_audit_summary.pending_shipping_confirmation_de >= 3);
   });
 
