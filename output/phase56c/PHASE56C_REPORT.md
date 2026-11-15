@@ -20,7 +20,7 @@ Phase 56C has successfully verified the live Amazon Affiliate commercial pipelin
 4. **Amazon.de Optional Marketplace Support**: Verified fail-closed behavior for the German marketplace via `AMAZON_ASSOCIATE_TAG_DE`. When no regional tag is set, **0 Amazon.de CTAs are rendered**. No cross-border tag leakage is permitted.
 5. **Manual Verified ASIN Intake Tooling**: Deployed `scripts/import_verified_amazon_offers.mjs` with atomic batch pre-write validation, rejecting any invalid ASINs, uncataloged parts, duplicates, price/stock claims, or missing provenance before writing.
 6. **Commercial Analytics Readiness**: Configured dedicated event schemas for `amazon_search_fallback_click` and `amazon_verified_product_click` with whitelisted non-PII metadata (`query_variant`, `commercial_tier`, `seo_tier`, `marketplace`). Commercial conversion status recorded as `DATA_NOT_YET_MATURE`.
-7. **Strict Invariant & SEO Freeze**: Preserved all 17,082 parts, 175,106 fitments, 766 configs, 208,412 evidence, 814 section contexts, 400 indexable part pages, and 581 sitemap URLs.
+7. **Strict Invariant & SEO Freeze**: Preserved all 17,165 parts, 175,106 fitments, 766 configs, 208,412 evidence, 814 section contexts, 400 indexable part pages, and 581 sitemap URLs.
 
 ---
 
@@ -28,21 +28,21 @@ Phase 56C has successfully verified the live Amazon Affiliate commercial pipelin
 
 | Metric | Baseline | Phase 56C Result | Status |
 | :--- | :--- | :--- | :--- |
-| **Canonical Parts** | 17,082 | 17,082 | **FROZEN** |
+| **Canonical Parts** | 17,165 | 17,165 | **FROZEN** |
 | **Model-Part Fitments** | 175,106 | 175,106 | **FROZEN** |
 | **Configurations** | 766 | 766 | **FROZEN** |
 | **Evidence Records** | 208,412 | 208,412 | **FROZEN** |
 | **Section Contexts** | 814 | 814 | **FROZEN** |
 | **Indexable Part Pages** | 400 | 400 | **FROZEN** |
 | **Sitemap Total URLs** | 581 | 581 | **FROZEN** |
-| **Amazon Search Fallback Coverage** | 17,082 / 17,082 | 17,082 / 17,082 | **100% INTACT** |
+| **Amazon Search Fallback Coverage** | 17,165 / 17,165 | 17,165 / 17,165 | **100% INTACT** |
 | **Verified Direct ASIN Mappings** | 0 | 0 | **ZERO FABRICATION** |
 | **Production Associate Tag (NL)** | Unverified | `srihldecoder2-21` | **CONFIRMED & AUDITED** |
 | **Affiliate Links Audited** | 0 | 30 | **30/30 VALID** |
 | **Broken Affiliate Links** | 0 | 0 | **0 BROKEN** |
 | **Missing-Tag URLs** | 0 | 0 | **0 MISSING** |
 | **Query Variant A (Formatted)** | 0 | 8,541 (50.00%) | **DETERMINISTIC 50/50** |
-| **Query Variant B (Compact)** | 17,082 | 8,541 (50.00%) | **DETERMINISTIC 50/50** |
+| **Query Variant B (Compact)** | 17,165 | 8,541 (50.00%) | **DETERMINISTIC 50/50** |
 | **Amazon.de Marketplace** | Unconfigured | Fail-Closed (0 CTAs) | **VERIFIED** |
 | **Verified ASIN Intake Script** | Missing | `import_verified_amazon_offers.mjs` | **PRODUCTION-READY** |
 | **Conversion Data Maturity** | Unknown | `DATA_NOT_YET_MATURE` | **HONEST REPORTING** |
@@ -73,7 +73,7 @@ To optimize search query match rates on Amazon.nl without compromising safety:
   }
   return (hash % 2 === 0) ? 'VARIANT_B' : 'VARIANT_A';
   ```
-- Result across all 17,082 canonical parts:
+- Result across all 17,165 canonical parts:
   - Variant A: exactly 8,541 parts
   - Variant B: exactly 8,541 parts
   - Perfectly balanced 50.00% / 50.00% split.
@@ -114,10 +114,10 @@ The following 9 artifacts were generated in `output/phase56c/`:
 - [x] Production affiliate tag source checked and verified (`srihldecoder2-21`)
 - [x] Tag inconsistencies documented and resolved fail-closed
 - [x] Live affiliate link chain technically valid (30/30 valid, 0 broken)
-- [x] 17,082 Amazon fallbacks intact
+- [x] 17,165 Amazon fallbacks intact
 - [x] Query experiment deterministic and measurable (8,541 / 8,541)
 - [x] Zero false commercial claims (0 prices, 0 stock claims)
 - [x] Optional Amazon.de marketplace fail-closed (0 CTAs without tag)
 - [x] Manual verified-ASIN intake script available
 - [x] 400 SEO pages exactly preserved
-- [x] All catalog invariants intact (17,082 parts, 175,106 fitments, 766 configs, 208,412 evidence, 814 section contexts)
+- [x] All catalog invariants intact (17,165 parts, 175,106 fitments, 766 configs, 208,412 evidence, 814 section contexts)

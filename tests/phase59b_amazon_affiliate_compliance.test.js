@@ -8,7 +8,7 @@
  * 4. OEM vs aftermarket search result disclaimer clearly visible.
  * 5. Dedicated /privacy route with noindex robots tag and cookie consent controls.
  * 6. Non-blocking beacon tracking endpoint (/api/affiliate/track) and 410 Gone for disabled /api/affiliate/out.
- * 7. Catalog invariants preserved: 18,397 parts, 843 indexable, 1,024 sitemap URLs, 0 unverified ASINs.
+ * 7. Catalog invariants preserved: 18,480 parts, 843 indexable, 1,024 sitemap URLs, 0 unverified ASINs.
  */
 
 import test from 'node:test';
@@ -226,8 +226,8 @@ test('Phase 59B — 7. Canonical catalog, sitemap, and zero-unverified-ASIN inva
   const catalogPath = path.resolve(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 
-  // 18,397 canonical parts
-  assert.equal(catalog.parts.length, 18397, 'Must maintain exactly 18,397 parts');
+  // 18,480 canonical parts
+  assert.equal(catalog.parts.length, 18480, 'Must maintain exactly 18,480 parts');
 
   // Exactly 0 manual ASIN offers declared
   const offersPath = path.resolve(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');

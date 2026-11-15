@@ -372,16 +372,25 @@ const priorActivePayloads = [
   'output/phase83/ebay_offers_phase83.json'
 ].filter(rel => fs.existsSync(path.join(rootDir, rel)));
 const priorDirectParts = new Set();
+const priorOfferKeys = new Set();
 let priorOfferCount = 0;
+const offerIdentity = (offer) =>
+  `${offer.part_number}:${String(offer.marketplace || offer.marketplaceId || offer.marketplace_id || '').toUpperCase()}:${offer.item_id}`;
 for (const rel of priorActivePayloads) {
   for (const offer of readJson(rel).offers || []) {
     if (offer.status !== 'ACTIVE') continue;
     priorOfferCount += 1;
     priorDirectParts.add(offer.part_number);
+    priorOfferKeys.add(offerIdentity(offer));
   }
 }
 const newDirectParts = offerParts.filter(part => !priorDirectParts.has(part));
 const alreadyDirectParts = offerParts.filter(part => priorDirectParts.has(part));
+
+// A payload offer that already exists in an earlier payload (same part, marketplace
+// and item_id) is a re-import of a known listing, not a new offering.
+const reimportedOffers = phase84Offers.filter(o => priorOfferKeys.has(offerIdentity(o)));
+const genuinelyNewOffers = phase84Offers.filter(o => !priorOfferKeys.has(offerIdentity(o)));
 
 const modelsTouched = new Set();
 for (const part of offerParts) {
@@ -412,7 +421,11 @@ const affiliateAudit = {
   queue_size: readJson('output/phase82/PHASE82_REMAINING_QUEUE.json').queue.length,
   parts_attempted: probeReport ? probeReport.exchange.parts_in_batch : 0,
   parts_completed: probeReport ? probeReport.per_part.length : 0,
-  new_active_offers: phase84Offers.length,
+  new_active_offers: genuinelyNewOffers.length,
+  reimported_active_offers: reimportedOffers.length,
+  offers_in_payload: phase84Offers.length,
+  reimport_note:
+    'Offers whose (part_number, marketplace, item_id) already appeared in the Phase 81/82/83 payloads are re-imports of known listings; only the remainder is a new offering.',
   parts_with_new_offers: offerParts.length,
   offer_parts: offerParts,
   new_direct_parts: newDirectParts,
@@ -478,7 +491,7 @@ const gscCoverage = {
   totals: coverageTotals,
   models_touched_by_new_offers: [...modelsTouched].sort(),
   note:
-    'All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is additional buy links (more listings) on the same parts.'
+    'All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is at most one additional buy link on the same parts (41 of the 42 payload offers were re-imports of Phase 82 listings).'
 };
 writeJson('PHASE84_GSC_MODEL_COVERAGE.json', gscCoverage);
 
@@ -488,7 +501,10 @@ const summary = {
   title: 'STIHL archive mining, catalog expansion & affiliate evidence recovery',
   generated_at: new Date().toISOString(),
   baseline_verified: {
-    catalog_parts: counts.catalog_parts,
+    // Phase 84 itself added no catalog parts: the phase baseline is frozen here so a
+    // later catalog expansion (Phase 85) cannot be misattributed to this phase.
+    catalog_parts: 18397,
+    catalog_parts_seen_at_rebuild: counts.catalog_parts,
     sqlite_parts: counts.sqlite_parts,
     fitments: counts.fitments,
     fitment_relations_baseline: 181394,
@@ -497,9 +513,12 @@ const summary = {
     catalog_count_source: 'data/parts_catalog.json parts_count field matches the array length'
   },
   after: {
-    catalog_parts: counts.catalog_parts,
+    catalog_parts: 18397,
+    catalog_parts_current: counts.catalog_parts,
     fitments: counts.fitments,
-    new_active_ebay_offers: phase84Offers.length,
+    new_active_ebay_offers: genuinelyNewOffers.length,
+    reimported_ebay_offers: reimportedOffers.length,
+    offers_in_payload: phase84Offers.length,
     parts_receiving_new_offers: offerParts.length,
     new_active_ebay_parts: newDirectParts.length,
     new_active_amazon_offers: 0
@@ -507,9 +526,10 @@ const summary = {
   real_growth: {
     new_catalog_parts: 0,
     new_fitment_relations: 0,
-    new_active_ebay_offers: phase84Offers.length,
+    new_active_ebay_offers: genuinelyNewOffers.length,
+    reimported_ebay_offers: reimportedOffers.length,
     new_parts_with_direct_purchase: newDirectParts.length,
-    additional_active_offers_on_existing_direct_parts: phase84Offers.length
+    additional_active_offers_on_existing_direct_parts: genuinelyNewOffers.length
   },
   blockers: {
     archives_missing: archiveInventory.filter(a => a.status !== 'PRESENT').map(a => a.archive),

@@ -6,8 +6,8 @@
  *   2. Evidence classification contracts (S1–S4, source independence, cross-scope rejection, same-section duplicate rejection)
  *   3. Resolution & Phase 56H preservation (344 resolutions intact, 814 multi-section contexts intact, deterministic cold reload)
  *   4. SEO freeze (no Wave 5 activation, indexable parts = 843, sitemap URLs = 1,024)
- *   5. Catalog invariants (parts = 17,082, fitments = 175,106, configurations = 766, 0 leakage)
- *   6. Affiliate invariants (17,082 tagged search fallbacks, tag = srihldecoder2-21, A/B query split intact)
+ *   5. Catalog invariants (parts = 17,165, fitments = 175,106, configurations = 766, 0 leakage)
+ *   6. Affiliate invariants (17,165 tagged search fallbacks, tag = srihldecoder2-21, A/B query split intact)
  */
 
 import assert from 'node:assert/strict';
@@ -149,13 +149,13 @@ console.log('  ✅ SEO freeze tests passed (843 indexable parts, 1,024 sitemap U
 
 // 7. Catalog Invariant Tests
 const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { readonly: true });
-assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().c, 17082);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().c, 17165);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c, 175106);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c, 766);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c, 208412);
 assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c, 814);
 db.close();
-console.log('  ✅ Canonical SQLite database invariants verified (17,082 parts / 175,106 fitments / 766 configs / 208,412 evidence / 814 contexts)');
+console.log('  ✅ Canonical SQLite database invariants verified (17,165 parts / 175,106 fitments / 766 configs / 208,412 evidence / 814 contexts)');
 
 // 8. Affiliate Invariant Tests
 process.env.AMAZON_AFFILIATE_ENABLED = 'true';
@@ -163,7 +163,7 @@ process.env.AMAZON_ASSOCIATE_TAG = 'srihldecoder2-21';
 delete process.env.AMAZON_ASSOCIATE_TAG_DE;
 
 assert.equal(dryRun.artifact12AmazonStatus.production_tag, 'srihldecoder2-21');
-assert.equal(dryRun.artifact12AmazonStatus.amazon_search_fallbacks_count, 17082);
+assert.equal(dryRun.artifact12AmazonStatus.amazon_search_fallbacks_count, 17165);
 assert.equal(dryRun.artifact12AmazonStatus.verified_asin_mappings_count, 0);
 assert.equal(dryRun.artifact12AmazonStatus.ab_query_variant_experiment.all_110_targets_have_valid_tagged_fallback, true);
 assert.equal(
@@ -185,6 +185,6 @@ for (const sampleTarget of baselineDoc.targets.slice(0, 10)) {
   const qv = getDeterministicQueryVariant(PartNormalizer.normalizePartNumber(sampleTarget.part_number));
   assert.ok(qv === QUERY_VARIANTS.VARIANT_A || qv === QUERY_VARIANTS.VARIANT_B);
 }
-console.log('  ✅ Affiliate invariant tests passed (17,082 tagged search fallbacks, tag srihldecoder2-21, 0 unverified ASINs)');
+console.log('  ✅ Affiliate invariant tests passed (17,165 tagged search fallbacks, tag srihldecoder2-21, 0 unverified ASINs)');
 
 console.log('🎉 ALL PHASE 56J TESTS PASSED!');

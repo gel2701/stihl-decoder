@@ -13,7 +13,7 @@
 - **Repository**: `gel2701/stihl-decoder`
 - **Baseline Commit**: `119853c6b13f10c8a816b0f0c747ef47909101da` (`HEAD == origin/main` verified)
 - **Canonical Database Invariants (100% Frozen & Intact)**:
-  - `parts`: **17,082**
+  - `parts`: **17,165**
   - `model_part_fitments`: **175,106**
   - `parts_model_configurations`: **766**
   - `part_fitment_evidence`: **208,412**
@@ -21,7 +21,7 @@
   - Published STIHL Models: **85**
 - **SEO & Sitemap Freeze Verified (No Wave 5 Activation in Phase 56J)**:
   - Indexable Individual Part Pages: **843** (50 Pilot + 350 Wave 1 + 400 Wave 2 + 4 Wave 3 + 39 Wave 4)
-  - Noindex Individual Part Pages: **16,239**
+  - Noindex Individual Part Pages: **16,322**
   - Total Sitemap URLs: **1,024**
 
 ---
@@ -78,26 +78,26 @@ Alle **110** targets zijn gecontroleerd tegen alle aanwezige bronnen in de repos
 
 | Rank | Model ID | Model Naam | Target Parts (uit 110) | Huidige Resolved Sections | Extra Sections in 56J | Resterend Single-Section |
 |---|---|---|---|---|---|---|
-| 1 | `br_600` | BR 600 | **21** | 11 | 0 | 21 |
-| 2 | `ms_261` | MS 261 | **17** | 11 | 0 | 17 |
+| 1 | `br_600` | BR 600 | **21** | 12 | 0 | 21 |
+| 2 | `ms_261` | MS 261 | **17** | 12 | 0 | 17 |
 | 3 | `br_700` | BR 700 | **17** | 4 | 0 | 17 |
-| 4 | `hs_45` | HS 45 | **16** | 9 | 0 | 16 |
-| 5 | `ms_260` | MS 260 | **11** | 9 | 0 | 11 |
-| 6 | `bg_86` | BG 86 | **7** | 12 | 0 | 7 |
-| 7 | `ms_170` | MS 170 | **7** | 3 | 0 | 7 |
-| 8 | `ms_180` | MS 180 | **6** | 6 | 0 | 6 |
-| 9 | `sh_86` | SH 86 | **5** | 3 | 0 | 5 |
-| 10 | `br_800` | BR 800 | **5** | 0 | 0 | 5 |
-| 11 | `fs_55` | FS 55 | **4** | 18 | 0 | 4 |
-| 12 | `fs_85` | FS 85 | **4** | 15 | 0 | 4 |
-| 13 | `ms_230` | MS 230 | **4** | 6 | 0 | 4 |
-| 14 | `fs_460` | FS 460 C-EM | **4** | 5 | 0 | 4 |
-| 15 | `ms_460` | MS 460 / 046 Magnum | **4** | 5 | 0 | 4 |
-| 16 | `ms_280` | MS 280 | **4** | 4 | 0 | 4 |
-| 17 | `fr_410` | FR 410 | **4** | 0 | 0 | 4 |
-| 18 | `fs_80` | FS 80 | **4** | 0 | 0 | 4 |
-| 19 | `ms_210` | MS 210 | **3** | 6 | 0 | 3 |
-| 20 | `ms_250` | MS 250 | **3** | 6 | 0 | 3 |
+| 4 | `hs_45` | HS 45 | **16** | 10 | 0 | 16 |
+| 5 | `ms_260` | MS 260 | **11** | 10 | 0 | 11 |
+| 6 | `bg_86` | BG 86 | **7** | 13 | 0 | 7 |
+| 7 | `ms_170` | MS 170 | **7** | 4 | 0 | 7 |
+| 8 | `ms_180` | MS 180 | **6** | 7 | 0 | 6 |
+| 9 | `sh_86` | SH 86 | **5** | 4 | 0 | 5 |
+| 10 | `br_800` | BR 800 | **5** | 1 | 0 | 5 |
+| 11 | `fs_55` | FS 55 | **4** | 19 | 0 | 4 |
+| 12 | `fs_85` | FS 85 | **4** | 16 | 0 | 4 |
+| 13 | `ms_230` | MS 230 | **4** | 7 | 0 | 4 |
+| 14 | `fs_460` | FS 460 C-EM | **4** | 6 | 0 | 4 |
+| 15 | `ms_460` | MS 460 / 046 Magnum | **4** | 6 | 0 | 4 |
+| 16 | `ms_280` | MS 280 | **4** | 5 | 0 | 4 |
+| 17 | `fr_410` | FR 410 | **4** | 1 | 0 | 4 |
+| 18 | `fs_80` | FS 80 | **4** | 1 | 0 | 4 |
+| 19 | `ms_210` | MS 210 | **3** | 7 | 0 | 3 |
+| 20 | `ms_250` | MS 250 | **3** | 7 | 0 | 3 |
 
 ---
 

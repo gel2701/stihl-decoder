@@ -279,7 +279,7 @@ test('Phase 56O — 10. Catalog Freeze Invariants Preserved', async () => {
   const cat = result.catalogIntegrity;
 
   assert.equal(cat.invariants.total_catalog_models, 956);
-  assert.equal(cat.invariants.canonical_parts_count, 17082);
+  assert.equal(cat.invariants.canonical_parts_count, 17165);
   assert.equal(cat.invariants.unpowered_attachments_count, 25);
   assert.equal(cat.invariants.non_machine_noise_count, 52);
   assert.equal(cat.invariants.powered_machine_candidates, 879);

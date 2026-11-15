@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "phase": 84,
-  "generated_at": "2026-11-15T17:57:08.262Z",
+  "generated_at": "2026-11-15T18:19:41.171Z",
   "drive_folder": "1l5LmjDidmiBDlOWHLyJWRhqdh0oTliM9",
   "read_method": "Google Drive integration returned 403 insufficient scopes; sources were read and downloaded through the public share links.",
   "requested_archives": [
@@ -68,26 +68,7 @@
           }
         ],
         "part_numbers_seen": 4,
-        "part_numbers_missing_from_catalog": [
-          {
-            "part_number": "30030009852",
-            "in_catalog": false,
-            "source_text": "122 12.95 FS 72: Uprated engine 4133 13.95 STIHL Rollomatic E Super Guide bars: 3003 000 9852 changed to 3003 000 9853 9200 14.95 TS 460: New version with decompression valve 4221 ",
-            "document_title": "TI Overview 1995"
-          },
-          {
-            "part_number": "30030009853",
-            "in_catalog": false,
-            "source_text": "engine 4133 13.95 STIHL Rollomatic E Super Guide bars: 3003 000 9852 changed to 3003 000 9853 9200 14.95 TS 460: New version with decompression valve 4221 15.95 FS 108, FR 108: Cha",
-            "document_title": "TI Overview 1995"
-          },
-          {
-            "part_number": "00008901711",
-            "in_catalog": false,
-            "source_text": " Information for changing spark plug 9000 44.95 Special tools: Testing tool kit 0000 890 1711 9200, 9400 45.95 036 QS: New version 036 QS with \"Quickstop Super\" chain braking syste",
-            "document_title": "TI Overview 1995"
-          }
-        ],
+        "part_numbers_missing_from_catalog": [],
         "supersession_statements": [
           {
             "from_part": "30030009852",
@@ -131,7 +112,7 @@
         "metadata_only_documents": 429,
         "documents_with_page_text": 45,
         "distinct_11_digit_numbers": 201,
-        "numbers_missing_from_catalog": 147,
+        "numbers_missing_from_catalog": 68,
         "note": "The Drive folder holds an export of the Scribd database, not the .db file itself."
       }
     }
@@ -146,145 +127,19 @@
       },
       "unique_rows": 247,
       "distinct_part_numbers": 174,
-      "missing_from_catalog": 127,
-      "missing_with_carburetor_code": 66,
-      "missing_with_model_text": 48,
-      "missing_with_both": 28,
+      "missing_from_catalog": 48,
+      "missing_with_carburetor_code": 17,
+      "missing_with_model_text": 19,
+      "missing_with_both": 5,
       "status": "NEEDS_IDENTITY_REVIEW",
       "reason": "Numbers, carburettor type and model come from a third-party cross-reference chart with OCR noise. Nothing is written to the catalog until each record has a defensible name and no conflicting identity.",
       "entries": [
-        {
-          "part_number": "11201200600",
-          "carburetor": "WA 56",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "lbro Stihl Cross Reference Cha rt Stihl Model Number ppli ca tion C arburet or Part S tihl Pa rt Nu mber Chain Saw WA 56 No longer Available"
-        },
         {
           "part_number": "11201200606",
           "carburetor": "WT 323",
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "Chain Saw WT 323 N o lo nger A vailable"
-        },
-        {
-          "part_number": "11201200601",
-          "carburetor": "WT 563",
-          "model_text": "009",
-          "discontinued_in_source": false,
-          "source_text": "009 Chain Saw WT 563"
-        },
-        {
-          "part_number": "11201200602",
-          "carburetor": "WA 99",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw WA 99 N o longer A vailable"
-        },
-        {
-          "part_number": "11201200604",
-          "carburetor": "WT 29",
-          "model_text": "012",
-          "discontinued_in_source": true,
-          "source_text": "012 Chain Saw WT 29 No longer Available"
-        },
-        {
-          "part_number": "11201200603",
-          "carburetor": "WT 21",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WT 21 No longer Available"
-        },
-        {
-          "part_number": "11141200604",
-          "carburetor": "WT 15",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WT 15 No longer Available"
-        },
-        {
-          "part_number": "11141200601",
-          "carburetor": "WA 1",
-          "model_text": "020AV",
-          "discontinued_in_source": true,
-          "source_text": "020AV Chain Saw WA 1 No longer Available"
-        },
-        {
-          "part_number": "11141200602",
-          "carburetor": "WA 86",
-          "model_text": "020AV",
-          "discontinued_in_source": false,
-          "source_text": "020AV Chain Saw WA 86 N o longer Avai lable"
-        },
-        {
-          "part_number": "11141200600",
-          "carburetor": "HU 7",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw HU 7A"
-        },
-        {
-          "part_number": "11301200600",
-          "carburetor": "WT 325",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "017/MS 1 7 Chain Saw WT 325 N o longer A vailable"
-        },
-        {
-          "part_number": "11301200601",
-          "carburetor": "C1Q S43",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S43"
-        },
-        {
-          "part_number": "11321200600",
-          "carburetor": "WT 451",
-          "model_text": "019T",
-          "discontinued_in_source": true,
-          "source_text": "019T Chain Saw WT 451 No longer A vailable"
-        },
-        {
-          "part_number": "11291200601",
-          "carburetor": "C1Q S16",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S16"
-        },
-        {
-          "part_number": "11291200651",
-          "carburetor": "C1Q S61",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S61"
-        },
-        {
-          "part_number": "11291200606",
-          "carburetor": "WT 326",
-          "model_text": "MS 200",
-          "discontinued_in_source": true,
-          "source_text": "020T/ MS 200 Chain Saw WT 326 No longer Available"
-        },
-        {
-          "part_number": "11291200607",
-          "carburetor": "C1Q S96",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S96"
-        },
-        {
-          "part_number": "11291200610",
-          "carburetor": "C1Q S126",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S126"
-        },
-        {
-          "part_number": "11291200611",
-          "carburetor": "C1Q S127",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S127"
         },
         {
           "part_number": "11231200614",
@@ -294,32 +149,11 @@
           "source_text": "Chain Saw WT 503 N o longer Ava ilable"
         },
         {
-          "part_number": "11231200600",
-          "carburetor": "C1Q S11",
-          "model_text": "MS 250",
-          "discontinued_in_source": false,
-          "source_text": "C25/ MS 250 Chain Saw C1Q S11"
-        },
-        {
-          "part_number": "11231200604",
-          "carburetor": "C1Q S77",
-          "model_text": "210",
-          "discontinued_in_source": false,
-          "source_text": "021/MS 210 Chain Saw C1Q S77"
-        },
-        {
           "part_number": "11231200609",
           "carburetor": "C1Q S",
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "Chain Saw C1Q S 87"
-        },
-        {
-          "part_number": "11231200619",
-          "carburetor": "C1Q S90",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S90"
         },
         {
           "part_number": "11231201610",
@@ -336,32 +170,11 @@
           "source_text": "Chain Saw WT 360 No lon ger Available"
         },
         {
-          "part_number": "11231200613",
-          "carburetor": "WT 396",
-          "model_text": "230",
-          "discontinued_in_source": true,
-          "source_text": "023/MS 230 Chain Saw WT 396 No longer Available"
-        },
-        {
-          "part_number": "11231200616",
-          "carburetor": "WT 498",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WT 498 No longer Available"
-        },
-        {
           "part_number": "11231200603",
           "carburetor": "C1Q S",
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "Chain Saw C1Q S 76"
-        },
-        {
-          "part_number": "11231200620",
-          "carburetor": "C1Q S92",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw C1Q S92"
         },
         {
           "part_number": "11231200607",
@@ -371,39 +184,11 @@
           "source_text": "Chain Saw C1Q S242"
         },
         {
-          "part_number": "11231200610",
-          "carburetor": "WT 283",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WT 283 No longer Available"
-        },
-        {
-          "part_number": "11231200612",
-          "carburetor": "WT 313",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "C25/MS 250 Cha in Saw WT 313 No longer Available"
-        },
-        {
-          "part_number": "11231200602",
-          "carburetor": "C1Q S75",
-          "model_text": "250",
-          "discontinued_in_source": false,
-          "source_text": "C25/MS 250 Chain Saw C1Q S75"
-        },
-        {
           "part_number": "11431200602",
           "carburetor": "WT F 8",
           "model_text": "MS 251",
           "discontinued_in_source": false,
           "source_text": "MS 251 Chain Saw WT F 8"
-        },
-        {
-          "part_number": "11431200605",
-          "carburetor": "C1Q S233",
-          "model_text": "MS 251",
-          "discontinued_in_source": false,
-          "source_text": "MS 251 Chain Saw C1Q S233"
         },
         {
           "part_number": "11431200632",
@@ -420,116 +205,11 @@
           "source_text": "MS 25 1 C BE Chain Saw C1Q S 234"
         },
         {
-          "part_number": "11211200600",
-          "carburetor": "HU 54",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw HU 54"
-        },
-        {
           "part_number": "11211200650",
           "carburetor": "WT 426",
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "Chain Saw WT 426B"
-        },
-        {
-          "part_number": "11211200606",
-          "carburetor": "WT 194",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "026/MS 260 C hain S aw WT 194"
-        },
-        {
-          "part_number": "11211200601",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw W T 22 No longer Available"
-        },
-        {
-          "part_number": "11211200610",
-          "carburetor": "WT 403",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WT 403 No longer Available"
-        },
-        {
-          "part_number": "11211200612",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "C hain Saw W T 427 No longe r Available"
-        },
-        {
-          "part_number": "11211200616",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "C hain Saw W T 590 No longer Available"
-        },
-        {
-          "part_number": "11211200608",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "C hain Saw W T 394 No longer Available"
-        },
-        {
-          "part_number": "11211200613",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "C hain Saw W T 493 No longer Available"
-        },
-        {
-          "part_number": "11181200601",
-          "carburetor": "WT 16",
-          "model_text": "028",
-          "discontinued_in_source": false,
-          "source_text": "028 Chain Saw WT 16"
-        },
-        {
-          "part_number": "11181200600",
-          "carburetor": "HU 40",
-          "model_text": "028",
-          "discontinued_in_source": false,
-          "source_text": "028 Chain Saw HU 40"
-        },
-        {
-          "part_number": "11271200601",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "C hain Saw HD 5 No longer Available"
-        },
-        {
-          "part_number": "11131200600",
-          "carburetor": "HU 3",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "030/031 Chain Saw HU 3G"
-        },
-        {
-          "part_number": "11131200602",
-          "carburetor": "WA 2",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "030/031 Chain Saw WA 2"
-        },
-        {
-          "part_number": "11131200604",
-          "carburetor": "HU 51",
-          "model_text": "032",
-          "discontinued_in_source": false,
-          "source_text": "032 Chain Saw HU 51"
-        },
-        {
-          "part_number": "11131200603",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "032 Cha in Saw W A 49 No longer Available"
         },
         {
           "part_number": "11171200600",
@@ -551,13 +231,6 @@
           "model_text": "048",
           "discontinued_in_source": true,
           "source_text": "048 Chain Saw WS 25 No longer Available"
-        },
-        {
-          "part_number": "11281200619",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw HD 10 No longer Available"
         },
         {
           "part_number": "11281200620",
@@ -616,53 +289,11 @@
           "source_text": "Chain Saw C 3M S 24"
         },
         {
-          "part_number": "11381200605",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw HD 47"
-        },
-        {
-          "part_number": "11381200606",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "MS 441 C M Chain Saw HD 49"
-        },
-        {
           "part_number": "11381200650",
           "carburetor": null,
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "Chain Saw HD 49"
-        },
-        {
-          "part_number": "11281200610",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "1 Chain Saw HD-8 No longer Available"
-        },
-        {
-          "part_number": "11281200626",
-          "carburetor": null,
-          "model_text": "MS 461",
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw HD-18 - MS 461 Chain Saw HD 24C"
-        },
-        {
-          "part_number": "11111200601",
-          "carburetor": null,
-          "model_text": "076",
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WS -11 No longer Available 076 Chain Saw HS 60"
-        },
-        {
-          "part_number": "11151200600",
-          "carburetor": null,
-          "model_text": "056",
-          "discontinued_in_source": false,
-          "source_text": "056 Chain Saw HS 118"
         },
         {
           "part_number": "11151200602",
@@ -693,27 +324,6 @@
           "source_text": "064 Chain Saw WJ -6 No longer Available"
         },
         {
-          "part_number": "11221200613",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WJ 4 8 No longer Available"
-        },
-        {
-          "part_number": "11221200608",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw WJ 3 4 N o longer A vailable"
-        },
-        {
-          "part_number": "11221200607",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WJ 3 5 No longer Available"
-        },
-        {
           "part_number": "11221200605",
           "carburetor": null,
           "model_text": null,
@@ -721,39 +331,11 @@
           "source_text": "Chain Saw WJ -41 No longer Available"
         },
         {
-          "part_number": "11221200609",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WJ 4 2 No longer Available"
-        },
-        {
           "part_number": "11220200616",
           "carburetor": null,
           "model_text": "650",
           "discontinued_in_source": true,
           "source_text": "066/MS 660/MS 650 Chain Saw WJ -51 No longer Available"
-        },
-        {
-          "part_number": "11221200615",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WJ 5 2 No longer Available"
-        },
-        {
-          "part_number": "11221200623",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "Chain Saw WJ 76"
-        },
-        {
-          "part_number": "11221200606",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "Chain Saw WJ 8 6 No longer Available"
         },
         {
           "part_number": "11111200605",
@@ -777,32 +359,11 @@
           "source_text": "088/MS 880 Chain Saw HT-12"
         },
         {
-          "part_number": "11241200613",
-          "carburetor": null,
-          "model_text": "880",
-          "discontinued_in_source": true,
-          "source_text": "088/MS 880 Chain Saw WG-13 No longer Available"
-        },
-        {
           "part_number": "41301200601",
           "carburetor": "WT-160",
           "model_text": "FS 44",
           "discontinued_in_source": false,
           "source_text": "FS 44 String Trimmer, Brush Cutter WT-160"
-        },
-        {
-          "part_number": "41301200603",
-          "carburetor": "WT-492",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "S 6 String Trimmer, Brush Cutter WT-492 No longer Available"
-        },
-        {
-          "part_number": "41301200602",
-          "carburetor": "WT-327",
-          "model_text": "FS 44",
-          "discontinued_in_source": true,
-          "source_text": "FS 44 String Trimmer, Brush Cutter WT-327 No longer Available"
         },
         {
           "part_number": "42261200601",
@@ -826,20 +387,6 @@
           "source_text": "C 73 S tring T rimmer, Brush C utt er V V I H ^ U I^U IUIILJ til"
         },
         {
-          "part_number": "41371200603",
-          "carburetor": "C1Q-S45",
-          "model_text": "FS 85",
-          "discontinued_in_source": false,
-          "source_text": "FS 85 String Trimmer, Brush Cutter C1Q-S45"
-        },
-        {
-          "part_number": "41371200606",
-          "carburetor": "C1Q-S63",
-          "model_text": "FS 85",
-          "discontinued_in_source": false,
-          "source_text": "FS 85 String Trimmer, Brush Cutter C1Q-S63"
-        },
-        {
           "part_number": "41371200608",
           "carburetor": null,
           "model_text": null,
@@ -852,13 +399,6 @@
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "FS 85 S tr ing Trimmer, Brush Cutter W T- 447"
-        },
-        {
-          "part_number": "41261200600",
-          "carburetor": "WT-45",
-          "model_text": "FS 86",
-          "discontinued_in_source": false,
-          "source_text": "FS 86 String Trimmer, Brush Cutter WT-45"
         },
         {
           "part_number": "41321200600",
@@ -889,13 +429,6 @@
           "source_text": "F S 6 S tring T rimmer, Brush C utt er Teikei"
         },
         {
-          "part_number": "41261200611",
-          "carburetor": "WT-367",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "FS 88 S tring T rimmer, Brush C utt er WT-367 No longer Available"
-        },
-        {
           "part_number": "41191200601",
           "carburetor": "WT-223",
           "model_text": "280",
@@ -903,39 +436,11 @@
           "source_text": "S 280 String Trimmer, Brush Cutter WT-223 No longer Avai lable"
         },
         {
-          "part_number": "41191200604",
-          "carburetor": "WT-70",
-          "model_text": "FS 220",
-          "discontinued_in_source": false,
-          "source_text": "FS 220 String Trimmer, Brush Cutter WT-70 No longer A vaila ble"
-        },
-        {
           "part_number": "41471200605",
           "carburetor": "WTF-10",
           "model_text": null,
           "discontinued_in_source": false,
           "source_text": "FS 360 C-E String Trimmer, Brush Cutter WTF-10"
-        },
-        {
-          "part_number": "41161200600",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "FS 360 OL D) String Trimmer, Brush Cutter HD-1 No longer Availa ble"
-        },
-        {
-          "part_number": "41161200601",
-          "carburetor": null,
-          "model_text": "FS 420",
-          "discontinued_in_source": false,
-          "source_text": "FS 420 String Trimmer, Brush Cutter HD-3"
-        },
-        {
-          "part_number": "41161200603",
-          "carburetor": null,
-          "model_text": "FS 550",
-          "discontinued_in_source": false,
-          "source_text": "FS 550 String Trimmer, Brush Cutter HD-22A"
         },
         {
           "part_number": "41481200601",
@@ -959,83 +464,6 @@
           "source_text": "BG 60 Blower, Hedgetrimmer Teikei"
         },
         {
-          "part_number": "42271200600",
-          "carburetor": "WT-253",
-          "model_text": "BG 72",
-          "discontinued_in_source": false,
-          "source_text": "BG 72 Blower, Hedgetrimmer WT-253"
-        },
-        {
-          "part_number": "42271200601",
-          "carburetor": "WT-330",
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "BG 72 CA) Blower, Hedgetrimmer WT-330"
-        },
-        {
-          "part_number": "42271200602",
-          "carburetor": "C1Q-S30",
-          "model_text": "BG 75",
-          "discontinued_in_source": false,
-          "source_text": "BG 75 Blower, Hedgetrimmer C1Q-S30"
-        },
-        {
-          "part_number": "42271200603",
-          "carburetor": "WT-413",
-          "model_text": "BG 75",
-          "discontinued_in_source": true,
-          "source_text": "BG 75 Blower, Hedgetrimmer WT-413 No longer Available"
-        },
-        {
-          "part_number": "42031200600",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "BR 320/400 Blower, Hedgetrimmer HD-2 No longer Available"
-        },
-        {
-          "part_number": "42031200602",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "BR 320/400 Blower, Hedgetrimmer HD-7 No longer Available"
-        },
-        {
-          "part_number": "42031200603",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "BR 320/400 Blower, Hedgetrimmer HD-13B"
-        },
-        {
-          "part_number": "42031200607",
-          "carburetor": "WT-489",
-          "model_text": "BR 320 L",
-          "discontinued_in_source": false,
-          "source_text": "BR 320 L Blower, Hedgetrimmer WT-489"
-        },
-        {
-          "part_number": "42031200606",
-          "carburetor": "WT-331",
-          "model_text": null,
-          "discontinued_in_source": true,
-          "source_text": "R 320 L Blower, Hedgetrimmer WT-331 No longer Available"
-        },
-        {
-          "part_number": "42031200608",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "BR 340/420 Blower, Hedgetrimmer HD-28A"
-        },
-        {
-          "part_number": "42031200604",
-          "carburetor": null,
-          "model_text": null,
-          "discontinued_in_source": false,
-          "source_text": "BR 340/420 Blower, Hedgetrimmer HD-29"
-        },
-        {
           "part_number": "42031200609",
           "carburetor": null,
           "model_text": "BR 340 L",
@@ -1053,15 +481,15 @@
           "to_part": "30030009853",
           "document_title": "TI Overview 1995",
           "source_text": "95 STIHL Rollomatic E Super Guide bars: 3003 000 9852 changed to 3003 000 9853 9200 14.95 TS 460: New version with decompression valve 4221 15.95 FS 108, FR 108: Changes to comply with CARB and EPA re",
-          "from_in_catalog": false,
-          "to_in_catalog": false
+          "from_in_catalog": true,
+          "to_in_catalog": true
         }
       ]
     }
   },
   "catalog_untouched": {
-    "parts_in_catalog": 18397,
-    "parts_count_field": 18397,
+    "parts_in_catalog": 18480,
+    "parts_count_field": 18480,
     "written_records": 0
   }
 }

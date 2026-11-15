@@ -176,6 +176,96 @@ export function loadEbayOfferStore(filePath = getEbayOfferStorePath()) {
  * @param {Object} [options]
  * @returns {{ written: number, preserved: number, rejected: number, doc: Object }}
  */
+/**
+ * Fields that carry adjudicated evidence. A re-import that does not mention
+ * them (because the batch payload never contained them) must not erase them.
+ */
+const EVIDENCE_FIELDS = [
+  'shipping_evidence',
+  'product_evidence',
+  'gtin',
+  'mpn',
+  'brand',
+  'title',
+  'seller_name',
+  'match_basis',
+  'condition',
+  'item_price',
+  'shipping_cost_nl'
+];
+
+/**
+ * Fields where two non-empty, different values are a real conflict: the newer
+ * batch claims a different identity for the same listing. The stored value wins
+ * and the conflict is recorded instead of silently merged.
+ */
+const CONFLICT_FIELDS = new Set(['match_type', 'mpn', 'gtin', 'title']);
+
+const isEmptyValue = (value) =>
+  value === undefined || value === null || value === '' || (Array.isArray(value) && value.length === 0);
+
+const isSameEvidence = (left, right) => {
+  try {
+    return JSON.stringify(left) === JSON.stringify(right);
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Field-level merge of an incoming canonical offer over the stored record.
+ *
+ * - empty incoming fields never overwrite stored values;
+ * - contradictory identity fields keep the stored value and are logged;
+ * - related part numbers are unioned so a listing stays findable from both;
+ * - the original first_seen_at is preserved for lifecycle reporting.
+ *
+ * @param {Object} previous
+ * @param {Object} incoming
+ * @param {string} now
+ * @returns {{ record: Object, conflicts: Array<Object> }}
+ */
+export function mergeEbayOfferRecord(previous, incoming, now = new Date().toISOString()) {
+  const conflicts = [];
+  if (!previous) {
+    return {
+      record: { ...incoming, first_seen_at: incoming.checked_at || now },
+      conflicts
+    };
+  }
+
+  const record = { ...previous };
+  for (const [field, value] of Object.entries(incoming)) {
+    if (field === 'related_part_numbers') continue;
+    if (field === 'first_seen_at') continue;
+    if (isEmptyValue(value)) continue;
+    const stored = previous[field];
+    if (CONFLICT_FIELDS.has(field) && !isEmptyValue(stored) && String(stored) !== String(value)) {
+      conflicts.push({ field, stored, incoming: value, at: now });
+      continue;
+    }
+    if (EVIDENCE_FIELDS.includes(field) && field.endsWith('_evidence') && !isEmptyValue(stored) && !isSameEvidence(stored, value)) {
+      // Different, both non-empty evidence objects: keep the stored proof and log it.
+      conflicts.push({ field, stored, incoming: value, at: now });
+      continue;
+    }
+    record[field] = value;
+  }
+
+  record.related_part_numbers = [...new Set([
+    ...(Array.isArray(previous.related_part_numbers) ? previous.related_part_numbers : []),
+    ...(Array.isArray(incoming.related_part_numbers) ? incoming.related_part_numbers : [])
+  ])];
+  record.first_seen_at = previous.first_seen_at || previous.checked_at || now;
+  record.updated_at = now;
+  if (conflicts.length) {
+    record.evidence_conflicts = [...(Array.isArray(previous.evidence_conflicts) ? previous.evidence_conflicts : []), ...conflicts];
+  } else if (Array.isArray(previous.evidence_conflicts)) {
+    record.evidence_conflicts = previous.evidence_conflicts;
+  }
+  return { record, conflicts };
+}
+
 export function saveEbayOfferStore(filePath = getEbayOfferStorePath(), offers = [], options = {}) {
   const existing = loadEbayOfferStore(filePath);
   const merged = new Map();
@@ -184,8 +274,12 @@ export function saveEbayOfferStore(filePath = getEbayOfferStorePath(), offers = 
     const key = ebayOfferKey(record.item_id, record.marketplace, record.part_number);
     merged.set(key, record);
   }
+  const now = new Date().toISOString();
   let written = 0;
+  let added = 0;
+  let updated = 0;
   let rejected = 0;
+  let conflictCount = 0;
   const preservedKeys = new Set(merged.keys());
   for (const offer of (Array.isArray(offers) ? offers : [])) {
     const canonical = toCanonicalEbayOffer(offer, options);
@@ -195,12 +289,13 @@ export function saveEbayOfferStore(filePath = getEbayOfferStorePath(), offers = 
     }
     const key = ebayOfferKey(canonical.item_id, canonical.marketplace, canonical.part_number);
     const previous = merged.get(key);
-    if (previous && Array.isArray(previous.related_part_numbers)) {
-      canonical.related_part_numbers = [...new Set([...previous.related_part_numbers, ...canonical.related_part_numbers])];
-    }
-    merged.set(key, canonical);
+    const { record, conflicts } = mergeEbayOfferRecord(previous, canonical, now);
+    conflictCount += conflicts.length;
+    merged.set(key, record);
     preservedKeys.delete(key);
     written++;
+    if (previous) updated++;
+    else added++;
   }
   const doc = {
     schema_version: EBAY_OFFER_STORE_SCHEMA_VERSION,
@@ -221,7 +316,7 @@ export function saveEbayOfferStore(filePath = getEbayOfferStorePath(), offers = 
   const tmp = `${filePath}.tmp`;
   fs.writeFileSync(tmp, JSON.stringify(doc, null, 2) + '\n', 'utf8');
   fs.renameSync(tmp, filePath);
-  return { written, preserved: preservedKeys.size, rejected, doc };
+  return { written, added, updated, preserved: preservedKeys.size, rejected, conflicts: conflictCount, doc };
 }
 
 /**

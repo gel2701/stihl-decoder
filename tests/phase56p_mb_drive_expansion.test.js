@@ -459,14 +459,14 @@ test('Phase 56P — 21. Catalog & Serial Freeze Invariants Preserved', async () 
   assert.equal(inv.unpowered_attachments, 25);
   assert.equal(inv.confirmed_non_machine_noise, 52);
   assert.equal(inv.powered_machine_candidates, 879);
-  assert.equal(inv.total_parts, 17082);
+  assert.equal(inv.total_parts, 17165);
   assert.equal(inv.total_fitments, 175106);
   assert.equal(inv.total_configurations, 766);
   assert.equal(inv.total_evidence_records, 208412);
   assert.equal(inv.total_section_contexts, 814);
   assert.equal(inv.total_indexable_models, 843);
   assert.equal(inv.total_sitemap_urls, 1024);
-  assert.equal(inv.amazon_fallback_links, 17082);
+  assert.equal(inv.amazon_fallback_links, 17165);
   assert.equal(inv.verified_asin_links, 0);
   assert.equal(inv.affiliate_tag, 'srihldecoder2-21');
   assert.equal(inv.catalog_frozen, true);

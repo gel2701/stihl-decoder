@@ -50,7 +50,7 @@ test('Phase 56H Test 1: Frozen Canonical Database & SEO Invariants Intact', () =
   const contextsCount = db.prepare('SELECT count(*) as c FROM model_part_fitment_section_contexts').get().c;
   const scalarUnresolved = db.prepare("SELECT count(*) as c FROM model_part_fitments WHERE source_id != 'ghs' AND section_name = 'Unresolved Diagram Section'").get().c;
 
-  assert.strictEqual(partsCount, 17082, 'Canonical parts must remain 17,082');
+  assert.strictEqual(partsCount, 17165, 'Canonical parts must remain 17,165');
   assert.strictEqual(fitmentsCount, 175106, 'Canonical fitments must remain 175,106');
   assert.strictEqual(configsCount, 766, 'Configurations must remain 766');
   assert.strictEqual(evidenceCount, 208412, 'Evidence records must remain 208,412');
@@ -233,7 +233,7 @@ test('Phase 56H Test 7: SEO & Commercial Unlock Re-Analysis & Fail-Closed GSC / 
 
   const asinDoc = JSON.parse(fs.readFileSync(path.join(outputDir, 'VERIFIED_ASIN_STATUS.json'), 'utf8'));
   assert.strictEqual(asinDoc.verified_asin_delta, 0);
-  assert.strictEqual(asinDoc.total_search_fallback_links, 17082);
+  assert.strictEqual(asinDoc.total_search_fallback_links, 17165);
   assert.strictEqual(asinDoc.production_associate_tag, 'srihldecoder2-21');
 });
 

@@ -16,7 +16,7 @@
  *    - Gate 1 (Technical & Format) and Gate 2 (Product & Compatibility).
  *    - Rejection of invalid ASINs, volatile price/stock facts, and known mismatches.
  * 4. Production Read-Only Safety & Invariant Protection:
- *    - Exactly 18,397 canonical parts.
+ *    - Exactly 18,480 canonical parts.
  *    - Zero published production ASINs in runtime `amazon_part_offers.json`.
  *    - Exactly 843 indexable SEO parts.
  *    - Exactly 1,024 sitemap URLs.
@@ -274,10 +274,10 @@ test('Phase 59D — 4. Continuous Enrichment Pipeline & Backlog Retention', () =
 });
 
 test('Phase 59D — 5. Production Read-Only Safety & Invariant Protection', () => {
-  // 1. Catalog parts must remain 18,397
+  // 1. Catalog parts must remain 18,480
   const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18397, 'Catalog parts must remain exactly 18,397');
+  assert.equal(catalog.parts.length, 18480, 'Catalog parts must remain exactly 18,480');
 
   // 2. Production manual ASIN offers file must remain EMPTY (0 published offers in runtime)
   const offersPath = path.join(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');

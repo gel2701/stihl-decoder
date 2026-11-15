@@ -1,0 +1,1275 @@
+{
+  "schema_version": "1.0.0",
+  "phase": 85,
+  "generated_at": "2026-11-15T18:18:37.623Z",
+  "dry_run": false,
+  "sources": {
+    "candidate_queue": "output/phase85/PHASE85_CARB_CANDIDATES.json",
+    "catalog": "data/parts_catalog.json",
+    "supersessions": "data/parts_supersessions.json"
+  },
+  "summary": {
+    "catalog_before": 18397,
+    "catalog_after": 18480,
+    "added_records": 83,
+    "added_carburettors": 79,
+    "added_supersession_parts": 4,
+    "skipped_existing": 0,
+    "supersession_relations_added": 2,
+    "supersession_relations_total": 24,
+    "relations_flags_updated": 2,
+    "fitments_written": 0
+  },
+  "added": [
+    {
+      "part_number": "11201200600",
+      "part_number_display": "1120 120 0600",
+      "part_name": "Stihl Carburettor WA 56",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11201200601",
+      "part_number_display": "1120 120 0601",
+      "part_name": "Stihl Carburettor WT 563",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11201200602",
+      "part_number_display": "1120 120 0602",
+      "part_name": "Stihl Carburettor WA 99",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11201200604",
+      "part_number_display": "1120 120 0604",
+      "part_name": "Stihl Carburettor WT 29",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11201200603",
+      "part_number_display": "1120 120 0603",
+      "part_name": "Stihl Carburettor WT 21",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11141200604",
+      "part_number_display": "1114 120 0604",
+      "part_name": "Stihl Carburettor WT 15",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11141200601",
+      "part_number_display": "1114 120 0601",
+      "part_name": "Stihl Carburettor WA 1",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11141200602",
+      "part_number_display": "1114 120 0602",
+      "part_name": "Stihl Carburettor WA 86",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11141200600",
+      "part_number_display": "1114 120 0600",
+      "part_name": "Stihl Carburettor HU 7A",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11301200600",
+      "part_number_display": "1130 120 0600",
+      "part_name": "Stihl Carburettor WT 325",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11301200601",
+      "part_number_display": "1130 120 0601",
+      "part_name": "Stihl Carburettor C1Q S43",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11321200600",
+      "part_number_display": "1132 120 0600",
+      "part_name": "Stihl Carburettor WT 451",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200601",
+      "part_number_display": "1129 120 0601",
+      "part_name": "Stihl Carburettor C1Q S16",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200651",
+      "part_number_display": "1129 120 0651",
+      "part_name": "Stihl Carburettor C1Q S61",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200606",
+      "part_number_display": "1129 120 0606",
+      "part_name": "Stihl Carburettor WT 326",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200607",
+      "part_number_display": "1129 120 0607",
+      "part_name": "Stihl Carburettor C1Q S96",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200610",
+      "part_number_display": "1129 120 0610",
+      "part_name": "Stihl Carburettor C1Q S126",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11291200611",
+      "part_number_display": "1129 120 0611",
+      "part_name": "Stihl Carburettor C1Q S127",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200600",
+      "part_number_display": "1123 120 0600",
+      "part_name": "Stihl Carburettor C1Q S11",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200604",
+      "part_number_display": "1123 120 0604",
+      "part_name": "Stihl Carburettor C1Q S77",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200619",
+      "part_number_display": "1123 120 0619",
+      "part_name": "Stihl Carburettor C1Q S90",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200613",
+      "part_number_display": "1123 120 0613",
+      "part_name": "Stihl Carburettor WT 396",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200616",
+      "part_number_display": "1123 120 0616",
+      "part_name": "Stihl Carburettor WT 498",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200620",
+      "part_number_display": "1123 120 0620",
+      "part_name": "Stihl Carburettor C1Q S92",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200610",
+      "part_number_display": "1123 120 0610",
+      "part_name": "Stihl Carburettor WT 283",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200612",
+      "part_number_display": "1123 120 0612",
+      "part_name": "Stihl Carburettor WT 313",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11231200602",
+      "part_number_display": "1123 120 0602",
+      "part_name": "Stihl Carburettor C1Q S75",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11431200605",
+      "part_number_display": "1143 120 0605",
+      "part_name": "Stihl Carburettor C1Q S233",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200600",
+      "part_number_display": "1121 120 0600",
+      "part_name": "Stihl Carburettor HU 54",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200606",
+      "part_number_display": "1121 120 0606",
+      "part_name": "Stihl Carburettor WT 194",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200601",
+      "part_number_display": "1121 120 0601",
+      "part_name": "Stihl Carburettor WT 22",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200610",
+      "part_number_display": "1121 120 0610",
+      "part_name": "Stihl Carburettor WT 403",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200612",
+      "part_number_display": "1121 120 0612",
+      "part_name": "Stihl Carburettor WT 427",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200616",
+      "part_number_display": "1121 120 0616",
+      "part_name": "Stihl Carburettor WT 590",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200608",
+      "part_number_display": "1121 120 0608",
+      "part_name": "Stihl Carburettor WT 394",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11211200613",
+      "part_number_display": "1121 120 0613",
+      "part_name": "Stihl Carburettor WT 493",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11181200601",
+      "part_number_display": "1118 120 0601",
+      "part_name": "Stihl Carburettor WT 16",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11181200600",
+      "part_number_display": "1118 120 0600",
+      "part_name": "Stihl Carburettor HU 40",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11271200601",
+      "part_number_display": "1127 120 0601",
+      "part_name": "Stihl Carburettor HD 5",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11131200600",
+      "part_number_display": "1113 120 0600",
+      "part_name": "Stihl Carburettor HU 3G",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11131200602",
+      "part_number_display": "1113 120 0602",
+      "part_name": "Stihl Carburettor WA 2",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11131200604",
+      "part_number_display": "1113 120 0604",
+      "part_name": "Stihl Carburettor HU 51",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11131200603",
+      "part_number_display": "1113 120 0603",
+      "part_name": "Stihl Carburettor WA 49",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11281200619",
+      "part_number_display": "1128 120 0619",
+      "part_name": "Stihl Carburettor HD 10",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11381200605",
+      "part_number_display": "1138 120 0605",
+      "part_name": "Stihl Carburettor HD 47",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11381200606",
+      "part_number_display": "1138 120 0606",
+      "part_name": "Stihl Carburettor HD 49",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11281200610",
+      "part_number_display": "1128 120 0610",
+      "part_name": "Stihl Carburettor HD-8",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11281200626",
+      "part_number_display": "1128 120 0626",
+      "part_name": "Stihl Carburettor HD 24C",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11111200601",
+      "part_number_display": "1111 120 0601",
+      "part_name": "Stihl Carburettor HS 60",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11151200600",
+      "part_number_display": "1115 120 0600",
+      "part_name": "Stihl Carburettor HS 118",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200613",
+      "part_number_display": "1122 120 0613",
+      "part_name": "Stihl Carburettor WJ 4",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200608",
+      "part_number_display": "1122 120 0608",
+      "part_name": "Stihl Carburettor WJ 3",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200607",
+      "part_number_display": "1122 120 0607",
+      "part_name": "Stihl Carburettor WJ 3",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200609",
+      "part_number_display": "1122 120 0609",
+      "part_name": "Stihl Carburettor WJ 4",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200615",
+      "part_number_display": "1122 120 0615",
+      "part_name": "Stihl Carburettor WJ 5",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200623",
+      "part_number_display": "1122 120 0623",
+      "part_name": "Stihl Carburettor WJ 76",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11221200606",
+      "part_number_display": "1122 120 0606",
+      "part_name": "Stihl Carburettor WJ 8",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "11241200613",
+      "part_number_display": "1124 120 0613",
+      "part_name": "Stihl Carburettor WG-13",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41301200603",
+      "part_number_display": "4130 120 0603",
+      "part_name": "Stihl Carburettor WT-492",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41301200602",
+      "part_number_display": "4130 120 0602",
+      "part_name": "Stihl Carburettor WT-327",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41371200603",
+      "part_number_display": "4137 120 0603",
+      "part_name": "Stihl Carburettor C1Q-S45",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41371200606",
+      "part_number_display": "4137 120 0606",
+      "part_name": "Stihl Carburettor C1Q-S63",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41261200600",
+      "part_number_display": "4126 120 0600",
+      "part_name": "Stihl Carburettor WT-45",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41261200611",
+      "part_number_display": "4126 120 0611",
+      "part_name": "Stihl Carburettor WT-367",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41191200604",
+      "part_number_display": "4119 120 0604",
+      "part_name": "Stihl Carburettor WT-70",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41161200600",
+      "part_number_display": "4116 120 0600",
+      "part_name": "Stihl Carburettor HD-1",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41161200601",
+      "part_number_display": "4116 120 0601",
+      "part_name": "Stihl Carburettor HD-3",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "41161200603",
+      "part_number_display": "4116 120 0603",
+      "part_name": "Stihl Carburettor HD-22A",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42271200600",
+      "part_number_display": "4227 120 0600",
+      "part_name": "Stihl Carburettor WT-253",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42271200601",
+      "part_number_display": "4227 120 0601",
+      "part_name": "Stihl Carburettor WT-330",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42271200602",
+      "part_number_display": "4227 120 0602",
+      "part_name": "Stihl Carburettor C1Q-S30",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42271200603",
+      "part_number_display": "4227 120 0603",
+      "part_name": "Stihl Carburettor WT-413",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200600",
+      "part_number_display": "4203 120 0600",
+      "part_name": "Stihl Carburettor HD-2",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200602",
+      "part_number_display": "4203 120 0602",
+      "part_name": "Stihl Carburettor HD-7",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200603",
+      "part_number_display": "4203 120 0603",
+      "part_name": "Stihl Carburettor HD-13B",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200607",
+      "part_number_display": "4203 120 0607",
+      "part_name": "Stihl Carburettor WT-489",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200606",
+      "part_number_display": "4203 120 0606",
+      "part_name": "Stihl Carburettor WT-331",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200608",
+      "part_number_display": "4203 120 0608",
+      "part_name": "Stihl Carburettor HD-28A",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "42031200604",
+      "part_number_display": "4203 120 0604",
+      "part_name": "Stihl Carburettor HD-29",
+      "sources": [
+        "scribd_walbro_cross_reference:392091827"
+      ]
+    },
+    {
+      "part_number": "30030009852",
+      "part_number_display": "3003 000 9852",
+      "part_name": "Stihl Rollomatic E Super Guide Bar",
+      "sources": [
+        "stihl_local_library"
+      ]
+    },
+    {
+      "part_number": "30030009853",
+      "part_number_display": "3003 000 9853",
+      "part_name": "Stihl Rollomatic E Super Guide Bar",
+      "sources": [
+        "stihl_local_library"
+      ]
+    },
+    {
+      "part_number": "00008901710",
+      "part_number_display": "0000 890 1710",
+      "part_name": "Stihl Testing Tool Kit",
+      "sources": [
+        "official_stihl"
+      ]
+    },
+    {
+      "part_number": "00008901711",
+      "part_number_display": "0000 890 1711",
+      "part_name": "Stihl Testing Tool Kit",
+      "sources": [
+        "official_stihl"
+      ]
+    }
+  ],
+  "skipped": [],
+  "relations_added": [
+    {
+      "from_part": "30030009852",
+      "to_part": "30030009853",
+      "source_document": "TI_13_1995"
+    },
+    {
+      "from_part": "00008901710",
+      "to_part": "00008901711",
+      "source_document": "TI_44_1995_30"
+    }
+  ],
+  "parked": {
+    "needs_evidence": [
+      {
+        "part_number": "11201200606",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "source_text": "Chain Saw WT 323 N o lo nger A vailable"
+      },
+      {
+        "part_number": "11231200614",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "source_text": "Chain Saw WT 503 N o longer Ava ilable"
+      },
+      {
+        "part_number": "11231200609",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "C1Q S"
+        ],
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "source_text": "Chain Saw C1Q S 87"
+      },
+      {
+        "part_number": "11231201610",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "source_text": "Chain Saw WT 283 N o lon ger Available"
+      },
+      {
+        "part_number": "11231200611",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "source_text": "Chain Saw WT 360 No lon ger Available"
+      },
+      {
+        "part_number": "11231200603",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "C1Q S76",
+          "C1Q S"
+        ],
+        "pages": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_text": "Chain Saw C1Q S76"
+      },
+      {
+        "part_number": "11231200607",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "C1Q S85",
+          "C1Q S242"
+        ],
+        "pages": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "source_text": "Chain Saw C1Q S85"
+      },
+      {
+        "part_number": "11431200602",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT F"
+        ],
+        "pages": [
+          1,
+          4,
+          5
+        ],
+        "source_text": "MS 251 Chain Saw WT F 8"
+      },
+      {
+        "part_number": "11431200632",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT F"
+        ],
+        "pages": [
+          4,
+          5
+        ],
+        "source_text": "MS 25 1 C BE Chain Saw WT F 9"
+      },
+      {
+        "part_number": "11431200635",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "C1Q S"
+        ],
+        "pages": [
+          4,
+          5
+        ],
+        "source_text": "MS 25 1 C BE Chain Saw C1Q S 234"
+      },
+      {
+        "part_number": "11211200650",
+        "reason": "No neighbouring number in the same series sequence to confirm the digits",
+        "carburetors": [
+          "WT 426B"
+        ],
+        "pages": [
+          4,
+          5
+        ],
+        "source_text": "024 Chain Saw WT 426B"
+      },
+      {
+        "part_number": "11171200600",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          4,
+          5
+        ],
+        "source_text": "Chain Saw WS 3 No longer Available"
+      },
+      {
+        "part_number": "11171200602",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_text": "042 Chain S aw W S 14 No longer Available"
+      },
+      {
+        "part_number": "11171200603",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_text": "Chain Saw WS 25 No longer Available"
+      },
+      {
+        "part_number": "11281200620",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "HD-11",
+          "HD 9A"
+        ],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "erence Ch art Stihl Model Nu m ber Applicat ion Carb uretor Pa rt Stihl Part Num ber Chain Saw HD-11 No longer Available"
+      },
+      {
+        "part_number": "11281200601",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C3M S 5E"
+      },
+      {
+        "part_number": "11281200617",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "044/MS 440 Chain Saw C3M S5G"
+      },
+      {
+        "part_number": "11281200603",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C3M S12A"
+      },
+      {
+        "part_number": "11281200606",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C3M S20"
+      },
+      {
+        "part_number": "11281200611",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C 3M S 22"
+      },
+      {
+        "part_number": "11281200616",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C3M S23"
+      },
+      {
+        "part_number": "11281200618",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw C 3M S 24"
+      },
+      {
+        "part_number": "11381200650",
+        "reason": "No neighbouring number in the same series sequence to confirm the digits",
+        "carburetors": [
+          "HD 49"
+        ],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw HD 49"
+      },
+      {
+        "part_number": "11151200602",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "056 Chain Saw WJ -4 No longer Available"
+      },
+      {
+        "part_number": "11221200603",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw Bing 49-A"
+      },
+      {
+        "part_number": "11221200602",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "064 Chain Saw WJ -1 0 No longer Available"
+      },
+      {
+        "part_number": "11221200601",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "064 Chain Saw WJ -6 No longer Available"
+      },
+      {
+        "part_number": "11221200605",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw WJ -41 No longer Available"
+      },
+      {
+        "part_number": "11111200605",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7
+        ],
+        "source_text": "Chain Saw WS 26 No longer Available"
+      },
+      {
+        "part_number": "11241200608",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_text": "Chain Saw HT 11A"
+      },
+      {
+        "part_number": "11241200609",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          8,
+          9
+        ],
+        "source_text": "088/MS 880 Chain Saw HT-12"
+      },
+      {
+        "part_number": "41301200601",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "WT 160",
+          "WT-160"
+        ],
+        "pages": [
+          8,
+          9
+        ],
+        "source_text": "FC 44 String Trimmer, Brush Cutter W T 160"
+      },
+      {
+        "part_number": "42261200601",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT-329"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_text": "FC 72 String Trimmer, Brush Cutler WT-329 No longer Available"
+      },
+      {
+        "part_number": "41411200600",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WY A"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_text": "FC 73 S tring Trimmer, B rush Cu tt er WYA-1 FC 73 S tring T rimmer, Brush C utt er WY A- 2 No longer Available"
+      },
+      {
+        "part_number": "41411200601",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_text": "C 73 S tring T rimmer, Brush C utt er V V I H ^ U I^U IUIILJ til"
+      },
+      {
+        "part_number": "41371200608",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "C1Q-S69"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_text": "FC 75 String Trimmer, Brush Cutter CIQ-S69"
+      },
+      {
+        "part_number": "41371200601",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT 447"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_text": "FC 75 String Trimmer, Brush Cutter Available"
+      },
+      {
+        "part_number": "41321200600",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT-112"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_text": "FS 48 S tr ing Trimmer, Brush C ut ter W T- 112"
+      },
+      {
+        "part_number": "41171200605",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "WT-38"
+        ],
+        "pages": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "source_text": "FS 50 OLD) String Trimmer, Brush Cutter WT-38"
+      },
+      {
+        "part_number": "41181200600",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          8,
+          9
+        ],
+        "source_text": "FS 50 OLD) S tri ng Trimmer, Brush C utt er T eikei"
+      },
+      {
+        "part_number": "41141200610",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "source_text": "FS61 String Trimmer, Brush Cutter Teikei"
+      },
+      {
+        "part_number": "41191200601",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "WT-51",
+          "C1S-S2",
+          "WT-223"
+        ],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": " Number pplication C arburet or Part S tihl Part Nu mber FS 220 String Trimmer, Brush Cutter WT-51 No longer A vaila ble"
+      },
+      {
+        "part_number": "41471200605",
+        "reason": "Two different carburettor codes claim this number",
+        "carburetors": [
+          "WT F",
+          "WTF"
+        ],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": "FS 240 String Trimmer, Brush Cutter WT F -10"
+      },
+      {
+        "part_number": "41481200601",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "HDA"
+        ],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": "FS 560 C-EM String Trimmer, Brush Cutter HDA-302"
+      },
+      {
+        "part_number": "41481200602",
+        "reason": "Carburettor code is not anchored to this row (column shift)",
+        "carburetors": [
+          "HDA"
+        ],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": "FS 560 C-EM String Trimmer, Brush Cutter HDA-311"
+      },
+      {
+        "part_number": "42101200601",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": "BG 60 Blower, Hedgetrimmer Teikei"
+      },
+      {
+        "part_number": "42031200609",
+        "reason": "No carburettor code survived in the row",
+        "carburetors": [],
+        "pages": [
+          12,
+          13
+        ],
+        "source_text": "BR 340 L Blower, Hedgetrim mer WT -580 No longer Available"
+      }
+    ],
+    "rejected": [
+      {
+        "part_number": "11220200616",
+        "reason": "STIHL group code is not 120, so the number is not a carburettor"
+      }
+    ]
+  },
+  "notes": [
+    "No fitments were written: the chart names model series, not the exact variant or configuration.",
+    "Supersession relations stay public_active=false because neither document scopes the change to a model or serial range."
+  ]
+}

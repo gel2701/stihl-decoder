@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.1.0",
+  "phase": "80.1",
+  "generated_at": "2026-11-15T18:48:43.771Z",
+  "live_api": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "input": "output/phase85/q15_06.json",
+  "limit": 4,
+  "storage": {
+    "persistent": false,
+    "root": "data",
+    "source": "PROJECT_DATA",
+    "offer_store": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_offers.json",
+    "evidence_registry": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_evidence_registry.json",
+    "output_dir": "output/phase85/ebay_probe"
+  },
+  "exchange": {
+    "input_selection": "PART_LIST",
+    "parts_in_batch": 4,
+    "parts_with_existing_offers": 0,
+    "parts_without_existing_offers": 4
+  },
+  "metrics": {
+    "review_candidates_processed": 0,
+    "unique_listings": 0,
+    "get_item_requests": 0,
+    "get_item_network_calls": 0,
+    "evidence_reused": 0,
+    "candidates_evidence_completed": 0,
+    "new_active": 2,
+    "new_unique_parts_with_direct_offer": 1,
+    "gsc_priority_parts_covered": 0,
+    "remaining_needs_evidence": 0,
+    "rejected_candidates": 0,
+    "item_unavailable": 0,
+    "search_fallbacks_for_unavailable_listings": 0,
+    "deferred_get_items": 0,
+    "offers_on_persistent_disk": 85,
+    "resolver_resolved_offers": 2,
+    "active_preserved_in_store": 83
+  },
+  "chain": {
+    "resolver_status": "VERIFIED",
+    "store_written": 2,
+    "store_rejected_by_guard": 0
+  },
+  "evidence_registry": {
+    "size": 249,
+    "hits": 2,
+    "misses": 2,
+    "recorded": 2
+  },
+  "item_relations": [],
+  "per_part": [
+    {
+      "part_number": "42031200607",
+      "gsc_priority": false,
+      "active": 2,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 2
+    },
+    {
+      "part_number": "42031200606",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "42031200608",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "42031200604",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    }
+  ],
+  "accepted_offers": [
+    {
+      "part_number": "42031200607",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|373131309095|0",
+      "title": "4203 120 0607 Carburetor Fits Stihl BR420 SR420 BR380 SR400 SR320 Trimmer",
+      "mpn": "PJBR32002, 4203 120 0607",
+      "brand": "Unbranded",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "quality_parts_10906",
+      "price": 32.65,
+      "item_price": 32.65,
+      "currency": "EUR",
+      "shipping_cost": 17.41,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:47:58.517Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:47:58.178Z",
+          "item_count": 11,
+          "queries": [
+            "4203 120 0607",
+            "42031200607",
+            "STIHL 42031200607"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:47:58.178Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/373131309095?_skw=4203+120+0607&hash=item56e05bf027%3Ag%3ADNEAAOSwylNfIbo2&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7l07Uj1pQc1IX3Keq1euIdZfSfVBMx90CWbiMDmE67cAej3ujiZoG4SBzRi1YFmMuoKd7E9VzKILK7qamNhmwJz%2BHk1wtMAbB0ui%2BVxDsTDc3bgfoFqWGnGPvaYpwYNBHGG7COgbfFA7%2BOlJRt0AK0hykD1yn745Yn1%2B6U4asjkPIwT6bvsTw4cv62d%2By0PcKLdqFgZnq2Tb%2FMNR5ykgwmizGriHS3MY9lusB2GC7WAKDZMVIAH%2FNA%2FGb1EpN1N2Vm6trB6aza1ubr1vROXxD%2BO6wd3qmhMSRli1%2Foe3%2BgOkQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/373131309095?_skw=4203+120+0607&hash=item56e05bf027%3Ag%3ADNEAAOSwylNfIbo2&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7l07Uj1pQc1IX3Keq1euIdZfSfVBMx90CWbiMDmE67cAej3ujiZoG4SBzRi1YFmMuoKd7E9VzKILK7qamNhmwJz%2BHk1wtMAbB0ui%2BVxDsTDc3bgfoFqWGnGPvaYpwYNBHGG7COgbfFA7%2BOlJRt0AK0hykD1yn745Yn1%2B6U4asjkPIwT6bvsTw4cv62d%2By0PcKLdqFgZnq2Tb%2FMNR5ykgwmizGriHS3MY9lusB2GC7WAKDZMVIAH%2FNA%2FGb1EpN1N2Vm6trB6aza1ubr1vROXxD%2BO6wd3qmhMSRli1%2Foe3%2BgOkQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/373131309095?_skw=4203+120+0607&hash=item56e05bf027%3Ag%3ADNEAAOSwylNfIbo2&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7l07Uj1pQc1IX3Keq1euIdZfSfVBMx90CWbiMDmE67cAej3ujiZoG4SBzRi1YFmMuoKd7E9VzKILK7qamNhmwJz%2BHk1wtMAbB0ui%2BVxDsTDc3bgfoFqWGnGPvaYpwYNBHGG7COgbfFA7%2BOlJRt0AK0hykD1yn745Yn1%2B6U4asjkPIwT6bvsTw4cv62d%2By0PcKLdqFgZnq2Tb%2FMNR5ykgwmizGriHS3MY9lusB2GC7WAKDZMVIAH%2FNA%2FGb1EpN1N2Vm6trB6aza1ubr1vROXxD%2BO6wd3qmhMSRli1%2Foe3%2BgOkQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "PJBR32002, 4203 120 0607",
+              "matched": [
+                "42031200607"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:47:58.517Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:47:58.178Z",
+            "item_count": 11,
+            "queries": [
+              "4203 120 0607",
+              "42031200607",
+              "STIHL 42031200607"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:47:58.178Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:47:58.517Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "42031200607",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|117184768366|0",
+      "title": "4203 120 0607 Carburetor Fits Stihl BR420 SR420 BR380 SR400 SR320 Trimmer",
+      "mpn": "PJBR32002, 4203 120 0607",
+      "brand": "Unbranded",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "chrisw7172013",
+      "price": 12.02,
+      "item_price": 12.02,
+      "currency": "EUR",
+      "shipping_cost": 21.68,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:47:58.918Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:47:58.178Z",
+          "item_count": 11,
+          "queries": [
+            "4203 120 0607",
+            "42031200607",
+            "STIHL 42031200607"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:47:58.178Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/117184768366?_skw=4203+120+0607&hash=item1b48c1a96e%3Ag%3ATjQAAeSwl6Zp%7EY2a&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/117184768366?_skw=4203+120+0607&hash=item1b48c1a96e%3Ag%3ATjQAAeSwl6Zp%7EY2a&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/117184768366?_skw=4203+120+0607&hash=item1b48c1a96e%3Ag%3ATjQAAeSwl6Zp%7EY2a&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "PJBR32002, 4203 120 0607",
+              "matched": [
+                "42031200607"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:47:58.918Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:47:58.178Z",
+            "item_count": 11,
+            "queries": [
+              "4203 120 0607",
+              "42031200607",
+              "STIHL 42031200607"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:47:58.178Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:47:58.918Z",
+      "validation_confidence": 0.98
+    }
+  ],
+  "needs_evidence_offers": [],
+  "rejected_offers": [],
+  "duration_ms": 48225
+}

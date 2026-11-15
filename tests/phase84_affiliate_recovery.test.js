@@ -74,9 +74,28 @@ test('Phase 84: offers resolve to canonical catalog parts and are unique', () =>
 
 test('Phase 84: reported metrics match the payload and the frozen baselines', () => {
   const uniqueParts = new Set(payload.offers.map(o => o.part_number));
-  assert.strictEqual(affiliateAudit.new_active_offers, payload.offers.length);
+
+  // Phase 85 correction: 41 of the 42 payload offers already existed in the Phase 82
+  // payload (same part, marketplace and item_id). They are re-imports of known
+  // listings, not new offerings; only one listing is genuinely new.
+  const priorOfferKeys = new Set();
+  for (const rel of ['output/phase81/ebay_offers_phase81.json', 'output/phase82/ebay_offers_phase82.json', 'output/phase83/ebay_offers_phase83.json']) {
+    for (const offer of readJson(rel).offers || []) {
+      if (offer.status !== 'ACTIVE') continue;
+      priorOfferKeys.add(`${offer.part_number}:${String(offer.marketplace || offer.marketplaceId || '').toUpperCase()}:${offer.item_id}`);
+    }
+  }
+  const identity = (offer) => `${offer.part_number}:${String(offer.marketplace || offer.marketplaceId || '').toUpperCase()}:${offer.item_id}`;
+  const reimported = payload.offers.filter(o => priorOfferKeys.has(identity(o)));
+  const genuinelyNew = payload.offers.filter(o => !priorOfferKeys.has(identity(o)));
+
+  assert.strictEqual(affiliateAudit.offer_count_in_payload ?? affiliateAudit.offers_in_payload, payload.offers.length);
+  assert.strictEqual(affiliateAudit.reimported_active_offers, reimported.length);
+  assert.strictEqual(affiliateAudit.new_active_offers, genuinelyNew.length);
   assert.strictEqual(affiliateAudit.parts_with_new_offers, uniqueParts.size);
-  assert.strictEqual(summary.after.new_active_ebay_offers, payload.offers.length);
+  assert.strictEqual(summary.after.offers_in_payload, payload.offers.length);
+  assert.strictEqual(summary.after.reimported_ebay_offers, reimported.length);
+  assert.strictEqual(summary.after.new_active_ebay_offers, genuinelyNew.length);
   assert.strictEqual(summary.after.parts_receiving_new_offers, uniqueParts.size);
   assert.strictEqual(summary.after.new_active_ebay_parts, 0, 'no part became newly buyable in this phase');
 
@@ -94,8 +113,11 @@ test('Phase 84: reported metrics match the payload and the frozen baselines', ()
   }
   assert.strictEqual(affiliateAudit.unique_parts_with_direct_purchase_before, affiliateAudit.unique_parts_with_direct_purchase_after);
 
+  // Frozen Phase 84 artifact values: the phase itself added no catalog parts.
+  // Later phases may grow the catalog above this baseline.
   assert.strictEqual(summary.baseline_verified.catalog_parts, 18397);
   assert.strictEqual(summary.after.catalog_parts, 18397);
+  assert.ok(catalog.parts.length >= summary.after.catalog_parts, 'the catalog may grow but never below the Phase 84 baseline');
   assert.strictEqual(summary.real_growth.new_catalog_parts, 0);
   assert.strictEqual(summary.real_growth.new_fitment_relations, 0);
   assert.strictEqual(catalog.parts_count, catalog.parts.length);

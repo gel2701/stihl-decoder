@@ -158,7 +158,7 @@ describe('Phase 54F-H — Final Backlog Consolidation & Phase 54F Closure Readin
       const evidence = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
       const contexts = db.prepare('SELECT count(*) as c FROM model_part_fitment_section_contexts').get().c;
 
-      assert.strictEqual(parts, 17082, 'Database parts count frozen at 17,082');
+      assert.strictEqual(parts, 17165, 'Database parts count frozen at 17,082');
       assert.strictEqual(fitments, 175106, 'Database fitments count frozen at 175,106');
       assert.strictEqual(configs, 766, 'Database configurations count frozen at 766');
       assert.strictEqual(evidence, 208412, 'Database evidence count frozen at 208,412');

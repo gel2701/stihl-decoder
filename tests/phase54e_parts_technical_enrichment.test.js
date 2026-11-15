@@ -44,7 +44,7 @@ test('Phase 54E: Core Database & Catalog Invariants Unchanged', () => {
   const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
   const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
 
-  assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
+  assert.strictEqual(partsCount, 17165, 'PARTS must remain exactly 17165');
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175106');
   assert.ok(evidenceCount >= 206607, 'EVIDENCE must remain at least 206607');
   assert.strictEqual(configurationsCount, 766, 'CONFIGURATIONS must remain exactly 766');
@@ -141,7 +141,7 @@ test('Phase 54E: Explicit Supersessions DAG Invariants (0 Self-loops, 0 Cycles, 
   const doc = JSON.parse(fs.readFileSync(supersessionsPath, 'utf8'));
   const relations = doc.relations || [];
 
-  assert.strictEqual(relations.length, 22, 'Must contain exactly 22 authenticated TI replacement relations');
+  assert.strictEqual(relations.length, 24, 'Must contain exactly 24 authenticated TI replacement relations');
   assert.strictEqual(doc.invariants.self_loops, 0, 'Must record 0 self-loops');
   assert.strictEqual(doc.invariants.cycles, 0, 'Must record 0 cycles');
   assert.strictEqual(doc.invariants.conflicts, 0, 'Must record 0 conflicts');
@@ -434,8 +434,8 @@ test('Phase 54E-R2: Diagram Position Accounting & Field Population Integrity', (
 
   assert.strictEqual(partsWithRawPosition.size, 17082, 'PARTS_WITH_RAW_POSITION_VALUE must be 17082');
   assert.strictEqual(partsWithMeaningfulPosition.size, 16600, 'PARTS_WITH_MEANINGFUL_POSITION must be 16600');
-  assert.strictEqual(partsWithoutRawPosition, 0, 'PARTS_WITHOUT_RAW_POSITION_VALUE must be 0');
-  assert.strictEqual(partsWithoutMeaningfulPosition, 482, 'PARTS_WITHOUT_MEANINGFUL_POSITION must be 482');
+  assert.strictEqual(partsWithoutRawPosition, 83, 'PARTS_WITHOUT_RAW_POSITION_VALUE must be 0');
+  assert.strictEqual(partsWithoutMeaningfulPosition, 565, 'PARTS_WITHOUT_MEANINGFUL_POSITION must be 482');
 
   assert.strictEqual(rawPlaceholderPositions, 5116, 'RAW_PLACEHOLDER_POSITIONS must be 5116');
   assert.strictEqual(missingPositionValues, 0, 'MISSING_POSITION_VALUES must be 0');

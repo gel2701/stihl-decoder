@@ -129,7 +129,7 @@ export class TwoGateVerifier {
       errors.push(`Invalid canonical 11-digit STIHL part number: "${candidate.part_number}".`);
     }
 
-    // 5. Catalog Grounding (must exist in canonical 18,397 parts catalog)
+    // 5. Catalog Grounding (must exist in canonical 18,480 parts catalog)
     if (context.catalogPartMap && normPart) {
       const exists = context.catalogPartMap instanceof Set
         ? context.catalogPartMap.has(normPart)

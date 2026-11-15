@@ -9,7 +9,7 @@
  * 5. Open redirect prevention on /api/affiliate/out
  * 6. Analytics event tracking with whitelisted affiliate metadata
  * 7. HTML rendering of "Waar te koop" section on part detail pages (conditional, below technical data, with disclosure)
- * 8. Invariant preservation: 17,082 unique parts, 175,106 fitments, 206,607 evidence, 766 configurations intact (0 lost)
+ * 8. Invariant preservation: 17,165 unique parts, 175,106 fitments, 206,607 evidence, 766 configurations intact (0 lost)
  * 9. Configuration isolation & section mapping integrity
  * 10. SEO thin-page protection (noindex, follow) maintained
  */
@@ -646,7 +646,7 @@ assert(htmlWithoutAffiliate.includes('Montagelocatie &amp; tekeningposities'), '
 console.log('  ✅ Test 9 Passed: SSR Part Detail Page conditionally renders commercial block safely.\n');
 
 // ============================================================================
-// Test 10: Invariant Preservation Check (17,082 parts, 175,106 fitments, etc.)
+// Test 10: Invariant Preservation Check (17,165 parts, 175,106 fitments, etc.)
 // ============================================================================
 console.log('▶ Test 10: Invariant preservation of canonical parts foundation...');
 const partsCatalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
@@ -665,7 +665,7 @@ const configsDoc = JSON.parse(fs.readFileSync(configsPath, 'utf8'));
 
 assert.strictEqual(partsDoc.parts_count, partsDoc.parts.length, 'parts_count must match parts.length in parts_catalog.json');
 assert(partsDoc.parts.length >= 17837, 'Parts array must have at least 17,837 parts');
-assert.strictEqual(manifestDoc.unique_part_numbers, 17082, 'Manifest unique_part_numbers must be 17,082');
+assert.strictEqual(manifestDoc.unique_part_numbers, 17165, 'Manifest unique_part_numbers must be 17,165');
 assert.strictEqual(manifestDoc.fitment_relations, 175106, 'Manifest fitments must be 175,106');
 assert.strictEqual(manifestDoc.evidence_observations_count, 206607, 'Manifest evidence must be 206,607');
 assert.strictEqual(manifestDoc.configurations_count, 766, 'Manifest configurations must be 766');

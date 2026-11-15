@@ -1,0 +1,4251 @@
+{
+  "schema_version": "1.1.0",
+  "phase": "80.1",
+  "generated_at": "2026-11-15T18:44:32.590Z",
+  "live_api": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "input": "output/phase85/q15_04.json",
+  "limit": 15,
+  "storage": {
+    "persistent": false,
+    "root": "data",
+    "source": "PROJECT_DATA",
+    "offer_store": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_offers.json",
+    "evidence_registry": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_evidence_registry.json",
+    "output_dir": "output/phase85/ebay_probe"
+  },
+  "exchange": {
+    "input_selection": "PART_LIST",
+    "parts_in_batch": 15,
+    "parts_with_existing_offers": 0,
+    "parts_without_existing_offers": 15
+  },
+  "metrics": {
+    "review_candidates_processed": 0,
+    "unique_listings": 0,
+    "get_item_requests": 0,
+    "get_item_network_calls": 0,
+    "evidence_reused": 0,
+    "candidates_evidence_completed": 0,
+    "new_active": 13,
+    "new_unique_parts_with_direct_offer": 5,
+    "gsc_priority_parts_covered": 0,
+    "remaining_needs_evidence": 22,
+    "rejected_candidates": 2,
+    "item_unavailable": 0,
+    "search_fallbacks_for_unavailable_listings": 0,
+    "deferred_get_items": 0,
+    "offers_on_persistent_disk": 78,
+    "resolver_resolved_offers": 13,
+    "active_preserved_in_store": 65
+  },
+  "chain": {
+    "resolver_status": "VERIFIED",
+    "store_written": 13,
+    "store_rejected_by_guard": 0
+  },
+  "evidence_registry": {
+    "size": 213,
+    "hits": 40,
+    "misses": 32,
+    "recorded": 32
+  },
+  "item_relations": [],
+  "per_part": [
+    {
+      "part_number": "11381200606",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 2,
+      "evidence_enriched": 0,
+      "evidence_reused": 1
+    },
+    {
+      "part_number": "11281200610",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11281200626",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11111200601",
+      "gsc_priority": false,
+      "active": 5,
+      "needs_evidence": 6,
+      "rejected": 0,
+      "evidence_enriched": 10,
+      "evidence_reused": 12
+    },
+    {
+      "part_number": "11151200600",
+      "gsc_priority": false,
+      "active": 1,
+      "needs_evidence": 9,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 12
+    },
+    {
+      "part_number": "11221200613",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11221200608",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11221200607",
+      "gsc_priority": false,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 1
+    },
+    {
+      "part_number": "11221200609",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11221200615",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1
+    },
+    {
+      "part_number": "11221200623",
+      "gsc_priority": false,
+      "active": 5,
+      "needs_evidence": 5,
+      "rejected": 0,
+      "evidence_enriched": 10,
+      "evidence_reused": 11
+    },
+    {
+      "part_number": "11221200606",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11241200613",
+      "gsc_priority": false,
+      "active": 1,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 2
+    },
+    {
+      "part_number": "41301200603",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "41301200602",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    }
+  ],
+  "accepted_offers": [
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|224026061397|0",
+      "title": "Proline® Carburetor For Stihl 050 051 075 076 Chainsaw 1111 120 0601",
+      "mpn": "1111 120 0601, 38-1001",
+      "brand": "PROLINE",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "sawzillaparts",
+      "price": 38.37,
+      "item_price": 38.37,
+      "currency": "EUR",
+      "shipping_cost": 24.73,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:02.293Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/224026061397?_skw=1111+120+0601&hash=item3428fe6a55%3Ag%3AzGsAAeSwjH5pnsoL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k2cCSVpjA%2FdH3UE3G9mruA%2FG384mQauZNwrRGMoBWpXtXhf1rcN6KjSwsdK4l4E7ucU4oVcUTe6H3VBznotvixrZZmloUz%2FXYkUuY1sTtm153SXQSUWuD8oju8t2f2G7tKy29aQJCrbG6v6e0fl8%2BoOpq9T5CJ6%2FsAISfmxJEjra38B0zrC62fx1dxp4VHnydMtLN5src3XPlk3qOLtMZ40NSIkLWIryLU8PAujqsbOLu%2BGzcU2nQBHX%2FC%2B9IRp%2Brqezla3Pr%2FjApkSTmeS4D0M%2B%2B76q2Ul5UZR5ibR8h6dA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/224026061397?_skw=1111+120+0601&hash=item3428fe6a55%3Ag%3AzGsAAeSwjH5pnsoL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k2cCSVpjA%2FdH3UE3G9mruA%2FG384mQauZNwrRGMoBWpXtXhf1rcN6KjSwsdK4l4E7ucU4oVcUTe6H3VBznotvixrZZmloUz%2FXYkUuY1sTtm153SXQSUWuD8oju8t2f2G7tKy29aQJCrbG6v6e0fl8%2BoOpq9T5CJ6%2FsAISfmxJEjra38B0zrC62fx1dxp4VHnydMtLN5src3XPlk3qOLtMZ40NSIkLWIryLU8PAujqsbOLu%2BGzcU2nQBHX%2FC%2B9IRp%2Brqezla3Pr%2FjApkSTmeS4D0M%2B%2B76q2Ul5UZR5ibR8h6dA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/224026061397?_skw=1111+120+0601&hash=item3428fe6a55%3Ag%3AzGsAAeSwjH5pnsoL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k2cCSVpjA%2FdH3UE3G9mruA%2FG384mQauZNwrRGMoBWpXtXhf1rcN6KjSwsdK4l4E7ucU4oVcUTe6H3VBznotvixrZZmloUz%2FXYkUuY1sTtm153SXQSUWuD8oju8t2f2G7tKy29aQJCrbG6v6e0fl8%2BoOpq9T5CJ6%2FsAISfmxJEjra38B0zrC62fx1dxp4VHnydMtLN5src3XPlk3qOLtMZ40NSIkLWIryLU8PAujqsbOLu%2BGzcU2nQBHX%2FC%2B9IRp%2Brqezla3Pr%2FjApkSTmeS4D0M%2B%2B76q2Ul5UZR5ibR8h6dA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1111 120 0601, 38-1001",
+              "matched": [
+                "11111200601"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:02.293Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:02.293Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|306677058440|0",
+      "title": "2Pcs Fits For Tillotson HS-60D 050 051 075 Chainsaw 1111 120 0601 Carburetor",
+      "mpn": "1111 120 0601",
+      "brand": "waltyotur",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "waltyotur",
+      "price": 26.87,
+      "item_price": 26.87,
+      "currency": "EUR",
+      "shipping_cost": 15.63,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:03.260Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/306677058440?_skw=1111+120+0601&hash=item4767608b88%3Ag%3A4YkAAeSwLrBpTefG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nv0gsX77tTiqSPvNShaEVjBalfCyLZloMLrCeqCu2Oe6AWn3NHkmKMiOVHnYzTuB3Xnfmn2Y1257jzh%2BoIPPafuk9ezkmDzqv0LZkwBNQ38Vh0gH3FoYpiiLV61MGj%2FYra%2BBjbRHZNkGxbNKrulv6SSKxG2mmyT0qI%2BewaJBKJ5W9FDjGoVvUBNKIofjguG0DWw2PPVsITDdh9xWMkD6rQmU%2Blf3M%2B7vJD%2B0SFQ4SEJBKYrQmYrIwOZENOUNWjigVjr3%2BjR0T81phdo3mQC2Y8eOcGmnnk4JKpiNR646zrbw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/306677058440?_skw=1111+120+0601&hash=item4767608b88%3Ag%3A4YkAAeSwLrBpTefG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nv0gsX77tTiqSPvNShaEVjBalfCyLZloMLrCeqCu2Oe6AWn3NHkmKMiOVHnYzTuB3Xnfmn2Y1257jzh%2BoIPPafuk9ezkmDzqv0LZkwBNQ38Vh0gH3FoYpiiLV61MGj%2FYra%2BBjbRHZNkGxbNKrulv6SSKxG2mmyT0qI%2BewaJBKJ5W9FDjGoVvUBNKIofjguG0DWw2PPVsITDdh9xWMkD6rQmU%2Blf3M%2B7vJD%2B0SFQ4SEJBKYrQmYrIwOZENOUNWjigVjr3%2BjR0T81phdo3mQC2Y8eOcGmnnk4JKpiNR646zrbw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/306677058440?_skw=1111+120+0601&hash=item4767608b88%3Ag%3A4YkAAeSwLrBpTefG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nv0gsX77tTiqSPvNShaEVjBalfCyLZloMLrCeqCu2Oe6AWn3NHkmKMiOVHnYzTuB3Xnfmn2Y1257jzh%2BoIPPafuk9ezkmDzqv0LZkwBNQ38Vh0gH3FoYpiiLV61MGj%2FYra%2BBjbRHZNkGxbNKrulv6SSKxG2mmyT0qI%2BewaJBKJ5W9FDjGoVvUBNKIofjguG0DWw2PPVsITDdh9xWMkD6rQmU%2Blf3M%2B7vJD%2B0SFQ4SEJBKYrQmYrIwOZENOUNWjigVjr3%2BjR0T81phdo3mQC2Y8eOcGmnnk4JKpiNR646zrbw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1111 120 0601",
+              "matched": [
+                "11111200601"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:03.260Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:03.260Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|257586820979|0",
+      "title": "CARBURETTOR FITS STIHL 050AV 051AV 075AV 076AV 1111 120 0601 CHAINSAW CARB",
+      "mpn": "1111 120 0601",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "3802745177316",
+      "seller_name": "gasketgenius",
+      "price": 28.59,
+      "item_price": 28.59,
+      "currency": "EUR",
+      "shipping_cost": 8.38,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:04.638Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1111 120 0601",
+              "matched": [
+                "11111200601"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:04.638Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:04.638Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|257586820979|0",
+      "title": "VERGASER PASSEND FÜR STIHL 050AV 051AV 075AV 076AV 1111 120 0601 MOTORSÄGE CARB",
+      "mpn": "1111 120 0601",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "3802745177316",
+      "seller_name": "gasketgenius",
+      "price": 28.59,
+      "item_price": 28.59,
+      "currency": "EUR",
+      "shipping_cost": 8.38,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:11.507Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:11.506Z",
+          "item_count": 12,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:11.506Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/257586820979?_skw=1111+120+0601&hash=item3bf95ef773%3Ag%3AQ1YAAeSwTVFqPWMm&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1111 120 0601",
+              "matched": [
+                "11111200601"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:11.507Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:11.506Z",
+            "item_count": 12,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:11.506Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:11.507Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|306359878242|0",
+      "title": "Original Stihl Vergaser MS 050 051 075 076 TS 50 HD-60 carburetor 11111200601 ",
+      "mpn": "1111 120 0601  11111200601  1111-120-0601",
+      "brand": "Stihl",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "msg-parts",
+      "price": 54.95,
+      "item_price": 54.95,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:11.788Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:11.506Z",
+          "item_count": 12,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-15T18:42:11.788Z"
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/306359878242?_skw=1111+120+0601&hash=item475478c262%3Ag%3AVKYAAOSwgJVoVY0O&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/306359878242?_skw=1111+120+0601&hash=item475478c262%3Ag%3AVKYAAOSwgJVoVY0O&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/306359878242?_skw=1111+120+0601&hash=item475478c262%3Ag%3AVKYAAOSwgJVoVY0O&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1111 120 0601  11111200601  1111-120-0601",
+              "matched": [
+                "11111200601"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:11.788Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:11.506Z",
+            "item_count": 12,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-15T18:42:11.788Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:11.788Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|292139397019|0",
+      "title": "HB-2424 Vergaser gebr. 11151200600, S118B021  Stihl",
+      "mpn": "1115 120 0600",
+      "brand": "Stihl",
+      "manufacturer": "",
+      "gtin": "795711818647",
+      "seller_name": "hengesbach-de",
+      "price": 29.5,
+      "item_price": 29.5,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:26.260Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:25.893Z",
+          "item_count": 12,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-15T18:42:26.260Z"
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/292139397019?_skw=1115+120+0600&hash=item4404dd6f9b%3Ag%3Ahc4AAOSw42JZMv-p&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/292139397019?_skw=1115+120+0600&hash=item4404dd6f9b%3Ag%3Ahc4AAOSw42JZMv-p&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/292139397019?_skw=1115+120+0600&hash=item4404dd6f9b%3Ag%3Ahc4AAOSw42JZMv-p&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1115 120 0600",
+              "matched": [
+                "11151200600"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:26.260Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:25.893Z",
+            "item_count": 12,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-15T18:42:26.260Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:26.260Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200607",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|393833254045|0",
+      "title": "ONE NEW Carb. Walbro For Stihl 1122 New Original OEM 1122 120 0607 11221200607",
+      "mpn": "1122 120 0607, 11221200607, 1122-120-0607",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "ozarks1876",
+      "price": 181.44,
+      "item_price": 181.44,
+      "currency": "EUR",
+      "shipping_cost": 27.6,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:56.726Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:56.144Z",
+          "item_count": 3,
+          "queries": [
+            "1122 120 0607",
+            "11221200607",
+            "STIHL 11221200607"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:56.144Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/393833254045?_skw=1122+120+0607&hash=item5bb24a8c9d%3Ag%3AIU0AAOSwMpNhzNME&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/393833254045?_skw=1122+120+0607&hash=item5bb24a8c9d%3Ag%3AIU0AAOSwMpNhzNME&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/393833254045?_skw=1122+120+0607&hash=item5bb24a8c9d%3Ag%3AIU0AAOSwMpNhzNME&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1122 120 0607, 11221200607, 1122-120-0607",
+              "matched": [
+                "11221200607"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:56.726Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:56.144Z",
+            "item_count": 3,
+            "queries": [
+              "1122 120 0607",
+              "11221200607",
+              "STIHL 11221200607"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:56.144Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:42:56.726Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|237130198398|0",
+      "title": "Orig. Stihl Vergaser WJ-76 für MS 660, 066 u. 064, Carburetor - 1122 120 0623",
+      "mpn": "1122 120 0623",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "ebbjsc",
+      "price": 139.5,
+      "item_price": 139.5,
+      "currency": "EUR",
+      "shipping_cost": 17.24,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:32.789Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1122 120 0623",
+              "matched": [
+                "11221200623"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:32.789Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:32.789Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|361474977470|0",
+      "title": "CARBURETOR FOR STIHL CHAINSAW 066 MS660 1122 120 0623   ---- UP85",
+      "mpn": "1122 120 0623",
+      "brand": "Aftermarket Replaces Stihl",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "customchainsawparts",
+      "price": 18.61,
+      "item_price": 18.61,
+      "currency": "EUR",
+      "shipping_cost": 25.18,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:33.491Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/361474977470?_skw=1122+120+0623&hash=item5429966ebe%3Ag%3AfZgAAMXQrvpRFZs6&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/361474977470?_skw=1122+120+0623&hash=item5429966ebe%3Ag%3AfZgAAMXQrvpRFZs6&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/361474977470?_skw=1122+120+0623&hash=item5429966ebe%3Ag%3AfZgAAMXQrvpRFZs6&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1122 120 0623",
+              "matched": [
+                "11221200623"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:33.491Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:33.491Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|860085708471|0",
+      "title": "Carburetor for Stihl MS660 066 064 Zama C3A-S31 Chainsaw 11221200623 Part WJ-67A",
+      "mpn": "11221200623",
+      "brand": "Unbranded",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "topop_autopartss",
+      "price": 66.59,
+      "item_price": 66.59,
+      "currency": "EUR",
+      "shipping_cost": 40.61,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:34.570Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/860085708471?_skw=11221200623&hash=itemc8411a66b7%3Ag%3AeXkAAeSw%7EUdq32FP&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lE8PX9CvqehBQNd%2FhE3pfVjrgHW4C4nP4%2BRLG6ncfrAw%2BQVBr9jAa%2F8A7xGkOjZHwt32vImQOs4TNJ9eAJmrNgfVMFtkz7aDt--n4%2FnoP%2FcWBYFqc0t%2BnxrcFK1CCmthssQhPhd3jC6jh99Yu%2Fu%2BEsgDMNmB4xh3Wnp10GRoZ8LwbjBzBG3K%2Flasq%2B--ilZz960T2CtXsjBpje%2B8ZKe4dA00OK1wVWWX4sa5eXvq%2B6Ta30qsc3pCmq1SnxMqSsQtddpsYgumCDX8T8reTANtImBn9AKBaBaeAtvbbit4U5JQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/860085708471?_skw=11221200623&hash=itemc8411a66b7%3Ag%3AeXkAAeSw%7EUdq32FP&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lE8PX9CvqehBQNd%2FhE3pfVjrgHW4C4nP4%2BRLG6ncfrAw%2BQVBr9jAa%2F8A7xGkOjZHwt32vImQOs4TNJ9eAJmrNgfVMFtkz7aDt--n4%2FnoP%2FcWBYFqc0t%2BnxrcFK1CCmthssQhPhd3jC6jh99Yu%2Fu%2BEsgDMNmB4xh3Wnp10GRoZ8LwbjBzBG3K%2Flasq%2B--ilZz960T2CtXsjBpje%2B8ZKe4dA00OK1wVWWX4sa5eXvq%2B6Ta30qsc3pCmq1SnxMqSsQtddpsYgumCDX8T8reTANtImBn9AKBaBaeAtvbbit4U5JQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/860085708471?_skw=11221200623&hash=itemc8411a66b7%3Ag%3AeXkAAeSw%7EUdq32FP&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lE8PX9CvqehBQNd%2FhE3pfVjrgHW4C4nP4%2BRLG6ncfrAw%2BQVBr9jAa%2F8A7xGkOjZHwt32vImQOs4TNJ9eAJmrNgfVMFtkz7aDt--n4%2FnoP%2FcWBYFqc0t%2BnxrcFK1CCmthssQhPhd3jC6jh99Yu%2Fu%2BEsgDMNmB4xh3Wnp10GRoZ8LwbjBzBG3K%2Flasq%2B--ilZz960T2CtXsjBpje%2B8ZKe4dA00OK1wVWWX4sa5eXvq%2B6Ta30qsc3pCmq1SnxMqSsQtddpsYgumCDX8T8reTANtImBn9AKBaBaeAtvbbit4U5JQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "11221200623",
+              "matched": [
+                "11221200623"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:34.570Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:34.570Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|301522563561|0",
+      "title": "Carburetor Carb for STIHL 066 064 065 MS660 MS650 Chainsaw 1122 120 0623 USA",
+      "mpn": "11221200623",
+      "brand": "ihome6",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "ihome6",
+      "price": 18.65,
+      "item_price": 18.65,
+      "currency": "EUR",
+      "shipping_cost": 16.95,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:35.007Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/301522563561?_skw=11221200623&hash=item46342531e9%3Ag%3AAVsAAOSwuAtiAkV%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/301522563561?_skw=11221200623&hash=item46342531e9%3Ag%3AAVsAAOSwuAtiAkV%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/301522563561?_skw=11221200623&hash=item46342531e9%3Ag%3AAVsAAOSwuAtiAkV%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "11221200623",
+              "matched": [
+                "11221200623"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:35.007Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:35.007Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|237130198398|0",
+      "title": "Orig. Stihl Vergaser WJ-76 für MS 660, 066 u. 064, Carburetor - 1122 120 0623",
+      "mpn": "1122 120 0623",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "ebbjsc",
+      "price": 139.5,
+      "item_price": 139.5,
+      "currency": "EUR",
+      "shipping_cost": 17.24,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:41.038Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:41.038Z",
+          "item_count": 13,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:41.038Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/237130198398?_skw=1122+120+0623&hash=item37360fad7e%3Ag%3ADI0AAeSwhXFqJAf5&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1122 120 0623",
+              "matched": [
+                "11221200623"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:41.038Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:41.038Z",
+            "item_count": 13,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:41.038Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:41.038Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11241200613",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|187654352012|0",
+      "title": "NOS STIHL Carburetor WG-13 MS880 MS880R 1124-120-0613 Genuine OEM",
+      "mpn": "1124-120-0613 11241200613 1124 120 0613",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "qualitytools4sale",
+      "price": 181.39,
+      "item_price": 181.39,
+      "currency": "EUR",
+      "shipping_cost": 42.37,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:59.408Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:58.972Z",
+          "item_count": 7,
+          "queries": [
+            "1124 120 0613",
+            "11241200613",
+            "STIHL 11241200613"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:58.972Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/187654352012?_skw=1124+120+0613&hash=item2bb1122c8c%3Ag%3ABicAAeSw6A9o7%7Etv&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7ktg94Q5Q2Egt%2FMof%2BdncwL4EFCBMeyslceaRCBicghu%2FViXo%2B4t%2F0UCWMRHa4GvT6x8Qlv8YnxxWdXjE0ObUtTcl78HOQhyncRc5IZC%2BP%2F28x%2B8bi46tFcBlYKi4OzRheGPiNbf0dQcFiquwyv2wM4vqYeEe2UeLP0JwPu%2FniqIecWSc5v6IUKMLr1X%2BQly5vc8%2BjE%2BgJwsZAaUzchTdK2FDwHxNnFjJ9pjKqOk4qK%2BKjmY%2BXj00RArgryf7ulCDmN2uFFCMbzFsY9b2mXNLNkpad%2FLeuiy7w8epkbmU7ftg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/187654352012?_skw=1124+120+0613&hash=item2bb1122c8c%3Ag%3ABicAAeSw6A9o7%7Etv&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7ktg94Q5Q2Egt%2FMof%2BdncwL4EFCBMeyslceaRCBicghu%2FViXo%2B4t%2F0UCWMRHa4GvT6x8Qlv8YnxxWdXjE0ObUtTcl78HOQhyncRc5IZC%2BP%2F28x%2B8bi46tFcBlYKi4OzRheGPiNbf0dQcFiquwyv2wM4vqYeEe2UeLP0JwPu%2FniqIecWSc5v6IUKMLr1X%2BQly5vc8%2BjE%2BgJwsZAaUzchTdK2FDwHxNnFjJ9pjKqOk4qK%2BKjmY%2BXj00RArgryf7ulCDmN2uFFCMbzFsY9b2mXNLNkpad%2FLeuiy7w8epkbmU7ftg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/187654352012?_skw=1124+120+0613&hash=item2bb1122c8c%3Ag%3ABicAAeSw6A9o7%7Etv&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7ktg94Q5Q2Egt%2FMof%2BdncwL4EFCBMeyslceaRCBicghu%2FViXo%2B4t%2F0UCWMRHa4GvT6x8Qlv8YnxxWdXjE0ObUtTcl78HOQhyncRc5IZC%2BP%2F28x%2B8bi46tFcBlYKi4OzRheGPiNbf0dQcFiquwyv2wM4vqYeEe2UeLP0JwPu%2FniqIecWSc5v6IUKMLr1X%2BQly5vc8%2BjE%2BgJwsZAaUzchTdK2FDwHxNnFjJ9pjKqOk4qK%2BKjmY%2BXj00RArgryf7ulCDmN2uFFCMbzFsY9b2mXNLNkpad%2FLeuiy7w8epkbmU7ftg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1124-120-0613 11241200613 1124 120 0613",
+              "matched": [
+                "11241200613"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:59.408Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:58.972Z",
+            "item_count": 7,
+            "queries": [
+              "1124 120 0613",
+              "11241200613",
+              "STIHL 11241200613"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:58.972Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:43:59.408Z",
+      "validation_confidence": 0.98
+    }
+  ],
+  "needs_evidence_offers": [
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|297913157580|0",
+      "title": "GENUINE TILLOTSON Carburetor fit Stihl 050 051 075 076 replace 1111 120-0601 CF7",
+      "mpn": "HS-60D",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": "Does Not Apply",
+      "seller_name": "pollywogharborinc",
+      "price": 131.26,
+      "item_price": 131.26,
+      "currency": "EUR",
+      "shipping_cost": 29.23,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:01.911Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/297913157580?_skw=1111+120+0601&hash=item455d0207cc%3Ag%3AG4wAAeSwizRpXV2S&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lqIdcUAi94gMqbxS1%2BDDKZqmiJLxmK3EYfz8PtgO4HMZWM8MTruph7KtG1WOvPAcOnzgn6B34BAGFBTjlsi015YGjnHVKBvH5InLHCGBjWdIyTBxEW1Ael0%2FyyME3eY2T99LdDbeOl%2FGkhf0RaScocvnIBMvrsnvsAs9i%2BMHJs9irTWEAOgWVF2CGOtffDwtPMZ5z2AGExDQcO9VK5X6s%2FA4wUukNGfoRRGaiXWakbmmHH5K4V7YWExw%2F1AdNbKjh56wbGirsVq16R57l5lJZeg30l%2FMULk1SLdDwXNoruIw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/297913157580?_skw=1111+120+0601&hash=item455d0207cc%3Ag%3AG4wAAeSwizRpXV2S&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lqIdcUAi94gMqbxS1%2BDDKZqmiJLxmK3EYfz8PtgO4HMZWM8MTruph7KtG1WOvPAcOnzgn6B34BAGFBTjlsi015YGjnHVKBvH5InLHCGBjWdIyTBxEW1Ael0%2FyyME3eY2T99LdDbeOl%2FGkhf0RaScocvnIBMvrsnvsAs9i%2BMHJs9irTWEAOgWVF2CGOtffDwtPMZ5z2AGExDQcO9VK5X6s%2FA4wUukNGfoRRGaiXWakbmmHH5K4V7YWExw%2F1AdNbKjh56wbGirsVq16R57l5lJZeg30l%2FMULk1SLdDwXNoruIw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/297913157580?_skw=1111+120+0601&hash=item455d0207cc%3Ag%3AG4wAAeSwizRpXV2S&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lqIdcUAi94gMqbxS1%2BDDKZqmiJLxmK3EYfz8PtgO4HMZWM8MTruph7KtG1WOvPAcOnzgn6B34BAGFBTjlsi015YGjnHVKBvH5InLHCGBjWdIyTBxEW1Ael0%2FyyME3eY2T99LdDbeOl%2FGkhf0RaScocvnIBMvrsnvsAs9i%2BMHJs9irTWEAOgWVF2CGOtffDwtPMZ5z2AGExDQcO9VK5X6s%2FA4wUukNGfoRRGaiXWakbmmHH5K4V7YWExw%2F1AdNbKjh56wbGirsVq16R57l5lJZeg30l%2FMULk1SLdDwXNoruIw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:01.911Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:01.911Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|317593637169|0",
+      "title": "1111 120 0601 Chainsaw Carburetor Fit For 050 051 075 076 Tillotson HS-60D US",
+      "mpn": "MP885125L",
+      "brand": "Marddpair",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "moto-parts-lover",
+      "price": 16.92,
+      "item_price": 16.92,
+      "currency": "EUR",
+      "shipping_cost": 15.27,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:02.842Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/317593637169?_skw=1111+120+0601&hash=item49f20e5131%3Ag%3AQbIAAeSwwdppKDBx&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nvlwopYkBP1BS8T66PAkYy5G7rsZjrvo4%2FDWVLnO6phuKuGnH1Au21Jange7VXHKRQRIFztnMgs1p3xmrKxQeKLyrfZuV9vCth1esLtq0wsGSZ3Twup3tgbYjRqcG5iLGd3Db%2FDY6s8L98FOz%2Bk%2B0EEa76ALzIscDXn%2FIuUD9yBZTEuv%2BUltb9xzeoL8RqT9bH5NML6IR7Y913vxDJCldTKlAJpEfb%2Bfpu9tqSUG0BEHFyAibW71igHCddyyaO%2FC1ejeZcmGGkhXAtjUuCDBvRnIz2syZssVVKTApcjzyx%2BA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/317593637169?_skw=1111+120+0601&hash=item49f20e5131%3Ag%3AQbIAAeSwwdppKDBx&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nvlwopYkBP1BS8T66PAkYy5G7rsZjrvo4%2FDWVLnO6phuKuGnH1Au21Jange7VXHKRQRIFztnMgs1p3xmrKxQeKLyrfZuV9vCth1esLtq0wsGSZ3Twup3tgbYjRqcG5iLGd3Db%2FDY6s8L98FOz%2Bk%2B0EEa76ALzIscDXn%2FIuUD9yBZTEuv%2BUltb9xzeoL8RqT9bH5NML6IR7Y913vxDJCldTKlAJpEfb%2Bfpu9tqSUG0BEHFyAibW71igHCddyyaO%2FC1ejeZcmGGkhXAtjUuCDBvRnIz2syZssVVKTApcjzyx%2BA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/317593637169?_skw=1111+120+0601&hash=item49f20e5131%3Ag%3AQbIAAeSwwdppKDBx&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nvlwopYkBP1BS8T66PAkYy5G7rsZjrvo4%2FDWVLnO6phuKuGnH1Au21Jange7VXHKRQRIFztnMgs1p3xmrKxQeKLyrfZuV9vCth1esLtq0wsGSZ3Twup3tgbYjRqcG5iLGd3Db%2FDY6s8L98FOz%2Bk%2B0EEa76ALzIscDXn%2FIuUD9yBZTEuv%2BUltb9xzeoL8RqT9bH5NML6IR7Y913vxDJCldTKlAJpEfb%2Bfpu9tqSUG0BEHFyAibW71igHCddyyaO%2FC1ejeZcmGGkhXAtjUuCDBvRnIz2syZssVVKTApcjzyx%2BA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:02.842Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:02.842Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|366688018593|0",
+      "title": "GENUINE TILLOTSON CARBURETOR HS-60D FOR STIHL 051 AVE 076 AVEQ 1111 120 0601A",
+      "mpn": "",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "gropek_usa",
+      "price": 98.25,
+      "item_price": 98.25,
+      "currency": "EUR",
+      "shipping_cost": 17.94,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:04.106Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/366688018593?_skw=1111+120+0601&hash=item55604f20a1%3Ag%3AXKkAAeSwrYtqtGjC&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/366688018593?_skw=1111+120+0601&hash=item55604f20a1%3Ag%3AXKkAAeSwrYtqtGjC&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/366688018593?_skw=1111+120+0601&hash=item55604f20a1%3Ag%3AXKkAAeSwrYtqtGjC&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:04.106Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:04.106Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|277053343668|0",
+      "title": "Replacement Carburetor For Stihl 050 051 075 076 Chainsaw 1111 120 0601",
+      "mpn": "HS-60D",
+      "brand": "ALL-CARB",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "westfastline",
+      "price": 15.09,
+      "item_price": 15.09,
+      "currency": "EUR",
+      "shipping_cost": 15.19,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:04.969Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/277053343668?_skw=1111+120+0601&hash=item4081aa87b4%3Ag%3A0AYAAOSw33VoBhbU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/277053343668?_skw=1111+120+0601&hash=item4081aa87b4%3Ag%3A0AYAAOSw33VoBhbU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/277053343668?_skw=1111+120+0601&hash=item4081aa87b4%3Ag%3A0AYAAOSw33VoBhbU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:04.969Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:04.969Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|186317997241|0",
+      "title": "075 Chainsaw Carburetor Fit For Stihl 050 051 076 1111 120 0601 Replacement Part",
+      "mpn": "HS-60D",
+      "brand": "autoooparts",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "autoooparts",
+      "price": 15.41,
+      "item_price": 15.41,
+      "currency": "EUR",
+      "shipping_cost": 15.26,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:05.425Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/186317997241?_skw=1111+120+0601&hash=item2b616b04b9%3Ag%3AitIAAOSwr6Fl3ftS&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/186317997241?_skw=1111+120+0601&hash=item2b616b04b9%3Ag%3AitIAAOSwr6Fl3ftS&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/186317997241?_skw=1111+120+0601&hash=item2b616b04b9%3Ag%3AitIAAOSwr6Fl3ftS&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:05.425Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:05.425Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11111200601",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|257000320573|0",
+      "title": "Labwork Carburetor For 050 051 075 076 Chainsaw Tillotson HS-60D 1111 120 0601",
+      "mpn": "",
+      "brand": "Labwork",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "tyllq",
+      "price": 17.41,
+      "item_price": 17.41,
+      "currency": "EUR",
+      "shipping_cost": 15.28,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:05.775Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:01.480Z",
+          "item_count": 13,
+          "queries": [
+            "1111 120 0601",
+            "11111200601",
+            "STIHL 11111200601"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/257000320573?_skw=1111+120+0601&hash=item3bd669ae3d%3Ag%3AwesAAeSw4HJoZeHW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mnBfiArHWaml42lNb87heMY5VpmNGbrPDCKsBV2QQwI9UQ7CKHR%2BS2qSeKOFOSMRwkel8OUdC3h4psO%2BepX2dUyA2zz%2BSm7zrBbpeqb17YU6uKLayfvGza5yiaXoEfqh0O06iLkCM1ah2wNZMIyWwGOXrDvecAr%2BVDQtcjE0mOcC%2Bb2OuLXatgUbhYkL%2FncAeyMHj2ABe%2FpjNB0Ma4dsKx2tj5pCQwCjoeFZhgS5czbd5o3BLvybOguTzVqNEWBDnwUu07jL%2BTvIO%2FVXpSwUjLm%2B2kOoaUaYkq%2Be2cxFSG2g%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/257000320573?_skw=1111+120+0601&hash=item3bd669ae3d%3Ag%3AwesAAeSw4HJoZeHW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mnBfiArHWaml42lNb87heMY5VpmNGbrPDCKsBV2QQwI9UQ7CKHR%2BS2qSeKOFOSMRwkel8OUdC3h4psO%2BepX2dUyA2zz%2BSm7zrBbpeqb17YU6uKLayfvGza5yiaXoEfqh0O06iLkCM1ah2wNZMIyWwGOXrDvecAr%2BVDQtcjE0mOcC%2Bb2OuLXatgUbhYkL%2FncAeyMHj2ABe%2FpjNB0Ma4dsKx2tj5pCQwCjoeFZhgS5czbd5o3BLvybOguTzVqNEWBDnwUu07jL%2BTvIO%2FVXpSwUjLm%2B2kOoaUaYkq%2Be2cxFSG2g%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/257000320573?_skw=1111+120+0601&hash=item3bd669ae3d%3Ag%3AwesAAeSw4HJoZeHW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mnBfiArHWaml42lNb87heMY5VpmNGbrPDCKsBV2QQwI9UQ7CKHR%2BS2qSeKOFOSMRwkel8OUdC3h4psO%2BepX2dUyA2zz%2BSm7zrBbpeqb17YU6uKLayfvGza5yiaXoEfqh0O06iLkCM1ah2wNZMIyWwGOXrDvecAr%2BVDQtcjE0mOcC%2Bb2OuLXatgUbhYkL%2FncAeyMHj2ABe%2FpjNB0Ma4dsKx2tj5pCQwCjoeFZhgS5czbd5o3BLvybOguTzVqNEWBDnwUu07jL%2BTvIO%2FVXpSwUjLm%2B2kOoaUaYkq%2Be2cxFSG2g%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:05.775Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:01.480Z",
+            "item_count": 13,
+            "queries": [
+              "1111 120 0601",
+              "11111200601",
+              "STIHL 11111200601"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:01.480Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:05.775Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|960132662089|0",
+      "title": "OEM Tillotson HS-118A Carburetor STIHL 045 056 Chainsaw 1115 120 0600 Untested",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "winfields2013",
+      "price": 43.74,
+      "item_price": 43.74,
+      "currency": "EUR",
+      "shipping_cost": 27.08,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:17.643Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/960132662089?_skw=1115+120+0600&hash=itemdf8c5dc349%3Ag%3AzjMAAeSwVKBq5IIJ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lpsRpvy2OFvoSGG0qFqqWs6f5IglClP5suRsJ77TLCGDoSOnY98%2F6mOiHUQnDzq28xJHVUg4xtP8Y%2BO7wUzReXm1ahVKwiqpnGSC3%2BRB54WFpN2pIWfNrLwK4GsMjeYxhs25%2FE9yOIh8y4LhBQ2uBZDdkW8Ey3HCvxNdFE4qr8Q29%2FHHLCukUe6YYah0QgusixPoX3noPYtQMycNYtcxms%2B%2BkiNNws2dU87H4tLI8XV3SQElxA5Ik%2FH3hklb0HFwlYeQv2K8PBlrXltHUBaxtpkCp%2BbsBqdNm1MIFCiMsVtQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/960132662089?_skw=1115+120+0600&hash=itemdf8c5dc349%3Ag%3AzjMAAeSwVKBq5IIJ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lpsRpvy2OFvoSGG0qFqqWs6f5IglClP5suRsJ77TLCGDoSOnY98%2F6mOiHUQnDzq28xJHVUg4xtP8Y%2BO7wUzReXm1ahVKwiqpnGSC3%2BRB54WFpN2pIWfNrLwK4GsMjeYxhs25%2FE9yOIh8y4LhBQ2uBZDdkW8Ey3HCvxNdFE4qr8Q29%2FHHLCukUe6YYah0QgusixPoX3noPYtQMycNYtcxms%2B%2BkiNNws2dU87H4tLI8XV3SQElxA5Ik%2FH3hklb0HFwlYeQv2K8PBlrXltHUBaxtpkCp%2BbsBqdNm1MIFCiMsVtQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/960132662089?_skw=1115+120+0600&hash=itemdf8c5dc349%3Ag%3AzjMAAeSwVKBq5IIJ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lpsRpvy2OFvoSGG0qFqqWs6f5IglClP5suRsJ77TLCGDoSOnY98%2F6mOiHUQnDzq28xJHVUg4xtP8Y%2BO7wUzReXm1ahVKwiqpnGSC3%2BRB54WFpN2pIWfNrLwK4GsMjeYxhs25%2FE9yOIh8y4LhBQ2uBZDdkW8Ey3HCvxNdFE4qr8Q29%2FHHLCukUe6YYah0QgusixPoX3noPYtQMycNYtcxms%2B%2BkiNNws2dU87H4tLI8XV3SQElxA5Ik%2FH3hklb0HFwlYeQv2K8PBlrXltHUBaxtpkCp%2BbsBqdNm1MIFCiMsVtQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:17.643Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:17.643Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|387097637584|0",
+      "title": "OEM CARBURATOR STIHL 056, 056AV 056 SUPER 056 MAGNUM 045 CHAINSAWS 1115-120-0600",
+      "mpn": "HS-118",
+      "brand": "PERFORMANCE SAW SUPPLY",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "llrdbrn",
+      "price": 120.69,
+      "item_price": 120.69,
+      "currency": "EUR",
+      "shipping_cost": 31.18,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:18.000Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/387097637584?_skw=1115+120+0600&hash=item5a20d132d0%3Ag%3AGgIAAOSwegZla42P&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nYy3tNfG2dacx%2FPqbjP0HFGeAIwXjmD3YkZfIfbak%2Fj4YEucl3YWHjuQDUzRLN3yB7pClLmFh%2FxeT1qfqWO%2BcPxyZEZ6Sxq1a6oZdoWrhpk6jNPLiYSWLjbN%2FmJpAWOGWMGJgwk7p7VWDZhffRcuSmFmSMpswaQ849%2FwI1zc%2BoxiKdfxMOWGtru3TbQmhDgGtkDyj%2Fk1al9kN28XRFgQhnfUS5u0RremFd7SGEXJ7CBL72n6ul%2FSw476zpi%2FNbPF8rOmN7l7FDVeWPz25x2GSbLOqF0UoOrqJB4u%2FWJjUzRQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/387097637584?_skw=1115+120+0600&hash=item5a20d132d0%3Ag%3AGgIAAOSwegZla42P&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nYy3tNfG2dacx%2FPqbjP0HFGeAIwXjmD3YkZfIfbak%2Fj4YEucl3YWHjuQDUzRLN3yB7pClLmFh%2FxeT1qfqWO%2BcPxyZEZ6Sxq1a6oZdoWrhpk6jNPLiYSWLjbN%2FmJpAWOGWMGJgwk7p7VWDZhffRcuSmFmSMpswaQ849%2FwI1zc%2BoxiKdfxMOWGtru3TbQmhDgGtkDyj%2Fk1al9kN28XRFgQhnfUS5u0RremFd7SGEXJ7CBL72n6ul%2FSw476zpi%2FNbPF8rOmN7l7FDVeWPz25x2GSbLOqF0UoOrqJB4u%2FWJjUzRQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/387097637584?_skw=1115+120+0600&hash=item5a20d132d0%3Ag%3AGgIAAOSwegZla42P&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nYy3tNfG2dacx%2FPqbjP0HFGeAIwXjmD3YkZfIfbak%2Fj4YEucl3YWHjuQDUzRLN3yB7pClLmFh%2FxeT1qfqWO%2BcPxyZEZ6Sxq1a6oZdoWrhpk6jNPLiYSWLjbN%2FmJpAWOGWMGJgwk7p7VWDZhffRcuSmFmSMpswaQ849%2FwI1zc%2BoxiKdfxMOWGtru3TbQmhDgGtkDyj%2Fk1al9kN28XRFgQhnfUS5u0RremFd7SGEXJ7CBL72n6ul%2FSw476zpi%2FNbPF8rOmN7l7FDVeWPz25x2GSbLOqF0UoOrqJB4u%2FWJjUzRQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:18.000Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:18.000Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|920145833603|0",
+      "title": "Stihl 1115-120-0600 Vergaser Tillotson 045 056 AV Carburateur",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "sch1380",
+      "price": 94.9,
+      "item_price": 94.9,
+      "currency": "EUR",
+      "shipping_cost": 15.35,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:18.461Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu: Sonstige (siehe Artikelbeschreibung)",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:18.461Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:18.461Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|366688004940|0",
+      "title": "GENUINE TILLOTSON CARBURETOR HS-118B FOR STIHL 045 045AV 056 056AV 1115 120 0600",
+      "mpn": "",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "gropek_usa",
+      "price": 97.15,
+      "item_price": 97.15,
+      "currency": "EUR",
+      "shipping_cost": 17.92,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:18.869Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/366688004940?_skw=1115+120+0600&hash=item55604eeb4c%3Ag%3AXfYAAeSwt1ZqtGfs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/366688004940?_skw=1115+120+0600&hash=item55604eeb4c%3Ag%3AXfYAAeSwt1ZqtGfs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/366688004940?_skw=1115+120+0600&hash=item55604eeb4c%3Ag%3AXfYAAeSwt1ZqtGfs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:18.869Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:18.869Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|800848149897|0",
+      "title": "GENUINE TILLOTSON CARBURETOR HS-118B FOR STIHL 045 045AV 056 056AV 1115 120 0600",
+      "mpn": "",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "chainsaw-idaho-208",
+      "price": 43.11,
+      "item_price": 43.11,
+      "currency": "EUR",
+      "shipping_cost": 19.87,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:19.302Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/800848149897?_skw=1115+120+0600&hash=itemba7644fd89%3Ag%3ARUsAAeSwRDBq4fW0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/800848149897?_skw=1115+120+0600&hash=itemba7644fd89%3Ag%3ARUsAAeSwRDBq4fW0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/800848149897?_skw=1115+120+0600&hash=itemba7644fd89%3Ag%3ARUsAAeSwRDBq4fW0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:19.302Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:19.302Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|287620561515|0",
+      "title": "OEM CARB fits 056, 056AV 056 SUPER 056 MAGNUM 045 CHAINSAWS 1115-120-0600",
+      "mpn": "HS-118",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "patriot_sales.jones_outdoor_services",
+      "price": 109.76,
+      "item_price": 109.76,
+      "currency": "EUR",
+      "shipping_cost": 32.1,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:19.691Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/287620561515?_skw=1115+120+0600&hash=item42f7857a6b%3Ag%3AISMAAOSwjK5mvJdT&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/287620561515?_skw=1115+120+0600&hash=item42f7857a6b%3Ag%3AISMAAOSwjK5mvJdT&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/287620561515?_skw=1115+120+0600&hash=item42f7857a6b%3Ag%3AISMAAOSwjK5mvJdT&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:19.691Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:19.692Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|283880749021|0",
+      "title": "Vergaser STIHL vgl. Mod. 045 vgl. Orig. 11151200600 STIHL vgl. Mod. 056 MAGNUM",
+      "mpn": "HS-118B",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "dmtonlineshop",
+      "price": 84.39,
+      "item_price": 84.39,
+      "currency": "EUR",
+      "shipping_cost": 16.9,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:19.971Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:17.279Z",
+          "item_count": 11,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:19.971Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:17.279Z",
+            "item_count": 11,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:17.279Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:19.971Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|920145833603|0",
+      "title": "Stihl 1115-120-0600 Vergaser Tillotson 045 056 AV Carburateur",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "sch1380",
+      "price": 94.9,
+      "item_price": 94.9,
+      "currency": "EUR",
+      "shipping_cost": 15.35,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:25.893Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:25.893Z",
+          "item_count": 12,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:25.893Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu: Sonstige (siehe Artikelbeschreibung)",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/920145833603?_skw=1115+120+0600&hash=itemd63cf72e83%3Ag%3AloAAAeSw5OJq-ckP&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:25.893Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:25.893Z",
+            "item_count": 12,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:25.893Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:25.893Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11151200600",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|283880749021|0",
+      "title": "Vergaser STIHL vgl. Mod. 045 vgl. Orig. 11151200600 STIHL vgl. Mod. 056 MAGNUM",
+      "mpn": "HS-118B",
+      "brand": "Tillotson",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "dmtonlineshop",
+      "price": 84.39,
+      "item_price": 84.39,
+      "currency": "EUR",
+      "shipping_cost": 16.9,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:42:26.260Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:42:25.893Z",
+          "item_count": 12,
+          "queries": [
+            "1115 120 0600",
+            "11151200600",
+            "STIHL 11151200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:25.893Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/283880749021?_skw=11151200600&hash=item42189c77dd%3Ag%3AtxgAAOSwmDFlweJ9&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:42:26.260Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:42:25.893Z",
+            "item_count": 12,
+            "queries": [
+              "1115 120 0600",
+              "11151200600",
+              "STIHL 11151200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:42:25.893Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:42:26.260Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11221200615",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|396160234132|0",
+      "title": "Original Stihl 066 Vergaser für Modelle mit Vergaser Heizung WJ52 1122 120 0615",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "robert--873",
+      "price": 189,
+      "item_price": 189,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:26.812Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:26.466Z",
+          "item_count": 4,
+          "queries": [
+            "1122 120 0615",
+            "11221200615",
+            "STIHL 11221200615"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-15T18:43:26.812Z"
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/396160234132?_skw=1122+120+0615&hash=item5c3cfd7294%3Ag%3AzYwAAOSwauBnmmkI&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/396160234132?_skw=1122+120+0615&hash=item5c3cfd7294%3Ag%3AzYwAAOSwauBnmmkI&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/396160234132?_skw=1122+120+0615&hash=item5c3cfd7294%3Ag%3AzYwAAOSwauBnmmkI&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:26.812Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:26.466Z",
+            "item_count": 4,
+            "queries": [
+              "1122 120 0615",
+              "11221200615",
+              "STIHL 11221200615"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-15T18:43:26.812Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:26.812Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|137474052132|0",
+      "title": "Carburetor Carb for Walbro WJ-67A WJ-76A WJ-67B Tillotson HS-320A 1122 120 0623",
+      "mpn": "",
+      "brand": "Sans marque/Générique",
+      "manufacturer": "",
+      "gtin": "Does Not Apply",
+      "seller_name": "loppen1",
+      "price": 30.21,
+      "item_price": 30.21,
+      "currency": "EUR",
+      "shipping_cost": 3.63,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:33.095Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neuf",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/137474052132?_skw=1122+120+0623&hash=item2002179024%3Ag%3AMiIAAeSwkvxqRiWU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/137474052132?_skw=1122+120+0623&hash=item2002179024%3Ag%3AMiIAAeSwkvxqRiWU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/137474052132?_skw=1122+120+0623&hash=item2002179024%3Ag%3AMiIAAeSwkvxqRiWU&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:33.095Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:33.095Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|173869894532|0",
+      "title": "Carburetor for Stihl MS660 066 064 Zama C3A-S31 Chainsaw 11221200623 Part WJ-67A",
+      "mpn": "",
+      "brand": "Unbranded",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "chainsaw_house",
+      "price": 20.84,
+      "item_price": 20.84,
+      "currency": "EUR",
+      "shipping_cost": 17.02,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:33.891Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/173869894532?_skw=11221200623&hash=item287b740b84%3Ag%3AAu8AAOSwQXxcro50&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7knPtJwYxrIGv6iZNm6vp5jRd1pEExZ32xnqXLYkDZhhvb1lsEflkDTrpfD5Vj6V%2BXYGSWNRu0kB%2FiVoXyFAwTTokG06RUFu4f6KCtO6nolRpETvvWZ9WqlBwFcBpULv2rVYqdEbCgOlwHU9JQHXSu%2FCpofxPKSJNxk%2BU0G1a4Zee%2BgWU9Gack7rCbmo4CoZs1c9bqVR1Y7xgVDnn9VS9MK0uEaCah6RAkrEQXQK6Qjg1tLw26IS42po2lqGvVQDpLaz%2F24wZnlISHYxk1IOwKoJKIldU7VvhHer9rH9FkWFA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/173869894532?_skw=11221200623&hash=item287b740b84%3Ag%3AAu8AAOSwQXxcro50&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7knPtJwYxrIGv6iZNm6vp5jRd1pEExZ32xnqXLYkDZhhvb1lsEflkDTrpfD5Vj6V%2BXYGSWNRu0kB%2FiVoXyFAwTTokG06RUFu4f6KCtO6nolRpETvvWZ9WqlBwFcBpULv2rVYqdEbCgOlwHU9JQHXSu%2FCpofxPKSJNxk%2BU0G1a4Zee%2BgWU9Gack7rCbmo4CoZs1c9bqVR1Y7xgVDnn9VS9MK0uEaCah6RAkrEQXQK6Qjg1tLw26IS42po2lqGvVQDpLaz%2F24wZnlISHYxk1IOwKoJKIldU7VvhHer9rH9FkWFA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/173869894532?_skw=11221200623&hash=item287b740b84%3Ag%3AAu8AAOSwQXxcro50&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7knPtJwYxrIGv6iZNm6vp5jRd1pEExZ32xnqXLYkDZhhvb1lsEflkDTrpfD5Vj6V%2BXYGSWNRu0kB%2FiVoXyFAwTTokG06RUFu4f6KCtO6nolRpETvvWZ9WqlBwFcBpULv2rVYqdEbCgOlwHU9JQHXSu%2FCpofxPKSJNxk%2BU0G1a4Zee%2BgWU9Gack7rCbmo4CoZs1c9bqVR1Y7xgVDnn9VS9MK0uEaCah6RAkrEQXQK6Qjg1tLw26IS42po2lqGvVQDpLaz%2F24wZnlISHYxk1IOwKoJKIldU7VvhHer9rH9FkWFA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:33.891Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:33.891Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|314844658116|0",
+      "title": "Carburetor for Stihl MS660 066 064 Zama C3A-S31 Chainsaw 11221200623 Part WJ-67B",
+      "mpn": "",
+      "brand": "Unbranded",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "aotools",
+      "price": 20.63,
+      "item_price": 20.63,
+      "currency": "EUR",
+      "shipping_cost": 17.01,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:34.271Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/314844658116?_skw=11221200623&hash=item494e3439c4%3Ag%3AqUIAAOSwBQ1lQG%7Ep&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lenN%2FXFx9xCRGd9jvhgD%2F7fikGg0yy5dQCrF5zu1PpE8EkLTSq%2FdHOq%2BAsZo0WU7RslUV4rbkSy2AkWvHJ4Pz1iP57RWV3eWIHlHwgI29bv5g3sL8d1MLCPM7UEYMfG6nBscKuGXfcF4TnFSMdZdCCF3hby8cZ7FpnmnjhMLEP1MyIT6P3VboTao%2Bf5YuWNn4wJpq9YBmlZeWv2H7gc3G%2BnuxFd9SpjKNc1ioV%2F7d%2Bn61UrSwvFgd4aw8%2FqYPGHTaa23qkfkJOJy1n0U9JN7%2BBO9wKYWwe7TW1FApkL1%2BwdA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/314844658116?_skw=11221200623&hash=item494e3439c4%3Ag%3AqUIAAOSwBQ1lQG%7Ep&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lenN%2FXFx9xCRGd9jvhgD%2F7fikGg0yy5dQCrF5zu1PpE8EkLTSq%2FdHOq%2BAsZo0WU7RslUV4rbkSy2AkWvHJ4Pz1iP57RWV3eWIHlHwgI29bv5g3sL8d1MLCPM7UEYMfG6nBscKuGXfcF4TnFSMdZdCCF3hby8cZ7FpnmnjhMLEP1MyIT6P3VboTao%2Bf5YuWNn4wJpq9YBmlZeWv2H7gc3G%2BnuxFd9SpjKNc1ioV%2F7d%2Bn61UrSwvFgd4aw8%2FqYPGHTaa23qkfkJOJy1n0U9JN7%2BBO9wKYWwe7TW1FApkL1%2BwdA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/314844658116?_skw=11221200623&hash=item494e3439c4%3Ag%3AqUIAAOSwBQ1lQG%7Ep&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lenN%2FXFx9xCRGd9jvhgD%2F7fikGg0yy5dQCrF5zu1PpE8EkLTSq%2FdHOq%2BAsZo0WU7RslUV4rbkSy2AkWvHJ4Pz1iP57RWV3eWIHlHwgI29bv5g3sL8d1MLCPM7UEYMfG6nBscKuGXfcF4TnFSMdZdCCF3hby8cZ7FpnmnjhMLEP1MyIT6P3VboTao%2Bf5YuWNn4wJpq9YBmlZeWv2H7gc3G%2BnuxFd9SpjKNc1ioV%2F7d%2Bn61UrSwvFgd4aw8%2FqYPGHTaa23qkfkJOJy1n0U9JN7%2BBO9wKYWwe7TW1FApkL1%2BwdA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:34.271Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:34.271Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|168431751381|0",
+      "title": "Carburetor for Stihl MS660 066 064 Zama C3A-S31 Chainsaw 11221200623 Part WJ-67B",
+      "mpn": "",
+      "brand": "Setopartss",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "setopartss",
+      "price": 20.07,
+      "item_price": 20.07,
+      "currency": "EUR",
+      "shipping_cost": 16.99,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:35.402Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:32.440Z",
+          "item_count": 19,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/168431751381?_skw=11221200623&hash=item27375090d5%3Ag%3Axi8AAeSwLblqIjxG&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/168431751381?_skw=11221200623&hash=item27375090d5%3Ag%3Axi8AAeSwLblqIjxG&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/168431751381?_skw=11221200623&hash=item27375090d5%3Ag%3Axi8AAeSwLblqIjxG&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:35.402Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:32.440Z",
+            "item_count": 19,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:32.440Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:35.402Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11221200623",
+      "marketplace": "EBAY_DE",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|165688517579|0",
+      "title": "VERGASER FÜR STIHL MS660 ( 1122 120 0623 )",
+      "mpn": "",
+      "brand": "MAGIQ Parts",
+      "manufacturer": "",
+      "gtin": "5903299805491",
+      "seller_name": "magiqeu",
+      "price": 55.6,
+      "item_price": 55.6,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:41.336Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:41.038Z",
+          "item_count": 13,
+          "queries": [
+            "1122 120 0623",
+            "11221200623",
+            "STIHL 11221200623"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-15T18:43:41.336Z"
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/165688517579?_skw=1122+120+0623&hash=item2693ce23cb%3Ag%3Ak0UAAOSwuLJjLE6Y&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/165688517579?_skw=1122+120+0623&hash=item2693ce23cb%3Ag%3Ak0UAAOSwuLJjLE6Y&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/165688517579?_skw=1122+120+0623&hash=item2693ce23cb%3Ag%3Ak0UAAOSwuLJjLE6Y&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:41.336Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:41.038Z",
+            "item_count": 13,
+            "queries": [
+              "1122 120 0623",
+              "11221200623",
+              "STIHL 11221200623"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-15T18:43:41.336Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:41.336Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11241200613",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|277436604481|0",
+      "title": "STIHL Genuine 088, MS880 WG-13 Carburettor  # 1124 120 0613",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "outbushman",
+      "price": 147.19,
+      "item_price": 147.19,
+      "currency": "EUR",
+      "shipping_cost": 18.59,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:43:59.736Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:43:58.972Z",
+          "item_count": 7,
+          "queries": [
+            "1124 120 0613",
+            "11241200613",
+            "STIHL 11241200613"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:58.972Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Brand New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/277436604481?_skw=1124+120+0613&hash=item409882a041%3Ag%3AypUAAeSwYaxqWFfk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/277436604481?_skw=1124+120+0613&hash=item409882a041%3Ag%3AypUAAeSwYaxqWFfk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/277436604481?_skw=1124+120+0613&hash=item409882a041%3Ag%3AypUAAeSwYaxqWFfk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:43:59.736Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:43:58.972Z",
+            "item_count": 7,
+            "queries": [
+              "1124 120 0613",
+              "11241200613",
+              "STIHL 11241200613"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:43:58.972Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-15T18:43:59.736Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "11381200606",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "item_id": "v1|234875573757|0",
+      "title": "NEW Genuine STIHL Carburetor 1138-120-0606 OEM FREE SHIP",
+      "mpn": "1138-120-0600 11381200600 1138 120 0600",
+      "reason": "validation_failed",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "match_type": "CONTRADICTORY_MATCH",
+      "status": "REJECTED"
+    },
+    {
+      "part_number": "11381200606",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "item_id": "v1|234875573757|0",
+      "title": "NEW Genuine STIHL Carburetor 1138-120-0606 OEM FREE SHIP",
+      "mpn": "1138-120-0600 11381200600 1138 120 0600",
+      "reason": "validation_failed",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "match_type": "CONTRADICTORY_MATCH",
+      "status": "REJECTED"
+    }
+  ],
+  "duration_ms": 190099
+}

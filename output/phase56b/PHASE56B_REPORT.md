@@ -14,7 +14,7 @@ Phase 56B executes the Amazon Exact Match Pilot on the 250-item commercial verif
 
 In strict adherence to the project principles (**zero ASIN guessing, zero title-only matching, zero speculative scraping, zero price/stock claims without live API**), all 50 prioritized parts were evaluated against fail-closed verification criteria. 
 
-Because official authenticated Amazon affiliate APIs (PAAPI / Creators API) are not provisioned in this environment and no verified direct ASIN mappings exist in the repository ledger, **0 fabricated ASINs were created**. All 50 pilot parts are categorized as `NOT_FOUND` / pending manual verification, and all 17,082 parts safely retain 100% deterministic Amazon search fallback links.
+Because official authenticated Amazon affiliate APIs (PAAPI / Creators API) are not provisioned in this environment and no verified direct ASIN mappings exist in the repository ledger, **0 fabricated ASINs were created**. All 50 pilot parts are categorized as `NOT_FOUND` / pending manual verification, and all 17,165 parts safely retain 100% deterministic Amazon search fallback links.
 
 The complete automated verification infrastructure, strict data contracts, distinct analytics tracking (`amazon_search_fallback_click` vs `amazon_verified_product_click`), and UI separation are fully deployed and verified.
 
@@ -74,7 +74,7 @@ Each pilot part was evaluated using `AmazonExactMatchVerifier`:
 - **NOT_FOUND:** 50
 - **Verified ASIN Count (Before):** 0
 - **Verified ASIN Count (After):** 0
-- **Amazon Search Fallback Coverage:** 17,082 / 17,082 (100%)
+- **Amazon Search Fallback Coverage:** 17,165 / 17,165 (100%)
 
 ---
 

@@ -10,7 +10,7 @@ import { checkPartSupersession } from '../src/search/IntelligentPartsSearchEngin
 /**
  * Phase 83 — Catalog expansion, supersession migration and shrink protection.
  *
- * 83.1 The catalog count is explained and locked (18,397 = 18,373 GHS baseline
+ * 83.1 The catalog count is explained and locked (18,480 = 18,373 GHS baseline
  *      + 4 documented chain parts from Phase 75b/e/f + 20 supersession numbers
  *      from Phase 83), with no duplicates or malformed numbers.
  * 83.2 No canonical part number may silently disappear: every number in the
@@ -31,7 +31,7 @@ const baselinePath = path.join(rootDir, 'data', 'parts_catalog_baseline_phase83.
 const supersessionsPath = path.join(rootDir, 'data', 'parts_supersessions.json');
 const migrationAuditPath = path.join(rootDir, 'output', 'phase83', 'PHASE83_SUPERSESSION_MIGRATION.json');
 
-const EXPECTED_CATALOG_COUNT = 18397;
+const EXPECTED_CATALOG_COUNT = 18480;
 
 const canonical = (value) => String(value || '').replace(/[\s-]/g, '');
 
@@ -42,7 +42,7 @@ const supersessionsDoc = JSON.parse(fs.readFileSync(supersessionsPath, 'utf8'));
 const migrationAudit = JSON.parse(fs.readFileSync(migrationAuditPath, 'utf8'));
 const relations = supersessionsDoc.relations || [];
 
-test('83.1 Catalog count is exactly 18,397 with no duplicates and only canonical 11-digit numbers', () => {
+test('83.1 Catalog count is exactly 18,480 with no duplicates and only canonical 11-digit numbers', () => {
   assert.strictEqual(catalogParts.length, EXPECTED_CATALOG_COUNT, `Catalog must contain exactly ${EXPECTED_CATALOG_COUNT} parts`);
   if (!Array.isArray(catalogDoc)) {
     assert.strictEqual(catalogDoc.parts_count, EXPECTED_CATALOG_COUNT, 'parts_count must match the parts array');

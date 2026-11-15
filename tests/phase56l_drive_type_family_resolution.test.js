@@ -700,7 +700,7 @@ test('Phase 56L.4: Catalog & SEO Freeze Invariants', () => {
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
-  assert.strictEqual(partsCount, 17082, 'Canonical parts count must be exactly 17,082');
+  assert.strictEqual(partsCount, 17165, 'Canonical parts count must be exactly 17,082');
   assert.strictEqual(fitmentsCount, 175106, 'Canonical fitments count must be exactly 175,106');
   assert.strictEqual(configsCount, 766, 'Diagram configurations count must be exactly 766');
   assert.strictEqual(evidenceCount, 208412, 'Evidence ledger count must be exactly 208,412');

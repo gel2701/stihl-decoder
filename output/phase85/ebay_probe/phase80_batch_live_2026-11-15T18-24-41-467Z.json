@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.1.0",
+  "phase": "80.1",
+  "generated_at": "2026-11-15T18:24:41.467Z",
+  "live_api": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "input": "output/phase85/PHASE85_EBAY_QUEUE.json",
+  "limit": 3,
+  "storage": {
+    "persistent": false,
+    "root": "data",
+    "source": "PROJECT_DATA",
+    "offer_store": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_offers.json",
+    "evidence_registry": "/workspace/chats/270a802ba68d0ac21adbb1ad/data/affiliate/ebay_evidence_registry.json",
+    "output_dir": "output/phase85/ebay_probe"
+  },
+  "exchange": {
+    "input_selection": "PART_LIST",
+    "parts_in_batch": 3,
+    "parts_with_existing_offers": 0,
+    "parts_without_existing_offers": 3
+  },
+  "metrics": {
+    "review_candidates_processed": 0,
+    "unique_listings": 0,
+    "get_item_requests": 0,
+    "get_item_network_calls": 0,
+    "evidence_reused": 0,
+    "candidates_evidence_completed": 0,
+    "new_active": 1,
+    "new_unique_parts_with_direct_offer": 1,
+    "gsc_priority_parts_covered": 0,
+    "remaining_needs_evidence": 0,
+    "rejected_candidates": 0,
+    "item_unavailable": 0,
+    "search_fallbacks_for_unavailable_listings": 0,
+    "deferred_get_items": 0,
+    "offers_on_persistent_disk": 1,
+    "resolver_resolved_offers": 1,
+    "active_preserved_in_store": 0
+  },
+  "chain": {
+    "resolver_status": "VERIFIED",
+    "store_written": 1,
+    "store_rejected_by_guard": 0
+  },
+  "evidence_registry": {
+    "size": 1,
+    "hits": 1,
+    "misses": 1,
+    "recorded": 1
+  },
+  "item_relations": [],
+  "per_part": [
+    {
+      "part_number": "11201200600",
+      "gsc_priority": false,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 1
+    },
+    {
+      "part_number": "11201200601",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    },
+    {
+      "part_number": "11201200602",
+      "gsc_priority": false,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0
+    }
+  ],
+  "accepted_offers": [
+    {
+      "part_number": "11201200600",
+      "marketplace": "EBAY_NL",
+      "vendor": "saegenspezi_de",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|336394258401|0",
+      "title": "OEM Stihl Walbro WA-56 Carburetor for Early 009 010 Chainsaw (1120 120 0600)",
+      "mpn": "1120 120 0600",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "coch-17",
+      "price": 46.09,
+      "item_price": 46.09,
+      "currency": "EUR",
+      "shipping_cost": 77.28,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-15T18:24:08.595Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-15T18:24:08.111Z",
+          "item_count": 19,
+          "queries": [
+            "1120 120 0600",
+            "11201200600",
+            "STIHL 11201200600"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:24:08.111Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/336394258401?_skw=1120+120+0600&hash=item4e52a907e1%3Ag%3A7IsAAeSwE39pbEvx&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/336394258401?_skw=1120+120+0600&hash=item4e52a907e1%3Ag%3A7IsAAeSwE39pbEvx&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/336394258401?_skw=1120+120+0600&hash=item4e52a907e1%3Ag%3A7IsAAeSwE39pbEvx&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1120 120 0600",
+              "matched": [
+                "11201200600"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-15T18:24:08.595Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-15T18:24:08.111Z",
+            "item_count": 19,
+            "queries": [
+              "1120 120 0600",
+              "11201200600",
+              "STIHL 11201200600"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL,sellers:{saegenspezi_de}",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-15T18:24:08.111Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-15T18:24:08.595Z",
+      "validation_confidence": 0.98
+    }
+  ],
+  "needs_evidence_offers": [],
+  "rejected_offers": [],
+  "duration_ms": 36278
+}
