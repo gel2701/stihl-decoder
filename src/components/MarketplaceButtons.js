@@ -23,7 +23,7 @@ function escapeJsStr(str) {
  * @param {Object} ctx
  * @returns {string}
  */
-function renderSingleButton(offer, ctx) {
+function renderSingleButton(offer, ctx, tier = 'primary') {
   const provider = String(offer.provider || 'amazon').toLowerCase();
   const marketplace = String(offer.marketplace || (provider === 'ebay' ? 'ebay.nl' : 'amazon.nl')).toLowerCase();
   const isDirect = Boolean(offer.is_direct);
@@ -53,20 +53,27 @@ function renderSingleButton(offer, ctx) {
   }
 
   const sizeClass = compact
-    ? 'px-2.5 py-1.5 text-2xs min-h-[36px]'
-    : 'px-3 py-2 text-xs min-h-[44px]';
+    ? (tier === 'primary' ? 'px-3 py-2 text-xs min-h-[38px]' : 'px-2.5 py-1.5 text-2xs min-h-[36px]')
+    : (tier === 'primary' ? 'px-3.5 py-2 text-xs min-h-[44px]' : 'px-2.5 py-1.5 text-2xs min-h-[40px]');
 
-  const colorClass = isDirect
-    ? 'bg-orange-600/30 hover:bg-orange-600/40 text-orange-200 border border-orange-500/50'
-    : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700';
+  let colorClass;
+  if (isDirect && tier === 'primary') {
+    colorClass = 'bg-orange-600 hover:bg-orange-500 text-white border border-orange-500/80';
+  } else if (isDirect) {
+    colorClass = 'bg-gray-900 hover:bg-gray-800 text-gray-100 border border-gray-700';
+  } else if (tier === 'search-primary') {
+    colorClass = 'bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-700';
+  } else {
+    colorClass = 'bg-gray-950 hover:bg-gray-800/80 text-gray-400 hover:text-gray-200 border border-gray-800';
+  }
 
   const icon = isDirect ? '🛒' : '🔍';
 
-  return `<a href="${escapeAttr(offer.url)}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeAttr(partNumber)}" data-provider="${escapeAttr(provider)}" data-marketplace="${escapeAttr(marketplace)}" data-offer-type="${escapeAttr(offerType)}" class="${sizeClass} ${colorClass} rounded-lg font-bold transition inline-flex items-center justify-center gap-1 whitespace-nowrap" onclick="${escapeAttr(onclickAttr)}" title="${escapeAttr(title)}"><span>${icon} ${escapeAttr(label)}</span><span class="opacity-70 text-3xs" aria-hidden="true">↗</span></a>`;
+  return `<a href="${escapeAttr(offer.url)}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeAttr(partNumber)}" data-provider="${escapeAttr(provider)}" data-marketplace="${escapeAttr(marketplace)}" data-offer-type="${escapeAttr(offerType)}" class="${sizeClass} ${colorClass} rounded-lg font-semibold transition inline-flex items-center justify-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-orange-500/70" onclick="${escapeAttr(onclickAttr)}" title="${escapeAttr(title)}"><span>${icon} ${escapeAttr(label)}</span><span class="opacity-65 text-3xs" aria-hidden="true">↗</span></a>`;
 }
 
 /**
- * Renders direct purchase buttons + visually separated search fallback buttons.
+ * Renders 1 primary buy/search button + collapsible secondary direct/search options.
  *
  * @param {Object|null} multiOffer Result of getPartAffiliateOffers()
  * @param {Object} [ctx]
@@ -78,14 +85,44 @@ export function renderMultiMarketplaceButtonsHtml(multiOffer, ctx = {}) {
   const searchOffers = Array.isArray(multiOffer.search_offers) ? multiOffer.search_offers : [];
   if (directOffers.length === 0 && searchOffers.length === 0) return '';
 
-  const alignClass = ctx.align === 'end' ? 'justify-end' : 'justify-start';
-  const directHtml = directOffers.length > 0
-    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct">${directOffers.map(o => renderSingleButton(o, ctx)).join('')}</div>`
-    : '';
+  const alignEnd = ctx.align === 'end';
+  const alignClass = alignEnd ? 'justify-end' : 'justify-start';
+  const itemsAlignClass = alignEnd ? 'items-end' : 'items-stretch';
 
-  const searchHtml = searchOffers.length > 0
-    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${directOffers.length > 0 ? 'pt-1.5 border-t border-gray-800/60' : ''}" data-offer-group="search">${searchOffers.map(o => renderSingleButton(o, ctx)).join('')}</div>`
-    : '';
+  const hasDirect = directOffers.length > 0;
+  const primaryDirect = hasDirect ? directOffers[0] : null;
+  const secondaryDirect = hasDirect ? directOffers.slice(1) : [];
 
-  return `<div class="flex flex-col ${ctx.align === 'end' ? 'items-end' : 'items-stretch'} gap-1.5" data-multi-marketplace-buttons="true">${directHtml}${searchHtml}</div>`;
+  const primarySearch = !hasDirect && searchOffers.length > 0 ? searchOffers[0] : null;
+  const extraSearch = hasDirect ? searchOffers : searchOffers.slice(1);
+
+  const primaryHtml = primaryDirect
+    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct">${renderSingleButton(primaryDirect, ctx, 'primary')}</div>`
+    : `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="search">${renderSingleButton(primarySearch, ctx, 'search-primary')}</div>`;
+
+  const secondaryCount = secondaryDirect.length + extraSearch.length;
+  let secondaryHtml = '';
+  if (secondaryCount > 0) {
+    const summaryLabel = secondaryDirect.length > 0
+      ? `Meer koopopties (+${secondaryCount})`
+      : (hasDirect ? `Meer opties (+${secondaryCount})` : `Meer zoekopties (+${secondaryCount})`);
+
+    const secondaryDirectHtml = secondaryDirect.length > 0
+      ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 pt-1.5">${secondaryDirect.map(o => renderSingleButton(o, ctx, 'secondary')).join('')}</div>`
+      : '';
+
+    const extraSearchHtml = extraSearch.length > 0
+      ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderSingleButton(o, ctx, 'search-secondary')).join('')}</div>`
+      : '';
+
+    secondaryHtml = `<details class="${alignEnd ? 'w-auto' : 'w-full'}">
+      <summary class="cursor-pointer select-none inline-flex items-center justify-between gap-2 text-2xs font-medium text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-lg border border-gray-800 bg-gray-950/70 hover:bg-gray-900 transition min-h-[36px] ${alignEnd ? '' : 'w-full'} focus:outline-none focus:ring-2 focus:ring-orange-500/70">
+        <span>${escapeAttr(summaryLabel)}</span>
+        <span class="text-3xs opacity-70" aria-hidden="true">▾</span>
+      </summary>
+      <div class="space-y-1.5">${secondaryDirectHtml}${extraSearchHtml}</div>
+    </details>`;
+  }
+
+  return `<div class="flex flex-col ${itemsAlignClass} gap-1.5" data-multi-marketplace-buttons="true">${primaryHtml}${secondaryHtml}</div>`;
 }

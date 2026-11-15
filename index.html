@@ -1596,7 +1596,7 @@
           .replace(/'/g, '&#039;');
       }
 
-      function renderDirectPartOfferButton(o, safePartNo, partNumber) {
+      function renderDirectPartOfferButton(o, safePartNo, partNumber, tier = 'primary') {
         const provider = escapeHtml(o.provider || 'amazon');
         const marketplace = escapeHtml(o.marketplace || (provider === 'ebay' ? 'ebay.nl' : 'amazon.nl'));
         const isDirect = Boolean(o.is_direct);
@@ -1605,15 +1605,25 @@
         const title = isDirect
           ? `Directe aankoop op ${marketplace}`
           : `Alleen zoekopdracht op ${marketplace} (geen vooraf bevestigd aanbod)`;
-        const btnClass = isDirect
-          ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40'
-          : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700';
+        let btnClass;
+        if (isDirect && tier === 'primary') {
+          btnClass = 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/80';
+        } else if (isDirect) {
+          btnClass = 'text-gray-100 bg-gray-900 hover:bg-gray-800 border-gray-700';
+        } else if (tier === 'search-primary') {
+          btnClass = 'text-gray-200 bg-gray-900 hover:bg-gray-800 border-gray-700';
+        } else {
+          btnClass = 'text-gray-400 hover:text-gray-200 bg-gray-950 hover:bg-gray-800/80 border-gray-800';
+        }
+        const sizeClass = (tier === 'primary' || tier === 'search-primary')
+          ? 'px-3.5 py-2 text-xs min-h-[44px]'
+          : 'px-2.5 py-1.5 text-2xs min-h-[40px]';
         const icon = isDirect ? '🛒' : '🔍';
         const url = escapeHtml(o.url || '');
         const asin = escapeHtml(o.asin || '');
         return `
-          <a href="${url}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeHtml(partNumber || '')}" data-provider="${provider}" data-marketplace="${marketplace}" data-offer-type="${offerType}" title="${escapeHtml(title)}" class="text-2xs font-bold ${btnClass} px-2.5 py-1.5 rounded-lg border transition inline-flex items-center justify-center gap-1 min-h-[44px] whitespace-nowrap" aria-label="${label} voor onderdeel ${safePartNo}" onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${provider}', marketplace: '${marketplace}', part_number: '${escapeHtml(partNumber || '')}', offer_type: '${offerType}', asin_if_known: '${asin}', product_verified: ${isDirect}, page_path: window.location.pathname});}">
-            <span>${icon} ${label}</span>
+          <a href="${url}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeHtml(partNumber || '')}" data-provider="${provider}" data-marketplace="${marketplace}" data-offer-type="${offerType}" title="${escapeHtml(title)}" class="font-semibold ${sizeClass} ${btnClass} rounded-lg border transition inline-flex items-center justify-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-orange-500/70" aria-label="${label} voor onderdeel ${safePartNo}" onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${provider}', marketplace: '${marketplace}', part_number: '${escapeHtml(partNumber || '')}', offer_type: '${offerType}', asin_if_known: '${asin}', product_verified: ${isDirect}, page_path: window.location.pathname});}">
+            <span>${icon} ${label}</span><span class="opacity-65 text-3xs" aria-hidden="true">↗</span>
           </a>
         `;
       }
@@ -1622,7 +1632,10 @@
         const safePartName = escapeHtml(p.part_name || 'Vervangingsonderdeel');
         const safePartNo = escapeHtml(p.part_number_display || p.part_number || '');
         const safeCategory = escapeHtml(p.category_label || p.wear_label || 'Onderdeel');
-        const safeDiagSection = p.diagram_section_name ? escapeHtml(p.diagram_section_name) : null;
+        const rawDiagSection = p.diagram_section_name && p.diagram_section_name !== 'Unresolved Diagram Section' && p.diagram_section_name !== 'general_unresolved'
+          ? p.diagram_section_name
+          : null;
+        const safeDiagSection = rawDiagSection ? escapeHtml(rawDiagSection) : null;
         const safeDiagPos = p.diagram_position ? escapeHtml(String(p.diagram_position)) : null;
         const safePurchaseLabel = escapeHtml(p.purchase_label || 'Zoek op Amazon.nl');
         const safePurchaseUrl = p.purchase_url ? escapeHtml(p.purchase_url) : null;
@@ -1632,64 +1645,85 @@
         if (multi && (Array.isArray(multi.direct_offers) || Array.isArray(multi.search_offers))) {
           const directList = Array.isArray(multi.direct_offers) ? multi.direct_offers : [];
           const searchList = Array.isArray(multi.search_offers) ? multi.search_offers : [];
-          const directGroup = directList.length > 0
-            ? `<div class="flex flex-wrap gap-1.5" data-offer-group="direct">${directList.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number)).join('')}</div>`
-            : '';
-          const searchGroup = searchList.length > 0
-            ? `<div class="flex flex-wrap gap-1.5 ${directList.length > 0 ? 'pt-1.5 border-t border-gray-800/60' : ''}" data-offer-group="search">${searchList.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number)).join('')}</div>`
-            : '';
-          offersHtml = (directGroup || searchGroup)
-            ? `<div class="flex flex-col gap-1.5 w-full" data-multi-marketplace-buttons="true">${directGroup}${searchGroup}</div>`
+          const hasDirect = directList.length > 0;
+          const primaryHtml = hasDirect
+            ? `<div class="flex flex-wrap gap-1.5" data-offer-group="direct">${renderDirectPartOfferButton(directList[0], safePartNo, p.part_number, 'primary')}</div>`
+            : (searchList.length > 0
+              ? `<div class="flex flex-wrap gap-1.5" data-offer-group="search">${renderDirectPartOfferButton(searchList[0], safePartNo, p.part_number, 'search-primary')}</div>`
+              : '');
+          const secondaryDirect = hasDirect ? directList.slice(1) : [];
+          const extraSearch = hasDirect ? searchList : searchList.slice(1);
+          const secondaryCount = secondaryDirect.length + extraSearch.length;
+          let secondaryHtml = '';
+          if (secondaryCount > 0) {
+            const summaryLabel = secondaryDirect.length > 0
+              ? `Meer koopopties (+${secondaryCount})`
+              : (hasDirect ? `Meer opties (+${secondaryCount})` : `Meer zoekopties (+${secondaryCount})`);
+            const secDirectHtml = secondaryDirect.length > 0
+              ? `<div class="flex flex-wrap gap-1.5 pt-1.5">${secondaryDirect.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'secondary')).join('')}</div>`
+              : '';
+            const extraSearchHtml = extraSearch.length > 0
+              ? `<div class="flex flex-wrap gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderDirectPartOfferButton(o, safePartNo, p.part_number, 'search-secondary')).join('')}</div>`
+              : '';
+            secondaryHtml = `
+              <details class="w-full">
+                <summary class="cursor-pointer select-none inline-flex items-center justify-between gap-2 text-2xs font-medium text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-lg border border-gray-800 bg-gray-950/70 hover:bg-gray-900 transition min-h-[36px] w-full focus:outline-none focus:ring-2 focus:ring-orange-500/70">
+                  <span>${summaryLabel}</span>
+                  <span class="text-3xs opacity-70" aria-hidden="true">▾</span>
+                </summary>
+                <div class="space-y-1.5">${secDirectHtml}${extraSearchHtml}</div>
+              </details>
+            `;
+          }
+          offersHtml = (primaryHtml || secondaryHtml)
+            ? `<div class="flex flex-col gap-1.5 w-full" data-multi-marketplace-buttons="true">${primaryHtml}${secondaryHtml}</div>`
             : '';
         } else if (safePurchaseUrl) {
           offersHtml = `
-            <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" data-provider="${escapeHtml(p.purchase_provider || 'amazon')}" data-marketplace="${escapeHtml(p.purchase_marketplace || '')}" title="${(p.is_direct_offer || p.is_direct_asin) ? `Directe aankoop via ${escapeHtml(p.purchase_marketplace || 'webshop')}` : 'Alleen zoekopdracht op Amazon (geen vooraf bevestigd aanbod)'}" class="text-2xs font-bold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/40' : 'text-gray-200 bg-gray-800 hover:bg-gray-700 border-gray-700'} px-2.5 py-1.5 rounded-lg border transition inline-flex items-center gap-1 min-h-[44px] whitespace-nowrap" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
+            <a href="${safePurchaseUrl}" target="_blank" rel="sponsored nofollow noopener" data-provider="${escapeHtml(p.purchase_provider || 'amazon')}" data-marketplace="${escapeHtml(p.purchase_marketplace || '')}" title="${(p.is_direct_offer || p.is_direct_asin) ? `Directe aankoop via ${escapeHtml(p.purchase_marketplace || 'webshop')}` : 'Alleen zoekopdracht op Amazon (geen vooraf bevestigd aanbod)'}" class="text-xs font-semibold ${(p.is_direct_offer || p.is_direct_asin) ? 'text-white bg-orange-600 hover:bg-orange-500 border-orange-500/80' : 'text-gray-200 bg-gray-900 hover:bg-gray-800 border-gray-700'} px-3.5 py-2 rounded-lg border transition inline-flex items-center gap-1.5 min-h-[44px] whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-orange-500/70" aria-label="${safePurchaseLabel} voor onderdeel ${safePartNo}">
               <span>${(p.is_direct_offer || p.is_direct_asin) ? `🛒 ${safePurchaseLabel}` : `🔍 ${safePurchaseLabel} (zoekopdracht)`}</span>
             </a>
           `;
         }
 
         return `
-          <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 flex flex-col justify-between space-y-3 hover:border-gray-700 transition">
+          <div class="bg-gray-950 border border-gray-800/90 rounded-xl p-4 flex flex-col justify-between space-y-3 hover:border-gray-700 transition">
             <div class="space-y-1.5">
-              <div class="flex items-center justify-between gap-2">
-                <span class="text-3xs font-mono font-bold uppercase px-2 py-0.5 rounded bg-gray-950 text-orange-400 border border-gray-800">
+              <div class="flex flex-wrap items-center justify-between gap-1.5">
+                <span class="text-xs font-mono font-semibold text-orange-400 whitespace-nowrap">STIHL ${safePartNo}</span>
+                <span class="text-3xs font-medium px-2 py-0.5 rounded-md bg-gray-900 text-gray-400 border border-gray-800 truncate max-w-[160px]">
                   ${safeCategory}
-                </span>
-                <span class="text-3xs font-bold px-2 py-0.5 rounded-full ${p.compatibility_badge_class || 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}">
-                  ${escapeHtml(p.compatibility_badge_text || '✓ Bevestigde compatibiliteit')}
                 </span>
               </div>
 
-              <div class="font-bold text-sm text-white line-clamp-2 mt-1">
+              <div class="font-semibold text-sm text-gray-100 line-clamp-2 leading-snug pt-0.5">
                 ${safePartName}
               </div>
 
-              <div class="flex flex-wrap items-center gap-1.5 text-2xs font-mono text-gray-400 pt-0.5">
-                <span>STIHL Nr:</span>
-                <span class="text-gray-200 font-semibold">${safePartNo}</span>
-                <span class="text-3xs px-1.5 py-0.2 rounded bg-gray-800 text-gray-300 font-sans">${escapeHtml(p.origin_type || 'OEM-referentie')}</span>
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-2xs text-gray-400">
+                <span class="text-emerald-400/90 font-medium">${escapeHtml(p.compatibility_badge_text || '✓ Bevestigde compatibiliteit')}</span>
+                <span class="text-gray-500">• ${escapeHtml(p.origin_type || 'OEM-referentie')}</span>
               </div>
 
               ${safeDiagSection ? `
-                <div class="text-3xs text-gray-400 flex items-center gap-1 pt-0.5">
-                  <span>📖 Sectie: ${safeDiagSection}</span>
+                <div class="text-2xs text-gray-400 flex items-center gap-1">
+                  <span>Sectie: ${safeDiagSection}</span>
                   ${safeDiagPos ? `<span class="text-gray-500 font-mono">(Pos. ${safeDiagPos})</span>` : ''}
                 </div>
               ` : ''}
             </div>
 
             <!-- Acties per onderdeel -->
-            <div class="pt-2.5 border-t border-gray-800/80 flex flex-col gap-2">
+            <div class="pt-2.5 border-t border-gray-800/70 flex flex-col gap-2">
               ${offersHtml}
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <a href="${p.part_detail_url}" class="text-2xs font-semibold text-orange-400 hover:text-orange-300 hover:underline flex items-center gap-1 min-h-[36px] py-1" aria-label="Details voor onderdeel ${safePartNo}">
+                <a href="${p.part_detail_url}" class="text-2xs font-medium text-gray-400 hover:text-orange-400 hover:underline flex items-center gap-1 min-h-[36px] py-1" aria-label="Details voor onderdeel ${safePartNo}">
                   <span>Details & pasvorm →</span>
                 </a>
 
                 ${p.diagram_url ? `
-                  <a href="${p.diagram_url}" class="text-2xs text-gray-300 hover:text-white bg-gray-950 hover:bg-gray-800 px-2 py-1 rounded-lg border border-gray-800 transition min-h-[36px] flex items-center gap-1" aria-label="Onderdelenlijst met tekeningposities voor sectie ${safeDiagSection}">
-                    <span>Onderdelenlijst met tekeningposities</span>
+                  <a href="${p.diagram_url}" class="text-2xs text-gray-400 hover:text-gray-200 bg-gray-900 hover:bg-gray-800 px-2.5 py-1 rounded-lg border border-gray-800 transition min-h-[36px] flex items-center gap-1" aria-label="Onderdelenlijst met tekeningposities${safeDiagSection ? ` voor sectie ${safeDiagSection}` : ''}">
+                    <span>Tekeningposities</span>
                   </a>
                 ` : ''}
               </div>

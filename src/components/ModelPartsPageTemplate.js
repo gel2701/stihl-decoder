@@ -34,6 +34,15 @@ function renderSafeTechnicalValue(model, field, database, formatter) {
   return 'Niet betrouwbaar gedocumenteerd';
 }
 
+function formatPublicSectionName(sectionName, fallback = 'Algemene onderdelen') {
+  if (!sectionName) return fallback;
+  const trimmed = String(sectionName).trim();
+  if (!trimmed || trimmed === 'Unresolved Diagram Section' || trimmed === 'general_unresolved') {
+    return fallback;
+  }
+  return trimmed;
+}
+
 export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIGIN, options = {}) {
   const categorySlug = getSafeCategorySlug(model);
   const slug = model.slug || model.id.replace(/_/g, '-');
@@ -170,26 +179,27 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
           const multiOffer = getPartAffiliateOffers(p.part_number, p.part_name);
           const buttonsHtml = renderMultiMarketplaceButtonsHtml(multiOffer, {
             partNumber: p.part_number,
-            sectionContext: p.section_name,
+            sectionContext: formatPublicSectionName(p.section_name),
             modelContext: model.slug || model.model_name || '',
             trackingMode: 'handleAffiliateClick',
             compact: true,
             align: 'start'
           });
+          const cardSection = formatPublicSectionName(p.section_name, null);
           return `
-          <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 hover:border-orange-500/50 hover:bg-gray-900 transition flex flex-col justify-between space-y-2.5">
+          <div class="bg-gray-950 p-4 rounded-xl border border-gray-800/90 hover:border-gray-700 transition flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between gap-2">
-                <a href="/onderdeelnummer/${p.part_number}/" class="text-2xs font-mono font-bold text-orange-400 hover:underline">STIHL ${p.part_number_display || p.part_number}</a>
-                <span class="text-3xs font-mono text-gray-300 bg-gray-900 px-1.5 py-0.5 rounded shrink-0">${p.wear_label}</span>
+              <div class="flex flex-wrap items-center justify-between gap-1.5">
+                <a href="/onderdeelnummer/${p.part_number}/" class="text-xs font-mono font-semibold text-orange-400 hover:underline whitespace-nowrap">STIHL ${p.part_number_display || p.part_number}</a>
+                <span class="text-3xs font-medium text-gray-400 bg-gray-900 px-2 py-0.5 rounded-md border border-gray-800 truncate max-w-[160px]">${p.wear_label}</span>
               </div>
-              <a href="/onderdeelnummer/${p.part_number}/" class="text-xs font-semibold text-white hover:text-orange-300 transition block truncate mt-1">${p.part_name}</a>
-              <div class="text-3xs text-gray-400 mt-0.5">Sectie: ${p.section_name}</div>
+              <a href="/onderdeelnummer/${p.part_number}/" class="text-sm font-semibold text-gray-100 hover:text-orange-300 transition block line-clamp-2 mt-2 leading-snug">${p.part_name}</a>
+              <div class="text-2xs text-gray-400 mt-1">${cardSection ? `Sectie: ${cardSection}` : 'Onderhoudsselectie'}</div>
             </div>
-            <div class="pt-2 border-t border-gray-900 space-y-2">
+            <div class="pt-2.5 border-t border-gray-800/70 space-y-2">
               ${buttonsHtml}
               <div class="flex items-center justify-end">
-                <a href="/onderdeelnummer/${p.part_number}/" class="text-3xs text-gray-400 hover:underline">Details →</a>
+                <a href="/onderdeelnummer/${p.part_number}/" class="text-2xs text-gray-400 hover:text-orange-400 hover:underline transition">Details →</a>
               </div>
             </div>
           </div>
@@ -210,7 +220,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             href="#section-${idx}"
             class="px-2.5 py-1 rounded-lg text-2xs font-semibold bg-gray-950 border border-gray-800 text-gray-300 hover:text-white hover:border-orange-500 transition"
           >
-            ${sec.section_name} <span class="text-gray-300 font-mono">(${sec.parts.length})</span>
+            ${formatPublicSectionName(sec.section_name)} <span class="text-gray-300 font-mono">(${sec.parts.length})</span>
           </a>
         `).join('')}
       </div>
@@ -239,7 +249,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             <div class="flex justify-between items-center border-b border-gray-800/80 pb-2.5">
               <h3 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-orange-500"></span>
-                <span>${sec.section_name}</span>
+                <span>${formatPublicSectionName(sec.section_name)}</span>
               </h3>
               <span class="text-2xs font-mono text-gray-400 bg-gray-950 px-2.5 py-1 rounded-lg border border-gray-800">${sec.parts.length} onderdelen</span>
             </div>
@@ -256,12 +266,13 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
                 </thead>
                 <tbody class="divide-y divide-gray-800/50">
                   ${sec.parts.map(p => {
-                    const safeSectionCtx = (sec.section_name || '').replace(/'/g, "\\'");
+                    const displaySection = formatPublicSectionName(sec.section_name);
+                    const safeSectionCtx = displaySection.replace(/'/g, "\\'");
                     const clickHandler = `window.trackModelPartClick?.('${p.part_number}','${safeSectionCtx}','${p.commercial_tier || 'COMMERCIAL_UNKNOWN'}','${p.seo_tier || 'SEO_TIER_C'}','${p.wave_identifier || 'none'}')`;
                     const multiOffer = getPartAffiliateOffers(p.part_number, p.part_name);
                     const buttonsHtml = renderMultiMarketplaceButtonsHtml(multiOffer, {
                       partNumber: p.part_number,
-                      sectionContext: sec.section_name || '',
+                      sectionContext: displaySection,
                       trackingMode: 'model_table',
                       compact: true,
                       align: 'end'
