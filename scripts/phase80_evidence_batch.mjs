@@ -126,7 +126,8 @@ function loadCandidates(inputPath) {
     ? doc
     : (Array.isArray(doc.review_offers) ? doc.review_offers
       : (Array.isArray(doc.queue) ? doc.queue
-        : (Array.isArray(doc.parts) ? doc.parts : [])));
+        : (Array.isArray(doc.offers) ? doc.offers
+          : (Array.isArray(doc.parts) ? doc.parts : []))));
   const byPart = new Map();
   for (const entry of raw) {
     const part = PartNormalizer.normalizePartNumber(entry.part_number ?? entry);

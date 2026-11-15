@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "phase": "84",
-  "generated_at": "2026-11-15T02:37:56.662Z",
+  "generated_at": "2026-11-15T18:23:45.957Z",
   "basis": "Latest measured GSC priority models (Phase 83 coverage file) + Phase 84 eBay ACTIVE payload; direct = part with a proven ACTIVE eBay offer",
   "models": {
     "ms_440": {
@@ -325,5 +325,5 @@
     "sr_430",
     "sr_450"
   ],
-  "note": "All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is additional buy links (more listings) on the same parts."
+  "note": "All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is at most one additional buy link on the same parts (41 of the 42 payload offers were re-imports of Phase 82 listings)."
 }

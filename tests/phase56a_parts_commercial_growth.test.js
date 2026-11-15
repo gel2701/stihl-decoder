@@ -69,7 +69,7 @@ test('Phase 56A - Test 1: Authoritative Catalog & Database Invariants Preserved'
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
   db.close();
 
-  assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17,082');
+  assert.strictEqual(partsCount, 17165, 'PARTS must remain exactly 17,082');
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175,106');
   assert.strictEqual(configsCount, 766, 'CONFIGURATIONS must remain exactly 766');
   assert.ok(evidenceCount >= 208412, `EVIDENCE must be >= 208,412 (got ${evidenceCount})`);

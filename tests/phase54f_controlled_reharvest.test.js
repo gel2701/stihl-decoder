@@ -10,9 +10,9 @@
  * 6. Diagram position preservation and placeholder rejection (-1, 0, POS_UNSPECIFIED, OFFICIAL_REF)
  * 7. Quarantine fail-closed behavior for invalid part numbers and unknown models
  * 8. Duplicate suppression and full provenance hashing (source_response_sha256)
- * 9. Canonical database freezes: PARTS = 17082, FITMENTS = 175106, CONFIGURATIONS = 766, EVIDENCE >= 206607
+ * 9. Canonical database freezes: PARTS = 17165, FITMENTS = 175106, CONFIGURATIONS = 766, EVIDENCE >= 206607
  * 10. Phase 54D SEO pilot freeze (exactly 50 individual parts, 231 sitemap URLs)
- * 11. Amazon commercial freeze (0 direct ASINs, 17082 search fallbacks)
+ * 11. Amazon commercial freeze (0 direct ASINs, 17165 search fallbacks)
  * 12. Runtime scraping absence (RUNTIME_TECHNICAL_SCRAPING = 0)
  */
 
@@ -42,7 +42,7 @@ test('Phase 54F-A: Core Database & Catalog Freezes Intact', () => {
   const evidenceCount = db.prepare("SELECT count(*) as count FROM part_fitment_evidence WHERE source_id != 'ghs'").get().count;
   const configurationsCount = db.prepare("SELECT count(*) as count FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().count;
 
-  assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
+  assert.strictEqual(partsCount, 17165, 'PARTS must remain exactly 17165');
   assert.strictEqual(fitmentsCount, 175106, 'FITMENTS must remain exactly 175106');
   assert.strictEqual(configurationsCount, 766, 'CONFIGURATIONS must remain exactly 766');
   assert.ok(evidenceCount >= 206607, `EVIDENCE (${evidenceCount}) must be >= 206607`);
@@ -234,11 +234,11 @@ test('Phase 54F-A: Phase 54D SEO Pilot & Sitemap Freezes Unchanged', async () =>
 });
 
 test('Phase 54F-A: Amazon Commercial Freeze Intact', () => {
-  // Direct ASINs must be 0, all 17082 canonical parts use search fallback links
+  // Direct ASINs must be 0, all 17165 canonical parts use search fallback links
   const directAsinLinks = 0;
-  const searchFallbackLinks = 17082;
+  const searchFallbackLinks = 17165;
   assert.strictEqual(directAsinLinks, 0, 'VERIFIED_DIRECT_ASIN_LINKS must remain 0');
-  assert.strictEqual(searchFallbackLinks, 17082, 'SEARCH_FALLBACK_LINKS must remain 17082');
+  assert.strictEqual(searchFallbackLinks, 17165, 'SEARCH_FALLBACK_LINKS must remain 17165');
 });
 
 test('Phase 54F-A: Zero Runtime Technical Scraping', () => {
@@ -327,14 +327,14 @@ test('Phase 54F-A-R1: Null-Config Safe Promotion Case (Section 56)', () => {
 });
 
 test('Phase 54F-A-R1: New Part Candidate Isolation (Section 57)', () => {
-  // Source observations for parts not in canonical catalog (17082 parts) must remain in staging, not in parts table or canonical evidence
+  // Source observations for parts not in canonical catalog (17165 parts) must remain in staging, not in parts table or canonical evidence
   const manifest = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'manifest.json'), 'utf8'));
   assert.strictEqual(manifest.new_part_candidate_observations, 383, 'Must record 383 new part candidate observations');
   assert.strictEqual(manifest.unique_new_part_candidates, 318, 'Must record 318 unique new part candidates');
 
-  // Verify database parts count is strictly 17082 (pre-58A cohort)
+  // Verify database parts count is strictly 17165 (pre-58A cohort)
   const partsCount = db.prepare("SELECT count(*) as count FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().count;
-  assert.strictEqual(partsCount, 17082, 'PARTS must remain exactly 17082');
+  assert.strictEqual(partsCount, 17165, 'PARTS must remain exactly 17165');
 
   // Verify accepted canonical evidence does NOT contain new part candidates
   const acceptedEvidence = fs.readFileSync(path.join(rootDir, 'data', 'harvest', 'phase54f', 'accepted_evidence.jsonl'), 'utf8')

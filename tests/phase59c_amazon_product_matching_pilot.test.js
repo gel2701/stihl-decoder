@@ -13,7 +13,7 @@
  *    - 0000 350 3518, 1123 640 2074, 4238 140 1800 confirmed as INCORRECT_MATCH_CONFIRMED.
  * 4. OEM Brand Distinction: Bosch/NGK classified as OEM_SUPPLIER_EQUIVALENT, not GENUINE_STIHL.
  * 5. Production Read-Only Protection: zero ASINs published to runtime `amazon_part_offers.json`.
- * 6. Preserved Invariants: 18,397 parts, 843 indexable, 1,024 sitemap URLs, tag srihldecoder2-21.
+ * 6. Preserved Invariants: 18,480 parts, 843 indexable, 1,024 sitemap URLs, tag srihldecoder2-21.
  * 7. Search Fallback Protection: 100% of pilot parts have valid search fallback URLs.
  * 8. Creators API Documentation: PA-API deprecation (May 15, 2026) and Creators API OAuth2 documented.
  */
@@ -188,10 +188,10 @@ test('Phase 59C.1 — 2. Active Evidence Recovery Schema & Multi-Round Investiga
 });
 
 test('Phase 59C.1 — 3. Production Read-Only Isolation & Invariant Protection', () => {
-  // 1. Catalog parts must remain 18,397
+  // 1. Catalog parts must remain 18,480
   const catalogPath = path.join(ROOT_DIR, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18397, 'Catalog parts must remain exactly 18,397');
+  assert.equal(catalog.parts.length, 18480, 'Catalog parts must remain exactly 18,480');
 
   // 2. Production manual ASIN offers file must remain EMPTY (0 published offers)
   const offersPath = path.join(ROOT_DIR, 'data', 'affiliate', 'amazon_part_offers.json');

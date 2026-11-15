@@ -11,7 +11,7 @@
  * 5. Isolated activation simulation in a sandboxed registry instance.
  * 6. 100% compliant search fallback across all staged and non-whitelisted parts.
  * 7. Evidence docket and conversion baseline documentation integrity.
- * 8. Core invariants: 18,397 parts, 843 SEO pages, 1,024 sitemap URLs.
+ * 8. Core invariants: 18,480 parts, 843 SEO pages, 1,024 sitemap URLs.
  */
 
 import test from 'node:test';
@@ -232,7 +232,7 @@ test('Phase 59F — 6. Universal Search Fallback Preserved Across Staged & All O
 
 test('Phase 59F — 7. Core Production Invariants Preserved', () => {
   const canonicalCatalog = JSON.parse(fs.readFileSync(CANONICAL_CATALOG_PATH, 'utf8'));
-  assert.strictEqual(canonicalCatalog.parts.length, 18397, 'Catalog must preserve exactly 18,397 canonical parts');
+  assert.strictEqual(canonicalCatalog.parts.length, 18480, 'Catalog must preserve exactly 18,480 canonical parts');
 
   const indexable = getAllIndexablePartsList();
   assert.strictEqual(indexable.length, 843, 'Must maintain exactly 843 indexable parts');

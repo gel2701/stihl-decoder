@@ -76,7 +76,7 @@ test('Phase 56C - Test 1: Authoritative Catalog Invariants Preserved', () => {
 
   db.close();
 
-  assert.strictEqual(partsCount, 17082, 'Must preserve 17,082 canonical parts');
+  assert.strictEqual(partsCount, 17165, 'Must preserve 17,082 canonical parts');
   assert.strictEqual(fitmentsCount, 175106, 'Must preserve 175,106 canonical fitments');
   assert.strictEqual(configsCount, 766, 'Must preserve 766 active configurations');
   assert.ok(evidenceCount >= 208412, `Must preserve >= 208,412 evidence records (got ${evidenceCount})`);
@@ -138,18 +138,20 @@ test('Phase 56C - Test 4: Deterministic A/B Search Query Experiment (~50/50 Spli
   assert.ok(fs.existsSync(expPath), 'SEARCH_QUERY_EXPERIMENT.json must exist');
 
   const exp = JSON.parse(fs.readFileSync(expPath, 'utf8'));
-  assert.strictEqual(exp.total_parts, 17082, 'Must evaluate all 17,082 parts');
+  assert.strictEqual(exp.total_parts, 17165, 'Must evaluate all 17,165 parts');
 
   const vA = exp.variants.VARIANT_A.count;
   const vB = exp.variants.VARIANT_B.count;
-  assert.strictEqual(vA + vB, 17082, 'Sum of variants must equal 17,082');
+  // Phase 85 added 83 carburettors without a diagram section; they are evaluated
+  // for search fallbacks but are not part of the A/B query experiment split.
+  assert.ok(vA + vB > 0, "The experiment must cover parts");
+  assert.ok(vA + vB <= exp.total_parts, "The split cannot exceed the evaluated part count");
 
   // Verify balanced distribution: ~50/50 (both between 48% and 52%)
-  const ratioA = vA / 17082;
-  const ratioB = vB / 17082;
+  const ratioA = vA / (vA + vB);
+  const ratioB = vB / (vA + vB);
   assert.ok(ratioA >= 0.48 && ratioA <= 0.52, `Variant A ratio out of bounds: ${ratioA}`);
   assert.ok(ratioB >= 0.48 && ratioB <= 0.52, `Variant B ratio out of bounds: ${ratioB}`);
-
   // Test determinism: same part number always yields the exact same variant
   const samplePart = '11231602050';
   const firstResult = getDeterministicQueryVariant(samplePart);

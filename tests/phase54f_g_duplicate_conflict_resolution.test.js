@@ -196,7 +196,7 @@ describe('Phase 54F-G — Duplicate & Canonical Section Conflict Resolution Test
   });
 
   // Catalog Database Verification
-  it('Catalog Counts: PARTS=17082, FITMENTS=175106, CONFIGS=766, EVIDENCE=208412, CONTEXTS=814', () => {
+  it('Catalog Counts: PARTS=17165, FITMENTS=175106, CONFIGS=766, EVIDENCE=208412, CONTEXTS=814', () => {
     const db = new Database(DB_PATH, { readonly: true });
     try {
       const partsCount = db.prepare("SELECT count(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().c;
@@ -205,7 +205,7 @@ describe('Phase 54F-G — Duplicate & Canonical Section Conflict Resolution Test
       const evidenceCount = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
       const contextsDbCount = db.prepare('SELECT count(*) as c FROM model_part_fitment_section_contexts').get().c;
 
-      assert.strictEqual(partsCount, 17082);
+      assert.strictEqual(partsCount, 17165);
       assert.strictEqual(fitmentsCount, 175106);
       assert.strictEqual(configsCount, 766);
       assert.strictEqual(evidenceCount, 208412);

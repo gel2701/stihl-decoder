@@ -1,10 +1,11 @@
 {
   "phase": "84",
   "title": "STIHL archive mining, catalog expansion & affiliate evidence recovery",
-  "generated_at": "2026-11-15T02:37:56.662Z",
+  "generated_at": "2026-11-15T18:23:45.957Z",
   "baseline_verified": {
     "catalog_parts": 18397,
-    "sqlite_parts": 18397,
+    "catalog_parts_seen_at_rebuild": 18480,
+    "sqlite_parts": 18480,
     "fitments": 181394,
     "fitment_relations_baseline": 181394,
     "evidence_rows": 220444,
@@ -13,8 +14,11 @@
   },
   "after": {
     "catalog_parts": 18397,
+    "catalog_parts_current": 18480,
     "fitments": 181394,
-    "new_active_ebay_offers": 42,
+    "new_active_ebay_offers": 1,
+    "reimported_ebay_offers": 41,
+    "offers_in_payload": 42,
     "parts_receiving_new_offers": 5,
     "new_active_ebay_parts": 0,
     "new_active_amazon_offers": 0
@@ -22,9 +26,10 @@
   "real_growth": {
     "new_catalog_parts": 0,
     "new_fitment_relations": 0,
-    "new_active_ebay_offers": 42,
+    "new_active_ebay_offers": 1,
+    "reimported_ebay_offers": 41,
     "new_parts_with_direct_purchase": 0,
-    "additional_active_offers_on_existing_direct_parts": 42
+    "additional_active_offers_on_existing_direct_parts": 1
   },
   "blockers": {
     "archives_missing": [

@@ -190,7 +190,7 @@ test('Phase 58A — 9. Duplicate Part Deduplication (1 Canonical Part -> N Fitme
   const partNums = partsCatalog.parts.map(p => p.part_number);
   const uniquePartNums = new Set(partNums);
   assert.equal(partNums.length, uniquePartNums.size, 'Zero duplicate canonical part numbers allowed in parts_catalog.json');
-  assert.ok(partsCatalog.parts.length > 17082, `Expected catalog expansion beyond 17,082 parts, got ${partsCatalog.parts.length}`);
+  assert.ok(partsCatalog.parts.length > 17165, `Expected catalog expansion beyond 17,082 parts, got ${partsCatalog.parts.length}`);
 });
 
 test('Phase 58A — 10. New Model Creation Without Serial Range Fabrication', () => {

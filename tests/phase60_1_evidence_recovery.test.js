@@ -6,7 +6,7 @@
  * 3. Rejection of Phase 59F.1 forbidden matches (0000 400 7025 CMR7H, 0000 642 1223 spline mismatch)
  * 4. Dual-gate classification integrity (5 verified offers, 47 rejected/pending staged offers)
  * 5. Production lock invariant (exactly 3 active pilots, no unauthorized live ASINs)
- * 6. Canonical parts invariant (18,397 parts)
+ * 6. Canonical parts invariant (18,480 parts)
  * 7. Wording invariant: "Bevestigde compatibiliteit", zero "Gegarandeerd passend op"
  */
 
@@ -88,10 +88,10 @@ test('Phase 60.1: Amazon Evidence Recovery & Invariants', async (t) => {
   });
 
   await t.test('4. Canonical Invariants Preservation', () => {
-    // 18,397 canonical parts
+    // 18,480 canonical parts
     const catalog = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/parts_catalog.json'), 'utf8'));
-    assert.strictEqual(catalog.parts_count, 18397);
-    assert.strictEqual(catalog.parts.length, 18397);
+    assert.strictEqual(catalog.parts_count, 18480);
+    assert.strictEqual(catalog.parts.length, 18480);
 
     // 843 SEO parts
     const indexable = getAllIndexablePartsList();

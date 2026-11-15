@@ -1,12 +1,15 @@
 {
   "schema_version": "1.0.0",
   "phase": "84",
-  "generated_at": "2026-11-15T02:37:56.661Z",
+  "generated_at": "2026-11-15T18:23:45.956Z",
   "input_queue": "output/phase82/PHASE82_REMAINING_QUEUE.json",
   "queue_size": 109,
   "parts_attempted": 5,
   "parts_completed": 5,
-  "new_active_offers": 42,
+  "new_active_offers": 1,
+  "reimported_active_offers": 41,
+  "offers_in_payload": 42,
+  "reimport_note": "Offers whose (part_number, marketplace, item_id) already appeared in the Phase 81/82/83 payloads are re-imports of known listings; only the remainder is a new offering.",
   "parts_with_new_offers": 5,
   "offer_parts": [
     "00009302212",

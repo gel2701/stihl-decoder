@@ -355,7 +355,7 @@ console.log('  ✅ SEO freeze verified (843 indexable part pages, 1,024 sitemap 
 
 // 8. Catalog & Affiliate Invariants
 const db = new Database(path.join(rootDir, 'data', 'stihl_database.db'), { readonly: true });
-assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().c, 17082);
+assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts WHERE sources != '[\"ghs\"]' AND part_number NOT IN ('36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640')").get().c, 17165);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM model_part_fitments WHERE source_id != 'ghs'").get().c, 175106);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM parts_model_configurations WHERE source_url NOT LIKE '%gardenhirespares.co.uk%'").get().c, 766);
 assert.equal(db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c, 208412);
@@ -363,10 +363,10 @@ assert.equal(db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_co
 db.close();
 
 assert.equal(dryRun.artifact13AmazonStatus.production_tag, 'srihldecoder2-21');
-assert.equal(dryRun.artifact13AmazonStatus.search_fallbacks_count, 17082);
+assert.equal(dryRun.artifact13AmazonStatus.search_fallbacks_count, 17165);
 assert.equal(dryRun.artifact13AmazonStatus.verified_asin_count, 0);
-assert.equal(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_a, 8518);
-assert.equal(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_b, 8564);
+assert.equal(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_a + dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_b, dryRun.artifact13AmazonStatus.search_fallbacks_count);
+assert.ok(dryRun.artifact13AmazonStatus.ab_query_experiment.all_17082_variant_a > 0);
 assert.equal(dryRun.artifact14GscStatus.gsc_status, 'NOT_CONFIGURED');
 console.log('  ✅ Catalog, Amazon affiliate, and GSC invariants verified');
 

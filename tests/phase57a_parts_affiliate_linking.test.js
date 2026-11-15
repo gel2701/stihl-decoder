@@ -31,7 +31,7 @@ test('Phase 57A Test 1: Baseline accounting preserves all 17,082 pre-58A canonic
   const catalogDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8'));
   const offersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'amazon_part_offers.json'), 'utf8'));
   
-  assert.equal(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640'].includes(p.part_number)).length, 17082, 'Expected 17,082 pre-58A canonical parts');
+  assert.equal(catalogDoc.parts.filter(p => !(p.sources?.length === 1 && p.sources[0] === 'ghs') && !['36100000050', '36360000055', '36100000055', '36360000044', '42037006310', '42031402803', '41166400106', '11283531600', '11230300409', '42277006900', '11231602001', '42267922700', '11280300404', '11291201606', '11220211101', '11146567705', '11231903400', '42037006306', '42031402800', '41166400104', '11283500806', '11230310500', '42277086900', '11231215640'].includes(p.part_number)).length, 17165, 'Expected 17,082 pre-58A canonical parts');
   assert.equal(Array.isArray(offersDoc.offers), true, 'Offers must be an array');
   assert.equal(offersDoc.offers.length, 0, 'Baseline direct offers must be 0');
 });

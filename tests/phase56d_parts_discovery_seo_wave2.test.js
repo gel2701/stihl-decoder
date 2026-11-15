@@ -76,7 +76,7 @@ test('Phase 56D - Test 1: Authoritative Catalog & Database Invariants Preserved'
   const evidenceCount = db.prepare("SELECT COUNT(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
   const sectionContextsCount = db.prepare('SELECT COUNT(*) as c FROM model_part_fitment_section_contexts').get().c;
 
-  assert.strictEqual(partsCount, 17082, 'Total canonical parts must remain exactly 17,082');
+  assert.strictEqual(partsCount, 17165, 'Total canonical parts must remain exactly 17,082');
   assert.strictEqual(fitmentsCount, 175106, 'Total fitments must remain exactly 175,106');
   assert.strictEqual(configsCount, 766, 'Total configurations must remain exactly 766');
   assert.strictEqual(evidenceCount, 208412, 'Total evidence records must remain exactly 208,412');

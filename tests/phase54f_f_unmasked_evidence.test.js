@@ -263,7 +263,7 @@ describe('Phase 54F-F — Newly Unmasked Evidence Escalation Test Suite', () => 
     const evidence = db.prepare("SELECT count(*) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
     db.close();
 
-    assert.equal(parts, 17082);
+    assert.equal(parts, 17165);
     assert.equal(fitments, 175106);
     assert.equal(configs, 766);
     assert.equal(evidence, 208412);

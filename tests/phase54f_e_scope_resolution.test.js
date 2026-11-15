@@ -217,7 +217,7 @@ describe('Phase 54F-E — Variant & Configuration Scope Resolution Test Suite', 
     const evidenceCount = db.prepare("SELECT count(1) as c FROM part_fitment_evidence WHERE source_id != 'ghs'").get().c;
     const unresolvedScalarCount = db.prepare("SELECT count(1) as c FROM model_part_fitments WHERE source_id != 'ghs' AND section_name = 'Unresolved Diagram Section'").get().c;
 
-    assert.equal(partsCount, 17082);
+    assert.equal(partsCount, 17165);
     assert.equal(fitmentsCount, 175106);
     assert.equal(configsCount, 766);
     assert.equal(evidenceCount, 208412);

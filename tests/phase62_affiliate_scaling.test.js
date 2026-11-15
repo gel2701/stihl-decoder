@@ -195,10 +195,10 @@ test('Phase 62.5 — Click Tracking Separation & Exclusions', () => {
 });
 
 test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
-  // Invariant 1: Exactly 18,397 canonical parts
+  // Invariant 1: Exactly 18,480 canonical parts
   const catalogPath = path.join(rootDir, 'data', 'parts_catalog.json');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  assert.equal(catalog.parts.length, 18397, 'Catalog parts count must strictly remain 18,397');
+  assert.equal(catalog.parts.length, 18480, 'Catalog parts count must strictly remain 18,480');
 
   // Invariant 2: Exactly 843 SEO indexable parts
   const indexable = getAllIndexablePartsList();

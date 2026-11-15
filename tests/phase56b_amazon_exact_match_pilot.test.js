@@ -2,13 +2,13 @@
  * Test Suite: Phase 56B — Amazon Exact Match Pilot
  *
  * Verifies:
- * 1. Authoritative Catalog Invariants Preserved (17,082 parts, 175,106 fitments, 766 configs, 208,412 evidence)
+ * 1. Authoritative Catalog Invariants Preserved (17,165 parts, 175,106 fitments, 766 configs, 208,412 evidence)
  * 2. Verification Queue Audit Integrity (250 items, 0 duplicates, 0 invalid)
  * 3. Priority Pilot Selection (50 items, 100% Commercial High, 100% SEO Tier A, 0 generic hardware)
  * 4. Strict Match Contract Validation (AmazonExactMatchVerifier)
  * 5. Fail-Closed Verifier (Rejection of invalid ASINs, fake prices/stock, aftermarket misrepresentation)
  * 6. Pilot Evaluation Outcomes (50 evaluated, 0 fabricated ASINs, 50 NOT_FOUND)
- * 7. 100% Search Fallback Availability for All 17,082 Parts
+ * 7. 100% Search Fallback Availability for All 17,165 Parts
  * 8. UI Hierarchy & Content Safety (Technical data strictly above Commercial CTA)
  * 9. Analytics Differentiation (amazon_search_fallback_click vs amazon_verified_product_click)
  * 10. SEO Indexation Freeze (exactly 400 indexable parts, 581 sitemap URLs)
@@ -69,7 +69,7 @@ test('Phase 56B - Test 1: Authoritative Catalog Invariants Preserved', () => {
 
   db.close();
 
-  assert.strictEqual(partsCount, 17082, 'Must preserve 17,082 canonical parts');
+  assert.strictEqual(partsCount, 17165, 'Must preserve 17,165 canonical parts');
   assert.strictEqual(fitmentsCount, 175106, 'Must preserve 175,106 canonical fitments');
   assert.strictEqual(configsCount, 766, 'Must preserve 766 active configurations');
   assert.ok(evidenceCount >= 208412, `Must preserve >= 208,412 evidence records (got ${evidenceCount})`);
@@ -257,9 +257,9 @@ test('Phase 56B - Test 6: Pilot Evaluation Outcomes (0 fabricated ASINs, 50 NOT_
   assert.strictEqual(summary.status, 'VERIFICATION_INFRA_READY — ZERO SAFE MATCHES');
 });
 
-test('Phase 56B - Test 7: 100% Search Fallback Availability for All 17,082 Parts', () => {
+test('Phase 56B - Test 7: 100% Search Fallback Availability for All 17,165 Parts', () => {
   const summary = JSON.parse(fs.readFileSync(path.join(rootDir, 'output', 'phase56b', 'PHASE56B_SUMMARY.json'), 'utf8'));
-  assert.strictEqual(summary.search_fallback_coverage, 17082);
+  assert.strictEqual(summary.search_fallback_coverage, 17165);
   assert.strictEqual(summary.search_fallback_percentage, 100.0);
 
   // Test provider search link generation
