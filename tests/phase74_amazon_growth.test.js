@@ -218,7 +218,7 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
     const unprovenOffers = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
     // Phase 87 superseded 11 dead candidates with evidenced replacements and activated
     // one live candidate; every record remains in the registry.
-    assert.ok(unprovenOffers.length >= 44, 'Unproven candidate offers must be preserved in RESEARCH_REQUIRED');
+    assert.ok(unprovenOffers.length >= 45, 'Unproven candidate offers must be preserved in RESEARCH_REQUIRED');
     assert.strictEqual(
       allOffers.length,
       179,

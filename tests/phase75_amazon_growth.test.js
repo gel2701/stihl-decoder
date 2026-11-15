@@ -234,27 +234,25 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(primaryResolved.asin, 'B001RM8J76');
     assert.strictEqual(primaryResolved.brand, 'NGK');
 
-    // 3. Phase 87 promoted the Champion RCJ6Y listing after documenting that the
-    //    STIHL 0000 400 7000 is the NGK BPMR7A and that the RCJ6Y is its documented
-    //    interchange (dealer catalog + Stens/Walbro cross-reference).
+    // 3. Champion RCJ6Y stays quarantined in RESEARCH_REQUIRED: Phase 87 documented
+    //    that the STIHL 0000 400 7000 is the NGK BPMR7A and that the Champion RCJ6Y is
+    //    its interchange, but the part already has a genuine NGK direct link, so the
+    //    equivalent adds no new purchasable coverage.
     const champRecord = registry.getOffer('00004007000', 'amazon.nl', 'B00IKF8TH8');
     assert.ok(champRecord, 'Champion record must exist in registry');
-    assert.strictEqual(champRecord.status, 'ACTIVE');
-    assert.strictEqual(champRecord.oem_brand_classification, 'MANUFACTURER_AFTERMARKET');
-    assert.ok(
-      champRecord.verifiable_evidence_sources.some(s => s.type === 'EXTERNAL_CATALOG' && /cross-reference|lawnmowerpros/i.test(s.url + ' ' + s.title)),
-      'The Champion activation must keep its independent interchange reference'
-    );
+    assert.strictEqual(champRecord.status, 'RESEARCH_REQUIRED');
+    // The lifecycle loader rebuilds records, so read the note from the registry file itself.
+    const champDoc = regDoc.offers.find(o => o.asin === 'B00IKF8TH8');
+    assert.ok(/Niet geactiveerd/.test(champDoc.phase_87_review || ''), 'The Phase 87 review note must explain the refusal');
 
-    // 4. Multi-offer listing for 0000 400 7000: both the NGK and the Champion offer stay active
+    // 4. Multi-offer listing for 0000 400 7000: active offers count is exactly 1 (NGK only)
     const activeSparkPlugs = registry.getActiveOffers('00004007000');
-    assert.strictEqual(activeSparkPlugs.length, 2, 'NGK BPMR7A and Champion RCJ6Y must both be active for 0000 400 7000');
+    assert.strictEqual(activeSparkPlugs.length, 1, 'Only NGK BPMR7A must be active for 0000 400 7000');
     assert.strictEqual(activeSparkPlugs[0].asin, 'B001RM8J76');
-    assert.ok(activeSparkPlugs.some(o => o.asin === 'B00IKF8TH8'));
 
-    // 5. Commercial resolution exposes both verified purchase options
+    // 5. Commercial resolution resolves exclusively to primary NGK
     const resolvedOffers = registry.resolveCommercialOffers({ partNumber: '00004007000' });
-    assert.strictEqual(resolvedOffers.length, 2);
+    assert.strictEqual(resolvedOffers.length, 1);
     assert.strictEqual(resolvedOffers[0].asin, 'B001RM8J76');
     assert.strictEqual(resolvedOffers[0].link_type, 'DIRECT_ASIN');
   });
@@ -393,7 +391,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
   });
 
-  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (98 Active Offers: 52 NL + 46 DE after the Phase 87 recovery)', () => {
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (97 Active Offers: 51 NL + 46 DE after the Phase 87 recovery)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -401,11 +399,11 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 98, 'Total active offers must equal 98 (52 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 97, 'Total active offers must equal 97 (51 NL + 46 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 52, 'Active NL offers must equal 52');
+    assert.strictEqual(activeNl.length, 51, 'Active NL offers must equal 51');
     assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de

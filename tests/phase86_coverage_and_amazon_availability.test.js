@@ -37,7 +37,7 @@ const needsGroups = readJson('output/phase86/PHASE86_NEEDS_EVIDENCE_GROUPS.json'
 
 describe('Phase 86 — Amazon availability audit', () => {
   it('1. records the live audit result per marketplace and keeps every record', () => {
-    // Phase 87 added 23 replacement offers; no Phase 86 record was deleted.
+    // Phase 87 added 22 replacement offers; no Phase 86 record was deleted.
     assert.strictEqual(registryDoc.offers.length, 179, 'No Amazon record may be deleted');
     assert.ok(registryDoc.availability_audit, 'The registry must carry the Phase 86 availability audit');
     assert.strictEqual(registryDoc.availability_audit.method, 'LIVE_BROWSER_GET');
@@ -75,11 +75,11 @@ describe('Phase 86 — Amazon availability audit', () => {
   it('3. keeps the metrics consistent with the lifecycle (Phase 87 recovery included)', () => {
     const active = registryDoc.offers.filter((o) => o.status === 'ACTIVE');
     assert.strictEqual(registryDoc.metrics.active, active.length);
-    assert.strictEqual(registryDoc.metrics.active, 98);
-    assert.strictEqual(registryDoc.metrics.active_nl, 52);
+    assert.strictEqual(registryDoc.metrics.active, 97);
+    assert.strictEqual(registryDoc.metrics.active_nl, 51);
     assert.strictEqual(registryDoc.metrics.active_de, 46);
     assert.strictEqual(registryDoc.metrics.suspended, 34);
-    assert.strictEqual(registryDoc.metrics.research_required, 44);
+    assert.strictEqual(registryDoc.metrics.research_required, 45);
     assert.strictEqual(registryDoc.metrics.verified, 3);
     assert.ok(
       active.every((o) => o.availability_audit?.verdict === 'LISTING_LIVE' || /Phase 87/.test(o.status_reason || '')),
@@ -93,7 +93,7 @@ describe('Phase 86 — Amazon availability audit', () => {
     const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true, maxActiveOffersAllowed: 100 });
     registry.loadFromFile();
     const active = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(active.length, 98);
+    assert.strictEqual(active.length, 97);
     for (const offer of registryDoc.offers.filter((o) => o.status === 'SUSPENDED')) {
       assert.strictEqual(
         registry.getActiveOffer(offer.part_number, offer.marketplace),

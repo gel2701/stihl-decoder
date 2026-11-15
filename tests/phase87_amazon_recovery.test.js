@@ -44,8 +44,8 @@ const phase87Offers = registryDoc.offers.filter((o) => o.status === 'ACTIVE' && 
 describe('Phase 87 — Amazon recovery', () => {
   it('1. grows the registry without losing a single live Phase 86 offer', () => {
     assert.strictEqual(registryDoc.offers.length, 179, 'Every historical Amazon record stays in the registry');
-    assert.strictEqual(registryDoc.metrics.active, 98);
-    assert.strictEqual(registryDoc.metrics.active_nl, 52);
+    assert.strictEqual(registryDoc.metrics.active, 97);
+    assert.strictEqual(registryDoc.metrics.active_nl, 51);
     assert.strictEqual(registryDoc.metrics.active_de, 46);
     assert.strictEqual(registryDoc.metrics.parts_with_amazon_offer, 84);
 
@@ -56,8 +56,8 @@ describe('Phase 87 — Amazon recovery', () => {
   });
 
   it('2. every Phase 87 activation carries page-level evidence and the correct tag', () => {
-    assert.strictEqual(activation.activated, 23);
-    assert.strictEqual(phase87Offers.length, 23);
+    assert.strictEqual(activation.activated, 22);
+    assert.strictEqual(phase87Offers.length, 22);
     for (const offer of phase87Offers) {
       assert.ok(catalogParts.has(offer.part_number), `Part ${offer.part_number} must exist in the canonical catalog`);
       assert.strictEqual(offer.marketplace, 'amazon.nl');

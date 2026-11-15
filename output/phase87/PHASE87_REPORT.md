@@ -16,15 +16,17 @@ exacte STIHL-nummer op de productpagina gecontroleerd, is waar mogelijk een onaf
 dealercatalogus als identiteitsbewijs toegevoegd, en is de bestaande Two-Gate-verificatie
 ongewijzigd toegepast.
 
-**Resultaat: 23 nieuwe ACTIVE Amazon.nl-aanbiedingen op 23 onderdelen, waarvan 21 onderdelen
+**Resultaat: 22 nieuwe ACTIVE Amazon.nl-aanbiedingen op 22 onderdelen, waarvan 21 onderdelen
 die daarvoor geen enkele directe Amazon-kooplink hadden.**
 
-- ACTIVE Amazon: **75 → 98** (Amazon.nl 29 → 52, Amazon.de 46 ongewijzigd)
+- ACTIVE Amazon: **75 → 97** (Amazon.nl 29 → 51, Amazon.de 46 ongewijzigd)
 - Onderdelen met een directe Amazon-kooplink: **63 → 84**
 - 12 van de 24 gesuspendeerde onderdelen kregen een bewezen vervangende listing
 - 22 niet-beschikbare vermeldingen (12 voorheen ACTIVE, 10 kandidaten) staan als `SUSPENDED`
   in de registry met hun oorspronkelijke bewijs en een verwijzing naar de vervanger
 - Eén listing zonder fabrikantmerk is bewust **niet** geactiveerd (geen merkopvulling)
+- Eén bougie-equivalent (Champion RCJ6Y) is bewust **niet** geactiveerd: het onderdeel had al
+  een originele NGK-kooplink, dus een equivalent voegt geen nieuwe koopbare dekking toe
 - Geen enkele bestaande ACTIVE-aanbieding is verdwenen; alle 75 Phase 86-live-aanbiedingen
   staan nog steeds ACTIVE
 
@@ -75,7 +77,7 @@ Per activatie is het bewijs als volgt opgebouwd en in de registry opgeslagen:
   (2026-11-15). Levering aan een Nederlands adres blijkt uit de bezorgdatum op de pagina.
 - **Onafhankelijke zijde:** `EXTERNAL_CATALOG`-bron (Garden Hire Spares dealercatalogus) die
   hetzelfde STIHL-nummer aan een productnaam en machinecompatibiliteit koppelt —
-  19 van de 23 activaties hebben die tweede bron.
+  19 van de 22 activaties hebben die tweede bron.
 - **Genuine STIHL-vermeldingen** waar de dealercatalogus het nummer niet voert (3 stuks)
   leunen op de merkvermelding van de fabrikant zelf op de productpagina plus de STIHL-naam
   uit de catalogus; dat is als zodanig vastgelegd, niet als "dealer bevestigd".
@@ -93,7 +95,7 @@ prijzen of voorraad als bewijs vastleggen, of een listing zonder fabrikantmerk a
 
 ---
 
-## 4. Geactiveerde aanbiedingen (23)
+## 4. Geactiveerde aanbiedingen (22)
 
 | Onderdeel | ASIN | Merk | Classificatie | Onafhankelijke bron | Verving |
 |---|---|---|---|---|---|
@@ -119,10 +121,11 @@ prijzen of voorraad als bewijs vastleggen, of een listing zonder fabrikantmerk a
 | 4282 190 0303 | B07PVMRZYK | Cancanle | MANUFACTURER_AFTERMARKET | dealercatalogus | B08F9ML11Q (404) |
 | 4140 190 4009 | B07BLSL3VM | Cancanle | MANUFACTURER_AFTERMARKET | dealercatalogus | B07S8Y912M (404) |
 | 4134 080 2101 | B079WS2YNM | C·T·S | MANUFACTURER_AFTERMARKET | dealercatalogus | B079DNL72P (404) |
-| 0000 400 7000 | B00IKF8TH8 | Champion | MANUFACTURER_AFTERMARKET | dealercatalogus + kruisverwijzing | — (zelfde ASIN) |
 
-Twee onderdelen hadden al een ACTIVE aanbieding (1123 640 2073 op amazon.de en 0000 400 7000
-met de NGK-vermelding); de overige **21 onderdelen zijn nieuw koopbaar via Amazon**.
+Eén onderdeel had al een ACTIVE aanbieding (1123 640 2073 op amazon.de); de overige
+**21 onderdelen zijn nieuw koopbaar via Amazon**. De bougie 0000 400 7000 behield zijn
+originele NGK-link; het gedocumenteerde Champion-equivalent (RCJ6Y ≡ BPMR7A) is als
+bewijs bewaard maar niet als tweede aanbieding geactiveerd.
 
 ---
 
@@ -152,18 +155,18 @@ een onbewezen aanname te doen.
 
 | Metric | Voor | Nieuw | Na |
 |---|---:|---:|---:|
-| ACTIVE Amazon.nl | 29 | +23 | 52 |
+| ACTIVE Amazon.nl | 29 | +22 | 51 |
 | ACTIVE Amazon.de | 46 | 0 | 46 |
-| Totaal ACTIVE Amazon | 75 | +23 | 98 |
+| Totaal ACTIVE Amazon | 75 | +22 | 97 |
 | Unieke onderdelen met Amazon-aanbod | 63 | +21 | 84 |
 | Gecontroleerde alternatieve ASIN's | 34 unieke (58 vermeldingen) | 34 opnieuw live gecontroleerd | 34 |
-| Kandidaten met aangevuld identiteitsbewijs | 0 | 23 (19 met dealercatalogus, 4 met fabrikantvermelding) | 23 |
+| Kandidaten met aangevuld identiteitsbewijs | 0 | 22 (19 met dealercatalogus, 3 met fabrikantvermelding) | 22 |
 | Nieuwe Amazon-koopbare onderdelen | 0 | +21 | 21 |
 | Herstelde gesuspendeerde aanbiedingen | 0 | 12 vervangende listings (0 heractivaties van het originele ASIN) | 12 |
-| Resterende NEEDS_EVIDENCE | 55 | −11 vervangen, −1 geactiveerd, +1 nieuw afgewezen | 44 |
+| Resterende NEEDS_EVIDENCE | 55 | −10 geactiveerd/vervangen, +1 nieuw afgewezen | 45 |
 | Behouden ACTIVE eBay-aanbiedingen | 1.870 | 0 | 1.870 |
 
-Registry na afloop: 179 records — 98 ACTIVE, 34 SUSPENDED, 44 RESEARCH_REQUIRED, 3 VERIFIED.
+Registry na afloop: 178 records — 97 ACTIVE, 34 SUSPENDED, 45 RESEARCH_REQUIRED, 3 VERIFIED.
 
 ---
 
@@ -174,12 +177,12 @@ Registry na afloop: 179 records — 98 ACTIVE, 34 SUSPENDED, 44 RESEARCH_REQUIRE
   onderdeelnummers zijn expliciet aan de operator-autorisatielijst toegevoegd.
 - Nieuwe suite `tests/phase87_amazon_recovery.test.js`: 7 tests, alle groen.
 - Bestaande suites bijgewerkt naar de gemeten waarheid: `phase86_coverage_and_amazon_availability`
-  (offers 179, ACTIVE 98, suspended 34, research 44), `phase79b_amazon_buy_buttons`
-  (84 onderdelen / 98 directe links), `phase75_amazon_growth` (98/52/46, plus de
+  (offers 178, ACTIVE 97, suspended 34, research 45), `phase79b_amazon_buy_buttons`
+  (84 onderdelen / 97 directe links), `phase75_amazon_growth` (97/51/46, plus de
   vervangingsregel voor gesuspendeerde genuine listings), `phase74_amazon_growth`
-  (44 RESEARCH_REQUIRED, 179 records).
+  (45 RESEARCH_REQUIRED, 178 records).
 - Elke ACTIVE-aanbieding slaagt onveranderd voor `TwoGateVerifier`; de test suite controleert
-  dat nu voor alle 98.
+  dat nu voor alle 97.
 - Alle tags kloppen per marketplace (NL `srihldecoder2-21`, DE `srihldecode00-21`), geen
   dubbele (onderdeel, marketplace, ASIN)-combinaties, catalogus nog steeds 18.480 onderdelen.
 
@@ -189,7 +192,7 @@ Registry na afloop: 179 records — 98 ACTIVE, 34 SUSPENDED, 44 RESEARCH_REQUIRE
 
 | Bestand | Inhoud |
 |---|---|
-| `PHASE87_ACTIVATION.json` | 23 activaties met per record de gate-uitkomst, bron en vervangen ASIN |
+| `PHASE87_ACTIVATION.json` | 22 activaties met per record de gate-uitkomst, bron en vervangen ASIN |
 | `amazon_search_hits.json` | 63 zoekopdrachten × treffers (ASIN, titel, sponsoring, prijsindicatie-bestaan) |
 | `amazon_product_checks.json` | 91 productpagina-controles met live-status, titel, levering en merkregel |
 | `dealer_corroboration.json` | 79 dealercatalogus-controles met treffer, bron-URL en citaat |

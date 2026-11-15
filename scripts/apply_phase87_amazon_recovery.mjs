@@ -81,25 +81,12 @@ const DECISIONS = [
   // be classified as a manufacturer product. The part keeps its RESEARCH_REQUIRED
   // record and the candidate is documented in the Phase 87 artifacts.
 
-  // --- Spark plug: STIHL 0000 400 7000 is the NGK BPMR7A; the Champion RCJ6Y is the
-  //     documented interchange for that plug (Stens/Walbro cross-reference), and the
-  //     dealer catalog confirms the STIHL number equals the NGK BPMR7A. ---
-  {
-    part: '00004007000',
-    asin: 'B00IKF8TH8',
-    brand: 'Champion',
-    kind: 'MANUFACTURER_AFTERMARKET',
-    qty: 1,
-    nd: true,
-    compatibility_note: 'Champion RCJ6Y is de gedocumenteerde vervanger van de NGK BPMR7A, het bougie-type dat STIHL onder 0000 400 7000 levert.',
-    extra_sources: [{
-      type: 'EXTERNAL_CATALOG',
-      url: 'https://www.lawnmowerpros.com/stihl/stihl-spark-plug-cross-reference.asp',
-      title: 'Stihl spark plug cross reference (Lawnmower Pros)',
-      claim: 'De kruisverwijzingstabel voert de NGK BPMR7A als vervanging van de Champion RCJ6Y voor STIHL machines; de dealercatalogus koppelt 0000 400 7000 aan de NGK BPMR7A.',
-      retrieved_at: TODAY
-    }]
-  }
+  // Deliberately NOT activated: 00004007000 / B00IKF8TH8 (Champion RCJ6Y).
+  // The dealer catalog confirms STIHL 0000 400 7000 is the NGK BPMR7A and the
+  // Stens/Walbro charts confirm the Champion RCJ6Y is its interchange, but that
+  // part already has a genuine NGK direct link. Adding an equivalent would raise
+  // the link count without making a new part purchasable, so the record stays
+  // RESEARCH_REQUIRED and the evidence is kept in output/phase87/.
 ];
 
 const MANUFACTURER_BY_BRAND = {
