@@ -560,3 +560,42 @@ test('16. Backward compatibility: getPartAffiliateOffer behoudt oorspronkelijke 
   assert.equal(typeof offer.is_direct, 'boolean');
   assert.ok(Array.isArray(offer.offers));
 });
+
+test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en geen Unresolved Diagram Section', () => {
+  const mkAmzUrl = (asin) => ['https://www.amazon.nl', 'dp', asin].join('/');
+  const oneDirect = renderMultiMarketplaceButtonsHtml({
+    direct_offers: [{ provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: mkAmzUrl('B00NL12345'), is_direct: true }],
+    search_offers: []
+  }, { partNumber: '00006421223' });
+  assert.ok(oneDirect.includes('bg-orange-600'));
+  assert.ok(!oneDirect.includes('<details'), 'Single direct offer must not render a collapsible <details> block');
+
+  const multiDirect = renderMultiMarketplaceButtonsHtml({
+    direct_offers: [
+      { provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: mkAmzUrl('B00NL12345'), is_direct: true },
+      { provider: 'ebay', marketplace: 'ebay.nl', display_marketplace: 'eBay.nl', url: 'https://www.ebay.nl/itm/123456', is_direct: true }
+    ],
+    search_offers: [
+      { provider: 'amazon', marketplace: 'amazon.de', display_marketplace: 'Amazon.de', url: 'https://www.amazon.de/s?k=00006421223', is_direct: false }
+    ]
+  }, { partNumber: '00006421223' });
+  assert.ok(multiDirect.includes('<details'));
+  assert.ok(multiDirect.includes('Meer koopopties (+2)'));
+
+  const searchOnly = renderMultiMarketplaceButtonsHtml({
+    direct_offers: [],
+    search_offers: [
+      { provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: 'https://www.amazon.nl/s?k=00006421223', is_direct: false },
+      { provider: 'ebay', marketplace: 'ebay.nl', display_marketplace: 'eBay.nl', url: 'https://www.ebay.nl/sch/i.html?_nkw=00006421223', is_direct: false }
+    ]
+  }, { partNumber: '00006421223' });
+  assert.ok(!searchOnly.includes('bg-orange-600'), 'Search-only fallback must not use primary orange buy button styling');
+  assert.ok(searchOnly.includes('Meer zoekopties (+1)'));
+
+  const ms260 = database.models.find(m => m.slug === 'ms-260' || m.model_name === 'MS 260');
+  const modelHtml = renderModelPartsPageHtml(ms260, database, PRIMARY_ORIGIN);
+  assert.ok(!modelHtml.includes('Unresolved Diagram Section'), 'ModelPartsPageTemplate must never leak Unresolved Diagram Section');
+
+  const discoveryHtml = renderPartsDiscoveryPageHtml('kettingwiel', database, PRIMARY_ORIGIN);
+  assert.ok(!discoveryHtml.includes('Unresolved Diagram Section'), 'PartsDiscoveryPageTemplate must never leak Unresolved Diagram Section');
+});

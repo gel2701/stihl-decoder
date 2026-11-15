@@ -32,6 +32,15 @@ import {
   MACHINE_TYPES
 } from '../search/IntelligentPartsSearchEngine.js';
 
+function formatPublicSectionName(sectionName, fallback = 'Algemeen') {
+  if (!sectionName) return fallback;
+  const trimmed = String(sectionName).trim();
+  if (!trimmed || trimmed === 'Unresolved Diagram Section' || trimmed === 'general_unresolved') {
+    return fallback;
+  }
+  return trimmed;
+}
+
 export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl = PRIMARY_ORIGIN, options = {}) {
   const rawQuery = (typeof query === 'string' ? query : '').trim();
   const canonicalUrl = `${baseUrl}/onderdelen/`;
@@ -450,53 +459,54 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
 
         <!-- Responsive Card List for Mobile & Table for Desktop -->
         <div class="space-y-3 sm:hidden">
-          ${textSearchResults.map(p => `
-            <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 space-y-2.5">
-              <div class="flex items-start justify-between gap-2">
-                <div>
-                  <a href="${p.part_detail_url}" class="font-mono font-bold text-orange-400 text-sm hover:underline block">
+          ${textSearchResults.map(p => {
+            const safeSec = formatPublicSectionName(p.diagram_section, null);
+            return `
+            <div class="bg-gray-950 border border-gray-800/90 rounded-xl p-4 space-y-3">
+              <div class="space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-1.5">
+                  <a href="${p.part_detail_url}" class="font-mono font-semibold text-orange-400 text-xs hover:underline whitespace-nowrap">
                     ${p.part_number_display}
                   </a>
-                  <span class="text-xs font-semibold text-gray-100 block pt-0.5">
-                    ${p.part_name}
+                  <span class="px-2 py-0.5 rounded-md text-3xs font-medium text-gray-400 bg-gray-900 border border-gray-800 truncate max-w-[160px]">
+                    ${p.category_label || 'Onderdeel'}
                   </span>
                 </div>
-                <span class="px-2 py-0.5 rounded text-2xs font-bold ${p.compatibility_class || 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'} shrink-0">
-                  ${p.compatibility_badge || '✓ Bevestigde compatibiliteit'}
-                </span>
-              </div>
-
-              <div class="text-2xs text-gray-400 flex flex-wrap gap-2">
-                <span>📁 ${p.category_label || 'Onderdeel'}</span>
-                ${p.diagram_section ? `<span>• Sectie: ${p.diagram_section}</span>` : ''}
-                ${p.diagram_position ? `<span>• Positie: #${p.diagram_position}</span>` : ''}
-              </div>
-
-              ${p.compatible_models && p.compatible_models.length > 0 ? `
-                <div class="text-2xs text-gray-400 pt-0.5">
-                  Geschikt voor: ${p.compatible_models.slice(0, 3).map(m => m.model_name || m).join(', ')}${p.compatible_models.length > 3 ? ` +${p.compatible_models.length - 3} meer` : ''}
+                <a href="${p.part_detail_url}" class="text-sm font-semibold text-gray-100 hover:text-orange-300 transition block line-clamp-2 leading-snug">
+                  ${p.part_name}
+                </a>
+                <div class="text-2xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <span class="text-emerald-400/90 font-medium">${p.compatibility_badge || '✓ Bevestigde compatibiliteit'}</span>
+                  ${safeSec ? `<span>• Sectie: ${safeSec}</span>` : ''}
+                  ${p.diagram_position ? `<span>• Pos. #${p.diagram_position}</span>` : ''}
                 </div>
-              ` : ''}
+                ${p.compatible_models && p.compatible_models.length > 0 ? `
+                  <div class="text-2xs text-gray-500">
+                    Geschikt voor: ${p.compatible_models.slice(0, 3).map(m => m.model_name || m).join(', ')}${p.compatible_models.length > 3 ? ` +${p.compatible_models.length - 3} meer` : ''}
+                  </div>
+                ` : ''}
+              </div>
 
-              <div class="pt-2 space-y-2 border-t border-gray-900">
+              <div class="pt-2.5 space-y-2 border-t border-gray-800/70">
                 ${renderMultiMarketplaceButtonsHtml(
                   p.purchase_offers || getPartAffiliateOffers(p.part_number, p.part_name),
                   {
                     partNumber: p.part_number,
-                    sectionContext: p.diagram_section || '',
+                    sectionContext: safeSec || '',
                     trackingMode: 'handleAffiliateClick',
                     compact: false,
                     align: 'start'
                   }
                 )}
                 <div class="flex items-center justify-end">
-                  <a href="${p.part_detail_url}" class="text-xs text-orange-400 font-bold hover:underline py-1">
+                  <a href="${p.part_detail_url}" class="text-2xs text-gray-400 hover:text-orange-400 font-medium hover:underline py-1">
                     Bekijk onderdeel →
                   </a>
                 </div>
               </div>
             </div>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
 
         <!-- Desktop Table View -->
@@ -535,7 +545,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
                     </span>
                   </td>
                   <td class="py-2.5 px-3 text-2xs text-gray-400 font-mono">
-                    <div>${p.diagram_section || 'Algemeen'}</div>
+                    <div>${formatPublicSectionName(p.diagram_section, 'Algemeen')}</div>
                     ${p.diagram_position ? `<div class="text-gray-400 font-bold">Positie #${p.diagram_position}</div>` : ''}
                   </td>
                   <td class="py-2.5 pl-3 text-right">
