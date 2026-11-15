@@ -73,7 +73,12 @@ function renderSingleButton(offer, ctx, tier = 'primary') {
 }
 
 /**
- * Renders 1 primary buy/search button + collapsible secondary direct/search options.
+ * Renders every verified direct buy button side by side ("Direct bestellen"),
+ * with only the search fallbacks behind a collapsible "Meer zoekopties" block.
+ *
+ * A direct offer from any marketplace must never be hidden behind a collapsed
+ * element while another marketplace keeps the visible slot: a visitor who wants
+ * to buy that part has to see both verified destinations immediately.
  *
  * @param {Object|null} multiOffer Result of getPartAffiliateOffers()
  * @param {Object} [ctx]
@@ -90,37 +95,30 @@ export function renderMultiMarketplaceButtonsHtml(multiOffer, ctx = {}) {
   const itemsAlignClass = alignEnd ? 'items-end' : 'items-stretch';
 
   const hasDirect = directOffers.length > 0;
-  const primaryDirect = hasDirect ? directOffers[0] : null;
-  const secondaryDirect = hasDirect ? directOffers.slice(1) : [];
 
-  const primarySearch = !hasDirect && searchOffers.length > 0 ? searchOffers[0] : null;
+  // All verified direct offers are visible and equally usable. Marketplace
+  // order is deterministic (NL before DE, Amazon before eBay), never weighted
+  // by expected commission.
+  const primaryHtml = hasDirect
+    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct" aria-label="Direct bestellen">${directOffers.map(o => renderSingleButton(o, ctx, 'primary')).join('')}</div>`
+    : `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="search">${renderSingleButton(searchOffers[0], ctx, 'search-primary')}</div>`;
+
+  // Search fallbacks are never presented as verified direct offers: they stay
+  // visually separated and, when a direct offer exists, collapsed.
   const extraSearch = hasDirect ? searchOffers : searchOffers.slice(1);
 
-  const primaryHtml = primaryDirect
-    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct">${renderSingleButton(primaryDirect, ctx, 'primary')}</div>`
-    : `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="search">${renderSingleButton(primarySearch, ctx, 'search-primary')}</div>`;
-
-  const secondaryCount = secondaryDirect.length + extraSearch.length;
   let secondaryHtml = '';
-  if (secondaryCount > 0) {
-    const summaryLabel = secondaryDirect.length > 0
-      ? `Meer koopopties (+${secondaryCount})`
-      : (hasDirect ? `Meer opties (+${secondaryCount})` : `Meer zoekopties (+${secondaryCount})`);
+  if (extraSearch.length > 0) {
+    const summaryLabel = `Meer zoekopties (+${extraSearch.length})`;
 
-    const secondaryDirectHtml = secondaryDirect.length > 0
-      ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 pt-1.5">${secondaryDirect.map(o => renderSingleButton(o, ctx, 'secondary')).join('')}</div>`
-      : '';
-
-    const extraSearchHtml = extraSearch.length > 0
-      ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderSingleButton(o, ctx, 'search-secondary')).join('')}</div>`
-      : '';
+    const extraSearchHtml = `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderSingleButton(o, ctx, 'search-secondary')).join('')}</div>`;
 
     secondaryHtml = `<details class="${alignEnd ? 'w-auto' : 'w-full'}">
       <summary class="cursor-pointer select-none inline-flex items-center justify-between gap-2 text-2xs font-medium text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-lg border border-gray-800 bg-gray-950/70 hover:bg-gray-900 transition min-h-[36px] ${alignEnd ? '' : 'w-full'} focus:outline-none focus:ring-2 focus:ring-orange-500/70">
         <span>${escapeAttr(summaryLabel)}</span>
         <span class="text-3xs opacity-70" aria-hidden="true">▾</span>
       </summary>
-      <div class="space-y-1.5">${secondaryDirectHtml}${extraSearchHtml}</div>
+      <div class="space-y-1.5">${extraSearchHtml}</div>
     </details>`;
   }
 

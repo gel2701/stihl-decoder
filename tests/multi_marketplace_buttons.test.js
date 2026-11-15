@@ -561,7 +561,7 @@ test('16. Backward compatibility: getPartAffiliateOffer behoudt oorspronkelijke 
   assert.ok(Array.isArray(offer.offers));
 });
 
-test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en geen Unresolved Diagram Section', () => {
+test('17. UI-hiërarchie: elke geverifieerde koopknop zichtbaar, alleen zoekopties inklapbaar en geen Unresolved Diagram Section', () => {
   const mkAmzUrl = (asin) => ['https://www.amazon.nl', 'dp', asin].join('/');
   const oneDirect = renderMultiMarketplaceButtonsHtml({
     direct_offers: [{ provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: mkAmzUrl('B00NL12345'), is_direct: true }],
@@ -579,8 +579,16 @@ test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en g
       { provider: 'amazon', marketplace: 'amazon.de', display_marketplace: 'Amazon.de', url: 'https://www.amazon.de/s?k=00006421223', is_direct: false }
     ]
   }, { partNumber: '00006421223' });
+  // Both verified marketplaces stay visible; only the Amazon.de search fallback
+  // is allowed to sit behind the collapse.
   assert.ok(multiDirect.includes('<details'));
-  assert.ok(multiDirect.includes('Meer koopopties (+2)'));
+  assert.ok(multiDirect.includes('Meer zoekopties (+1)'));
+  const multiDirectVisiblePart = multiDirect.split('<details')[0];
+  assert.ok(multiDirectVisiblePart.includes('Koop bij Amazon.nl'), 'Amazon direct button must stay visible');
+  assert.ok(multiDirectVisiblePart.includes('Koop bij eBay.nl'), 'eBay direct button must stay visible next to Amazon');
+  assert.ok(!multiDirect.includes('Meer koopopties'), 'A verified direct offer must never be collapsed');
+  assert.equal((multiDirectVisiblePart.match(/data-offer-group="direct"/g) || []).length, 1);
+  assert.equal((multiDirectVisiblePart.match(/data-provider="(?:amazon|ebay)"/g) || []).length, 2);
 
   const searchOnly = renderMultiMarketplaceButtonsHtml({
     direct_offers: [],
@@ -598,4 +606,66 @@ test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en g
 
   const discoveryHtml = renderPartsDiscoveryPageHtml('kettingwiel', database, PRIMARY_ORIGIN);
   assert.ok(!discoveryHtml.includes('Unresolved Diagram Section'), 'PartsDiscoveryPageTemplate must never leak Unresolved Diagram Section');
+});
+
+test('18. Beide marketplaces met een ACTIVE direct aanbod zijn direct zichtbaar naast elkaar', () => {
+  const part = '11231602050';
+  const registry = makeRegistry([makeAmazonRecord(part, 'B00NL12345', 'amazon.nl')]);
+  const ebay = makeMockEbayProvider({ [part]: [makeEbayOffer(part)] }, true);
+
+  withEnv({
+    AFFILIATE_ENABLED: 'true',
+    AMAZON_AFFILIATE_ENABLED: 'true',
+    AMAZON_ASSOCIATE_TAG: 'srihldecoder2-21',
+    AMAZON_ASSOCIATE_TAG_DE: 'srihldecode00-21',
+    EBAY_ENABLED: 'true',
+    EBAY_AFFILIATE_ENABLED: 'true',
+    EBAY_EPN_CAMPAIGN_ID: '5339245312'
+  }, () => {
+    const res = getPartAffiliateOffers(part, 'Koppelingsveer', { verifiedRegistry: registry, ebayProvider: ebay });
+    const cardHtml = renderMultiMarketplaceButtonsHtml(res, { partNumber: part });
+    const visible = cardHtml.split('<details')[0];
+
+    assert.ok(visible.includes('Koop bij Amazon.nl'));
+    assert.ok(visible.includes('Koop bij eBay.nl'));
+    assert.equal((visible.match(/data-provider="(?:amazon|ebay)"/g) || []).length, 2);
+
+    // Both direct buttons keep the full 44px mobile tap target.
+    assert.equal((visible.match(/min-h-\[44px\]/g) || []).length, 2);
+
+    // Tracking still resolves the real marketplace/provider per button.
+    assert.ok(visible.includes('data-provider="amazon"'));
+    assert.ok(visible.includes('data-provider="ebay"'));
+    assert.ok(visible.includes('data-marketplace="ebay.nl"'));
+    assert.ok(visible.includes('handleAffiliateClick'));
+
+    // Amazon.nl keeps its NL tag, eBay keeps EPN campaign 5339245312.
+    assert.ok(visible.includes('tag=srihldecoder2-21'));
+    assert.ok(visible.includes('campid=5339245312'));
+  });
+});
+
+test('19. Alleen eBay direct: eBay zichtbaar, Amazon alleen als duidelijke zoekopdracht', () => {
+  const part = '11231602050';
+  const registry = makeRegistry([]);
+  const ebay = makeMockEbayProvider({ [part]: [makeEbayOffer(part)] }, true);
+
+  withEnv({
+    AFFILIATE_ENABLED: 'true',
+    AMAZON_AFFILIATE_ENABLED: 'true',
+    AMAZON_ASSOCIATE_TAG: 'srihldecoder2-21',
+    EBAY_ENABLED: 'true',
+    EBAY_AFFILIATE_ENABLED: 'true',
+    EBAY_EPN_CAMPAIGN_ID: '5339245312'
+  }, () => {
+    const res = getPartAffiliateOffers(part, 'Koppelingsveer', { verifiedRegistry: registry, ebayProvider: ebay });
+    const cardHtml = renderMultiMarketplaceButtonsHtml(res, { partNumber: part });
+    const visible = cardHtml.split('<details')[0];
+
+    assert.ok(visible.includes('Koop bij eBay.nl'));
+    assert.ok(!visible.includes('Koop bij Amazon.nl'));
+    assert.ok(cardHtml.includes('Meer zoekopties'));
+    assert.ok(cardHtml.includes('Zoek op Amazon.nl'));
+    assert.ok(cardHtml.includes('data-offer-type="SEARCH_LINK"'), 'Search fallbacks must stay labelled as search links');
+  });
 });
