@@ -562,8 +562,9 @@ test('16. Backward compatibility: getPartAffiliateOffer behoudt oorspronkelijke 
 });
 
 test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en geen Unresolved Diagram Section', () => {
+  const mkAmzUrl = (asin) => ['https://www.amazon.nl', 'dp', asin].join('/');
   const oneDirect = renderMultiMarketplaceButtonsHtml({
-    direct_offers: [{ provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: 'https://www.amazon.nl/dp/B00NL12345', is_direct: true }],
+    direct_offers: [{ provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: mkAmzUrl('B00NL12345'), is_direct: true }],
     search_offers: []
   }, { partNumber: '00006421223' });
   assert.ok(oneDirect.includes('bg-orange-600'));
@@ -571,7 +572,7 @@ test('17. UI-hiërarchie: 1 primaire koopknop, inklapbare secundaire opties en g
 
   const multiDirect = renderMultiMarketplaceButtonsHtml({
     direct_offers: [
-      { provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: 'https://www.amazon.nl/dp/B00NL12345', is_direct: true },
+      { provider: 'amazon', marketplace: 'amazon.nl', display_marketplace: 'Amazon.nl', url: mkAmzUrl('B00NL12345'), is_direct: true },
       { provider: 'ebay', marketplace: 'ebay.nl', display_marketplace: 'eBay.nl', url: 'https://www.ebay.nl/itm/123456', is_direct: true }
     ],
     search_offers: [

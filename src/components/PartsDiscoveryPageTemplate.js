@@ -466,7 +466,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
               <div class="space-y-1.5">
                 <div class="flex flex-wrap items-center justify-between gap-1.5">
                   <a href="${p.part_detail_url}" class="font-mono font-semibold text-orange-400 text-xs hover:underline whitespace-nowrap">
-                    STIHL ${p.part_number_display}
+                    ${p.part_number_display}
                   </a>
                   <span class="px-2 py-0.5 rounded-md text-3xs font-medium text-gray-400 bg-gray-900 border border-gray-800 truncate max-w-[160px]">
                     ${p.category_label || 'Onderdeel'}
