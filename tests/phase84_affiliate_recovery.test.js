@@ -114,6 +114,49 @@ test('Phase 84: reported metrics match the payload and the frozen baselines', ()
   assert.ok(perModelExtraOffers >= uniqueParts.size, 'every offer part must be counted on at least one model');
 });
 
+test('Phase 84: Drive sources are inventoried and candidates stay out of the catalog', () => {
+  const sources = readJson('output/phase84/PHASE84_DRIVE_SOURCES.json');
+  assert.strictEqual(sources.schema_version, '1.0.0');
+  assert.strictEqual(sources.requested_archives.length, 15, 'all fifteen requested archives must be tracked');
+  assert.deepStrictEqual(
+    [...sources.archives_present].sort(),
+    ['stihl_local_library.db', 'stihl_opeforum_documentation.db', 'stihlusa_knowledge_graph.json'],
+    'only these archives were actually present in the shared folder'
+  );
+  assert.strictEqual(sources.archives_missing.length, 11, 'eleven requested archives are still missing');
+  assert.ok(
+    sources.requested_archives.every(name =>
+      sources.archives_present.includes(name) ||
+      sources.archives_derived_present.includes(name) ||
+      sources.archives_missing.includes(name)
+    ),
+    'every requested archive must have exactly one status'
+  );
+
+  const carb = sources.candidate_queue.carburetor_cross_reference;
+  assert.ok(carb.unique_rows > 0, 'the Walbro cross-reference table must be parsed');
+  assert.ok(carb.missing_from_catalog > 0, 'the table must yield catalog candidates');
+  assert.strictEqual(
+    carb.missing_from_catalog,
+    new Set(carb.entries.map(entry => entry.part_number)).size,
+    'each missing number must appear once in the queue'
+  );
+  for (const entry of carb.entries) {
+    assert.match(entry.part_number, /^\d{11}$/, `${entry.part_number} must be canonical`);
+    assert.ok(!catalogNumbers.has(entry.part_number), `${entry.part_number} must not enter the catalog unproven`);
+  }
+  assert.strictEqual(carb.status, 'NEEDS_IDENTITY_REVIEW');
+
+  for (const entry of sources.candidate_queue.supersession_statements.entries) {
+    assert.strictEqual(entry.from_in_catalog, catalogNumbers.has(entry.from_part));
+    assert.strictEqual(entry.to_in_catalog, catalogNumbers.has(entry.to_part));
+    assert.ok(entry.source_text && entry.document_title, 'a supersession statement needs a document and a quote');
+  }
+
+  assert.strictEqual(sources.catalog_untouched.written_records, 0, 'this intake writes no catalog records');
+  assert.strictEqual(sources.catalog_untouched.parts_in_catalog, catalog.parts.length);
+});
+
 test('Phase 84: open supersession targets keep direction and NEEDS_EVIDENCE', () => {
   const relations = readJson('data/parts_supersessions.json').relations;
   assert.strictEqual(supersessionTargets.open_targets, 2);

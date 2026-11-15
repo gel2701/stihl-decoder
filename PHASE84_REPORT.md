@@ -128,12 +128,26 @@ Tot die import is uitgevoerd, is de fase-publicatie beperkt tot de code en de au
 
 ## 10. Tests
 
-- `tests/phase84_affiliate_recovery.test.js` (nieuw, 4 tests): elke ACTIVE aanbieding is Two-Gate-bewezen, NL-leverbaar, voorzien van de juiste campagncode en verwijst naar een bestaand catalogusonderdeel; gerapporteerde aantallen moeten exact met de payload overeenkomen; catalogus- en fitmentbaseline mogen niet verschuiven; de twee supersession-doelen houden richting en status.
+- `tests/phase84_affiliate_recovery.test.js` (nieuw, 5 tests): elke ACTIVE aanbieding is Two-Gate-bewezen, NL-leverbaar, voorzien van de juiste campagncode en verwijst naar een bestaand catalogusonderdeel; gerapporteerde aantallen moeten exact met de payload overeenkomen; catalogus- en fitmentbaseline mogen niet verschuiven; de twee supersession-doelen houden richting en status.
 - Stage A (`check_affiliate_consistency.mjs`), Stage B (`affiliate_quality_gate.test.js`), de geraakte suites en de volledige productiesuite zijn gedraaid; resultaten staan in de PR.
+
+## 11. Drive-broninventaris (aanvulling na oplevering)
+
+De gedeelde Drive-map `1l5LmjDidmiBDlOWHLyJWRhqdh0oTliM9` is alsnog volledig uitgelezen en verwerkt met `scripts/build_phase84_drive_sources.mjs`; resultaat in `output/phase84/PHASE84_DRIVE_SOURCES.json`. De eerste uitlezing zag alleen de bovenste vijf items; de map bevat 12 items en twee submappen (waaronder de Scribd-export met 1.214 documenten).
+
+| Bron | Status | Inhoud | Opbrengst |
+|---|---|---|---|
+| `stihl_local_library.db` | aanwezig | 1.790 manual-records (1.473 HTML service-informatie, 317 PDF-reparatiehandleidingen), 1.366 tekstextracties | 4 onderdeelnummers, 3 ontbrekend in de catalogus; 1 gedocumenteerde wijziging `3003 000 9852 → 3003 000 9853` (TI-overzicht 1995, "Rollomatic E Super Guide bars") |
+| `stihl_opeforum_documentation.db` | aanwezig | 1 thread, 1.200 posts, 50 bijlagen, 147 genoemde modellen | 0 nieuwe onderdeelnummers |
+| `stihlusa_knowledge_graph.json` | aanwezig | 115 records, alle `PRIMARY_PRODUCT`, 66 canonieke modellen | 0 onderdeelnummers (alle `oem_part_number_normalized` leeg) → 0 catalogus-/fitmentrecords |
+| `stihl_scribd_documents_output/` | export aanwezig (`.db` zelf ontbreekt) | 1.214 documenten: 429 metadata-only, 45 met echte paginatekst, 201 unieke 11-cijferige nummers | 147 nummers niet in de catalogus; de Walbro/STIHL-cross-referentie geeft 247 rijen, 174 nummers, **127 ontbrekend**, 66 met carburateurcode, 48 met model |
+| `Import_Result_*.csv`, `taxonomy_search_results.json`, `test.jpg`, `scratch/` | aanwezig | Shopify-import, lingerie-taxonomie, afbeelding en theme-werk | geen STIHL-data |
+
+**Niets hiervan is in de catalogus geschreven.** De cross-referentietabel is OCR-tekst uit een derde-partijdocument met zichtbare ruis ("WT F -10", "4147 -120-060 5"), dus de 127 nummers staan als `NEEDS_IDENTITY_REVIEW` in de wachtrij en de gidswijziging als `NEEDS_EVIDENCE` (de TI-index noemt geen lengte/steek, dus de opvolger heeft nog geen volledige productidentiteit). De catalogus blijft daarmee op 18.397 en de fitments op 181.394; `PHASE84_DRIVE_SOURCES.json` legt per kandidaat de brontekst vast, zodat een volgende fase ze met één bewezen aanvulling kan activeren.
 
 ## Bronnen die niet automatisch verwerkt konden worden
 
-1. Alle 15 gevraagde archieven (`stihl_archive_documentation.db`, `stihl_archive_official_documentation[_v2].zip`, `stihl_gardenhirespares_chainsaws_archive.zip`, `stihl_gardenhirespares_semantic_archive.zip`, `stihl_local_library.db`, `stihl_manuel_service_documentation.db`, `stihl_models_[full_]documentation_archive.zip`, `stihl_opeforum_documentation.db`, `stihl_parts_knowledge_graph.json`, `stihl_scribd_documentation.db`, `stihl_scribd_official_documents_archive.zip`, `stihlusa_knowledge_graph.json`, `stihlusa_semantic_archive.zip`) — niet aanwezig in deze checkout.
+1. 11 van de 15 gevraagde archieven zijn ook in de Drive-map niet aanwezig: `stihl_archive_documentation.db`, `stihl_archive_official_documentation.zip`, `stihl_archive_official_documentation_v2.zip`, `stihl_gardenhirespares_chainsaws_archive.zip`, `stihl_gardenhirespares_semantic_archive.zip`, `stihl_manuel_service_documentation.db`, `stihl_models_documentation_archive.zip`, `stihl_models_full_documentation_archive.zip`, `stihl_parts_knowledge_graph.json`, `stihl_scribd_official_documents_archive.zip`, `stihlusa_semantic_archive.zip`. Aanwezig waren `stihl_local_library.db`, `stihl_opeforum_documentation.db` en `stihlusa_knowledge_graph.json` (plus een export van de Scribd-database).
 2. Amazon PA-API en publieke Amazon-productpagina's (buybox/NL-levering niet vast te stellen).
 3. 104 eBay-wachtrij-onderdelen — geblokkeerd door `HTTP 429` van de Browse API.
 4. 26 GHS-aftermarketnummers en 278 Phase 54F-kandidaten — bewaard als NEEDS_EVIDENCE (geen zelfstandige identiteit).
