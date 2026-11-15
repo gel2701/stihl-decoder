@@ -47,6 +47,8 @@ export const EVENT_TYPES = {
   PARTS_SEARCH_NO_RESULTS: 'parts_search_no_results',
   AMAZON_SEARCH_FALLBACK_CLICK: 'amazon_search_fallback_click',
   AMAZON_VERIFIED_PRODUCT_CLICK: 'amazon_verified_product_click',
+  EBAY_SEARCH_FALLBACK_CLICK: 'ebay_search_fallback_click',
+  EBAY_VERIFIED_PRODUCT_CLICK: 'ebay_verified_product_click',
   MODEL_PAGE_VIEW: 'model_page_view'
 };
 
