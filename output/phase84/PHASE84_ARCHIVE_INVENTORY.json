@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "84",
+  "generated_at": "2026-11-15T02:12:57.910Z",
+  "method": "Filesystem presence check across data/, output/, docs/, reports/ and repository root (no invented content).",
+  "archives_requested": 15,
+  "archives_present": 0,
+  "archives": [
+    {
+      "archive": "stihl_archive_documentation.db",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_archive_official_documentation.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_archive_official_documentation_v2.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_gardenhirespares_chainsaws_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_gardenhirespares_semantic_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_local_library.db",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_manuel_service_documentation.db",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_models_documentation_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_models_full_documentation_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_opeforum_documentation.db",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_parts_knowledge_graph.json",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_scribd_documentation.db",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihl_scribd_official_documents_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihlusa_knowledge_graph.json",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    },
+    {
+      "archive": "stihlusa_semantic_archive.zip",
+      "status": "NOT_PRESENT_IN_THIS_CHECKOUT",
+      "path": null,
+      "note": "Not found in data/, output/, docs/, reports/ or the repository root"
+    }
+  ],
+  "derived_evidence_available": [
+    {
+      "artifact": "output/phase58a/raw/parts.json",
+      "description": "GHS part rows (part number, title, description, product type, product URL)",
+      "rows": 7538
+    },
+    {
+      "artifact": "output/phase58a/raw/fitments.json",
+      "description": "GHS model fitment rows (part number, canonical model, diagram, product URL)",
+      "rows": 8722
+    },
+    {
+      "artifact": "output/phase58a/GHS_FITMENTS.json",
+      "description": "Accepted GHS fitments after import gating",
+      "rows": 7394
+    },
+    {
+      "artifact": "data/sources/ghs_stihl_source_ledger.json",
+      "description": "GHS source ledger per product URL (part number + provenance)",
+      "rows": 16522
+    },
+    {
+      "artifact": "data/harvest/phase54f/final_backlog_registry.json",
+      "description": "Phase 54F deferred new-part observations per model",
+      "rows": 1053
+    },
+    {
+      "artifact": "data/part_fitment_evidence.json",
+      "description": "Canonical evidence store (sharded)",
+      "rows": 220444
+    },
+    {
+      "artifact": "data/parts_supersessions.json",
+      "description": "Official STIHL TI supersession relations",
+      "rows": 22
+    }
+  ]
+}

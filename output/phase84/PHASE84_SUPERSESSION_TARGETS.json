@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "84",
+  "generated_at": "2026-11-15T02:12:59.965Z",
+  "open_targets": 2,
+  "targets": [
+    {
+      "part_number": "48040071002",
+      "in_catalog": false,
+      "evidence_status": "NEEDS_EVIDENCE",
+      "source_document": "TI_09_1998_30",
+      "source_text": "4804 007 1000 will be replaced by the version 4804 007 1002",
+      "component": "version",
+      "blocker": "The official TI names only \"the version\"; no technical description, model application or IPL line exists in the local archives, so neither the identity nor a name can be proven.",
+      "searched": [
+        "data/**/*.json (catalog, supersessions, registries, harness outputs)",
+        "output/**/*.json (all phase artifacts)",
+        "data/stihl_database.db (parts, fitments, evidence, configurations)"
+      ],
+      "supersession_direction_unchanged": true
+    },
+    {
+      "part_number": "42033500502",
+      "in_catalog": false,
+      "evidence_status": "NEEDS_EVIDENCE",
+      "source_document": "TI_40_1998_30",
+      "source_text": "4203 350 0501 will be replaced by the new version 4203 350 0502",
+      "component": "version",
+      "blocker": "The official TI names only \"the version\"; no technical description, model application or IPL line exists in the local archives, so neither the identity nor a name can be proven.",
+      "searched": [
+        "data/**/*.json (catalog, supersessions, registries, harness outputs)",
+        "output/**/*.json (all phase artifacts)",
+        "data/stihl_database.db (parts, fitments, evidence, configurations)"
+      ],
+      "supersession_direction_unchanged": true
+    }
+  ]
+}

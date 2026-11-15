@@ -1,0 +1,62 @@
+{
+  "phase": "84",
+  "title": "STIHL archive mining, catalog expansion & affiliate evidence recovery",
+  "generated_at": "2026-11-15T02:13:00.099Z",
+  "baseline_verified": {
+    "catalog_parts": 18397,
+    "sqlite_parts": 18397,
+    "fitments": 181394,
+    "fitment_relations_baseline": 181394,
+    "evidence_rows": 220444,
+    "configurations": 3143,
+    "catalog_count_source": "data/parts_catalog.json parts_count field matches the array length"
+  },
+  "after": {
+    "catalog_parts": 18397,
+    "fitments": 181394,
+    "new_active_ebay_offers": 42,
+    "new_active_ebay_parts": 5,
+    "new_active_amazon_offers": 0
+  },
+  "real_growth": {
+    "new_catalog_parts": 0,
+    "new_fitment_relations": 0,
+    "new_active_ebay_offers": 42,
+    "new_parts_with_direct_purchase": 5
+  },
+  "blockers": {
+    "archives_missing": [
+      "stihl_archive_documentation.db",
+      "stihl_archive_official_documentation.zip",
+      "stihl_archive_official_documentation_v2.zip",
+      "stihl_gardenhirespares_chainsaws_archive.zip",
+      "stihl_gardenhirespares_semantic_archive.zip",
+      "stihl_local_library.db",
+      "stihl_manuel_service_documentation.db",
+      "stihl_models_documentation_archive.zip",
+      "stihl_models_full_documentation_archive.zip",
+      "stihl_opeforum_documentation.db",
+      "stihl_parts_knowledge_graph.json",
+      "stihl_scribd_documentation.db",
+      "stihl_scribd_official_documents_archive.zip",
+      "stihlusa_knowledge_graph.json",
+      "stihlusa_semantic_archive.zip"
+    ],
+    "ebay_rate_limit": "HTTP 429 after 5 parts (42 offers); 104 queued parts not yet queried",
+    "amazon_paapi": "not configured in this environment",
+    "open_supersession_targets": [
+      "48040071002",
+      "42033500502"
+    ]
+  },
+  "artifacts": {
+    "archive_inventory": "output/phase84/PHASE84_ARCHIVE_INVENTORY.json",
+    "catalog_audit": "output/phase84/PHASE84_CATALOG_AUDIT.json",
+    "fitment_audit": "output/phase84/PHASE84_FITMENT_AUDIT.json",
+    "supersession_targets": "output/phase84/PHASE84_SUPERSESSION_TARGETS.json",
+    "affiliate_audit": "output/phase84/PHASE84_AFFILIATE_AUDIT.json",
+    "gsc_coverage": "output/phase84/PHASE84_GSC_MODEL_COVERAGE.json",
+    "ebay_payload": "output/phase84/ebay_offers_phase84.json",
+    "live_probe_report": "output/phase84/ebay_probe/phase80_batch_live_2026-11-15T01-36-38-577Z.json"
+  }
+}

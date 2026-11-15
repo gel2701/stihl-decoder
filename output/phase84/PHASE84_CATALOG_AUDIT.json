@@ -1,0 +1,4051 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "84",
+  "generated_at": "2026-11-15T02:12:59.435Z",
+  "method": "Every locally available extracted part number compared against data/parts_catalog.json after digit normalisation; identity gate per record.",
+  "catalog_before": 18397,
+  "catalog_after": 18397,
+  "new_catalog_parts": 0,
+  "evidence_scanned": {
+    "ghs_source_ledger_records": 16522,
+    "ghs_raw_part_rows": 7538,
+    "ghs_accepted_fitments": 7394,
+    "phase54f_deferred_observations": 1053,
+    "canonical_evidence_rows": 218639
+  },
+  "missing_part_numbers": {
+    "ghs_source_ledger": 30,
+    "ghs_raw_parts": 21,
+    "phase54f_deferred": 278,
+    "canonical_evidence": 0
+  },
+  "candidates": [
+    {
+      "part_number": "00001201654",
+      "display": "0000 120 1654",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "8437-stihl-044-ms441-hd2-air-filter.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "00001413200",
+      "display": "0000 141 3200",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "5997-stihl-ts410-ts420-exhaust-cooling-plate.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "00003503514",
+      "display": "0000 350 3514",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "shop-by-product/shop-by-product-filters/lawn-garden-filters-fuel-filters/lawn-garden-filters-stihl-fuel-filters.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "00008810123",
+      "display": "0000 881 0123",
+      "status": "REJECTED",
+      "reason": "Apparel/accessory product, not a machine part",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "4691-genuine-stihl-combination-fuel-can-5-litres-fuel-3-litres-oil.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "00009673799",
+      "display": "0000 967 3799",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "7205-stihl-shroud-top-warning-label.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "00883421803",
+      "display": "0088 342 1803",
+      "status": "REJECTED",
+      "reason": "Apparel/accessory product, not a machine part",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "0088-342-1803-genuine-stihl-dynamic-trousers.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "00886100110",
+      "display": "0088 610 0110",
+      "status": "REJECTED",
+      "reason": "Apparel/accessory product, not a machine part",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "0088-610-0110-genuine-stihl-chainsaw-gloves-l.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "00886100111",
+      "display": "0088 610 0111",
+      "status": "REJECTED",
+      "reason": "Apparel/accessory product, not a machine part",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "0088-610-0111-genuine-stihl-chainsaw-gloves-xl.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "11081602001",
+      "display": "1108 160 2001",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "2266-stihl-ts350-ts360-08s-clutch-assembly.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "11110201200",
+      "display": "1111 020 1200",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2331-stihl-051-ts510-cylinder-piston-assembly-50mm-bore.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "11190302001",
+      "display": "1119 030 2001",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "shop-by-product/two-stroke-engine-parts/two-stroke-cylinders-mechanical-part/two-stroke-pistons/two-stroke-stihl-piston-assemblies.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "11190802104",
+      "display": "1119 080 2104",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "shop-by-product/two-stroke-engine-parts/two-stroke-recoil-starters-parts/two-stroke-recoil-assemblies/two-stroke-stihl-recoils-assemblies.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "11193587700",
+      "display": "1119 358 7700",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "shop-by-product/two-stroke-engine-parts/two-stroke-carburettors-fuel-parts/two-stroke-fuel-pipe/two-stroke-search-by-brand/two-stroke-stihl-fuel-pipes.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "11230802104",
+      "display": "1123 080 2104",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "shop-by-product/two-stroke-engine-parts/two-stroke-recoil-starters-parts/two-stroke-recoil-assemblies/two-stroke-stihl-recoils-assemblies.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "30030006117",
+      "display": "3003 000 6117",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "3822-war-tec-18-45cm-chainsaw-guide-bar-3-8-063-1-6mm-bar-mount-d025-2-chains-stihl-038-ms360.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "40027102191",
+      "display": "4002 710 2191",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2569-stihl-hs45-24-blade-set-600mm.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "41371602002",
+      "display": "4137 160 2002",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "7928-stihl-fs75-fs80-fs85-clutch-assembly.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "41400074101",
+      "display": "4140 007 4101",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2569-stihl-hs45-24-blade-set-600mm.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "41404001301",
+      "display": "4140 400 1301",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "stihl-fc55-fs38-fs45-fs55-hl45-ignition-coil-post-2001.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "41407917201",
+      "display": "4140 791 7201",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "3961-5-stihl-kombi-inner-sleeve-for-shaft-pack-of-5.html",
+      "ledger_records": 2,
+      "raw_records": 2
+    },
+    {
+      "part_number": "42017083003",
+      "display": "4201 708 3003",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "3427-2-stihl-ts410-ts420-recoil-starter-badge.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "42017083013",
+      "display": "4201 708 3013",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "3344-stihl-ts350-ts400-ts410-ts420-thrust-washer-bolt.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "42231200600",
+      "display": "4223 120 0600",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "1510-stihl-ts400-service-kit-air-filter-rope-spark-plug-2.html",
+      "ledger_records": 5,
+      "raw_records": 4
+    },
+    {
+      "part_number": "42287106051",
+      "display": "4228 710 6051",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2569-stihl-hs45-24-blade-set-600mm.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "42370802108",
+      "display": "4237 080 2108",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "5657-stihl-hs81-hs82-hs86-hs87-recoil-starter-assembly.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "42377105901",
+      "display": "4237 710 5901",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN"
+      ],
+      "sample_title": "5676-stihl-hs81-blade-set.html",
+      "ledger_records": 1,
+      "raw_records": 0
+    },
+    {
+      "part_number": "42381200600",
+      "display": "4238 120 0600",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2243-stihl-ts410-ts420-air-filter-set.html",
+      "ledger_records": 3,
+      "raw_records": 2
+    },
+    {
+      "part_number": "42410071002",
+      "display": "4241 007 1002",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "5092-stihl-bg66-bg85-zama-carburettor-diaphragm-gasket-set.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    },
+    {
+      "part_number": "42411200616",
+      "display": "4241 120 0616",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "2569-stihl-hs45-24-blade-set-600mm.html",
+      "ledger_records": 2,
+      "raw_records": 1
+    },
+    {
+      "part_number": "95030030351",
+      "display": "9503 003 0351",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "No independent OEM identity evidence in the local archives",
+      "product_types": [
+        "UNKNOWN",
+        "AFTERMARKET"
+      ],
+      "sample_title": "3847-stihl-ts410-ts420-crankshaft-bearings-set-of-2-pre-2013.html",
+      "ledger_records": 1,
+      "raw_records": 1
+    }
+  ],
+  "candidates_by_status": {
+    "NEEDS_EVIDENCE": 26,
+    "REJECTED": 4
+  },
+  "phase54f_deferred": [
+    {
+      "part_number": "00009971335",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251412101",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "94389294040",
+      "models": [
+        "034",
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11256507700",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251212901",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251226200",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251226702",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251226802",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251210803",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11251200617",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11287920900",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250202120",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250300407",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250211101",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250201209",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250201202",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11184316700",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11214420406",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90412160540",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11214051900",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11254001202",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11216477000",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250802105",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11250847801",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009672020",
+      "models": [
+        "034"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00007929132",
+      "models": [
+        "034",
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00008910810",
+      "models": [
+        "034",
+        "fs_55",
+        "ms_260",
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90223130632",
+      "models": [
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11410202612",
+      "models": [
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11411469000",
+      "models": [
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673632",
+      "models": [
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00007929129",
+      "models": [
+        "ms_261",
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00008910801",
+      "models": [
+        "ms_261"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41400300400",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41409671505",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41401400605",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90224210930",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41401407401",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11301419001",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41401490601",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41400848300",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41401413800",
+      "models": [
+        "fs_55",
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41401200634",
+      "models": [
+        "fs_55"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42261210800",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673684",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41197910801",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261824506",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261820800",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261826210",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261826200",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41264421610",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41197901302",
+      "models": [
+        "fs_55",
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11240848301",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11214001200",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11104427000",
+      "models": [
+        "ms_260",
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211226802",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42031223600",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211226702",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00007929131",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11210071042",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11210201203",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211416500",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211400803",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211400605",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11211450805",
+      "models": [
+        "ms_260"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41370201201",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009980606",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41371602002",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00003581800",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42271213300",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41371226800",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42261218600",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41371208700",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41371801150",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41377901700",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41307103801",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027133010",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40047136800",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267136500",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41107138300",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009972300",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41107136801",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40037133600",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40037133000",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41127138500",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027133017",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673706",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41127133100",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41327136800",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41190071019",
+      "models": [
+        "fs_85",
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267901102",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267915300",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261824705",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261826205",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "94170037510",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261821007",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41337919400",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267926100",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90744783065",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41261824507",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41331801115",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41331215400",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41331202201",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42111207100",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42111226700",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "94526000750",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "95070038056",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "95070038054",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267103800",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41267131600",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41306407300",
+      "models": [
+        "fs_85"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41283587600",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41281237501",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41341226300",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41281226700",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41281226800",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41281213300",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41287117300",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41341806700",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41287172701",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41287172706",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41196400501",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41196420601",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41197172807",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41196407300",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41117139601",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41337108101",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40037136500",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009580516",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027137205",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027136500",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027136905",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "40027104380",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41347109001",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41347186300",
+      "models": [
+        "fs_400"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11203537801",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200368901",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200202104",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "95130033470",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11204312504",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200368902",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200310501",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200071006",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11101419000",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200292301",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90072241120",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200280700",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200201215",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11160341501",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200071009",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201212500",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206471200",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201204701",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201401005",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201212905",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201212505",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009970333",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009885208",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206491105",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206403100",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009970610",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206403001",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206642600",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201623200",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201621900",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206402000",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206402010",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90623190650",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11207909100",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201625203",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201625000",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206487705",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11206401717",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201210701",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201226702",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201226801",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201223006",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201215800",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201207102",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201210801",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11111218605",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201213302",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201200800",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11164002000",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11204317005",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11204312501",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11204317001",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11184001001",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200801805",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200801806",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201959000",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201951600",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11204300205",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11207910605",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11207911705",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "56057528300",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "56057527700",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11200071062",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11101227800",
+      "models": [
+        "009",
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11201207101",
+      "models": [
+        "009"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42371207100",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42371213300",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42371213000",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42291226801",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42291406903",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "96459487534",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673749",
+      "models": [
+        "hs_81"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11080201220",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11084051000",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42011419001",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41043539100",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11081602001",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11080802101",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031228000",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031228710",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "97950030350",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11061293505",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11101293000",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031212910",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11081207010",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031210500",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031210400",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "65031227710",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42011467000",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11080801610",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "11081801503",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42017010202",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42017901700",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42017917604",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42017919000",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42230071007",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42210071008",
+      "models": [
+        "ts_350"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42411202200",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42411225000",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42290071001",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42417905601",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673796",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673631",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42411404403",
+      "models": [
+        "bg_86"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673799",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009674000",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42381215600",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42381226800",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42381226700",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42381200607",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Unmasked new-part candidate; official and secondary cache resources exhausted with 0 matches found",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00000360200",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009536606",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00001413200",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42384001301",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42236706010",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42381900401",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00001903414",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00001902901",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009302295",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42231212400",
+      "models": [
+        "ts_410"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42280300400",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42281400601",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42283500400",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42281226801",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42291226300",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42286428700",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "90643710985",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009580526",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42287106051",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42286414610",
+      "models": [
+        "hs_45"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009673769",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42820873000",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "41801223600",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42821215801",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42820251901",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42820302003",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42820341501",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42827004103",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "00009630900",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "04639010148",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42821419000",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42820071013",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    },
+    {
+      "part_number": "42827086330",
+      "models": [
+        "br_600"
+      ],
+      "dispositions": [
+        "DEFERRED_NEW_PART_EVIDENCE_REQUIRED"
+      ],
+      "evidence_gap": "Authoritative exact part identity missing; insufficient confirmation across official STIHL and independent Tier-3 exploded diagrams",
+      "sources": [
+        "diyspareparts"
+      ]
+    }
+  ],
+  "conclusion": "No new catalog record could be proven: all 11-digit OEM numbers from the GHS ledger that are missing from the catalog are aftermarket-only listings, apparel, or reseller-internal codes; the 278 missing Phase 54F numbers carry only a diagram reference without independent identity. Adding them would violate the \"proven product identity\" rule, so they stay in the NEEDS_EVIDENCE backlog."
+}
