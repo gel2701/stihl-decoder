@@ -879,7 +879,7 @@ export async function buildPhase56pMbDriveExpansion({
       powered_machine_candidates: poweredCandidates.length,
       expected_powered_candidates: 879,
       total_parts: canonicalPartsCount,
-      expected_parts: 17082,
+      expected_parts: 17165,
       total_fitments: canonicalFitmentsCount,
       expected_fitments: 175106,
       total_configurations: configurationsCount,
@@ -890,7 +890,7 @@ export async function buildPhase56pMbDriveExpansion({
       expected_contexts: 814,
       total_indexable_models: 843,
       total_sitemap_urls: 1024,
-      amazon_fallback_links: 17082,
+      amazon_fallback_links: 17165,
       verified_asin_links: 0,
       affiliate_tag: 'srihldecoder2-21',
       catalog_frozen:
@@ -898,7 +898,7 @@ export async function buildPhase56pMbDriveExpansion({
         attachments.length === 25 &&
         noiseRecords.length === 52 &&
         poweredCandidates.length === 879 &&
-        canonicalPartsCount === 17082 &&
+        canonicalPartsCount === 17165 &&
         canonicalFitmentsCount === 175106 &&
         configurationsCount === 766 &&
         evidenceCount === 208412 &&
