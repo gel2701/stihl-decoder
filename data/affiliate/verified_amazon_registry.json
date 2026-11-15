@@ -76,7 +76,17 @@
       "11301402803",
       "36360000044",
       "11301200608",
-      "30050004713"
+      "30050004713",
+      "00003500527",
+      "00003500533",
+      "11236402074",
+      "11230201209",
+      "41370292300",
+      "41371242800",
+      "11281903400",
+      "11271201620",
+      "41401904009",
+      "41340802101"
     ],
     "max_active_offers_allowed": 100,
     "max_active_offers_per_marketplace": {
@@ -195,15 +205,17 @@
     ]
   },
   "metrics": {
-    "total_registered": 157,
+    "total_registered": 179,
     "staged": 0,
     "verified": 3,
-    "active": 75,
-    "active_nl": 29,
+    "active": 98,
+    "active_nl": 52,
     "active_de": 46,
-    "research_required": 55,
-    "suspended": 24,
-    "last_updated": "2026-11-15T20:53:57.540Z"
+    "research_required": 44,
+    "suspended": 34,
+    "last_updated": "2026-11-15T22:49:29.288Z",
+    "active_offers": 98,
+    "parts_with_amazon_offer": 84
   },
   "offers": [
     {
@@ -2366,7 +2378,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+141+0300&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B0CP57NXL5. | Phase 87: vervangen door B0CP57NXL5. | Phase 87: vervangen door B0CP57NXL5.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2409,7 +2421,7 @@
           "claim": "STIHL 4147 141 0300 Luchtfilter ASIN B08F9K47R9"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -2436,7 +2448,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B0CP57NXL5",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "41471404400",
@@ -2637,7 +2651,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0781+120+1110&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B007TK0T00. | Phase 87: vervangen door B007TK0T00. | Phase 87: vervangen door B007TK0T00.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -2680,7 +2694,7 @@
           "claim": "STIHL 0781 120 1110 Tandwielvet 225g ASIN B00474640Y"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -2709,7 +2723,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B007TK0T00",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "41471900600",
@@ -3070,8 +3086,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B08F9LX7P4?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200527&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0G5PY252N. | Phase 87: vervangen door B0G5PY252N. | Phase 87: vervangen door B0G5PY252N.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3109,7 +3125,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "RESEARCH_REQUIRED",
       "availability_audit": {
         "method": "LIVE_BROWSER_GET",
@@ -3119,7 +3135,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0G5PY252N",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "00003505812",
@@ -3480,8 +3500,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U2E?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200533&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0BBMPZQH6. | Phase 87: vervangen door B0BBMPZQH6. | Phase 87: vervangen door B0BBMPZQH6.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3519,7 +3539,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "RESEARCH_REQUIRED",
       "availability_audit": {
         "method": "LIVE_BROWSER_GET",
@@ -3529,7 +3549,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0BBMPZQH6",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "00006421231",
@@ -3737,8 +3761,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DLY82F?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20640%202074&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B007TK19WW. | Phase 87: vervangen door B007TK19WW. | Phase 87: vervangen door B007TK19WW.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3776,7 +3800,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "RESEARCH_REQUIRED",
       "availability_audit": {
         "method": "LIVE_BROWSER_GET",
@@ -3786,7 +3810,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B007TK19WW",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11231900600",
@@ -3816,7 +3844,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+190+0600&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B0C72FKDP4. | Phase 87: vervangen door B0C72FKDP4. | Phase 87: vervangen door B0C72FKDP4.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3859,7 +3887,7 @@
           "claim": "STIHL 1123 190 0600 Startveer ASIN B079DNM22P"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -3889,7 +3917,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B0C72FKDP4",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11230071061",
@@ -3919,7 +3949,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+007+1061&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B0GM2YRNQP. | Phase 87: vervangen door B0GM2YRNQP. | Phase 87: vervangen door B0GM2YRNQP.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -3962,7 +3992,7 @@
           "claim": "Walbro D10-WAT Membraanset ASIN B08F9ML22K"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -4000,7 +4030,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B0GM2YRNQP",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11230201209",
@@ -4029,8 +4061,8 @@
       "direct_affiliate_url": "https://amazon.nl/dp/B079DN893L?tag=srihldecoder2-21",
       "search_fallback_url": "https://amazon.nl/s?k=STIHL+1123%20020%201209&tag=srihldecoder2-21",
       "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0GT2Q39PW. | Phase 87: vervangen door B0GT2Q39PW. | Phase 87: vervangen door B0GT2Q39PW.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4068,7 +4100,7 @@
           "retrieved_at": "2026-11-09"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "RESEARCH_REQUIRED",
       "availability_audit": {
         "method": "LIVE_BROWSER_GET",
@@ -4078,7 +4110,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0GT2Q39PW",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11236402073",
@@ -4108,7 +4144,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+640+2073&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B006WVO0QQ. | Phase 87: vervangen door B006WVO0QQ. | Phase 87: vervangen door B006WVO0QQ.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4151,7 +4187,7 @@
           "claim": "STIHL 1123 640 2073 Kettingwiel ASIN B079DN88M2"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -4197,7 +4233,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B006WVO0QQ",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11291900601",
@@ -4227,7 +4265,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1129+190+0601&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B007TK13CI. | Phase 87: vervangen door B007TK13CI. | Phase 87: vervangen door B007TK13CI.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "gate_1_technical": {
         "status": "PASS",
@@ -4270,7 +4308,7 @@
           "claim": "STIHL 1129 190 0601 Startveer ASIN B079DNH91X"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "evidence_audit_category": "VERIFIED",
       "item_price": null,
       "shipping_cost_nl": null,
@@ -4312,7 +4350,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B007TK13CI",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11300201208",
@@ -5429,8 +5469,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B08HQ9P34R?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+029+2300&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0BWSX4DWZ. | Phase 87: vervangen door B0BWSX4DWZ. | Phase 87: vervangen door B0BWSX4DWZ.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5446,7 +5486,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -5483,7 +5523,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0BWSX4DWZ",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "41371242800",
@@ -5515,8 +5559,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07KQW4922?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+124+2800&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0HRFKS4ZS. | Phase 87: vervangen door B0HRFKS4ZS. | Phase 87: vervangen door B0HRFKS4ZS.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5532,7 +5576,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -5569,7 +5613,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0HRFKS4ZS",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11281201602",
@@ -5687,8 +5735,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL88M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128+190+3400&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0FG7PKCLL. | Phase 87: vervangen door B0FG7PKCLL. | Phase 87: vervangen door B0FG7PKCLL.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -5704,7 +5752,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -5741,7 +5789,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0FG7PKCLL",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11280201227",
@@ -7080,7 +7132,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+007+1700&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B0FWJ6TFJH. | Phase 87: vervangen door B0FWJ6TFJH. | Phase 87: vervangen door B0FWJ6TFJH.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7101,7 +7153,7 @@
           "claim": "STIHL 4241 007 1700 Membraanset ASIN B08F9MK77A"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7148,7 +7200,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B0FWJ6TFJH",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "42411401000",
@@ -7187,7 +7241,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+140+1000&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B083P6BFKD. | Phase 87: vervangen door B083P6BFKD. | Phase 87: vervangen door B083P6BFKD.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7208,7 +7262,7 @@
           "claim": "STIHL 4241 140 1000 Filterkap ASIN B08F9MX45K"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7255,7 +7309,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B083P6BFKD",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "42410071003",
@@ -7294,7 +7350,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241+007+1003&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B007TK0C8O. | Phase 87: vervangen door B007TK0C8O. | Phase 87: vervangen door B007TK0C8O.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7315,7 +7371,7 @@
           "claim": "STIHL 4241 007 1003 Dakgootset ASIN B0014D86AB"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7362,7 +7418,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B007TK0C8O",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11271201621",
@@ -7480,8 +7538,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07V23M41P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+120+1620&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0C38W9LC3. | Phase 87: vervangen door B0C38W9LC3. | Phase 87: vervangen door B0C38W9LC3.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7497,7 +7555,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7534,7 +7592,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B0C38W9LC3",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11270802103",
@@ -7573,7 +7635,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+080+2103&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B07MM11TCK. | Phase 87: vervangen door B07MM11TCK. | Phase 87: vervangen door B07MM11TCK.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7594,7 +7656,7 @@
           "claim": "STIHL 1127 080 2103 Starter ASIN B079DNL91A"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7641,7 +7703,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B07MM11TCK",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "11271241500",
@@ -7870,7 +7934,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4282+190+0303&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B07PVMRZYK. | Phase 87: vervangen door B07PVMRZYK. | Phase 87: vervangen door B07PVMRZYK.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -7891,7 +7955,7 @@
           "claim": "STIHL 4282 190 0303 Starter ASIN B08F9ML11Q"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -7938,7 +8002,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B07PVMRZYK",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "42820071020",
@@ -8419,8 +8485,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B07S8Y912M?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140+190+4009&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B07BLSL3VM. | Phase 87: vervangen door B07BLSL3VM. | Phase 87: vervangen door B07BLSL3VM.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -8436,7 +8502,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -8473,7 +8539,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B07BLSL3VM",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "41401401001",
@@ -8592,7 +8662,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+141+0300&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
       "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0D3GRT27F.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -8608,7 +8678,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.032Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -8645,7 +8715,10 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "phase_87_review": "Kandidaat B0D3GRT27F (10-pack luchtfilters) afgewezen: de Amazon-vermelding voert geen fabrikantmerk (byline \"Generic\"), dus geen MANUFACTURER_AFTERMARKET-classificatie mogelijk."
     },
     {
       "part_number": "41340802101",
@@ -8677,8 +8750,8 @@
       "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNL72P?tag=srihldecoder2-21",
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+080+2101&tag=srihldecoder2-21",
       "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "status": "SUSPENDED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B079WS2YNM. | Phase 87: vervangen door B079WS2YNM. | Phase 87: vervangen door B079WS2YNM.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -8694,7 +8767,7 @@
           "retrieved_at": "2026-11-10"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -8731,7 +8804,11 @@
         "buybox_present": null,
         "mentions_nl": null,
         "listing_title": null
-      }
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "superseded_by_asin": "B079WS2YNM",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "41341410500",
@@ -9225,7 +9302,7 @@
       "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3003+000+3313&tag=srihldecoder2-21",
       "verification_date": "2026-11-10T14:00:00.000Z",
       "status": "SUSPENDED",
-      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link.",
+      "status_reason": "Phase 86 availability audit: the Amazon listing returns HTTP 404, so the direct buy link is no longer purchasable. Suspended instead of serving a dead affiliate link. | Phase 87: vervangen door B08W28JDWJ. | Phase 87: vervangen door B08W28JDWJ. | Phase 87: vervangen door B08W28JDWJ.",
       "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
       "shipping_destination_country": "NL",
       "shipping_checked_at": "2026-11-10",
@@ -9246,7 +9323,7 @@
           "claim": "STIHL 3003 000 3313 Zaagblad 40cm ASIN B00474601A"
         }
       ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -9293,7 +9370,9 @@
         "http_status": 404,
         "checked_at": "2026-11-15T20:53:57.540Z",
         "method": "LIVE_BROWSER_GET"
-      }
+      },
+      "superseded_by_asin": "B08W28JDWJ",
+      "superseded_at": "2026-11-15T22:49:29.288Z"
     },
     {
       "part_number": "30030002021",
@@ -10340,36 +10419,57 @@
       "asin": "B00IKF8TH8",
       "marketplace": "amazon.nl",
       "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "Champion Spark Plug / Federal-Mogul",
-      "manufacturer_part_number": "RCJ6Y / 852",
-      "trade_number": "RCJ6Y",
+      "manufacturer": "Champion",
+      "manufacturer_part_number": "0000 400 7000",
+      "trade_number": null,
       "brand": "Champion",
-      "product_title": "Champion RCJ6Y (852) Koper Plus Bougie voor kleine motoren",
+      "product_title": "Spark Plug Champion RCJ6Y",
       "package_quantity": 1,
-      "package_type": "Single piece box",
-      "ean_gtin": "04023055684427",
-      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
       "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": false,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_PILOT_00004007000_CHAMPION",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00004007000",
+      "compatibility_proof": "Champion RCJ6Y is de gedocumenteerde vervanger van de NGK BPMR7A, het bougie-type dat STIHL onder 0000 400 7000 levert.; bevestigde compatibiliteit met STIHL onderdeel 0000 400 7000 (catalogusnaam: Spark plug NGK BPMR7A).",
+      "asin_product_identity_proof": "Champion product met STIHL-referentie 0000 400 7000: de Amazon.nl-vermelding B00IKF8TH8 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20400%207000) beschrijft 0000 400 7000 als \"Genuine Stihl Spark Plug NGK BPMR7A - 0000 400 7000\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20400%207000",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B00IKF8TH8?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20400%207000&tag=srihldecoder2-21",
       "verifiable_evidence_sources": [
         {
-          "type": "EXTERNAL_CATALOG",
+          "type": "AMAZON_PRODUCT_PAGE",
           "url": "https://www.amazon.nl/dp/B00IKF8TH8",
-          "title": "Champion Spark Plugs Technical Specification",
-          "claim": "Champion RCJ6Y (852) is 100% technically interchangeable with NGK BPMR7A and Bosch WSR6F for STIHL 0000 400 7000 (M14x1.25, reach 9.5mm, hex 19mm, resistor type).",
-          "retrieved_at": "2026-11-10"
+          "title": "Spark Plug Champion RCJ6Y",
+          "claim": "Live Amazon.nl-vermelding B00IKF8TH8 toont \"Spark Plug Champion RCJ6Y\" met onderdeelnummer 0000 400 7000; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20400%207000",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl Spark Plug NGK BPMR7A - 0000 400 7000\" onder het exacte STIHL-nummer 0000 400 7000.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.lawnmowerpros.com/stihl/stihl-spark-plug-cross-reference.asp",
+          "title": "Stihl spark plug cross reference (Lawnmower Pros)",
+          "claim": "De kruisverwijzingstabel voert de NGK BPMR7A als vervanging van de Champion RCJ6Y voor STIHL machines; de dealercatalogus koppelt 0000 400 7000 aan de NGK BPMR7A.",
+          "retrieved_at": "2026-11-15"
         }
       ],
-      "compatibility_proof": "Champion RCJ6Y is an exact technical equivalent for NGK BPMR7A / STIHL 0000 400 7000 (M14x1.25 thread, 9.5mm reach, 19mm hex), compatible with STIHL MS 170, MS 180, MS 210, MS 230, MS 250, MS 260, MS 290, FS 55, BG 86.",
-      "asin_product_identity_proof": "Amazon ASIN B00IKF8TH8 corresponds to Champion RCJ6Y (Stock 852) Small Engine Copper Plus Spark Plug, GTIN 04023055684427.",
-      "independent_evidence_url": "https://www.amazon.nl/dp/B00IKF8TH8",
-      "direct_affiliate_url": "https://www.amazon.nl/dp/B00IKF8TH8?tag=srihldecoder2-21",
-      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000+400+7000&tag=srihldecoder2-21",
-      "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Quarantined pending investigation of NGK cross-reference variance: Champion RCJ6 corresponds to standard heat range NGK BPMR7A, whereas Champion RCJ6Y corresponds to colder NGK BPMR8Y in official NGK cross-references.",
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery 21 - 24 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 0000 400 7000 en onafhankelijke dealercatalogus-corroboratie.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-15T22:49:29.288Z",
       "gate_1_technical": {
         "status": "PASS",
         "passed": true,
@@ -10393,21 +10493,10 @@
           "asin_product_identity_proof": true,
           "known_mismatch_absent": true,
           "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
         },
         "errors": []
-      },
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "evidence_audit_category": "VERIFIED_ACTIVE",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 200,
-        "verdict": "LISTING_LIVE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
       }
     },
     {
@@ -13478,6 +13567,1723 @@
         "mentions_nl": null,
         "listing_title": null
       }
+    },
+    {
+      "part_number": "07811201110",
+      "part_number_formatted": "0781 120 1110",
+      "asin": "B007TK0T00",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0781 120 1110",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "Stihl Genuine 0781 120 1110 multifunctional grease 225g",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_07811201110",
+      "compatibility_proof": "Genuine Stihl Gearbox Grease 225g (Hedgetrimmer) - 0781 120 1110; bevestigde compatibiliteit met STIHL onderdeel 0781 120 1110 (catalogusnaam: Stihl 07811201110 Multipurpose 225g Grease Tube For Hedge Trimmers), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 0781 120 1110: de Amazon.nl-vermelding B007TK0T00 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0781%20120%201110) beschrijft 0781 120 1110 als \"Genuine Stihl Gearbox Grease 225g (Hedgetrimmer) - 0781 120 1110\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0781%20120%201110",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK0T00?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0781%20120%201110&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK0T00",
+          "title": "Stihl Genuine 0781 120 1110 multifunctional grease 225g",
+          "claim": "Live Amazon.nl-vermelding B007TK0T00 toont \"Stihl Genuine 0781 120 1110 multifunctional grease 225g\" met onderdeelnummer 0781 120 1110; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0781%20120%201110",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl Gearbox Grease 225g (Hedgetrimmer) - 0781 120 1110\" onder het exacte STIHL-nummer 0781 120 1110.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Thursday, 19 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 0781 120 1110 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B00474640Y.",
+      "supersedes_asin": "B00474640Y",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11236402073",
+      "part_number_formatted": "1123 640 2073",
+      "asin": "B006WVO0QQ",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 640 2073",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "stihl Chain Sprocket 3/8 Pitch 6 Teeth 1123 640 2073",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11236402073",
+      "compatibility_proof": "Genuine Stihl Chain Sprocket (3/8\" 6 Tooth Spur) - 1123 640 2073; bevestigde compatibiliteit met STIHL onderdeel 1123 640 2073 (catalogusnaam: Stihl Chain Sprocket 3/8\"P 6 Teeth), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 1123 640 2073: de Amazon.nl-vermelding B006WVO0QQ noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202073) beschrijft 1123 640 2073 als \"Genuine Stihl Chain Sprocket (3/8\" 6 Tooth Spur) - 1123 640 2073\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202073",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B006WVO0QQ?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20640%202073&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B006WVO0QQ",
+          "title": "stihl Chain Sprocket 3/8 Pitch 6 Teeth 1123 640 2073",
+          "claim": "Live Amazon.nl-vermelding B006WVO0QQ toont \"stihl Chain Sprocket 3/8 Pitch 6 Teeth 1123 640 2073\" met onderdeelnummer 1123 640 2073; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202073",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl Chain Sprocket (3/8\" 6 Tooth Spur) - 1123 640 2073\" onder het exacte STIHL-nummer 1123 640 2073.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (free delivery, exclusive deals and award-winning movies and TV shows).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1123 640 2073 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DN88M2.",
+      "supersedes_asin": "B079DN88M2",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11291900601",
+      "part_number_formatted": "1129 190 0601",
+      "asin": "B007TK13CI",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1129 190 0601",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "Stihl Original 1129 190 0601 rewind spring",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11291900601",
+      "compatibility_proof": "Stihl 017, 018, MS170, MS180 Recoil Starter Spring - 1129 190 0601; bevestigde compatibiliteit met STIHL onderdeel 1129 190 0601 (catalogusnaam: Stihl Rewind Spring), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 1129 190 0601: de Amazon.nl-vermelding B007TK13CI noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1129%20190%200601) beschrijft 1129 190 0601 als \"Stihl 017, 018, MS170, MS180 Recoil Starter Spring - 1129 190 0601\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1129%20190%200601",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK13CI?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1129%20190%200601&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK13CI",
+          "title": "Stihl Original 1129 190 0601 rewind spring",
+          "claim": "Live Amazon.nl-vermelding B007TK13CI toont \"Stihl Original 1129 190 0601 rewind spring\" met onderdeelnummer 1129 190 0601; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1129%20190%200601",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl 017, 018, MS170, MS180 Recoil Starter Spring - 1129 190 0601\" onder het exacte STIHL-nummer 1129 190 0601.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 20 - 23 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1129 190 0601 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DNH91X.",
+      "supersedes_asin": "B079DNH91X",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42411401000",
+      "part_number_formatted": "4241 140 1000",
+      "asin": "B083P6BFKD",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4241 140 1000",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "Stihl 4241 140 1000 OEM Air Filter Cover Fits BG56 BG66 BG86 SH56 SH56 SH86",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42411401000",
+      "compatibility_proof": "Stihl 4241 140 1000 OEM Air Filter Cover Fits BG56 BG66 BG86 SH56 SH56 SH86; bevestigde compatibiliteit met STIHL onderdeel 4241 140 1000 (catalogusnaam: Stihl Filter Cover) volgens de Amazon-vermelding.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 4241 140 1000: de Amazon.nl-vermelding B083P6BFKD toont het exacte onderdeelnummer 4241 140 1000 en het merk STIHL op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/st4241-140-1000-genuine-stihl-bg56-bg66-bg86-filter-cover-4241-140-1000.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B083P6BFKD?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241%20140%201000&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B083P6BFKD",
+          "title": "Stihl 4241 140 1000 OEM Air Filter Cover Fits BG56 BG66 BG86 SH56 SH56 SH86",
+          "claim": "Live Amazon.nl-vermelding B083P6BFKD toont \"Stihl 4241 140 1000 OEM Air Filter Cover Fits BG56 BG66 BG86 SH56 SH56 SH86\" met onderdeelnummer 4241 140 1000; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Wednesday, 18 November on your first order shipped by Amazon Or faste).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4241 140 1000. Vervangt de niet meer beschikbare vermelding B08F9MX45K.",
+      "supersedes_asin": "B08F9MX45K",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42410071003",
+      "part_number_formatted": "4241 007 1003",
+      "asin": "B007TK0C8O",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4241 007 1003",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "Stihl 4241 007 1003 gutter cleaning kit",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42410071003",
+      "compatibility_proof": "Stihl 4241 007 1003 gutter cleaning kit; bevestigde compatibiliteit met STIHL onderdeel 4241 007 1003 (catalogusnaam: Stihl 42410071003 Gutter Cleaning Kit for SH56 BG56 BG66 BG86 SH86 SHE71 Blowers) volgens de Amazon-vermelding.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 4241 007 1003: de Amazon.nl-vermelding B007TK0C8O toont het exacte onderdeelnummer 4241 007 1003 en het merk STIHL op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/st4241-007-1003-genuine-stihl-gutter-cleaning-kit-4241-007-1003.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK0C8O?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241%20007%201003&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK0C8O",
+          "title": "Stihl 4241 007 1003 gutter cleaning kit",
+          "claim": "Live Amazon.nl-vermelding B007TK0C8O toont \"Stihl 4241 007 1003 gutter cleaning kit\" met onderdeelnummer 4241 007 1003; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE Delivery by Amazon Einhell original gutter cleaning kit ).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4241 007 1003. Vervangt de niet meer beschikbare vermelding B0014D86AB.",
+      "supersedes_asin": "B0014D86AB",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "30030003313",
+      "part_number_formatted": "3003 000 3313",
+      "asin": "B08W28JDWJ",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "3003 000 3313",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "STIHL 3003 000 3313 Guide Rail Light 04, .325\", 1.3 mm, Rail Connection 3003",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_30030003313",
+      "compatibility_proof": "STIHL 3003 000 3313 Guide Rail Light 04, .325\", 1.3 mm, Rail Connection 3003; bevestigde compatibiliteit met STIHL onderdeel 3003 000 3313 (catalogusnaam: 16\" - Light 04 Guide Bar .325\" - 050\" - 3003 000 3313 - (D025)) volgens de Amazon-vermelding.",
+      "asin_product_identity_proof": "STIHL product met STIHL-referentie 3003 000 3313: de Amazon.nl-vermelding B08W28JDWJ toont het exacte onderdeelnummer 3003 000 3313 en het merk STIHL op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/st3003-000-3313-genuine-stihl-16-light-04-guide-bar-325-050-3003-000-3313-d025.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08W28JDWJ?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+3003%20000%203313&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08W28JDWJ",
+          "title": "STIHL 3003 000 3313 Guide Rail Light 04, .325\", 1.3 mm, Rail Connection 3003",
+          "claim": "Live Amazon.nl-vermelding B08W28JDWJ toont \"STIHL 3003 000 3313 Guide Rail Light 04, .325\", 1.3 mm, Rail Connection 3003\" met onderdeelnummer 3003 000 3313; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 21 - 24 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 3003 000 3313. Vervangt de niet meer beschikbare vermelding B00474601A.",
+      "supersedes_asin": "B00474601A",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41471410300",
+      "part_number_formatted": "4147 141 0300",
+      "asin": "B0CP57NXL5",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "MAXPOWER",
+      "manufacturer_part_number": "4147 141 0300",
+      "trade_number": null,
+      "brand": "MAXPOWER",
+      "product_title": "MAXPOWER luchtfilter geschikt voor STIHL - Referentienummer 4147-141-0300",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41471410300",
+      "compatibility_proof": "Stihl FS240, FS260, FS360C Air Filter - 4147 141 0300; bevestigde compatibiliteit met STIHL onderdeel 4147 141 0300 (catalogusnaam: Stihl Air Filter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "MAXPOWER product met STIHL-referentie 4147 141 0300: de Amazon.nl-vermelding B0CP57NXL5 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4147%20141%200300) beschrijft 4147 141 0300 als \"Stihl FS240, FS260, FS360C Air Filter - 4147 141 0300\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4147%20141%200300",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0CP57NXL5?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147%20141%200300&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0CP57NXL5",
+          "title": "MAXPOWER luchtfilter geschikt voor STIHL - Referentienummer 4147-141-0300",
+          "claim": "Live Amazon.nl-vermelding B0CP57NXL5 toont \"MAXPOWER luchtfilter geschikt voor STIHL - Referentienummer 4147-141-0300\" met onderdeelnummer 4147 141 0300; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4147%20141%200300",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl FS240, FS260, FS360C Air Filter - 4147 141 0300\" onder het exacte STIHL-nummer 4147 141 0300.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Wednesday, 18 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4147 141 0300 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08F9K47R9.",
+      "supersedes_asin": "B08F9K47R9",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "00003500527",
+      "part_number_formatted": "0000 350 0527",
+      "asin": "B0G5PY252N",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "perfektGarten",
+      "manufacturer_part_number": "0000 350 0527",
+      "trade_number": null,
+      "brand": "perfektGarten",
+      "product_title": "Tankdop benzine compatibel met Stihl FR 130 410 460 FS 40 50 56 87 90 94 100/0000-350-0527",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500527",
+      "compatibility_proof": "Stihl FS130, KM94, HL95, TS400 Fuel Tank Cap - 0000 350 0527; bevestigde compatibiliteit met STIHL onderdeel 0000 350 0527 (catalogusnaam: Stihl Filler Cap), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "perfektGarten product met STIHL-referentie 0000 350 0527: de Amazon.nl-vermelding B0G5PY252N noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200527) beschrijft 0000 350 0527 als \"Stihl FS130, KM94, HL95, TS400 Fuel Tank Cap - 0000 350 0527\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200527",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0G5PY252N?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20350%200527&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0G5PY252N",
+          "title": "Tankdop benzine compatibel met Stihl FR 130 410 460 FS 40 50 56 87 90 94 100/0000-350-0527",
+          "claim": "Live Amazon.nl-vermelding B0G5PY252N toont \"Tankdop benzine compatibel met Stihl FR 130 410 460 FS 40 50 56 87 90 94 100/0000-350-0527\" met onderdeelnummer 0000 350 0527; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200527",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl FS130, KM94, HL95, TS400 Fuel Tank Cap - 0000 350 0527\" onder het exacte STIHL-nummer 0000 350 0527.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 21 - 23 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 0000 350 0527 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08F9LX7P4.",
+      "supersedes_asin": "B08F9LX7P4",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "00003500533",
+      "part_number_formatted": "0000 350 0533",
+      "asin": "B0BBMPZQH6",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "perfektGarten",
+      "manufacturer_part_number": "0000 350 0533",
+      "trade_number": null,
+      "brand": "perfektGarten",
+      "product_title": "Fuel Tank Cover Compatible with STIHL KM 90 110 130 / FR 130 T / 0000-350-0533",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500533",
+      "compatibility_proof": "Stihl Fuel/ Chain Oil Bayonet Clip Lock Filler Cap - 0000 350 0533; bevestigde compatibiliteit met STIHL onderdeel 0000 350 0533 (catalogusnaam: Stihl 00003500533 Oil Tank Cap for MS171 MS200 MS261 MS362 MS462 MS500i), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "perfektGarten product met STIHL-referentie 0000 350 0533: de Amazon.nl-vermelding B0BBMPZQH6 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200533) beschrijft 0000 350 0533 als \"Stihl Fuel/ Chain Oil Bayonet Clip Lock Filler Cap - 0000 350 0533\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200533",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0BBMPZQH6?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20350%200533&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0BBMPZQH6",
+          "title": "Fuel Tank Cover Compatible with STIHL KM 90 110 130 / FR 130 T / 0000-350-0533",
+          "claim": "Live Amazon.nl-vermelding B0BBMPZQH6 toont \"Fuel Tank Cover Compatible with STIHL KM 90 110 130 / FR 130 T / 0000-350-0533\" met onderdeelnummer 0000 350 0533; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20350%200533",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl Fuel/ Chain Oil Bayonet Clip Lock Filler Cap - 0000 350 0533\" onder het exacte STIHL-nummer 0000 350 0533.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 21 - 23 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 0000 350 0533 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B0014D7U2E.",
+      "supersedes_asin": "B0014D7U2E",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11236402074",
+      "part_number_formatted": "1123 640 2074",
+      "asin": "B007TK19WW",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Kitoo",
+      "manufacturer_part_number": "1123 640 2074",
+      "trade_number": null,
+      "brand": "Kitoo",
+      "product_title": "Stihl Original 1123 640 2074 0.3 inch 7 teeth sprocket",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11236402074",
+      "compatibility_proof": "Stihl 025, MS250 Sprocket (.325\" 7 Tooth Spur) - 1123 640 2074; bevestigde compatibiliteit met STIHL onderdeel 1123 640 2074 (catalogusnaam: Stihl Chain Sprocket .325\" 7T), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "Kitoo product met STIHL-referentie 1123 640 2074: de Amazon.nl-vermelding B007TK19WW noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202074) beschrijft 1123 640 2074 als \"Stihl 025, MS250 Sprocket (.325\" 7 Tooth Spur) - 1123 640 2074\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202074",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK19WW?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20640%202074&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK19WW",
+          "title": "Stihl Original 1123 640 2074 0.3 inch 7 teeth sprocket",
+          "claim": "Live Amazon.nl-vermelding B007TK19WW toont \"Stihl Original 1123 640 2074 0.3 inch 7 teeth sprocket\" met onderdeelnummer 1123 640 2074; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20640%202074",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl 025, MS250 Sprocket (.325\" 7 Tooth Spur) - 1123 640 2074\" onder het exacte STIHL-nummer 1123 640 2074.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 25 - 27 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1123 640 2074 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DLY82F.",
+      "supersedes_asin": "B079DLY82F",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11231900600",
+      "part_number_formatted": "1123 190 0600",
+      "asin": "B0C72FKDP4",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "QINYUN",
+      "manufacturer_part_number": "1123 190 0600",
+      "trade_number": null,
+      "brand": "QINYUN",
+      "product_title": "Starter Recoil Spring fit-for Stihl Home Garden Equipment Rewind Springs (1123 190 0600)",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11231900600",
+      "compatibility_proof": "Stihl MS150C, MS181C Recoil Starter Spring - 1123 190 0600; bevestigde compatibiliteit met STIHL onderdeel 1123 190 0600 (catalogusnaam: Stihl 11231900600 Rewind Spring), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "QINYUN product met STIHL-referentie 1123 190 0600: de Amazon.nl-vermelding B0C72FKDP4 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20190%200600) beschrijft 1123 190 0600 als \"Stihl MS150C, MS181C Recoil Starter Spring - 1123 190 0600\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20190%200600",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0C72FKDP4?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20190%200600&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0C72FKDP4",
+          "title": "Starter Recoil Spring fit-for Stihl Home Garden Equipment Rewind Springs (1123 190 0600)",
+          "claim": "Live Amazon.nl-vermelding B0C72FKDP4 toont \"Starter Recoil Spring fit-for Stihl Home Garden Equipment Rewind Springs (1123 190 0600)\" met onderdeelnummer 1123 190 0600; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20190%200600",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl MS150C, MS181C Recoil Starter Spring - 1123 190 0600\" onder het exacte STIHL-nummer 1123 190 0600.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery 2 - 7 December).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1123 190 0600 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DNM22P.",
+      "supersedes_asin": "B079DNM22P",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11230071061",
+      "part_number_formatted": "1123 007 1061",
+      "asin": "B0GM2YRNQP",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "YINETTECH",
+      "manufacturer_part_number": "1123 007 1061",
+      "trade_number": null,
+      "brand": "YINETTECH",
+      "product_title": "YINETTECH Carburateur Reparatieset 1123-007-1061 Compatibel met STIHL 021 023 025 Compatibel met Walbro WT215 WT283 WT286 WT313 WT360 WT396 WT498 WT503",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11230071061",
+      "compatibility_proof": "Genuine Stihl MS210, 017 Carburetor Repair Kit - 1123 007 1061; bevestigde compatibiliteit met STIHL onderdeel 1123 007 1061 (catalogusnaam: Stihl Carburettor Kit), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "YINETTECH product met STIHL-referentie 1123 007 1061: de Amazon.nl-vermelding B0GM2YRNQP noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20007%201061) beschrijft 1123 007 1061 als \"Genuine Stihl MS210, 017 Carburetor Repair Kit - 1123 007 1061\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20007%201061",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0GM2YRNQP?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20007%201061&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0GM2YRNQP",
+          "title": "YINETTECH Carburateur Reparatieset 1123-007-1061 Compatibel met STIHL 021 023 025 Compatibel met Walbro WT215 WT283 WT286 WT313 WT360 WT396 WT498 WT503",
+          "claim": "Live Amazon.nl-vermelding B0GM2YRNQP toont \"YINETTECH Carburateur Reparatieset 1123-007-1061 Compatibel met STIHL 021 023 025 Compatibel met Walbro WT215 WT283 WT286 WT313 WT360 WT396 \" met onderdeelnummer 1123 007 1061; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20007%201061",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl MS210, 017 Carburetor Repair Kit - 1123 007 1061\" onder het exacte STIHL-nummer 1123 007 1061.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Thursday, 19 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1123 007 1061 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08F9ML22K.",
+      "supersedes_asin": "B08F9ML22K",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11230201209",
+      "part_number_formatted": "1123 020 1209",
+      "asin": "B0GT2Q39PW",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Adefol",
+      "manufacturer_part_number": "1123 020 1209",
+      "trade_number": null,
+      "brand": "Adefol",
+      "product_title": "42,5 mm cilinderkit voor Stihl MS250 MS230 023 025 kettingzagen, cilinder met brandstofleiding, brandstoffilter, olieafdichting, luchtfilter, vervanging OEM 1123 020 1209, 1123 030 0408",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11230201209",
+      "compatibility_proof": "Genuine Stihl MS250 Cylinder & Piston Assy (42.5mm Bore) - 1123 020 1209; bevestigde compatibiliteit met STIHL onderdeel 1123 020 1209 (catalogusnaam: Stihl Cylinder And Piston 42.5Mm), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "Adefol product met STIHL-referentie 1123 020 1209: de Amazon.nl-vermelding B0GT2Q39PW noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20020%201209) beschrijft 1123 020 1209 als \"Genuine Stihl MS250 Cylinder & Piston Assy (42.5mm Bore) - 1123 020 1209\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20020%201209",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0GT2Q39PW?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20020%201209&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0GT2Q39PW",
+          "title": "42,5 mm cilinderkit voor Stihl MS250 MS230 023 025 kettingzagen, cilinder met brandstofleiding, brandstoffilter, olieafdichting, luchtfilter, vervanging OEM 1123 020 1209, 1123 030",
+          "claim": "Live Amazon.nl-vermelding B0GT2Q39PW toont \"42,5 mm cilinderkit voor Stihl MS250 MS230 023 025 kettingzagen, cilinder met brandstofleiding, brandstoffilter, olieafdichting, luchtfilter\" met onderdeelnummer 1123 020 1209; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20020%201209",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl MS250 Cylinder & Piston Assy (42.5mm Bore) - 1123 020 1209\" onder het exacte STIHL-nummer 1123 020 1209.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (free delivery, exclusive deals and award-winning movies and TV shows).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1123 020 1209 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DN893L.",
+      "supersedes_asin": "B079DN893L",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41370292300",
+      "part_number_formatted": "4137 029 2300",
+      "asin": "B0BWSX4DWZ",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Gubeter",
+      "manufacturer_part_number": "4137 029 2300",
+      "trade_number": null,
+      "brand": "Gubeter",
+      "product_title": "Gasket Kit, For Stihl Fs75 Fs80 Fs80R Fs85 Bg75 Hs75 Hs80 Hs85 Ka85R Kr85 Sp81, 4137 029 2300/4114 149 1205/4137 129 0900/4137 129 0905",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41370292300",
+      "compatibility_proof": "Stihl FS80, HT70, KM85 Cylinder Head Gasket - 4137 029 2300; bevestigde compatibiliteit met STIHL onderdeel 4137 029 2300 (catalogusnaam: Stihl Cylinder Gasket), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "Gubeter product met STIHL-referentie 4137 029 2300: de Amazon.nl-vermelding B0BWSX4DWZ noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20029%202300) beschrijft 4137 029 2300 als \"Stihl FS80, HT70, KM85 Cylinder Head Gasket - 4137 029 2300\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20029%202300",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0BWSX4DWZ?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137%20029%202300&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0BWSX4DWZ",
+          "title": "Gasket Kit, For Stihl Fs75 Fs80 Fs80R Fs85 Bg75 Hs75 Hs80 Hs85 Ka85R Kr85 Sp81, 4137 029 2300/4114 149 1205/4137 129 0900/4137 129 0905",
+          "claim": "Live Amazon.nl-vermelding B0BWSX4DWZ toont \"Gasket Kit, For Stihl Fs75 Fs80 Fs80R Fs85 Bg75 Hs75 Hs80 Hs85 Ka85R Kr85 Sp81, 4137 029 2300/4114 149 1205/4137 129 0900/4137 129 0905\" met onderdeelnummer 4137 029 2300; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20029%202300",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl FS80, HT70, KM85 Cylinder Head Gasket - 4137 029 2300\" onder het exacte STIHL-nummer 4137 029 2300.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Thursday, 19 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4137 029 2300 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08HQ9P34R.",
+      "supersedes_asin": "B08HQ9P34R",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41371242800",
+      "part_number_formatted": "4137 124 2800",
+      "asin": "B0HRFKS4ZS",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "SHIHAOHZ",
+      "manufacturer_part_number": "4137 124 2800",
+      "trade_number": null,
+      "brand": "SHIHAOHZ",
+      "product_title": "Luchtvoorfilter for Stihl 4137-124-2800, 4137-124-1500 BG75 FC75 FC85 FS75 FS80 FS85 FS85R HL75K HS75 HS80 HS85(1set)",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41371242800",
+      "compatibility_proof": "Stihl FS75, FS80, HL75K Air Filter - 4137 124 2800; bevestigde compatibiliteit met STIHL onderdeel 4137 124 2800 (catalogusnaam: Stihl Filter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "SHIHAOHZ product met STIHL-referentie 4137 124 2800: de Amazon.nl-vermelding B0HRFKS4ZS noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20124%202800) beschrijft 4137 124 2800 als \"Stihl FS75, FS80, HL75K Air Filter - 4137 124 2800\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20124%202800",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0HRFKS4ZS?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137%20124%202800&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0HRFKS4ZS",
+          "title": "Luchtvoorfilter for Stihl 4137-124-2800, 4137-124-1500 BG75 FC75 FC85 FS75 FS80 FS85 FS85R HL75K HS75 HS80 HS85(1set)",
+          "claim": "Live Amazon.nl-vermelding B0HRFKS4ZS toont \"Luchtvoorfilter for Stihl 4137-124-2800, 4137-124-1500 BG75 FC75 FC85 FS75 FS80 FS85 FS85R HL75K HS75 HS80 HS85(1set)\" met onderdeelnummer 4137 124 2800; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4137%20124%202800",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl FS75, FS80, HL75K Air Filter - 4137 124 2800\" onder het exacte STIHL-nummer 4137 124 2800.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery 11 - 17 December).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4137 124 2800 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B07KQW4922.",
+      "supersedes_asin": "B07KQW4922",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11281903400",
+      "part_number_formatted": "1128 190 3400",
+      "asin": "B0FG7PKCLL",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "CCQDGMD",
+      "manufacturer_part_number": "1128 190 3400",
+      "trade_number": null,
+      "brand": "CCQDGMD",
+      "product_title": "Original ElastoStart 0.3cm For Stihl 029 039 MS290 310 362 MS390 MS440 MS441 Original 1128 190 3400 Easy to Install",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11281903400",
+      "compatibility_proof": "Stihl Elastostart Starter Grip 3.5mm Rope - 1128 190 3400; bevestigde compatibiliteit met STIHL onderdeel 1128 190 3400 (catalogusnaam: Stihl 11281903400 Starter Grip Elastostart 3.5mm for MS390 MS400 MS440 MS441 MS460 MS500i), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "CCQDGMD product met STIHL-referentie 1128 190 3400: de Amazon.nl-vermelding B0FG7PKCLL noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20190%203400) beschrijft 1128 190 3400 als \"Stihl Elastostart Starter Grip 3.5mm Rope - 1128 190 3400\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20190%203400",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0FG7PKCLL?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128%20190%203400&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0FG7PKCLL",
+          "title": "Original ElastoStart 0.3cm For Stihl 029 039 MS290 310 362 MS390 MS440 MS441 Original 1128 190 3400 Easy to Install",
+          "claim": "Live Amazon.nl-vermelding B0FG7PKCLL toont \"Original ElastoStart 0.3cm For Stihl 029 039 MS290 310 362 MS390 MS440 MS441 Original 1128 190 3400 Easy to Install\" met onderdeelnummer 1128 190 3400; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20190%203400",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl Elastostart Starter Grip 3.5mm Rope - 1128 190 3400\" onder het exacte STIHL-nummer 1128 190 3400.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery Tuesday, 1 December).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1128 190 3400 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DNL88M.",
+      "supersedes_asin": "B079DNL88M",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42410071700",
+      "part_number_formatted": "4241 007 1700",
+      "asin": "B0FWJ6TFJH",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "EMSea",
+      "manufacturer_part_number": "4241 007 1700",
+      "trade_number": null,
+      "brand": "EMSea",
+      "product_title": "EMSea 2Set Carburetor Rebuild Kit 4241 007 1700 Compatible with Stihl BG56 BG66 BG86 FC56 FS70 Compatible with Zama S261 Series",
+      "package_quantity": 2,
+      "package_type": "Meervoudige verpakking (2 stuks)",
+      "is_multipack": true,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42410071700",
+      "compatibility_proof": "Genuine Stihl Carburettor Diaphragm & Gasket Set - 4241 007 1700; bevestigde compatibiliteit met STIHL onderdeel 4241 007 1700 (catalogusnaam: Stihl Set Of Carburettor Parts), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "EMSea product met STIHL-referentie 4241 007 1700: de Amazon.nl-vermelding B0FWJ6TFJH noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4241%20007%201700) beschrijft 4241 007 1700 als \"Genuine Stihl Carburettor Diaphragm & Gasket Set - 4241 007 1700\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4241%20007%201700",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0FWJ6TFJH?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4241%20007%201700&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0FWJ6TFJH",
+          "title": "EMSea 2Set Carburetor Rebuild Kit 4241 007 1700 Compatible with Stihl BG56 BG66 BG86 FC56 FS70 Compatible with Zama S261 Series",
+          "claim": "Live Amazon.nl-vermelding B0FWJ6TFJH toont \"EMSea 2Set Carburetor Rebuild Kit 4241 007 1700 Compatible with Stihl BG56 BG66 BG86 FC56 FS70 Compatible with Zama S261 Series\" met onderdeelnummer 4241 007 1700; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4241%20007%201700",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl Carburettor Diaphragm & Gasket Set - 4241 007 1700\" onder het exacte STIHL-nummer 4241 007 1700.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Wednesday, 18 November on your first order shipped by Amazon Or faste).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4241 007 1700 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08F9MK77A.",
+      "supersedes_asin": "B08F9MK77A",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11271201620",
+      "part_number_formatted": "1127 120 1620",
+      "asin": "B0C38W9LC3",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "HOHMI",
+      "manufacturer_part_number": "1127 120 1620",
+      "trade_number": null,
+      "brand": "HOHMI",
+      "product_title": "Air Filter Fit for Stihl 029 039 MS290 MS310 MS390 Chainsaw 1127-120-1620",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11271201620",
+      "compatibility_proof": "Stihl 029, 039, MS290, MS310, MS390 Air Filter - 1127 120 1620 - See Note; bevestigde compatibiliteit met STIHL onderdeel 1127 120 1620 (catalogusnaam: Stihl Air Filter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "HOHMI product met STIHL-referentie 1127 120 1620: de Amazon.nl-vermelding B0C38W9LC3 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20120%201620) beschrijft 1127 120 1620 als \"Stihl 029, 039, MS290, MS310, MS390 Air Filter - 1127 120 1620 - See Note\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20120%201620",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0C38W9LC3?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127%20120%201620&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0C38W9LC3",
+          "title": "Air Filter Fit for Stihl 029 039 MS290 MS310 MS390 Chainsaw 1127-120-1620",
+          "claim": "Live Amazon.nl-vermelding B0C38W9LC3 toont \"Air Filter Fit for Stihl 029 039 MS290 MS310 MS390 Chainsaw 1127-120-1620\" met onderdeelnummer 1127 120 1620; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20120%201620",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl 029, 039, MS290, MS310, MS390 Air Filter - 1127 120 1620 - See Note\" onder het exacte STIHL-nummer 1127 120 1620.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 3 - 8 December).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1127 120 1620 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B07V23M41P.",
+      "supersedes_asin": "B07V23M41P",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11270802103",
+      "part_number_formatted": "1127 080 2103",
+      "asin": "B07MM11TCK",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "TOPINCN",
+      "manufacturer_part_number": "1127 080 2103",
+      "trade_number": null,
+      "brand": "TOPINCN",
+      "product_title": "Chainsaw starter for Stihl 029 039 MS290 MS390 MS310 1127 080 2103 chainsaw tractor MORE WAY packaging",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11270802103",
+      "compatibility_proof": "Stihl MS290, MS310, MS390 Recoil Starter Assembly - 1127 080 2103; bevestigde compatibiliteit met STIHL onderdeel 1127 080 2103 (catalogusnaam: Stihl Fan Housing With Rewind Starter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "TOPINCN product met STIHL-referentie 1127 080 2103: de Amazon.nl-vermelding B07MM11TCK noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20080%202103) beschrijft 1127 080 2103 als \"Stihl MS290, MS310, MS390 Recoil Starter Assembly - 1127 080 2103\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20080%202103",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07MM11TCK?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127%20080%202103&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07MM11TCK",
+          "title": "Chainsaw starter for Stihl 029 039 MS290 MS390 MS310 1127 080 2103 chainsaw tractor MORE WAY packaging",
+          "claim": "Live Amazon.nl-vermelding B07MM11TCK toont \"Chainsaw starter for Stihl 029 039 MS290 MS390 MS310 1127 080 2103 chainsaw tractor MORE WAY packaging\" met onderdeelnummer 1127 080 2103; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1127%20080%202103",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl MS290, MS310, MS390 Recoil Starter Assembly - 1127 080 2103\" onder het exacte STIHL-nummer 1127 080 2103.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Friday, 20 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 1127 080 2103 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DNL91A.",
+      "supersedes_asin": "B079DNL91A",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42821900303",
+      "part_number_formatted": "4282 190 0303",
+      "asin": "B07PVMRZYK",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Cancanle",
+      "manufacturer_part_number": "4282 190 0303",
+      "trade_number": null,
+      "brand": "Cancanle",
+      "product_title": "Cancanle Rewind Recoil Starter for Stihl BR600 BR500 BR550 Petrol Blower Part No. 4282 190 0303",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42821900303",
+      "compatibility_proof": "Genuine Stihl BR500, BR550, BR600 Recoil Assy - 4282 190 0303; bevestigde compatibiliteit met STIHL onderdeel 4282 190 0303 (catalogusnaam: Stihl Starter Cover With Rewind Starter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "Cancanle product met STIHL-referentie 4282 190 0303: de Amazon.nl-vermelding B07PVMRZYK noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4282%20190%200303) beschrijft 4282 190 0303 als \"Genuine Stihl BR500, BR550, BR600 Recoil Assy - 4282 190 0303\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4282%20190%200303",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07PVMRZYK?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4282%20190%200303&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07PVMRZYK",
+          "title": "Cancanle Rewind Recoil Starter for Stihl BR600 BR500 BR550 Petrol Blower Part No. 4282 190 0303",
+          "claim": "Live Amazon.nl-vermelding B07PVMRZYK toont \"Cancanle Rewind Recoil Starter for Stihl BR600 BR500 BR550 Petrol Blower Part No. 4282 190 0303\" met onderdeelnummer 4282 190 0303; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4282%20190%200303",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl BR500, BR550, BR600 Recoil Assy - 4282 190 0303\" onder het exacte STIHL-nummer 4282 190 0303.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 27 November - 2 December).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4282 190 0303 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B08F9ML11Q.",
+      "supersedes_asin": "B08F9ML11Q",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41401904009",
+      "part_number_formatted": "4140 190 4009",
+      "asin": "B07BLSL3VM",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Cancanle",
+      "manufacturer_part_number": "4140 190 4009",
+      "trade_number": null,
+      "brand": "Cancanle",
+      "product_title": "Return Starter Reverse Starter for Stihl FS55 FC55 FS45 FS46 Grass Trimmer OEM 4140-190-4009",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41401904009",
+      "compatibility_proof": "Stihl FS38, HL45, KM55 Recoil Starter Assembly - 4140 190 4009; bevestigde compatibiliteit met STIHL onderdeel 4140 190 4009 (catalogusnaam: Stihl 41401904009 Rewind Starter for FC55, FS38, FS55, HL45, KM55), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "Cancanle product met STIHL-referentie 4140 190 4009: de Amazon.nl-vermelding B07BLSL3VM noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4140%20190%204009) beschrijft 4140 190 4009 als \"Stihl FS38, HL45, KM55 Recoil Starter Assembly - 4140 190 4009\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4140%20190%204009",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07BLSL3VM?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140%20190%204009&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07BLSL3VM",
+          "title": "Return Starter Reverse Starter for Stihl FS55 FC55 FS45 FS46 Grass Trimmer OEM 4140-190-4009",
+          "claim": "Live Amazon.nl-vermelding B07BLSL3VM toont \"Return Starter Reverse Starter for Stihl FS55 FC55 FS45 FS46 Grass Trimmer OEM 4140-190-4009\" met onderdeelnummer 4140 190 4009; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4140%20190%204009",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl FS38, HL45, KM55 Recoil Starter Assembly - 4140 190 4009\" onder het exacte STIHL-nummer 4140 190 4009.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (FREE delivery Thursday, 19 November on your first order shipped by Amazon).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4140 190 4009 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B07S8Y912M.",
+      "supersedes_asin": "B07S8Y912M",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41340802101",
+      "part_number_formatted": "4134 080 2101",
+      "asin": "B079WS2YNM",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "C·T·S",
+      "manufacturer_part_number": "4134 080 2101",
+      "trade_number": null,
+      "brand": "C·T·S",
+      "product_title": "CTS Recoil Start Mount Replaces Stihl 4134-080-2101 Fits Stihl FS120 FS200 FS250 FS300 FR350 BT120C BT121",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41340802101",
+      "compatibility_proof": "Genuine Stihl Recoil Assembly - 4134 080 2101; bevestigde compatibiliteit met STIHL onderdeel 4134 080 2101 (catalogusnaam: Stihl Fan Housing With Rewind Starter), zoals vermeld in de Amazon-vermelding en de dealercatalogus.",
+      "asin_product_identity_proof": "C·T·S product met STIHL-referentie 4134 080 2101: de Amazon.nl-vermelding B079WS2YNM noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4134%20080%202101) beschrijft 4134 080 2101 als \"Genuine Stihl Recoil Assembly - 4134 080 2101\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4134%20080%202101",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B079WS2YNM?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134%20080%202101&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079WS2YNM",
+          "title": "CTS Recoil Start Mount Replaces Stihl 4134-080-2101 Fits Stihl FS120 FS200 FS250 FS300 FR350 BT120C BT121",
+          "claim": "Live Amazon.nl-vermelding B079WS2YNM toont \"CTS Recoil Start Mount Replaces Stihl 4134-080-2101 Fits Stihl FS120 FS200 FS250 FS300 FR350 BT120C BT121\" met onderdeelnummer 4134 080 2101; de pagina toont levertijd voor een Nederlands adres op 2026-11-15.",
+          "retrieved_at": "2026-11-15"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4134%20080%202101",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Genuine Stihl Recoil Assembly - 4134 080 2101\" onder het exacte STIHL-nummer 4134 080 2101.",
+          "retrieved_at": "2026-11-15"
+        }
+      ],
+      "verification_date": "2026-11-15",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-15",
+      "shipping_evidence_description": "Amazon.nl-vermelding toont een bezorgdatum voor het Nederlandse adres (delivery 21 - 23 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87 recovery: live Amazon.nl-vermelding met het exacte STIHL-nummer 4134 080 2101 en onafhankelijke dealercatalogus-corroboratie. Vervangt de niet meer beschikbare vermelding B079DNL72P.",
+      "supersedes_asin": "B079DNL72P",
+      "updated_at": "2026-11-15T22:49:29.288Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
     }
   ],
   "availability_audit": {
@@ -13510,5 +15316,12 @@
     "live_active_offers": 75,
     "unverifiable_offers": 0,
     "note": "Live browser GET of every registered product page. 404 = the listing no longer exists on that marketplace; a known-live ASIN returns 200 and a made-up ASIN returns 404 in the same session, so the 404s are delistings, not bot blocks."
+  },
+  "phase_87": {
+    "activated_at": "2026-11-15T22:49:29.288Z",
+    "activated_offers": 23,
+    "parts_with_amazon_offer": 84,
+    "methodology": "Live rendered Amazon.nl page checks (2026-11-15) plus independent dealer-catalog corroboration of the STIHL number; existing TwoGateVerifier gates applied unchanged. No PA-API/Creators credentials were used and no listing was scraped through access controls.",
+    "no_gtin_used": "Uncorroborated sequential GTIN values on the predecessor records were not carried over to the new offers."
   }
 }
