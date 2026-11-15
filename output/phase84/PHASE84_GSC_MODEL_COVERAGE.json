@@ -1,22 +1,24 @@
 {
   "schema_version": "1.0.0",
   "phase": "84",
-  "generated_at": "2026-11-15T02:13:00.099Z",
+  "generated_at": "2026-11-15T02:37:56.662Z",
   "basis": "Latest measured GSC priority models (Phase 83 coverage file) + Phase 84 eBay ACTIVE payload; direct = part with a proven ACTIVE eBay offer",
   "models": {
     "ms_440": {
       "catalog_parts": 277,
       "direct_before_phase84": 11,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 12,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 11,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 3.97,
-      "pct_after": 4.33
+      "pct_after": 3.97
     },
     "ms_170": {
       "catalog_parts": 248,
       "direct_before_phase84": 5,
       "new_direct_phase84": 0,
       "direct_after_phase84": 5,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 2.02,
       "pct_after": 2.02
     },
@@ -25,70 +27,79 @@
       "direct_before_phase84": 14,
       "new_direct_phase84": 0,
       "direct_after_phase84": 14,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 5.04,
       "pct_after": 5.04
     },
     "br_600": {
       "catalog_parts": 239,
       "direct_before_phase84": 11,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 12,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 11,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 4.6,
-      "pct_after": 5.02
+      "pct_after": 4.6
     },
     "ms_250": {
       "catalog_parts": 276,
       "direct_before_phase84": 15,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 16,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 15,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 5.43,
-      "pct_after": 5.8
+      "pct_after": 5.43
     },
     "bg_86": {
       "catalog_parts": 169,
       "direct_before_phase84": 14,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 15,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 14,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 8.28,
-      "pct_after": 8.88
+      "pct_after": 8.28
     },
     "ms_461": {
       "catalog_parts": 263,
       "direct_before_phase84": 17,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 18,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 17,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 6.46,
-      "pct_after": 6.84
+      "pct_after": 6.46
     },
     "ms_390": {
       "catalog_parts": 213,
       "direct_before_phase84": 20,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 21,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 20,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 9.39,
-      "pct_after": 9.86
+      "pct_after": 9.39
     },
     "hs_45": {
       "catalog_parts": 205,
       "direct_before_phase84": 18,
-      "new_direct_phase84": 2,
-      "direct_after_phase84": 20,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 18,
+      "parts_with_extra_offers_phase84": 2,
       "pct_before": 8.78,
-      "pct_after": 9.76
+      "pct_after": 8.78
     },
     "ms_260": {
       "catalog_parts": 279,
       "direct_before_phase84": 24,
-      "new_direct_phase84": 2,
-      "direct_after_phase84": 26,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 24,
+      "parts_with_extra_offers_phase84": 2,
       "pct_before": 8.6,
-      "pct_after": 9.32
+      "pct_after": 8.6
     },
     "ms_180": {
       "catalog_parts": 263,
       "direct_before_phase84": 8,
       "new_direct_phase84": 0,
       "direct_after_phase84": 8,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 3.04,
       "pct_after": 3.04
     },
@@ -97,38 +108,43 @@
       "direct_before_phase84": 15,
       "new_direct_phase84": 0,
       "direct_after_phase84": 15,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 4.19,
       "pct_after": 4.19
     },
     "fs_55": {
       "catalog_parts": 354,
       "direct_before_phase84": 23,
-      "new_direct_phase84": 2,
-      "direct_after_phase84": 25,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 23,
+      "parts_with_extra_offers_phase84": 2,
       "pct_before": 6.5,
-      "pct_after": 7.06
+      "pct_after": 6.5
     },
     "fs_85": {
       "catalog_parts": 389,
       "direct_before_phase84": 24,
-      "new_direct_phase84": 2,
-      "direct_after_phase84": 26,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 24,
+      "parts_with_extra_offers_phase84": 2,
       "pct_before": 6.17,
-      "pct_after": 6.68
+      "pct_after": 6.17
     },
     "fs_350": {
       "catalog_parts": 262,
       "direct_before_phase84": 16,
-      "new_direct_phase84": 1,
-      "direct_after_phase84": 17,
+      "new_direct_phase84": 0,
+      "direct_after_phase84": 16,
+      "parts_with_extra_offers_phase84": 1,
       "pct_before": 6.11,
-      "pct_after": 6.49
+      "pct_after": 6.11
     },
     "ts_420": {
       "catalog_parts": 257,
       "direct_before_phase84": 11,
       "new_direct_phase84": 0,
       "direct_after_phase84": 11,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 4.28,
       "pct_after": 4.28
     },
@@ -137,17 +153,19 @@
       "direct_before_phase84": 6,
       "new_direct_phase84": 0,
       "direct_after_phase84": 6,
+      "parts_with_extra_offers_phase84": 0,
       "pct_before": 2.21,
       "pct_after": 2.21
     }
   },
   "totals": {
     "direct_before": 252,
-    "direct_after": 267,
+    "direct_after": 252,
     "catalog_parts": 4601,
-    "models_with_new_direct": 11
+    "models_with_new_direct": 0,
+    "part_model_links_with_extra_offers": 15
   },
-  "models_touched_by_new_direct_parts": [
+  "models_touched_by_new_offers": [
     "009",
     "010",
     "011",
@@ -306,5 +324,6 @@
     "sr_200",
     "sr_430",
     "sr_450"
-  ]
+  ],
+  "note": "All Phase 84 offer parts already had a proven ACTIVE offer before this phase, so direct part coverage per model is unchanged; the gain is additional buy links (more listings) on the same parts."
 }
