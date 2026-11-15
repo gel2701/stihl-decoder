@@ -75,9 +75,24 @@ test('Phase 84: offers resolve to canonical catalog parts and are unique', () =>
 test('Phase 84: reported metrics match the payload and the frozen baselines', () => {
   const uniqueParts = new Set(payload.offers.map(o => o.part_number));
   assert.strictEqual(affiliateAudit.new_active_offers, payload.offers.length);
-  assert.strictEqual(affiliateAudit.new_active_parts, uniqueParts.size);
+  assert.strictEqual(affiliateAudit.parts_with_new_offers, uniqueParts.size);
   assert.strictEqual(summary.after.new_active_ebay_offers, payload.offers.length);
-  assert.strictEqual(summary.after.new_active_ebay_parts, uniqueParts.size);
+  assert.strictEqual(summary.after.parts_receiving_new_offers, uniqueParts.size);
+  assert.strictEqual(summary.after.new_active_ebay_parts, 0, 'no part became newly buyable in this phase');
+
+  // Phase 84 added listings, not new buyable parts: every offer part already had
+  // a proven ACTIVE offer in an earlier phase payload.
+  const priorParts = new Set();
+  for (const rel of ['output/phase81/ebay_offers_phase81.json', 'output/phase82/ebay_offers_phase82.json', 'output/phase83/ebay_offers_phase83.json']) {
+    for (const offer of readJson(rel).offers || []) {
+      if (offer.status === 'ACTIVE') priorParts.add(offer.part_number);
+    }
+  }
+  assert.deepStrictEqual(affiliateAudit.new_direct_parts, [], 'Phase 84 must not claim new buyable parts');
+  for (const part of uniqueParts) {
+    assert.ok(priorParts.has(part), `${part} already had a proven ACTIVE offer before Phase 84`);
+  }
+  assert.strictEqual(affiliateAudit.unique_parts_with_direct_purchase_before, affiliateAudit.unique_parts_with_direct_purchase_after);
 
   assert.strictEqual(summary.baseline_verified.catalog_parts, 18397);
   assert.strictEqual(summary.after.catalog_parts, 18397);
@@ -85,9 +100,18 @@ test('Phase 84: reported metrics match the payload and the frozen baselines', ()
   assert.strictEqual(summary.real_growth.new_fitment_relations, 0);
   assert.strictEqual(catalog.parts_count, catalog.parts.length);
 
-  assert.strictEqual(gscCoverage.totals.direct_after - gscCoverage.totals.direct_before,
-    payload.offers.length > 0 ? gscCoverage.totals.direct_after - gscCoverage.totals.direct_before : 0);
   assert.ok(gscCoverage.totals.direct_after >= gscCoverage.totals.direct_before, 'GSC direct coverage must not shrink');
+  assert.strictEqual(
+    gscCoverage.totals.direct_after,
+    gscCoverage.totals.direct_before,
+    'without new buyable parts the direct part coverage cannot grow'
+  );
+  const perModelExtraOffers = Object.values(gscCoverage.models).reduce(
+    (sum, row) => sum + (row.parts_with_extra_offers_phase84 || 0),
+    0
+  );
+  assert.strictEqual(gscCoverage.totals.part_model_links_with_extra_offers, perModelExtraOffers);
+  assert.ok(perModelExtraOffers >= uniqueParts.size, 'every offer part must be counted on at least one model');
 });
 
 test('Phase 84: open supersession targets keep direction and NEEDS_EVIDENCE', () => {

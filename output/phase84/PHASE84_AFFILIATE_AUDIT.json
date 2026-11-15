@@ -1,20 +1,32 @@
 {
   "schema_version": "1.0.0",
   "phase": "84",
-  "generated_at": "2026-11-15T02:13:00.098Z",
+  "generated_at": "2026-11-15T02:37:56.661Z",
   "input_queue": "output/phase82/PHASE82_REMAINING_QUEUE.json",
   "queue_size": 109,
   "parts_attempted": 5,
   "parts_completed": 5,
   "new_active_offers": 42,
-  "new_active_parts": 5,
-  "new_direct_parts": [
+  "parts_with_new_offers": 5,
+  "offer_parts": [
     "00009302212",
     "11201290905",
     "11280292301",
     "41281290900",
     "42291290901"
   ],
+  "new_direct_parts": [],
+  "parts_already_direct_before_phase84": [
+    "00009302212",
+    "11201290905",
+    "11280292301",
+    "41281290900",
+    "42291290901"
+  ],
+  "prior_active_offers_considered": 1551,
+  "prior_payload_direct_parts": 191,
+  "unique_parts_with_direct_purchase_before": 201,
+  "unique_parts_with_direct_purchase_after": 201,
   "accepted_by_match_and_shipping": {
     "EXACT_PART_NUMBER_WITH_CORROBORATION/SHIPS_TO_NL_CONFIRMED": 3,
     "EXACT_MPN/SHIPS_TO_NL_CONFIRMED": 39
