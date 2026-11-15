@@ -52,7 +52,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
 
-    assert.ok(activeNl.length >= 49, `Expected at least 49 active Amazon.nl offers, found ${activeNl.length}`);
+    // Phase 86 audit: 24 amazon.nl listings return HTTP 404 and are suspended,
+    // leaving 29 live amazon.nl offers plus the untouched amazon.de inventory.
+    assert.ok(activeNl.length >= 29, `Expected at least 29 active Amazon.nl offers, found ${activeNl.length}`);
     assert.ok(activeDe.length >= 2, `Expected at least 2 active Amazon.de offers with confirmed NL delivery, found ${activeDe.length}`);
   });
 
@@ -71,7 +73,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(regDoc.metrics.research_required, unprovenOffers.length, 'metrics.research_required must equal unproven offers count');
     assert.strictEqual(regDoc.metrics.verified, verifiedInactive.length, 'metrics.verified must equal verified inactive offers count');
     assert.strictEqual(regDoc.metrics.staged, 0, 'metrics.staged must be 0');
-    assert.strictEqual(regDoc.metrics.suspended, 0, 'metrics.suspended must be 0');
+    const suspendedOffers = allOffers.filter(o => o.status === 'SUSPENDED');
+    assert.strictEqual(regDoc.metrics.suspended, suspendedOffers.length, 'metrics.suspended must equal the suspended offers count');
+    assert.ok(suspendedOffers.every(o => o.suspension_reason === 'LISTING_NOT_AVAILABLE_404'), 'Every suspended offer must record a live 404 as its reason');
   });
 
   it('3. GSC Priority Coverage: All 8 Focus Models at STRONG Status', () => {
@@ -83,9 +87,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       { name: 'FS 460', minOffers: 5 },
       { name: 'MS 170', minOffers: 7 },
       { name: 'MS 461', minOffers: 3 },
-      { name: 'BG 86', minOffers: 3 },
+      { name: 'BG 86', minOffers: 2 },
       { name: 'MS 390', minOffers: 3 },
-      { name: 'BR 600', minOffers: 3 },
+      { name: 'BR 600', minOffers: 1 },
       { name: 'MS 210', minOffers: 10 }
     ];
 
@@ -93,7 +97,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       const cov = report.gsc_model_coverage.find(m => m.model_name === f.name);
       assert.ok(cov, `Model ${f.name} must exist in GSC coverage report`);
       assert.ok(cov.active_offers_count >= f.minOffers, `Model ${f.name} expected >= ${f.minOffers} active offers, got ${cov.active_offers_count}`);
-      assert.strictEqual(cov.coverage_status, 'STRONG', `Model ${f.name} must have STRONG coverage status`);
+      // Phase 86: BG 86 lost its dead amazon.nl listing, so two live offers remain.
+      const allowed = ['BG 86', 'BR 600'].includes(f.name) ? ['STRONG', 'MODERATE'] : ['STRONG'];
+      assert.ok(allowed.includes(cov.coverage_status), `Model ${f.name} must have ${allowed.join('/')} coverage status, got ${cov.coverage_status}`);
     }
 
     assert.strictEqual(report.milestones.milestone_50.achieved, true, 'Milestone 50 must be marked achieved');
@@ -135,11 +141,22 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       '11291900601', '11303500500', '11300802100', '07811201110', '30030003313'
     ];
     for (const pn of phase75Parts) {
-      const offer = activeOffers.find(o => o.part_number === pn);
-      if (offer) {
-        const brand = (offer.brand || offer.manufacturer || '').trim();
-        const isGenuine = ['STIHL', 'Walbro', 'Oregon', 'Bosch', 'NGK'].some(b => brand.toLowerCase().includes(b.toLowerCase()));
-        assert.ok(isGenuine, `Phase 75 promoted part ${pn} must be genuine OEM / tier-1 supplier`);
+      const partOffers = activeOffers.filter(o => o.part_number === pn);
+      if (partOffers.length) {
+        // At least one remaining live offer per promoted part must be OEM / tier-1;
+        // a Phase 86 suspension removed the dead amazon.nl listing of some parts.
+        const isGenuine = partOffers.some((offer) => {
+          const brand = (offer.brand || offer.manufacturer || '').trim();
+          return ['STIHL', 'Walbro', 'Oregon', 'Bosch', 'NGK'].some(b => brand.toLowerCase().includes(b.toLowerCase()));
+        });
+        if (pn === '11236402073') {
+          // Its only genuine STIHL listing (amazon.nl B079DN88M2) is a live 404;
+          // the remaining live offers are Sägenspezi aftermarket units.
+          const suspended = regDoc.offers.find(o => o.part_number === pn && o.status === 'SUSPENDED');
+          assert.ok(suspended && suspended.suspension_reason === 'LISTING_NOT_AVAILABLE_404', 'The genuine 11236402073 listing must be suspended with 404 evidence');
+          continue;
+        }
+        assert.ok(isGenuine, `Phase 75 promoted part ${pn} must keep at least one genuine OEM / tier-1 active offer`);
       }
     }
   });
@@ -255,7 +272,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(registry.getActiveOffer('36100000055', 'amazon.de'), null, '3610 000 0055 must not resolve as active without confirmed NL delivery');
   });
 
-  it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 78 Active Offers)', () => {
+  it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 75 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -263,7 +280,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.ok(activeOffers.length >= 78, `Total active offers must be >= 78, found ${activeOffers.length}`);
+    assert.ok(activeOffers.length >= 75, `Total active offers must be >= 75, found ${activeOffers.length}`);
 
     // Canonical 30 cm 1,3 mm 44 DL chain 3636 000 0044 must exist and have active Sägenspezi offer B0723GG5VR
     assert.ok(canonicalPartSet.has('36360000044'), '3636 000 0044 must exist in canonical parts catalog');
@@ -296,7 +313,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(registry.getOffer('11236402074', 'amazon.de', 'B00LAHPOXA'), null);
   });
 
-  it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (84 Active Offers)', () => {
+  it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (75 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -304,7 +321,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.ok(activeOffers.length >= 84, `Total active offers must be >= 84, found ${activeOffers.length}`);
+    assert.ok(activeOffers.length >= 75, `Total active offers must be >= 75, found ${activeOffers.length}`);
 
     // Verify all 6 newly activated MS 250 / 025 offers on amazon.de
     const expectedMs250DeOffers = [
@@ -336,7 +353,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     const walbroK20 = registry.getOffer('11230071060', 'amazon.nl', 'B073NJNXMF');
     const walbroD10 = registry.getOffer('11230071061', 'amazon.nl', 'B08F9ML22K');
     assert.ok(walbroK20 && walbroK20.status === 'ACTIVE', 'Walbro K20-WAT B073NJNXMF must remain ACTIVE');
-    assert.ok(walbroD10 && walbroD10.status === 'ACTIVE', 'Walbro D10-WAT B08F9ML22K must remain ACTIVE');
+    // Phase 86: the D10-WAT listing returns HTTP 404 on amazon.nl and is suspended with that evidence.
+    const walbroD10Raw = regDoc.offers.find(o => o.asin === 'B08F9ML22K');
+    assert.ok(walbroD10Raw, 'Walbro D10-WAT B08F9ML22K must stay in the registry');
+    assert.strictEqual(walbroD10Raw.status, 'SUSPENDED', 'Walbro D10-WAT B08F9ML22K must be suspended after the live 404');
+    assert.strictEqual(walbroD10Raw.suspension_reason, 'LISTING_NOT_AVAILABLE_404');
+    assert.strictEqual(registry.getActiveOffer('11230071061', 'amazon.nl'), null, 'A suspended listing must not resolve as an active offer');
 
     // Strict technical boundary check: M10 2-MIX spark plugs and 1,1 mm (.043") chains/bars must NOT claim MS 250 compatibility
     const ms170OnlyParts = ['00004007009', '00004007011', '36100000044', '36100000050', '30050003905', '30050003909'];
@@ -349,7 +371,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
   });
 
-  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (99 Active Offers: 53 NL + 46 DE)', () => {
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (75 Active Offers: 29 NL + 46 DE after the Phase 86 availability audit)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
       maxActiveOffersAllowed: 100
@@ -357,11 +379,11 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 99, 'Total active offers must equal 99 (53 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 75, 'Total active offers must equal 75 (29 NL + 46 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 53, 'Active NL offers must equal 53');
+    assert.strictEqual(activeNl.length, 29, 'Active NL offers must equal 29');
     assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de
@@ -395,16 +417,26 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     // Verify MS 440 & FS 460 reuse alignment on existing active offers
     const ms440ReusedAsins = ['B00474612C', 'B00455Q028', 'B0068M5NAG', 'B001RM8J76', 'B0874SJ4CK', 'B079DNH91X'];
     for (const asin of ms440ReusedAsins) {
-      const off = activeOffers.find(o => o.asin === asin);
-      assert.ok(off, `Reused MS 440 offer ${asin} must be active`);
+      const off = activeOffers.find(o => o.asin === asin)
+        || regDoc.offers.find(o => o.asin === asin && o.status === 'SUSPENDED');
+      assert.ok(off, `Reused MS 440 offer ${asin} must stay registered (active or suspended with evidence)`);
+      if (off.status === 'SUSPENDED') {
+        assert.strictEqual(off.suspension_reason, 'LISTING_NOT_AVAILABLE_404', `Suspended MS 440 offer ${asin} must carry the 404 evidence`);
+        continue;
+      }
       const models = (off.model_compatibility || []).join(' ');
       assert.ok(/MS\s*440/i.test(models), `Offer ${asin} must include MS 440 in model_compatibility`);
     }
 
     const fs460ReusedAsins = ['B01BBVB4HY', 'B08F9K47R9', 'B09JGG2L99', 'B0HLBXNGQQ', 'B0773YKFX3', 'B001RMA5S2', 'B09QH68W83', 'B077X8JMG9', 'B08F9MQ91L', 'B09R1T6X4D', 'B00474640Y', 'B08F9MKGTR'];
     for (const asin of fs460ReusedAsins) {
-      const off = activeOffers.find(o => o.asin === asin);
-      assert.ok(off, `Reused FS 460 offer ${asin} must be active`);
+      const off = activeOffers.find(o => o.asin === asin)
+        || regDoc.offers.find(o => o.asin === asin && o.status === 'SUSPENDED');
+      assert.ok(off, `Reused FS 460 offer ${asin} must stay registered (active or suspended with evidence)`);
+      if (off.status === 'SUSPENDED') {
+        assert.strictEqual(off.suspension_reason, 'LISTING_NOT_AVAILABLE_404', `Suspended FS 460 offer ${asin} must carry the 404 evidence`);
+        continue;
+      }
       const models = (off.model_compatibility || []).join(' ');
       assert.ok(/FS\s*460/i.test(models), `Offer ${asin} must include FS 460 in model_compatibility`);
     }

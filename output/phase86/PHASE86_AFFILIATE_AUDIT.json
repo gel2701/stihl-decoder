@@ -1,0 +1,627 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "86",
+  "generated_at": "2026-11-15T21:01:59.481Z",
+  "input": {
+    "queue": "output/phase86/PHASE86_EBAY_QUEUE.json",
+    "parts_in_queue": 104,
+    "parts_queried": 104,
+    "batches": 18,
+    "search_batches": 11,
+    "enrichment_batches": 6,
+    "marketplace_scope": [
+      "EBAY_NL",
+      "EBAY_DE"
+    ],
+    "delivery_country": "NL"
+  },
+  "offers": {
+    "accepted_relations": 840,
+    "unique_accepted_listings": 838,
+    "new_listings": 136,
+    "reimported_listings": 702,
+    "new_listings_by_marketplace": {
+      "EBAY_NL": 70,
+      "EBAY_DE": 66
+    },
+    "parts_with_accepted_offers": 94,
+    "parts_receiving_new_listings": 28,
+    "new_parts_with_direct_purchase": 1,
+    "new_parts": [
+      "11300203034"
+    ]
+  },
+  "evidence_quality": {
+    "match_types": {
+      "EXACT_MPN": 611,
+      "EXACT_PART_NUMBER_WITH_CORROBORATION": 227
+    },
+    "shipping_confirmed": 838,
+    "offers_with_shipping_evidence": 838,
+    "offers_with_mpn": 653
+  },
+  "needs_evidence": {
+    "offers": 1164,
+    "distinct_listings": 586,
+    "groups": {
+      "TITLE_ONLY_NEEDS_EVIDENCE": 586
+    }
+  },
+  "evidence_enrichment": {
+    "candidates_processed": 686,
+    "get_item_requests": 423,
+    "evidence_completed": 108,
+    "activated": 108,
+    "still_needs_evidence": 578,
+    "method": "getItem PRODUCT field group (seller-declared MPN / Herstellernummer aspect) for listings whose stored Browse detail declared no MPN"
+  },
+  "rejected": {
+    "offers": 101,
+    "distinct_listings": 51,
+    "groups": {
+      "CONFLICTING_MPN": 101
+    }
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json (local measurement copy of the published payloads)",
+    "offers_after": 1773,
+    "active_after": 1773,
+    "parts_after": 220,
+    "marketplace_split": {
+      "EBAY_NL": 1146,
+      "EBAY_DE": 627
+    },
+    "note": "Production keeps its own store on the Render persistent disk. The local store was seeded from the Phase 81-85 payloads, so \"new\" above is measured against what was already published, not against an empty store."
+  },
+  "cross_marketplace": {
+    "parts_with_active_amazon_offer_among_new_ebay_parts": 0,
+    "parts_now_with_both_marketplaces": 0
+  },
+  "catalog": {
+    "canonical_parts": 18480,
+    "fitment_relations": 181394,
+    "fitment_scope_note": "No fitment was written in Phase 86: the Walbro cross-reference and the dealer catalogues available here do not identify an exact variant/configuration for the 79 new carburettors."
+  },
+  "batches": [
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-16-36-271Z.json",
+      "generated_at": "2026-11-15T20:16:36.271Z",
+      "input": "output/phase86/chunks/queue_0_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 101,
+        "new_unique_parts_with_direct_offer": 10,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 80,
+        "rejected_candidates": 14,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1645,
+        "resolver_resolved_offers": 108,
+        "active_preserved_in_store": 1544
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-19-27-991Z.json",
+      "generated_at": "2026-11-15T20:19:27.991Z",
+      "input": "output/phase86/chunks/queue_10_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 83,
+        "new_unique_parts_with_direct_offer": 9,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 55,
+        "rejected_candidates": 6,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1647,
+        "resolver_resolved_offers": 87,
+        "active_preserved_in_store": 1564
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-22-25-144Z.json",
+      "generated_at": "2026-11-15T20:22:25.144Z",
+      "input": "output/phase86/chunks/queue_20_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 61,
+        "new_unique_parts_with_direct_offer": 9,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 82,
+        "rejected_candidates": 12,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1647,
+        "resolver_resolved_offers": 66,
+        "active_preserved_in_store": 1586
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-26-01-868Z.json",
+      "generated_at": "2026-11-15T20:26:01.867Z",
+      "input": "output/phase86/chunks/queue_30_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 131,
+        "new_unique_parts_with_direct_offer": 10,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 89,
+        "rejected_candidates": 15,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1658,
+        "resolver_resolved_offers": 144,
+        "active_preserved_in_store": 1527
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-30-56-795Z.json",
+      "generated_at": "2026-11-15T20:30:56.795Z",
+      "input": "output/phase86/chunks/queue_40_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 90,
+        "new_unique_parts_with_direct_offer": 8,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 55,
+        "rejected_candidates": 6,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1663,
+        "resolver_resolved_offers": 93,
+        "active_preserved_in_store": 1573
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-34-41-545Z.json",
+      "generated_at": "2026-11-15T20:34:41.545Z",
+      "input": "output/phase86/chunks/queue_50_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 54,
+        "new_unique_parts_with_direct_offer": 8,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 52,
+        "rejected_candidates": 10,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1665,
+        "resolver_resolved_offers": 54,
+        "active_preserved_in_store": 1611
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-37-35-152Z.json",
+      "generated_at": "2026-11-15T20:37:35.152Z",
+      "input": "output/phase86/chunks/queue_60_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 45,
+        "new_unique_parts_with_direct_offer": 9,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 37,
+        "rejected_candidates": 6,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1665,
+        "resolver_resolved_offers": 45,
+        "active_preserved_in_store": 1620
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-41-29-296Z.json",
+      "generated_at": "2026-11-15T20:41:29.296Z",
+      "input": "output/phase86/chunks/queue_70_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 35,
+        "new_unique_parts_with_direct_offer": 8,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 38,
+        "rejected_candidates": 4,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1665,
+        "resolver_resolved_offers": 37,
+        "active_preserved_in_store": 1630
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-46-35-576Z.json",
+      "generated_at": "2026-11-15T20:46:35.575Z",
+      "input": "output/phase86/chunks/queue_80_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 55,
+        "new_unique_parts_with_direct_offer": 10,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 63,
+        "rejected_candidates": 16,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1666,
+        "resolver_resolved_offers": 55,
+        "active_preserved_in_store": 1611
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-49-32-426Z.json",
+      "generated_at": "2026-11-15T20:49:32.426Z",
+      "input": "output/phase86/chunks/queue_90_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 63,
+        "new_unique_parts_with_direct_offer": 10,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 33,
+        "rejected_candidates": 4,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1666,
+        "resolver_resolved_offers": 65,
+        "active_preserved_in_store": 1603
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 10
+      }
+    },
+    {
+      "file": "output/phase86/phase80/phase80_batch_live_2026-11-15T20-50-58-950Z.json",
+      "generated_at": "2026-11-15T20:50:58.950Z",
+      "input": "output/phase86/chunks/queue_100_10.json",
+      "metrics": {
+        "review_candidates_processed": 0,
+        "unique_listings": 0,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 0,
+        "candidates_evidence_completed": 0,
+        "new_active": 14,
+        "new_unique_parts_with_direct_offer": 2,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 2,
+        "rejected_candidates": 8,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1667,
+        "resolver_resolved_offers": 15,
+        "active_preserved_in_store": 1653
+      },
+      "exchange": {
+        "input_selection": "PART_LIST",
+        "parts_in_batch": 4,
+        "parts_with_existing_offers": 0,
+        "parts_without_existing_offers": 4
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T20-57-37-710Z.json",
+      "generated_at": "2026-11-15T20:57:37.710Z",
+      "input": "output/phase86/needs_evidence_batch_0.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 0,
+        "get_item_network_calls": 0,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 2,
+        "new_active": 2,
+        "new_unique_parts_with_direct_offer": 2,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 98,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1669,
+        "resolver_resolved_offers": 32,
+        "active_preserved_in_store": 1667
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 11,
+        "parts_with_existing_offers": 11,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T20-58-35-320Z.json",
+      "generated_at": "2026-11-15T20:58:35.320Z",
+      "input": "output/phase86/needs_evidence_batch_0.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 51,
+        "get_item_network_calls": 51,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 2,
+        "new_active": 2,
+        "new_unique_parts_with_direct_offer": 2,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 98,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1669,
+        "resolver_resolved_offers": 32,
+        "active_preserved_in_store": 1667
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 11,
+        "parts_with_existing_offers": 11,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T20-59-17-862Z.json",
+      "generated_at": "2026-11-15T20:59:17.862Z",
+      "input": "output/phase86/needs_evidence_batch_1.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 67,
+        "get_item_network_calls": 67,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 7,
+        "new_active": 7,
+        "new_unique_parts_with_direct_offer": 3,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 93,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1676,
+        "resolver_resolved_offers": 26,
+        "active_preserved_in_store": 1669
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 10,
+        "parts_with_existing_offers": 10,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T20-59-55-621Z.json",
+      "generated_at": "2026-11-15T20:59:55.620Z",
+      "input": "output/phase86/needs_evidence_batch_2.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 79,
+        "get_item_network_calls": 79,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 34,
+        "new_active": 34,
+        "new_unique_parts_with_direct_offer": 4,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 66,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1710,
+        "resolver_resolved_offers": 96,
+        "active_preserved_in_store": 1676
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 12,
+        "parts_with_existing_offers": 12,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T21-00-38-680Z.json",
+      "generated_at": "2026-11-15T21:00:38.679Z",
+      "input": "output/phase86/needs_evidence_batch_3.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 87,
+        "get_item_network_calls": 87,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 44,
+        "new_active": 44,
+        "new_unique_parts_with_direct_offer": 7,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 56,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1754,
+        "resolver_resolved_offers": 124,
+        "active_preserved_in_store": 1710
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 14,
+        "parts_with_existing_offers": 14,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T21-01-15-137Z.json",
+      "generated_at": "2026-11-15T21:01:15.136Z",
+      "input": "output/phase86/needs_evidence_batch_4.json",
+      "metrics": {
+        "review_candidates_processed": 100,
+        "unique_listings": 100,
+        "get_item_requests": 78,
+        "get_item_network_calls": 78,
+        "evidence_reused": 100,
+        "candidates_evidence_completed": 9,
+        "new_active": 9,
+        "new_unique_parts_with_direct_offer": 4,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 91,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1763,
+        "resolver_resolved_offers": 46,
+        "active_preserved_in_store": 1754
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 23,
+        "parts_with_existing_offers": 23,
+        "parts_without_existing_offers": 0
+      }
+    },
+    {
+      "file": "output/phase86/phase80_needs/phase80_batch_live_2026-11-15T21-01-41-785Z.json",
+      "generated_at": "2026-11-15T21:01:41.784Z",
+      "input": "output/phase86/needs_evidence_batch_5.json",
+      "metrics": {
+        "review_candidates_processed": 86,
+        "unique_listings": 86,
+        "get_item_requests": 61,
+        "get_item_network_calls": 61,
+        "evidence_reused": 86,
+        "candidates_evidence_completed": 10,
+        "new_active": 10,
+        "new_unique_parts_with_direct_offer": 1,
+        "gsc_priority_parts_covered": 0,
+        "remaining_needs_evidence": 76,
+        "rejected_candidates": 0,
+        "item_unavailable": 0,
+        "search_fallbacks_for_unavailable_listings": 0,
+        "deferred_get_items": 0,
+        "offers_on_persistent_disk": 1773,
+        "resolver_resolved_offers": 24,
+        "active_preserved_in_store": 1763
+      },
+      "exchange": {
+        "input_selection": "EXISTING_REVIEW_OFFERS",
+        "parts_in_batch": 19,
+        "parts_with_existing_offers": 19,
+        "parts_without_existing_offers": 0
+      }
+    }
+  ]
+}
