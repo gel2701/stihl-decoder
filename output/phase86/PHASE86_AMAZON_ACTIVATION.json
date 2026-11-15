@@ -1,0 +1,988 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "86",
+  "generated_at": "2026-11-15T20:53:57.540Z",
+  "baseline": {
+    "active_offers": 99,
+    "active_nl": 53,
+    "active_de": 46,
+    "parts_with_amazon_offer": 86,
+    "research_required": 55,
+    "verified_blocked": 3
+  },
+  "after": {
+    "active_offers": 75,
+    "active_nl": 29,
+    "active_de": 46,
+    "parts_with_amazon_offer": 63,
+    "research_required": 55,
+    "verified_blocked": 3,
+    "suspended": 24
+  },
+  "listings_audited": {
+    "amazon.nl": {
+      "checked": 107,
+      "live": 30,
+      "not_found": 77
+    },
+    "amazon.de": {
+      "checked": 50,
+      "live": 50,
+      "not_found": 0
+    }
+  },
+  "suspended_active_offers": [
+    {
+      "part_number": "41470074102",
+      "asin": "B09R1T6X4D",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "41471410300",
+      "asin": "B08F9K47R9",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "41471404400",
+      "asin": "B09JGG2L99",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "07811201110",
+      "asin": "B00474640Y",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "41471900600",
+      "asin": "B08F9MKGTR",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "41471602002",
+      "asin": "B08F9MQ91L",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11231201651",
+      "asin": "B079DM87N4",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11231900600",
+      "asin": "B079DNM22P",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11230071061",
+      "asin": "B08F9ML22K",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11236402073",
+      "asin": "B079DN88M2",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11291900601",
+      "asin": "B079DNH91X",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11303500500",
+      "asin": "B0014D8F1Y",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11300802100",
+      "asin": "B079DNL19R",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42410074100",
+      "asin": "B09R1T61KL",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42410071700",
+      "asin": "B08F9MK77A",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42411401000",
+      "asin": "B08F9MX45K",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42410071003",
+      "asin": "B0014D86AB",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "11270802103",
+      "asin": "B079DNL91A",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42821401003",
+      "asin": "B08F9MY78P",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42821900303",
+      "asin": "B08F9ML11Q",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "42820071020",
+      "asin": "B08F9ML33K",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "36360000056",
+      "asin": "B003V4L8NA",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "30030003313",
+      "asin": "B00474601A",
+      "marketplace": "amazon.nl"
+    },
+    {
+      "part_number": "30030002021",
+      "asin": "B00474612C",
+      "marketplace": "amazon.nl"
+    }
+  ],
+  "live_active_offers": 75,
+  "live_active_offers_with_buybox": 24,
+  "blocked_candidates": [
+    {
+      "part_number": "11231201613",
+      "asin": "B00LAHKSDQ",
+      "marketplace": "amazon.de",
+      "status": "VERIFIED",
+      "verdict": "LISTING_LIVE"
+    },
+    {
+      "part_number": "00003503500",
+      "asin": "B00SVDWDRG",
+      "marketplace": "amazon.de",
+      "status": "VERIFIED",
+      "verdict": "LISTING_LIVE"
+    },
+    {
+      "part_number": "41470074102",
+      "asin": "B09R1T6X4D",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471410300",
+      "asin": "B08F9K47R9",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471404400",
+      "asin": "B09JGG2L99",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "07811201110",
+      "asin": "B00474640Y",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471900600",
+      "asin": "B08F9MKGTR",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41197106000",
+      "asin": "B017SBNY52",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00009302246",
+      "asin": "B0014D86T0",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00009302247",
+      "asin": "B0014D86UA",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00003500527",
+      "asin": "B08F9LX7P4",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00003505812",
+      "asin": "B08F9K47ST",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00009302298",
+      "asin": "B007X6X5M2",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471602002",
+      "asin": "B08F9MQ91L",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00003500525",
+      "asin": "B0014D7U1K",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00003500533",
+      "asin": "B0014D7U2E",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11231201651",
+      "asin": "B079DM87N4",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11236402074",
+      "asin": "B079DLY82F",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11231900600",
+      "asin": "B079DNM22P",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11230071061",
+      "asin": "B08F9ML22K",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11230201209",
+      "asin": "B079DN893L",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11236402073",
+      "asin": "B079DN88M2",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11291900601",
+      "asin": "B079DNH91X",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11300201208",
+      "asin": "B079DNB92Y",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11303500500",
+      "asin": "B0014D8F1Y",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42291201800",
+      "asin": "B079DNH51T",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42821410300",
+      "asin": "B079DM989K",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11216402004",
+      "asin": "B079DNL21X",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42381401800",
+      "asin": "B079DLR76T",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42381404401",
+      "asin": "B079DM441X",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371241500",
+      "asin": "B07KQW4921",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371200628",
+      "asin": "B07V22L97D",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371904000",
+      "asin": "B07S8Z8D6M",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371490600",
+      "asin": "B08HQ8G89Q",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371602900",
+      "asin": "B08HQ7L12P",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371200636",
+      "asin": "B07V45X88Y",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41370292300",
+      "asin": "B08HQ9P34R",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41371242800",
+      "asin": "B07KQW4922",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11281201602",
+      "asin": "B08K8Y1G7W",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11281903400",
+      "asin": "B079DNL88M",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11280201227",
+      "asin": "B08F9MKP99",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11280292301",
+      "asin": "B08HQ8D33X",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11280802115",
+      "asin": "B079DNL99X",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471401000",
+      "asin": "B08F9MX991",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471904003",
+      "asin": "B08F9MKH11",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471200600",
+      "asin": "B09JGG4K12",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41470071700",
+      "asin": "B08F9MK91L",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41471402802",
+      "asin": "B08F9MY44P",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11300074100",
+      "asin": "B09R1T49JK",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "30050003905",
+      "asin": "B003V4L91A",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "30050003909",
+      "asin": "B004745Z1K",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11300802100",
+      "asin": "B079DNL19R",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11301402800",
+      "asin": "B08HQ7K49P",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42410074100",
+      "asin": "B09R1T61KL",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42410071700",
+      "asin": "B08F9MK77A",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42411401000",
+      "asin": "B08F9MX45K",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42410071003",
+      "asin": "B0014D86AB",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11271201621",
+      "asin": "B08K8Z994X",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11271201620",
+      "asin": "B07V23M41P",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11270802103",
+      "asin": "B079DNL91A",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11271241500",
+      "asin": "B08HQ8F22R",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42821401003",
+      "asin": "B08F9MY78P",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42821900303",
+      "asin": "B08F9ML11Q",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "42820071020",
+      "asin": "B08F9ML33K",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11351201600",
+      "asin": "B08K8Y561R",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11350802102",
+      "asin": "B079DNM12K",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11351201601",
+      "asin": "B08HQ7N89R",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41400074100",
+      "asin": "B09R1T58LM",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41401904009",
+      "asin": "B07S8Y912M",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41401401001",
+      "asin": "B08F9MX12L",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41341410300",
+      "asin": "B08K8Y845M",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41340802101",
+      "asin": "B079DNL72P",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "41341410500",
+      "asin": "B08F9MX33K",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11231201601",
+      "asin": "B07KJX912L",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11230802115",
+      "asin": "B079DNK41A",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "36360000056",
+      "asin": "B003V4L8NA",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "11410071002",
+      "asin": "B000IBWVZ8",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "30030003313",
+      "asin": "B00474601A",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "30030002021",
+      "asin": "B00474612C",
+      "marketplace": "amazon.nl",
+      "status": "SUSPENDED",
+      "verdict": "LISTING_NOT_AVAILABLE"
+    },
+    {
+      "part_number": "00004007000",
+      "asin": "B00IKF8TH8",
+      "marketplace": "amazon.nl",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_LIVE"
+    },
+    {
+      "part_number": "36100000055",
+      "asin": "B013KONKZY",
+      "marketplace": "amazon.de",
+      "status": "VERIFIED",
+      "verdict": "LISTING_LIVE"
+    },
+    {
+      "part_number": "11231200606",
+      "asin": "B00LAHUJAS",
+      "marketplace": "amazon.de",
+      "status": "RESEARCH_REQUIRED",
+      "verdict": "LISTING_LIVE"
+    }
+  ],
+  "blocked_candidates_with_live_listing": 5,
+  "blocked_candidates_with_dead_listing": 77,
+  "alternative_asins": {
+    "note": "Live amazon.nl search per part number for the parts whose previous ASIN is delisted. Recorded as candidates only: an Amazon listing cannot by itself satisfy the independent ASIN identity gate.",
+    "parts_with_alternatives": 15,
+    "alternatives": [
+      {
+        "part_number": "41471410300",
+        "query": "STIHL 4147 141 0300",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B0CP57NXL5",
+            "title": "MAXPOWER luchtfilter geschikt voor STIHL - Referentienummer 4147-141-0300 4.6 4.6 out of 5 stars (7) Price, product page €4.01 €4 . 01 Savings Buy 4, save 5% FREE delivery Wed 18 Nov on your first order shipped by Amazon"
+          },
+          {
+            "asin": "B0BHSNJ7B9",
+            "title": "C·T·S Air Filter For Stihl FS240 FS260 FS360 FS410 FS460 FR410 FR460 trimmer Replaces Stihl 4147-141-0300 Price, product page €4.25 €4 . 25 €10.96 delivery 27 Nov - 2 Dec Add to basket"
+          },
+          {
+            "asin": "B0BHSPH3RV",
+            "title": "C·T·S Air Filter 2pcs For Stihl FS240 FS260 FS360 FS410 FS460 FR410 FR460 trimmer Replaces Stihl 4147-141-0300 (Pack of 2) 4.5 4.5 out of 5 stars (10) Price, product page €4.78 €4 . 78 €11.20 delivery 27 Nov - 2 Dec Add "
+          }
+        ]
+      },
+      {
+        "part_number": "07811201110",
+        "query": "STIHL 0781 120 1110",
+        "listing_hits_with_exact_part_number": 1,
+        "top_hits": [
+          {
+            "asin": "B007TK0T00",
+            "title": "Stihl Genuine 0781 120 1110 multifunctional grease 225g 4.8 4.8 out of 5 stars (2.2K) Price, product page €24.85 €24 . 85 ( €110.44 €110.44/kg) FREE delivery Wed 18 Nov on your first order shipped by Amazon. Add to baske"
+          }
+        ]
+      },
+      {
+        "part_number": "11231201651",
+        "query": "STIHL 1123 120 1651",
+        "listing_hits_with_exact_part_number": 5,
+        "top_hits": [
+          {
+            "asin": "B0CLDXYXV6",
+            "title": "Luchtfilter Voor Stihl 023 025 MS230 MS250 kettingzaag Vervangt Stihl 1123-120-1651 2.0 2.0 out of 5 stars (1) Price, product page €4.78 €4 . 78 €11.20 delivery 27 Nov - 2 Dec Add to basket"
+          },
+          {
+            "asin": "B0CLDZHTB4",
+            "title": "Air Filter for Stihl 023 025 MS230 MS250 Chainsaw Replaces Stihl 1123-120-1651 (Pack of 2) 5.0 5.0 out of 5 stars (2) Price, product page €5.98 €5 . 98 €11.63 delivery 27 Nov - 2 Dec Add to basket"
+          },
+          {
+            "asin": "B0FRNJZ5WN",
+            "title": "Luchtfilterhuis 1123 120 1612 Geschikt for s-t-i-h-l kettingzaag 021 023 025 MS210 MS230 MS250 P835 P840, 1123 120 1650, 1123 120 1651 Price, product page €19.52 €19 . 52 €0.20 delivery 7 - 11 Dec Add to basket"
+          }
+        ]
+      },
+      {
+        "part_number": "11231900600",
+        "query": "STIHL 1123 190 0600",
+        "listing_hits_with_exact_part_number": 1,
+        "top_hits": [
+          {
+            "asin": "B0C72FKDP4",
+            "title": "Starter Recoil Spring fit-for Stihl Home Garden Equipment Rewind Springs (1123 190 0600) 4.0 4.0 out of 5 stars (4) Price, product page €16.71 €16 . 71 FREE delivery 2 - 7 Dec Only 5 left in stock. Add to basket"
+          }
+        ]
+      },
+      {
+        "part_number": "11230071061",
+        "query": "STIHL 1123 007 1061",
+        "listing_hits_with_exact_part_number": 2,
+        "top_hits": [
+          {
+            "asin": "B0GM2YRNQP",
+            "title": "YINETTECH Carburateur Reparatieset 1123-007-1061 Compatibel met STIHL 021 023 025 Compatibel met Walbro WT215 WT283 WT286 WT313 WT360 WT396 WT498 WT503 Price, product page €11.02 €11 . 02 Savings Buy 4, save 5% FREE deli"
+          },
+          {
+            "asin": "B0GM2SK9J4",
+            "title": "YINETTECH 2 sets carburateur reparatieset 1123-007-1061 Compatibel met STIHL 021 023 025 Compatibel met Walbro WT215 WT283 WT286 WT313 WT360 WT396 Price, product page €12.78 €12 . 78 Savings Buy 4, save 5% FREE delivery "
+          }
+        ]
+      },
+      {
+        "part_number": "11236402073",
+        "query": "STIHL 1123 640 2073",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B006WVO0QQ",
+            "title": "Stihl Chain Sprocket 3/8 Pitch 6 Teeth 1123 640 2073 4.6 4.6 out of 5 stars (292) Price, product page €25.91 €25 . 91 FREE delivery Mon 23 Nov Add to basket More buying choices €22.60(3 new offers)"
+          },
+          {
+            "asin": "B09MQT23WX",
+            "title": "ZAMDOE Sprocket Clutch Drum 3/8\" For Stihl MS170 017 018 021 023 MS180 MS210 MS230 MS250 Chainsaw, Replaces 1123 640 2003, 1123 640 2073, Needle Bearing Ring E-Clip Worm Gear 4.4 4.4 out of 5 stars (23) Price, product pa"
+          },
+          {
+            "asin": "B0DC6MC3JX",
+            "title": "For Stihl MS180, Stihl 017 018 021 023 MS170 MS180 MS210 MS230 MS250, 1123 640 2003, 1123 640 2073 4.9 4.9 out of 5 stars (5) Price, product page €14.97 €14 . 97 Savings Buy 4, save 5% FREE delivery Wed 18 Nov on your fi"
+          }
+        ]
+      },
+      {
+        "part_number": "11291900601",
+        "query": "STIHL 1129 190 0601",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B007TK13CI",
+            "title": "Stihl Original 1129 190 0601 rewind spring 3.0 3.0 out of 5 stars (1) Price, product page €14.00 €14 . 00 €12 delivery 20 - 23 Nov Only 3 left in stock. Add to basket"
+          },
+          {
+            "asin": "B0BWSWKKKD",
+            "title": "Recoil Starter Pawl Spring Kit, For Stihl Ms250 Ms230 025 023 Ms210 021 Chainsaw Parts, 1125 195 7200, 1129 190 0601 4.6 4.6 out of 5 stars (4) Price, product page €8.60 €8 . 60 Savings Buy 4, save 5% FREE delivery Thu 1"
+          },
+          {
+            "asin": "B0H12NBBR8",
+            "title": "VGOL Set van 2 kettingzaag terugspoelen starter retourveer vervangen OEM 1129 190 0601 11291900601 Compatibel met STIHL 018 MS170 034 Price, product page €10.99 €10 . 99 ( €5.50 €5.50/count) FREE delivery Thu 19 Nov on y"
+          }
+        ]
+      },
+      {
+        "part_number": "11303500500",
+        "query": "STIHL 1130 350 0500",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B0BRZ234SR",
+            "title": "Set of 2 black for STIHL chainsaws 017 018 MS170 MS180 Replacement number fuel cap, 1130 350 0500 Oil cap and fuel cap for Stihl chainsaws - Forestry spare parts 4.0 4.0 out of 5 stars (45) Price, product page €6.99 €6 ."
+          },
+          {
+            "asin": "B0G414Z5BQ",
+            "title": "Oil Cover for Stihl Chainsaw 2 Pack, Spare Part Compatible with Models MS170, MS180, 017, 018 - High Quality Oil Tank Cover, Spare Part Number 1130 350 0500 5.0 5.0 out of 5 stars (8) Price, product page €6.99 €6 . 99 Sa"
+          },
+          {
+            "asin": "B0GTR4678D",
+            "title": "Set of 4 black oil cap and fuel cap for STIHL chainsaws 017 018 MS170 MS180, replacement part number 1130 350 0500 - High quality spare parts for forestry and chainsaws. Price, product page €8.99 €8 . 99 ( €2.25 €2.25/kg"
+          }
+        ]
+      },
+      {
+        "part_number": "11300802100",
+        "query": "STIHL 1130 080 2100",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B07Y5BYQBP",
+            "title": "Cancanle Recoil cable starter for Stihl MS180 MS180C MS170 017 018 chainsaw part no. 1130 080 2100 4.3 4.3 out of 5 stars (118) Price, product page €16.00 €16 . 00 FREE delivery Wed 18 Nov on your first order shipped by "
+          },
+          {
+            "asin": "B0842VC7BH",
+            "title": "Pull starter for STIHL 017, 018, MS170, MS180, 1130 080 2100/1130 080 2103 4.4 4.4 out of 5 stars (3) Price, product page €9.99 €9 . 99 Savings Buy 2, save 10% €6 delivery 21 - 23 Nov Add to basket"
+          },
+          {
+            "asin": "B07CK3B5X3",
+            "title": "Rewind Recoil Pull Starter Replacement fit for Stihl 017 018 Ms170 Ms180 Chainsaw Replace 1130 080 2100 4.4 4.4 out of 5 stars (29) Price, product page €14.26 €14 . 26 €3.50 delivery 28 Nov - 3 Dec Add to basket"
+          }
+        ]
+      },
+      {
+        "part_number": "42410071700",
+        "query": "STIHL 4241 007 1700",
+        "listing_hits_with_exact_part_number": 1,
+        "top_hits": [
+          {
+            "asin": "B0FWJ6TFJH",
+            "title": "EMSea 2Set Carburetor Rebuild Kit 4241 007 1700 Compatible with Stihl BG56 BG66 BG86 FC56 FS70 Compatible with Zama S261 Series 5.0 5.0 out of 5 stars (2) Price, product page €11.92 €11 . 92 Savings Buy 4, save 5% FREE d"
+          }
+        ]
+      },
+      {
+        "part_number": "42411401000",
+        "query": "STIHL 4241 140 1000",
+        "listing_hits_with_exact_part_number": 5,
+        "top_hits": [
+          {
+            "asin": "B083P6BFKD",
+            "title": "Stihl 4241 140 1000 OEM Air Filter Cover Fits BG56 BG66 BG86 SH56 SH56 SH86 4.6 4.6 out of 5 stars (79) Price, product page €24.47 €24 . 47 FREE delivery Wed 18 Nov on your first order shipped by Amazon. Or fastest deliv"
+          },
+          {
+            "asin": "B0HMS7XYN1",
+            "title": "Luchtfilterset compatibel met Stihl BG56 BG66 BG86 SH56 SH86, vervanging voor 4241-140-1000 4241 140 2800, robuuste kunststof afdekking voor bladblazer, zwart Price, product page €18.09 €18 . 09 Savings Buy 2, save 9% €7"
+          },
+          {
+            "asin": "B0GS5RHSQD",
+            "title": "Air Filter Cover Leaf Blower Vacuum For Stihl BG56 BG66 BG86 SH56 SH86 4241 140 1000 Filter Cover 4241 140 2801 Filter Housing 4241 140 4404 Air Filter Price, product page €23.86 €23 . 86 Savings Buy 2, save 5% €14.98 de"
+          }
+        ]
+      },
+      {
+        "part_number": "42410071003",
+        "query": "STIHL 4241 007 1003",
+        "listing_hits_with_exact_part_number": 1,
+        "top_hits": [
+          {
+            "asin": "B007TK0C8O",
+            "title": "Stihl 4241 007 1003 gutter cleaning kit 4.1 4.1 out of 5 stars (155) See options No featured offers available €79.99 (1 new offer)"
+          }
+        ]
+      },
+      {
+        "part_number": "11270802103",
+        "query": "STIHL 1127 080 2103",
+        "listing_hits_with_exact_part_number": 6,
+        "top_hits": [
+          {
+            "asin": "B07MM11TCK",
+            "title": "Chainsaw starter for Stihl 029 039 MS290 MS390 MS310 1127 080 2103 chainsaw tractor MORE WAY packaging 4.1 4.1 out of 5 stars (20) Price, product page €16.84 €16 . 84 FREE delivery Fri 20 Nov on your first order shipped "
+          },
+          {
+            "asin": "B0DZ6F98GC",
+            "title": "Terugslag Rewind Pull Starter Montage 1127 080 2103 voor Stihl 029 039 MS290 MS310 MS390 Kettingzagen 5.0 5.0 out of 5 stars (1) Price, product page €14.18 €14 . 18 €3.53 delivery 4 - 9 Dec Add to basket"
+          },
+          {
+            "asin": "B09CYN9KRZ",
+            "title": "Wantin Recoil Starter Montage 1127 080 2103 voor Stihl 029 039 MS290 MS310 MS390 Kettingzagen 3.8 3.8 out of 5 stars (109) Price, product page €24.75 €24 . 75 €8.30 delivery 8 - 14 Dec Add to basket More buying choices €"
+          }
+        ]
+      },
+      {
+        "part_number": "42821900303",
+        "query": "STIHL 4282 190 0303",
+        "listing_hits_with_exact_part_number": 5,
+        "top_hits": [
+          {
+            "asin": "B07PVMRZYK",
+            "title": "Cancanle Rewind Recoil Starter for Stihl BR600 BR500 BR550 Petrol Blower Part No. 4282 190 0303 4.0 4.0 out of 5 stars (43) Price, product page €20.00 €20 . 00 €11.68 delivery 27 Nov - 2 Dec Add to basket"
+          },
+          {
+            "asin": "B0D5QS69QD",
+            "title": "ZAMDOE Recoil Starter Mount for Stihl Backpack Blower BR500 BR550 BR600 Pull Start, Replacement for Sten 150-811, for Rotary 13529, 4282 190 0300 4282 190 0300A 4282 190 0303 3.8 3.8 out of 5 stars (5) Price, product pag"
+          },
+          {
+            "asin": "B0F8HGHG4Z",
+            "title": "For Stihl, Starter Br600 Br550 Br500, 4282 190 0303 Steele Hair Dryer Garden Check Puller Price, product page €14.50 €14 . 50 €3 delivery 25 Nov - 1 Dec Add to basket"
+          }
+        ]
+      },
+      {
+        "part_number": "30030003313",
+        "query": "STIHL 3003 000 3313",
+        "listing_hits_with_exact_part_number": 1,
+        "top_hits": [
+          {
+            "asin": "B08W28JDWJ",
+            "title": "Stihl 3003 000 3313 Guide Rail Light 04, .325\", 1.3 mm, Rail Connection 3003 Ontworpen voor Light 04 Stihl kettingzagen, met een aandrijfschakeldikte van 1,3 mm is dit kettingzaagblad duurzaam 4.5 4.5 out of 5 stars (32)"
+          }
+        ]
+      }
+    ]
+  },
+  "activation_blockers": [
+    "Amazon Product Advertising API / Creators API credentials are not configured in this environment (only the associate tags AMAZON_ASSOCIATE_TAG_NL / _DE are present), so no authenticated marketplace offer, buybox or delivery data can be collected.",
+    "Repo policy (AGENTS.md directive 4 + TwoGateVerifier Gate 2) requires independent external corroboration linking the exact ASIN to the manufacturer and MPN. An Amazon product page, live or not, cannot supply that corroboration on its own.",
+    "De public Amazon product page is niet programmeerbaar op te halen: https://www.amazon.nl/dp/<asin> geeft HTTP 503 aan een gewone HTTP-client; alleen een echte browser render de pagina. Daarmee is bewijs per ASIN alleen handmatig/browser-matig te verzamelen."
+  ]
+}

@@ -187,6 +187,36 @@ export class ReviewEvidenceBatch {
         continue;
       }
 
+      // Phase 86: a Browse search detail often carries no seller-declared MPN.
+      // Such a listing stays TITLE_ONLY_NEEDS_EVIDENCE forever even though the
+      // getItem PRODUCT field group may contain the "Herstellernummer" aspect.
+      // When neither the stored detail nor the offer declares an MPN, ask
+      // getItem once for this listing and re-adjudicate with the richer detail.
+      const firstOffer = entry.parts.values().next().value?.offer || {};
+      const declaresMpn = (record) => Boolean(record && (record.mpn || record.manufacturer_part_number
+        || (Array.isArray(record.mpns) && record.mpns.length > 0)
+        || (Array.isArray(record.aspects) && record.aspects.some(aspect => /^(?:mpn|hersteller|manufacturer|part|artikel|referenz|teilenummer|onderdeelnummer)/i.test(String(aspect?.name || ''))))));
+      if (!unavailable
+        && !declaresMpn(detail)
+        && !declaresMpn(firstOffer)
+        && live
+        && this.apiClient
+        && typeof this.apiClient.getItem === 'function'
+        && stats.get_item_requests < maxGetItems) {
+        stats.get_item_requests++;
+        if (this.batchDelayMs > 0) await this.sleepFn(this.batchDelayMs);
+        const res = await this.apiClient.getItem(entry.item_id, { marketplace: entry.marketplace, fieldgroupsProduct: true });
+        if (res && res.success && res.item) {
+          stats.get_item_network_calls++;
+          detail = res.item;
+          evidenceSource = 'GET_ITEM_MPN_ENRICHMENT';
+          runCache.set(entry.item_id, detail);
+          if (this.evidenceRegistry) this.evidenceRegistry.record(entry.item_id, detail);
+        } else {
+          stats.get_item_failures = (stats.get_item_failures || 0) + 1;
+        }
+      }
+
       for (const part of relatedParts) {
         const { candidate, offer } = entry.parts.get(part);
         const classification = classificationFor(candidate);

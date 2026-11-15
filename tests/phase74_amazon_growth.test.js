@@ -71,7 +71,10 @@ describe('Phase 74: Verified Amazon Product Growth — Milestone 25+', () => {
     assert.strictEqual(regDoc.metrics.research_required, unprovenOffers.length, 'metrics.research_required must equal unproven offers count');
     assert.strictEqual(regDoc.metrics.verified, verifiedInactive.length, 'metrics.verified must equal verified inactive offers count');
     assert.strictEqual(regDoc.metrics.staged, 0, 'metrics.staged must be 0');
-    assert.strictEqual(regDoc.metrics.suspended, 0, 'metrics.suspended must be 0');
+    // Phase 86: 24 amazon.nl listings returned HTTP 404 and are suspended with evidence.
+    const suspendedOffers = (regDoc.offers || []).filter(o => o.status === 'SUSPENDED');
+    assert.strictEqual(regDoc.metrics.suspended, suspendedOffers.length, 'metrics.suspended must equal the suspended offers count');
+    assert.ok(suspendedOffers.every(o => o.suspension_reason === 'LISTING_NOT_AVAILABLE_404'));
   });
 
   it('2. Strict Verification of 6 New Genuine Maintenance Products', () => {
