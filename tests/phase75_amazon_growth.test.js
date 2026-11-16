@@ -133,7 +133,18 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'CCQMGDM', 'GartenExpress', 'JHYOZMD', 'RHFUUTCA', 'IWBR', 'GTWSQQ', 'YTdhfDGJ',
       'Wanotine', 'JLLOZMD', 'MDADEQ', 'DUANXY', 'YDXHERTA', 'MotorGuru', 'MLYABOZL',
       'YANKEBOWANG', 'Saharuse', 'KISSGPIPOL', 'ROEDE', 'EUPLI', 'Atunee', 'Spacnana',
-      'UNARAY', 'VGOL', 'AYZLGAA'
+      'UNARAY', 'VGOL', 'AYZLGAA',
+      // Phase 88 maximum growth brands: verified live single-unit listings carrying the exact STIHL number.
+      'ANUTE', 'ARRPO', 'AiBiCi', 'Arpisziv', 'BE-TOOL', 'BJHGWANGM', 'BTMSTK', 'Briny River',
+      'CGHUN', 'Carkio', 'Chchwing', 'Clynex', 'Covlove', 'DXParts', 'FABULETTA', 'FACAIIO',
+      'FSXRZGDY', 'FitBest', 'Gettimore', 'Grevy', 'HAZIEC', 'HWBZDPZQD', 'Hoppipola', 'Hoypeyfiy',
+      'HsEWBN', 'Hyceker', 'ITSHBHEN', 'Jadpes', 'KBREE', 'KXGOZMD', 'KZdTYGrw', 'Kutlu Deutschland GmbH',
+      'LAERNPU', 'LATOOR', 'Latuwa', 'LtRbMZ', 'MIKFESPO', 'MNXBDGE', 'MOMOALA', 'MQEIANG',
+      'MechPort', 'Mikatesi', 'MoSundi', 'ModLuvano', 'NINMORTH', 'PJFSQAD', 'PtaTt', 'PureBowlic',
+      'Qualoramall', 'ReachMall', 'Rimmean', 'RocwooD', 'SEIWEI', 'SG Store', 'SPOTIUA', 'SQOGJSGZ',
+      'SUUFOO', 'Silver Streak', 'Tbest', 'VEYFIY', 'VGVCTX', 'VersaGenius', 'WHDNTCV', 'WQNUGX',
+      'WUWMTUTCK', 'Whychstore', 'XARONF', 'XYgdhqpt', 'YANHAO', 'YGPWANGL', 'ZGLJSD', 'ZSHYTWE',
+      'eMagTech', 'yhoparts'
     ]);
 
     for (const offer of activeOffers) {

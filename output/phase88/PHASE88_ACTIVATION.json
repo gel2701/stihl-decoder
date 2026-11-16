@@ -1,0 +1,283 @@
+{
+  "phase": "88",
+  "generated_at": "2026-11-16T20:33:33.451Z",
+  "baseline": {
+    "active_total": 344,
+    "active_nl": 216,
+    "active_de": 128,
+    "unique_parts": 270
+  },
+  "after": {
+    "active_total": 698,
+    "active_nl": 416,
+    "active_de": 282,
+    "unique_parts": 514,
+    "new_offers_activated": 354,
+    "new_nl_activated": 200,
+    "new_de_activated": 154,
+    "new_unique_parts_added": 244,
+    "new_dealer_corroborated": 0,
+    "remaining_research_required": 19,
+    "remaining_verified_inactive": 3,
+    "suspended_historical_preserved": 34,
+    "baseline_active_preserved": 344
+  },
+  "research_volume": {
+    "catalog_parts_queued": 1125,
+    "search_queries_nl": 754,
+    "search_queries_de": 1119,
+    "live_dp_checks_nl": 1108,
+    "live_dp_checks_de": 1211,
+    "dealer_checks": 292,
+    "multi_sku_asin_collisions": 0
+  },
+  "classification_breakdown": {
+    "MANUFACTURER_AFTERMARKET": 327,
+    "GENUINE_STIHL": 27
+  },
+  "unique_new_brands": 135,
+  "gsc_coverage": {
+    "unique_covered_parts_before": 227,
+    "unique_covered_parts_after": 470,
+    "delta_unique_parts": 243,
+    "per_model_delta": [
+      {
+        "model": "044",
+        "gsc_impressions": 0,
+        "before": 36,
+        "after": 103,
+        "delta": 67
+      },
+      {
+        "model": "MS 440",
+        "gsc_impressions": 446,
+        "before": 34,
+        "after": 98,
+        "delta": 64
+      },
+      {
+        "model": "046",
+        "gsc_impressions": 0,
+        "before": 31,
+        "after": 95,
+        "delta": 64
+      },
+      {
+        "model": "MS 460 / 046 Magnum",
+        "gsc_impressions": 0,
+        "before": 28,
+        "after": 92,
+        "delta": 64
+      },
+      {
+        "model": "MS 461",
+        "gsc_impressions": 166,
+        "before": 27,
+        "after": 86,
+        "delta": 59
+      },
+      {
+        "model": "MS 390",
+        "gsc_impressions": 125,
+        "before": 19,
+        "after": 78,
+        "delta": 59
+      },
+      {
+        "model": "MS 310",
+        "gsc_impressions": 0,
+        "before": 23,
+        "after": 82,
+        "delta": 59
+      },
+      {
+        "model": "MS 361",
+        "gsc_impressions": 101,
+        "before": 33,
+        "after": 79,
+        "delta": 46
+      },
+      {
+        "model": "MS 362",
+        "gsc_impressions": 0,
+        "before": 21,
+        "after": 63,
+        "delta": 42
+      },
+      {
+        "model": "MS 230",
+        "gsc_impressions": 0,
+        "before": 46,
+        "after": 85,
+        "delta": 39
+      },
+      {
+        "model": "MS 250",
+        "gsc_impressions": 39,
+        "before": 47,
+        "after": 84,
+        "delta": 37
+      },
+      {
+        "model": "MS 180",
+        "gsc_impressions": 0,
+        "before": 38,
+        "after": 75,
+        "delta": 37
+      },
+      {
+        "model": "MS 441",
+        "gsc_impressions": 0,
+        "before": 20,
+        "after": 57,
+        "delta": 37
+      },
+      {
+        "model": "MS 170",
+        "gsc_impressions": 201,
+        "before": 37,
+        "after": 72,
+        "delta": 35
+      },
+      {
+        "model": "MS 260",
+        "gsc_impressions": 0,
+        "before": 37,
+        "after": 68,
+        "delta": 31
+      },
+      {
+        "model": "FS 80",
+        "gsc_impressions": 0,
+        "before": 25,
+        "after": 52,
+        "delta": 27
+      },
+      {
+        "model": "FS 85",
+        "gsc_impressions": 0,
+        "before": 25,
+        "after": 50,
+        "delta": 25
+      },
+      {
+        "model": "BG 86",
+        "gsc_impressions": 177,
+        "before": 9,
+        "after": 31,
+        "delta": 22
+      },
+      {
+        "model": "MS 661",
+        "gsc_impressions": 0,
+        "before": 23,
+        "after": 45,
+        "delta": 22
+      },
+      {
+        "model": "FS 100",
+        "gsc_impressions": 0,
+        "before": 12,
+        "after": 33,
+        "delta": 21
+      },
+      {
+        "model": "FS 55",
+        "gsc_impressions": 0,
+        "before": 26,
+        "after": 46,
+        "delta": 20
+      },
+      {
+        "model": "FS 350",
+        "gsc_impressions": 0,
+        "before": 16,
+        "after": 32,
+        "delta": 16
+      },
+      {
+        "model": "TS 420",
+        "gsc_impressions": 0,
+        "before": 8,
+        "after": 23,
+        "delta": 15
+      },
+      {
+        "model": "BR 600",
+        "gsc_impressions": 113,
+        "before": 6,
+        "after": 18,
+        "delta": 12
+      },
+      {
+        "model": "HS 45",
+        "gsc_impressions": 52,
+        "before": 12,
+        "after": 24,
+        "delta": 12
+      }
+    ]
+  },
+  "batches": [
+    {
+      "batch_id": "batch_0",
+      "needs_evidence_count": 2,
+      "rejected_count": 214,
+      "raw_activated_count": 0
+    },
+    {
+      "batch_id": "batch_1",
+      "needs_evidence_count": 4,
+      "rejected_count": 201,
+      "raw_activated_count": 0
+    },
+    {
+      "batch_id": "batch_2",
+      "needs_evidence_count": 7,
+      "rejected_count": 199,
+      "raw_activated_count": 0
+    },
+    {
+      "batch_id": "batch_3",
+      "needs_evidence_count": 5,
+      "rejected_count": 234,
+      "raw_activated_count": 0
+    },
+    {
+      "batch_id": "batch_4",
+      "needs_evidence_count": 2,
+      "rejected_count": 344,
+      "raw_activated_count": 2
+    },
+    {
+      "batch_id": "batch_5",
+      "needs_evidence_count": 1,
+      "rejected_count": 342,
+      "raw_activated_count": 1
+    },
+    {
+      "batch_id": "batch_6",
+      "needs_evidence_count": 1,
+      "rejected_count": 329,
+      "raw_activated_count": 54
+    },
+    {
+      "batch_id": "batch_7",
+      "needs_evidence_count": 1,
+      "rejected_count": 352,
+      "raw_activated_count": 23
+    },
+    {
+      "batch_id": "batch_8",
+      "needs_evidence_count": 5,
+      "rejected_count": 348,
+      "raw_activated_count": 30
+    },
+    {
+      "batch_id": "batch_9",
+      "needs_evidence_count": 1,
+      "rejected_count": 371,
+      "raw_activated_count": 11
+    }
+  ]
+}

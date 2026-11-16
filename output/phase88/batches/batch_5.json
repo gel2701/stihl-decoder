@@ -1,0 +1,746 @@
+{
+  "batch_id": "batch_5",
+  "generated_at": "2026-11-16T20:04:37.475Z",
+  "before": {
+    "active_total": 731,
+    "active_nl": 426,
+    "active_de": 305,
+    "unique_parts": 534
+  },
+  "after": {
+    "active_total": 732,
+    "active_nl": 426,
+    "active_de": 306,
+    "unique_parts": 534,
+    "delta_total": 1,
+    "delta_nl": 0,
+    "delta_de": 1,
+    "delta_unique_parts": 0
+  },
+  "activated_count": 1,
+  "needs_evidence_count": 1,
+  "rejected_count": 342,
+  "superseded_research_count": 0,
+  "activated": [
+    {
+      "part_number": "11237911701",
+      "asin": "B0CXHYSW7J",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false
+    }
+  ],
+  "needs_evidence": [
+    {
+      "part_number": "41341290900",
+      "mkt": "amazon.nl",
+      "asin": "B0CFM4T964",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX"
+    }
+  ],
+  "rejected": [
+    {
+      "part_number": "11280801814",
+      "mkt": "amazon.nl",
+      "asin": "B0HR9RY86Y",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11280801814",
+      "mkt": "amazon.nl",
+      "asin": "B07FVRT879",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "94636500805",
+      "mkt": "amazon.nl",
+      "asin": "B0B84ZJ4VZ",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "94636500805",
+      "mkt": "amazon.nl",
+      "asin": "B00BTMZRTM",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "94636500805",
+      "mkt": "amazon.de",
+      "asin": "B0BYK4386H",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11216419400",
+      "mkt": "amazon.nl",
+      "asin": "B09TK594T4",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11216419400",
+      "mkt": "amazon.nl",
+      "asin": "B09Z5VFW99",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11216419400",
+      "mkt": "amazon.de",
+      "asin": "B0DKSJJV9B",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11216419400",
+      "mkt": "amazon.de",
+      "asin": "B0G3J89B5X",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "00001903402",
+      "mkt": "amazon.de",
+      "asin": "B0H44TZJB2",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "00001903402",
+      "mkt": "amazon.de",
+      "asin": "B0FG7PRWZF",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11230071008",
+      "mkt": "amazon.de",
+      "asin": "B08TRN9DM6",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11231625800",
+      "mkt": "amazon.nl",
+      "asin": "B0BY353KVR",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231625800",
+      "mkt": "amazon.nl",
+      "asin": "B0GT1D52BC",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231625800",
+      "mkt": "amazon.de",
+      "asin": "B0C93ZQDSB",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231625800",
+      "mkt": "amazon.de",
+      "asin": "B0GT1D52BC",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231950401",
+      "mkt": "amazon.nl",
+      "asin": "B07G9T5MRT",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231950401",
+      "mkt": "amazon.nl",
+      "asin": "B07FVRT879",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231950401",
+      "mkt": "amazon.de",
+      "asin": "B0GM2WTXSH",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11231950401",
+      "mkt": "amazon.de",
+      "asin": "B0068M5X1K",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11236482202",
+      "mkt": "amazon.nl",
+      "asin": "B07YF44FMC",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11236482202",
+      "mkt": "amazon.nl",
+      "asin": "B084C4FRD8",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42383539200",
+      "mkt": "amazon.nl",
+      "asin": "B0BWSX5SC7",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42383539200",
+      "mkt": "amazon.nl",
+      "asin": "B00C3J24YG",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42383539200",
+      "mkt": "amazon.de",
+      "asin": "B0HRV5VYPH",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42383539200",
+      "mkt": "amazon.de",
+      "asin": "B0HRT7WKNN",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "00004001306",
+      "mkt": "amazon.de",
+      "asin": "B098BF7NQ6",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "00004001306",
+      "mkt": "amazon.de",
+      "asin": "B0BWSVLRW4",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11230801815",
+      "mkt": "amazon.nl",
+      "asin": "B07G9T5MRT",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11230801815",
+      "mkt": "amazon.nl",
+      "asin": "B07FVRT879",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11230801815",
+      "mkt": "amazon.de",
+      "asin": "B0CR6L8KLM",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400201204",
+      "mkt": "amazon.de",
+      "asin": "B0HLG2XV9Z",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400201204",
+      "mkt": "amazon.de",
+      "asin": "B0HPDXN9CR",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400201206",
+      "mkt": "amazon.de",
+      "asin": "B0CP5HJSHZ",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400201206",
+      "mkt": "amazon.de",
+      "asin": "B0F5MPFZ6K",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400302004",
+      "mkt": "amazon.nl",
+      "asin": "B0FBFZ5TYG",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "41400302004",
+      "mkt": "amazon.nl",
+      "asin": "B07VRS6NVK",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "41400302004",
+      "mkt": "amazon.de",
+      "asin": "B0BWSW3V47",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400302009",
+      "mkt": "amazon.nl",
+      "asin": "B0FBFZ5TYG",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "41400302009",
+      "mkt": "amazon.nl",
+      "asin": "B0DBQSQMGV",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "41400302009",
+      "mkt": "amazon.de",
+      "asin": "B07VRS6NVK",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "41400302009",
+      "mkt": "amazon.de",
+      "asin": "B00KO1QDHO",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42280071051",
+      "mkt": "amazon.nl",
+      "asin": "B007TK06DA",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42280071051",
+      "mkt": "amazon.de",
+      "asin": "B007TK0XEW",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42280071051",
+      "mkt": "amazon.de",
+      "asin": "B007TK0XGK",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42410343000",
+      "mkt": "amazon.de",
+      "asin": "B00TS1F6LK",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42410343000",
+      "mkt": "amazon.de",
+      "asin": "B00LAHLZTC",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "30036559200",
+      "mkt": "amazon.nl",
+      "asin": "B00C3J24YG",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "30036559200",
+      "mkt": "amazon.nl",
+      "asin": "B0FPMG2NSX",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "30036559200",
+      "mkt": "amazon.de",
+      "asin": "B0CD1G27L5",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "30036559200",
+      "mkt": "amazon.de",
+      "asin": "B07JN1V3RD",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11281291100",
+      "mkt": "amazon.de",
+      "asin": "B0GTBY3PZ1",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11281291100",
+      "mkt": "amazon.de",
+      "asin": "B0G3J89B5X",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11104329200",
+      "mkt": "amazon.nl",
+      "asin": "B0DK54FNNB",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11104329200",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "11104329200",
+      "mkt": "amazon.de",
+      "asin": "B00KO1QDHO",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42261207100",
+      "mkt": "amazon.nl",
+      "asin": "B083QRXC9V",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42261207100",
+      "mkt": "amazon.nl",
+      "asin": "B0D4QP7S39",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42261207100",
+      "mkt": "amazon.de",
+      "asin": "B0D22CLS1S",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42261207100",
+      "mkt": "amazon.de",
+      "asin": "B005HDRUHQ",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42270071060",
+      "mkt": "amazon.nl",
+      "asin": "B07F45WCR5",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42270071060",
+      "mkt": "amazon.nl",
+      "asin": "B007TK06DA",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42270071060",
+      "mkt": "amazon.de",
+      "asin": "B0943TT912",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42270071060",
+      "mkt": "amazon.de",
+      "asin": "B007TK0XGK",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "00006600800",
+      "mkt": "amazon.de",
+      "asin": "B0F9YG2YD8",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11236642205",
+      "mkt": "amazon.de",
+      "asin": "B0DZHLHND2",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11236642205",
+      "mkt": "amazon.de",
+      "asin": "B0HPTFQV1C",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "96400031355",
+      "mkt": "amazon.nl",
+      "asin": "B0DVZMWH5H",
+      "status": "REJECTED",
+      "reason": "MULTIPACK_TITLE (Pack van 9)"
+    },
+    {
+      "part_number": "96400031355",
+      "mkt": "amazon.de",
+      "asin": "B0DVZLB94N",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "96400031355",
+      "mkt": "amazon.de",
+      "asin": "B0DXFXSFN1",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11351201600",
+      "mkt": "amazon.de",
+      "asin": "B09ZTZXBCG",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11351201600",
+      "mkt": "amazon.de",
+      "asin": "B07C1DGMD9",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11351201601",
+      "mkt": "amazon.de",
+      "asin": "B09ZTZXBCG",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11351201601",
+      "mkt": "amazon.de",
+      "asin": "B0GRH3XC7T",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270201213",
+      "mkt": "amazon.de",
+      "asin": "B09C87KDNT",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270201213",
+      "mkt": "amazon.de",
+      "asin": "B0C8H8BJ6L",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270201216",
+      "mkt": "amazon.de",
+      "asin": "B0DK4JGXSD",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270201216",
+      "mkt": "amazon.de",
+      "asin": "B0C8H8BJ6L",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270302005",
+      "mkt": "amazon.nl",
+      "asin": "B0FVXYZGHN",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (expected piston)"
+    },
+    {
+      "part_number": "11270302005",
+      "mkt": "amazon.nl",
+      "asin": "B0CGJQZDT2",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (expected piston)"
+    },
+    {
+      "part_number": "11270302005",
+      "mkt": "amazon.de",
+      "asin": "B0DS1TXWXV",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270302005",
+      "mkt": "amazon.de",
+      "asin": "B0CV19VZNP",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11270343007",
+      "mkt": "amazon.de",
+      "asin": "B079D8LYN6",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820071700",
+      "mkt": "amazon.de",
+      "asin": "B0G6T343X6",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820071700",
+      "mkt": "amazon.de",
+      "asin": "B0FS1LRFQJ",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201200",
+      "mkt": "amazon.nl",
+      "asin": "B0G85RB9PG",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201200",
+      "mkt": "amazon.nl",
+      "asin": "B0G85XJ6KB",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201200",
+      "mkt": "amazon.de",
+      "asin": "B0FN7T1H5Z",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201200",
+      "mkt": "amazon.de",
+      "asin": "B0H2234MFY",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201203",
+      "mkt": "amazon.nl",
+      "asin": "B0G85RB9PG",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201203",
+      "mkt": "amazon.nl",
+      "asin": "B0G85XJ6KB",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201203",
+      "mkt": "amazon.de",
+      "asin": "B0H227BR4C",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820201203",
+      "mkt": "amazon.de",
+      "asin": "B0FN7RMHL3",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820300404",
+      "mkt": "amazon.nl",
+      "asin": "B0H3ZW37T3",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820300404",
+      "mkt": "amazon.de",
+      "asin": "B0H3ZW37T3",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820300404",
+      "mkt": "amazon.de",
+      "asin": "B0H6H92NYH",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "42820300411",
+      "mkt": "amazon.nl",
+      "asin": "B0F28GHZ1R",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42820300411",
+      "mkt": "amazon.nl",
+      "asin": "B0CJXWX3DX",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42820300411",
+      "mkt": "amazon.de",
+      "asin": "B073YXYQWZ",
+      "status": "REJECTED",
+      "reason": "MPN_MISSING_ON_DP"
+    },
+    {
+      "part_number": "42820300411",
+      "mkt": "amazon.de",
+      "asin": "B00KO1QZBS",
+      "status": "REJECTED",
+      "reason": "NOT_LISTED_HTTP_200"
+    }
+  ],
+  "superseded_research": []
+}
