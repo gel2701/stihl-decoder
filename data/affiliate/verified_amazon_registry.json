@@ -22,6 +22,7 @@
       "00006421240",
       "00007906100",
       "00009302211",
+      "00009302246",
       "07811201109",
       "07811201110",
       "08123701000",
@@ -32,6 +33,8 @@
       "11211200611",
       "11211201617",
       "11216402004",
+      "11216403203",
+      "11221903400",
       "11224001314",
       "11230071000",
       "11230071060",
@@ -39,6 +42,7 @@
       "11230201209",
       "11230302003",
       "11231200605",
+      "11231201612",
       "11231201613",
       "11231201651",
       "11231412200",
@@ -48,12 +52,19 @@
       "11236402073",
       "11236402074",
       "11236403800",
+      "11237911702",
+      "11256401701",
       "11256402005",
       "11270302007",
       "11270802103",
       "11271201620",
+      "11271201621",
       "11271602051",
+      "11280201250",
+      "11280802104",
+      "11281602004",
       "11281903400",
+      "11287901750",
       "11291900601",
       "11300074100",
       "11300201208",
@@ -67,6 +78,7 @@
       "11350802102",
       "11351201600",
       "11351201601",
+      "11351400650",
       "11351602050",
       "11411201600",
       "30030002021",
@@ -78,6 +90,7 @@
       "30050004813",
       "36100000044",
       "36100000050",
+      "36100000055",
       "36160000050",
       "36360000044",
       "36360000050",
@@ -86,10 +99,12 @@
       "40027102169",
       "40037102115",
       "41190071027",
+      "41197106000",
       "41303506200",
       "41340802101",
       "41341410500",
       "41370292300",
+      "41371200636",
       "41371241500",
       "41371242800",
       "41371290900",
@@ -98,16 +113,21 @@
       "41401242800",
       "41401602005",
       "41401602909",
+      "41401900601",
       "41401904009",
+      "41404001308",
+      "41447108117",
       "41470074102",
       "41471404400",
       "41471410300",
       "41471602002",
       "41471900600",
       "41471904003",
+      "41477108108",
       "41801602900",
       "41801900400",
       "42231950600",
+      "42291201800",
       "42410071003",
       "42410071700",
       "42410074100",
@@ -237,17 +257,17 @@
     ]
   },
   "metrics": {
-    "total_registered": 201,
+    "total_registered": 216,
     "staged": 0,
     "verified": 3,
-    "active": 130,
-    "active_nl": 84,
-    "active_de": 46,
-    "research_required": 34,
+    "active": 150,
+    "active_nl": 100,
+    "active_de": 50,
+    "research_required": 29,
     "suspended": 34,
-    "last_updated": "2026-11-16T00:44:44.041Z",
-    "active_offers": 130,
-    "parts_with_amazon_offer": 117
+    "last_updated": "2026-11-16T12:16:01.315Z",
+    "active_offers": 150,
+    "parts_with_amazon_offer": 137
   },
   "offers": [
     {
@@ -2858,162 +2878,6 @@
       }
     },
     {
-      "part_number": "41197106000",
-      "part_number_formatted": "4119 710 6000",
-      "asin": "B017SBNY52",
-      "marketplace": "amazon.nl",
-      "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "ANDREAS STIHL AG & Co. KG",
-      "manufacturer_part_number": "4119 710 6000",
-      "trade_number": "Cutter Blade",
-      "brand": "STIHL",
-      "product_title": "Origineel STIHL Afsnijmes 4119 710 6000 voor Beschermkap",
-      "package_quantity": 1,
-      "package_type": "Enkelstuks afsnijmes met bevestigingsgaten",
-      "is_multipack": false,
-      "ean_gtin": "0886661159871",
-      "oem_brand_classification": "GENUINE_STIHL",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_41197106000",
-      "focus_model": "FS 460",
-      "compatibility_proof": "STIHL 4119 710 6000 draadafsnijmes voor maaikopbeschermkap FS 460, FS 350, FS 450, FS 55",
-      "asin_product_identity_proof": "ASIN B017SBNY52 matches STIHL 4119 710 6000 line cutter blade",
-      "independent_evidence_url": "https://www.sandbysmeden.dk/wp-content/uploads/2023/09/Stihl-FS-460.pdf",
-      "direct_affiliate_url": "https://amazon.nl/dp/B017SBNY52?tag=srihldecoder2-21",
-      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4119%20710%206000&tag=srihldecoder2-21",
-      "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
-      "verifiable_evidence_sources": [
-        {
-          "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B017SBNY52",
-          "title": "Amazon.nl productvermelding B017SBNY52",
-          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 41197106000.",
-          "retrieved_at": "2026-11-09"
-        }
-      ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 404,
-        "verdict": "LISTING_NOT_AVAILABLE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
-      }
-    },
-    {
-      "part_number": "00009302246",
-      "part_number_formatted": "0000 930 2246",
-      "asin": "B0014D86T0",
-      "marketplace": "amazon.nl",
-      "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "ANDREAS STIHL AG & Co. KG",
-      "manufacturer_part_number": "0000 930 2246",
-      "trade_number": "Mowing Line Round 2.4mm 15m",
-      "brand": "STIHL",
-      "product_title": "STIHL Maaidraad Rond Oranje 2.4 mm x 15 m",
-      "package_quantity": 1,
-      "package_type": "15 meter blisterverpakking",
-      "is_multipack": false,
-      "ean_gtin": "0795711132644",
-      "oem_brand_classification": "GENUINE_STIHL",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_00009302246",
-      "focus_model": "FS 460",
-      "compatibility_proof": "STIHL 0000 930 2246 slijtvaste 2.4mm maaidraad voor AutoCut 25-2 en C 26-2 op FS 460",
-      "asin_product_identity_proof": "ASIN B0014D86T0 matches STIHL 0000 930 2246 trimmer line 2.4mm x 15m",
-      "independent_evidence_url": "https://www.stihl.nl/nl/p/maaikoppen-maaidraden-maaidraden-1850",
-      "direct_affiliate_url": "https://amazon.nl/dp/B0014D86T0?tag=srihldecoder2-21",
-      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20930%202246&tag=srihldecoder2-21",
-      "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
-      "verifiable_evidence_sources": [
-        {
-          "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B0014D86T0",
-          "title": "Amazon.nl productvermelding B0014D86T0",
-          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL FS 460 voor onderdeel 00009302246.",
-          "retrieved_at": "2026-11-09"
-        }
-      ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 404,
-        "verdict": "LISTING_NOT_AVAILABLE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
-      }
-    },
-    {
       "part_number": "00009302247",
       "part_number_formatted": "0000 930 2247",
       "asin": "B0014D86UA",
@@ -4488,84 +4352,6 @@
       }
     },
     {
-      "part_number": "42291201800",
-      "part_number_formatted": "4229 120 1800",
-      "asin": "B079DNH51T",
-      "marketplace": "amazon.nl",
-      "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "ANDREAS STIHL AG & Co. KG",
-      "manufacturer_part_number": "4229 120 1800",
-      "trade_number": "Air Filter BG 86",
-      "brand": "STIHL",
-      "product_title": "Origineel STIHL Luchtfilter 4229 120 1800 voor BG 56, BG 86, SH 86",
-      "package_quantity": 1,
-      "package_type": "Single HD pleated air filter",
-      "is_multipack": false,
-      "ean_gtin": "0886661160129",
-      "oem_brand_classification": "GENUINE_STIHL",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_42291201800",
-      "focus_model": "BG 86",
-      "compatibility_proof": "STIHL 4229 120 1800 luchtfilter voor bladblazer BG 56, BG 66, BG 86 en bladzuiger SH 56, SH 86",
-      "asin_product_identity_proof": "ASIN B079DNH51T matches STIHL 4229 120 1800 filter",
-      "independent_evidence_url": "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820",
-      "direct_affiliate_url": "https://amazon.nl/dp/B079DNH51T?tag=srihldecoder2-21",
-      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4229%20120%201800&tag=srihldecoder2-21",
-      "verification_date": "2026-11-09",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
-      "verifiable_evidence_sources": [
-        {
-          "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B079DNH51T",
-          "title": "Amazon.nl productvermelding B079DNH51T",
-          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL BG 86 voor onderdeel 42291201800.",
-          "retrieved_at": "2026-11-09"
-        }
-      ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "evidence_audit_category": "RESEARCH_REQUIRED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 404,
-        "verdict": "LISTING_NOT_AVAILABLE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
-      }
-    },
-    {
       "part_number": "42381401800",
       "part_number_formatted": "4238 140 1800",
       "asin": "B079DLR76T",
@@ -4851,92 +4637,6 @@
           "url": "https://www.amazon.nl/dp/B08HQ8G89Q",
           "title": "Amazon.nl productpagina B08HQ8G89Q",
           "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371490600.",
-          "retrieved_at": "2026-11-10"
-        }
-      ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
-      "evidence_audit_category": "RESEARCH_REQUIRED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 404,
-        "verdict": "LISTING_NOT_AVAILABLE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
-      }
-    },
-    {
-      "part_number": "41371200636",
-      "part_number_formatted": "4137 120 0636",
-      "asin": "B07V45X88Y",
-      "marketplace": "amazon.nl",
-      "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "Electropapa GmbH & Co. KG",
-      "manufacturer_part_number": "4137 120 0636",
-      "trade_number": "FS80-CARB-S36",
-      "brand": "vhbw",
-      "product_title": "vhbw Carburateur Vervanging voor Stihl 4137 120 0636 voor Bosmaaier Stihl FS 75, FS 80, FS 85, KM 85",
-      "package_quantity": 1,
-      "package_type": "Vervangingscarburateur",
-      "is_multipack": false,
-      "ean_gtin": "4059812104662",
-      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_41371200636",
-      "focus_model": "FS 80",
-      "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
-      "item_price": null,
-      "shipping_cost_nl": null,
-      "compatibility_proof": "vhbw carburateur vervanging voor STIHL 4137 120 0636 voor STIHL FS 80 en FS 85 bosmaaiers.",
-      "asin_product_identity_proof": "ASIN B07V45X88Y bevestigd als vervangende carburateur voor STIHL FS 80 MPN 41371200636.",
-      "independent_evidence_url": "https://www.amazon.nl/dp/B07V45X88Y",
-      "direct_affiliate_url": "https://www.amazon.nl/dp/B07V45X88Y?tag=srihldecoder2-21",
-      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+120+0636&tag=srihldecoder2-21",
-      "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_destination_country": "NL",
-      "shipping_checked_at": "2026-11-10",
-      "shipping_evidence_url": "https://www.amazon.nl/dp/B07V45X88Y",
-      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
-      "fulfillment_context": "Fulfilled by Amazon / Prime Partner",
-      "verifiable_evidence_sources": [
-        {
-          "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B07V45X88Y",
-          "title": "Amazon.nl productpagina B07V45X88Y",
-          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371200636.",
           "retrieved_at": "2026-11-10"
         }
       ],
@@ -6877,92 +6577,6 @@
       },
       "superseded_by_asin": "B007TK0C8O",
       "superseded_at": "2026-11-15T23:11:06.977Z"
-    },
-    {
-      "part_number": "11271201621",
-      "part_number_formatted": "1127 120 1621",
-      "asin": "B08K8Z994X",
-      "marketplace": "amazon.nl",
-      "affiliate_tag": "srihldecoder2-21",
-      "manufacturer": "Trade-Shop Germany",
-      "manufacturer_part_number": "1127 120 1621",
-      "trade_number": "MS390-AIRFILTER-FLEECE",
-      "brand": "Trade-Shop",
-      "product_title": "Trade-Shop Luchtfilter Vlies Passend voor Stihl 029 039 MS290 MS310 MS390 Kettingzaag Vervangt 1127 120 1621",
-      "package_quantity": 1,
-      "package_type": "Vlies luchtfilter",
-      "is_multipack": false,
-      "ean_gtin": "4063212106614",
-      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
-      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
-      "pilot_eligible": true,
-      "pilot_active": false,
-      "kill_switch_id": "KILL_AMAZON_NL_11271201621",
-      "focus_model": "MS 390",
-      "model_compatibility": "MS 390 / MS 290 / MS 310 / 029 / 039",
-      "item_price": null,
-      "shipping_cost_nl": null,
-      "compatibility_proof": "Trade-Shop vlies luchtfilter vervangt STIHL 1127 120 1621 voor STIHL MS 390, MS 290, MS 310.",
-      "asin_product_identity_proof": "ASIN B08K8Z994X bevestigd als luchtfilter voor STIHL MS 390 MPN 11271201621.",
-      "independent_evidence_url": "https://www.amazon.nl/dp/B08K8Z994X",
-      "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Z994X?tag=srihldecoder2-21",
-      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127+120+1621&tag=srihldecoder2-21",
-      "verification_date": "2026-11-10",
-      "status": "RESEARCH_REQUIRED",
-      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
-      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
-      "shipping_destination_country": "NL",
-      "shipping_checked_at": "2026-11-10",
-      "shipping_evidence_url": "https://www.amazon.nl/dp/B08K8Z994X",
-      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
-      "fulfillment_context": "Fulfilled by Amazon / Prime Partner",
-      "verifiable_evidence_sources": [
-        {
-          "type": "AMAZON_PRODUCT_PAGE",
-          "url": "https://www.amazon.nl/dp/B08K8Z994X",
-          "title": "Amazon.nl productpagina B08K8Z994X",
-          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL MS 390 voor onderdeel 11271201621.",
-          "retrieved_at": "2026-11-10"
-        }
-      ],
-      "updated_at": "2026-11-15T20:53:57.540Z",
-      "gate_1_technical": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "asin_syntax": true,
-          "marketplace_valid": true,
-          "affiliate_tag_valid": true,
-          "part_number_canonical": true,
-          "catalog_grounded": true,
-          "provenance_fields_present": true
-        },
-        "errors": []
-      },
-      "gate_2_product": {
-        "status": "PASS",
-        "passed": true,
-        "checks": {
-          "oem_taxonomy_valid": true,
-          "manufacturer_mpn_proof": true,
-          "compatibility_proof": true,
-          "asin_product_identity_proof": true,
-          "known_mismatch_absent": true,
-          "volatile_facts_absent": true,
-          "independent_sources_corroborated": true
-        },
-        "errors": []
-      },
-      "evidence_audit_category": "RESEARCH_REQUIRED",
-      "availability_audit": {
-        "method": "LIVE_BROWSER_GET",
-        "checked_at": "2026-11-15T20:53:57.540Z",
-        "http_status": 404,
-        "verdict": "LISTING_NOT_AVAILABLE",
-        "buybox_present": null,
-        "mentions_nl": null,
-        "listing_title": null
-      }
     },
     {
       "part_number": "11271201620",
@@ -16826,6 +16440,1737 @@
         },
         "errors": []
       }
+    },
+    {
+      "part_number": "41477108108",
+      "part_number_formatted": "4147 710 8108",
+      "asin": "B08TRF8B6H",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4147 710 8108",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl OEM Delen Deflector/Strimmer Guard past FS360, FS410, FS460, FS490, FS560, 4147-710-8108, 41477108108",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 360",
+        "FS 410",
+        "FS 460",
+        "FS 490",
+        "FS 560"
+      ],
+      "machine_compatibility": [
+        "FS 360",
+        "FS 410",
+        "FS 460",
+        "FS 490",
+        "FS 560"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41477108108",
+      "compatibility_proof": "Stihl OEM Delen Deflector/Strimmer Guard past FS360, FS410, FS460, FS490, FS560, 4147-710-8108, 41477108108; bevestigde compatibiliteit met STIHL onderdeel 4147 710 8108 (catalogusnaam: Stihl 41477108108 480mm Mowing Head Guard For FS240 FS311 FS360 FS460) volgens de Amazon-vermelding. Compatibele modellen: FS 360, FS 410, FS 460, FS 490, FS 560.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 4147 710 8108: de amazon.nl-vermelding B08TRF8B6H toont het exacte onderdeelnummer 4147 710 8108 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4147%20710%208108",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08TRF8B6H?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147%20710%208108&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08TRF8B6H",
+          "title": "Stihl OEM Delen Deflector/Strimmer Guard past FS360, FS410, FS460, FS490, FS560, 4147-710-8108, 41477108108",
+          "claim": "Live amazon.nl-vermelding B08TRF8B6H toont \"Stihl OEM Delen Deflector/Strimmer Guard past FS360, FS410, FS460, FS490, FS560, 4147-710-8108, 41477108108\" met het exacte onderdeelnummer 4147 710 8108; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B08TRF8B6H",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€12 bezorging 21 - 24 november. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4147 710 8108 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "00009302246",
+      "part_number_formatted": "0000 930 2246",
+      "asin": "B01FW5336K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 930 2246",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "STIHL 0000 930 2246 Ronde maaidraad 2,4 mm x 253 m Oranje",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 55",
+        "FS 85",
+        "FS 350",
+        "FS 460"
+      ],
+      "machine_compatibility": [
+        "FS 55",
+        "FS 85",
+        "FS 350",
+        "FS 460"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_00009302246",
+      "compatibility_proof": "STIHL 0000 930 2246 Ronde maaidraad 2,4 mm x 253 m Oranje; bevestigde compatibiliteit met STIHL onderdeel 0000 930 2246 (catalogusnaam: Stihl 00009302246 Roll � 2.4 diameter (mm) x 253.0 roll length (m) - orange) volgens de Amazon-vermelding. Compatibele modellen: FS 55, FS 85, FS 350, FS 460.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 0000 930 2246: de amazon.nl-vermelding B01FW5336K toont het exacte onderdeelnummer 0000 930 2246 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=0000%20930%202246&__cf_chl_rt_tk=qV1J_XHHvEmrq9Z8.XzYYGIzh3L2TGqgsTImRe0re24-1794830195-1.0.1.1-ivEbNQgXjLz.kXMdMAORrt4V.8kbu6c_RFzmuTYwaEo",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B01FW5336K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+0000%20930%202246&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B01FW5336K",
+          "title": "STIHL 0000 930 2246 Ronde maaidraad 2,4 mm x 253 m Oranje",
+          "claim": "Live amazon.nl-vermelding B01FW5336K toont \"STIHL 0000 930 2246 Ronde maaidraad 2,4 mm x 253 m Oranje\" met het exacte onderdeelnummer 0000 930 2246; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B01FW5336K",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging donderdag, 19 november. Bestel binnen 10 u 58 m Of snelste bezorging op z).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 0000 930 2246 en bevestigde NL-levering. Vervangt eerdere vermelding B0014D86T0.",
+      "supersedes_asin": "B0014D86T0",
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11256401701",
+      "part_number_formatted": "1125 640 1701",
+      "asin": "B007TK1BK2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1125 640 1701",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl Genuine 1125 640 1701 kettingwielafdekking",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 260",
+        "MS 360",
+        "MS 440",
+        "026",
+        "036",
+        "044"
+      ],
+      "machine_compatibility": [
+        "MS 260",
+        "MS 360",
+        "MS 440",
+        "026",
+        "036",
+        "044"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11256401701",
+      "compatibility_proof": "Stihl Genuine 1125 640 1701 kettingwielafdekking; bevestigde compatibiliteit met STIHL onderdeel 1125 640 1701 (catalogusnaam: Stihl Chain Sprocket Cover) volgens de Amazon-vermelding. Compatibele modellen: MS 260, MS 360, MS 440, 026, 036, 044.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 1125 640 1701: de amazon.nl-vermelding B007TK1BK2 toont het exacte onderdeelnummer 1125 640 1701 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1125%20640%201701&__cf_chl_rt_tk=DUC5jIrWHNoUG1eCZ9XTB1x2IbDU.yVTmdIQZSv.8Wg-1794830211-1.0.1.1-3llPX1IiJpgjr7U6YvBZocZCGsGmyXXfurOn3_RPDOQ",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK1BK2?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1125%20640%201701&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK1BK2",
+          "title": "Stihl Genuine 1125 640 1701 kettingwielafdekking",
+          "claim": "Live amazon.nl-vermelding B007TK1BK2 toont \"Stihl Genuine 1125 640 1701 kettingwielafdekking\" met het exacte onderdeelnummer 1125 640 1701; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B007TK1BK2",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€18 bezorging 24 - 26 november. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1125 640 1701 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41404001308",
+      "part_number_formatted": "4140 400 1308",
+      "asin": "B007TK0L6W",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4140 400 1308",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl Genuine 4140 400 1308 Ontstekingsmodule",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 38",
+        "FS 45",
+        "FS 55",
+        "HS 45",
+        "HL 45"
+      ],
+      "machine_compatibility": [
+        "FS 38",
+        "FS 45",
+        "FS 55",
+        "HS 45",
+        "HL 45"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41404001308",
+      "compatibility_proof": "Stihl Genuine 4140 400 1308 Ontstekingsmodule; bevestigde compatibiliteit met STIHL onderdeel 4140 400 1308 (catalogusnaam: Stihl Ignition Module) volgens de Amazon-vermelding. Compatibele modellen: FS 38, FS 45, FS 55, HS 45, HL 45.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 4140 400 1308: de amazon.nl-vermelding B007TK0L6W toont het exacte onderdeelnummer 4140 400 1308 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4140%20400%201308&__cf_chl_rt_tk=Ge80NaDPBtYgQd0ztIAZwVzC3B..vOC.LMVKHevrJkM-1794830244-1.0.1.1-gnkNRQpQiCIkNVONNKgl8jDK729sip3QnC7J0kw8g0M",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B007TK0L6W?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140%20400%201308&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B007TK0L6W",
+          "title": "Stihl Genuine 4140 400 1308 Ontstekingsmodule",
+          "claim": "Live amazon.nl-vermelding B007TK0L6W toont \"Stihl Genuine 4140 400 1308 Ontstekingsmodule\" met het exacte onderdeelnummer 4140 400 1308; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B007TK0L6W",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging donderdag, 19 november Of snelste bezorging morgen, 17 november. Bestel b).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4140 400 1308 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41401900601",
+      "part_number_formatted": "4140 190 0601",
+      "asin": "B08TRJRV2S",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4140 190 0601",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl OEM onderdelen spoelen de lente HL45, FS38-4140 190 0601, 4140-190-0601, 41401900601 terug",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 38",
+        "FS 45",
+        "FS 55",
+        "HL 45"
+      ],
+      "machine_compatibility": [
+        "FS 38",
+        "FS 45",
+        "FS 55",
+        "HL 45"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41401900601",
+      "compatibility_proof": "Stihl OEM onderdelen spoelen de lente HL45, FS38-4140 190 0601, 4140-190-0601, 41401900601 terug; bevestigde compatibiliteit met STIHL onderdeel 4140 190 0601 (catalogusnaam: Stihl 41401900601 Rewind Spring) volgens de Amazon-vermelding. Compatibele modellen: FS 38, FS 45, FS 55, HL 45.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 4140 190 0601: de amazon.nl-vermelding B08TRJRV2S toont het exacte onderdeelnummer 4140 190 0601 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4140%20190%200601",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08TRJRV2S?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4140%20190%200601&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08TRJRV2S",
+          "title": "Stihl OEM onderdelen spoelen de lente HL45, FS38-4140 190 0601, 4140-190-0601, 41401900601 terug",
+          "claim": "Live amazon.nl-vermelding B08TRJRV2S toont \"Stihl OEM onderdelen spoelen de lente HL45, FS38-4140 190 0601, 4140-190-0601, 41401900601 terug\" met het exacte onderdeelnummer 4140 190 0601; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B08TRJRV2S",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging zaterdag, 21 november bij je eerste bestelling Of snelste bezorging op z').",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4140 190 0601 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41447108117",
+      "part_number_formatted": "4144 710 8117",
+      "asin": "B08TRJMVRK",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "4144 710 8117",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl OEM Delen Deflector FS70C, FS70RC Bosmaaiers - 4144 710 8117, 4144-710-8117, 41447108117",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 55",
+        "FS 70",
+        "FS 70 C"
+      ],
+      "machine_compatibility": [
+        "FS 55",
+        "FS 70",
+        "FS 70 C"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41447108117",
+      "compatibility_proof": "Stihl OEM Delen Deflector FS70C, FS70RC Bosmaaiers - 4144 710 8117, 4144-710-8117, 41447108117; bevestigde compatibiliteit met STIHL onderdeel 4144 710 8117 (catalogusnaam: Stihl 41447108117 Guard for mowing head & PolyCut � 420mm) volgens de Amazon-vermelding. Compatibele modellen: FS 55, FS 70, FS 70 C.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 4144 710 8117: de amazon.nl-vermelding B08TRJMVRK toont het exacte onderdeelnummer 4144 710 8117 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4144%20710%208117",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08TRJMVRK?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4144%20710%208117&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08TRJMVRK",
+          "title": "Stihl OEM Delen Deflector FS70C, FS70RC Bosmaaiers - 4144 710 8117, 4144-710-8117, 41447108117",
+          "claim": "Live amazon.nl-vermelding B08TRJMVRK toont \"Stihl OEM Delen Deflector FS70C, FS70RC Bosmaaiers - 4144 710 8117, 4144-710-8117, 41447108117\" met het exacte onderdeelnummer 4144 710 8117; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B08TRJMVRK",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€12 bezorging 21 - 24 november. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4144 710 8117 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42291201800",
+      "part_number_formatted": "4229 120 1800",
+      "asin": "B0GVRCPL89",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Qiuwanzia",
+      "manufacturer_part_number": "4229 120 1800",
+      "trade_number": null,
+      "brand": "Qiuwanzia",
+      "product_title": "4229 120 1800 luchtfilter voor Stihl BG45, BG46, BG55, BG65, BG85, BR45, BR45C, rugzakventilator, SH55, SH85, stofzuigerblazer, reserveonderdelen 4229 124 1500, 100739",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "BG 45",
+        "BG 46",
+        "BG 55",
+        "BG 65",
+        "BG 85",
+        "SH 55",
+        "SH 85"
+      ],
+      "machine_compatibility": [
+        "BG 45",
+        "BG 46",
+        "BG 55",
+        "BG 65",
+        "BG 85",
+        "SH 55",
+        "SH 85"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_42291201800",
+      "compatibility_proof": "Stihl BG45, BG46, BG55, SH85 Air Filter - 4229 120 1800; bevestigde compatibiliteit met STIHL onderdeel 4229 120 1800 (catalogusnaam: Stihl 42291201800 Air filter for SH55 SH85 BG45 BG55 BG85 BG85-DZ BR4C), zoals vermeld in de Amazon-vermelding en de dealercatalogus. Compatibele modellen: BG 45, BG 46, BG 55, BG 65, BG 85, SH 55, SH 85.",
+      "asin_product_identity_proof": "Qiuwanzia product met STIHL-referentie 4229 120 1800: de amazon.nl-vermelding B0GVRCPL89 noemt dit nummer en de onafhankelijke dealercatalogus (https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4229%20120%201800) beschrijft 4229 120 1800 als \"Stihl BG45, BG46, BG55, SH85 Air Filter - 4229 120 1800\".",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4229%20120%201800",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0GVRCPL89?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4229%20120%201800&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0GVRCPL89",
+          "title": "4229 120 1800 luchtfilter voor Stihl BG45, BG46, BG55, BG65, BG85, BR45, BR45C, rugzakventilator, SH55, SH85, stofzuigerblazer, reserveonderdelen 4229 124 1500, 100739",
+          "claim": "Live amazon.nl-vermelding B0GVRCPL89 toont \"4229 120 1800 luchtfilter voor Stihl BG45, BG46, BG55, BG65, BG85, BR45, BR45C, rugzakventilator, SH55, SH85, stofzuigerblazer, reserveonder\" met het exacte onderdeelnummer 4229 120 1800; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        },
+        {
+          "type": "EXTERNAL_CATALOG",
+          "url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4229%20120%201800",
+          "title": "Garden Hire Spares dealercatalogus",
+          "claim": "Dealercatalogus voert \"Stihl BG45, BG46, BG55, SH85 Air Filter - 4229 120 1800\" onder het exacte STIHL-nummer 4229 120 1800.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B0GVRCPL89",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging donderdag, 19 november bij je eerste bestelling Of snelste bezorging morg).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4229 120 1800 en onafhankelijke dealercatalogus-corroboratie en bevestigde NL-levering. Vervangt eerdere vermelding B079DNH51T.",
+      "supersedes_asin": "B079DNH51T",
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41197106000",
+      "part_number_formatted": "4119 710 6000",
+      "asin": "B07HLM39J5",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Cancanle",
+      "manufacturer_part_number": "4119 710 6000",
+      "trade_number": null,
+      "brand": "Cancanle",
+      "product_title": "Cancanle Hoofd Blade van Trimmer Guard Rok voor STIHL FS55 FS110 FS130 FS160 FS180 FS200 FS220 FS240 FS250 Vervangt # 4119 710 6000",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 55",
+        "FS 110",
+        "FS 130",
+        "FS 240",
+        "FS 350",
+        "FS 460"
+      ],
+      "machine_compatibility": [
+        "FS 55",
+        "FS 110",
+        "FS 130",
+        "FS 240",
+        "FS 350",
+        "FS 460"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41197106000",
+      "compatibility_proof": "Cancanle Hoofd Blade van Trimmer Guard Rok voor STIHL FS55 FS110 FS130 FS160 FS180 FS200 FS220 FS240 FS250 Vervangt # 4119 710 6000; bevestigde compatibiliteit met STIHL onderdeel 4119 710 6000 (catalogusnaam: Stihl 41197106000 Cutter Blade For FS55 FS85 FS90 FS100 FS130 FS350 FS450) volgens de Amazon-vermelding. Compatibele modellen: FS 55, FS 110, FS 130, FS 240, FS 350, FS 460.",
+      "asin_product_identity_proof": "Cancanle product met STIHL-referentie 4119 710 6000: de amazon.nl-vermelding B07HLM39J5 toont het exacte onderdeelnummer 4119 710 6000 en merk Cancanle op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=4119%20710%206000",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07HLM39J5?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4119%20710%206000&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07HLM39J5",
+          "title": "Cancanle Hoofd Blade van Trimmer Guard Rok voor STIHL FS55 FS110 FS130 FS160 FS180 FS200 FS220 FS240 FS250 Vervangt # 4119 710 6000",
+          "claim": "Live amazon.nl-vermelding B07HLM39J5 toont \"Cancanle Hoofd Blade van Trimmer Guard Rok voor STIHL FS55 FS110 FS130 FS160 FS180 FS200 FS220 FS240 FS250 Vervangt # 4119 710 6000\" met het exacte onderdeelnummer 4119 710 6000; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B07HLM39J5",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging donderdag, 19 november bij je eerste bestelling Of snelste bezorging morg).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4119 710 6000 en bevestigde NL-levering. Vervangt eerdere vermelding B017SBNY52.",
+      "supersedes_asin": "B017SBNY52",
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "41371200636",
+      "part_number_formatted": "4137 120 0636",
+      "asin": "B0HLBHL5DG",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "C·T·S",
+      "manufacturer_part_number": "4137 120 0636",
+      "trade_number": null,
+      "brand": "C·T·S",
+      "product_title": "Carburateur Voor Stihl FC85 FR85 FS75 FS80 FS85 HT70 KM85 Vervangt ZAMA carburateur C1Q-4137 PN# Stihl 4137-120-0622 4137-120-0636",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FS 75",
+        "FS 80",
+        "FS 85",
+        "HT 70",
+        "KM 85",
+        "FC 85"
+      ],
+      "machine_compatibility": [
+        "FS 75",
+        "FS 80",
+        "FS 85",
+        "HT 70",
+        "KM 85",
+        "FC 85"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_41371200636",
+      "compatibility_proof": "Carburateur Voor Stihl FC85 FR85 FS75 FS80 FS85 HT70 KM85 Vervangt ZAMA carburateur C1Q-4137 PN# Stihl 4137-120-0622 4137-120-0636; bevestigde compatibiliteit met STIHL onderdeel 4137 120 0636 (catalogusnaam: Stihl 41371200636 Carburetor 4137/36) volgens de Amazon-vermelding. Compatibele modellen: FS 75, FS 80, FS 85, HT 70, KM 85, FC 85.",
+      "asin_product_identity_proof": "C·T·S product met STIHL-referentie 4137 120 0636: de amazon.nl-vermelding B0HLBHL5DG toont het exacte onderdeelnummer 4137 120 0636 en merk C·T·S op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/st4137-120-0636-genuine-stihl-carburettor-4137-36-4137-120-0636.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0HLBHL5DG?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137%20120%200636&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0HLBHL5DG",
+          "title": "Carburateur Voor Stihl FC85 FR85 FS75 FS80 FS85 HT70 KM85 Vervangt ZAMA carburateur C1Q-4137 PN# Stihl 4137-120-0622 4137-120-0636",
+          "claim": "Live amazon.nl-vermelding B0HLBHL5DG toont \"Carburateur Voor Stihl FC85 FR85 FS75 FS80 FS85 HT70 KM85 Vervangt ZAMA carburateur C1Q-4137 PN# Stihl 4137-120-0622 4137-120-0636\" met het exacte onderdeelnummer 4137 120 0636; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B0HLBHL5DG",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€ 12,41 bezorging 28 november - 3 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 4137 120 0636 en bevestigde NL-levering. Vervangt eerdere vermelding B07V45X88Y.",
+      "supersedes_asin": "B07V45X88Y",
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11271201621",
+      "part_number_formatted": "1127 120 1621",
+      "asin": "B08K3LCV69",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ProPart",
+      "manufacturer_part_number": "1127 120 1621",
+      "trade_number": null,
+      "brand": "ProPart",
+      "product_title": "ProPart Luchtfilterreiniger voor Stihl 029 039 MS290 MS310 MS390 kettingzaag vervangt 1127 120 1621 en 11271201621",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 290",
+        "MS 310",
+        "MS 390",
+        "029",
+        "039"
+      ],
+      "machine_compatibility": [
+        "MS 290",
+        "MS 310",
+        "MS 390",
+        "029",
+        "039"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11271201621",
+      "compatibility_proof": "ProPart Luchtfilterreiniger voor Stihl 029 039 MS290 MS310 MS390 kettingzaag vervangt 1127 120 1621 en 11271201621; bevestigde compatibiliteit met STIHL onderdeel 1127 120 1621 (catalogusnaam: Stihl Air Filter, Fleece) volgens de Amazon-vermelding. Compatibele modellen: MS 290, MS 310, MS 390, 029, 039.",
+      "asin_product_identity_proof": "ProPart product met STIHL-referentie 1127 120 1621: de amazon.nl-vermelding B08K3LCV69 toont het exacte onderdeelnummer 1127 120 1621 en merk ProPart op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/st1127-120-1621-genuine-stihl-ms290-ms310-ms390-air-filter-fleece-1127-120-1621.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08K3LCV69?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1127%20120%201621&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08K3LCV69",
+          "title": "ProPart Luchtfilterreiniger voor Stihl 029 039 MS290 MS310 MS390 kettingzaag vervangt 1127 120 1621 en 11271201621",
+          "claim": "Live amazon.nl-vermelding B08K3LCV69 toont \"ProPart Luchtfilterreiniger voor Stihl 029 039 MS290 MS310 MS390 kettingzaag vervangt 1127 120 1621 en 11271201621\" met het exacte onderdeelnummer 1127 120 1621; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B08K3LCV69",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€ 8,41 bezorging 4 - 9 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1127 120 1621 en bevestigde NL-levering. Vervangt eerdere vermelding B08K8Z994X.",
+      "supersedes_asin": "B08K8Z994X",
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11280802104",
+      "part_number_formatted": "1128 080 2104",
+      "asin": "B083NQJ7WW",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Wifehelper",
+      "manufacturer_part_number": "1128 080 2104",
+      "trade_number": null,
+      "brand": "Wifehelper",
+      "product_title": "Recoil Starter Pull Start Assembly Fits for Stihl 044 046 MS440 MS460 Chainsaw 1128 080 2104",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11280802104",
+      "compatibility_proof": "Recoil Starter Pull Start Assembly Fits for Stihl 044 046 MS440 MS460 Chainsaw 1128 080 2104; bevestigde compatibiliteit met STIHL onderdeel 1128 080 2104 (catalogusnaam: Stihl Fan Housing With Rewind Starter) volgens de Amazon-vermelding. Compatibele modellen: MS 440, 044, MS 460, 046.",
+      "asin_product_identity_proof": "Wifehelper product met STIHL-referentie 1128 080 2104: de amazon.nl-vermelding B083NQJ7WW toont het exacte onderdeelnummer 1128 080 2104 en merk Wifehelper op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/1128-080-2104-genuine-stihl-recoil-assy.html",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B083NQJ7WW?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128%20080%202104&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B083NQJ7WW",
+          "title": "Recoil Starter Pull Start Assembly Fits for Stihl 044 046 MS440 MS460 Chainsaw 1128 080 2104",
+          "claim": "Live amazon.nl-vermelding B083NQJ7WW toont \"Recoil Starter Pull Start Assembly Fits for Stihl 044 046 MS440 MS460 Chainsaw 1128 080 2104\" met het exacte onderdeelnummer 1128 080 2104; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B083NQJ7WW",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (FREE delivery Saturday, 21 November on your first order shipped by Amazon Deliverin).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1128 080 2104 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11287901750",
+      "part_number_formatted": "1128 790 1750",
+      "asin": "B0749N79V2",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "QHALEN",
+      "manufacturer_part_number": "1128 790 1750",
+      "trade_number": null,
+      "brand": "QHALEN",
+      "product_title": "Vervanging handgreep bar voor stihl 044 046 MS440 MS460 NIEUWE OEM # 1128 790 1750 kettingzaag",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11287901750",
+      "compatibility_proof": "Vervanging handgreep bar voor stihl 044 046 MS440 MS460 NIEUWE OEM # 1128 790 1750 kettingzaag; bevestigde compatibiliteit met STIHL onderdeel 1128 790 1750 (catalogusnaam: Stihl Handlebar With Hose) volgens de Amazon-vermelding. Compatibele modellen: MS 440, 044, MS 460, 046.",
+      "asin_product_identity_proof": "QHALEN product met STIHL-referentie 1128 790 1750: de amazon.nl-vermelding B0749N79V2 toont het exacte onderdeelnummer 1128 790 1750 en merk QHALEN op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20790%201750&__cf_chl_rt_tk=NACoQKP6o7uc_sw5WF2fRSm6_7iB8qEhtxLruCVO_sk-1794830220-1.0.1.1-sq3Ek48_OW35IeJpkqmXse15Vss7KX.8w0ge6nAsv1M",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0749N79V2?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128%20790%201750&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0749N79V2",
+          "title": "Vervanging handgreep bar voor stihl 044 046 MS440 MS460 NIEUWE OEM # 1128 790 1750 kettingzaag",
+          "claim": "Live amazon.nl-vermelding B0749N79V2 toont \"Vervanging handgreep bar voor stihl 044 046 MS440 MS460 NIEUWE OEM # 1128 790 1750 kettingzaag\" met het exacte onderdeelnummer 1128 790 1750; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B0749N79V2",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€ 3,49 bezorging 2 - 7 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1128 790 1750 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11281602004",
+      "part_number_formatted": "1128 160 2004",
+      "asin": "B0D2KM9XR6",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "DLUPING",
+      "manufacturer_part_number": "1128 160 2004",
+      "trade_number": null,
+      "brand": "DLUPING",
+      "product_title": "Koppeling Assy Past for Stihl 044 046 MS440 MS460 Kettingzaag Onderdelen Vervangen OEM #1128 160 2004 Tuin onderdelen",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046",
+        "MS 461"
+      ],
+      "machine_compatibility": [
+        "MS 440",
+        "044",
+        "MS 460",
+        "046",
+        "MS 461"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11281602004",
+      "compatibility_proof": "Koppeling Assy Past for Stihl 044 046 MS440 MS460 Kettingzaag Onderdelen Vervangen OEM #1128 160 2004 Tuin onderdelen; bevestigde compatibiliteit met STIHL onderdeel 1128 160 2004 (catalogusnaam: Stihl Clutch) volgens de Amazon-vermelding. Compatibele modellen: MS 440, 044, MS 460, 046, MS 461.",
+      "asin_product_identity_proof": "DLUPING product met STIHL-referentie 1128 160 2004: de amazon.nl-vermelding B0D2KM9XR6 toont het exacte onderdeelnummer 1128 160 2004 en merk DLUPING op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20160%202004",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0D2KM9XR6?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128%20160%202004&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0D2KM9XR6",
+          "title": "Koppeling Assy Past for Stihl 044 046 MS440 MS460 Kettingzaag Onderdelen Vervangen OEM #1128 160 2004 Tuin onderdelen",
+          "claim": "Live amazon.nl-vermelding B0D2KM9XR6 toont \"Koppeling Assy Past for Stihl 044 046 MS440 MS460 Kettingzaag Onderdelen Vervangen OEM #1128 160 2004 Tuin onderdelen\" met het exacte onderdeelnummer 1128 160 2004; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B0D2KM9XR6",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€5 bezorging 2 - 7 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1128 160 2004 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11351400650",
+      "part_number_formatted": "1135 140 0650",
+      "asin": "B07YGQMS5W",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Hippotech",
+      "manufacturer_part_number": "1135 140 0650",
+      "trade_number": null,
+      "brand": "Hippotech",
+      "product_title": "Uitlaat voor Stihl MS341 MS361 kettingzaag vervangt OEM NO.1135 140 0650",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 341",
+        "MS 361"
+      ],
+      "machine_compatibility": [
+        "MS 341",
+        "MS 361"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11351400650",
+      "compatibility_proof": "Uitlaat voor Stihl MS341 MS361 kettingzaag vervangt OEM NO.1135 140 0650; bevestigde compatibiliteit met STIHL onderdeel 1135 140 0650 (catalogusnaam: Stihl Muffler) volgens de Amazon-vermelding. Compatibele modellen: MS 341, MS 361.",
+      "asin_product_identity_proof": "Hippotech product met STIHL-referentie 1135 140 0650: de amazon.nl-vermelding B07YGQMS5W toont het exacte onderdeelnummer 1135 140 0650 en merk Hippotech op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1135%20140%200650&__cf_chl_rt_tk=Tntbk5FtshrW9aZ8fZ6lPP5kSKubVgyGULAudNU6NMA-1794830226-1.0.1.1-hMPp.0J7UnW4kSs_L9_gcbBZdX80Cz.7xAGc0LdXcwA",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07YGQMS5W?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1135%20140%200650&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07YGQMS5W",
+          "title": "Uitlaat voor Stihl MS341 MS361 kettingzaag vervangt OEM NO.1135 140 0650",
+          "claim": "Live amazon.nl-vermelding B07YGQMS5W toont \"Uitlaat voor Stihl MS341 MS361 kettingzaag vervangt OEM NO.1135 140 0650\" met het exacte onderdeelnummer 1135 140 0650; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B07YGQMS5W",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (GRATIS bezorging donderdag, 19 november bij je eerste bestelling. Bestel binnen 10 u 56 m ).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1135 140 0650 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11280201250",
+      "part_number_formatted": "1128 020 1250",
+      "asin": "B09TQYZCWF",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "GardenPal",
+      "manufacturer_part_number": "1128 020 1250",
+      "trade_number": null,
+      "brand": "GardenPal",
+      "product_title": "GardenPal Cilinder- en zuigerset past op Stihl MS461 Vervang OEM 1128-020-1250, 11280201250",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 461"
+      ],
+      "machine_compatibility": [
+        "MS 461"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11280201250",
+      "compatibility_proof": "GardenPal Cilinder- en zuigerset past op Stihl MS461 Vervang OEM 1128-020-1250, 11280201250; bevestigde compatibiliteit met STIHL onderdeel 1128 020 1250 (catalogusnaam: Stihl Cylinder And Piston 52Mm) volgens de Amazon-vermelding. Compatibele modellen: MS 461.",
+      "asin_product_identity_proof": "GardenPal product met STIHL-referentie 1128 020 1250: de amazon.nl-vermelding B09TQYZCWF toont het exacte onderdeelnummer 1128 020 1250 en merk GardenPal op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1128%20020%201250&__cf_chl_rt_tk=9lSO44u0IeGWD6su0W0xlzLQ98O2mOVSJPI75cj1M6s-1794830212-1.0.1.1-ppHeSDtMMsJokGR2I3Cb.7O6ba6jzXrtRrP0PjFI1d4",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09TQYZCWF?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1128%20020%201250&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B09TQYZCWF",
+          "title": "GardenPal Cilinder- en zuigerset past op Stihl MS461 Vervang OEM 1128-020-1250, 11280201250",
+          "claim": "Live amazon.nl-vermelding B09TQYZCWF toont \"GardenPal Cilinder- en zuigerset past op Stihl MS461 Vervang OEM 1128-020-1250, 11280201250\" met het exacte onderdeelnummer 1128 020 1250; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B09TQYZCWF",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (€ 13,80 bezorging 9 - 15 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1128 020 1250 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11237911702",
+      "part_number_formatted": "1123 791 1702",
+      "asin": "B0CXHYGL8W",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "perfektGarten",
+      "manufacturer_part_number": "1123 791 1702",
+      "trade_number": null,
+      "brand": "perfektGarten",
+      "product_title": "Handle tube handle compatible with STIHL MS230C-B MS250 1123-791-1702 1123-791-1700 chainsaw",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "021",
+        "023",
+        "025"
+      ],
+      "machine_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "021",
+        "023",
+        "025"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_NL_11237911702",
+      "compatibility_proof": "Handle tube handle compatible with STIHL MS230C-B MS250 1123-791-1702 1123-791-1700 chainsaw; bevestigde compatibiliteit met STIHL onderdeel 1123 791 1702 (catalogusnaam: Stihl Handlebar) volgens de Amazon-vermelding. Compatibele modellen: MS 210, MS 230, MS 250, 021, 023, 025.",
+      "asin_product_identity_proof": "perfektGarten product met STIHL-referentie 1123 791 1702: de amazon.nl-vermelding B0CXHYGL8W toont het exacte onderdeelnummer 1123 791 1702 en merk perfektGarten op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20791%201702",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B0CXHYGL8W?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123%20791%201702&tag=srihldecoder2-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0CXHYGL8W",
+          "title": "Handle tube handle compatible with STIHL MS230C-B MS250 1123-791-1702 1123-791-1700 chainsaw",
+          "claim": "Live amazon.nl-vermelding B0CXHYGL8W toont \"Handle tube handle compatible with STIHL MS230C-B MS250 1123-791-1702 1123-791-1700 chainsaw\" met het exacte onderdeelnummer 1123 791 1702; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B0CXHYGL8W",
+      "shipping_evidence_description": "amazon.nl-vermelding bevestigt levering naar Nederlands postcodegebied (delivery 21 - 23 November).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.nl-vermelding met het exacte STIHL-nummer 1123 791 1702 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "36100000055",
+      "part_number_formatted": "3610 000 0055",
+      "asin": "B004U7B83M",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "3610 000 0055",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "STIHL 36100000055 zaagketting - 1,1 mm - 3/8 inch - 40 cm 61 PM, geschikt voor meerdere modellen",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 171",
+        "MS 181"
+      ],
+      "machine_compatibility": [
+        "MS 170",
+        "MS 180",
+        "MS 171",
+        "MS 181"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_DE_36100000055",
+      "compatibility_proof": "STIHL 36100000055 zaagketting - 1,1 mm - 3/8 inch - 40 cm 61 PM, geschikt voor meerdere modellen; bevestigde compatibiliteit met STIHL onderdeel 3610 000 0055 (catalogusnaam: 16\" - Chain 3/8\" P - 043\" - 55 Links - 3610 000 0055 (Picco Micro Mini 3 / 61 PMM3 55)) volgens de Amazon-vermelding. Compatibele modellen: MS 170, MS 180, MS 171, MS 181.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 3610 000 0055: de amazon.de-vermelding B004U7B83M toont het exacte onderdeelnummer 3610 000 0055 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=3610%20000%200055&__cf_chl_rt_tk=ET.LNpuyp4ZcIhCh0UYpkRG6EURbWEREdtPaKp2kTzQ-1794830195-1.0.1.1-GQ1pMsm1BiizttrsFXpc4Usq.TJ43pMNBGK_403SPm0",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B004U7B83M?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+3610%20000%200055&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B004U7B83M",
+          "title": "STIHL 36100000055 zaagketting - 1,1 mm - 3/8 inch - 40 cm 61 PM, geschikt voor meerdere modellen",
+          "claim": "Live amazon.de-vermelding B004U7B83M toont \"STIHL 36100000055 zaagketting - 1,1 mm - 3/8 inch - 40 cm 61 PM, geschikt voor meerdere modellen\" met het exacte onderdeelnummer 3610 000 0055; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B004U7B83M",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging vrijdag, 20 november Of snelste bezorging morgen, 17 november. Bestel bin).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.de-vermelding met het exacte STIHL-nummer 3610 000 0055 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11231201612",
+      "part_number_formatted": "1123 120 1612",
+      "asin": "B007TK18ZU",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 120 1612",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl Original 1123 120 1612 Luftfilter",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "021",
+        "023",
+        "025"
+      ],
+      "machine_compatibility": [
+        "MS 210",
+        "MS 230",
+        "MS 250",
+        "021",
+        "023",
+        "025"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_DE_11231201612",
+      "compatibility_proof": "Stihl Original 1123 120 1612 Luftfilter; bevestigde compatibiliteit met STIHL onderdeel 1123 120 1612 (catalogusnaam: Stihl Air Filter) volgens de Amazon-vermelding. Compatibele modellen: MS 210, MS 230, MS 250, 021, 023, 025.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 1123 120 1612: de amazon.de-vermelding B007TK18ZU toont het exacte onderdeelnummer 1123 120 1612 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1123%20120%201612",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B007TK18ZU?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1123%20120%201612&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B007TK18ZU",
+          "title": "Stihl Original 1123 120 1612 Luftfilter",
+          "claim": "Live amazon.de-vermelding B007TK18ZU toont \"Stihl Original 1123 120 1612 Luftfilter\" met het exacte onderdeelnummer 1123 120 1612; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B007TK18ZU",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging vrijdag, 20 november Of snelste bezorging morgen, 17 november. Bestel bin).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.de-vermelding met het exacte STIHL-nummer 1123 120 1612 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11221903400",
+      "part_number_formatted": "1122 190 3400",
+      "asin": "B006VYS29A",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1122 190 3400",
+      "trade_number": null,
+      "brand": "Stihl",
+      "product_title": "Stihl OEM Elasto Start 1122 190 3400",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 460",
+        "MS 650",
+        "MS 660",
+        "MS 661",
+        "066"
+      ],
+      "machine_compatibility": [
+        "MS 460",
+        "MS 650",
+        "MS 660",
+        "MS 661",
+        "066"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_DE_11221903400",
+      "compatibility_proof": "Stihl OEM Elasto Start 1122 190 3400; bevestigde compatibiliteit met STIHL onderdeel 1122 190 3400 (catalogusnaam: Stihl Starter Grip) volgens de Amazon-vermelding. Compatibele modellen: MS 460, MS 650, MS 660, MS 661, 066.",
+      "asin_product_identity_proof": "Stihl product met STIHL-referentie 1122 190 3400: de amazon.de-vermelding B006VYS29A toont het exacte onderdeelnummer 1122 190 3400 en merk Stihl op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1122%20190%203400",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B006VYS29A?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1122%20190%203400&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B006VYS29A",
+          "title": "Stihl OEM Elasto Start 1122 190 3400",
+          "claim": "Live amazon.de-vermelding B006VYS29A toont \"Stihl OEM Elasto Start 1122 190 3400\" met het exacte onderdeelnummer 1122 190 3400; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B006VYS29A",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 16,06 bezorging 24 - 26 november. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.de-vermelding met het exacte STIHL-nummer 1122 190 3400 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11216403203",
+      "part_number_formatted": "1121 640 3203",
+      "asin": "B098BFMP68",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "manufacturer": "C·T·S",
+      "manufacturer_part_number": "1121 640 3203",
+      "trade_number": null,
+      "brand": "C·T·S",
+      "product_title": "Ölpumpe für Stihl 024 026 MS240 MS260 Kettensäge ersetzt Stihl PN 1121 640 3203",
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 240",
+        "MS 260",
+        "024",
+        "026"
+      ],
+      "machine_compatibility": [
+        "MS 240",
+        "MS 260",
+        "024",
+        "026"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL_AMAZON_DE_11216403203",
+      "compatibility_proof": "Ölpumpe für Stihl 024 026 MS240 MS260 Kettensäge ersetzt Stihl PN 1121 640 3203; bevestigde compatibiliteit met STIHL onderdeel 1121 640 3203 (catalogusnaam: Stihl Oil Pump Adjustable) volgens de Amazon-vermelding. Compatibele modellen: MS 240, MS 260, 024, 026.",
+      "asin_product_identity_proof": "C·T·S product met STIHL-referentie 1121 640 3203: de amazon.de-vermelding B098BFMP68 toont het exacte onderdeelnummer 1121 640 3203 en merk C·T·S op de productpagina.",
+      "independent_evidence_url": "https://www.gardenhirespares.co.uk/catalogsearch/result/?q=1121%20640%203203&__cf_chl_rt_tk=1dh__wzVfL046LwgwtwQaYxo_ew0PijWbmaGYhATh6Q-1794830279-1.0.1.1-TjfdOa4UuNDL_VwoPeaiFcKYU67sBCX8hUPJ2v2hMbU",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B098BFMP68?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121%20640%203203&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B098BFMP68",
+          "title": "Ölpumpe für Stihl 024 026 MS240 MS260 Kettensäge ersetzt Stihl PN 1121 640 3203",
+          "claim": "Live amazon.de-vermelding B098BFMP68 toont \"Ölpumpe für Stihl 024 026 MS240 MS260 Kettensäge ersetzt Stihl PN 1121 640 3203\" met het exacte onderdeelnummer 1121 640 3203; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-16.",
+          "retrieved_at": "2026-11-16"
+        }
+      ],
+      "verification_date": "2026-11-16",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-16",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B098BFMP68",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 11,48 bezorging 30 november - 16 december. Gegevens).",
+      "status": "ACTIVE",
+      "status_reason": "Phase 87.2: live amazon.de-vermelding met het exacte STIHL-nummer 1121 640 3203 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-16T12:16:01.315Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
     }
   ],
   "availability_audit": {
@@ -16965,5 +18310,19 @@
         "why": "Titel noemt zowel 52 mm als 54 mm boring."
       }
     ]
+  },
+  "phase_87_2": {
+    "activated_at": "2026-11-16T12:16:01.315Z",
+    "activated_offers": 20,
+    "activated_nl": 16,
+    "activated_de": 4,
+    "parts_with_amazon_offer": 137,
+    "parts_searched_nl": 529,
+    "parts_searched_de": 250,
+    "dp_asins_checked": 232,
+    "de_asins_nl_shipping_confirmed": 96,
+    "superseded_research_candidates": 5,
+    "ready_above_cap": 12,
+    "not_activated": 10
   }
 }

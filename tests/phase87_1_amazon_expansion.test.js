@@ -29,15 +29,15 @@ const queue = read('output/phase87_1/queue.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase871Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.1:/.test(o.status_reason || ''));
-const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.1:/.test(o.status_reason || ''));
+const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.[12]:/.test(o.status_reason || ''));
 
 test('Phase 87.1 — 1. registry grows without losing a single previously live offer', () => {
-  assert.equal(registryDoc.offers.length, 201, 'Only obsolete RESEARCH_REQUIRED candidates are retired (and preserved in the artifact)');
-  assert.equal(activeOffers.length, 130);
-  assert.equal(registryDoc.metrics.active, 130);
-  assert.equal(registryDoc.metrics.active_nl, 84);
-  assert.equal(registryDoc.metrics.active_de, 46);
-  assert.equal(registryDoc.metrics.parts_with_amazon_offer, 117);
+  assert.equal(registryDoc.offers.length, 216, 'Only obsolete RESEARCH_REQUIRED candidates are retired (and preserved in the artifact)');
+  assert.equal(activeOffers.length, 150);
+  assert.equal(registryDoc.metrics.active, 150);
+  assert.equal(registryDoc.metrics.active_nl, 100);
+  assert.equal(registryDoc.metrics.active_de, 50);
+  assert.equal(registryDoc.metrics.parts_with_amazon_offer, 137);
   assert.equal(previouslyLive.length, 97, 'All 97 offers that were live before Phase 87.1 must stay ACTIVE');
   assert.equal(phase871Offers.length, 33);
   assert.equal(activation.superseded_research_candidates.length, 11, 'retired candidates must be preserved with their evidence');

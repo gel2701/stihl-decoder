@@ -119,7 +119,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       // listings whose page carries the exact STIHL number.
       'YSDOZMD', 'LT Easiyl', 'DGWMLSDPP', 'Moliuoly', 'DORFEY', 'Stens', 'Allymoto', 'Hippotech',
       'Tolxh', 'Alamor', 'Toefficy', 'Luxuypon', 'Serenophile', 'ISE Crest', 'UYTGFO', 'CTS',
-      'Vilgftyiet', 'LSSOCH', 'AS Axis Spindleon', 'QHALEN', 'YANTUMR', 'ISQJPVF', 'Rotary', 'FDLWZGDY'
+      'Vilgftyiet', 'LSSOCH', 'AS Axis Spindleon', 'QHALEN', 'YANTUMR', 'ISQJPVF', 'Rotary', 'FDLWZGDY',
+      // Phase 87.2 expansion brands: verified live listings carrying the exact STIHL number.
+      'Qiuwanzia', 'ProPart', 'Wifehelper', 'DLUPING', 'GardenPal'
     ]);
 
     for (const offer of activeOffers) {
@@ -288,13 +290,14 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(chain13Offer.shipping_to_nl_status, 'SHIPS_TO_NL_CONFIRMED');
     assert.strictEqual(chain13Offer.affiliate_tag, 'srihldecode00-21');
 
-    // 3. 40 cm 3/8" P 1.1 mm 55 DL saw chain 3610 000 0055 -> Oregon 90PX055E B013KONKZY (canonical part present, offer verified inactive due to missing buybox/NL shipping)
+    // 3. 40 cm 3/8" P 1.1 mm 55 DL saw chain 3610 000 0055 -> B013KONKZY stays VERIFIED inactive without buybox/NL shipping; Phase 87.2 activated genuine STIHL B004U7B83M with confirmed NL delivery
     assert.ok(canonicalPartSet.has('36100000055'), '3610 000 0055 must exist in canonical parts catalog');
     const chain11Record = registry.getOffer('36100000055', 'amazon.de', 'B013KONKZY');
     assert.ok(chain11Record, 'Oregon 90PX055E record must exist for 3610 000 0055');
     assert.strictEqual(chain11Record.status, 'VERIFIED');
     assert.notStrictEqual(chain11Record.status, 'ACTIVE');
-    assert.strictEqual(registry.getActiveOffer('36100000055', 'amazon.de'), null, '3610 000 0055 must not resolve as active without confirmed NL delivery');
+    const chain11Stihl = registry.getOffer('36100000055', 'amazon.de', 'B004U7B83M');
+    assert.ok(chain11Stihl && chain11Stihl.status === 'ACTIVE' && chain11Stihl.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED');
   });
 
   it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 75 Active Offers)', () => {
@@ -404,12 +407,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 130, 'Total active offers must equal 130 (84 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 150, 'Total active offers must equal 150 (100 NL + 50 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 84, 'Active NL offers must equal 84');
-    assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
+    assert.strictEqual(activeNl.length, 100, 'Active NL offers must equal 100');
+    assert.strictEqual(activeDe.length, 50, 'Active DE offers must equal 50');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de
     const expectedMs440DeOffers = [
