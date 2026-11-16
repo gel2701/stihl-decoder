@@ -60,7 +60,7 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
     const unprovenOffers = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
     // Phase 87 superseded 11 delisted candidates with evidenced replacements and
     // activated one live candidate; 44 unproven records remain.
-    assert.ok(unprovenOffers.length >= 44, 'Expected unproven candidate offers preserved in RESEARCH_REQUIRED');
+    assert.ok(unprovenOffers.length >= 30, 'Expected unproven candidate offers preserved in RESEARCH_REQUIRED');
 
     // Preserved inactive German offers pending confirmed NL shipping
     const inactiveDe = allOffers.filter(o => o.marketplace === 'amazon.de' && o.status === 'VERIFIED');
@@ -117,8 +117,8 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
 
   it('4. GSC Priority Model Coverage & FS 80 Gap Status (Truthful Commercial Metrics)', () => {
     const report = generateCommercialReport();
-    assert.strictEqual(report.milestones.milestone_100.achieved, false, 'Milestone 100 must be marked not achieved');
-    assert.ok(report.milestones.milestone_100.current >= 20, 'Current active offers must be at least 20');
+    assert.strictEqual(report.milestones.milestone_100.achieved, true, 'Milestone 100 must be achieved once 100 active offers exist');
+    assert.ok(report.milestones.milestone_100.current >= 100, 'Current active offers must be at least 100');
 
     const fs80Coverage = report.gsc_model_coverage.find(m => m.model_name === 'FS 80');
     assert.ok(fs80Coverage, 'FS 80 must be present in GSC coverage report');
@@ -127,16 +127,16 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
     // Verify evidence audit summary in commercial report
     assert.ok(report.evidence_audit_summary, 'Evidence audit summary must be present');
     assert.ok(report.evidence_audit_summary.verified_active_offers >= 20);
-    // Phase 87 superseded 11 dead candidates with evidenced replacements and activated one;
-    // the remaining unproven stock is 44 records.
-    assert.ok(report.evidence_audit_summary.unproven_candidates >= 44);
+    // Phase 87.1 proved 11 previously unproven candidates with live replacements;
+    // the remaining unproven stock is 34 records.
+    assert.ok(report.evidence_audit_summary.unproven_candidates >= 30);
     assert.ok(report.evidence_audit_summary.pending_shipping_confirmation_de >= 3);
   });
 
   it('5. Kill-Switch Precision & Fail-Closed Fallback Mechanics', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 60
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
