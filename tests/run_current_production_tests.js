@@ -151,6 +151,7 @@ export const currentProductionSuites = [
   'tests/phase87_1_amazon_expansion.test.js',
   'tests/phase87_2_amazon_expansion.test.js',
   'tests/phase87_3_unlimited_amazon_activation.test.js',
+  'tests/phase88_amazon_maximum_growth.test.js',
   'tests/phase86_1_affiliate_click_recovery.test.js',
   'tests/phase81_1_offer_visibility.test.js',
   'tests/phase81_2_homepage_parts_ux.test.js',
