@@ -203,6 +203,10 @@ Stand van de registry: 201 records — 130 ACTIVE, 34 SUSPENDED, 34 RESEARCH_REQ
   `phase74_amazon_growth`, `phase73_amazon_100`, `phase66a_batch250`.
 - Elke ACTIVE-aanbieding slaagt onveranderd voor `TwoGateVerifier`; de suite controleert dat
   voor alle 33 nieuwe records én voor de 130 actieve records in de registry.
+- Volledige suite (`tests/run_current_production_tests.js`) in de CI-omgeving, dus zonder de
+  affiliate-variabelen die alleen deze werkmap exporteert: 133 van 133 suites groen. De
+  affiliate-variabelen in de werkmap (AMAZON_ASSOCIATE_TAG_NL/DE, eBay-sleutels) laten 10
+  oudere suites falen die op een schone checkout groen zijn; die zijn hier niet als bewijs gebruikt.
 - Tags per marketplace kloppen (NL `srihldecoder2-21`, DE `srihldecode00-21`), geen dubbele
   (onderdeel, marketplace, ASIN)-combinaties, catalogus nog steeds 18.480 onderdelen.
 

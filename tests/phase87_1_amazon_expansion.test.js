@@ -125,7 +125,10 @@ test('Phase 87.1 — 7. catalogue-wide dynamic search fallback keeps both market
   const originalEnv = { ...process.env };
   process.env.AMAZON_AFFILIATE_ENABLED = 'true';
   process.env.AMAZON_DIRECT_ASIN_ENABLED = 'true';
+  // Search links require a configured tag per marketplace; production sets both.
   process.env.AMAZON_ASSOCIATE_TAG = 'srihldecoder2-21';
+  process.env.AMAZON_ASSOCIATE_TAG_NL = 'srihldecoder2-21';
+  process.env.AMAZON_ASSOCIATE_TAG_DE = 'srihldecode00-21';
   try {
     for (const part of ['11231200604', '00004007000', '99999999999']) {
       const offers = AffiliateOfferResolver.resolveOffers({ partNumber: part, partName: 'Test' });
