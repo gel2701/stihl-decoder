@@ -166,6 +166,27 @@ const AUTHORIZED_PILOT_PARTS = new Set([
   '00006421234', // B0GVDJKLFH
   '00006421239', // B0HLL7RCVD
   '00006421240', // B0BDDNNNV6
+  // Phase 87.2 Amazon Maximum Activation (16 NL + 4 DE, within 100/50 caps)
+  '41477108108', // B08TRF8B6H (STIHL Deflector FS 460)
+  '00009302246', // B01FW5336K (STIHL Maaidraad 2.4mm x 253m)
+  '11256401701', // B007TK1BK2 (STIHL Kettingwielafdekking MS 260/440)
+  '41404001308', // B007TK0L6W (STIHL Ontstekingsmodule FS 55/HS 45)
+  '41401900601', // B08TRJRV2S (STIHL Terugtrekveer FS 55/38)
+  '41447108117', // B08TRJMVRK (STIHL Deflector FS 55/70)
+  '42291201800', // B0GVRCPL89 (Qiuwanzia Luchtfilter BG 55/85)
+  '41197106000', // B07HLM39J5 (Cancanle Afsnijmes FS 55/350/460)
+  '41371200636', // B0HLBHL5DG (C·T·S Carburateur FS 75/80/85)
+  '11271201621', // B08K3LCV69 (ProPart Vlies Luchtfilter MS 290/310/390)
+  '11280802104', // B083NQJ7WW (Wifehelper Trekstarter MS 440/044)
+  '11287901750', // B0749N79V2 (QHALEN Handgreepbeugel MS 440/044)
+  '11281602004', // B0D2KM9XR6 (DLUPING Koppeling MS 440/044)
+  '11351400650', // B07YGQMS5W (Hippotech Uitlaatdemper MS 361)
+  '11280201250', // B09TQYZCWF (GardenPal Cilinder-zuigerset MS 461)
+  '11237911702', // B0CXHYGL8W (perfektGarten Handgreepbeugel MS 230/250)
+  '36100000055', // B004U7B83M (STIHL Zaagketting 40cm 1.1mm 55TG, DE)
+  '11231201612', // B007TK18ZU (STIHL Luchtfilter MS 210/230/250, DE)
+  '11221903400', // B006VYS29A (STIHL ElastoStart MS 460/660/661, DE)
+  '11216403203'  // B098BFMP68 (C·T·S Oliepomp MS 240/260, DE)
 ]);
 
 export function checkAffiliateConsistency() {
