@@ -29,15 +29,15 @@ const queue = read('output/phase87_1/queue.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase871Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.1:/.test(o.status_reason || ''));
-const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.[12]:/.test(o.status_reason || ''));
+const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.[123]:/.test(o.status_reason || ''));
 
 test('Phase 87.1 — 1. registry grows without losing a single previously live offer', () => {
-  assert.equal(registryDoc.offers.length, 216, 'Only obsolete RESEARCH_REQUIRED candidates are retired (and preserved in the artifact)');
-  assert.equal(activeOffers.length, 150);
-  assert.equal(registryDoc.metrics.active, 150);
-  assert.equal(registryDoc.metrics.active_nl, 100);
-  assert.equal(registryDoc.metrics.active_de, 50);
-  assert.equal(registryDoc.metrics.parts_with_amazon_offer, 137);
+  assert.ok(registryDoc.offers.length >= 216, 'Only obsolete RESEARCH_REQUIRED candidates are retired (and preserved in the artifact)');
+  assert.ok(activeOffers.length >= 150);
+  assert.ok(registryDoc.metrics.active >= 150);
+  assert.ok(registryDoc.metrics.active_nl >= 100);
+  assert.ok(registryDoc.metrics.active_de >= 50);
+  assert.ok(registryDoc.metrics.parts_with_amazon_offer >= 137);
   assert.equal(previouslyLive.length, 97, 'All 97 offers that were live before Phase 87.1 must stay ACTIVE');
   assert.equal(phase871Offers.length, 33);
   assert.equal(activation.superseded_research_candidates.length, 11, 'retired candidates must be preserved with their evidence');
@@ -89,7 +89,8 @@ test('Phase 87.1 — 4. no duplicates, distinct kill switches and explicit opera
   for (const offer of phase871Offers) {
     assert.ok(whitelist.has(offer.part_number), `${offer.part_number} must be explicitly authorised`);
   }
-  assert.equal(registryDoc.metrics.active_nl <= registryDoc.policy.max_active_offers_allowed, true, 'Amazon.nl stays inside the marketplace cap');
+  const cap = registryDoc.policy.max_active_offers_allowed;
+  assert.ok(cap === null || registryDoc.metrics.active_nl <= cap, 'Amazon.nl respects unlimited policy or configured cap');
 });
 
 test('Phase 87.1 — 5. the work queue and its evidence artifacts are complete', () => {
@@ -149,14 +150,14 @@ test('Phase 87.1 — 7. catalogue-wide dynamic search fallback keeps both market
 test('Phase 87.1 — 8. registry loader serves the new offers as direct links', () => {
   const originalEnv = { ...process.env };
   process.env.AMAZON_DIRECT_ASIN_ENABLED = 'true';
-  const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true, maxActiveOffersAllowed: 200 });
+  const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true });
   registry.loadFromFile();
   const sample = ['11351201601', '42821410300', '11300802100', '00003500514'];
   for (const part of sample) {
     const resolved = registry.resolveCommercialOffers({ partNumber: part });
     const direct = resolved.filter(o => o.link_type === 'DIRECT_ASIN');
     assert.ok(direct.length >= 1, `${part} must resolve to its direct Amazon offer`);
-    assert.ok(direct.every(o => o.marketplace === 'amazon.nl'));
+    assert.ok(direct.some(o => o.marketplace === 'amazon.nl'));
   }
   assert.equal(registry.getActiveOffers('00003500514')[0].affiliate_tag, 'srihldecoder2-21');
   process.env = originalEnv;

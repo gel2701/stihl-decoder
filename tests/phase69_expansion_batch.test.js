@@ -131,13 +131,13 @@ test('Phase 69D: 3. Rejection of invalid listings, wrong models, and technical c
   assert.equal(mismatchRes.isMismatch, true);
 });
 
-test('Phase 69D: 4. Production capacity limit raised to 25 and 18 active verified offers maintained', () => {
-  assert.ok(MAX_PILOT_ACTIVE_OFFERS >= 25);
-  assert.ok(registry.policy.max_active_offers_allowed >= 25);
+test('Phase 69D: 4. Unlimited production capacity and 18+ active verified offers maintained', () => {
+  assert.ok(MAX_PILOT_ACTIVE_OFFERS === null || MAX_PILOT_ACTIVE_OFFERS >= 25);
+  assert.ok(registry.policy.max_active_offers_allowed === null || registry.policy.max_active_offers_allowed >= 25);
   assert.ok((registry.metrics.active_nl ?? 18) >= 18);
   assert.ok(registry.offers.filter(o => o.status === 'ACTIVE' && (!o.marketplace || o.marketplace === 'amazon.nl')).length >= 18);
   assert.ok(registry.policy.pilot_activated_parts.length >= 18);
-  assert.ok(registry.offers.filter(o => o.status === 'ACTIVE' && (!o.marketplace || o.marketplace === 'amazon.nl')).length <= 100, 'Active Dutch offers must not exceed cap');
+  assert.strictEqual(registry.policy.production_activation_allowed, true, 'Production activation policy remains enabled');
 
   // Verify baseline 3 offers remain completely intact and active
   const baselineParts = ['11104007005', '00004007000', '00004007011'];

@@ -101,8 +101,8 @@ describe('Phase 72: Amazon Affiliate Growth Engine — 50 Links & GSC Priorities
     }
   });
 
-  test('4. VerifiedOfferRegistry supports capacity milestones and batch activation', () => {
-    assert.ok(MAX_PILOT_ACTIVE_OFFERS >= 25, 'Default MAX_PILOT_ACTIVE_OFFERS is at least 25');
+  test('4. VerifiedOfferRegistry supports unlimited production capacity and batch activation', () => {
+    assert.ok(MAX_PILOT_ACTIVE_OFFERS === null || MAX_PILOT_ACTIVE_OFFERS >= 25, 'Default MAX_PILOT_ACTIVE_OFFERS is unlimited (null) or >= 25');
     assert.equal(COMMERCIAL_MILESTONES.MILESTONE_50, 50);
     assert.equal(COMMERCIAL_MILESTONES.MILESTONE_100, 100);
     assert.equal(COMMERCIAL_MILESTONES.MILESTONE_250, 250);

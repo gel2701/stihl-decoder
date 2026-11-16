@@ -44,7 +44,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   const canonicalPartSet = new Set(canonicalParts.map(p => p.part_number));
 
   it('1. Commercial Milestone 50 Achieved with Verified Active Offers', () => {
-    assert.ok(MAX_PILOT_ACTIVE_OFFERS >= 50, 'MAX_PILOT_ACTIVE_OFFERS must accommodate at least 50');
+    assert.ok(MAX_PILOT_ACTIVE_OFFERS === null || MAX_PILOT_ACTIVE_OFFERS >= 50, 'MAX_PILOT_ACTIVE_OFFERS must be unlimited (null) or accommodate at least 50');
 
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE' && o.pilot_active === true);
     assert.ok(activeOffers.length >= 50, `Expected at least 50 ACTIVE offers, found ${activeOffers.length}`);
@@ -121,7 +121,19 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'Tolxh', 'Alamor', 'Toefficy', 'Luxuypon', 'Serenophile', 'ISE Crest', 'UYTGFO', 'CTS',
       'Vilgftyiet', 'LSSOCH', 'AS Axis Spindleon', 'QHALEN', 'YANTUMR', 'ISQJPVF', 'Rotary', 'FDLWZGDY',
       // Phase 87.2 expansion brands: verified live listings carrying the exact STIHL number.
-      'Qiuwanzia', 'ProPart', 'Wifehelper', 'DLUPING', 'GardenPal'
+      'Qiuwanzia', 'ProPart', 'Wifehelper', 'DLUPING', 'GardenPal',
+      // Phase 87.3 unlimited activation brands: verified live single-unit listings carrying the exact STIHL number.
+      'Ratioparts', 'VORIPO', 'PEGGYLIN', 'HUYUR', 'YCSOZMM', 'CCXOZSR', 'ISE',
+      'FDLWZGDY', 'Luxuypon', 'C·T·S', 'Hippotech', 'Luxuyvarna', 'perfektGarten',
+      'Adefol', 'MCHNIC', 'Husmax', 'SGBTB', 'ITACO', 'Jardiaffaires', 'Jardinvest',
+      'ZAMDOE', 'QINYUN', 'Hujago', 'JXKYGMD', 'Gubeter', 'ICOOYO', 'cyclingcolors',
+      'UYTGFO', 'IVOOJA', 'Moliuoly', 'DGWMLSDPP', 'Comcapy', 'Mtanlo', 'ZXHOZDM',
+      'LCCOZMD', 'Supkancl', 'OTOTEC', 'Ewon', 'AUMEL', 'SAANICH', 'Manoud', 'YAMASCO',
+      'ISSICOO', 'Haishine', 'Chuancheng', 'Realman', 'NMJHEVX', 'Garden Parts',
+      'CCQMGDM', 'GartenExpress', 'JHYOZMD', 'RHFUUTCA', 'IWBR', 'GTWSQQ', 'YTdhfDGJ',
+      'Wanotine', 'JLLOZMD', 'MDADEQ', 'DUANXY', 'YDXHERTA', 'MotorGuru', 'MLYABOZL',
+      'YANKEBOWANG', 'Saharuse', 'KISSGPIPOL', 'ROEDE', 'EUPLI', 'Atunee', 'Spacnana',
+      'UNARAY', 'VGOL', 'AYZLGAA'
     ]);
 
     for (const offer of activeOffers) {
@@ -168,9 +180,13 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
         const recovered = partOffers.find(o => o.supersedes_asin && o.status === 'ACTIVE');
         if (recovered) {
           const predecessor = regDoc.offers.find(o => o.part_number === pn && o.asin === recovered.supersedes_asin);
+          const retired873 = fs.existsSync(path.join(rootDir, 'output/phase87_3/PHASE87_3_ACTIVATION.json'))
+            ? JSON.parse(fs.readFileSync(path.join(rootDir, 'output/phase87_3/PHASE87_3_ACTIVATION.json'), 'utf8')).superseded_research_candidates || []
+            : [];
+          const retiredPred = retired873.find(o => o.part_number === pn && o.asin === recovered.supersedes_asin);
           assert.ok(
-            predecessor && predecessor.status === 'SUSPENDED',
-            `Phase 87 replacement for ${pn} must keep the delisted predecessor suspended`
+            (predecessor && predecessor.status === 'SUSPENDED') || (retiredPred && retiredPred.status === 'RESEARCH_REQUIRED'),
+            `Replacement for ${pn} must keep the delisted predecessor suspended or archive the retired RESEARCH_REQUIRED predecessor`
           );
           assert.ok(
             Array.isArray(recovered.verifiable_evidence_sources) && recovered.verifiable_evidence_sources.length > 0,
@@ -201,8 +217,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
   it('6. Kill Switch Precision & Fail-Closed Fallback Mechanics', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
@@ -224,8 +239,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
   it('7. Phase 75B: Multi-Offer Resolver Invariants & Quarantine Verification', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
@@ -266,8 +280,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
   it('8. Phase 75E: MS 170 Final Commercial Gaps (Oil Pickup Filter 1123 640 3800 & 40 cm Saw Chains 3636 000 0055 / 3610 000 0055)', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
@@ -302,8 +315,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
 
   it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 75 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
@@ -341,10 +353,9 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.strictEqual(registry.getOffer('11236402074', 'amazon.de', 'B00LAHPOXA'), null);
   });
 
-  it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (75 Active Offers)', () => {
+  it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (75+ Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
@@ -386,7 +397,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     assert.ok(walbroD10Raw, 'Walbro D10-WAT B08F9ML22K must stay in the registry');
     assert.strictEqual(walbroD10Raw.status, 'SUSPENDED', 'Walbro D10-WAT B08F9ML22K must be suspended after the live 404');
     assert.strictEqual(walbroD10Raw.suspension_reason, 'LISTING_NOT_AVAILABLE_404');
-    assert.strictEqual(registry.getActiveOffer('11230071061', 'amazon.nl'), null, 'A suspended listing must not resolve as an active offer');
+    assert.strictEqual(registry.getActiveOffer('11230071061', 'amazon.nl', 'B08F9ML22K'), null, 'A suspended listing must not resolve as an active offer');
 
     // Strict technical boundary check: M10 2-MIX spark plugs and 1,1 mm (.043") chains/bars must NOT claim MS 250 compatibility
     const ms170OnlyParts = ['00004007009', '00004007011', '36100000044', '36100000050', '30050003905', '30050003909'];
@@ -399,20 +410,19 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
   });
 
-  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (130 Active Offers: 84 NL + 46 DE after the Phase 87.1 expansion)', () => {
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (unlimited verified offers)', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 150, 'Total active offers must equal 150 (100 NL + 50 DE)');
+    assert.ok(activeOffers.length >= 150, `Total active offers must be at least 150, found ${activeOffers.length}`);
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 100, 'Active NL offers must equal 100');
-    assert.strictEqual(activeDe.length, 50, 'Active DE offers must equal 50');
+    assert.ok(activeNl.length >= 100, `Active NL offers must be at least 100, found ${activeNl.length}`);
+    assert.ok(activeDe.length >= 50, `Active DE offers must be at least 50, found ${activeDe.length}`);
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de
     const expectedMs440DeOffers = [

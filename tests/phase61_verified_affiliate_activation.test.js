@@ -122,7 +122,7 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
     const activeData = JSON.parse(fs.readFileSync(activeRegistryPath, 'utf8'));
     const activeOffers = (activeData.offers || []).filter(o => o.status === 'ACTIVE');
     const activeNL = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
-    assert.ok(activeNL.length <= 100, 'Active offers must be within policy cap');
+    assert.ok(activeNL.length >= 3, 'Active NL offers must include baseline pilot offers without fixed slot ceiling');
 
     const activeParts = activeOffers.map(o => o.part_number);
     assert.ok(['00004007000', '00004007011', '11104007005'].every(p => activeParts.includes(p)), 'Baseline 3 pilot parts remain active');

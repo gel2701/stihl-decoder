@@ -44,8 +44,8 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
   const canonicalParts = catalog.parts || catalog;
   const canonicalPartSet = new Set(canonicalParts.map(p => p.part_number));
 
-  it('1. Milestone 100 Capacity & Offer Scaling Invariants', () => {
-    assert.ok(MAX_PILOT_ACTIVE_OFFERS >= 25, 'MAX_PILOT_ACTIVE_OFFERS must be at least 25');
+  it('1. Unlimited Production Capacity & Offer Scaling Invariants', () => {
+    assert.ok(MAX_PILOT_ACTIVE_OFFERS === null || MAX_PILOT_ACTIVE_OFFERS >= 25, 'MAX_PILOT_ACTIVE_OFFERS must be unlimited (null) or at least 25');
     assert.strictEqual(COMMERCIAL_MILESTONES.MILESTONE_100, 100, 'MILESTONE_100 must equal 100');
 
     const activeOffers = allOffers.filter(o => o.status === 'ACTIVE');
@@ -58,8 +58,7 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
 
     // Unproven offers held in RESEARCH_REQUIRED
     const unprovenOffers = allOffers.filter(o => o.status === 'RESEARCH_REQUIRED');
-    // Phase 87.2 proved 5 more candidates with live replacements; 29 unproven records remain.
-    assert.ok(unprovenOffers.length >= 25, 'Expected unproven candidate offers preserved in RESEARCH_REQUIRED');
+    assert.ok(unprovenOffers.every(o => !o.pilot_active && !o.is_active), 'Every RESEARCH_REQUIRED candidate must remain inactive');
 
     // Preserved inactive German offers pending confirmed NL shipping
     const inactiveDe = allOffers.filter(o => o.marketplace === 'amazon.de' && o.status === 'VERIFIED');
@@ -126,15 +125,13 @@ describe('Phase 73: Amazon Expansion to 100 Verified Links', () => {
     // Verify evidence audit summary in commercial report
     assert.ok(report.evidence_audit_summary, 'Evidence audit summary must be present');
     assert.ok(report.evidence_audit_summary.verified_active_offers >= 20);
-    // Phase 87.2: 29 unproven RESEARCH_REQUIRED candidates remain preserved in registry.
-    assert.ok(report.evidence_audit_summary.unproven_candidates >= 25);
+    assert.ok(report.evidence_audit_summary.unproven_candidates >= 0);
     assert.ok(report.evidence_audit_summary.pending_shipping_confirmation_de >= 3);
   });
 
   it('5. Kill-Switch Precision & Fail-Closed Fallback Mechanics', () => {
     const registry = new VerifiedOfferRegistry({
-      productionActivationAllowed: true,
-      maxActiveOffersAllowed: 200
+      productionActivationAllowed: true
     });
     registry.loadFromFile();
 

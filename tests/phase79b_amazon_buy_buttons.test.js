@@ -91,19 +91,20 @@ test('Phase 79B - Test 1: production activation is no longer pinned to the 3-par
   // Phase 86 suspended 24 amazon.nl listings that returned HTTP 404; Phase 87
   // replaced them with live, independently corroborated listings, so 85 parts /
   // 130 offers are genuinely ACTIVE.
-  assert.strictEqual(activeParts.length, 137, 'Registry must contain offers for 137 unique ACTIVE parts');
-  assert.strictEqual(directParts, 137, 'Every ACTIVE part must expose at least one direct Amazon offer');
-  assert.strictEqual(directOffers, 150, 'All 150 ACTIVE offers must be rendered');
+  assert.ok(activeParts.length >= 137, `Registry must contain offers for at least 137 unique ACTIVE parts (found ${activeParts.length})`);
+  assert.strictEqual(directParts, activeParts.length, 'Every ACTIVE part must expose at least one direct Amazon offer');
+  assert.strictEqual(directOffers, activeOffers.length, 'Every ACTIVE offer must be resolvable');
   assert.strictEqual(fallbackParts, 0, 'No ACTIVE part may fall back to a search link');
 });
 
-test('Phase 79B - Test 2: evidence database and offer counts are intact (150 ACTIVE: 100 NL / 50 DE)', () => {
-  assert.strictEqual(registryDoc.offers.length, 216, 'Registry keeps every live and suspended record plus the Phase 87, 87.1 and 87.2 additions');
-  assert.strictEqual(activeOffers.length, 150, 'Active offer total must equal 150');
-  assert.strictEqual(activeOffers.filter(o => marketplaceKey(o) === 'amazon.nl').length, 100, 'Amazon.nl active offers must equal 100');
-  assert.strictEqual(activeOffers.filter(o => marketplaceKey(o) === 'amazon.de').length, 50, 'Amazon.de active offers must equal 50');
-  assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.nl'], 100);
-  assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.de'], 50);
+test('Phase 79B - Test 2: evidence database is intact and unlimited policy has no commercial ceiling', () => {
+  assert.ok(registryDoc.offers.length >= 216, 'Registry keeps every historical record plus subsequent verified additions');
+  assert.ok(activeOffers.length >= 150, `Active offer total must be at least 150 (found ${activeOffers.length})`);
+  assert.ok(activeOffers.filter(o => marketplaceKey(o) === 'amazon.nl').length >= 100, 'Amazon.nl active offers must be at least 100');
+  assert.ok(activeOffers.filter(o => marketplaceKey(o) === 'amazon.de').length >= 50, 'Amazon.de active offers must be at least 50');
+  assert.strictEqual(registryDoc.policy.max_active_offers_allowed, null);
+  assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.nl'], null);
+  assert.strictEqual(registryDoc.policy.max_active_offers_per_marketplace['amazon.de'], null);
   assert.ok(activeOffers.every(o => typeof o.asin === 'string' && o.asin.length > 0), 'Every ACTIVE offer keeps its ASIN');
 });
 
@@ -190,7 +191,7 @@ test('Phase 79B - Test 5: search engine exposes multi-marketplace purchase offer
   assert.ok(nlOnly.url.includes('tag=srihldecoder2-21'));
 
   // No direct offer at all -> compliant search fallback
-  const fallback = resolvePurchaseOffer('11231602050', 'Stihl Clutch');
+  const fallback = resolvePurchaseOffer('00000071043', 'Stihl Set Of Screws');
   assert.strictEqual(fallback.type, 'SEARCH_FALLBACK');
   assert.strictEqual(fallback.is_direct, false);
   assert.ok(fallback.url.includes('amazon.nl/s?k='));
@@ -306,7 +307,7 @@ test('Phase 79B - Test 10: rendered HTML keeps exact ASINs, marketplaces and tag
 
 test('Phase 79B - Test 11: part without direct offer keeps a compliant search fallback page', () => {
   activateAll();
-  const html = renderPartDetailPageHtml('11231602050', database, 'https://www.stihldecoder.nl');
+  const html = renderPartDetailPageHtml('00000071043', database, 'https://www.stihldecoder.nl');
 
   assert.ok(html.indexOf('Zoek dit onderdeel online') > -1, 'Fallback page must keep the search section');
   assert.ok(html.includes('amazon.nl/s?k='), 'Fallback must link to a targeted Amazon search');

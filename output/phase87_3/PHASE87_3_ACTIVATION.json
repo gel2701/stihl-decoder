@@ -1,0 +1,2408 @@
+{
+  "phase": "87.3",
+  "generated_at": "2026-11-16T13:30:38.637Z",
+  "before": {
+    "active_total": 150,
+    "active_nl": 100,
+    "active_de": 50,
+    "unique_parts": 137
+  },
+  "after": {
+    "active_total": 344,
+    "active_nl": 216,
+    "active_de": 128,
+    "unique_parts": 270,
+    "new_unique_parts_added": 133,
+    "new_offers_activated": 194,
+    "new_nl_activated": 116,
+    "new_de_activated": 78,
+    "ready_above_cap_activated": 12,
+    "ready_above_cap_total": 12,
+    "dealer_corroborated_new_offers": 4,
+    "remaining_research_required": 23,
+    "remaining_verified_de_inactive": 3,
+    "remaining_needs_evidence_total": 26,
+    "suspended_historical_preserved": 34
+  },
+  "gsc_coverage": {
+    "unique_covered_parts_before": 109,
+    "unique_covered_parts_after": 227,
+    "delta_unique_parts": 118,
+    "per_model_delta": {
+      "MS 440": {
+        "before": 19,
+        "after": 34,
+        "delta": 15
+      },
+      "MS 170": {
+        "before": 19,
+        "after": 37,
+        "delta": 18
+      },
+      "MS 361": {
+        "before": 16,
+        "after": 33,
+        "delta": 17
+      },
+      "BR 600": {
+        "before": 2,
+        "after": 6,
+        "delta": 4
+      },
+      "MS 250": {
+        "before": 24,
+        "after": 47,
+        "delta": 23
+      },
+      "MS 461": {
+        "before": 14,
+        "after": 27,
+        "delta": 13
+      },
+      "MS 390": {
+        "before": 14,
+        "after": 19,
+        "delta": 5
+      },
+      "HS 45": {
+        "before": 8,
+        "after": 12,
+        "delta": 4
+      },
+      "MS 260": {
+        "before": 16,
+        "after": 37,
+        "delta": 21
+      },
+      "FS 55": {
+        "before": 16,
+        "after": 26,
+        "delta": 10
+      },
+      "TS 420": {
+        "before": 2,
+        "after": 8,
+        "delta": 6
+      },
+      "FS 350": {
+        "before": 6,
+        "after": 16,
+        "delta": 10
+      },
+      "FS 85": {
+        "before": 14,
+        "after": 25,
+        "delta": 11
+      },
+      "MS 180": {
+        "before": 23,
+        "after": 38,
+        "delta": 15
+      },
+      "044": {
+        "before": 20,
+        "after": 36,
+        "delta": 16
+      },
+      "MS 441": {
+        "before": 9,
+        "after": 20,
+        "delta": 11
+      },
+      "MS 310": {
+        "before": 18,
+        "after": 23,
+        "delta": 5
+      },
+      "046": {
+        "before": 17,
+        "after": 31,
+        "delta": 14
+      },
+      "FS 100": {
+        "before": 5,
+        "after": 12,
+        "delta": 7
+      },
+      "MS 460 / 046 Magnum": {
+        "before": 16,
+        "after": 28,
+        "delta": 12
+      },
+      "MS 230": {
+        "before": 24,
+        "after": 46,
+        "delta": 22
+      },
+      "FS 80": {
+        "before": 14,
+        "after": 25,
+        "delta": 11
+      },
+      "MS 362": {
+        "before": 11,
+        "after": 21,
+        "delta": 10
+      },
+      "MS 661": {
+        "before": 9,
+        "after": 23,
+        "delta": 14
+      }
+    }
+  },
+  "activated_offers": [
+    {
+      "part_number": "41341410300",
+      "asin": "B005HDPX02",
+      "marketplace": "amazon.nl",
+      "brand": "Rotary",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": true
+    },
+    {
+      "part_number": "11181900600",
+      "asin": "B00IMD4CYM",
+      "marketplace": "amazon.de",
+      "brand": "Ratioparts",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210300405",
+      "asin": "B07YGXG7J1",
+      "marketplace": "amazon.nl",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230802115",
+      "asin": "B0F23X6C8V",
+      "marketplace": "amazon.nl",
+      "brand": "VORIPO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280201221",
+      "asin": "B0CNSGPZ2R",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280300406",
+      "asin": "B0H2J15NST",
+      "marketplace": "amazon.nl",
+      "brand": "PEGGYLIN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11284001214",
+      "asin": "B086H1W869",
+      "marketplace": "amazon.nl",
+      "brand": "HUYUR",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11286403206",
+      "asin": "B0FQSTWS2Z",
+      "marketplace": "amazon.nl",
+      "brand": "YCSOZMM",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41371200628",
+      "asin": "B0GBVVD67Y",
+      "marketplace": "amazon.nl",
+      "brand": "CCXOZSR",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42381404401",
+      "asin": "B01K57TYPO",
+      "marketplace": "amazon.nl",
+      "brand": "ISE",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "00009302246",
+      "asin": "B007TJKHYE",
+      "marketplace": "amazon.de",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42291201800",
+      "asin": "B07CBNR4LL",
+      "marketplace": "amazon.de",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": true,
+      "has_dealer_corroboration": true
+    },
+    {
+      "part_number": "11290071062",
+      "asin": "B007TK16ES",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11290071062",
+      "asin": "B007TK16ES",
+      "marketplace": "amazon.de",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11441404402",
+      "asin": "B08TRPLMFX",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "30050004805",
+      "asin": "B001J4W2HK",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "40028202302",
+      "asin": "B0HL47RPRD",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41190071013",
+      "asin": "B007TK0TUA",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41197136500",
+      "asin": "B08TRMF51Z",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41281602001",
+      "asin": "B007TK0JE6",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11411404400",
+      "asin": "B0HN17X1GB",
+      "marketplace": "amazon.nl",
+      "brand": "FDLWZGDY",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": true
+    },
+    {
+      "part_number": "41341410300",
+      "asin": "B0BWRPF2T9",
+      "marketplace": "amazon.de",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": true
+    },
+    {
+      "part_number": "11196567705",
+      "asin": "B07PVYMWCZ",
+      "marketplace": "amazon.de",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071037",
+      "asin": "B09JWC4WJQ",
+      "marketplace": "amazon.nl",
+      "brand": "MCHNIC",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071037",
+      "asin": "B0D2J6JVHH",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071041",
+      "asin": "B0FS6W9FB3",
+      "marketplace": "amazon.nl",
+      "brand": "Adefol",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071041",
+      "asin": "B0FS6W9FB3",
+      "marketplace": "amazon.de",
+      "brand": "Adefol",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071043",
+      "asin": "B0CFV1K7ZS",
+      "marketplace": "amazon.nl",
+      "brand": "MCHNIC",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11220071001",
+      "asin": "B0CLF1B9D3",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11220071001",
+      "asin": "B0CLF1B9D3",
+      "marketplace": "amazon.de",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11220071002",
+      "asin": "B0CLFCHM3Y",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230071004",
+      "asin": "B0GGRSYTW4",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231201650",
+      "asin": "B0CLF27S5Z",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231201651",
+      "asin": "B0CLDXYXV6",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231401902",
+      "asin": "B0GHS5TDVM",
+      "marketplace": "amazon.nl",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231401902",
+      "asin": "B0GHS5TDVM",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11234001301",
+      "asin": "B098BG3DFX",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11236403200",
+      "asin": "B098BDM32M",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11236403200",
+      "asin": "B0GGGWJFDW",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280300406",
+      "asin": "B07BWCRD1C",
+      "marketplace": "amazon.de",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11284001214",
+      "asin": "B07FTP4G54",
+      "marketplace": "amazon.de",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11286403205",
+      "asin": "B098BF7HW5",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11304001201",
+      "asin": "B085B1N794",
+      "marketplace": "amazon.nl",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11304001201",
+      "asin": "B085B1N794",
+      "marketplace": "amazon.de",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11304001308",
+      "asin": "B0G2JKWVTY",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11304001310",
+      "asin": "B0G2JNKGYX",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11320300402",
+      "asin": "B086SF9B7P",
+      "marketplace": "amazon.nl",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11356403200",
+      "asin": "B098BD3FQH",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11411200612",
+      "asin": "B0GDQSM43L",
+      "marketplace": "amazon.nl",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11414001331",
+      "asin": "B0G2JMLBSQ",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11416402001",
+      "asin": "B08F7BSWDL",
+      "marketplace": "amazon.nl",
+      "brand": "Adefol",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11416402001",
+      "asin": "B0GVDLWS2P",
+      "marketplace": "amazon.de",
+      "brand": "Adefol",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41187134105",
+      "asin": "B07HLSWSBP",
+      "marketplace": "amazon.nl",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41266427600",
+      "asin": "B08SJJB3B3",
+      "marketplace": "amazon.nl",
+      "brand": "Adefol",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41307131600",
+      "asin": "B07FB1Z5TP",
+      "marketplace": "amazon.nl",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41340300403",
+      "asin": "B07FYN9LBG",
+      "marketplace": "amazon.nl",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280341501",
+      "asin": "B0H34V6KR4",
+      "marketplace": "amazon.de",
+      "brand": "ECSiNG",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "00001903402",
+      "asin": "B0DSBG9CQL",
+      "marketplace": "amazon.nl",
+      "brand": "ZXHOZDM",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "00003500525",
+      "asin": "B0H5FVJGFF",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "00003500537",
+      "asin": "B0FHH1CHFZ",
+      "marketplace": "amazon.nl",
+      "brand": "YSDOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "00009980612",
+      "asin": "B0GZ75KJ85",
+      "marketplace": "amazon.nl",
+      "brand": "ISSICOO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11131958200",
+      "asin": "B0GXBL52B5",
+      "marketplace": "amazon.nl",
+      "brand": "Supkancl",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11131958200",
+      "asin": "B0GXBL52B5",
+      "marketplace": "amazon.de",
+      "brand": "Supkancl",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11196567705",
+      "asin": "B0B554WLRG",
+      "marketplace": "amazon.nl",
+      "brand": "ProPart",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071039",
+      "asin": "B0CYXXLFW2",
+      "marketplace": "amazon.nl",
+      "brand": "Ewon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071039",
+      "asin": "B0CYXXLFW2",
+      "marketplace": "amazon.de",
+      "brand": "Ewon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210071043",
+      "asin": "B0FCBZXRFT",
+      "marketplace": "amazon.de",
+      "brand": "Haishine",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210201217",
+      "asin": "B07VZF8FTG",
+      "marketplace": "amazon.nl",
+      "brand": "AUMEL",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210201217",
+      "asin": "B0DC6MCVHZ",
+      "marketplace": "amazon.de",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210300405",
+      "asin": "B0DLMM47HP",
+      "marketplace": "amazon.de",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210302003",
+      "asin": "B0H2SGYQK5",
+      "marketplace": "amazon.de",
+      "brand": "SAANICH",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210343002",
+      "asin": "B0FH6NXN7S",
+      "marketplace": "amazon.nl",
+      "brand": "YSDOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210343002",
+      "asin": "B06VW3WS9C",
+      "marketplace": "amazon.de",
+      "brand": "Jardinvest",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210802101",
+      "asin": "B07P3YPH7G",
+      "marketplace": "amazon.nl",
+      "brand": "QHALEN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11210802101",
+      "asin": "B09TB696K6",
+      "marketplace": "amazon.de",
+      "brand": "Chuancheng",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211200602",
+      "asin": "B0C8BRWVKJ",
+      "marketplace": "amazon.nl",
+      "brand": "Husmax",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211200602",
+      "asin": "B0C8BRWVKJ",
+      "marketplace": "amazon.de",
+      "brand": "Husmax",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211400604",
+      "asin": "B0DRCLYL97",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211400604",
+      "asin": "B0BVF1F3QY",
+      "marketplace": "amazon.de",
+      "brand": "Comcapy",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211602051",
+      "asin": "B08BP816DH",
+      "marketplace": "amazon.nl",
+      "brand": "Mtanlo",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11211953400",
+      "asin": "B0DC6MNK6L",
+      "marketplace": "amazon.nl",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11216403202",
+      "asin": "B0FHH3XMQC",
+      "marketplace": "amazon.nl",
+      "brand": "YSDOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11220071000",
+      "asin": "B0FKNL7HNJ",
+      "marketplace": "amazon.nl",
+      "brand": "UYTGFO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11220071000",
+      "asin": "B0CNTNQJR6",
+      "marketplace": "amazon.de",
+      "brand": "IVOOJA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11226402002",
+      "asin": "B0B3QMBZJ6",
+      "marketplace": "amazon.de",
+      "brand": "Realman",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11226480403",
+      "asin": "B08PQ1PL6B",
+      "marketplace": "amazon.nl",
+      "brand": "ProPart",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11226567700",
+      "asin": "B0HLJSV51N",
+      "marketplace": "amazon.nl",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11226567700",
+      "asin": "B0HPG3DXDP",
+      "marketplace": "amazon.de",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230071030",
+      "asin": "B0H3L9XQ5L",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230071032",
+      "asin": "B0H3L7K428",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230201220",
+      "asin": "B0F242WX36",
+      "marketplace": "amazon.nl",
+      "brand": "NMJHEVX",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230300408",
+      "asin": "B0G5ZNYC48",
+      "marketplace": "amazon.de",
+      "brand": "Garden Parts",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11230302019",
+      "asin": "B09Z6FF2HK",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231200615",
+      "asin": "B0FQJCX4B5",
+      "marketplace": "amazon.nl",
+      "brand": "YCSOZMM",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231200615",
+      "asin": "B0CS9VR9RJ",
+      "marketplace": "amazon.de",
+      "brand": "IVOOJA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231200631",
+      "asin": "B0DWSB8VP3",
+      "marketplace": "amazon.nl",
+      "brand": "CCQMGDM",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231200631",
+      "asin": "B0FG7MK8QH",
+      "marketplace": "amazon.de",
+      "brand": "ZXHOZDM",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11231602050",
+      "asin": "B0FJMLPG12",
+      "marketplace": "amazon.nl",
+      "brand": "GartenExpress",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11234001203",
+      "asin": "B086HJYZBZ",
+      "marketplace": "amazon.nl",
+      "brand": "HUYUR",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11234001203",
+      "asin": "B0GMDPNF47",
+      "marketplace": "amazon.de",
+      "brand": "LT Easiyl",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11234001207",
+      "asin": "B0D3HTJSM2",
+      "marketplace": "amazon.nl",
+      "brand": "Manoud",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11234001207",
+      "asin": "B0D3HTJSM2",
+      "marketplace": "amazon.de",
+      "brand": "Manoud",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11236401704",
+      "asin": "B0DTF18LSD",
+      "marketplace": "amazon.nl",
+      "brand": "JHYOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11236401705",
+      "asin": "B0BWSX7F5L",
+      "marketplace": "amazon.nl",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11236403201",
+      "asin": "B0H1HCRGZ4",
+      "marketplace": "amazon.nl",
+      "brand": "RHFUUTCA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11250071021",
+      "asin": "B09YHQ9YVT",
+      "marketplace": "amazon.nl",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11251957200",
+      "asin": "B0BBBD84XM",
+      "marketplace": "amazon.nl",
+      "brand": "Comcapy",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280071000",
+      "asin": "B08DHS4YFQ",
+      "marketplace": "amazon.nl",
+      "brand": "Mtanlo",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280071000",
+      "asin": "B08DHS4YFQ",
+      "marketplace": "amazon.de",
+      "brand": "Mtanlo",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280071001",
+      "asin": "B0DZ53TK6B",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280071001",
+      "asin": "B0DZ5FTF79",
+      "marketplace": "amazon.de",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280300402",
+      "asin": "B0C4HQ4MJS",
+      "marketplace": "amazon.nl",
+      "brand": "IWBR",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280300402",
+      "asin": "B0G6FS8KVQ",
+      "marketplace": "amazon.de",
+      "brand": "GTWSQQ",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280302015",
+      "asin": "B0C2VG46R3",
+      "marketplace": "amazon.de",
+      "brand": "Comcapy",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280302051",
+      "asin": "B0CMDZMNVV",
+      "marketplace": "amazon.de",
+      "brand": "ProPart",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280343000",
+      "asin": "B079D5X45C",
+      "marketplace": "amazon.nl",
+      "brand": "YAMASCO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11281200622",
+      "asin": "B0HR4HS8NT",
+      "marketplace": "amazon.nl",
+      "brand": "YTdhfDGJ",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11281200622",
+      "asin": "B0CQVM23WJ",
+      "marketplace": "amazon.de",
+      "brand": "IVOOJA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11281200629",
+      "asin": "B0CQ4PGJM2",
+      "marketplace": "amazon.nl",
+      "brand": "Husmax",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11281200629",
+      "asin": "B0H37NW3XY",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11284001313",
+      "asin": "B08XQMF7S1",
+      "marketplace": "amazon.nl",
+      "brand": "SGBTB",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11284001313",
+      "asin": "B08XQMF7S1",
+      "marketplace": "amazon.de",
+      "brand": "SGBTB",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201207",
+      "asin": "B0DVM35D1C",
+      "marketplace": "amazon.nl",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201207",
+      "asin": "B0DVM35D1C",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201212",
+      "asin": "B0FPMMBN5V",
+      "marketplace": "amazon.nl",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201212",
+      "asin": "B0FPMMBN5V",
+      "marketplace": "amazon.de",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201213",
+      "asin": "B0FPMQ4VVH",
+      "marketplace": "amazon.nl",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300201213",
+      "asin": "B0FPMQ4VVH",
+      "marketplace": "amazon.de",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300302000",
+      "asin": "B0GLZLWYF3",
+      "marketplace": "amazon.nl",
+      "brand": "Serenophile",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300302000",
+      "asin": "B0HKVXJV5K",
+      "marketplace": "amazon.de",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11300343003",
+      "asin": "B079D6LWQP",
+      "marketplace": "amazon.de",
+      "brand": "ITACO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11301200610",
+      "asin": "B0DTF4HJG2",
+      "marketplace": "amazon.nl",
+      "brand": "JHYOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11301200610",
+      "asin": "B0G3XTGNJW",
+      "marketplace": "amazon.de",
+      "brand": "IVOOJA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11301200612",
+      "asin": "B0GZ36TFNV",
+      "marketplace": "amazon.de",
+      "brand": "ZAMDOE",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11301400614",
+      "asin": "B0FPBMZNWV",
+      "marketplace": "amazon.nl",
+      "brand": "UYTGFO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11301490601",
+      "asin": "B07FSJG6VY",
+      "marketplace": "amazon.de",
+      "brand": "ISE",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11320300401",
+      "asin": "B0D25SKHV8",
+      "marketplace": "amazon.nl",
+      "brand": "YAMASCO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11320300401",
+      "asin": "B0D25SKHV8",
+      "marketplace": "amazon.de",
+      "brand": "ITACO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11320300402",
+      "asin": "B09Z1XN82Q",
+      "marketplace": "amazon.de",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350201202",
+      "asin": "B07VZZH1KD",
+      "marketplace": "amazon.nl",
+      "brand": "AUMEL",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350292300",
+      "asin": "B0DVGXT3NS",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350300400",
+      "asin": "B0DYNVVTCB",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350300400",
+      "asin": "B0DLZYRGYQ",
+      "marketplace": "amazon.de",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350302005",
+      "asin": "B0H34DL3NG",
+      "marketplace": "amazon.nl",
+      "brand": "SAANICH",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11350302005",
+      "asin": "B0B11ZVKRF",
+      "marketplace": "amazon.de",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11351200601",
+      "asin": "B0BWSXPMN4",
+      "marketplace": "amazon.nl",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11351200601",
+      "asin": "B0BWSXPMN4",
+      "marketplace": "amazon.de",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11351900600",
+      "asin": "B0C59HKWNS",
+      "marketplace": "amazon.nl",
+      "brand": "QINYUN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11351900600",
+      "asin": "B07N2VQ5HP",
+      "marketplace": "amazon.de",
+      "brand": "Jardiaffaires",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11354001203",
+      "asin": "B0DPKMYCTK",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11354001203",
+      "asin": "B0DPKMYCTK",
+      "marketplace": "amazon.de",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11354001308",
+      "asin": "B0CKBZZ59K",
+      "marketplace": "amazon.nl",
+      "brand": "Husmax",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11356401703",
+      "asin": "B07PNRCPL6",
+      "marketplace": "amazon.nl",
+      "brand": "QHALEN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11410201200",
+      "asin": "B0CTMX13YG",
+      "marketplace": "amazon.de",
+      "brand": "Hujago",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11410201202",
+      "asin": "B0FK3XGK27",
+      "marketplace": "amazon.nl",
+      "brand": "UYTGFO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11410201202",
+      "asin": "B0BL1BM9QZ",
+      "marketplace": "amazon.de",
+      "brand": "Realman",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11410802104",
+      "asin": "B09C1JG4WK",
+      "marketplace": "amazon.nl",
+      "brand": "Wanotine",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11411200606",
+      "asin": "B0DT9K4YHY",
+      "marketplace": "amazon.nl",
+      "brand": "JXKYGMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11411200606",
+      "asin": "B0DT9K4YHY",
+      "marketplace": "amazon.de",
+      "brand": "JXKYGMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11411200610",
+      "asin": "B0F6Y6M7V4",
+      "marketplace": "amazon.nl",
+      "brand": "JLLOZMD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11414001331",
+      "asin": "B0HM9TMM6R",
+      "marketplace": "amazon.nl",
+      "brand": "MDADEQ",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11416402003",
+      "asin": "B0C579YCLX",
+      "marketplace": "amazon.nl",
+      "brand": "QINYUN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11416567700",
+      "asin": "B0DC6LQQL3",
+      "marketplace": "amazon.nl",
+      "brand": "Gubeter",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11440802102",
+      "asin": "B0DZ2B9SJK",
+      "marketplace": "amazon.nl",
+      "brand": "DUANXY",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11441200610",
+      "asin": "B0GFVV3LN5",
+      "marketplace": "amazon.nl",
+      "brand": "YDXHERTA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11441400600",
+      "asin": "B0FPBLSTLG",
+      "marketplace": "amazon.nl",
+      "brand": "UYTGFO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11446401705",
+      "asin": "B0GNJ4MC6G",
+      "marketplace": "amazon.nl",
+      "brand": "DGWMLSDPP",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11446403200",
+      "asin": "B0DZD68Q7V",
+      "marketplace": "amazon.nl",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41281602900",
+      "asin": "B0DZ1MQ9SH",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuyvarna",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41330071060",
+      "asin": "B0FVB8W2BY",
+      "marketplace": "amazon.nl",
+      "brand": "YINETTECH",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41340302010",
+      "asin": "B0B27G6ZPC",
+      "marketplace": "amazon.nl",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41370300401",
+      "asin": "B0GKX4Q5SV",
+      "marketplace": "amazon.nl",
+      "brand": "DGWMLSDPP",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41371200628",
+      "asin": "B0GBVVD67Y",
+      "marketplace": "amazon.de",
+      "brand": "CCXOZSR",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41401200619",
+      "asin": "B0HNTS7577",
+      "marketplace": "amazon.nl",
+      "brand": "MotorGuru",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41470300403",
+      "asin": "B0GFN198RN",
+      "marketplace": "amazon.nl",
+      "brand": "DGWMLSDPP",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41471200600",
+      "asin": "B0GG5XDQFR",
+      "marketplace": "amazon.de",
+      "brand": "MLYABOZL",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41471200608",
+      "asin": "B0DDL4GRZF",
+      "marketplace": "amazon.nl",
+      "brand": "YANKEBOWANG",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41471602000",
+      "asin": "B0FF4LT737",
+      "marketplace": "amazon.nl",
+      "brand": "Saharuse",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42281200608",
+      "asin": "B0H5BMS7CN",
+      "marketplace": "amazon.nl",
+      "brand": "KISSGPIPOL",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42380201209",
+      "asin": "B09W58X24K",
+      "marketplace": "amazon.nl",
+      "brand": "GardenPal",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42380300400",
+      "asin": "B09DCJZMMP",
+      "marketplace": "amazon.nl",
+      "brand": "GardenPal",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42381900302",
+      "asin": "B09F2Y5TWH",
+      "marketplace": "amazon.nl",
+      "brand": "GardenPal",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "42820302005",
+      "asin": "B0G8JG5HCR",
+      "marketplace": "amazon.nl",
+      "brand": "DGWMLSDPP",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "90223711020",
+      "asin": "B0HPL2HPKD",
+      "marketplace": "amazon.nl",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11221903400",
+      "asin": "B006VYS29A",
+      "marketplace": "amazon.nl",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11256401701",
+      "asin": "B007TK1BK2",
+      "marketplace": "amazon.de",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11216403203",
+      "asin": "B098BFMP68",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11271201621",
+      "asin": "B0GHSHSZ2N",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11287901750",
+      "asin": "B07PK3PPFP",
+      "marketplace": "amazon.de",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11351400650",
+      "asin": "B07YGQMS5W",
+      "marketplace": "amazon.de",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41197106000",
+      "asin": "B07HLM39J5",
+      "marketplace": "amazon.de",
+      "brand": "Cancanle",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "41371200636",
+      "asin": "B0HLBHL5DG",
+      "marketplace": "amazon.de",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11280201250",
+      "asin": "B0D2LK6GZH",
+      "marketplace": "amazon.de",
+      "brand": "ICOOYO",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    },
+    {
+      "part_number": "11281602004",
+      "asin": "B0CL3FQZBR",
+      "marketplace": "amazon.de",
+      "brand": "IVOOJA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "ready_above_cap": false,
+      "has_dealer_corroboration": false
+    }
+  ],
+  "rejected_by_gate": [],
+  "superseded_research_candidates": [
+    {
+      "part_number": "41341410300",
+      "part_number_formatted": "4134 141 0300",
+      "asin": "B08K8Y845M",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Trade-Shop Germany",
+      "manufacturer_part_number": "4134 141 0300",
+      "trade_number": "FS350-AIRFILTER",
+      "brand": "Trade-Shop",
+      "product_title": "Trade-Shop Luchtfilter Passend voor Stihl FS120 FS200 FS250 FS300 FS350 FS400 FS450 Vervangt 4134 141 0300",
+      "package_quantity": 1,
+      "package_type": "Papieren hoofdluchtfilter met rubber rand",
+      "is_multipack": false,
+      "ean_gtin": "4063212107604",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_41341410300",
+      "focus_model": "FS 350",
+      "model_compatibility": "FS 350 / FS 120 / FS 200 / FS 250 / FS 400 / FS 450",
+      "item_price": null,
+      "shipping_cost_nl": null,
+      "compatibility_proof": "Trade-Shop luchtfilter vervangt STIHL 4134 141 0300 voor STIHL FS 350, FS 400, FS 450 bosmaaiers.",
+      "asin_product_identity_proof": "ASIN B08K8Y845M bevestigd als luchtfilter voor STIHL FS 350 MPN 41341410300.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B08K8Y845M",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B08K8Y845M?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4134+141+0300&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation. | Phase 87: vervangen door B0D3GRT27F.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-10",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B08K8Y845M",
+      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
+      "fulfillment_context": "Fulfilled by Amazon / Prime Partner",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B08K8Y845M",
+          "title": "Amazon.nl productpagina B08K8Y845M",
+          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 350 voor onderdeel 41341410300.",
+          "retrieved_at": "2026-11-10"
+        }
+      ],
+      "updated_at": "2026-11-15T22:49:29.032Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      },
+      "previous_status": "RESEARCH_REQUIRED",
+      "suspension_reason": "LISTING_NOT_AVAILABLE_404",
+      "phase_87_review": "Kandidaat B0D3GRT27F (10-pack luchtfilters) afgewezen: de Amazon-vermelding voert geen fabrikantmerk (byline \"Generic\"), dus geen MANUFACTURER_AFTERMARKET-classificatie mogelijk."
+    },
+    {
+      "part_number": "11230802115",
+      "part_number_formatted": "1123 080 2115",
+      "asin": "B079DNK41A",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "1123 080 2115",
+      "trade_number": "MS250-FAN-HOUSING",
+      "brand": "STIHL",
+      "product_title": "Origineel STIHL Ventilatorhuis met Terugloopstarter 1123 080 2115 voor Kettingzaag MS 210, MS 230, MS 250",
+      "package_quantity": 1,
+      "package_type": "Ventilatorhuis met complete starterunit",
+      "is_multipack": false,
+      "ean_gtin": "0795711107918",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_11230802115",
+      "focus_model": "MS 250",
+      "model_compatibility": "MS 250 / MS 210 / MS 230 / 021 / 023 / 025",
+      "item_price": null,
+      "shipping_cost_nl": null,
+      "compatibility_proof": "Origineel STIHL 1123 080 2115 ventilatorhuis starterunit voor STIHL MS 250, MS 230, MS 210.",
+      "asin_product_identity_proof": "ASIN B079DNK41A bevestigd als origineel STIHL starterhuis MPN 11230802115 voor MS 250.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B079DNK41A",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B079DNK41A?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+1123+080+2115&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-10",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B079DNK41A",
+      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
+      "fulfillment_context": "Amazon / Official Distributor",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DNK41A",
+          "title": "Amazon.nl productpagina B079DNK41A",
+          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL MS 250 voor onderdeel 11230802115.",
+          "retrieved_at": "2026-11-10"
+        }
+      ],
+      "updated_at": "2026-11-15T20:53:57.540Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      }
+    },
+    {
+      "part_number": "41371200628",
+      "part_number_formatted": "4137 120 0628",
+      "asin": "B07V22L97D",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Zama / Aftermarket Tech",
+      "manufacturer_part_number": "4137 120 0628",
+      "trade_number": "C1Q-S28D",
+      "brand": "C1Q Replacement",
+      "product_title": "Carburateur C1Q-S28D Vervanging voor Stihl FS80 FS85 FS75 KM85 FC85 Bosmaaier Onderdeel 4137 120 0628",
+      "package_quantity": 1,
+      "package_type": "Carburateur compleet met pakkingen",
+      "is_multipack": false,
+      "ean_gtin": "8438512104282",
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_41371200628",
+      "focus_model": "FS 80",
+      "model_compatibility": "FS 80 / FS 85 / FS 75 / KM 85",
+      "item_price": null,
+      "shipping_cost_nl": null,
+      "compatibility_proof": "C1Q-S28D carburateur vervangt STIHL 4137 120 0628 voor STIHL FS 80, FS 85, FS 75.",
+      "asin_product_identity_proof": "ASIN B07V22L97D bevestigd voor carburateur passend op STIHL FS 80 MPN 41371200628.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B07V22L97D",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B07V22L97D?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4137+120+0628&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-10",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B07V22L97D",
+      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
+      "fulfillment_context": "Fulfilled by Amazon / Prime Partner",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B07V22L97D",
+          "title": "Amazon.nl productpagina B07V22L97D",
+          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 80 voor onderdeel 41371200628.",
+          "retrieved_at": "2026-11-10"
+        }
+      ],
+      "updated_at": "2026-11-15T20:53:57.540Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      }
+    },
+    {
+      "part_number": "42381404401",
+      "part_number_formatted": "4238 140 4401",
+      "asin": "B079DM441X",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "STIHL",
+      "manufacturer_part_number": "4238 140 4401",
+      "trade_number": null,
+      "brand": "STIHL",
+      "product_title": "STIHL Hulpfilter / Voorfilter 4238 140 4401 voor TS 410, TS 420",
+      "package_quantity": 1,
+      "package_type": "Single piece folding box",
+      "is_multipack": false,
+      "ean_gtin": null,
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_42381404401",
+      "focus_model": "TS 420",
+      "compatibility_proof": "Geschikt voor STIHL TS 410 en TS 420 volgens officiële Amazon vermelding.",
+      "asin_product_identity_proof": "STIHL Hulpfilter 4238 140 4401",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B079DM441X",
+      "direct_affiliate_url": "https://amazon.nl/dp/B079DM441X?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+4238+140+4401&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B079DM441X",
+          "title": "Amazon.nl productvermelding B079DM441X",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL TS 410 en TS 420 voor onderdeel 4238 140 4401.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-15T20:53:57.540Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      }
+    },
+    {
+      "part_number": "00003500525",
+      "part_number_formatted": "0000 350 0525",
+      "asin": "B0014D7U1K",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "ANDREAS STIHL AG & Co. KG",
+      "manufacturer_part_number": "0000 350 0525",
+      "trade_number": "Toolless Fuel Cap",
+      "brand": "STIHL",
+      "product_title": "STIHL Bajonet Brandstoftankdop 0000 350 0525 voor MS 260, MS 361",
+      "package_quantity": 1,
+      "package_type": "Gereedschapsloze bajonetdop brandstof",
+      "is_multipack": false,
+      "ean_gtin": "0795711132903",
+      "oem_brand_classification": "GENUINE_STIHL",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_00003500525",
+      "focus_model": "MS 260 / MS 361",
+      "compatibility_proof": "STIHL 0000 350 0525 bajonet tankdop voor MS 260, MS 261, MS 361, MS 362, MS 440, MS 460",
+      "asin_product_identity_proof": "ASIN B0014D7U1K matches STIHL 0000 350 0525 fuel cap",
+      "independent_evidence_url": "https://www.stihl.nl/nl/p/kettingzagen-toebehoren-tanks-doppen-1750",
+      "direct_affiliate_url": "https://amazon.nl/dp/B0014D7U1K?tag=srihldecoder2-21",
+      "search_fallback_url": "https://amazon.nl/s?k=STIHL+0000%20350%200525&tag=srihldecoder2-21",
+      "verification_date": "2026-11-09",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B0014D7U1K",
+          "title": "Amazon.nl productvermelding B0014D7U1K",
+          "claim": "Amazon productvermelding noemt compatibiliteit met STIHL MS 260 / MS 361 voor onderdeel 00003500525.",
+          "retrieved_at": "2026-11-09"
+        }
+      ],
+      "updated_at": "2026-11-15T20:53:57.540Z",
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      }
+    },
+    {
+      "part_number": "41471200600",
+      "part_number_formatted": "4147 120 0600",
+      "asin": "B09JGG4K12",
+      "marketplace": "amazon.nl",
+      "affiliate_tag": "srihldecoder2-21",
+      "manufacturer": "Walbro Engine Management",
+      "manufacturer_part_number": "4147 120 0600",
+      "trade_number": "WTF-5B",
+      "brand": "Walbro",
+      "product_title": "Walbro WTF-5B Carburateur Vervanging voor Stihl FS 460 C-M, FS 410 C-M Bosmaaier 4147 120 0600",
+      "package_quantity": 1,
+      "package_type": "Carburateur assemblage",
+      "is_multipack": false,
+      "ean_gtin": "8438512105487",
+      "oem_brand_classification": "OEM_SUPPLIER_EQUIVALENT",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "pilot_eligible": true,
+      "pilot_active": false,
+      "kill_switch_id": "KILL_AMAZON_NL_41471200600",
+      "focus_model": "FS 460",
+      "model_compatibility": "FS 460 / FS 410",
+      "item_price": null,
+      "shipping_cost_nl": null,
+      "compatibility_proof": "Walbro WTF-5B carburateur vervanging voor STIHL 4147 120 0600 voor STIHL FS 460 C-M bosmaaiers.",
+      "asin_product_identity_proof": "ASIN B09JGG4K12 bevestigd voor carburateur passend op STIHL FS 460 MPN 41471200600.",
+      "independent_evidence_url": "https://www.amazon.nl/dp/B09JGG4K12",
+      "direct_affiliate_url": "https://www.amazon.nl/dp/B09JGG4K12?tag=srihldecoder2-21",
+      "search_fallback_url": "https://www.amazon.nl/s?k=STIHL+4147+120+0600&tag=srihldecoder2-21",
+      "verification_date": "2026-11-10",
+      "status": "RESEARCH_REQUIRED",
+      "status_reason": "Phase 73A Emergency Evidence Audit: unproven product identity and uncorroborated ASIN/GTIN; research required before activation.",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-10",
+      "shipping_evidence_url": "https://www.amazon.nl/dp/B09JGG4K12",
+      "shipping_evidence_description": "Amazon.nl binnenlandse levering in Nederland (Prime / Standaard verzending direct naar Nederlands adres).",
+      "fulfillment_context": "Fulfilled by Amazon / Prime Partner",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.nl/dp/B09JGG4K12",
+          "title": "Amazon.nl productpagina B09JGG4K12",
+          "claim": "Amazon productvermelding bevestigt compatibiliteit met STIHL FS 460 voor onderdeel 41471200600.",
+          "retrieved_at": "2026-11-10"
+        }
+      ],
+      "updated_at": "2026-11-15T20:53:57.540Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true
+        },
+        "errors": []
+      },
+      "evidence_audit_category": "RESEARCH_REQUIRED",
+      "availability_audit": {
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-15T20:53:57.540Z",
+        "http_status": 404,
+        "verdict": "LISTING_NOT_AVAILABLE",
+        "buybox_present": null,
+        "mentions_nl": null,
+        "listing_title": null
+      }
+    }
+  ]
+}

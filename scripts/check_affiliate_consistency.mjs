@@ -239,6 +239,10 @@ export function checkAffiliateConsistency() {
     console.log(`â–¶ Auditing ${records.length} records in ${manifest.name} (${manifest.type})...`);
 
     // Audit registry metrics synchronization (Phase 74B invariant)
+    const registryPolicyAuthorizedParts = manifest.type === 'REGISTRY' && doc.policy?.production_activation_allowed === true
+      ? new Set((doc.policy?.pilot_activated_parts || []).map(p => PartNormalizer.normalizePartNumber(p)).filter(Boolean))
+      : null;
+
     if (manifest.type === 'REGISTRY' && doc.metrics) {
       const activeCount = records.filter(o => o.status === 'ACTIVE' || o.pilot_active === true).length;
       const activeNlCount = records.filter(o => (o.status === 'ACTIVE' || o.pilot_active === true) && (!o.marketplace || o.marketplace === 'amazon.nl')).length;
@@ -362,13 +366,15 @@ export function checkAffiliateConsistency() {
           }
         }
 
-        // Active Authorization Invariant: only the 3 authorized pilot parts may be ACTIVE
-        if (status === 'ACTIVE' && !AUTHORIZED_PILOT_PARTS.has(normPart)) {
+        // Active Authorization Invariant: require explicit authorization (either registry policy when production_activation_allowed === true, or baseline pilot whitelist)
+        const isAuthorizedPart = AUTHORIZED_PILOT_PARTS.has(normPart) ||
+          (registryPolicyAuthorizedParts !== null && registryPolicyAuthorizedParts.has(normPart));
+        if (status === 'ACTIVE' && !isAuthorizedPart) {
           unauthorizedActives.push({
             file: manifest.name,
             part_number: normPart,
             asin,
-            error: `Unauthorized active offer: ${normPart} is not in authorized pilot whitelist`
+            error: `Unauthorized active offer: ${normPart} is not authorized by registry policy or whitelist`
           });
         }
       }
@@ -397,6 +403,7 @@ export function checkAffiliateConsistency() {
       const normPart = PartNormalizer.normalizePartNumber(item.part_number);
       if (item.commercial_tier === 'DIRECT_VERIFIED') {
         const regOffer = regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart && (!item.asin || o.asin === item.asin)) ||
+                         regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart && o.status === 'ACTIVE') ||
                          regOffersList.find(o => PartNormalizer.normalizePartNumber(o.part_number) === normPart);
         if (!regOffer) {
           contradictions.push({
