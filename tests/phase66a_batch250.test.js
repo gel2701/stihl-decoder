@@ -32,7 +32,7 @@ try {
   assert.equal(report.records.find(r => r.part_number === '00006421223').candidates.find(c => c.asin === 'B000IBWVWG').status, 'REJECTED');
   const p00006421240 = report.records.find(r => r.part_number === '00006421240');
   assert.ok(['STAGED', 'VERIFIED'].includes(p00006421240.status));
-  assert.equal(p00006421240.candidates[0].asin, 'B000IBWVWG');
+  assert.ok(p00006421240.candidates.some(c => c.asin === 'B000IBWVWG')); // Phase 87.1 added a live replacement at the front
   assert.ok(report.records.some(r => r.status === 'RESEARCH_REQUIRED' && r.candidates.length === 0));
   assert.ok(report.records.every(r => r.candidates.every(c => c.asin !== 'B000000000')));
   assert.ok(report.records.every(r => r.current_link_type === (r.status === 'VERIFIED' ? 'EXISTING_ACTIVE_REGISTRY_LINK' : 'SEARCH_FALLBACK')));

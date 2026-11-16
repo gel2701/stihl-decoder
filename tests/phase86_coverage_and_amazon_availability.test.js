@@ -37,8 +37,8 @@ const needsGroups = readJson('output/phase86/PHASE86_NEEDS_EVIDENCE_GROUPS.json'
 
 describe('Phase 86 — Amazon availability audit', () => {
   it('1. records the live audit result per marketplace and keeps every record', () => {
-    // Phase 87 added 22 replacement offers; no Phase 86 record was deleted.
-    assert.strictEqual(registryDoc.offers.length, 179, 'No Amazon record may be deleted');
+    // Phase 87 added 22 replacement offers and Phase 87.1 33 new ones; no Phase 86 record was deleted.
+    assert.strictEqual(registryDoc.offers.length, 201, 'No live or suspended record may be deleted');
     assert.ok(registryDoc.availability_audit, 'The registry must carry the Phase 86 availability audit');
     assert.strictEqual(registryDoc.availability_audit.method, 'LIVE_BROWSER_GET');
     assert.strictEqual(registryDoc.availability_audit.controls.live_asin_control.http_status, 200);
@@ -75,11 +75,11 @@ describe('Phase 86 — Amazon availability audit', () => {
   it('3. keeps the metrics consistent with the lifecycle (Phase 87 recovery included)', () => {
     const active = registryDoc.offers.filter((o) => o.status === 'ACTIVE');
     assert.strictEqual(registryDoc.metrics.active, active.length);
-    assert.strictEqual(registryDoc.metrics.active, 97);
-    assert.strictEqual(registryDoc.metrics.active_nl, 51);
+    assert.strictEqual(registryDoc.metrics.active, 130);
+    assert.strictEqual(registryDoc.metrics.active_nl, 84);
     assert.strictEqual(registryDoc.metrics.active_de, 46);
     assert.strictEqual(registryDoc.metrics.suspended, 34);
-    assert.strictEqual(registryDoc.metrics.research_required, 45);
+    assert.strictEqual(registryDoc.metrics.research_required, 34);
     assert.strictEqual(registryDoc.metrics.verified, 3);
     assert.ok(
       active.every((o) => o.availability_audit?.verdict === 'LISTING_LIVE' || /Phase 87/.test(o.status_reason || '')),
@@ -93,7 +93,7 @@ describe('Phase 86 — Amazon availability audit', () => {
     const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true, maxActiveOffersAllowed: 100 });
     registry.loadFromFile();
     const active = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(active.length, 97);
+    assert.strictEqual(active.length, 130);
     for (const offer of registryDoc.offers.filter((o) => o.status === 'SUSPENDED')) {
       assert.strictEqual(
         registry.getActiveOffer(offer.part_number, offer.marketplace),
@@ -107,8 +107,10 @@ describe('Phase 86 — Amazon availability audit', () => {
   it('5. records the blocked candidates that no longer exist on Amazon.nl', () => {
     const blocked = registryDoc.offers.filter((o) => o.status !== 'ACTIVE' && o.availability_audit);
     const dead = blocked.filter((o) => o.availability_audit.verdict === 'LISTING_NOT_AVAILABLE');
-    // 53 RESEARCH_REQUIRED candidates + the 24 suspended listings.
-    assert.strictEqual(dead.length, 77, '77 non-ACTIVE Amazon records point at a delisted product page');
+    // 42 remaining RESEARCH_REQUIRED candidates + the 24 suspended listings.
+    assert.strictEqual(dead.length, 66, '66 non-ACTIVE Amazon records point at a delisted product page');
+    // The Phase 86 report is a dated snapshot (77 dead listings at that time); Phase 87.1
+    // proved 11 of them with live replacements, so the live registry now holds 66.
     assert.strictEqual(amazonReport.blocked_candidates_with_dead_listing, 77);
     assert.strictEqual(amazonReport.blocked_candidates_with_live_listing, 5);
     assert.ok(

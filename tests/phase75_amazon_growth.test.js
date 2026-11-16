@@ -114,7 +114,12 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       // Phase 87 recovery brands: each one is the seller brand Amazon shows on the
       // verified replacement listing for a delisted STIHL number.
       'MAXPOWER', 'perfektGarten', 'Kitoo', 'QINYUN', 'YINETTECH', 'Adefol', 'Gubeter',
-      'SHIHAOHZ', 'CCQDGMD', 'EMSea', 'HOHMI', 'TOPINCN', 'Cancanle', 'C·T·S'
+      'SHIHAOHZ', 'CCQDGMD', 'EMSea', 'HOHMI', 'TOPINCN', 'Cancanle', 'C·T·S',
+      // Phase 87.1 expansion brands: the seller brands Amazon shows on single-unit
+      // listings whose page carries the exact STIHL number.
+      'YSDOZMD', 'LT Easiyl', 'DGWMLSDPP', 'Moliuoly', 'DORFEY', 'Stens', 'Allymoto', 'Hippotech',
+      'Tolxh', 'Alamor', 'Toefficy', 'Luxuypon', 'Serenophile', 'ISE Crest', 'UYTGFO', 'CTS',
+      'Vilgftyiet', 'LSSOCH', 'AS Axis Spindleon', 'QHALEN', 'YANTUMR', 'ISQJPVF', 'Rotary', 'FDLWZGDY'
     ]);
 
     for (const offer of activeOffers) {
@@ -195,7 +200,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('6. Kill Switch Precision & Fail-Closed Fallback Mechanics', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 100
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
@@ -218,7 +223,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('7. Phase 75B: Multi-Offer Resolver Invariants & Quarantine Verification', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 60
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
@@ -260,7 +265,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('8. Phase 75E: MS 170 Final Commercial Gaps (Oil Pickup Filter 1123 640 3800 & 40 cm Saw Chains 3636 000 0055 / 3610 000 0055)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 100
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
@@ -295,7 +300,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('9. Phase 75F: MS 180 Commercial Coverage Across All 10 Core Categories (>= 75 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 100
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
@@ -336,7 +341,7 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
   it('10. Phase 75G: MS 250 / 025 Commercial Coverage, Zama/Walbro Separation & Technical Variant Boundaries (75 Active Offers)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 100
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
@@ -391,19 +396,19 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
     }
   });
 
-  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (97 Active Offers: 51 NL + 46 DE after the Phase 87 recovery)', () => {
+  it('11. Phase 76: MS 440 + FS 460 Commercial Expansion & Reuse Alignment (130 Active Offers: 84 NL + 46 DE after the Phase 87.1 expansion)', () => {
     const registry = new VerifiedOfferRegistry({
       productionActivationAllowed: true,
-      maxActiveOffersAllowed: 100
+      maxActiveOffersAllowed: 200
     });
     registry.loadFromFile();
 
     const activeOffers = registry.listOffers({ status: 'ACTIVE' });
-    assert.strictEqual(activeOffers.length, 97, 'Total active offers must equal 97 (51 NL + 46 DE)');
+    assert.strictEqual(activeOffers.length, 130, 'Total active offers must equal 130 (84 NL + 46 DE)');
 
     const activeNl = activeOffers.filter(o => !o.marketplace || o.marketplace === 'amazon.nl');
     const activeDe = activeOffers.filter(o => o.marketplace === 'amazon.de');
-    assert.strictEqual(activeNl.length, 51, 'Active NL offers must equal 51');
+    assert.strictEqual(activeNl.length, 84, 'Active NL offers must equal 84');
     assert.strictEqual(activeDe.length, 46, 'Active DE offers must equal 46');
 
     // Verify all 15 newly activated MS 440 / 044 offers on amazon.de

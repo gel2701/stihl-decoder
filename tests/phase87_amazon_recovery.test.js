@@ -39,15 +39,15 @@ const catalogDoc = readJson('data/parts_catalog.json');
 const catalogParts = new Set((catalogDoc.parts || catalogDoc).map((p) => p.part_number));
 
 const activeOffers = registryDoc.offers.filter((o) => o.status === 'ACTIVE');
-const phase87Offers = registryDoc.offers.filter((o) => o.status === 'ACTIVE' && /Phase 87/.test(o.status_reason || ''));
+const phase87Offers = registryDoc.offers.filter((o) => o.status === 'ACTIVE' && /Phase 87 recovery/.test(o.status_reason || ''));
 
 describe('Phase 87 — Amazon recovery', () => {
   it('1. grows the registry without losing a single live Phase 86 offer', () => {
-    assert.strictEqual(registryDoc.offers.length, 179, 'Every historical Amazon record stays in the registry');
-    assert.strictEqual(registryDoc.metrics.active, 97);
-    assert.strictEqual(registryDoc.metrics.active_nl, 51);
+    assert.strictEqual(registryDoc.offers.length, 201, 'Every live or suspended historical Amazon record stays in the registry');
+    assert.strictEqual(registryDoc.metrics.active, 130);
+    assert.strictEqual(registryDoc.metrics.active_nl, 84);
     assert.strictEqual(registryDoc.metrics.active_de, 46);
-    assert.strictEqual(registryDoc.metrics.parts_with_amazon_offer, 84);
+    assert.strictEqual(registryDoc.metrics.parts_with_amazon_offer, 117);
 
     const survivingPhase86 = registryDoc.offers.filter(
       (o) => o.status === 'ACTIVE' && o.availability_audit?.verdict === 'LISTING_LIVE'
