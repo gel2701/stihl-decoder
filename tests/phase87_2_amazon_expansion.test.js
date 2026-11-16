@@ -33,22 +33,24 @@ const deSearch = read('output/phase87_2/search_hits_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase872Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.2:/.test(o.status_reason || ''));
-const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.2:/.test(o.status_reason || ''));
+const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 87\.[23]:/.test(o.status_reason || ''));
 
-test('Phase 87.2 — 1. registry expands to 150 ACTIVE offers within 100 NL / 50 DE caps', () => {
-  assert.equal(registryDoc.offers.length, 216);
-  assert.equal(activeOffers.length, 150);
-  assert.equal(registryDoc.metrics.active, 150);
-  assert.equal(registryDoc.metrics.active_nl, 100);
-  assert.equal(registryDoc.metrics.active_de, 50);
-  assert.equal(registryDoc.metrics.parts_with_amazon_offer, 137);
+test('Phase 87.2 — 1. registry expands to 150+ ACTIVE offers without losing prior offers', () => {
+  assert.ok(registryDoc.offers.length >= 216);
+  assert.ok(activeOffers.length >= 150);
+  assert.ok(registryDoc.metrics.active >= 150);
+  assert.ok(registryDoc.metrics.active_nl >= 100);
+  assert.ok(registryDoc.metrics.active_de >= 50);
+  assert.ok(registryDoc.metrics.parts_with_amazon_offer >= 137);
   assert.equal(previouslyLive.length, 130, 'All 130 offers that were live before Phase 87.2 stay ACTIVE');
   assert.equal(phase872Offers.length, 20);
   assert.equal(activation.activated_nl, 16);
   assert.equal(activation.activated_de, 4);
   assert.equal(activation.superseded_research_candidates.length, 5);
-  assert.ok(registryDoc.metrics.active_nl <= registryDoc.policy.max_active_offers_per_marketplace['amazon.nl']);
-  assert.ok(registryDoc.metrics.active_de <= registryDoc.policy.max_active_offers_per_marketplace['amazon.de']);
+  const nlCap = registryDoc.policy.max_active_offers_per_marketplace['amazon.nl'];
+  const deCap = registryDoc.policy.max_active_offers_per_marketplace['amazon.de'];
+  assert.ok(nlCap === null || registryDoc.metrics.active_nl <= nlCap);
+  assert.ok(deCap === null || registryDoc.metrics.active_de <= deCap);
 });
 
 test('Phase 87.2 — 2. every new offer passes the unchanged TwoGateVerifier', () => {
@@ -106,7 +108,7 @@ test('Phase 87.2 — 6. VerifiedOfferRegistry serves all 20 new offers as DIRECT
   const originalEnv = { ...process.env };
   process.env.AMAZON_DIRECT_ASIN_ENABLED = 'true';
   try {
-    const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true, maxActiveOffersAllowed: 200 });
+    const registry = new VerifiedOfferRegistry({ productionActivationAllowed: true });
     registry.loadFromFile();
     for (const o of phase872Offers) {
       const resolved = registry.resolveCommercialOffers({ partNumber: o.part_number, marketplace: o.marketplace });

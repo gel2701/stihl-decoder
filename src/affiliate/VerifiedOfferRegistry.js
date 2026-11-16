@@ -35,7 +35,48 @@ const candidateRegistryPaths = [
 ];
 const defaultRegistryPath = candidateRegistryPaths.find(p => fs.existsSync(p)) || candidateRegistryPaths[0];
 
-export const MAX_PILOT_ACTIVE_OFFERS = 100;
+export const MAX_PILOT_ACTIVE_OFFERS = null;
+export const UNLIMITED_ACTIVE_OFFERS = null;
+
+const CLASSIFICATION_PRIORITY = Object.freeze({
+  GENUINE_STIHL: 0,
+  OEM_SUPPLIER_EQUIVALENT: 1,
+  MANUFACTURER_AFTERMARKET: 2
+});
+
+const STATUS_PRIORITY = Object.freeze({
+  ACTIVE: 0,
+  VERIFIED: 1,
+  STAGED: 2,
+  RESEARCH_REQUIRED: 3,
+  SUSPENDED: 4
+});
+
+function parseOptionalLimit(value) {
+  if (value === undefined || value === null || value === '') return null;
+  const parsed = typeof value === 'number' ? value : parseInt(String(value), 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function compareOffersBestFirst(a, b, preferredMarketplace = null) {
+  const mktA = (a.marketplace || 'amazon.nl').toLowerCase();
+  const mktB = (b.marketplace || 'amazon.nl').toLowerCase();
+  if (preferredMarketplace) {
+    const pref = preferredMarketplace.toLowerCase();
+    const prefA = mktA === pref ? 0 : 1;
+    const prefB = mktB === pref ? 0 : 1;
+    if (prefA !== prefB) return prefA - prefB;
+  } else if (mktA !== mktB) {
+    return mktA === 'amazon.nl' ? -1 : (mktB === 'amazon.nl' ? 1 : mktA.localeCompare(mktB));
+  }
+  const classA = CLASSIFICATION_PRIORITY[a.oem_brand_classification] ?? 9;
+  const classB = CLASSIFICATION_PRIORITY[b.oem_brand_classification] ?? 9;
+  if (classA !== classB) return classA - classB;
+  const srcA = Array.isArray(a.verifiable_evidence_sources) ? a.verifiable_evidence_sources.length : 0;
+  const srcB = Array.isArray(b.verifiable_evidence_sources) ? b.verifiable_evidence_sources.length : 0;
+  if (srcA !== srcB) return srcB - srcA;
+  return String(b.verification_date || '').localeCompare(String(a.verification_date || ''));
+}
 
 export const COMMERCIAL_MILESTONES = Object.freeze({
   MILESTONE_50: 50,
@@ -77,7 +118,7 @@ export class VerifiedOfferRegistry {
    * @param {string} [options.registryPath]
    * @param {boolean} [options.productionActivationAllowed=false]
    * @param {string} [options.defaultMarketplace='amazon.nl']
-   * @param {number} [options.maxActiveOffersAllowed=25]
+   * @param {number|null} [options.maxActiveOffersAllowed=null]
    * @param {Object} [options.maxActiveOffersPerMarketplace]
    * @param {Array<string>|Set<string>} [options.activeWhitelist]
    */
@@ -85,18 +126,26 @@ export class VerifiedOfferRegistry {
     this.registryPath = options.registryPath || defaultRegistryPath;
     this.productionActivationAllowed = options.productionActivationAllowed ?? false;
     this.defaultMarketplace = options.defaultMarketplace || 'amazon.nl';
-    this.maxActiveOffersAllowed = options.maxActiveOffersAllowed ?? (
-      process.env.AFFILIATE_MAX_ACTIVE_OFFERS ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS, 10) : MAX_PILOT_ACTIVE_OFFERS
-    );
+    this.maxActiveOffersAllowed = options.maxActiveOffersAllowed !== undefined
+      ? parseOptionalLimit(options.maxActiveOffersAllowed)
+      : parseOptionalLimit(process.env.AFFILIATE_MAX_ACTIVE_OFFERS ?? MAX_PILOT_ACTIVE_OFFERS);
     this.maxActiveOffersPerMarketplace = {
-      'amazon.nl': options.maxActiveOffersPerMarketplace?.['amazon.nl'] ?? (
-        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL, 10) : this.maxActiveOffersAllowed
-      ),
-      'amazon.de': options.maxActiveOffersPerMarketplace?.['amazon.de'] ?? (
-        process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE ? parseInt(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE, 10) : this.maxActiveOffersAllowed
-      ),
-      ...(options.maxActiveOffersPerMarketplace || {})
+      'amazon.nl': options.maxActiveOffersPerMarketplace?.['amazon.nl'] !== undefined
+        ? parseOptionalLimit(options.maxActiveOffersPerMarketplace['amazon.nl'])
+        : (process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL !== undefined
+            ? parseOptionalLimit(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_NL)
+            : this.maxActiveOffersAllowed),
+      'amazon.de': options.maxActiveOffersPerMarketplace?.['amazon.de'] !== undefined
+        ? parseOptionalLimit(options.maxActiveOffersPerMarketplace['amazon.de'])
+        : (process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE !== undefined
+            ? parseOptionalLimit(process.env.AFFILIATE_MAX_ACTIVE_OFFERS_DE)
+            : this.maxActiveOffersAllowed)
     };
+    if (options.maxActiveOffersPerMarketplace) {
+      for (const [mktKey, val] of Object.entries(options.maxActiveOffersPerMarketplace)) {
+        this.maxActiveOffersPerMarketplace[mktKey] = parseOptionalLimit(val);
+      }
+    }
     this.activeWhitelist = options.activeWhitelist
       ? new Set(Array.from(options.activeWhitelist).map(p => PartNormalizer.normalizePartNumber(p)).filter(Boolean))
       : (process.env.AMAZON_PILOT_ACTIVE_PARTS
@@ -107,14 +156,14 @@ export class VerifiedOfferRegistry {
   }
 
   /**
-   * Returns maximum active offers allowed for a specific marketplace.
+   * Returns maximum active offers allowed for a specific marketplace (`null` when unlimited).
    *
    * @param {string} [marketplace]
-   * @returns {number}
+   * @returns {number|null}
    */
   getMaxActiveOffersAllowed(marketplace = this.defaultMarketplace) {
     const m = (marketplace || this.defaultMarketplace).toLowerCase();
-    if (this.maxActiveOffersPerMarketplace && this.maxActiveOffersPerMarketplace[m] != null) {
+    if (this.maxActiveOffersPerMarketplace && Object.prototype.hasOwnProperty.call(this.maxActiveOffersPerMarketplace, m)) {
       return this.maxActiveOffersPerMarketplace[m];
     }
     return this.maxActiveOffersAllowed;
@@ -323,12 +372,14 @@ export class VerifiedOfferRegistry {
 
       const targetMarketplace = offer.marketplace || this.defaultMarketplace;
       const maxAllowed = this.getMaxActiveOffersAllowed(targetMarketplace);
-      const otherActive = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).filter(o => o.asin !== offer.asin || o.part_number !== normPart);
-      if (otherActive.length >= maxAllowed) {
-        return {
-          success: false,
-          errors: [`Cannot activate offer: Limit of ${maxAllowed} active offers reached on ${targetMarketplace}.`]
-        };
+      if (maxAllowed !== null && Number.isFinite(maxAllowed)) {
+        const otherActive = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).filter(o => o.asin !== offer.asin || o.part_number !== normPart);
+        if (otherActive.length >= maxAllowed) {
+          return {
+            success: false,
+            errors: [`Cannot activate offer: Limit of ${maxAllowed} active offers reached on ${targetMarketplace}.`]
+          };
+        }
       }
 
       // Hard requirement: Shipping to NL confirmed for German marketplace
@@ -386,8 +437,8 @@ export class VerifiedOfferRegistry {
     if (!Array.isArray(offers)) {
       return { success: false, activatedCount: 0, errors: ['Offers must be an array'], offers: [] };
     }
-    const batchLimit = options.batchLimit || 50;
-    if (offers.length > batchLimit) {
+    const batchLimit = options.batchLimit !== undefined ? options.batchLimit : 500;
+    if (batchLimit !== null && Number.isFinite(batchLimit) && offers.length > batchLimit) {
       return {
         success: false,
         activatedCount: 0,
@@ -559,19 +610,29 @@ export class VerifiedOfferRegistry {
     const list = this.partIndex.get(normPart);
     if (!list || list.length === 0) return null;
     const cleanAsin = asin ? asin.trim().toUpperCase() : null;
+    const prefMkt = marketplace ? marketplace.toLowerCase() : null;
 
-    if (marketplace) {
-      const mkt = marketplace.toLowerCase();
-      if (cleanAsin) {
-        return list.find(o => o.marketplace === mkt && o.asin === cleanAsin) || null;
-      }
-      return list.find(o => o.marketplace === mkt) || null;
+    let candidates = list;
+    if (prefMkt) {
+      candidates = candidates.filter(o => (o.marketplace || this.defaultMarketplace).toLowerCase() === prefMkt);
     }
     if (cleanAsin) {
-      return list.find(o => o.asin === cleanAsin) || null;
+      return candidates.find(o => o.asin === cleanAsin) || null;
     }
-    // Default to primary/defaultMarketplace or first offer
-    return list.find(o => o.marketplace === this.defaultMarketplace) || list[0] || null;
+    if (candidates.length === 0) return null;
+
+    // Prefer defaultMarketplace when marketplace is omitted, then highest lifecycle status (ACTIVE > VERIFIED > STAGED > RESEARCH_REQUIRED > SUSPENDED)
+    return [...candidates].sort((a, b) => {
+      if (!prefMkt) {
+        const aIsDef = (a.marketplace || this.defaultMarketplace).toLowerCase() === this.defaultMarketplace.toLowerCase() ? 0 : 1;
+        const bIsDef = (b.marketplace || this.defaultMarketplace).toLowerCase() === this.defaultMarketplace.toLowerCase() ? 0 : 1;
+        if (aIsDef !== bIsDef) return aIsDef - bIsDef;
+      }
+      const sa = STATUS_PRIORITY[a.status] ?? 5;
+      const sb = STATUS_PRIORITY[b.status] ?? 5;
+      if (sa !== sb) return sa - sb;
+      return compareOffersBestFirst(a, b, prefMkt || this.defaultMarketplace);
+    })[0] || null;
   }
 
   /**
@@ -603,42 +664,48 @@ export class VerifiedOfferRegistry {
     const normPart = PartNormalizer.normalizePartNumber(partNumber);
     if (!normPart) return null;
 
-    // Granular Per-Offer Whitelist check (Phase 59E)
+    // Granular Per-Offer Whitelist check (opt-in)
     if (this.activeWhitelist && !this.activeWhitelist.has(normPart)) {
       return null;
     }
 
-    const offer = this.getOffer(normPart, marketplace, asin);
-    if (!offer) return null;
-    if (offer.status !== 'ACTIVE') return null;
+    const reqMkt = marketplace ? marketplace.toLowerCase() : null;
+    const cleanAsin = asin ? asin.trim().toUpperCase() : null;
+    const activeCandidates = this.getOffers(normPart)
+      .filter(o => o.status === 'ACTIVE')
+      .filter(o => !reqMkt || (o.marketplace || this.defaultMarketplace).toLowerCase() === reqMkt)
+      .filter(o => !cleanAsin || String(o.asin || '').trim().toUpperCase() === cleanAsin)
+      .sort((a, b) => compareOffersBestFirst(a, b, reqMkt || this.defaultMarketplace));
 
-    const targetMarketplace = offer.marketplace || marketplace || this.defaultMarketplace;
-    const maxAllowed = this.getMaxActiveOffersAllowed(targetMarketplace);
+    for (const offer of activeCandidates) {
+      const targetMarketplace = offer.marketplace || marketplace || this.defaultMarketplace;
+      const maxAllowed = this.getMaxActiveOffersAllowed(targetMarketplace);
 
-    // Safety guard: Limit maximum active offers per marketplace
-    const activeOffersCount = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).length;
-    if (activeOffersCount > maxAllowed) {
-      console.warn(`[VerifiedOfferRegistry] Safety guard: ${activeOffersCount} active offers on ${targetMarketplace} exceed limit of ${maxAllowed}. Failing closed to search fallback.`);
-      return null;
-    }
-
-    // Hard requirement: Shipping to NL confirmed for German marketplace
-    if (targetMarketplace === 'amazon.de') {
-      if (offer.shipping_to_nl_status !== 'SHIPS_TO_NL_CONFIRMED') {
-        return null;
+      if (maxAllowed !== null && Number.isFinite(maxAllowed)) {
+        const activeOffersCount = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).length;
+        if (activeOffersCount > maxAllowed) {
+          console.warn(`[VerifiedOfferRegistry] Safety guard: ${activeOffersCount} active offers on ${targetMarketplace} exceed limit of ${maxAllowed}. Failing closed to search fallback.`);
+          continue;
+        }
       }
+
+      if (targetMarketplace === 'amazon.de' && offer.shipping_to_nl_status !== 'SHIPS_TO_NL_CONFIRMED') {
+        continue;
+      }
+
+      const verification = TwoGateVerifier.verifyOffer(offer);
+      if (!verification.passed) {
+        continue;
+      }
+      return offer;
     }
 
-    // Runtime Safety Guard: Re-evaluate Two-Gate verification on resolution.
-    const verification = TwoGateVerifier.verifyOffer(offer);
-    if (!verification.passed) {
-      return null;
-    }
-    return offer;
+    return null;
   }
 
   /**
-   * Retrieves all ACTIVE offers eligible for direct product linking across all marketplaces (1:N multi-offer).
+   * Retrieves all ACTIVE offers eligible for direct product linking across all marketplaces (1:N multi-offer),
+   * deduplicated by marketplace + ASIN and ordered best-first.
    *
    * @param {string} partNumber
    * @returns {Array<Object>}
@@ -654,16 +721,23 @@ export class VerifiedOfferRegistry {
       return [];
     }
 
-    const candidateOffers = this.getOffers(normPart);
+    const candidateOffers = [...this.getOffers(normPart)]
+      .filter(o => o.status === 'ACTIVE')
+      .sort((a, b) => compareOffersBestFirst(a, b, null));
     const activeOffers = [];
+    const seenKeys = new Set();
 
     for (const offer of candidateOffers) {
-      if (offer.status !== 'ACTIVE') continue;
+      const targetMarketplace = (offer.marketplace || this.defaultMarketplace).toLowerCase();
+      const cleanAsin = String(offer.asin || '').trim().toUpperCase();
+      const dedupeKey = `${targetMarketplace}:${cleanAsin}`;
+      if (seenKeys.has(dedupeKey)) continue;
 
-      const targetMarketplace = offer.marketplace || this.defaultMarketplace;
       const maxAllowed = this.getMaxActiveOffersAllowed(targetMarketplace);
-      const countActive = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).length;
-      if (countActive > maxAllowed) continue;
+      if (maxAllowed !== null && Number.isFinite(maxAllowed)) {
+        const countActive = this.listOffers({ status: 'ACTIVE', marketplace: targetMarketplace }).length;
+        if (countActive > maxAllowed) continue;
+      }
 
       if (targetMarketplace === 'amazon.de' && offer.shipping_to_nl_status !== 'SHIPS_TO_NL_CONFIRMED') {
         continue;
@@ -672,6 +746,7 @@ export class VerifiedOfferRegistry {
       const verification = TwoGateVerifier.verifyOffer(offer);
       if (!verification.passed) continue;
 
+      seenKeys.add(dedupeKey);
       activeOffers.push(offer);
     }
 

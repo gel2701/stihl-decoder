@@ -81,12 +81,12 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
     });
 
     it('renders search fallback card with distinct non-verified warning and dynamic disclaimer', () => {
-      // 11231602050 is not an active verified ASIN (falls back to search query)
+      // 00000071043 is not an active verified ASIN (falls back to search query)
       const catalogPath = resolve(rootDir, 'data', 'parts_catalog.json');
       const catalog = JSON.parse(readFileSync(catalogPath, 'utf-8'));
       const resolver = new PartCatalogResolver(catalog);
-      const partItem = resolver.resolvePartNumber('11231602050');
-      assert.ok(partItem, '11231602050 must resolve');
+      const partItem = resolver.resolvePartNumber('00000071043');
+      assert.ok(partItem, '00000071043 must resolve');
 
       const html = renderPartDetailPageHtml(partItem, catalog);
 
@@ -143,9 +143,9 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
   });
 
   describe('3. Production Safety Lock & Catalog Pilot Integrity (Section 2 & 5)', () => {
-    it('strictly limits active verified offers within policy cap and retains original 3 pilot ASINs', () => {
+    it('preserves active verified offers without fixed commercial cap and retains original 3 pilot ASINs', () => {
       const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.nl' });
-      assert.ok(activeOffers.length <= 100, 'Active verified offers must be within policy cap');
+      assert.ok(activeOffers.length >= 3, 'Active verified NL offers must maintain baseline pilot offers');
 
       const asins = activeOffers.map(o => o.asin);
       assert.ok(['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'].every(asin => asins.includes(asin)), 'Original 3 pilot items must remain active');
@@ -156,7 +156,7 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       assert.ok(existsSync(registryPath), 'Registry file must exist');
       const registryData = JSON.parse(readFileSync(registryPath, 'utf-8'));
       const activeNLCount = registryData.metrics.active_nl ?? registryData.metrics.active_in_production;
-      assert.ok(activeNLCount <= 100, 'Registry metrics must maintain active_nl <= 100');
+      assert.ok(activeNLCount >= 3, 'Registry metrics must track active_nl >= 3');
 
       // Verify unpromoted Phase 68B candidate ASINs were not prematurely injected (B00455Q028 graduated in Phase 74, B00HQ63YUY graduated in Phase 75B)
       const researchAsinBlacklist = ['B07V9P5T8Q', 'B000182C0K', 'B0032V6Y4E'];
@@ -493,9 +493,9 @@ describe('Phase 68: Affiliate Conversion & Amazon Approval Readiness', () => {
       assert.equal(env.beaconRequests.length, 1, 'Rapid repeat click must be debounced to exactly 1 request');
     });
 
-    it('confirms the original 3 active pilot ASINs remain strictly active within policy cap', () => {
+    it('confirms the original 3 active pilot ASINs remain active under unlimited verified policy', () => {
       const activeOffers = defaultVerifiedOfferRegistry.listOffers({ status: 'ACTIVE', marketplace: 'amazon.nl' });
-      assert.ok(activeOffers.length <= 100, 'Active offers must remain within policy cap');
+      assert.ok(activeOffers.length >= 3, 'Active NL offers must include baseline pilot ASINs');
 
       const activeAsins = activeOffers.map(o => o.asin);
       const expectedPilotAsins = ['B001RM8J76', 'B001RMA5S2', 'B0068M5NAG'];

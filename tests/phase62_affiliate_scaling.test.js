@@ -211,10 +211,10 @@ test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
   const locCount = (sitemapXml.match(/<loc>/g) || []).length;
   assert.equal(locCount, 1024, 'Must maintain exactly 1,024 sitemap URLs');
 
-  // Invariant 4: Baseline 3 active pilot ASINs live in production, total within 25 cap
+  // Invariant 4: Baseline 3 active pilot ASINs live in production without fixed ceiling
   const verifiedOffersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8'));
   const activeOffers = verifiedOffersDoc.offers.filter(o => o.status === 'ACTIVE' && (!o.marketplace || o.marketplace === 'amazon.nl'));
-  assert.ok(activeOffers.length <= 100, 'Active offers must be within policy cap');
+  assert.ok(activeOffers.length >= 3, 'Active NL offers must maintain baseline pilot parts');
   const activeParts = activeOffers.map(o => o.part_number);
   assert.ok(['11104007005', '00004007000', '00004007011'].every(p => activeParts.includes(p)), 'Baseline 3 pilot parts remain active');
 
