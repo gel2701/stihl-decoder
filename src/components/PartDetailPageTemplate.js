@@ -307,23 +307,24 @@ export function renderPartDetailPageHtml(rawPartNumberOrResolved, database = nul
         <span class="text-xs text-gray-300">Prijs en beschikbaarheid bij de webshop</span>
       </div>
       <div class="flex flex-col sm:flex-row flex-wrap gap-2">
-        ${offers.map(offer => {
+        ${offers.map((offer, offerIdx) => {
           // The quick-buy nav renders every provider, so label, marketplace and
           // click tracking must come from the offer itself. Using Amazon defaults
           // here labelled eBay links as "Bekijk op Amazon.nl" and attributed the
           // click to Amazon.
+          const offerPosition = offerIdx + 1;
           const providerId = String(offer.provider || 'amazon').toLowerCase();
           const isEbay = providerId === 'ebay';
           const market = offer.marketplace || (isEbay ? 'ebay.nl' : 'amazon.nl');
           const isDirect = isEbay ? true : Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN');
           const kind = isEbay ? (offer.match_type || 'DIRECT_EBAY_ITEM') : (isDirect ? 'MANUAL_ASIN' : 'SEARCH_LINK');
           const label = offer.label || (isEbay
-            ? `Bekijk op ${market}`
-            : (isDirect ? `Bekijk op Amazon.${market.slice(-2)}` : 'Zoek op Amazon'));
+            ? `Bekijk bij ${market === 'ebay.de' ? 'eBay.de' : 'eBay.nl'}`
+            : (isDirect ? `Bekijk bij Amazon.${market.slice(-2)}` : `Zoek op Amazon.${market.slice(-2)}`));
           return `<a href="${offer.url}" target="_blank" rel="sponsored nofollow noopener"
-            data-part-number="${resolved.part_number}" data-provider="${providerId}" data-marketplace="${market}" data-offer-type="${kind}"
+            data-part-number="${resolved.part_number}" data-provider="${providerId}" data-marketplace="${market}" data-offer-type="${kind}" data-offer-position="${offerPosition}"
             class="flex items-center justify-center min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-lg text-sm font-bold ${isDirect ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-white'}"
-            onclick="window.handleAffiliateClick?.(this,event,{provider:'${providerId}',marketplace:'${market}',part_number:'${resolved.part_number}',offer_type:'${kind}',asin_if_known:'${offer.asin || ''}',product_verified:${isDirect},placement:'part_detail_quick_buy',page_path:window.location.pathname});">
+            onclick="window.handleAffiliateClick?.(this,event,{provider:'${providerId}',marketplace:'${market}',part_number:'${resolved.part_number}',offer_type:'${kind}',offer_position:${offerPosition},asin_if_known:'${offer.asin || ''}',product_verified:${isDirect},placement:'part_detail_quick_buy',page_path:window.location.pathname});">
             ${label} ↗</a>`;
         }).join('')}
       </div>
@@ -354,7 +355,8 @@ ${supersessionHtml}
         ${sectionIntro}
       </p>
       <div class="space-y-4">
-        ${offers.map(offer => {
+        ${offers.map((offer, offerIdx) => {
+          const offerPosition = offerIdx + 1;
           const providerId = String(offer.provider || 'amazon').toLowerCase();
           const isEbay = providerId === 'ebay';
           const isVerified = Boolean(offer.is_verified || offer.match_type === 'MANUAL_ASIN' || isEbay);
@@ -363,8 +365,9 @@ ${supersessionHtml}
           const marketplaceDisplay = isEbay
             ? (marketplace === 'ebay.de' ? 'eBay.de' : 'eBay.nl')
             : (marketplace === 'amazon.de' ? 'Amazon.de' : 'Amazon.nl');
+          const isSagenspezi = !isEbay && isGerman && (offer.seller_name === 'Sägenspezi' || /\bsägenspezi\b/i.test(`${offer.brand || ''} ${offer.title || ''} ${offer.label || ''}`));
           const buttonText = offer.label || (isVerified
-            ? (isEbay ? `Bekijk op ${marketplace}` : (isGerman ? 'Bekijk bij Sägenspezi op Amazon.de' : 'Bekijk dit onderdeel op Amazon.nl'))
+            ? (isEbay ? `Bekijk bij ${marketplaceDisplay}` : (isSagenspezi ? 'Bekijk bij Sägenspezi op Amazon.de' : `Bekijk bij ${marketplaceDisplay}`))
             : (isGerman ? 'Zoek op Amazon.de' : 'Zoek op Amazon.nl'));
           const productTitle = offer.title || (isVerified ? `${offer.brand || offer.seller_name || 'Fabrikant'} Vervangingsonderdeel voor STIHL ${formattedPartNo}` : `STIHL ${formattedPartNo} ${displayPartName}`);
           const oemLabel = (offer.oem_brand_classification === 'GENUINE_STIHL' || offer.oem_brand_classification === 'GENUINE_STIHL_OEM')
@@ -378,7 +381,7 @@ ${supersessionHtml}
             ? (isEbay
                 ? `Directe aanbieding op ${marketplaceDisplay}${offer.seller_name ? ` (verkoper: ${offer.seller_name})` : ''}. Verzending naar Nederland is bevestigd; controleer onderdeelnummer en machine-uitvoering vóór aankoop.`
                 : (isGerman
-                    ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd (verkoper: ${offer.seller_name || 'Sägenspezi'}). Verzending naar Nederland is bevestigd.`
+                    ? `Voor dit onderdeel is een direct productaanbod op Amazon.de geverifieerd${isSagenspezi ? ' (verkoper: Sägenspezi)' : (offer.seller_name || offer.brand ? ` (merk/verkoper: ${offer.seller_name || offer.brand})` : '')}. Verzending naar Nederland is bevestigd.`
                     : 'Voor dit specifieke onderdeelnummer is de officiële fabrikant- en productkoppeling op Amazon.nl geverifieerd. Geleverd in merkverpakking van de OEM-toeleverancier. Controleer vóór aankoop altijd modeluitvoering en bouwjaar.'))
             : `U opent een dynamische zoekopdracht op ${isGerman ? 'Amazon.de' : 'Amazon.nl'} voor STIHL onderdeel ${formattedPartNo}. Controleer altijd zelf de pasvorm en specificaties.`);
           const ariaLabel = offer.cta_aria_label || `${buttonText} voor STIHL onderdeel ${formattedPartNo}`;
@@ -478,8 +481,9 @@ ${supersessionHtml}
                   data-provider="${providerId}"
                   data-marketplace="${marketplace}"
                   data-offer-type="${offerType}"
+                  data-offer-position="${offerPosition}"
                   data-placement="${placement}"
-                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+                  onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', offer_position: ${offerPosition}, query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: '${offerType}', offer_position: ${offerPosition}, query_variant: '${offer.query_variant || ''}', asin_if_known: '${offer.asin || ''}', product_verified: true, placement: '${placement}', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
                 >
                   <span>${buttonText}</span>
                   <span aria-hidden="true">↗</span>
@@ -514,8 +518,9 @@ ${supersessionHtml}
               data-provider="${providerId}"
               data-marketplace="${marketplace}"
               data-offer-type="SEARCH_LINK"
+              data-offer-position="${offerPosition}"
               data-placement="search_fallback"
-              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
+              onclick="if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', offer_position: ${offerPosition}, query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});} if(window.trackStihlEvent){window.trackStihlEvent('affiliate_click', {provider: '${providerId}', marketplace: '${marketplace}', part_number: '${resolved.part_number}', offer_type: 'SEARCH_LINK', offer_position: ${offerPosition}, query_variant: '${offer.query_variant || ''}', asin_if_known: '', product_verified: false, placement: 'search_fallback', page_path: window.location.pathname, section_context: '${safePrimarySec}', wave_identifier: '${waveIdentifier}', seo_tier: '${indexEntry?.seo_tier || (isIndexable ? 'SEO_TIER_A' : 'SEO_TIER_C')}', commercial_tier: '${indexEntry?.commercial_tier || 'COMMERCIAL_UNKNOWN'}'});}"
             >
               <span>${buttonText} ↗</span>
             </a>
@@ -730,6 +735,7 @@ ${supersessionHtml}
             part_number: data.part_number,
             offer_type: data.offer_type || 'SEARCH_LINK',
             match_type: data.offer_type || 'SEARCH_LINK',
+            offer_position: (data && data.offer_position != null) ? Number(data.offer_position) : null,
             asin_if_known: data.asin_if_known || null,
             product_verified: Boolean(data.product_verified),
             destination_url: el ? el.href : null,

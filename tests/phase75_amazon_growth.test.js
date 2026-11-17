@@ -163,7 +163,21 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'TopHomer', 'UTTASU', 'VcfDJHNptw', 'Vividcrate', 'Vootnifig', 'WANGJWYG', 'WPHYGMK', 'WUPEDI',
       'Wlinfetity', 'XZGFDJCX', 'YLQASOON', 'YOFMOO', 'YRcEKH', 'YSANO', 'Yuecoom', 'ZAMETTER',
       'ZHAOYIJIE', 'ZIBOXI', 'ZINSAN', 'ZQINGSHK', 'ZZQKSP', 'Zenthia', 'aqxreight', 'deawater',
-      'luolety', 'plplaaoo', 'sallygardens', 'tooloflife'
+      'luolety', 'plplaaoo', 'sallygardens', 'tooloflife',
+      'aafdyfjv', 'aapie', 'adepem', 'afusfexp', 'applearwen', 'applianpar',
+      'automkt', 'be in your mind', 'blissfulabode', 'ccjozmd', 'daihaoee',
+      'dbeixiwei', 'def', 'defiyan', 'diercosy tools', 'durashmall', 'dxhslh',
+      'effifish', 'eseyaida', 'ewillownm', 'fauhapyway', 'funhoon', 'ghxbjhglfz',
+      'hanoaki', 'hautfenm', 'havenlycove', 'hebeot', 'heibteny', 'homevortex',
+      'hqpasfy', 'hxfygdm', 'hyuduo', 'javon', 'jfdlbv', 'jinfoli',
+      'jumplushion', 'juviko', 'jwn', 'kjxykopnh', 'kvjicdo', 'liebewh',
+      'limtula', 'lxpuptra', 'materig', 'miseo', 'nezih', 'odashen', 'olddo',
+      'ozshenlnp', 'pilipane', 'puyen', 'pyxozabsd', 'qaqmhvcvb', 'qhlnxsa',
+      'qklyxr', 'ragdaa', 'ruimou', 'sgrehjdr', 'shiketong',
+      'single cylinder repair', 'srnptbzit', 'sylale', 'topkidame', 'urbanhui',
+      'wanglcnsdo', 'wbqluh', 'wglzgozp', 'wouydnvx', 'wpomhrnzq', 'xitoio',
+      'yfqazxsw', 'ylshgxfc', 'yuettyy', 'yungong', 'zoegneer', 'zwequipint',
+      'zyslxhocz'
     ]);
 
     for (const offer of activeOffers) {

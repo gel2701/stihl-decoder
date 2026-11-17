@@ -58,20 +58,33 @@ function parseOptionalLimit(value) {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
 }
 
+function isOfferDeliverable(offer) {
+  if (!offer || offer.status !== 'ACTIVE') return false;
+  const mkt = (offer.marketplace || 'amazon.nl').toLowerCase();
+  if (mkt === 'amazon.de') return offer.shipping_to_nl_status === 'SHIPS_TO_NL_CONFIRMED';
+  return offer.shipping_to_nl_status !== 'DOES_NOT_SHIP_TO_NL';
+}
+
 function compareOffersBestFirst(a, b, preferredMarketplace = null) {
-  const mktA = (a.marketplace || 'amazon.nl').toLowerCase();
-  const mktB = (b.marketplace || 'amazon.nl').toLowerCase();
+  const delivA = isOfferDeliverable(a) ? 0 : 1;
+  const delivB = isOfferDeliverable(b) ? 0 : 1;
+  if (delivA !== delivB) return delivA - delivB;
   if (preferredMarketplace) {
+    const mktA = (a.marketplace || 'amazon.nl').toLowerCase();
+    const mktB = (b.marketplace || 'amazon.nl').toLowerCase();
     const pref = preferredMarketplace.toLowerCase();
     const prefA = mktA === pref ? 0 : 1;
     const prefB = mktB === pref ? 0 : 1;
     if (prefA !== prefB) return prefA - prefB;
-  } else if (mktA !== mktB) {
-    return mktA === 'amazon.nl' ? -1 : (mktB === 'amazon.nl' ? 1 : mktA.localeCompare(mktB));
   }
   const classA = CLASSIFICATION_PRIORITY[a.oem_brand_classification] ?? 9;
   const classB = CLASSIFICATION_PRIORITY[b.oem_brand_classification] ?? 9;
   if (classA !== classB) return classA - classB;
+  const mktA = (a.marketplace || 'amazon.nl').toLowerCase();
+  const mktB = (b.marketplace || 'amazon.nl').toLowerCase();
+  if (mktA !== mktB) {
+    return mktA === 'amazon.nl' ? -1 : (mktB === 'amazon.nl' ? 1 : mktA.localeCompare(mktB));
+  }
   const srcA = Array.isArray(a.verifiable_evidence_sources) ? a.verifiable_evidence_sources.length : 0;
   const srcB = Array.isArray(b.verifiable_evidence_sources) ? b.verifiable_evidence_sources.length : 0;
   if (srcA !== srcB) return srcB - srcA;
