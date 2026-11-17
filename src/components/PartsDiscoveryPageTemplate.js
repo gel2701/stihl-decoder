@@ -752,6 +752,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
             part_number: data.part_number,
             offer_type: data.offer_type || 'SEARCH_LINK',
             match_type: data.offer_type || 'SEARCH_LINK',
+            offer_position: (data && data.offer_position != null) ? Number(data.offer_position) : null,
             asin_if_known: data.asin_if_known || null,
             product_verified: Boolean(data.product_verified),
             destination_url: el ? el.href : null,

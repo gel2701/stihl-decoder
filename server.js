@@ -695,6 +695,8 @@ const server = http.createServer(async (req, res) => {
       const linkType = data.link_type || (offerType === 'MANUAL_ASIN' ? 'DIRECT_ASIN' : 'SEARCH_FALLBACK');
 
       const isTestClick = process.env.NODE_ENV === 'test' && data.is_test === 1;
+      const rawOfferPos = Number(data.offer_position);
+      const offerPosition = Number.isInteger(rawOfferPos) && rawOfferPos > 0 && rawOfferPos <= 50 ? rawOfferPos : null;
 
       const ua = req.headers['user-agent'] || '';
       const isMobileUa = /mobile|android|iphone|ipad|ipod|blackberry|opera mini|iemobile/i.test(ua);
@@ -707,6 +709,7 @@ const server = http.createServer(async (req, res) => {
         offer_type: offerType,
         match_type: data.match_type || offerType,
         link_type: linkType,
+        offer_position: offerPosition,
         asin_if_known: data.asin_if_known || null,
         product_verified: isProductVerified,
         destination_url: data.destination_url || null,
@@ -735,6 +738,7 @@ const server = http.createServer(async (req, res) => {
         offer_type: offerType,
         match_type: data.match_type || offerType,
         link_type: linkType,
+        offer_position: offerPosition,
         asin_if_known: data.asin_if_known || null,
         product_verified: isProductVerified,
         destination_url: data.destination_url || null,

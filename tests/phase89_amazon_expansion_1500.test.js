@@ -38,7 +38,7 @@ const checksDe = read('output/phase89/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase89Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 89:/.test(o.status_reason || ''));
-const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 89:/.test(o.status_reason || ''));
+const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase (?:89|90):/.test(o.status_reason || ''));
 
 test('Phase 89 — 1. registry expands past +300 goal while preserving baseline 698 ACTIVE & 34 SUSPENDED', () => {
   assert.strictEqual(MAX_PILOT_ACTIVE_OFFERS, null);
@@ -50,11 +50,11 @@ test('Phase 89 — 1. registry expands past +300 goal while preserving baseline 
   assert.strictEqual(baselineOffers.length, 698, 'All 698 Phase 88 baseline ACTIVE offers remain preserved');
   assert.strictEqual(phase89Offers.length, 880);
   assert.ok(phase89Offers.length >= 300, `Expected >= 300 new ACTIVE offers, got ${phase89Offers.length}`);
-  assert.strictEqual(activeOffers.length, 1578);
-  assert.strictEqual(registryDoc.metrics.active, 1578);
-  assert.strictEqual(registryDoc.metrics.active_nl, 814);
-  assert.strictEqual(registryDoc.metrics.active_de, 764);
-  assert.strictEqual(registryDoc.metrics.parts_with_amazon_offer, 1030);
+  assert.ok(activeOffers.length >= 1578);
+  assert.ok(registryDoc.metrics.active >= 1578);
+  assert.ok(registryDoc.metrics.active_nl >= 814);
+  assert.ok(registryDoc.metrics.active_de >= 764);
+  assert.ok(registryDoc.metrics.parts_with_amazon_offer >= 1030);
   assert.strictEqual(registryDoc.metrics.suspended, 34);
 });
 

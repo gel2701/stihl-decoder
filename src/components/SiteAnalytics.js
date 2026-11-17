@@ -99,6 +99,7 @@
           part_number: (data && data.part_number) || '',
           offer_type: (data && data.offer_type) || 'MANUAL_ASIN',
           match_type: (data && data.match_type) || 'MANUAL_ASIN',
+          offer_position: (data && data.offer_position != null) ? Number(data.offer_position) : null,
           asin_if_known: (data && data.asin_if_known) || null,
           product_verified: Boolean(data && data.product_verified),
           destination_url: el ? el.href : null,

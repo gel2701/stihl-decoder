@@ -197,7 +197,7 @@ test('Phase 69D: 5. Deterministic search fallback maintained for non-activated c
   assert.equal(ms170Commercial.is_verified, true);
 
   // Non-activated catalog part resolves strictly to deterministic SEARCH_FALLBACK
-  const unactivatedCommercial = reg.resolveCommercialOffer({ partNumber: '11231200605' });
+  const unactivatedCommercial = reg.resolveCommercialOffer({ partNumber: '00000071043' });
   assert.equal(unactivatedCommercial.link_type, 'SEARCH_FALLBACK');
   assert.equal(unactivatedCommercial.asin, null);
   assert.equal(unactivatedCommercial.is_verified, false);

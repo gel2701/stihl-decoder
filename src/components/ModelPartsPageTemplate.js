@@ -534,9 +534,9 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
       window.trackModelPartClick = function(partNumber, section, commercialTier, seoTier, wave) {
         window.trackStihlEvent?.('model_to_part_click', {model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', part_number: partNumber, section_context: section, commercial_tier: commercialTier, seo_tier: seoTier, wave_identifier: wave, page_path: window.location.pathname});
       };
-      window.trackModelAffiliateClick = function(el, ev, partNumber, section, marketplace, offerType, asin, verified, provider) {
+      window.trackModelAffiliateClick = function(el, ev, partNumber, section, marketplace, offerType, asin, verified, provider, offerPosition) {
         var resolvedProvider = provider || (String(marketplace || '').indexOf('ebay') !== -1 ? 'ebay' : 'amazon');
-        window.handleAffiliateClick?.(el, ev, {provider: resolvedProvider, marketplace, part_number: partNumber, offer_type: offerType, asin_if_known: asin, product_verified: verified, placement: 'model_parts_table', page_path: window.location.pathname, model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', section_context: section});
+        window.handleAffiliateClick?.(el, ev, {provider: resolvedProvider, marketplace, part_number: partNumber, offer_type: offerType, offer_position: offerPosition || null, asin_if_known: asin, product_verified: verified, placement: 'model_parts_table', page_path: window.location.pathname, model: '${(model.slug || model.id || '').replace(/'/g, "\\'")}', section_context: section});
       };
       window.handleAffiliateClick = function(el, ev, data) {
         try {
@@ -565,6 +565,7 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
             part_number: data.part_number,
             offer_type: data.offer_type || 'SEARCH_LINK',
             match_type: data.offer_type || 'SEARCH_LINK',
+            offer_position: (data && data.offer_position != null) ? Number(data.offer_position) : null,
             asin_if_known: data.asin_if_known || null,
             product_verified: Boolean(data.product_verified),
             destination_url: el ? el.href : null,

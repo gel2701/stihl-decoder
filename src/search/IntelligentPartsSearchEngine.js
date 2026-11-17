@@ -204,8 +204,15 @@ export function getAmazonTagForMarketplace(marketplace = 'amazon.nl') {
   return process.env.AMAZON_ASSOCIATE_TAG_NL || process.env.AMAZON_ASSOCIATE_TAG || AMAZON_MARKETPLACE_TAGS['amazon.nl'];
 }
 
+const OFFER_CLASS_PRIORITY = {
+  GENUINE_STIHL: 0,
+  GENUINE_STIHL_OEM: 0,
+  OEM_SUPPLIER_EQUIVALENT: 1,
+  MANUFACTURER_AFTERMARKET: 2
+};
+
 function orderOffersByMarketplace(offers) {
-  const rank = (offer) => {
+  const mktRank = (offer) => {
     const mkt = String(offer.marketplace || 'amazon.nl').toLowerCase();
     if (mkt === 'amazon.nl') return 0;
     if (mkt === 'amazon.de') return 1;
@@ -213,7 +220,19 @@ function orderOffersByMarketplace(offers) {
     if (mkt === 'ebay.de') return 3;
     return 4;
   };
-  return [...offers].sort((a, b) => rank(a) - rank(b));
+  const delivRank = (offer) => {
+    if (offer.shipping_to_nl_status === 'DOES_NOT_SHIP_TO_NL') return 1;
+    if (String(offer.marketplace || '').toLowerCase() === 'amazon.de' && offer.shipping_to_nl_status && offer.shipping_to_nl_status !== 'SHIPS_TO_NL_CONFIRMED') return 1;
+    return 0;
+  };
+  const classRank = (offer) => OFFER_CLASS_PRIORITY[offer.oem_brand_classification] ?? 3;
+  return [...offers].sort((a, b) => {
+    const da = delivRank(a), db = delivRank(b);
+    if (da !== db) return da - db;
+    const ca = classRank(a), cb = classRank(b);
+    if (ca !== cb) return ca - cb;
+    return mktRank(a) - mktRank(b);
+  });
 }
 
 /**
@@ -249,6 +268,8 @@ export function resolvePurchaseOffer(partNumber, partName = '', options = {}) {
       tag,
       url: `https://${marketplace}/dp/${offer.asin}?tag=${encodeURIComponent(tag)}`,
       brand: offer.brand || offer.manufacturer || null,
+      oem_brand_classification: offer.oem_brand_classification || null,
+      shipping_to_nl_status: offer.shipping_to_nl_status || null,
       label: marketplace === 'amazon.de'
         ? `Koop op Amazon.de (${offer.brand || 'Vervanger'})`
         : `Koop op Amazon (${offer.brand || 'Vervanger'})`,
@@ -409,6 +430,8 @@ export function getPartAffiliateOffers(partNumber, partName = '', options = {}) 
           tag,
           url: `https://${marketplace}/dp/${asin}?tag=${encodeURIComponent(tag)}`,
           brand: offer.brand || offer.manufacturer || null,
+          oem_brand_classification: offer.oem_brand_classification || null,
+          shipping_to_nl_status: offer.shipping_to_nl_status || null,
           label: `Koop bij ${displayMkt}`,
           is_direct: true,
           is_verified: true,
@@ -456,12 +479,11 @@ export function getPartAffiliateOffers(partNumber, partName = '', options = {}) 
     }
   }
 
-  const direct_offers = [];
-  for (const mkt of ['amazon.nl', 'amazon.de', 'ebay.nl', 'ebay.de']) {
-    if (directByMarketplace.has(mkt)) {
-      direct_offers.push(directByMarketplace.get(mkt));
-    }
-  }
+  const direct_offers = orderOffersByMarketplace(
+    ['amazon.nl', 'amazon.de', 'ebay.nl', 'ebay.de']
+      .filter(mkt => directByMarketplace.has(mkt))
+      .map(mkt => directByMarketplace.get(mkt))
+  );
 
   // 2. Search fallbacks ONLY for marketplaces without direct offers & with valid affiliate config
   const search_offers = [];

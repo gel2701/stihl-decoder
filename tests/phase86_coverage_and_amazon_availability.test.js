@@ -82,7 +82,7 @@ describe('Phase 86 — Amazon availability audit', () => {
     assert.ok(registryDoc.metrics.research_required >= 0);
     assert.strictEqual(registryDoc.metrics.verified, 3);
     assert.ok(
-      active.every((o) => o.availability_audit?.verdict === 'LISTING_LIVE' || /Phase 8[789]/.test(o.status_reason || '')),
+      active.every((o) => o.availability_audit?.verdict === 'LISTING_LIVE' || /Phase (?:8[789]|90)/.test(o.status_reason || '')),
       'Every ACTIVE offer must be a live listing, either audited in Phase 86 or re-verified in Phase 87+'
     );
     assert.strictEqual(amazonReport.after.active_offers, 75);

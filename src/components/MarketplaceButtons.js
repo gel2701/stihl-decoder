@@ -23,7 +23,7 @@ function escapeJsStr(str) {
  * @param {Object} ctx
  * @returns {string}
  */
-function renderSingleButton(offer, ctx, tier = 'primary') {
+function renderSingleButton(offer, ctx, tier = 'primary', offerPosition = 1) {
   const provider = String(offer.provider || 'amazon').toLowerCase();
   const marketplace = String(offer.marketplace || (provider === 'ebay' ? 'ebay.nl' : 'amazon.nl')).toLowerCase();
   const isDirect = Boolean(offer.is_direct);
@@ -32,6 +32,7 @@ function renderSingleButton(offer, ctx, tier = 'primary') {
   const sectionContext = ctx.sectionContext || '';
   const modelContext = ctx.modelContext || '';
   const compact = Boolean(ctx.compact);
+  const posNum = Number.isInteger(Number(offerPosition)) && Number(offerPosition) > 0 ? Number(offerPosition) : 1;
 
   const fallbackMarket = marketplace === 'amazon.de'
     ? 'Amazon.de'
@@ -46,10 +47,10 @@ function renderSingleButton(offer, ctx, tier = 'primary') {
 
   let onclickAttr = '';
   if (ctx.trackingMode === 'model_table') {
-    onclickAttr = `window.trackModelAffiliateClick?.(this,event,'${escapeJsStr(partNumber)}','${escapeJsStr(sectionContext)}','${escapeJsStr(marketplace)}','${escapeJsStr(offerType)}','${escapeJsStr(offer.asin || '')}',${isDirect},'${escapeJsStr(provider)}')`;
+    onclickAttr = `window.trackModelAffiliateClick?.(this,event,'${escapeJsStr(partNumber)}','${escapeJsStr(sectionContext)}','${escapeJsStr(marketplace)}','${escapeJsStr(offerType)}','${escapeJsStr(offer.asin || '')}',${isDirect},'${escapeJsStr(provider)}',${posNum})`;
   } else {
     const modelProp = modelContext ? `, model: '${escapeJsStr(modelContext)}'` : '';
-    onclickAttr = `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${escapeJsStr(provider)}', marketplace: '${escapeJsStr(marketplace)}', part_number: '${escapeJsStr(partNumber)}', offer_type: '${escapeJsStr(offerType)}', asin_if_known: '${escapeJsStr(offer.asin || '')}', product_verified: ${isDirect}, page_path: window.location.pathname, section_context: '${escapeJsStr(sectionContext)}'${modelProp}});}`;
+    onclickAttr = `if(window.handleAffiliateClick){window.handleAffiliateClick(this, event, {provider: '${escapeJsStr(provider)}', marketplace: '${escapeJsStr(marketplace)}', part_number: '${escapeJsStr(partNumber)}', offer_type: '${escapeJsStr(offerType)}', offer_position: ${posNum}, asin_if_known: '${escapeJsStr(offer.asin || '')}', product_verified: ${isDirect}, page_path: window.location.pathname, section_context: '${escapeJsStr(sectionContext)}'${modelProp}});}`;
   }
 
   const sizeClass = compact
@@ -69,7 +70,7 @@ function renderSingleButton(offer, ctx, tier = 'primary') {
 
   const icon = isDirect ? '🛒' : '🔍';
 
-  return `<a href="${escapeAttr(offer.url)}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeAttr(partNumber)}" data-provider="${escapeAttr(provider)}" data-marketplace="${escapeAttr(marketplace)}" data-offer-type="${escapeAttr(offerType)}" class="${sizeClass} ${colorClass} rounded-lg font-semibold transition inline-flex items-center justify-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-orange-500/70" onclick="${escapeAttr(onclickAttr)}" title="${escapeAttr(title)}"><span>${icon} ${escapeAttr(label)}</span><span class="opacity-65 text-3xs" aria-hidden="true">↗</span></a>`;
+  return `<a href="${escapeAttr(offer.url)}" target="_blank" rel="sponsored nofollow noopener" data-part-number="${escapeAttr(partNumber)}" data-provider="${escapeAttr(provider)}" data-marketplace="${escapeAttr(marketplace)}" data-offer-type="${escapeAttr(offerType)}" data-offer-position="${posNum}" class="${sizeClass} ${colorClass} rounded-lg font-semibold transition inline-flex items-center justify-center gap-1.5 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-orange-500/70" onclick="${escapeAttr(onclickAttr)}" title="${escapeAttr(title)}"><span>${icon} ${escapeAttr(label)}</span><span class="opacity-65 text-3xs" aria-hidden="true">↗</span></a>`;
 }
 
 /**
@@ -100,18 +101,19 @@ export function renderMultiMarketplaceButtonsHtml(multiOffer, ctx = {}) {
   // order is deterministic (NL before DE, Amazon before eBay), never weighted
   // by expected commission.
   const primaryHtml = hasDirect
-    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct" aria-label="Direct bestellen">${directOffers.map(o => renderSingleButton(o, ctx, 'primary')).join('')}</div>`
-    : `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="search">${renderSingleButton(searchOffers[0], ctx, 'search-primary')}</div>`;
+    ? `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="direct" aria-label="Direct bestellen">${directOffers.map((o, idx) => renderSingleButton(o, ctx, 'primary', idx + 1)).join('')}</div>`
+    : `<div class="flex flex-wrap items-center ${alignClass} gap-1.5" data-offer-group="search">${renderSingleButton(searchOffers[0], ctx, 'search-primary', 1)}</div>`;
 
   // Search fallbacks are never presented as verified direct offers: they stay
   // visually separated and, when a direct offer exists, collapsed.
   const extraSearch = hasDirect ? searchOffers : searchOffers.slice(1);
+  const extraSearchBase = hasDirect ? directOffers.length : 1;
 
   let secondaryHtml = '';
   if (extraSearch.length > 0) {
     const summaryLabel = `Meer zoekopties (+${extraSearch.length})`;
 
-    const extraSearchHtml = `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map(o => renderSingleButton(o, ctx, 'search-secondary')).join('')}</div>`;
+    const extraSearchHtml = `<div class="flex flex-wrap items-center ${alignClass} gap-1.5 ${hasDirect ? 'pt-1.5 border-t border-gray-800/60' : 'pt-1.5'}" data-offer-group="search">${extraSearch.map((o, idx) => renderSingleButton(o, ctx, 'search-secondary', extraSearchBase + idx + 1)).join('')}</div>`;
 
     secondaryHtml = `<details class="${alignEnd ? 'w-auto' : 'w-full'}">
       <summary class="cursor-pointer select-none inline-flex items-center justify-between gap-2 text-2xs font-medium text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-lg border border-gray-800 bg-gray-950/70 hover:bg-gray-900 transition min-h-[36px] ${alignEnd ? '' : 'w-full'} focus:outline-none focus:ring-2 focus:ring-orange-500/70">
