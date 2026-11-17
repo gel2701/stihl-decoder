@@ -6,7 +6,7 @@
  * valves, gaskets, seals, springs, diaphragms, sprockets, bars, chains, and mowing heads.
  */
 
-export const BAD_BRAND_RE = /^(generic|generisch|unbranded|merkloos|unknown|markenlos|noname|no name|oem|stihl compatible|motorrad-styling|tuin|diy|brandless|sans marque|ohne marke)$/i;
+export const BAD_BRAND_RE = /^(generic|generisch|unbranded|unbra|merkloos|unknown|markenlos|noname|no name|oem|replaces|universel|universal|stihl compatible|motorrad-styling|tuin|diy|brandless|sans marque|ohne marke)$/i;
 export const AFTERMARKET_CLUE_RE = /\b(vervangt|vervanging|compatibel|compatible|passend\s+f[üu]r|geschikt\s+voor|ersatz|replaces|replacement|fits\s+for|fit\s+for|aftermarket|adaptable|anpassbar|für stihl)\b/i;
 
 export const STRONG_MULTIPACK_RE = /\b(\d+\s*[- ]?(?:x|pcs|pieces|stuks|stks|stcs|stk|stück|stueck|pc|sets?|delig|delige|teiliges?|pack|er[- ]pack|er[- ]set)|1\/[2-9]\s*set|pack of\s*[2-9]|pack van\s*[2-9]|pak van\s*[2-9]|lot de\s*[2-9]|paar|pair|2-pack|3-pack|4-pack|5-pack|10-pack|dubbelpak|partij)\b/i;
