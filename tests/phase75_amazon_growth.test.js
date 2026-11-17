@@ -144,7 +144,26 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'Qualoramall', 'ReachMall', 'Rimmean', 'RocwooD', 'SEIWEI', 'SG Store', 'SPOTIUA', 'SQOGJSGZ',
       'SUUFOO', 'Silver Streak', 'Tbest', 'VEYFIY', 'VGVCTX', 'VersaGenius', 'WHDNTCV', 'WQNUGX',
       'WUWMTUTCK', 'Whychstore', 'XARONF', 'XYgdhqpt', 'YANHAO', 'YGPWANGL', 'ZGLJSD', 'ZSHYTWE',
-      'eMagTech', 'yhoparts'
+      'eMagTech', 'yhoparts',
+      // Phase 89 expansion 1500+ brands: verified live single-unit listings carrying the exact STIHL number.
+      'ANUTRDE', 'ANYHUG', 'ARMYJY', 'AZSHIW', 'Adorih', 'Aebnuoy', 'Allymarket', 'AnRMeT',
+      'Anguspro', 'Awqmx', 'BEAZOOM', 'BMS', 'BOLOJAU', 'BPABDEITR', 'Beehive Filter', 'Besshepplo',
+      'CCXTOTOM', 'CDIYTOOL', 'CFCPKOYOZD', 'CHICHIYANG', 'CHJYGMH', 'CTASRIM', 'Carburionix', 'Carpango',
+      'Chrees', 'Ciuouient', 'Comgooldool', 'Cylinman', 'DAZZLEEX', 'DEGBMDYRD', 'DHSCNOZ', 'DKEKE',
+      'Dingmao', 'Dixhills', 'Donkivvy', 'Drhomeam', 'Eamonhigh', 'Easyboost', 'EfforPrac', 'Elchuiaby',
+      'Eletttoy', 'FEARZIE', 'FSOZDBBPL', 'Fdit', 'GKBJHGPAXL', 'GUZIKO', 'GardenP+', 'Green Star',
+      'HPENP', 'HSR PARTS', 'HTWORK', 'HYHSDOZ', 'HaloModora', 'Homeponnew', 'Hosrivae', 'HpLive',
+      'INTCHE', 'JHMTOSD', 'JOVERI', 'JRL', 'JYJYGDM', 'KANXCBCY', 'KAUWYEHD', 'KELKONG',
+      'KGVBZBR', 'KPJFZFEY', 'Kerlista', 'Kimsion', 'KiraKira', 'Kurihina', 'LEFITPA', 'LSSOZMD',
+      'Lapiglo', 'Linnkyfloa', 'Loiezuir', 'Luotahric', 'MASHRGX', 'MBdzA', 'MKSZY', 'MOUDOAUER',
+      'MamimamiH', 'Matijardin', 'Mliong', 'Mlyvax', 'Myplinar', 'NIUXFOUZLJP', 'NTSUMI', 'Nodrest',
+      'OPASBCYT', 'OZBMDHXLSD', 'Oniissy', 'P SeekPro', 'PPQOZMD', 'Pissente', 'QOXEZY', 'RANRAO',
+      'REwNXA', 'Risveglio', 'SEEDDFF', 'SFQLIDEME', 'SPORTARC', 'SYELIYSA', 'SZXL', 'Sawhamale',
+      'Secura', 'Septoolshop', 'SiSinkal', 'SmLFZA', 'TALOEYH', 'Tenlacum', 'Timunr', 'Todikaper',
+      'TopHomer', 'UTTASU', 'VcfDJHNptw', 'Vividcrate', 'Vootnifig', 'WANGJWYG', 'WPHYGMK', 'WUPEDI',
+      'Wlinfetity', 'XZGFDJCX', 'YLQASOON', 'YOFMOO', 'YRcEKH', 'YSANO', 'Yuecoom', 'ZAMETTER',
+      'ZHAOYIJIE', 'ZIBOXI', 'ZINSAN', 'ZQINGSHK', 'ZZQKSP', 'Zenthia', 'aqxreight', 'deawater',
+      'luolety', 'plplaaoo', 'sallygardens', 'tooloflife'
     ]);
 
     for (const offer of activeOffers) {
