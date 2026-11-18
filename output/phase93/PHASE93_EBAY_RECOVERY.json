@@ -1,0 +1,42 @@
+{
+  "phase": "93",
+  "generated_at": "2026-11-18T19:34:58.484Z",
+  "root_cause": "Local data/affiliate/ebay_offers.json was empty (0 offers from Phase 80 init) because production stores its live 1,773 offers on Render /var/data/affiliate/ebay_offers.json, while git archived adjudicated batches in output/phase81..86/ebay_offers_phase8*.json (and scripts/seed_phase86_ebay_store.mjs omitted phase86).",
+  "store_before_count": 0,
+  "store_after_count": 1773,
+  "per_payload_counts": {
+    "output/phase81/ebay_offers_phase81.json": 769,
+    "output/phase82/ebay_offers_phase82.json": 780,
+    "output/phase83/ebay_offers_phase83.json": 2,
+    "output/phase84/ebay_offers_phase84.json": 42,
+    "output/phase85/ebay_offers_phase85.json": 85,
+    "output/phase86/ebay_offers_phase86.json": 838
+  },
+  "total_payload_records_considered": 2516,
+  "invalid_skipped": 0,
+  "reconciled_unique_offers": 1773,
+  "reconciled_unique_parts": 220,
+  "by_marketplace": {
+    "EBAY_NL": 1146,
+    "EBAY_DE": 627
+  },
+  "save_result": {
+    "written": 1773,
+    "added": 1773,
+    "updated": 0,
+    "preserved": 0,
+    "rejected": 0,
+    "conflicts": 0
+  },
+  "remaining_ebay_recovery_backlog": {
+    "TITLE_ONLY_NEEDS_EVIDENCE": 586
+  },
+  "credential_audit": {
+    "EBAY_ENABLED": false,
+    "EBAY_CLIENT_ID_present": false,
+    "EBAY_CLIENT_SECRET_present": false,
+    "EBAY_EPN_CAMPAIGN_ID_present": false,
+    "persistent_disk_configured": false,
+    "resolved_store_path": "data/affiliate/ebay_offers.json"
+  }
+}

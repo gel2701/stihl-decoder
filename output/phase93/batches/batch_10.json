@@ -1,0 +1,952 @@
+{
+  "batch_id": "batch_10",
+  "generated_at": "2026-11-18T20:44:00.656Z",
+  "before": {
+    "active_total": 2695,
+    "active_nl": 1310,
+    "active_de": 1385,
+    "unique_parts": 1673
+  },
+  "after": {
+    "active_total": 2697,
+    "active_nl": 1311,
+    "active_de": 1386,
+    "unique_parts": 1674,
+    "delta_total": 2,
+    "delta_nl": 1,
+    "delta_de": 1,
+    "delta_unique_parts": 1
+  },
+  "activated_count": 2,
+  "needs_evidence_count": 92,
+  "rejected_count": 37,
+  "superseded_research_count": 0,
+  "activated": [
+    {
+      "part_number": "00003506201",
+      "asin": "B09JT2J1SR",
+      "marketplace": "amazon.nl",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": true
+    },
+    {
+      "part_number": "00003506201",
+      "asin": "B0DNVVRGF8",
+      "marketplace": "amazon.de",
+      "brand": "SAOIGEJUA",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    }
+  ],
+  "needs_evidence": [
+    {
+      "part_number": "41197108103",
+      "mkt": "amazon.nl",
+      "asin": "B07P13LMYT",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11201215405",
+      "mkt": "amazon.nl",
+      "asin": "B094YFCGVT",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41191223002",
+      "mkt": "amazon.nl",
+      "asin": "B006DHSAEC",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41191223002",
+      "mkt": "amazon.nl",
+      "asin": "B0DMF65NHR",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41371824505",
+      "mkt": "amazon.nl",
+      "asin": "B08D8NL7CP",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41371824505",
+      "mkt": "amazon.nl",
+      "asin": "B000J53QVQ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41371824505",
+      "mkt": "amazon.de",
+      "asin": "B08B884CCT",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41371824505",
+      "mkt": "amazon.de",
+      "asin": "B003Y7NWQA",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "95030030102",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "95030030102",
+      "mkt": "amazon.nl",
+      "asin": "B0DBDJVG29",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11173500905",
+      "mkt": "amazon.nl",
+      "asin": "B09WVM2VC4",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41171213300",
+      "mkt": "amazon.nl",
+      "asin": "B07VWJGZ7Q",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61006073010",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281821000",
+      "mkt": "amazon.nl",
+      "asin": "B07Y41RXJJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281821000",
+      "mkt": "amazon.nl",
+      "asin": "B07XF6WCNP",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41377900300",
+      "mkt": "amazon.nl",
+      "asin": "B0CLDZW6Q4",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41377900300",
+      "mkt": "amazon.nl",
+      "asin": "B001414406",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41377900300",
+      "mkt": "amazon.de",
+      "asin": "B000QHQ2BS",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41377900300",
+      "mkt": "amazon.de",
+      "asin": "B0F1YR32W4",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "96390031231",
+      "mkt": "amazon.nl",
+      "asin": "B00LAHLM7W",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "96390031231",
+      "mkt": "amazon.nl",
+      "asin": "B0CKBLD4DD",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824201",
+      "mkt": "amazon.nl",
+      "asin": "B0CKBLD4DD",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824502",
+      "mkt": "amazon.nl",
+      "asin": "B0HQCD9N8B",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824502",
+      "mkt": "amazon.nl",
+      "asin": "B00I14YT5E",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824502",
+      "mkt": "amazon.de",
+      "asin": "B00JEHV8P6",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824504",
+      "mkt": "amazon.nl",
+      "asin": "B00I14YT5E",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824504",
+      "mkt": "amazon.nl",
+      "asin": "B00I2W66L0",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824504",
+      "mkt": "amazon.de",
+      "asin": "B00JEHV8P6",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61701802800",
+      "mkt": "amazon.nl",
+      "asin": "B0CNTLFH9L",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61701802800",
+      "mkt": "amazon.nl",
+      "asin": "B003RJT81S",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "93216300140",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "93216300140",
+      "mkt": "amazon.de",
+      "asin": "B0F1YR32W4",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "93216300140",
+      "mkt": "amazon.de",
+      "asin": "B094DLWF74",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11061223000",
+      "mkt": "amazon.nl",
+      "asin": "B07X1SVMM8",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11061223000",
+      "mkt": "amazon.nl",
+      "asin": "B09294C7XJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824500",
+      "mkt": "amazon.nl",
+      "asin": "B0874HD6KN",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41281824500",
+      "mkt": "amazon.nl",
+      "asin": "B07SWRK36W",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "00000071300",
+      "mkt": "amazon.nl",
+      "asin": "B09294C7XJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005020901",
+      "mkt": "amazon.nl",
+      "asin": "B09294C7XJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707631000",
+      "mkt": "amazon.de",
+      "asin": "B0HC76GS59",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "60014300210",
+      "mkt": "amazon.nl",
+      "asin": "B0H8Q39NFL",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "60014300210",
+      "mkt": "amazon.nl",
+      "asin": "B0F911RG1C",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "60014300210",
+      "mkt": "amazon.de",
+      "asin": "B0HRFYN6YG",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "60014300210",
+      "mkt": "amazon.de",
+      "asin": "B0HKQL4Y33",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "90744784135",
+      "mkt": "amazon.de",
+      "asin": "B00H3JPOLG",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61704370800",
+      "mkt": "amazon.nl",
+      "asin": "B0CNTLFH9L",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61704370800",
+      "mkt": "amazon.de",
+      "asin": "B001PH42TM",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707087410",
+      "mkt": "amazon.nl",
+      "asin": "B0B2QZ47GQ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707087410",
+      "mkt": "amazon.nl",
+      "asin": "B003RJT81S",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707087420",
+      "mkt": "amazon.nl",
+      "asin": "B0B2QZ47GQ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707087420",
+      "mkt": "amazon.nl",
+      "asin": "B003RJT81S",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707087420",
+      "mkt": "amazon.de",
+      "asin": "B0BZN3JX2K",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "61707633010",
+      "mkt": "amazon.nl",
+      "asin": "B003RJT81S",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "90744774135",
+      "mkt": "amazon.nl",
+      "asin": "B0HPKHQYD7",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "NOT_LISTED_HTTP_200"
+    },
+    {
+      "part_number": "11201223600",
+      "mkt": "amazon.nl",
+      "asin": "B0943WQN9K",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11201223600",
+      "mkt": "amazon.nl",
+      "asin": "B00TMGOEBO",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41120341500",
+      "mkt": "amazon.nl",
+      "asin": "B07BLRWXB8",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41120341500",
+      "mkt": "amazon.nl",
+      "asin": "B083FJCV34",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41120341500",
+      "mkt": "amazon.de",
+      "asin": "B00TS1F6LK",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "00009975902",
+      "mkt": "amazon.nl",
+      "asin": "B007TJZU1E",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "00009975902",
+      "mkt": "amazon.nl",
+      "asin": "B07YXZ33VD",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41171223200",
+      "mkt": "amazon.nl",
+      "asin": "B0943S4XTG",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41171223200",
+      "mkt": "amazon.nl",
+      "asin": "B093C7ZF4G",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41306410305",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41306410305",
+      "mkt": "amazon.de",
+      "asin": "B094DLWF74",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41306410305",
+      "mkt": "amazon.de",
+      "asin": "B07881C91W",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41801213300",
+      "mkt": "amazon.nl",
+      "asin": "B0HR4MGS41",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41801213300",
+      "mkt": "amazon.nl",
+      "asin": "B0HQYMF79F",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "90453191795",
+      "mkt": "amazon.nl",
+      "asin": "B00LAHNR7K",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11176476801",
+      "mkt": "amazon.nl",
+      "asin": "B073B54L1D",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "11176476801",
+      "mkt": "amazon.nl",
+      "asin": "B0CCTPD2ZG",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41261821001",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41261821001",
+      "mkt": "amazon.de",
+      "asin": "B00LPK88HG",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41261824500",
+      "mkt": "amazon.nl",
+      "asin": "B07YB5B99V",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41261824500",
+      "mkt": "amazon.de",
+      "asin": "B0D94766KX",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "41261824500",
+      "mkt": "amazon.de",
+      "asin": "B08B884CCT",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "47167090420",
+      "mkt": "amazon.de",
+      "asin": "B006DJNOT6",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "47167090420",
+      "mkt": "amazon.de",
+      "asin": "B0068MMOPS",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005002800",
+      "mkt": "amazon.nl",
+      "asin": "B00LAHI5ZO",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005002800",
+      "mkt": "amazon.de",
+      "asin": "B015SZA1DM",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005006351",
+      "mkt": "amazon.nl",
+      "asin": "B0B7B8VDJ6",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005006351",
+      "mkt": "amazon.de",
+      "asin": "B08CTCMKP6",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021002",
+      "mkt": "amazon.nl",
+      "asin": "B074CGQB4X",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021002",
+      "mkt": "amazon.de",
+      "asin": "B01JD377OQ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021011",
+      "mkt": "amazon.nl",
+      "asin": "B09294C7XJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021011",
+      "mkt": "amazon.nl",
+      "asin": "B09297LLTP",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021012",
+      "mkt": "amazon.nl",
+      "asin": "B09294C7XJ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005021012",
+      "mkt": "amazon.nl",
+      "asin": "B09297LLTP",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005050300",
+      "mkt": "amazon.nl",
+      "asin": "B094YFCGVT",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005050300",
+      "mkt": "amazon.de",
+      "asin": "B09GGBMPZZ",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "49005050300",
+      "mkt": "amazon.de",
+      "asin": "B094DLWF74",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    },
+    {
+      "part_number": "60007092000",
+      "mkt": "amazon.nl",
+      "asin": "B0HKHJWSD8",
+      "status": "NEEDS_EVIDENCE",
+      "reason": "MISSING_INDEPENDENT_MPN_EVIDENCE"
+    }
+  ],
+  "rejected": [
+    {
+      "part_number": "41197108103",
+      "mkt": "amazon.de",
+      "asin": "B0HMHWYF68",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (expected guard/deflector)"
+    },
+    {
+      "part_number": "11201215405",
+      "mkt": "amazon.nl",
+      "asin": "B0117M4PBO",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:42031900405"
+    },
+    {
+      "part_number": "00001958203",
+      "mkt": "amazon.nl",
+      "asin": "B094YF5BTG",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:61707026910"
+    },
+    {
+      "part_number": "41371824504",
+      "mkt": "amazon.nl",
+      "asin": "B0HR1ST2XM",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11280071000"
+    },
+    {
+      "part_number": "11173500905",
+      "mkt": "amazon.nl",
+      "asin": "B0HQYM5RY9",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11303500500"
+    },
+    {
+      "part_number": "41171213300",
+      "mkt": "amazon.nl",
+      "asin": "B01BPVCDB6",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:30030006111"
+    },
+    {
+      "part_number": "61006073010",
+      "mkt": "amazon.nl",
+      "asin": "B0BY353KVR",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11480113000"
+    },
+    {
+      "part_number": "41281212900",
+      "mkt": "amazon.nl",
+      "asin": "B09297G9S9",
+      "status": "REJECTED",
+      "reason": "NON_STIHL_PRODUCT_MATCH"
+    },
+    {
+      "part_number": "93216300140",
+      "mkt": "amazon.nl",
+      "asin": "B0BY353KVR",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11480113000"
+    },
+    {
+      "part_number": "63757040311",
+      "mkt": "amazon.de",
+      "asin": "B00D7A3IWW",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:39460000091"
+    },
+    {
+      "part_number": "92402160900",
+      "mkt": "amazon.nl",
+      "asin": "B015S462OU",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00009970911"
+    },
+    {
+      "part_number": "00000071300",
+      "mkt": "amazon.nl",
+      "asin": "B09297G9S9",
+      "status": "REJECTED",
+      "reason": "NON_STIHL_PRODUCT_MATCH"
+    },
+    {
+      "part_number": "49005020901",
+      "mkt": "amazon.nl",
+      "asin": "B09297G9S9",
+      "status": "REJECTED",
+      "reason": "NON_STIHL_PRODUCT_MATCH"
+    },
+    {
+      "part_number": "42290071060",
+      "mkt": "amazon.de",
+      "asin": "B0HGX1JPM3",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (expected diaphragm/repair kit)"
+    },
+    {
+      "part_number": "41167172702",
+      "mkt": "amazon.nl",
+      "asin": "B0C61PX467",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:42381900300"
+    },
+    {
+      "part_number": "00009971701",
+      "mkt": "amazon.nl",
+      "asin": "B01BBV3T7C",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00009304302"
+    },
+    {
+      "part_number": "00009971701",
+      "mkt": "amazon.nl",
+      "asin": "B007TJKHT4",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00009302616"
+    },
+    {
+      "part_number": "00009971701",
+      "mkt": "amazon.de",
+      "asin": "B0863WMCVK",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00009304314"
+    },
+    {
+      "part_number": "41801209704",
+      "mkt": "amazon.nl",
+      "asin": "B09MQVSG91",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41801201800"
+    },
+    {
+      "part_number": "41801209704",
+      "mkt": "amazon.nl",
+      "asin": "B07WWNZMFN",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41801200604"
+    },
+    {
+      "part_number": "41801209704",
+      "mkt": "amazon.de",
+      "asin": "B00O80OP54",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41801201800"
+    },
+    {
+      "part_number": "42291213303",
+      "mkt": "amazon.nl",
+      "asin": "B082XWJW8F",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41341200603"
+    },
+    {
+      "part_number": "42291213303",
+      "mkt": "amazon.nl",
+      "asin": "B0F6VBHC4B",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41281602000"
+    },
+    {
+      "part_number": "61704370800",
+      "mkt": "amazon.nl",
+      "asin": "B089LY5DKL",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:42381410300"
+    },
+    {
+      "part_number": "90744774135",
+      "mkt": "amazon.de",
+      "asin": "B0HKFRSMN1",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (hardware vs kit/assembly)"
+    },
+    {
+      "part_number": "90744774135",
+      "mkt": "amazon.de",
+      "asin": "B0HKHD58GF",
+      "status": "REJECTED",
+      "reason": "COMPONENT_TYPE_MISMATCH (hardware vs kit/assembly)"
+    },
+    {
+      "part_number": "90453191280",
+      "mkt": "amazon.nl",
+      "asin": "B0943VPRB6",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00003503502"
+    },
+    {
+      "part_number": "99910030543",
+      "mkt": "amazon.de",
+      "asin": "B00O80OP54",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:41801201800"
+    },
+    {
+      "part_number": "99910030543",
+      "mkt": "amazon.de",
+      "asin": "B00BR0LBL4",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00008810124"
+    },
+    {
+      "part_number": "41306410305",
+      "mkt": "amazon.nl",
+      "asin": "B015S462OU",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:00009970911"
+    },
+    {
+      "part_number": "41261821001",
+      "mkt": "amazon.nl",
+      "asin": "B0HR1ST2XM",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11280071000"
+    },
+    {
+      "part_number": "41261824500",
+      "mkt": "amazon.nl",
+      "asin": "B0BY353KVR",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11480113000"
+    },
+    {
+      "part_number": "41264421600",
+      "mkt": "amazon.nl",
+      "asin": "B0GGR598J1",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:63567609900"
+    },
+    {
+      "part_number": "41264421600",
+      "mkt": "amazon.nl",
+      "asin": "B0BY353KVR",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11480113000"
+    },
+    {
+      "part_number": "49005006351",
+      "mkt": "amazon.de",
+      "asin": "B003RJT81S",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11230071000"
+    },
+    {
+      "part_number": "49005006800",
+      "mkt": "amazon.de",
+      "asin": "B003RJT81S",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:11230071000"
+    },
+    {
+      "part_number": "60007092000",
+      "mkt": "amazon.nl",
+      "asin": "B0CVNDKLWN",
+      "status": "REJECTED",
+      "reason": "CONFLICTING_MPN:40067102106"
+    }
+  ],
+  "superseded_research": []
+}
