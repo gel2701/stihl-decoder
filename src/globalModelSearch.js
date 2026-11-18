@@ -4,10 +4,12 @@
  * Builds safe searchable set from:
  *   1. Canonical registered model identities (database.models)
  *   2. Eligible public evidence identities (public_evidence.model_index)
- *   3. Explicit existing aliases (database.aliases)
+ *   3. Explicit existing aliases (database.aliases & per-model aliases/variants)
  * Implements variant isolation (MS 200 vs MS 200 T, MS 261 vs MS 261 C-M)
- * and strict query normalization. User selection is ALWAYS required (no auto-confirm).
+ * and strict query normalization.
  */
+
+import { normalizeModelQuery } from './modelNormalizer.js';
 
 export function buildSearchableIdentities(database = {}) {
   if (Array.isArray(database)) return database;
@@ -21,14 +23,20 @@ export function buildSearchableIdentities(database = {}) {
   // 1. Canonical registered models
   canonicalModels.forEach((m) => {
     const slug = (m.slug || m.id || m.model_name.toLowerCase().replace(/\s+/g, '-')).trim();
+    const modelAliases = [
+      ...(Array.isArray(m.aliases) ? m.aliases : []),
+      ...(Array.isArray(m.variants) ? m.variants : [])
+    ];
     identityMap.set(slug, {
       slug,
       model_name: m.model_name,
       category: m.category || m.category_slug || 'Kettingzagen',
+      category_slug: m.category_slug || 'kettingzagen',
       series_code: m.series_code || null,
       is_canonical: true,
-      has_evidence: Boolean(evidenceModelIndex[slug] || evidenceModelIndex[m.model_name]),
-      aliases: []
+      has_evidence: Boolean(m.specs_verified || evidenceModelIndex[slug] || evidenceModelIndex[m.model_name]),
+      variants: Array.isArray(m.variants) ? m.variants : [],
+      aliases: modelAliases
     });
   });
 
@@ -40,9 +48,11 @@ export function buildSearchableIdentities(database = {}) {
         slug,
         model_name: info.model_name || key,
         category: info.category || 'Kettingzagen',
+        category_slug: info.category_slug || 'kettingzagen',
         series_code: info.series_code || null,
         is_canonical: false,
         has_evidence: true,
+        variants: [],
         aliases: []
       });
     } else {
@@ -50,11 +60,12 @@ export function buildSearchableIdentities(database = {}) {
     }
   });
 
-  // 3. Explicit existing aliases
+  // 3. Explicit existing database aliases
   Object.entries(aliases).forEach(([alias, target]) => {
     const targetSlug = (target?.slug || target?.model_name || (typeof target === 'string' ? target : '')).toLowerCase().replace(/\s+/g, '-').trim();
     if (identityMap.has(targetSlug)) {
-      identityMap.get(targetSlug).aliases.push(alias);
+      const list = identityMap.get(targetSlug).aliases;
+      if (!list.includes(alias)) list.push(alias);
     }
   });
 
@@ -73,9 +84,11 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
   const normalized = normalizeSearchQuery(queryStr);
   if (!normalized) return [];
 
-  const identities = buildSearchableIdentities(database);
-  const cleanQ = normalized.replace(/[^A-Z0-9]/g, '');
+  const normParsed = normalizeModelQuery(normalized);
+  const cleanQ = (normParsed.canonicalQuery || normalized).replace(/[^A-Z0-9]/g, '');
+  const cleanBaseQ = (normParsed.baseModel || normalized).replace(/[^A-Z0-9]/g, '');
 
+  const identities = buildSearchableIdentities(database);
   const results = [];
 
   for (const item of identities) {
@@ -85,7 +98,6 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
     let score = 0;
     let matchType = null;
 
-    // 1. Exact normalized model match
     if (cleanName === cleanQ) {
       score = 100;
       matchType = 'EXACT_NAME';
@@ -95,6 +107,9 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
     } else if (item.aliases.some((a) => a.toUpperCase().replace(/[^A-Z0-9]/g, '') === cleanQ)) {
       score = 80;
       matchType = 'EXACT_ALIAS';
+    } else if (normParsed.variant && cleanBaseQ && (cleanName === cleanBaseQ || cleanSlug === cleanBaseQ)) {
+      score = 75;
+      matchType = 'BASE_FOR_VARIANT';
     } else if (cleanName.startsWith(cleanQ)) {
       score = 70;
       matchType = 'PREFIX_NAME';
@@ -110,8 +125,6 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
     }
 
     if (score > 0) {
-      // Variant Isolation: If query did NOT specify variant suffix (e.g. C-M, TC-M, C-EM, T),
-      // prioritize the base model so variant models don't shadow base models.
       const isVariant = item.model_name.includes('C-M') || item.model_name.includes('C-EM') || item.model_name.includes('TC-M') || item.model_name.endsWith(' T');
       const qHasVariant = normalized.includes('C-M') || normalized.includes('C-EM') || normalized.includes('TC-M') || normalized.endsWith(' T');
       if (isVariant && !qHasVariant) {
@@ -126,7 +139,6 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
     }
   }
 
-  // Sort by score descending, then alphabetical by model_name
   results.sort((a, b) => b.score - a.score || a.model_name.localeCompare(b.model_name));
 
   const limit = options.limit || 20;
@@ -136,7 +148,11 @@ export function searchGlobalModels(queryStr, database = {}, options = {}) {
 export function findRegisteredModel(inputQuery, database = {}) {
   if (!inputQuery || typeof inputQuery !== 'string') return null;
   const results = searchGlobalModels(inputQuery, database, { limit: 1 });
-  if (results.length > 0 && (results[0].matchType === 'EXACT_NAME' || results[0].matchType === 'EXACT_SLUG' || results[0].matchType === 'EXACT_ALIAS')) {
+  if (results.length > 0 && (
+    results[0].matchType === 'EXACT_NAME' ||
+    results[0].matchType === 'EXACT_SLUG' ||
+    results[0].matchType === 'EXACT_ALIAS'
+  )) {
     return results[0];
   }
   return null;

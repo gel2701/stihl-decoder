@@ -10,6 +10,14 @@ import { SectionResolutionRegistry } from './SectionResolutionRegistry.js';
 import { isPartIndexable, getIndexablePartEntry } from '../seo/PartIndexationRegistry.js';
 import { normalizeModelQuery } from '../modelNormalizer.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const defaultPartsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_catalog.json');
+const defaultFitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'model_part_fitments.json');
+const defaultConfigurationsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_model_configurations.json');
+const defaultSupersessionsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_supersessions.json');
+const defaultFitmentModelIndexPath = path.resolve(__dirname, '..', '..', 'data', 'fitment_model_index.json');
+
 /**
  * Lightweight precomputed index of canonical model IDs with verified renderable catalog parts or configurations.
  * Prevents synchronous decompression of 110MB+ fitment shards during cold homepage and serial decodes.
@@ -28,12 +36,18 @@ export const RENDERABLE_CATALOG_MODELS = new Set([
   "ts_410", "ts_420", "tsa_230"
 ]);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const defaultPartsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_catalog.json');
-const defaultFitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'model_part_fitments.json');
-const defaultConfigurationsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_model_configurations.json');
-const defaultSupersessionsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_supersessions.json');
+try {
+  if (fs.existsSync(defaultFitmentModelIndexPath)) {
+    const idxDoc = JSON.parse(fs.readFileSync(defaultFitmentModelIndexPath, 'utf8'));
+    if (Array.isArray(idxDoc.canonical_model_ids)) {
+      for (const cid of idxDoc.canonical_model_ids) {
+        if (cid) RENDERABLE_CATALOG_MODELS.add(cid);
+      }
+    }
+  }
+} catch (_) {
+  // Fallback safely to static seed set
+}
 
 let cachedPartsCatalog = null;
 let cachedPartsMap = null;

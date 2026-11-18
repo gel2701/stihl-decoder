@@ -33,13 +33,22 @@ export const MAX_NOTE_LENGTH = 500;
 export const IDENTITY_STATUSES = Object.freeze({
   EXACT_MODEL_IDENTIFIED: 'EXACT_MODEL_IDENTIFIED',
   USER_CONFIRMED_MODEL: 'USER_CONFIRMED_MODEL',
+  MODEL_CONFIRMED: 'MODEL_CONFIRMED',
+  VARIANT_UNCONFIRMED: 'VARIANT_UNCONFIRMED',
   PROBABLE_MODEL_SERIES: 'PROBABLE_MODEL_SERIES',
   USER_REPORTED_UNVERIFIED_MODEL: 'USER_REPORTED_UNVERIFIED_MODEL'
 });
 
+export const SERIAL_VERIFICATION_STATUSES = Object.freeze({
+  SERIAL_OFFICIALLY_VERIFIED: 'SERIAL_OFFICIALLY_VERIFIED',
+  SERIAL_UNVERIFIED: 'SERIAL_UNVERIFIED'
+});
+
 export const DOSSIER_SAVEABLE_IDENTITY_STATUSES = Object.freeze([
   IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
-  IDENTITY_STATUSES.USER_CONFIRMED_MODEL
+  IDENTITY_STATUSES.USER_CONFIRMED_MODEL,
+  IDENTITY_STATUSES.MODEL_CONFIRMED,
+  IDENTITY_STATUSES.VARIANT_UNCONFIRMED
 ]);
 
 export const IDENTITY_SOURCES = Object.freeze({
@@ -266,6 +275,16 @@ export function createDossierObject({
   factory_country = null,
   factoryLocation = null,
   factory_location = null,
+  variant = null,
+  variantUnconfirmed = false,
+  variant_unconfirmed = false,
+  serialStatus = null,
+  serial_status = null,
+  condition = null,
+  ownerDeclaredYear = null,
+  owner_declared_year = null,
+  photos = [],
+  share = null,
   notes = [],
   events = [],
   reminders = [],
@@ -273,10 +292,11 @@ export function createDossierObject({
 }) {
   const mSlug = modelSlug || model_slug;
   const mName = modelName || model_name;
-  const idStatus = identityStatus || identity_status;
+  const idStatus = identityStatus || identity_status || IDENTITY_STATUSES.MODEL_CONFIRMED;
   const idSource = identitySource || identity_source;
   const sNum = serialNumber != null ? serialNumber : serial_number;
   const pYear = purchaseYear != null ? purchaseYear : purchase_year;
+  const oYear = ownerDeclaredYear != null ? ownerDeclaredYear : owner_declared_year;
   const sCode = seriesCode || series_code;
   const sDate = lastServiceDate || last_service_date || (maintenance && maintenance.last_service_date);
   const offProdName = officialProductName || official_product_name || null;
@@ -285,6 +305,15 @@ export function createDossierObject({
   const canonId = canonicalModelId || canonical_model_id || null;
   const fCountry = factoryCountry || factory_country || null;
   const fLocation = factoryLocation || factory_location || null;
+  const cleanVariant = variant ? String(variant).trim().substring(0, 80) : null;
+  const isVarUnconf = Boolean(variantUnconfirmed || variant_unconfirmed || idStatus === IDENTITY_STATUSES.VARIANT_UNCONFIRMED);
+  const resolvedSerialStatus = (serialStatus || serial_status) === SERIAL_VERIFICATION_STATUSES.SERIAL_OFFICIALLY_VERIFIED
+    ? SERIAL_VERIFICATION_STATUSES.SERIAL_OFFICIALLY_VERIFIED
+    : SERIAL_VERIFICATION_STATUSES.SERIAL_UNVERIFIED;
+  const cleanCondition = condition ? String(condition).trim().substring(0, 40) : null;
+  const safePhotos = Array.isArray(photos)
+    ? photos.filter(p => typeof p === 'string' && /^data:image\/(?:jpeg|jpg|png|webp);base64,/i.test(p) && p.length <= 350000).slice(0, 3)
+    : [];
 
   if (idStatus === IDENTITY_STATUSES.PROBABLE_MODEL_SERIES) {
     throw new Error('Cannot create final dossier from unconfirmed PROBABLE_MODEL_SERIES.');
@@ -292,20 +321,23 @@ export function createDossierObject({
 
   const validStatuses = [
     IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED,
-    IDENTITY_STATUSES.USER_CONFIRMED_MODEL
+    IDENTITY_STATUSES.USER_CONFIRMED_MODEL,
+    IDENTITY_STATUSES.MODEL_CONFIRMED,
+    IDENTITY_STATUSES.VARIANT_UNCONFIRMED
   ];
   if (!validStatuses.includes(idStatus)) {
     throw new Error(`Invalid identity status: ${idStatus}`);
   }
 
-  // Model page selection must always be USER_CONFIRMED_MODEL
-  if (idSource === IDENTITY_SOURCES.MODEL_PAGE_SELECTION && idStatus !== IDENTITY_STATUSES.USER_CONFIRMED_MODEL) {
-    throw new Error('Model page selection must have USER_CONFIRMED_MODEL identity status.');
+  // Model page selection may carry USER_CONFIRMED_MODEL, MODEL_CONFIRMED or VARIANT_UNCONFIRMED
+  if (idSource === IDENTITY_SOURCES.MODEL_PAGE_SELECTION && !DOSSIER_SAVEABLE_IDENTITY_STATUSES.includes(idStatus)) {
+    throw new Error('Model page selection must have a confirmed model identity status.');
   }
 
   const cleanSerial = sNum ? String(sNum).trim().substring(0, 30) : null;
   const cleanNickname = nickname ? String(nickname).trim().substring(0, MAX_NICKNAME_LENGTH) : null;
   const cleanYear = pYear ? parseInt(pYear, 10) : null;
+  const cleanOwnerYear = oYear ? parseInt(oYear, 10) : null;
   const cleanLastServiceDate = (sDate && isValidCalendarDate(String(sDate).trim())) ? String(sDate).trim() : null;
   const newId = generateDossierId();
 
@@ -333,6 +365,8 @@ export function createDossierObject({
     identity: {
       model_slug: String(mSlug).trim().toLowerCase(),
       model_name: String(mName).trim(),
+      variant: cleanVariant,
+      variant_unconfirmed: isVarUnconf,
       category: category ? String(category).trim() : 'Onbekend',
       series_code: sCode ? String(sCode).trim() : null,
       identity_status: idStatus,
@@ -345,10 +379,14 @@ export function createDossierObject({
     },
     machine: {
       serial_number: cleanSerial || null,
+      serial_status: resolvedSerialStatus,
       nickname: cleanNickname || null,
+      condition: cleanCondition || null,
       purchase_year: cleanYear && !isNaN(cleanYear) ? cleanYear : null,
+      owner_declared_year: cleanOwnerYear && !isNaN(cleanOwnerYear) ? cleanOwnerYear : null,
       factory_country: fCountry,
-      factory_location: fLocation
+      factory_location: fLocation,
+      photos: safePhotos
     },
     maintenance: {
       last_service_date: cleanLastServiceDate || null,
@@ -356,6 +394,7 @@ export function createDossierObject({
       events: Array.isArray(events) ? events.slice(0, MAX_EVENTS_PER_DOSSIER) : [],
       reminders: Array.isArray(reminders) ? reminders.slice(0, MAX_REMINDERS_PER_DOSSIER) : []
     },
+    share: share && typeof share === 'object' ? { ...share } : null,
     created_at: createdAt,
     updated_at: createdAt
   };
@@ -374,6 +413,8 @@ function decorateDossierAliases(d) {
   d.id = d.dossier_id;
   d.model_slug = d.identity.model_slug;
   d.model_name = d.identity.model_name;
+  d.variant = d.identity.variant || null;
+  d.variant_unconfirmed = Boolean(d.identity.variant_unconfirmed || d.identity.identity_status === IDENTITY_STATUSES.VARIANT_UNCONFIRMED);
   d.category = d.identity.category;
   d.series_code = d.identity.series_code;
   d.identity_status = d.identity.identity_status;
@@ -385,10 +426,15 @@ function decorateDossierAliases(d) {
   d.conflict = d.identity.conflict || null;
   d.has_conflict = Boolean(d.identity.conflict && d.identity.conflict.has_conflict);
   d.serial_number = d.machine.serial_number;
+  d.serial_status = d.machine.serial_status || SERIAL_VERIFICATION_STATUSES.SERIAL_UNVERIFIED;
   d.nickname = d.machine.nickname;
+  d.condition = d.machine.condition || null;
   d.purchase_year = d.machine.purchase_year;
+  d.owner_declared_year = d.machine.owner_declared_year || d.machine.purchase_year || null;
   d.factory_country = d.machine.factory_country || null;
   d.factory_location = d.machine.factory_location || null;
+  d.photos = Array.isArray(d.machine.photos) ? d.machine.photos : [];
+  d.share = d.share || null;
   d.manual_last_service_date = d.maintenance.last_service_date;
   d.effective_last_service_date = calculateEffectiveLastServiceDate(d);
   d.last_service_date = d.maintenance.last_service_date;
@@ -574,6 +620,8 @@ export function saveDossier(dossier, customStorage = null) {
       identity: {
         model_slug: dossier.identity.model_slug,
         model_name: dossier.identity.model_name,
+        variant: dossier.identity.variant || null,
+        variant_unconfirmed: Boolean(dossier.identity.variant_unconfirmed || dossier.identity.identity_status === IDENTITY_STATUSES.VARIANT_UNCONFIRMED),
         category: dossier.identity.category,
         series_code: dossier.identity.series_code,
         identity_status: dossier.identity.identity_status,
@@ -586,10 +634,16 @@ export function saveDossier(dossier, customStorage = null) {
       },
       machine: {
         serial_number: dossier.machine.serial_number,
+        serial_status: dossier.machine.serial_status || SERIAL_VERIFICATION_STATUSES.SERIAL_UNVERIFIED,
         nickname: dossier.machine.nickname,
+        condition: dossier.machine.condition || null,
         purchase_year: dossier.machine.purchase_year,
+        owner_declared_year: dossier.machine.owner_declared_year || dossier.machine.purchase_year || null,
         factory_country: dossier.machine.factory_country || null,
-        factory_location: dossier.machine.factory_location || null
+        factory_location: dossier.machine.factory_location || null,
+        photos: Array.isArray(dossier.machine.photos)
+          ? dossier.machine.photos.filter(p => typeof p === 'string' && /^data:image\/(?:jpeg|jpg|png|webp);base64,/i.test(p) && p.length <= 350000).slice(0, 3)
+          : []
       },
       maintenance: {
         last_service_date: dossier.maintenance.last_service_date,
@@ -597,6 +651,12 @@ export function saveDossier(dossier, customStorage = null) {
         events: Array.isArray(dossier.maintenance.events) ? dossier.maintenance.events : [],
         reminders: Array.isArray(dossier.maintenance.reminders) ? dossier.maintenance.reminders : []
       },
+      share: dossier.share && typeof dossier.share === 'object' ? {
+        share_id: dossier.share.share_id || null,
+        share_url: dossier.share.share_url || null,
+        edit_token: dossier.share.edit_token || null,
+        shared_at: dossier.share.shared_at || null
+      } : null,
       created_at: dossier.created_at || new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
@@ -1558,4 +1618,56 @@ export function resolveDossierConflict(dossierId, resolutionAction, customStorag
   }
 
   return { success: false, error: 'Onbekende resolutie-actie.' };
+}
+
+/**
+ * Updates editable machine & passport fields (variant, serial, condition, year, photos, share metadata).
+ */
+export function updateDossierFields(dossierId, updates = {}, customStorage = null) {
+  const storage = getStorage(customStorage);
+  if (!storage) return { success: false, error: 'Opslaan op dit apparaat is niet beschikbaar.' };
+
+  const existing = loadDossiers(storage);
+  const target = existing.find((d) => d.dossier_id === dossierId || d.id === dossierId);
+  if (!target) return { success: false, error: 'Dossier niet gevonden.' };
+
+  if (updates.variant !== undefined) {
+    target.identity.variant = updates.variant ? String(updates.variant).trim().substring(0, 80) : null;
+  }
+  if (updates.variant_unconfirmed !== undefined) {
+    target.identity.variant_unconfirmed = Boolean(updates.variant_unconfirmed);
+    if (updates.variant_unconfirmed && target.identity.identity_status !== IDENTITY_STATUSES.EXACT_MODEL_IDENTIFIED) {
+      target.identity.identity_status = IDENTITY_STATUSES.VARIANT_UNCONFIRMED;
+    }
+  }
+  if (updates.serial_number !== undefined) {
+    target.machine.serial_number = updates.serial_number ? String(updates.serial_number).trim().substring(0, 30) : null;
+  }
+  if (updates.serial_status !== undefined) {
+    target.machine.serial_status = updates.serial_status === SERIAL_VERIFICATION_STATUSES.SERIAL_OFFICIALLY_VERIFIED
+      ? SERIAL_VERIFICATION_STATUSES.SERIAL_OFFICIALLY_VERIFIED
+      : SERIAL_VERIFICATION_STATUSES.SERIAL_UNVERIFIED;
+  }
+  if (updates.nickname !== undefined) {
+    target.machine.nickname = updates.nickname ? String(updates.nickname).trim().substring(0, MAX_NICKNAME_LENGTH) : null;
+  }
+  if (updates.condition !== undefined) {
+    target.machine.condition = updates.condition ? String(updates.condition).trim().substring(0, 40) : null;
+  }
+  if (updates.owner_declared_year !== undefined || updates.purchase_year !== undefined) {
+    const rawYear = updates.owner_declared_year !== undefined ? updates.owner_declared_year : updates.purchase_year;
+    const parsedYear = rawYear ? parseInt(rawYear, 10) : null;
+    target.machine.owner_declared_year = parsedYear && !isNaN(parsedYear) ? parsedYear : null;
+    target.machine.purchase_year = target.machine.owner_declared_year;
+  }
+  if (Array.isArray(updates.photos)) {
+    target.machine.photos = updates.photos
+      .filter((p) => typeof p === 'string' && /^data:image\/(?:jpeg|jpg|png|webp);base64,/i.test(p) && p.length <= 350000)
+      .slice(0, 3);
+  }
+  if (updates.share !== undefined) {
+    target.share = updates.share && typeof updates.share === 'object' ? { ...updates.share } : null;
+  }
+  target.updated_at = new Date().toISOString();
+  return saveDossier(target, storage);
 }

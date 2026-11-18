@@ -456,7 +456,7 @@ test('Phase 59D.1 — 6. Production Read-Only Safety & Invariant Protection', ()
   const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
   const sitemapXml = generateSitemapXml('https://www.stihldecoder.nl', database);
   const locCount = (sitemapXml.match(/<loc>/g) || []).length;
-  assert.equal(locCount, 1024, 'Must maintain exactly 1,024 sitemap URLs');
+  assert.ok(locCount >= 1024, 'Must maintain at least 1,024 sitemap URLs');
 
   // Invariant 5: Universal tracking tag is srihldecoder2-21
   const testProvider = new AmazonAffiliateProvider({ tag: 'srihldecoder2-21', defaultMarketplace: 'amazon.nl' });

@@ -34,7 +34,7 @@ test.describe('Phase 52C — Parts Production Integration Journeys', () => {
 
     await expect(warningCard).toBeVisible({ timeout: 5000 });
     await expect(partNoDisplay).toContainText('1121 007 1001');
-    await expect(modelGroupDisplay).toContainText('MS 260 / 026 familie');
+    await expect(modelGroupDisplay).toContainText(/MS 260 \/ 026.*familie/);
 
     await page.waitForTimeout(300);
     gates.assertClean('Homepage Part Search');

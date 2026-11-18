@@ -8,6 +8,7 @@ import { getClassificationContextLabel } from '../driveClassification.js';
 import { buildModelRecommendations, renderPassportRecommendationSlotsHtml } from '../modelRecommendations.js';
 import { resolvePlantRecord } from '../plantResolver.js';
 import { isPublicDisplayEligibleFact, getPublicEvidenceFactsForModel, buildPublicEvidenceFields } from '../publicEvidence.js';
+import { renderQrSvg, drawQrToCanvas } from '../utils/qrCode.js';
 
 function compactText(value, fallback = 'Niet vastgesteld') {
   const text = String(value || '').trim();
@@ -267,14 +268,33 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     };
   }
 
-  // Canonical Model QR URL: Always points to the public canonical model page.
-  // CRITICAL PRIVACY GATE: NEVER include serial numbers or query params in external QR requests!
+  // Variant & Serial Status (strict evidence distinction)
+  const enteredVariant = data.enteredVariant || data.variant || data.identity?.variant || null;
+  const variantUnconfirmed = Boolean(
+    data.variantUnconfirmed ||
+    data.variant_unconfirmed ||
+    data.identity?.variant_unconfirmed ||
+    identityStatus === 'VARIANT_UNCONFIRMED'
+  );
+  const serialStatus = isOfficialAnchor
+    ? 'SERIAL_OFFICIALLY_VERIFIED'
+    : 'SERIAL_UNVERIFIED';
+  const conditionGrade = data.condition || data.machine?.condition || null;
+
+  // Canonical Model / Share QR URL: points to public shareable passport URL if created, else canonical model page.
+  // CRITICAL PRIVACY GATE: NEVER include raw serial numbers or PII in QR URLs!
   const safeCatSlug = catSlug || 'kettingzagen';
   const safeModelSlug = modelSlug || '';
-  const publicUrl = (safeCatSlug && safeModelSlug)
+  const canonicalPublicModelUrl = (safeCatSlug && safeModelSlug)
     ? `https://www.stihldecoder.nl/${safeCatSlug}/${safeModelSlug}/`
     : 'https://www.stihldecoder.nl/';
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(publicUrl)}`;
+  const rawShareUrl = data.shareUrl || data.share?.share_url || null;
+  const publicUrl = rawShareUrl
+    ? (String(rawShareUrl).startsWith('http') ? String(rawShareUrl) : `https://www.stihldecoder.nl${rawShareUrl}`)
+    : canonicalPublicModelUrl;
+  const qrTargetUrl = publicUrl;
+  const qrUrl = `https://www.stihldecoder.nl/#qr=${encodeURIComponent(publicUrl)}`;
+  const qrSvg = renderQrSvg(qrTargetUrl, 112);
 
   // Safe recommendations
   const recommendations = data.recommendations || buildModelRecommendations(
@@ -286,9 +306,13 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
   return {
     serial: hasSerial ? serial : null,
     hasSerial,
+    serialStatus,
     formattedSerial: hasSerial ? formattedSerial : 'Nog niet toegevoegd',
     passportMode,
     model,
+    variant: enteredVariant,
+    variantUnconfirmed,
+    condition: conditionGrade,
     modelSlug,
     seriesCode,
     canonicalModelName,
@@ -310,7 +334,10 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
     hasTechnicalSpecs,
     theftCheck,
     publicUrl,
+    canonicalPublicModelUrl,
+    qrTargetUrl,
     qrUrl,
+    qrSvg,
     recommendations,
     publicEvidenceFacts: facts,
     publicEvidenceFields: evidenceFields
@@ -321,6 +348,8 @@ export function buildPassportViewModel(data = {}, databaseOrResult = null) {
 // stronger evidence level than the stored data justifies.
 export const PASSPORT_EVIDENCE_STATES = {
   MODEL_ONLY: 'MODEL_ONLY',
+  MODEL_CONFIRMED: 'MODEL_CONFIRMED',
+  VARIANT_UNCONFIRMED: 'VARIANT_UNCONFIRMED',
   USER_CONFIRMED_MODEL: 'USER_CONFIRMED_MODEL',
   SERIAL_UNVERIFIED: 'SERIAL_UNVERIFIED',
   SERIAL_OFFICIAL: 'SERIAL_OFFICIAL'
@@ -328,6 +357,8 @@ export const PASSPORT_EVIDENCE_STATES = {
 
 export const PASSPORT_EVIDENCE_LABELS = {
   MODEL_ONLY: 'Alleen model bekend',
+  MODEL_CONFIRMED: 'Model bevestigd (zonder geverifieerd serienummer)',
+  VARIANT_UNCONFIRMED: 'Basismodel bevestigd · uitvoering niet afzonderlijk bevestigd',
   USER_CONFIRMED_MODEL: 'Model door gebruiker opgegeven',
   SERIAL_UNVERIFIED: 'Serienummer aanwezig, niet officieel bevestigd',
   SERIAL_OFFICIAL: 'Serienummer officieel geverifieerd'
@@ -335,6 +366,8 @@ export const PASSPORT_EVIDENCE_LABELS = {
 
 export const PASSPORT_EVIDENCE_BADGES = {
   MODEL_ONLY: 'ALLEEN MODEL BEKEND',
+  MODEL_CONFIRMED: 'MODEL BEVESTIGD',
+  VARIANT_UNCONFIRMED: 'UITVOERING ONBEVESTIGD',
   USER_CONFIRMED_MODEL: 'MODEL DOOR GEBRUIKER',
   SERIAL_UNVERIFIED: 'SERIENUMMER NIET BEVESTIGD',
   SERIAL_OFFICIAL: 'OFFICIEEL GEVERIFIEERD'
@@ -345,13 +378,16 @@ export const PASSPORT_EXPORT_BRAND = 'Gemaakt met STIHLDecoder.nl';
 export const PASSPORT_EXPORT_DISCLAIMER = 'Geen eigendomsbewijs. Gebaseerd op door jou opgegeven gegevens en openbare modelinformatie.';
 
 export function resolvePassportEvidenceState(passport = {}) {
-  if (passport.passportMode === 'OFFICIAL_SERIAL_VERIFIED') {
+  if (passport.passportMode === 'OFFICIAL_SERIAL_VERIFIED' || passport.serialStatus === 'SERIAL_OFFICIALLY_VERIFIED') {
     return PASSPORT_EVIDENCE_STATES.SERIAL_OFFICIAL;
+  }
+  if (passport.variantUnconfirmed || passport.identityStatus === 'VARIANT_UNCONFIRMED') {
+    return PASSPORT_EVIDENCE_STATES.VARIANT_UNCONFIRMED;
   }
   if (passport.hasSerial) {
     return PASSPORT_EVIDENCE_STATES.SERIAL_UNVERIFIED;
   }
-  if (passport.identityStatus === 'EXACT_MODEL_IDENTIFIED') {
+  if (passport.identityStatus === 'EXACT_MODEL_IDENTIFIED' || passport.identityStatus === 'MODEL_CONFIRMED') {
     return PASSPORT_EVIDENCE_STATES.MODEL_ONLY;
   }
   return PASSPORT_EVIDENCE_STATES.USER_CONFIRMED_MODEL;
@@ -449,6 +485,11 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
         <div>
           <span class="text-2xs font-mono uppercase tracking-widest text-orange-500 font-bold block">${passportMode === 'MODEL_ONLY' ? 'STIHL Modelpaspoort' : 'STIHL Machinepaspoort'}</span>
           <h2 class="text-2xl font-black tracking-tight text-white mt-0.5">${model.startsWith('STIHL') ? model : `STIHL ${model}`}</h2>
+          ${passport.variant ? `
+            <span class="text-2xs ${passport.variantUnconfirmed ? 'text-amber-300' : 'text-emerald-400'} font-mono block">
+              Uitvoering: ${passport.variant}${passport.variantUnconfirmed ? ' (niet afzonderlijk bevestigd)' : ''}
+            </span>
+          ` : ''}
           ${canonicalModelName && canonicalModelName !== model.toUpperCase() ? `
             <span class="text-2xs text-orange-400 font-mono block">Canonieke basis: STIHL ${canonicalModelName}</span>
           ` : ''}
@@ -535,7 +576,7 @@ export function renderStihlPassportHtml(data, databaseOrResult = null) {
           <p class="text-neutral-500 text-3xs">Scan QR-code voor de modelpagina of het live controlerapport</p>
         </div>
         <div class="flex-shrink-0 flex items-center gap-2">
-          <img src="${qrUrl}" alt="Scan QR Code" class="w-12 h-12 rounded-lg border border-neutral-700 bg-white p-0.5 shadow-md" />
+          <div class="rounded-lg border border-neutral-700 bg-white p-1 shadow-md">${passport.qrSvg}</div>
         </div>
       </div>
     </div>
@@ -581,7 +622,7 @@ export function downloadStihlPassportImage(data, options = {}) {
 
   if (!ctx) return;
 
-  function renderCanvasAndDownload(qrImageElement) {
+  function renderCanvasAndDownload() {
     // Background
     ctx.fillStyle = '#0a0a0a';
     ctx.fillRect(0, 0, 1200, 900);
@@ -717,12 +758,10 @@ export function downloadStihlPassportImage(data, options = {}) {
     ctx.font = '16px sans-serif';
     ctx.fillText('www.stihldecoder.nl — onafhankelijk STIHL machinepaspoort', 60, 830);
 
-    // Draw QR Code (always points to the public model page, never to a private dossier)
-    if (qrImageElement) {
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(1000, 742, 140, 140);
-      ctx.drawImage(qrImageElement, 1010, 752, 120, 120);
-    }
+    // Draw inline ISO QR Code directly onto canvas (zero external network/CORS dependency, never embeds PII/serial)
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(1000, 742, 140, 140);
+    drawQrToCanvas(ctx, exportModel.publicUrl, 1006, 748, 128);
 
     const link = document.createElement('a');
     link.download = exportModel.filename;
@@ -730,9 +769,5 @@ export function downloadStihlPassportImage(data, options = {}) {
     link.click();
   }
 
-  const qrImg = new Image();
-  qrImg.crossOrigin = 'anonymous';
-  qrImg.onload = () => renderCanvasAndDownload(qrImg);
-  qrImg.onerror = () => renderCanvasAndDownload(null);
-  qrImg.src = exportModel.qrUrl.replace('size=100x100', 'size=120x120');
+  renderCanvasAndDownload();
 }

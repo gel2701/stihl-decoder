@@ -292,7 +292,8 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     };
   }
 
-  const isAlphaNumCandidate = /^[A-Z0-9]{8,10}$/i.test(cleaned) && /[A-Z]/i.test(cleaned) && /\d/.test(cleaned);
+  const digitCount = (cleaned.match(/\d/g) || []).length;
+  const isAlphaNumCandidate = !/[\/\s\-]/.test(stripped) && /^[A-Z0-9]{8,10}$/i.test(cleaned) && /[A-Z]/i.test(cleaned) && digitCount >= 6;
   if (isAlphaNumCandidate) {
     return analyzeSerialNumber(cleaned.toUpperCase(), database, counterfeitEvaluation, { ...options, isAlphanumeric: true });
   }
@@ -327,10 +328,20 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
     };
   }
 
-  // If exact match found (including typo-recovered match like MS 26O -> MS 260)
+  // If exact match found (including documented variants, aliases, typo-recovery, or unconfirmed-variant base fallback)
   if (intelligent.exactMatch) {
-    const decodeOptions = intelligent.typoNotice ? { ...options, typoNotice: intelligent.typoNotice } : options;
-    return analyzeModelQuery(intelligent.exactMatch.model_name, database, decodeOptions);
+    const em = intelligent.exactMatch;
+    const decodeOptions = {
+      ...options,
+      typoNotice: intelligent.typoNotice || null,
+      matchedModelName: em.model_name,
+      variantUnconfirmed: Boolean(em.variantUnconfirmed),
+      variantConfirmed: em.variantConfirmed !== false,
+      enteredVariant: em.enteredVariant || null,
+      variantSuffix: em.variantSuffix || null,
+      userInput: inputStr
+    };
+    return analyzeModelQuery(em.enteredVariant || em.model_name, database, decodeOptions);
   }
 
   // If near suggestions exist (e.g. MS 2500 -> suggests MS 250)
@@ -360,14 +371,89 @@ export function decodeStihlCode(inputStr, database = {}, options = {}) {
 export function analyzeModelQuery(modelStr, database, options = {}) {
   const norm = normalizeModelQuery(modelStr);
   const relationship = resolveModelRelationship(modelStr);
-  const publicEvidenceMatch = findPublicEvidenceModel(norm.canonicalQuery || modelStr, database);
+  const publicEvidenceMatch = findPublicEvidenceModel(norm.canonicalQuery || modelStr, database)
+    || (norm.baseModel && norm.baseModel !== norm.canonicalQuery ? findPublicEvidenceModel(norm.baseModel, database) : null);
 
   // STRICT RULE: If relationship exists, do NOT inherit matchedModelSpec from the successor/related model!
   let matchedModelSpec = null;
+  let variantMatchesDocumented = false;
+  let aliasMatched = false;
+  let variantUnconfirmed = Boolean(options.variantUnconfirmed);
+
   if (!relationship) {
-    matchedModelSpec = findModelInDatabase(modelStr, database.models || []);
-        if (matchedModelSpec && !isExactModelMatch(modelStr, matchedModelSpec)) {
-      matchedModelSpec = null;
+    const dbModels = database.models || [];
+    const cleanQueryStr = (norm.canonicalQuery || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+    // Priority 0: Exact canonical model name (including auxiliary canonical variants like HS 81 R, HS 81 T, MS 261 VW)
+    const exactDbModel = dbModels.find((m) => isExactModelMatch(modelStr, m));
+    const exactAuxModel = !exactDbModel
+      ? VERIFIED_AUXILIARY_MODELS.find((m) => m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanQueryStr)
+      : null;
+
+    if (exactAuxModel && !options.variantUnconfirmed) {
+      matchedModelSpec = {
+        model_name: exactAuxModel.model_name,
+        slug: exactAuxModel.slug,
+        category: exactAuxModel.category,
+        category_slug: exactAuxModel.category_slug,
+        series_code: exactAuxModel.series_code,
+        fuel_type: exactAuxModel.fuel_type || null,
+        fuel_type_label: exactAuxModel.fuel_type_label,
+        data_status: 'EVIDENCE_STORE_LINKED',
+        basic_classification: {
+          brand: 'STIHL',
+          product_category: exactAuxModel.category,
+          product_type: exactAuxModel.category,
+          machine_form: exactAuxModel.machine_form || 'HANDHELD',
+          power_source: exactAuxModel.power_source || 'GASOLINE',
+          engine_type: exactAuxModel.engine_type || 'COMBUSTION_2_STROKE',
+          fuel_type: 'PETROL_OIL_MIX',
+          primary_function: exactAuxModel.category === 'Bosmaaier' ? 'MOWING_CLEARING' : 'SAWING',
+          evidence_status: { product_category: 'EXISTING_CANONICAL_SUPPORTED' },
+          core5_completeness: 5,
+          deep_specs_available_for_later: false,
+          notes: exactAuxModel.explanation
+        }
+      };
+    } else if (options.matchedModelName) {
+      matchedModelSpec = findModelInDatabase(options.matchedModelName, dbModels, database.aliases);
+    }
+    if (!matchedModelSpec) {
+      const candidate = exactDbModel || findModelInDatabase(modelStr, dbModels, database.aliases);
+      if (candidate) {
+        const exactCanonical = isExactModelMatch(modelStr, candidate);
+        const cleanQuery = (norm.canonicalQuery || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        const inVariants = Array.isArray(candidate.variants) && candidate.variants.some(
+          (v) => String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanQuery
+        );
+        const inAliases = (Array.isArray(candidate.aliases) && candidate.aliases.some(
+          (a) => String(a).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanQuery
+        )) || Boolean(database.aliases && (database.aliases[norm.canonicalQuery] || database.aliases[cleanQuery]));
+
+        if (exactCanonical) {
+          matchedModelSpec = candidate;
+        } else if (inVariants) {
+          matchedModelSpec = candidate;
+          variantMatchesDocumented = true;
+        } else if (inAliases) {
+          matchedModelSpec = candidate;
+          aliasMatched = true;
+        } else if (norm.variant && norm.baseModel) {
+          const baseExact = isExactModelMatch(norm.baseModel, candidate);
+          if (baseExact) {
+            matchedModelSpec = candidate;
+            variantUnconfirmed = true;
+          }
+        }
+      }
+    } else if (norm.variant && !exactAuxModel) {
+      const cleanQuery = (norm.canonicalQuery || modelStr).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+      variantMatchesDocumented = Array.isArray(matchedModelSpec.variants) && matchedModelSpec.variants.some(
+        (v) => String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanQuery
+      );
+      const exactCanonical = isExactModelMatch(modelStr, matchedModelSpec);
+      if (!exactCanonical && !variantMatchesDocumented && !options.variantConfirmed) {
+        variantUnconfirmed = true;
+      }
     }
   }
 
@@ -465,8 +551,13 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     : (matchedModelSpec
       ? matchedModelSpec.model_name
       : (overlayModel?.model_name || indexedIdentity?.model_name || norm.canonicalQuery));
-  const overlaySpecs = overlayModelKey
-    ? buildDisplayTechnicalSpecs(overlayModelKey, database, category, resolvedModelName)
+  const hasVerifiedFieldSources = Boolean(
+    matchedModelSpec?.field_sources &&
+    matchedModelSpec?.provenance?.verification_status === 'OFFICIAL_TS_DATA_AND_CATALOG'
+  );
+  const specsTarget = overlayModelKey || ((matchedModelSpec?.specs_verified || hasVerifiedFieldSources) ? matchedModelSpec : null);
+  const overlaySpecs = specsTarget
+    ? buildDisplayTechnicalSpecs(specsTarget, database, category, resolvedModelName)
     : { technicalSpecs: {}, publicFacts: [], publicEvidenceFields: {} };
 
   const basicClassification = matchedModelSpec?.basic_classification || overlayModel?.basic_classification || null;
@@ -478,7 +569,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     category,
     modelPrefix: norm.prefix
   });
-  const publicSourceSummary = overlayModelKey ? buildPublicSourceSummary(overlayModelKey, database) : null;
+  const publicSourceSummary = specsTarget ? buildPublicSourceSummary(specsTarget, database) : null;
   const sourceStatus = publicSourceSummary?.primaryStatus || (verification ? verification.dataStatus : 'PRIMARY_SOURCE_PENDING');
   const sourceStatusLabel = publicSourceSummary?.display_fact_count
     ? `Bronstatus: ${publicSourceSummary.summaryLabel}`
@@ -486,17 +577,25 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
       ? `Bronstatus: ${verification.badgeLabel}`
       : 'Bronstatus: Nog niet betrouwbaar gedocumenteerd';
   const isLinkedModel = matchedModelSpec && (matchedModelSpec.data_status === 'EVIDENCE_STORE_LINKED');
-  const modelResolution = (matchedModelSpec && !isLinkedModel)
-    ? 'EXACT_CANONICAL'
-    : (overlayModelKey || isLinkedModel)
-      ? 'VERIFIED_ALIAS'
-      : relationship
-        ? 'RELATED_MODEL_NO_SPEC_ATTACH'
-        : indexedIdentity
-          ? 'EXACT_IDENTITY_ONLY'
-          : 'UNKNOWN';
+  const enteredVariant = options.enteredVariant || (norm.variant ? norm.canonicalQuery : null);
+  const variantSuffix = options.variantSuffix || (norm.variant || null);
+  const modelResolution = variantUnconfirmed
+    ? 'VARIANT_UNCONFIRMED'
+    : (matchedModelSpec && !isLinkedModel)
+      ? 'EXACT_CANONICAL'
+      : (overlayModelKey || isLinkedModel || aliasMatched)
+        ? 'VERIFIED_ALIAS'
+        : relationship
+          ? 'RELATED_MODEL_NO_SPEC_ATTACH'
+          : indexedIdentity
+            ? 'EXACT_IDENTITY_ONLY'
+            : 'UNKNOWN';
 
-  const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || []) : null);
+  const identityStatus = variantUnconfirmed
+    ? 'VARIANT_UNCONFIRMED'
+    : ((matchedModelSpec || overlayModelKey || indexedIdentity || relationship) ? 'MODEL_CONFIRMED' : 'UNKNOWN');
+
+  const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || [], database.aliases) : null);
   const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
   const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
   const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
@@ -505,15 +604,29 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     ? directPartsCandidate
     : null;
 
+  const variantNotice = variantUnconfirmed
+    ? `Basismodel STIHL ${resolvedModelName} herkend; de opgegeven uitvoering "${enteredVariant || variantSuffix}" staat niet afzonderlijk bevestigd in onze documentatie. Alleen de bevestigde gegevens van het basismodel worden getoond.`
+    : null;
+
   return {
     success: true,
     type: 'MODEL_DECODE',
-    input: modelStr,
+    input: options.userInput || modelStr,
     prefixCode,
     prefixMeaning: prefixMeaning || 'STIHL Machinetype Aanduiding',
     category,
     model: resolvedModelName,
+    baseModel: resolvedModelName,
     normalized_model: resolvedModelName,
+    enteredVariant,
+    variantSuffix,
+    variantConfirmed: !variantUnconfirmed && Boolean(variantMatchesDocumented || !norm.variant),
+    variantUnconfirmed,
+    variantNotice,
+    identityStatus,
+    passportEligible: Boolean(resolvedModelName),
+    variants: Array.isArray(canonicalModelObj?.variants) ? canonicalModelObj.variants : [],
+    aliases: Array.isArray(canonicalModelObj?.aliases) ? canonicalModelObj.aliases : [],
     seriesCode: relationship ? relationship.series_code : (matchedModelSpec ? matchedModelSpec.series_code : null),
     canonicalModelPath,
     canonicalPartsPath,
@@ -526,7 +639,9 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     fuel_type: driveClassification.drive_type,
     fuel_type_label: driveClassification.display_label,
     hasPrimaryDoc: Boolean(verification && verification.hasPrimaryDocument),
-    confidenceLabel: matchedModelSpec || overlayModelKey || indexedIdentity ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing',
+    confidenceLabel: variantUnconfirmed
+      ? 'Basismodel herkend (uitvoering niet afzonderlijk bevestigd)'
+      : (matchedModelSpec || overlayModelKey || indexedIdentity ? 'Exact model gevonden' : 'Gerelateerde modelverwijzing'),
     modelResolution,
     publicEvidenceSummary: publicSourceSummary,
     publicEvidenceFields: overlaySpecs.publicEvidenceFields,

@@ -262,10 +262,9 @@ export function detectSearchIntent(rawQuery = '') {
   }
 
   // 4. Short standalone numbers (2-3 digits) without letters e.g. 260, 261
-  // Note: 026 is an authentic legacy model in relationships, but bare 260 or 261 is ambiguous!
+  // Note: 0xx (e.g. 023, 025, 026) are authentic legacy STIHL chainsaw designations!
   if (/^\d{2,3}$/.test(s)) {
-    // If it's a known legacy 0-prefixed model like 026, 036, it has dedicated relationship
-    if (/^0\d{2}$/.test(s) && resolveModelRelationship(s)) {
+    if (/^0(?:09|1\d|2\d|3\d|4\d|5\d|6\d|7\d|8\d|90)$/.test(s) || resolveModelRelationship(s)) {
       return SEARCH_INTENTS.MODEL;
     }
     return SEARCH_INTENTS.AMBIGUOUS_NUMERIC;
@@ -299,6 +298,8 @@ export function getComprehensiveModelCatalog(database = {}) {
         category_slug: m.category_slug || 'kettingzagen',
         series_code: m.series_code || null,
         fuel_type_label: m.fuel_type_label || null,
+        variants: Array.isArray(m.variants) ? m.variants : [],
+        aliases: Array.isArray(m.aliases) ? m.aliases : [],
         variant: m.model_name.includes('C-M') ? 'M-Tronic' : (m.model_name.includes('C-EM') ? 'ErgoStart + M-Tronic' : null),
         explanation: m.basic_classification?.notes || null,
         is_canonical: true,
@@ -371,13 +372,22 @@ export function searchIntelligentModels(queryStr = '', database = {}, options = 
 
   const cleanRaw = sanitized.replace(/[^A-Z0-9]/gi, '').toUpperCase();
   const cleanCorrected = corrected.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const norm = normalizeModelQuery(hasTypo ? corrected : sanitized);
+  const cleanNormCanonical = (norm.canonicalQuery || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  const cleanNormBase = (norm.baseModel || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
 
-  // Tier 1: Exact canonical match on raw/sanitized query
+  // Tier 1: Exact canonical match on raw/sanitized query (or normalized canonical)
   const exactMatch = catalog.find((m) => {
     const cleanName = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
     const cleanSlug = m.slug.replace(/[^A-Z0-9]/gi, '').toUpperCase();
     const cleanLegacy = m.legacy_key ? m.legacy_key.replace(/[^A-Z0-9]/gi, '').toUpperCase() : '';
-    return cleanName === cleanRaw || cleanSlug === cleanRaw || cleanLegacy === cleanRaw || cleanName === `STIHL${cleanRaw}`;
+    return (
+      cleanName === cleanRaw ||
+      cleanSlug === cleanRaw ||
+      cleanLegacy === cleanRaw ||
+      cleanName === `STIHL${cleanRaw}` ||
+      (cleanNormCanonical && (cleanName === cleanNormCanonical || cleanSlug === cleanNormCanonical))
+    );
   });
 
   if (exactMatch && !hasTypo) {
@@ -387,7 +397,11 @@ export function searchIntelligentModels(queryStr = '', database = {}, options = 
       exactMatch: {
         ...exactMatch,
         match_type: MATCH_TYPES.EXACT,
-        match_label: 'Exact model gevonden'
+        match_label: 'Exact model gevonden',
+        enteredVariant: norm.canonicalQuery || exactMatch.model_name,
+        variantSuffix: norm.variant || null,
+        variantConfirmed: true,
+        variantUnconfirmed: false
       },
       candidates: [],
       suggestions: [],
@@ -396,12 +410,55 @@ export function searchIntelligentModels(queryStr = '', database = {}, options = 
     };
   }
 
+  // Tier 1b: Documented Variant or Registered Alias match (e.g. MS 250 C-BE -> MS 250, MS 023 -> 023)
+  if (!hasTypo && cleanNormCanonical) {
+    const dbAliases = database?.aliases && typeof database.aliases === 'object' ? database.aliases : {};
+    const aliasTargetName = dbAliases[norm.canonicalQuery] || dbAliases[cleanRaw] || dbAliases[cleanNormCanonical];
+    const variantOrAliasMatch = catalog.find((m) => {
+      if (aliasTargetName && m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase() === String(aliasTargetName).replace(/[^A-Z0-9]/gi, '').toUpperCase()) {
+        return true;
+      }
+      const vList = Array.isArray(m.variants) ? m.variants : [];
+      const aList = Array.isArray(m.aliases) ? m.aliases : [];
+      return [...vList, ...aList].some((v) => {
+        const cv = String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        return cv === cleanRaw || cv === cleanNormCanonical;
+      });
+    });
+
+    if (variantOrAliasMatch) {
+      const matchedInVariants = (variantOrAliasMatch.variants || []).some(
+        (v) => String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanNormCanonical || String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanRaw
+      );
+      return {
+        intent: SEARCH_INTENTS.MODEL,
+        query: queryStr,
+        exactMatch: {
+          ...variantOrAliasMatch,
+          variant: norm.variant || variantOrAliasMatch.variant || null,
+          match_type: matchedInVariants ? MATCH_TYPES.VARIANT : MATCH_TYPES.HISTORICAL_ALIAS,
+          match_label: matchedInVariants ? 'Gedocumenteerde uitvoering gevonden' : 'Modelalias herkend',
+          enteredVariant: norm.canonicalQuery,
+          variantSuffix: norm.variant || null,
+          variantConfirmed: matchedInVariants || !norm.variant,
+          variantUnconfirmed: false
+        },
+        candidates: [],
+        suggestions: [],
+        isAmbiguous: false,
+        typoNotice: matchedInVariants
+          ? null
+          : `Zoekterm "${sanitized}" gekoppeld aan gedocumenteerd STIHL basismodel ${variantOrAliasMatch.model_name}.`
+      };
+    }
+  }
+
   // Tier 2: Typo-recovered exact match (e.g. MS 26O -> MS 260, FS45O -> FS 450, MS 261C M -> MS 261 C-M)
   if (hasTypo) {
     const typoMatch = catalog.find((m) => {
       const cleanName = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
       const cleanSlug = m.slug.replace(/[^A-Z0-9]/gi, '').toUpperCase();
-      return cleanName === cleanCorrected || cleanSlug === cleanCorrected;
+      return cleanName === cleanCorrected || cleanSlug === cleanCorrected || (cleanNormCanonical && cleanName === cleanNormCanonical);
     });
 
     if (typoMatch) {
@@ -418,12 +475,47 @@ export function searchIntelligentModels(queryStr = '', database = {}, options = 
         exactMatch: {
           ...typoMatch,
           match_type: MATCH_TYPES.TYPO_RECOVERY,
-          match_label: 'Typefout hersteld'
+          match_label: 'Typefout hersteld',
+          enteredVariant: typoMatch.model_name,
+          variantSuffix: norm.variant || null,
+          variantConfirmed: true,
+          variantUnconfirmed: false
         },
         candidates: [],
         suggestions: [],
         isAmbiguous: false,
         typoNotice: explanation
+      };
+    }
+  }
+
+  // Tier 2b: Confirmed base model + unconfirmed/undocumented variant suffix (e.g. "025 C", "025C", "STIHL 025 C", "MS 250 XYZ")
+  // Never drops the user's variant or conflates 025 C with MS 250 C, and never invents variant specs.
+  if (norm.variant && /^[A-Z][A-Z0-9\s\-]{0,16}$/.test(norm.variant) && cleanNormBase) {
+    const baseMatch = catalog.find((m) => {
+      const cleanName = m.model_name.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+      const cleanSlug = m.slug.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+      return cleanName === cleanNormBase || cleanSlug === cleanNormBase;
+    });
+
+    if (baseMatch) {
+      return {
+        intent: SEARCH_INTENTS.MODEL,
+        query: queryStr,
+        exactMatch: {
+          ...baseMatch,
+          variant: norm.variant,
+          match_type: 'VARIANT_UNCONFIRMED',
+          match_label: 'Basismodel herkend (uitvoering niet afzonderlijk bevestigd)',
+          enteredVariant: norm.canonicalQuery,
+          variantSuffix: norm.variant,
+          variantConfirmed: false,
+          variantUnconfirmed: true
+        },
+        candidates: [],
+        suggestions: [],
+        isAmbiguous: false,
+        typoNotice: `Basismodel STIHL ${baseMatch.model_name} herkend. De uitvoering "${norm.variant}" (${norm.canonicalQuery}) is niet afzonderlijk bevestigd in onze documentatie; alleen de gegevens van het basismodel worden getoond.`
       };
     }
   }

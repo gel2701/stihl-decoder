@@ -331,6 +331,43 @@ export function findPublicEvidenceModel(query, database = {}) {
 
 export function getPublicEvidenceFactsForModel(modelOrSlug, database = {}) {
   const direct = findPublicEvidenceModel(modelOrSlug, database);
+  if (direct && Array.isArray(direct.facts) && direct.facts.length > 0) {
+    return direct.facts;
+  }
+
+  // Fallback for Phase 91 recovered models that carry verified field_sources without altering public_evidence_facts.json count
+  const key = normalizePublicEvidenceModelKey(modelOrSlug);
+  const models = Array.isArray(database?.models) ? database.models : [];
+  const matchedModel = typeof modelOrSlug === 'object' && modelOrSlug?.field_sources
+    ? modelOrSlug
+    : models.find((m) => normalizePublicEvidenceModelKey(m) === key || normalizePublicEvidenceModelKey(m.slug) === key);
+
+  const isPhase91Verified = Boolean(
+    matchedModel &&
+    (matchedModel.specs_verified === true || matchedModel.provenance?.verification_status === 'OFFICIAL_TS_DATA_AND_CATALOG') &&
+    matchedModel.field_sources &&
+    typeof matchedModel.field_sources === 'object'
+  );
+  if (isPhase91Verified) {
+    const synthesized = [];
+    for (const [field, meta] of Object.entries(matchedModel.field_sources)) {
+      if (!meta || meta.value === undefined || meta.value === null || meta.value === '') continue;
+      synthesized.push({
+        fact_id: `phase91_${matchedModel.slug || key}_${field}`,
+        field,
+        normalized_value: meta.value,
+        unit: meta.unit || null,
+        public_evidence_status: meta.status || 'OFFICIAL_DOCUMENTED',
+        display_eligible: true,
+        single_value_eligible: true,
+        source_class: 'MANUFACTURER',
+        source_document_title: meta.source ? `STIHL Technical Data (${meta.source})` : 'STIHL Technical Data',
+        model_scope: matchedModel.model_name || key
+      });
+    }
+    return synthesized;
+  }
+
   return direct ? direct.facts : [];
 }
 

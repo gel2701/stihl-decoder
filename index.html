@@ -2005,18 +2005,23 @@
           currentDecodeResult = res;
           currentSerial = '';
           const modelName = (res.normalized_model || res.input || '').toUpperCase();
+          const enteredVariant = res.enteredVariant || null;
           currentModelName = modelName;
 
           const typoNoticeEl = document.getElementById('model-typo-notice');
           const typoNoticeText = document.getElementById('model-typo-notice-text');
-          if (res.typoNotice && typoNoticeEl && typoNoticeText) {
-            typoNoticeText.innerText = res.typoNotice;
+          const noticeMsg = res.variantNotice || res.typoNotice || '';
+          if (noticeMsg && typoNoticeEl && typoNoticeText) {
+            typoNoticeText.innerText = noticeMsg;
             typoNoticeEl.classList.remove('hidden');
           } else if (typoNoticeEl) {
             typoNoticeEl.classList.add('hidden');
           }
 
-          document.getElementById('model-title-display').innerText = modelName;
+          const displayHeading = res.variantUnconfirmed && enteredVariant
+            ? `${modelName} (opgegeven uitvoering: ${enteredVariant})`
+            : (enteredVariant && enteredVariant !== modelName ? `${modelName} · ${enteredVariant}` : modelName);
+          document.getElementById('model-title-display').innerText = displayHeading;
           const modelCardNameEl = document.getElementById('model-card-name');
           if (modelCardNameEl) modelCardNameEl.innerText = modelName;
           document.getElementById('model-card-fuel').innerText = res.driveClassification?.display_label || res.fuel_type_label || 'Niet vastgesteld';
@@ -3060,13 +3065,14 @@
       if (modalCancelBtn) modalCancelBtn.addEventListener('click', closeSaveModal);
 
       function triggerModelSaveModal() {
-        const modelTitle = document.getElementById('model-title-display')?.innerText || currentModelName || 'STIHL Machine';
-        const cleanSlug = (currentDecodeResult?.slug || modelTitle).toLowerCase().replace(/\s+/g, '-');
+        const modelTitle = currentModelName || document.getElementById('model-card-name')?.innerText || document.getElementById('model-title-display')?.innerText || 'STIHL Machine';
+        const cleanSlug = (currentDecodeResult?.modelSlug || currentDecodeResult?.slug || modelTitle).toLowerCase().replace(/\s+/g, '-');
+        const isVarUnconf = Boolean(currentDecodeResult?.variantUnconfirmed);
         openSaveModal({
           modelName: modelTitle,
           modelSlug: cleanSlug,
           serialNumber: '',
-          identityStatus: 'USER_CONFIRMED_MODEL',
+          identityStatus: isVarUnconf ? 'VARIANT_UNCONFIRMED' : 'USER_CONFIRMED_MODEL',
           identitySource: 'MODEL_PAGE_SELECTION',
           requireConfirmation: true
         });
@@ -3149,9 +3155,13 @@
             const dossier = createDossierObject({
               model_name: modelName,
               model_slug: modelSlug,
+              variant: currentDecodeResult?.enteredVariant || currentDecodeResult?.variantSuffix || null,
+              variant_unconfirmed: Boolean(currentDecodeResult?.variantUnconfirmed || identityStatus === 'VARIANT_UNCONFIRMED'),
               serial_number: serialNumber || null,
+              serial_status: currentDecodeResult?.officialAnchor ? 'SERIAL_OFFICIALLY_VERIFIED' : 'SERIAL_UNVERIFIED',
               nickname: nickname || null,
               purchase_year: isNaN(purchaseYearVal) ? null : purchaseYearVal,
+              owner_declared_year: isNaN(purchaseYearVal) ? null : purchaseYearVal,
               identity_status: identityStatus,
               identity_source: identitySource,
               notes: notes

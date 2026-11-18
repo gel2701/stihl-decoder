@@ -44,19 +44,19 @@ export function detectMachineCategory(modelObj, categorySlug = '') {
   const cat = String(categorySlug || (typeof modelObj === 'object' ? modelObj?.category_slug || modelObj?.category : '') || '').toLowerCase();
   const name = String(typeof modelObj === 'object' ? modelObj?.model_name || modelObj?.id : modelObj || '').toUpperCase();
 
-  if (cat.includes('kettingzaag') || cat.includes('chainsaw') || name.startsWith('MS ') || name.startsWith('MSA ') || name.startsWith('MSE ')) {
+  if (cat.includes('kettingzaag') || cat.includes('chainsaw') || cat.includes('hoogsnoeier') || /^0\d{2}\b/.test(name) || name === 'CONTRA' || name.startsWith('MS ') || name.startsWith('MSA ') || name.startsWith('MSE ') || name.startsWith('HT ') || name.startsWith('HTA ') || name.startsWith('GTA ') || /^E\s+\d/.test(name)) {
     return MACHINE_CATEGORIES.CHAINSAW;
   }
-  if (cat.includes('bosmaaier') || cat.includes('strimmer') || cat.includes('trimmer') || cat.includes('kantensnijder') || name.startsWith('FS ') || name.startsWith('FSA ') || name.startsWith('FSE ')) {
+  if (cat.includes('bosmaaier') || cat.includes('strimmer') || cat.includes('trimmer') || cat.includes('kantensnijder') || cat.includes('combi') || cat.includes('grondboor') || name.startsWith('FS ') || name.startsWith('FSA ') || name.startsWith('FSE ') || name.startsWith('FR ') || name.startsWith('FC ') || name.startsWith('KM ') || name.startsWith('KMA ') || name.startsWith('MM ')) {
     return MACHINE_CATEGORIES.BRUSHCUTTER;
   }
-  if (cat.includes('bladblazer') || cat.includes('blower') || cat.includes('nevelspuit') || cat.includes('zuighakselaar') || name.startsWith('BG ') || name.startsWith('BR ') || name.startsWith('SH ') || name.startsWith('BGE ') || name.startsWith('SHA ')) {
+  if (cat.includes('bladblazer') || cat.includes('blower') || cat.includes('nevelspuit') || cat.includes('zuighakselaar') || name.startsWith('BG ') || name.startsWith('BGA ') || name.startsWith('BR ') || name.startsWith('SH ') || name.startsWith('BGE ') || name.startsWith('SHA ') || name.startsWith('SHE ') || name.startsWith('SR ') || name.startsWith('SG ')) {
     return MACHINE_CATEGORIES.BLOWER;
   }
-  if (cat.includes('heggenschaar') || cat.includes('hedge') || name.startsWith('HS ') || name.startsWith('HLA ') || name.startsWith('HSE ')) {
+  if (cat.includes('heggenschaar') || cat.includes('hedge') || name.startsWith('HS ') || name.startsWith('HSA ') || name.startsWith('HL ') || name.startsWith('HLA ') || name.startsWith('HSE ')) {
     return MACHINE_CATEGORIES.HEDGE_TRIMMER;
   }
-  if (cat.includes('doorslijper') || cat.includes('cut-off') || name.startsWith('TS ') || name.startsWith('TSA ')) {
+  if (cat.includes('doorslijper') || cat.includes('betonzaag') || cat.includes('cut-off') || name.startsWith('TS ') || name.startsWith('TSA ') || name.startsWith('GS ')) {
     return MACHINE_CATEGORIES.CUT_OFF_SAW;
   }
   if (cat.includes('grasmaaier') || cat.includes('mower') || name.startsWith('RM ') || name.startsWith('RMA ') || name.startsWith('RME ')) {

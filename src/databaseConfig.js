@@ -226,6 +226,17 @@ export function getDatabaseConnection() {
     dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_field_obs_serial_hash ON field_observations(serial_hash);`);
     dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_field_obs_status ON field_observations(verification_status);`);
     dbInstance.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_field_obs_dedupe ON field_observations(dedupe_key);`);
+
+    dbInstance.run(`CREATE TABLE IF NOT EXISTS public_passports (
+      share_id TEXT PRIMARY KEY,
+      edit_token_hash TEXT NOT NULL,
+      model_slug TEXT NOT NULL,
+      model_name TEXT NOT NULL,
+      payload_json TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );`);
+    dbInstance.run(`CREATE INDEX IF NOT EXISTS idx_public_passports_model ON public_passports(model_slug);`);
   });
 
   dbInstance.on('open', () => {
@@ -238,6 +249,52 @@ export function getDatabaseConnection() {
   });
 
   return dbInstance;
+}
+
+export function savePublicPassportRecord(db, { shareId, editTokenHash, modelSlug, modelName, payloadJson }) {
+  return new Promise((resolve, reject) => {
+    if (!db) return reject(new Error('Database not initialized'));
+    db.run(
+      `INSERT INTO public_passports (share_id, edit_token_hash, model_slug, model_name, payload_json, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+      [shareId, editTokenHash, modelSlug, modelName, payloadJson],
+      function (err) {
+        if (err) return reject(err);
+        resolve({ shareId });
+      }
+    );
+  });
+}
+
+export function getPublicPassportRecord(db, shareId) {
+  return new Promise((resolve, reject) => {
+    if (!db) return reject(new Error('Database not initialized'));
+    db.get(
+      `SELECT share_id, edit_token_hash, model_slug, model_name, payload_json, created_at, updated_at
+       FROM public_passports WHERE share_id = ?`,
+      [shareId],
+      (err, row) => {
+        if (err) return reject(err);
+        resolve(row || null);
+      }
+    );
+  });
+}
+
+export function updatePublicPassportRecord(db, { shareId, editTokenHash, modelSlug, modelName, payloadJson }) {
+  return new Promise((resolve, reject) => {
+    if (!db) return reject(new Error('Database not initialized'));
+    db.run(
+      `UPDATE public_passports
+       SET model_slug = ?, model_name = ?, payload_json = ?, updated_at = CURRENT_TIMESTAMP
+       WHERE share_id = ? AND edit_token_hash = ?`,
+      [modelSlug, modelName, payloadJson, shareId, editTokenHash],
+      function (err) {
+        if (err) return reject(err);
+        resolve({ updated: this.changes > 0 });
+      }
+    );
+  });
 }
 
 export function backupDatabase() {

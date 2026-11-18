@@ -337,8 +337,8 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
   </main>
 
   <!-- Add Machine Modal -->
-  <div id="modal-add" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+  <div id="modal-add" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
         <h3 class="text-lg font-bold text-white flex items-center gap-2">
           <span>➕ Machine toevoegen aan dossier</span>
@@ -347,12 +347,39 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       </div>
 
       <form id="form-add-machine" class="space-y-3.5 text-xs">
+        <input type="hidden" id="input-edit-dossier-id" value="">
         <div>
-          <label for="select-model" class="block font-bold text-neutral-300 mb-1">Kies STIHL Model *</label>
+          <label for="search-model-input" class="block font-bold text-neutral-300 mb-1">Zoek &amp; kies STIHL Model *</label>
+          <input type="text" id="search-model-input" placeholder="Zoek op modelnummer, bv. 023, 025 of MS 261..." class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500 mb-2">
           <select id="select-model" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white font-medium focus:outline-none focus:border-orange-500" required>
             <option value="">-- Selecteer model --</option>
             ${modelOptions.map((m) => `<option value="${m.slug}" data-name="${m.name}" data-category="${m.category}" data-series="${m.series || ''}">STIHL ${m.name} (${m.category})</option>`).join('')}
           </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="input-variant" class="block font-bold text-neutral-300 mb-1">Uitvoering / suffix (optioneel)</label>
+            <input type="text" id="input-variant" maxlength="80" placeholder="bv. 025 C, C-BE, Wood Boss" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500">
+          </div>
+          <div>
+            <label for="select-condition" class="block font-bold text-neutral-300 mb-1">Staat / conditie (optioneel)</label>
+            <select id="select-condition" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-orange-500">
+              <option value="">-- Niet opgegeven --</option>
+              <option value="Nieuwstaat">Nieuwstaat</option>
+              <option value="Goed">Goed</option>
+              <option value="Gebruikt">Gebruikt</option>
+              <option value="Opknapper">Opknapper</option>
+              <option value="Voor onderdelen">Voor onderdelen</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-photos" class="block font-bold text-neutral-300 mb-1">Foto's toevoegen (optioneel, max 3)</label>
+          <input type="file" id="input-photos" accept="image/jpeg,image/png,image/webp" multiple class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-300 text-xs">
+          <div id="photo-preview-strip" class="flex flex-wrap gap-2 mt-2"></div>
+          <span class="block text-2xs text-neutral-400 mt-1">Foto's worden verkleind en EXIF/GPS-locatiegegevens worden automatisch verwijderd.</span>
         </div>
 
         <div class="bg-neutral-950/80 border border-neutral-800 p-3 rounded-xl space-y-1.5">
@@ -415,6 +442,9 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
           <p id="detail-nickname" class="text-xs text-orange-400 font-bold mt-0.5"></p>
         </div>
         <div class="flex items-center gap-2">
+          <button id="btn-detail-edit-machine" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 text-2xs font-bold px-3 py-1.5 rounded-lg transition cursor-pointer">
+            ✏️ Bewerken
+          </button>
           <button id="btn-detail-view-passport" type="button" class="bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white border border-orange-500/30 text-2xs font-bold px-3 py-1.5 rounded-lg transition cursor-pointer flex items-center gap-1">
             <span>📄 Machinepaspoort</span>
           </button>
@@ -657,12 +687,22 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         <button id="btn-close-passport" class="text-neutral-400 hover:text-white text-lg font-bold p-1 cursor-pointer">✕</button>
       </div>
       <div id="passport-preview-container" class="py-2"></div>
+      <div id="passport-share-result" class="hidden p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 space-y-1.5 text-xs">
+        <span class="font-bold text-emerald-300 block">Deelbare paspoortlink actief (serienummer afgeschermd):</span>
+        <div class="flex flex-wrap items-center gap-2">
+          <a id="passport-share-link" href="#" target="_blank" rel="noopener noreferrer" class="font-mono text-orange-300 underline break-all"></a>
+          <button id="btn-copy-share-link" type="button" class="px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-bold cursor-pointer">Kopieer</button>
+        </div>
+      </div>
       <label for="check-show-serial-export" class="flex items-center gap-2 text-2xs text-neutral-300 cursor-pointer">
         <input type="checkbox" id="check-show-serial-export" class="w-4 h-4 rounded border-neutral-700 bg-neutral-950 text-orange-600 focus:ring-orange-500">
         <span>Serienummer tonen op gedeelde afbeelding (standaard afgeschermd)</span>
       </label>
-      <div class="flex items-center justify-between pt-3 border-t border-neutral-800">
-        <div class="flex items-center gap-2">
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-neutral-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="btn-share-passport" type="button" class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-3 py-2 rounded-xl transition cursor-pointer text-xs flex items-center gap-1.5">
+            <span>🔗 Maak deelbare link + QR</span>
+          </button>
           <button id="btn-print-passport" type="button" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold px-3 py-2 rounded-xl transition cursor-pointer text-xs flex items-center gap-1.5">
             <span>🖨️ Afdrukken</span>
           </button>
@@ -778,7 +818,8 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       REMINDER_STATES,
       hydrateDossierEvidence,
       enrichDossierWithSerial,
-      resolveDossierConflict
+      resolveDossierConflict,
+      updateDossierFields
     } from '/src/components/MachineDossierManager.js';
     import {
       renderStihlPassportHtml,
@@ -788,6 +829,55 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
     let activeDossierId = null;
     let currentFilter = 'all'; // 'all' | 'soon' | 'overdue'
     let pendingCompleteReminderId = null;
+    let pendingUploadedPhotos = [];
+
+    function renderPhotoStrip() {
+      const strip = document.getElementById('photo-preview-strip');
+      if (!strip) return;
+      strip.replaceChildren();
+      pendingUploadedPhotos.forEach((src, idx) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'relative w-16 h-16 rounded-lg overflow-hidden border border-neutral-700';
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'w-full h-full object-cover';
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.textContent = '✕';
+        rm.className = 'absolute top-0 right-0 bg-black/75 text-white text-[10px] px-1 cursor-pointer';
+        rm.onclick = () => {
+          pendingUploadedPhotos.splice(idx, 1);
+          renderPhotoStrip();
+        };
+        wrap.appendChild(img);
+        wrap.appendChild(rm);
+        strip.appendChild(wrap);
+      });
+    }
+
+    function compressImageStripExif(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            const maxDim = 720;
+            const scale = Math.min(1, maxDim / Math.max(img.width || 1, img.height || 1));
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, Math.round(img.width * scale));
+            canvas.height = Math.max(1, Math.round(img.height * scale));
+            const ctx = canvas.getContext('2d');
+            if (!ctx) { resolve(null); return; }
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL('image/jpeg', 0.8));
+          };
+          img.onerror = () => resolve(null);
+          img.src = reader.result;
+        };
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+    }
 
     function getDossierMetrics(dossiers) {
       const todayStr = getLocalTodayString();
@@ -1214,6 +1304,20 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
     let targetEnrichDossierId = null;
     let activeConflictDossierId = null;
 
+    function showShareBanner(shareUrl) {
+      const box = document.getElementById('passport-share-result');
+      const link = document.getElementById('passport-share-link');
+      if (!box || !link) return;
+      if (shareUrl) {
+        const fullUrl = shareUrl.startsWith('http') ? shareUrl : (window.location.origin + shareUrl);
+        link.href = shareUrl;
+        link.textContent = fullUrl;
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
     function openPassportModal(dossierId) {
       const dossiers = loadDossiers();
       const d = dossiers.find((item) => item.dossier_id === dossierId);
@@ -1223,6 +1327,7 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       if (container) {
         container.innerHTML = renderStihlPassportHtml(d);
       }
+      showShareBanner(d.share?.share_url || null);
       document.getElementById('modal-passport')?.classList.remove('hidden');
     }
 
@@ -1276,6 +1381,29 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       const detailViewPassBtn = document.getElementById('btn-detail-view-passport');
       if (detailViewPassBtn) {
         detailViewPassBtn.onclick = () => openPassportModal(d.dossier_id);
+      }
+
+      const detailEditBtn = document.getElementById('btn-detail-edit-machine');
+      if (detailEditBtn) {
+        detailEditBtn.onclick = () => {
+          document.getElementById('modal-detail')?.classList.add('hidden');
+          document.getElementById('input-edit-dossier-id').value = d.dossier_id;
+          const select = document.getElementById('select-model');
+          if (select) select.value = d.identity.model_slug;
+          const varEl = document.getElementById('input-variant');
+          if (varEl) varEl.value = d.identity.variant || '';
+          const condEl = document.getElementById('select-condition');
+          if (condEl) condEl.value = d.machine.condition || '';
+          document.getElementById('input-nickname').value = d.machine.nickname || '';
+          document.getElementById('input-serial').value = d.machine.serial_number || '';
+          document.getElementById('input-purchase-year').value = d.machine.owner_declared_year || d.machine.purchase_year || '';
+          const lastEl = document.getElementById('input-last-service');
+          if (lastEl) lastEl.value = d.maintenance?.last_service_date || '';
+          document.getElementById('check-confirm-model').checked = true;
+          pendingUploadedPhotos = Array.isArray(d.machine.photos) ? [...d.machine.photos] : [];
+          renderPhotoStrip();
+          document.getElementById('modal-add')?.classList.remove('hidden');
+        };
       }
 
       setSafeText(document.getElementById('detail-year-text'), d.machine.purchase_year ? String(d.machine.purchase_year) : 'Niet opgegeven');
@@ -1419,8 +1547,14 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
 
     function handleHashRouting() {
       if (location.hash.startsWith('#add=')) {
-        const slug = decodeURIComponent(location.hash.substring(5)).toLowerCase();
+        const rawParam = location.hash.substring(5);
+        const [slugPart, queryPart] = rawParam.split('&');
+        const slug = decodeURIComponent(slugPart || '').toLowerCase();
+        const params = new URLSearchParams(queryPart || '');
+        const variantVal = params.get('variant') || '';
         const select = document.getElementById('select-model');
+        const varInput = document.getElementById('input-variant');
+        if (varInput && variantVal) varInput.value = variantVal;
         if (select) {
           select.value = slug;
           document.getElementById('modal-add')?.classList.remove('hidden');
@@ -1484,9 +1618,37 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       document.getElementById('btn-close-detail')?.addEventListener('click', closeDetail);
       document.getElementById('btn-close-detail-bottom')?.addEventListener('click', closeDetail);
 
-      // Form Add Machine Submit
+      // Searchable model picker & EXIF-free photo compression
+      document.getElementById('search-model-input')?.addEventListener('input', (ev) => {
+        const q = String(ev.target.value || '').trim().toLowerCase();
+        const select = document.getElementById('select-model');
+        if (!select) return;
+        let firstMatch = null;
+        for (const opt of select.options) {
+          if (!opt.value) continue;
+          const matches = !q || opt.textContent.toLowerCase().includes(q) || opt.value.toLowerCase().includes(q);
+          opt.hidden = !matches;
+          if (matches && !firstMatch) firstMatch = opt.value;
+        }
+        if (q && firstMatch && select.selectedOptions[0]?.hidden) {
+          select.value = firstMatch;
+        }
+      });
+
+      document.getElementById('input-photos')?.addEventListener('change', async (ev) => {
+        const files = Array.from(ev.target.files || []).slice(0, 3);
+        for (const f of files) {
+          if (pendingUploadedPhotos.length >= 3) break;
+          const dataUrl = await compressImageStripExif(f);
+          if (dataUrl) pendingUploadedPhotos.push(dataUrl);
+        }
+        renderPhotoStrip();
+      });
+
+      // Form Add / Edit Machine Submit
       document.getElementById('form-add-machine')?.addEventListener('submit', (e) => {
         e.preventDefault();
+        const editId = document.getElementById('input-edit-dossier-id')?.value || '';
         const select = document.getElementById('select-model');
         const opt = select.options[select.selectedIndex];
         const confirmed = document.getElementById('check-confirm-model').checked;
@@ -1504,33 +1666,62 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
         const seriesCode = opt.getAttribute('data-series') || null;
 
         const nickname = document.getElementById('input-nickname').value;
+        const variant = document.getElementById('input-variant')?.value.trim() || null;
+        const condition = document.getElementById('select-condition')?.value || null;
         const serial = document.getElementById('input-serial').value;
         const year = document.getElementById('input-purchase-year').value;
         const lastService = document.getElementById('input-last-service')?.value || null;
 
         try {
-          const newDossier = createDossierObject({
-            modelSlug,
-            modelName,
-            category,
-            seriesCode,
-            identityStatus: IDENTITY_STATUSES.USER_CONFIRMED_MODEL,
-            identitySource: IDENTITY_SOURCES.MODEL_PAGE_SELECTION,
-            serialNumber: serial,
-            nickname,
-            purchaseYear: year,
-            lastServiceDate: lastService
-          });
+          if (editId) {
+            const upd = updateDossierFields(editId, {
+              variant,
+              serial_number: serial,
+              nickname,
+              condition,
+              owner_declared_year: year,
+              photos: pendingUploadedPhotos
+            });
+            if (lastService) {
+              updateDossierUserData(editId, { last_service_date: lastService });
+            }
+            if (!upd.success) {
+              const errDiv = document.getElementById('add-error');
+              errDiv.textContent = upd.error || 'Bijwerken is niet gelukt.';
+              errDiv.classList.remove('hidden');
+              return;
+            }
+          } else {
+            const newDossier = createDossierObject({
+              modelSlug,
+              modelName,
+              variant,
+              category,
+              seriesCode,
+              identityStatus: IDENTITY_STATUSES.USER_CONFIRMED_MODEL,
+              identitySource: IDENTITY_SOURCES.MODEL_PAGE_SELECTION,
+              serialNumber: serial,
+              nickname,
+              condition,
+              purchaseYear: year,
+              ownerDeclaredYear: year,
+              lastServiceDate: lastService,
+              photos: pendingUploadedPhotos
+            });
 
-          const saveRes = saveDossier(newDossier);
-          if (!saveRes.success) {
-            const errDiv = document.getElementById('add-error');
-            errDiv.textContent = saveRes.error || 'Opslaan op dit apparaat is niet beschikbaar.';
-            errDiv.classList.remove('hidden');
-            return;
+            const saveRes = saveDossier(newDossier);
+            if (!saveRes.success) {
+              const errDiv = document.getElementById('add-error');
+              errDiv.textContent = saveRes.error || 'Opslaan op dit apparaat is niet beschikbaar.';
+              errDiv.classList.remove('hidden');
+              return;
+            }
           }
 
           closeAdd();
+          document.getElementById('input-edit-dossier-id').value = '';
+          pendingUploadedPhotos = [];
+          renderPhotoStrip();
           document.getElementById('form-add-machine').reset();
           renderDossierList();
           window.trackStihlEvent?.('passport_created', { placement: 'passport_hub', serial_present: Boolean(serial) });
@@ -1717,6 +1908,68 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       const closePassport = () => document.getElementById('modal-passport')?.classList.add('hidden');
       document.getElementById('btn-close-passport')?.addEventListener('click', closePassport);
       document.getElementById('btn-close-passport-bottom')?.addEventListener('click', closePassport);
+      document.getElementById('btn-share-passport')?.addEventListener('click', async () => {
+        if (!activePassportDossier) return;
+        const btn = document.getElementById('btn-share-passport');
+        if (btn) btn.disabled = true;
+        try {
+          const d = activePassportDossier;
+          const isUpdate = Boolean(d.share?.share_id && d.share?.edit_token);
+          const endpoint = isUpdate ? ('/api/passports/' + encodeURIComponent(d.share.share_id)) : '/api/passports';
+          const payload = {
+            editToken: d.share?.edit_token || undefined,
+            model_slug: d.identity.model_slug,
+            model_name: d.identity.model_name,
+            variant: d.identity.variant || null,
+            variant_unconfirmed: Boolean(d.identity.variant_unconfirmed || d.identity.identity_status === IDENTITY_STATUSES.VARIANT_UNCONFIRMED),
+            identity_status: d.identity.identity_status,
+            serial_number: d.machine.serial_number || null,
+            serial_status: d.machine.serial_status || 'SERIAL_UNVERIFIED',
+            category: d.identity.category,
+            condition: d.machine.condition || null,
+            owner_declared_year: d.machine.owner_declared_year || d.machine.purchase_year || null,
+            nickname: d.machine.nickname || null,
+            photos: Array.isArray(d.machine.photos) ? d.machine.photos : [],
+            events: Array.isArray(d.maintenance?.events) ? d.maintenance.events : [],
+            notes: Array.isArray(d.maintenance?.notes) ? d.maintenance.notes : []
+          };
+          const resp = await fetch(endpoint, {
+            method: isUpdate ? 'PUT' : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await resp.json();
+          if (data.success && data.shareUrl) {
+            const shareMeta = {
+              share_id: data.shareId,
+              share_url: data.shareUrl,
+              edit_token: data.editToken || d.share?.edit_token,
+              shared_at: new Date().toISOString()
+            };
+            const upd = updateDossierFields(d.dossier_id, { share: shareMeta });
+            if (upd.success && upd.dossier) activePassportDossier = upd.dossier;
+            const container = document.getElementById('passport-preview-container');
+            if (container) container.innerHTML = renderStihlPassportHtml(activePassportDossier);
+            showShareBanner(data.shareUrl);
+            renderDossierList();
+          }
+        } catch (err) {
+          console.error('Failed to publish shareable passport:', err);
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+
+      document.getElementById('btn-copy-share-link')?.addEventListener('click', async () => {
+        const linkEl = document.getElementById('passport-share-link');
+        if (!linkEl?.href) return;
+        try {
+          await navigator.clipboard.writeText(linkEl.href);
+          const btn = document.getElementById('btn-copy-share-link');
+          if (btn) { btn.textContent = 'Gekopieerd ✓'; setTimeout(() => { btn.textContent = 'Kopieer'; }, 2000); }
+        } catch {}
+      });
+
       document.getElementById('btn-print-passport')?.addEventListener('click', () => window.print());
       document.getElementById('btn-download-passport')?.addEventListener('click', () => {
         if (activePassportDossier) {
