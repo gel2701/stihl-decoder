@@ -1,0 +1,91 @@
+{
+  "batch_id": "batch_reverse3",
+  "generated_at": "2026-11-18T21:12:12.877Z",
+  "before": {
+    "active_total": 2718,
+    "active_nl": 1321,
+    "active_de": 1397,
+    "unique_parts": 1686
+  },
+  "after": {
+    "active_total": 2724,
+    "active_nl": 1325,
+    "active_de": 1399,
+    "unique_parts": 1692,
+    "delta_total": 6,
+    "delta_nl": 4,
+    "delta_de": 2,
+    "delta_unique_parts": 6
+  },
+  "activated_count": 6,
+  "needs_evidence_count": 0,
+  "rejected_count": 1,
+  "superseded_research_count": 0,
+  "activated": [
+    {
+      "part_number": "11293503600",
+      "asin": "B0HR87Q8SM",
+      "marketplace": "amazon.nl",
+      "brand": "Nexbrill",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "61707026910",
+      "asin": "B094YF5BTG",
+      "marketplace": "amazon.nl",
+      "brand": "Greenstar",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "11410071030",
+      "asin": "B0HRCKBNJM",
+      "marketplace": "amazon.nl",
+      "brand": "Comgooldool",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "11280801616",
+      "asin": "B0HJNZTGK7",
+      "marketplace": "amazon.nl",
+      "brand": "HaloModora",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "49015009004",
+      "asin": "B0079VO97I",
+      "marketplace": "amazon.de",
+      "brand": "Stihl",
+      "classification": "GENUINE_STIHL",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "41470071700",
+      "asin": "B0GJXXRJJG",
+      "marketplace": "amazon.de",
+      "brand": "XHAJCSJWGD",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    }
+  ],
+  "needs_evidence": [],
+  "rejected": [
+    {
+      "part_number": "40037133011",
+      "mkt": "amazon.de",
+      "asin": "B0CKPPCGLM",
+      "status": "REJECTED",
+      "reason": "TWO_GATE_FAILED:ASIN_MISMATCH: Evidence source claims ASIN BORDSTRACT, which contradicts candidate ASIN B0CKPPCGLM.;Missing verifiable Amazon product listing URL or proof."
+    }
+  ],
+  "superseded_research": []
+}

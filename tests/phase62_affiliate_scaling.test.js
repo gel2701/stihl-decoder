@@ -119,8 +119,12 @@ test('Phase 62.3 — 3-Tier Commercial Framework Behavior', () => {
   assert.equal(directOffers[0].asin, 'B0068M5NAG');
   assert.ok(directOffers[0].url.includes('/dp/B0068M5NAG'));
 
-  // TIER 2: TARGETED_SEARCH (Valid part without active ASIN)
-  const searchOffers = provider.getOffers({ partNumber: '11231200600', partName: 'Carburateur' });
+  // TIER 2: TARGETED_SEARCH (Valid catalog part without active ASIN; 11231200600 was activated in Phase 93)
+  const catParts = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'parts_catalog.json'), 'utf8')).parts;
+  const fallbackCarb = catParts.find(
+    p => /carburet/i.test(p.part_name || '') && !registry.resolveCommercialOffers({ partNumber: p.part_number }).some(o => o.link_type === 'DIRECT_ASIN')
+  )?.part_number || '11081200613';
+  const searchOffers = provider.getOffers({ partNumber: fallbackCarb, partName: 'Carburateur' });
   assert.ok(searchOffers.length >= 1);
   assert.equal(searchOffers[0].link_type, 'SEARCH_FALLBACK');
   assert.equal(searchOffers[0].tier, COMMERCIAL_TIERS.TARGETED_SEARCH);

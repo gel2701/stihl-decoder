@@ -1,0 +1,20 @@
+{
+  "phase": "93",
+  "generated_at": "2026-11-18T19:34:58.919Z",
+  "audited_rejected_candidates": 2689,
+  "phase92_needs_evidence_baseline": 118,
+  "classification_counts": {
+    "WRONG_PRODUCT_MATCH": 201,
+    "CONFLICTING_PART_OR_TYPE": 1642,
+    "INVALID_BUNDLE_OR_UNIT": 112,
+    "MARKETPLACE_OR_SHIPPING_RESTRICTION": 4,
+    "MISSING_INDEPENDENT_EVIDENCE": 683,
+    "TEMPORARY_API_OR_NETWORK_ERROR": 47,
+    "OTHER_RECOVERABLE_BLOCKER": 0
+  },
+  "stayed_rejected_count": 1955,
+  "moved_to_needs_evidence_count": 734,
+  "combined_needs_evidence_pool_after_audit": 836,
+  "combined_unique_parts_in_needs_evidence_pool": 503,
+  "recoverable_parts_from_rejected_including_alt_search": 454
+}

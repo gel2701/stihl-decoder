@@ -1,0 +1,109 @@
+{
+  "batch_id": "batch_reverse2",
+  "generated_at": "2026-11-18T20:03:47.166Z",
+  "before": {
+    "active_total": 2627,
+    "active_nl": 1275,
+    "active_de": 1352,
+    "unique_parts": 1630
+  },
+  "after": {
+    "active_total": 2635,
+    "active_nl": 1281,
+    "active_de": 1354,
+    "unique_parts": 1637,
+    "delta_total": 8,
+    "delta_nl": 6,
+    "delta_de": 2,
+    "delta_unique_parts": 7
+  },
+  "activated_count": 8,
+  "needs_evidence_count": 0,
+  "rejected_count": 1,
+  "superseded_research_count": 0,
+  "activated": [
+    {
+      "part_number": "42271200600",
+      "asin": "B0DTPMVRK5",
+      "marketplace": "amazon.nl",
+      "brand": "ZAMDOE",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "11187909930",
+      "asin": "B0B97MXZ2G",
+      "marketplace": "amazon.nl",
+      "brand": "EVTSCAN",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "11231200602",
+      "asin": "B0GV1DCCRZ",
+      "marketplace": "amazon.nl",
+      "brand": "DCSPARES",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "42820071010",
+      "asin": "B0GM33J13Y",
+      "marketplace": "amazon.nl",
+      "brand": "ECSiNG",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "42231401800",
+      "asin": "B0816MW8G3",
+      "marketplace": "amazon.nl",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "42231401800",
+      "asin": "B0816MW8G3",
+      "marketplace": "amazon.de",
+      "brand": "Hippotech",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "96400031972",
+      "asin": "B0GTNXVD6H",
+      "marketplace": "amazon.nl",
+      "brand": "DGWMLSDPP",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    },
+    {
+      "part_number": "40067102137",
+      "asin": "B0H3K5H9X5",
+      "marketplace": "amazon.de",
+      "brand": "LMSAWK",
+      "classification": "MANUFACTURER_AFTERMARKET",
+      "has_dealer": false,
+      "recovered_evidence_used": false
+    }
+  ],
+  "needs_evidence": [],
+  "rejected": [
+    {
+      "part_number": "40037133011",
+      "mkt": "amazon.de",
+      "asin": "B0CKPPCGLM",
+      "status": "REJECTED",
+      "reason": "TWO_GATE_FAILED:ASIN_MISMATCH: Evidence source claims ASIN BORDSTRACT, which contradicts candidate ASIN B0CKPPCGLM.;Missing verifiable Amazon product listing URL or proof."
+    }
+  ],
+  "superseded_research": []
+}
