@@ -177,7 +177,14 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'single cylinder repair', 'srnptbzit', 'sylale', 'topkidame', 'urbanhui',
       'wanglcnsdo', 'wbqluh', 'wglzgozp', 'wouydnvx', 'wpomhrnzq', 'xitoio',
       'yfqazxsw', 'ylshgxfc', 'yuettyy', 'yungong', 'zoegneer', 'zwequipint',
-      'zyslxhocz'
+      'zyslxhocz',
+      // Phase 92 expansion brands: verified live single-unit listings carrying the exact STIHL number.
+      'ABDBXYGC', 'Chroavel', 'Create idea', 'ERIHJOX', 'Emeralld', 'GKZKNG',
+      'Gdfnmogo', 'HNFCQXMYOZ', 'HUAREW', 'Honseadek', 'JFQYGMD', 'JSZFIUHD',
+      'JUIYU', 'JuzeLY', 'Kivivaka', 'LXJBJHGLZLD', 'MLIBJHGYG', 'NQEUEPN',
+      'Nexbrill', 'ORTUNVC', 'OivAfjz', 'QHZOZMD', 'SNGSRDS', 'SONHWNGE',
+      'TENREV', 'TJPoto', 'TXGXMB', 'The Lord of the Tools', 'URPIZY',
+      'VJSLWPIB', 'XILENY', 'YhFiaS', 'ZWHBJHGCYG'
     ]);
 
     for (const offer of activeOffers) {
