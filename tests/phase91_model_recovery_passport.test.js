@@ -349,6 +349,34 @@ await checkAsync('HTTP POST/GET/PUT /api/passports & public /paspoort/:shareId/ 
   assert.ok(pageAfter.body.includes('Carburateur gereviseerd'));
 });
 
+check('Phase 91B: confirmed variant models set variantConfirmed=true & never emit 404 canonical paths', () => {
+  for (const q of ['HS 81 T', 'HS 81 R', 'MS 261 VW', 'FS 460 C-EM', 'MS 250 C-BE']) {
+    const res = decodeStihlCode(q, database);
+    assert.strictEqual(res.success, true, `${q} must decode cleanly`);
+    assert.strictEqual(res.identityStatus, 'MODEL_CONFIRMED', `${q} must be MODEL_CONFIRMED`);
+    assert.strictEqual(res.variantConfirmed, true, `${q} must report variantConfirmed=true`);
+    assert.strictEqual(res.variantUnconfirmed, false);
+  }
+  const slugs = new Set((database.models || []).map((m) => (m.slug || m.id.replace(/_/g, '-')).toLowerCase()));
+  for (const q of ['HS 81 T', 'HS 81 R', '023', 'Stihl 023', '025', '025 C', '026', 'MS 260', '028 AV', 'FS 460 C-EM']) {
+    const res = decodeStihlCode(q, database);
+    const mSlug = res.canonicalModelPath?.match(/^\/[^/]+\/([^/]+)\/$/)?.[1];
+    assert.ok(mSlug && slugs.has(mSlug), `${q} canonicalModelPath ${res.canonicalModelPath} must map to an existing model route`);
+    const pSlug = res.canonicalPartsPath?.match(/^\/[^/]+\/([^/]+)\/onderdelen\/$/)?.[1];
+    if (res.canonicalPartsPath) {
+      assert.ok(pSlug && slugs.has(pSlug), `${q} canonicalPartsPath ${res.canonicalPartsPath} must map to an existing parts route`);
+    }
+  }
+});
+
+await checkAsync('Phase 91B HTTP: HS 81 T canonicalModelPath & canonicalPartsPath return HTTP 200', async () => {
+  const dec = decodeStihlCode('HS 81 T', database);
+  const rModel = await requestHttp('GET', dec.canonicalModelPath);
+  assert.strictEqual(rModel.status, 200, `${dec.canonicalModelPath} must return 200`);
+  const rParts = await requestHttp('GET', dec.canonicalPartsPath);
+  assert.strictEqual(rParts.status, 200, `${dec.canonicalPartsPath} must return 200`);
+});
+
 await new Promise(resolve => server.close(resolve));
 
 console.log(`\n---------------------------------------------------------------`);

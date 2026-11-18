@@ -390,6 +390,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
       : null;
 
     if (exactAuxModel && !options.variantUnconfirmed) {
+      variantMatchesDocumented = true;
       matchedModelSpec = {
         model_name: exactAuxModel.model_name,
         slug: exactAuxModel.slug,
@@ -431,6 +432,7 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
 
         if (exactCanonical) {
           matchedModelSpec = candidate;
+          if (norm.variant) variantMatchesDocumented = true;
         } else if (inVariants) {
           matchedModelSpec = candidate;
           variantMatchesDocumented = true;
@@ -451,7 +453,9 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
         (v) => String(v).replace(/[^A-Z0-9]/gi, '').toUpperCase() === cleanQuery
       );
       const exactCanonical = isExactModelMatch(modelStr, matchedModelSpec);
-      if (!exactCanonical && !variantMatchesDocumented && !options.variantConfirmed) {
+      if (exactCanonical) {
+        variantMatchesDocumented = true;
+      } else if (!variantMatchesDocumented && !options.variantConfirmed) {
         variantUnconfirmed = true;
       }
     }
@@ -595,10 +599,20 @@ export function analyzeModelQuery(modelStr, database, options = {}) {
     ? 'VARIANT_UNCONFIRMED'
     : ((matchedModelSpec || overlayModelKey || indexedIdentity || relationship) ? 'MODEL_CONFIRMED' : 'UNKNOWN');
 
-  const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, database.models || [], database.aliases) : null);
-  const canonicalModelPath = canonicalModelObj ? getSafeModelPath(canonicalModelObj) : null;
-  const hasCatalogParts = canonicalModelObj ? PartCatalogResolver.hasPartsForModel(canonicalModelObj, database) : false;
-  const canonicalPartsPath = (canonicalModelObj && hasCatalogParts) ? getSafeModelPartsPath(canonicalModelObj) : null;
+  const dbModelsList = database.models || [];
+  const canonicalModelObj = matchedModelSpec || (resolvedModelName ? findModelInDatabase(resolvedModelName, dbModelsList, database.aliases) : null);
+  const candidateSlug = canonicalModelObj?.slug ? String(canonicalModelObj.slug).toLowerCase() : null;
+  const canonicalRouteModel = (candidateSlug
+    ? dbModelsList.find((m) => {
+        const s = (m.slug || m.id?.replace(/_/g, '-') || '').toLowerCase();
+        return s === candidateSlug || s.replace(/^stihl-/, '') === candidateSlug;
+      })
+    : null)
+    || findModelInDatabase(resolvedModelName, dbModelsList, database.aliases)
+    || (norm.baseModel && norm.baseModel !== resolvedModelName ? findModelInDatabase(norm.baseModel, dbModelsList, database.aliases) : null);
+  const canonicalModelPath = canonicalRouteModel ? getSafeModelPath(canonicalRouteModel) : null;
+  const hasCatalogParts = canonicalRouteModel ? PartCatalogResolver.hasPartsForModel(canonicalRouteModel, database) : false;
+  const canonicalPartsPath = (canonicalRouteModel && hasCatalogParts) ? getSafeModelPartsPath(canonicalRouteModel) : null;
   const directPartsCandidate = getDirectPartsForModel(canonicalModelObj || resolvedModelName, {}, database);
   const directParts = (directPartsCandidate && directPartsCandidate.available && directPartsCandidate.parts && directPartsCandidate.parts.length > 0)
     ? directPartsCandidate

@@ -1606,7 +1606,14 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
       document.getElementById('btn-empty-add')?.addEventListener('click', openAdd);
       document.getElementById('btn-open-create-modal')?.addEventListener('click', openAdd);
 
-      const closeAdd = () => document.getElementById('modal-add').classList.add('hidden');
+      const closeAdd = () => {
+        document.getElementById('modal-add').classList.add('hidden');
+        const editIdEl = document.getElementById('input-edit-dossier-id');
+        if (editIdEl) editIdEl.value = '';
+        pendingUploadedPhotos = [];
+        renderPhotoStrip();
+        document.getElementById('form-add-machine')?.reset();
+      };
       document.getElementById('btn-close-add')?.addEventListener('click', closeAdd);
       document.getElementById('btn-cancel-add')?.addEventListener('click', closeAdd);
 

@@ -62,10 +62,28 @@ test.describe('Phase 91 Model Recovery & Machine Passport Journeys', () => {
     await page.locator('#select-condition').selectOption('Goed');
     await page.locator('#input-nickname').fill('Zaag schuur');
     await page.locator('#input-purchase-year').fill('1998');
+    const pngBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
+    await page.locator('#input-photos').setInputFiles({
+      name: 'saw.png',
+      mimeType: 'image/png',
+      buffer: Buffer.from(pngBase64, 'base64')
+    });
+    await expect(page.locator('#photo-preview-strip img')).toHaveCount(1);
+
     await page.locator('#check-confirm-model').check();
     await page.locator('#form-add-machine button[type="submit"]').click();
 
     await expect(page.locator('#dossier-grid')).toContainText('025');
+
+    // Edit machine & test cancel-edit state isolation
+    await page.locator('#dossier-grid button', { hasText: /Dossier/i }).first().click();
+    await expect(page.locator('#modal-detail')).toBeVisible();
+    await page.locator('#btn-detail-edit-machine').click();
+    await expect(page.locator('#modal-add')).toBeVisible();
+    await page.locator('#select-condition').selectOption('Nieuwstaat');
+    await page.locator('#input-nickname').fill('Zaag schuur bijgewerkt');
+    await page.locator('#form-add-machine button[type="submit"]').click();
+    await expect(page.locator('#dossier-grid')).toContainText('Zaag schuur bijgewerkt');
 
     // Open passport modal & verify inline QR SVG + publish shareable passport
     await page.locator('#dossier-grid button', { hasText: /paspoort/i }).first().click();
@@ -78,12 +96,16 @@ test.describe('Phase 91 Model Recovery & Machine Passport Journeys', () => {
     const href = await shareLink.getAttribute('href');
     expect(href).toMatch(/^\/paspoort\/p[a-z0-9]+\/$/);
 
+    await page.setViewportSize({ width: 390, height: 844 });
     const shareResp = await page.goto(href);
     expect(shareResp?.status()).toBe(200);
     await expect(page.locator('h1')).toContainText('STIHL 025 (025 C)');
     await expect(page.locator('main')).toContainText('SERIAL_UNVERIFIED');
-    await expect(page.locator('main')).toContainText('Goed');
+    await expect(page.locator('main')).toContainText('Nieuwstaat');
     await expect(page.locator('main svg').first()).toBeVisible();
+    await expect(page.locator('main img').first()).toBeVisible();
+    const overflowX = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    expect(overflowX).toBe(false);
 
     gates.assertClean('Phase 91 Shareable Passport Journey');
   });
