@@ -1,0 +1,56 @@
+{
+  "phase": "92",
+  "generated_at": "2026-11-18T18:33:47.260Z",
+  "gsc_status": {
+    "live_gsc_configured": false,
+    "limitation_note": "Google Search Console API credentials are not configured locally; prioritized using stored PHASE81_PRIORITY_MODELS.json & PHASE77D_GSC_INVENTORY.json + all 507 canonical model fitments."
+  },
+  "ebay_status": {
+    "local_store_active": 0,
+    "production_persistent_disk_known_phase86_active": 1773,
+    "live_probe_result": "EBAY_BROWSE_API_MISSING_AND_PUBLIC_EBAY_HTTP_403"
+  },
+  "before": {
+    "active_total": 2196,
+    "active_nl": 1098,
+    "active_de": 1098,
+    "unique_parts": 1351,
+    "models_covered": 354,
+    "models_covered_nl": 354,
+    "models_covered_de": 349,
+    "suspended": 34,
+    "research_required": 19,
+    "verified_inactive": 3
+  },
+  "after": {
+    "active_total": 2428,
+    "active_nl": 1176,
+    "active_de": 1252,
+    "unique_parts": 1486,
+    "new_offers_activated": 232,
+    "new_nl_activated": 78,
+    "new_de_activated": 154,
+    "new_unique_parts_added": 135,
+    "new_genuine_stihl": 14,
+    "new_aftermarket": 218,
+    "new_dealer_corroborated": 3,
+    "models_covered": 365,
+    "models_covered_nl": 360,
+    "models_covered_de": 361,
+    "models_coverage_growth": 11,
+    "suspended_historical_preserved": 34,
+    "research_required_remaining": 19,
+    "verified_inactive_preserved": 3
+  },
+  "research_volume": {
+    "batches_completed": 18,
+    "search_queries_nl": 995,
+    "search_queries_de": 998,
+    "live_dp_checks_nl": 1188,
+    "live_dp_checks_de": 1700,
+    "dealer_checks": 155,
+    "needs_evidence_candidates_logged": 118,
+    "rejected_candidates_logged": 2689
+  },
+  "consistency_success": true
+}
