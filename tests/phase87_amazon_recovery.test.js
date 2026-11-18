@@ -50,7 +50,7 @@ describe('Phase 87 — Amazon recovery', () => {
     assert.ok(registryDoc.metrics.parts_with_amazon_offer >= 137);
 
     const survivingPhase86 = registryDoc.offers.filter(
-      (o) => o.status === 'ACTIVE' && o.availability_audit?.verdict === 'LISTING_LIVE'
+      (o) => o.status === 'ACTIVE' && o.availability_audit?.verdict === 'LISTING_LIVE' && !/^Phase 92:/.test(o.status_reason || '')
     );
     assert.strictEqual(survivingPhase86.length, 75, 'All 75 offers that were live in Phase 86 must stay ACTIVE');
   });
