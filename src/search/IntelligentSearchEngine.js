@@ -107,7 +107,7 @@ export const VERIFIED_AUXILIARY_MODELS = [
   {
     model_name: 'HS 81 R',
     fuel_type: 'PETROL_2STROKE',
-    slug: 'hs-81-r',
+    slug: 'hs-81',
     category: 'Heggenschaar',
     category_slug: 'heggenscharen',
     series_code: '4231',
@@ -121,7 +121,7 @@ export const VERIFIED_AUXILIARY_MODELS = [
   {
     model_name: 'HS 81 T',
     fuel_type: 'PETROL_2STROKE',
-    slug: 'hs-81-t',
+    slug: 'hs-81',
     category: 'Heggenschaar',
     category_slug: 'heggenscharen',
     series_code: '4231',
