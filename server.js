@@ -4,7 +4,16 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { PRIMARY_HOST, PRIMARY_ORIGIN, SITE_URL, buildCanonicalUrl, getTrustedDeploymentHosts } from './src/config.js';
-import { getDatabaseHealthSnapshot, getDatabasePath, isPersistentDiskActive, getDatabaseConnection } from './src/databaseConfig.js';
+import {
+  getDatabaseHealthSnapshot,
+  getDatabasePath,
+  isPersistentDiskActive,
+  getDatabaseConnection,
+  savePublicPassportRecord,
+  getPublicPassportRecord,
+  updatePublicPassportRecord
+} from './src/databaseConfig.js';
+import { sanitizePassportForShare, renderPublicPassportHtml } from './src/components/PublicPassportTemplate.js';
 import { decodeStihlCode } from './src/decoder.js';
 import { buildSearchableIdentities, normalizeSearchQuery } from './src/globalModelSearch.js';
 import { getAutocompleteSuggestions } from './src/search/IntelligentSearchEngine.js';
@@ -126,11 +135,13 @@ const PUBLIC_EXACT_FILES = new Set([
   '/src/categoryWhitelist.js',
   '/src/driveClassification.js',
   '/src/globalModelSearch.js',
+  '/src/modelNormalizer.js',
   '/src/modelRecommendations.js',
   '/src/publicEvidence.js',
   '/src/plantResolver.js',
   '/src/ModelFamilyDriveRegistry.js',
-  '/src/ModelMachineEligibilityRegistry.js'
+  '/src/ModelMachineEligibilityRegistry.js',
+  '/src/utils/qrCode.js'
 ]);
 
 const rateLimitMap = new Map();
@@ -590,7 +601,148 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 5a. Privacy Policy & Cookie Statement (Phase 59B Legal Compliance Route)
+  // 5a. Shareable Public Machine Passport API & Public Route (Phase 91)
+  if (pathname === '/api/passports' && req.method === 'POST') {
+    const bodyObj = await readJsonBody(req, res, 1200 * 1024);
+    if (bodyObj === null) return;
+
+    const sanitized = sanitizePassportForShare(bodyObj, database);
+    if (sanitized.error) {
+      res.writeHead(400, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({ success: false, error: sanitized.error }));
+      return;
+    }
+
+    try {
+      const db = getDatabaseConnection();
+      const shareId = `p${crypto.randomBytes(5).toString('hex')}`;
+      const editToken = crypto.randomBytes(16).toString('hex');
+      const editTokenHash = crypto.createHash('sha256').update(editToken).digest('hex');
+
+      await savePublicPassportRecord(db, {
+        shareId,
+        editTokenHash,
+        modelSlug: sanitized.model_slug,
+        modelName: sanitized.model_name,
+        payloadJson: JSON.stringify(sanitized)
+      });
+
+      const shareUrl = `/paspoort/${shareId}/`;
+      res.writeHead(201, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({
+        success: true,
+        shareId,
+        shareUrl,
+        fullShareUrl: `${PRIMARY_ORIGIN}${shareUrl}`,
+        editToken,
+        passport: sanitized
+      }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
+      res.end(JSON.stringify({ success: false, error: 'PASSPORT_STORAGE_ERROR' }));
+    }
+    return;
+  }
+
+  const apiPassportMatch = pathname.match(/^\/api\/passports\/([a-z0-9_-]{4,32})\/?$/i);
+  if (apiPassportMatch) {
+    const shareId = apiPassportMatch[1];
+    const db = getDatabaseConnection();
+
+    if (req.method === 'GET') {
+      try {
+        const record = await getPublicPassportRecord(db, shareId);
+        if (!record) {
+          res.writeHead(404, { 'Content-Type': 'application/json; charset=UTF-8' });
+          res.end(JSON.stringify({ success: false, error: 'PASSPORT_NOT_FOUND' }));
+          return;
+        }
+        const payload = JSON.parse(record.payload_json);
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({
+          success: true,
+          shareId,
+          shareUrl: `/paspoort/${shareId}/`,
+          fullShareUrl: `${PRIMARY_ORIGIN}/paspoort/${shareId}/`,
+          created_at: record.created_at,
+          updated_at: record.updated_at,
+          passport: payload
+        }));
+      } catch {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({ success: false, error: 'PASSPORT_READ_ERROR' }));
+      }
+      return;
+    }
+
+    if (req.method === 'PUT') {
+      const bodyObj = await readJsonBody(req, res, 1200 * 1024);
+      if (bodyObj === null) return;
+      const editToken = String(bodyObj.editToken || bodyObj.edit_token || '').trim();
+      if (!editToken) {
+        res.writeHead(401, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({ success: false, error: 'EDIT_TOKEN_REQUIRED' }));
+        return;
+      }
+      const sanitized = sanitizePassportForShare(bodyObj, database);
+      if (sanitized.error) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({ success: false, error: sanitized.error }));
+        return;
+      }
+      try {
+        const editTokenHash = crypto.createHash('sha256').update(editToken).digest('hex');
+        const upd = await updatePublicPassportRecord(db, {
+          shareId,
+          editTokenHash,
+          modelSlug: sanitized.model_slug,
+          modelName: sanitized.model_name,
+          payloadJson: JSON.stringify(sanitized)
+        });
+        if (!upd.updated) {
+          res.writeHead(403, { 'Content-Type': 'application/json; charset=UTF-8' });
+          res.end(JSON.stringify({ success: false, error: 'INVALID_SHARE_OR_TOKEN' }));
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({
+          success: true,
+          shareId,
+          shareUrl: `/paspoort/${shareId}/`,
+          fullShareUrl: `${PRIMARY_ORIGIN}/paspoort/${shareId}/`,
+          passport: sanitized
+        }));
+      } catch {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({ success: false, error: 'PASSPORT_UPDATE_ERROR' }));
+      }
+      return;
+    }
+  }
+
+  const publicPassportMatch = pathname.match(/^\/paspoort\/([a-z0-9_-]{4,32})\/?$/i);
+  if (publicPassportMatch && (req.method === 'GET' || req.method === 'HEAD')) {
+    const shareId = publicPassportMatch[1];
+    try {
+      const db = getDatabaseConnection();
+      const record = await getPublicPassportRecord(db, shareId);
+      if (!record) {
+        renderNotFound(res);
+        return;
+      }
+      const html = renderPublicPassportHtml(record, database, PRIMARY_ORIGIN);
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=UTF-8',
+        'X-Robots-Tag': 'noindex, nofollow'
+      });
+      res.end(req.method === 'HEAD' ? '' : html);
+    } catch {
+      renderNotFound(res);
+    }
+    return;
+  }
+
+  // 5b. Privacy Policy & Cookie Statement (Phase 59B Legal Compliance Route)
   if (pathname === '/privacy' || pathname === '/privacy/' || pathname === '/cookiebeleid' || pathname === '/cookiebeleid/') {
     const html = renderPrivacyPolicyHtml(PRIMARY_ORIGIN);
     res.writeHead(200, {
@@ -1580,6 +1732,9 @@ server.listen(PORT, () => {
   console.log(`   SITE_URL=${SITE_URL}`);
   console.log(`   DATABASE_PATH=${getDatabasePath()}`);
   console.log(`   NODE_ENV=${process.env.NODE_ENV || 'development'}`);
+  setTimeout(() => {
+    try { PartCatalogResolver.getSectionsForModel('ms_260', null, null, database); } catch (_) {}
+  }, 50).unref();
 });
 
 export { server, renderPartNumberHubHtml, renderPartNumberSeriesHtml };
@@ -1674,14 +1829,14 @@ function renderNotFound(res) {
 </html>`);
 }
 
-async function readJsonBody(req, res) {
+async function readJsonBody(req, res, maxBytes = MAX_JSON_BODY_BYTES) {
   let bodyStr = '';
   let bodyTooLarge = false;
 
   return await new Promise((resolve) => {
     req.on('data', (chunk) => {
       bodyStr += chunk;
-      if (bodyStr.length > MAX_JSON_BODY_BYTES) {
+      if (bodyStr.length > maxBytes) {
         bodyTooLarge = true;
         req.destroy();
       }

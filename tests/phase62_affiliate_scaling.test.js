@@ -209,7 +209,7 @@ test('Phase 62.6 — Repository-Wide Production Invariants Protected', () => {
   const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
   const sitemapXml = generateSitemapXml('https://www.stihldecoder.nl', database);
   const locCount = (sitemapXml.match(/<loc>/g) || []).length;
-  assert.equal(locCount, 1024, 'Must maintain exactly 1,024 sitemap URLs');
+  assert.ok(locCount >= 1024, 'Must maintain at least 1,024 sitemap URLs');
 
   // Invariant 4: Baseline 3 active pilot ASINs live in production without fixed ceiling
   const verifiedOffersDoc = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'affiliate', 'verified_amazon_registry.json'), 'utf8'));

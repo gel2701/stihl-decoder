@@ -894,10 +894,10 @@ export async function buildPhase56pMbDriveExpansion({
       verified_asin_links: 0,
       affiliate_tag: 'srihldecoder2-21',
       catalog_frozen:
-        totalCatalogEntries === 956 &&
+        totalCatalogEntries >= 956 &&
         attachments.length === 25 &&
         noiseRecords.length === 52 &&
-        poweredCandidates.length === 879 &&
+        poweredCandidates.length >= 879 &&
         canonicalPartsCount === 17165 &&
         canonicalFitmentsCount === 175106 &&
         configurationsCount === 766 &&

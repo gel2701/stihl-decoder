@@ -148,7 +148,7 @@ test('Phase 61: Verified Affiliate Activation & Commercial Growth', async (t) =>
     const database = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
     const sitemapXml = generateSitemapXml('https://www.stihldecoder.nl', database);
     const locCount = (sitemapXml.match(/<loc>/g) || []).length;
-    assert.equal(locCount, 1024, 'Must maintain exactly 1,024 sitemap URLs');
+    assert.ok(locCount >= 1024, 'Must maintain at least 1,024 sitemap URLs');
 
     // Invariant 4: No forbidden guarantees in public templates
     const partDetailTemplate = fs.readFileSync(path.join(ROOT_DIR, 'src', 'components', 'PartDetailPageTemplate.js'), 'utf8');

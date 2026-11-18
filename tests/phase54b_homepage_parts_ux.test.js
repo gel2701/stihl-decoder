@@ -177,7 +177,8 @@ test('Phase 54B: Catalog alias resolution for composite model names (MS 200, MS 
     'res-model-parts-cta must be explicitly hidden on manual model override and reset'
   );
 
-  // Models without renderable parts or configurations on default catalog page return false
-  assert.equal(PartCatalogResolver.hasPartsForModel('MS 400 C-M', database), false);
-  assert.equal(PartCatalogResolver.hasPartsForModel('BR 800', database), false);
+  // Models with verified catalog fitments return true; unknown/nonexistent models return false
+  assert.equal(PartCatalogResolver.hasPartsForModel('MS 400 C-M', database), true);
+  assert.equal(PartCatalogResolver.hasPartsForModel('BR 800', database), true);
+  assert.equal(PartCatalogResolver.hasPartsForModel('MS 999', database), false);
 });

@@ -83,9 +83,9 @@ StopHelingService.verifySerialNumber('184592301').then(resStop => {
   assert.ok(passportHtml.includes('stihldecoder.nl'));
   console.log('✅ Scenario 8 Passed: Passport HTML rendered correctly.');
 
-  // 9. QR Generation URL in Passport
-  assert.ok(passportHtml.includes('https://api.qrserver.com/v1/create-qr-code'));
-  console.log('✅ Scenario 9 Passed: Verification QR code URL included.');
+  // 9. Inline offline QR Generation in Passport (never leaks raw serial)
+  assert.ok(passportHtml.includes('<svg') && passportHtml.includes('aria-label="QR-code voor deelbaar STIHL Machinepaspoort"'));
+  console.log('✅ Scenario 9 Passed: Offline inline verification QR SVG included.');
 
   console.log('\n🎉 ALL 9 BASELINE REGRESSION SCENARIOS PASSED 100% CLEANLY!');
 }).catch(err => {

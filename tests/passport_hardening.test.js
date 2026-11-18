@@ -101,12 +101,10 @@ assert(!vmOfficial.qrUrl.includes('163118080'), 'QR URL must NEVER include offic
 assert(!vmOfficial.qrUrl.includes('?s='), 'QR URL must not include serial query');
 assert(vmOfficial.qrUrl.includes(encodeURIComponent('https://www.stihldecoder.nl/kettingzagen/ms-440/')));
 
-// 1.4 HTML Output Verification
+// 1.4 HTML Output Verification (offline inline SVG QR, zero external API leak of serial)
 const htmlOfficial = renderStihlPassportHtml(vmOfficial);
-// Find img src matching qrserver
-const qrMatch = htmlOfficial.match(/https:\/\/api\.qrserver\.com\/[^\s"']+/);
-assert.ok(qrMatch, 'Must contain api.qrserver.com link');
-assert(!qrMatch[0].includes('163118080'), 'External QR service request must NEVER receive serial 163118080!');
+assert.ok(htmlOfficial.includes('<svg') && htmlOfficial.includes('aria-label="QR-code voor deelbaar STIHL Machinepaspoort"'), 'Must embed offline inline SVG QR code');
+assert(!htmlOfficial.includes('api.qrserver.com'), 'Must not depend on external qrserver API');
 console.log('  ✅ Gate 1 Passed: Zero serial data sent to external QR service in all modes.\n');
 
 // ============================================================================

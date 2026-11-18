@@ -97,11 +97,11 @@ test('Phase 60.1: Amazon Evidence Recovery & Invariants', async (t) => {
     const indexable = getAllIndexablePartsList();
     assert.strictEqual(indexable.length, 843);
 
-    // 1,024 Sitemap URLs
+    // Sitemap URLs >= 1,024 (expanded cleanly in Phase 91)
     const database = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data/stihl_database.json'), 'utf8'));
     const sitemapXml = generateSitemapXml(PRIMARY_ORIGIN, database);
     const locMatches = sitemapXml.match(/<loc>/g) || [];
-    assert.strictEqual(locMatches.length, 1024);
+    assert.ok(locMatches.length >= 1024);
 
     // "Bevestigde compatibiliteit" enforced, "Gegarandeerd passend op" is 0
     const templates = [

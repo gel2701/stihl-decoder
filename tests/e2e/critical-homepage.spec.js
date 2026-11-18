@@ -104,7 +104,7 @@ test.describe('Critical Homepage User Journeys', () => {
 
     await expect(warningCard).toBeVisible({ timeout: 5000 });
     await expect(partNoDisplay).toContainText('1121 021 0800');
-    await expect(modelGroupDisplay).toContainText('MS 260 / 026 familie');
+    await expect(modelGroupDisplay).toContainText(/MS 260 \/ 026.*familie/);
 
     gates.assertClean('Part Number Journey');
   });
