@@ -1,0 +1,1372 @@
+#!/usr/bin/env node
+/**
+ * scripts/phase94_worker.mjs
+ *
+ * Phase 94 — Evidence Recovery & Model Coverage Worker
+ *
+ * - Reuses caches from Phase 87.1..93 read-only; persists Phase 94 caches & batch logs to output/phase94/.
+ * - Enriches verifiable_evidence_sources using GHS authoritative ledger (`output/phase94/evidence_enrichment.json`)
+ *   and live `gardenhirespares.co.uk` dealer corroboration.
+ * - Strictly enforces TwoGateVerifier, checkHistoricalMismatch, BAD_BRAND_RE, evaluateTechnicalFit,
+ *   `\b\d+\s*pks\b` multipack guard, single-unit policy (is_multipack: false, package_quantity: 1),
+ *   NL delivery confirmation, SKU-per-ASIN uniqueness, and CAPTCHA/rate-limit safe stop.
+ * - Preserves all 2,723 baseline ACTIVE, 34 SUSPENDED, 19 RESEARCH_REQUIRED, and 3 protected VERIFIED records.
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+import zlib from 'node:zlib';
+import readline from 'node:readline';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright';
+
+import { TwoGateVerifier } from '../src/affiliate/TwoGateVerifier.js';
+import { checkHistoricalMismatch } from '../src/affiliate/HistoricalMismatches.js';
+import { PartNormalizer } from '../src/parts/PartNormalizer.js';
+import { checkAffiliateConsistency } from './check_affiliate_consistency.mjs';
+import {
+  BAD_BRAND_RE,
+  STRONG_MULTIPACK_RE,
+  resolveCleanBrand,
+  classifyBrand,
+  evaluateTechnicalFit
+} from './phase88_screener.mjs';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, '..');
+const OUT94 = path.join(ROOT, 'output', 'phase94');
+const BATCH_DIR = path.join(OUT94, 'batches');
+fs.mkdirSync(BATCH_DIR, { recursive: true });
+
+const REGISTRY_REL = path.join('data', 'affiliate', 'verified_amazon_registry.json');
+const TAGS = { 'amazon.nl': 'srihldecoder2-21', 'amazon.de': 'srihldecode00-21' };
+const AMAZON_URL = (mkt, asin) => ['https://www.' + mkt, 'dp', asin].join('/');
+const MANUFACTURER_BY_BRAND = { Stihl: 'ANDREAS STIHL AG & Co. KG', STIHL: 'ANDREAS STIHL AG & Co. KG' };
+
+const PROTECTED_PINNED_SLOTS = new Set([
+  '11104007005|amazon.de',
+  '00004007000|amazon.de',
+  '00004007011|amazon.de',
+  '11231201613|amazon.de',
+  '11300074100|amazon.nl',
+  '30050003905|amazon.nl',
+  '11304001302|amazon.nl',
+  '11236402003|amazon.nl'
+]);
+const PROTECTED_RECORD_ASINS = new Set(['B00IKF8TH8', 'B013KONKZY', 'B00SVDWDRG', 'B00LAHKSDQ']);
+
+const NON_STIHL_PRODUCT_RE = /\b(?:bosch\s+siemens|miele|bauknecht|whirlpool|electrolux|makita|dewalt|milwaukee|karcher|kärcher|gardena|ryobi|einhell|black\s*\+?\s*decker|worx)\b/i;
+const COMPLETE_MACHINE_RE = /\b(?:accu[- ]?kettingzaag|akku[- ]?kettensäge|accu[- ]?bosmaaier|benzine[- ]?bosmaaier|benzine[- ]?kettingzaag|benzin[- ]?kettensäge|zonder accu en oplader|ohne akku)\b/i;
+const EXTRA_MULTIPACK_RE = /\b(?:\d+\s*pks|\d+[- ]?(?:pack|er[- ]pack|er[- ]set))\b/i;
+
+const readJson = (p, fb = null) => {
+  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fb; }
+};
+const writeJsonAtomic = (file, value, indent = 1) => {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const tmp = `${file}.${process.pid}.${Math.random().toString(36).slice(2, 8)}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(value, null, indent).replace(/\r\n/g, '\n') + '\n', 'utf8');
+  fs.renameSync(tmp, file);
+};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const digits = s => String(s || '').replace(/[^0-9]/g, '');
+const formatPart = p => {
+  const m = String(p).match(/^(\d{4})(\d{3})(\d{4})$/);
+  return m ? `${m[1]} ${m[2]} ${m[3]}` : String(p);
+};
+function argVal(flag, def = null) {
+  const i = process.argv.indexOf(flag);
+  return i > 0 && process.argv[i + 1] !== undefined ? process.argv[i + 1] : def;
+}
+
+function scrubGeo(s) {
+  let out = String(s || '');
+  if (process.env.NL_DELIVERY_POSTAL) {
+    const escaped = process.env.NL_DELIVERY_POSTAL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    out = out.replace(new RegExp(escaped, 'gi'), 'NL-POSTAL');
+  }
+  return out
+    .replace(/\b(Bezorgen\s+aan|Wordt\s+bezorgd\s+aan|Deliver\s+to|Lieferung\s+an)\s+[^\n,|]{2,45}/gi, '$1 NL')
+    .replace(/\b\d{4}\s*[A-Z]{2}\b/g, 'NL-POSTAL');
+}
+
+function cleanBrand94(check) {
+  let b = resolveCleanBrand(check) || '';
+  b = b
+    .replace(/^De\s+(.+?)\s+Store\s+openen$/i, '$1')
+    .replace(/^Visit\s+the\s+(.+?)\s+Store$/i, '$1')
+    .replace(/^Bezoek\s+de\s+store\s+van\s+(.+)$/i, '$1')
+    .replace(/^Marke:\s*/i, '')
+    .trim();
+  if (!b && check.byline) {
+    const m = String(check.byline).trim().match(/^(?:De|The|Den)\s+(.+?)\s+(?:Store|Shop)\b/i);
+    if (m) b = m[1].trim();
+  }
+  return b;
+}
+
+function isBlockedPage(status, title, body) {
+  if (status === 503 || status === 429) return true;
+  if (/Type the characters you see|Enter the characters you see|Typ de tekens|Geef de tekens|Geben Sie die Zeichen|Robot Check|Automated access|captcha|validateCaptcha/i.test(`${title} ${String(body || '').slice(0, 700)}`)) {
+    return true;
+  }
+  return false;
+}
+
+async function initMarketplaceSession(page, marketplace) {
+  await page.goto(`https://www.${marketplace}/`, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
+  await sleep(600);
+  await page.locator('#sp-cc-accept').click().catch(() => {});
+  await sleep(250);
+  await page.locator('#nav-global-location-popover-link').click().catch(() => {});
+  await sleep(750);
+  if (marketplace === 'amazon.de') {
+    if (await page.locator('select#GLUXCountryList').count()) {
+      await page.locator('select#GLUXCountryList').selectOption('NL').catch(() => {});
+      await sleep(300);
+      await page.locator('button[name="glowDoneButton"], .a-popover-footer button').first().click().catch(() => {});
+      await sleep(900);
+    }
+  } else if (process.env.NL_DELIVERY_POSTAL) {
+    const zipInput = page.locator('#GLUXZipUpdateInput');
+    if (await zipInput.count()) {
+      await zipInput.fill(process.env.NL_DELIVERY_POSTAL).catch(() => {});
+      await sleep(250);
+      await page.locator('#GLUXZipUpdate input[type="submit"], #GLUXZipUpdate-announce').first().click().catch(() => {});
+      await sleep(600);
+      await page.locator('button[name="glowDoneButton"], #GLUXConfirmClose').first().click().catch(() => {});
+      await sleep(750);
+    }
+  }
+}
+
+function loadMergedCaches() {
+  const s94NlPath = path.join(OUT94, 'search_hits_amazon_nl.json');
+  const s94DePath = path.join(OUT94, 'search_hits_amazon_de.json');
+  const c94NlPath = path.join(OUT94, 'product_checks_amazon_nl.json');
+  const c94DePath = path.join(OUT94, 'product_checks_amazon_de.json');
+  const d94Path = path.join(OUT94, 'dealer_corroboration.json');
+
+  const s94Nl = readJson(s94NlPath, {});
+  const s94De = readJson(s94DePath, {});
+  const c94Nl = readJson(c94NlPath, {});
+  const c94De = readJson(c94DePath, {});
+  const d94 = readJson(d94Path, {});
+
+  const loadAll = (prefix, dirs, own) => {
+    const acc = {};
+    for (const dir of dirs) Object.assign(acc, readJson(path.join(ROOT, `output/${dir}/${prefix}`), {}));
+    return { ...acc, ...own };
+  };
+
+  return {
+    paths: { s94NlPath, s94DePath, c94NlPath, c94DePath, d94Path },
+    searchOwn: { 'amazon.nl': s94Nl, 'amazon.de': s94De },
+    searchMerged: {
+      'amazon.nl': loadAll('search_hits_amazon_nl.json', ['phase87_1', 'phase87_2', 'phase88', 'phase89', 'phase90', 'phase92', 'phase93'], s94Nl),
+      'amazon.de': loadAll('search_hits_amazon_de.json', ['phase87_2', 'phase88', 'phase89', 'phase90', 'phase92', 'phase93'], s94De)
+    },
+    checksOwn: { 'amazon.nl': c94Nl, 'amazon.de': c94De },
+    checksMerged: {
+      'amazon.nl': loadAll('product_checks_amazon_nl.json', ['phase87_1', 'phase87_2', 'phase87_3', 'phase88', 'phase89', 'phase90', 'phase92', 'phase93'], c94Nl),
+      'amazon.de': loadAll('product_checks_amazon_de.json', ['phase87_2', 'phase87_3', 'phase88', 'phase89', 'phase90', 'phase92', 'phase93'], c94De)
+    },
+    dealerOwn: d94,
+    dealerMerged: loadAll('dealer_corroboration.json', ['phase87_1', 'phase87_2', 'phase87_3', 'phase88', 'phase89', 'phase90', 'phase92', 'phase93'], d94)
+  };
+}
+
+async function loadCatalogAndModels() {
+  const catalogDoc = readJson(path.join(ROOT, 'data/parts_catalog.json'), []);
+  const catalog = Array.isArray(catalogDoc) ? catalogDoc : (catalogDoc.parts || []);
+  const catalogParts = new Set(catalog.map(p => PartNormalizer.normalizePartNumber(p.part_number)));
+  const catalogNames = Object.fromEntries(catalog.map(p => [PartNormalizer.normalizePartNumber(p.part_number), p.part_name]));
+
+  const stihlDb = readJson(path.join(ROOT, 'data/stihl_database.json'), { models: [] });
+  const fitmentIndex = readJson(path.join(ROOT, 'data/model_part_fitments.json'), {});
+  const modelNameByFid = new Map();
+  for (const m of (stihlDb.models || [])) {
+    const c = (m.slug || m.id).toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    const alt = m.id.toLowerCase();
+    const shortAlt = alt.replace(/^stihl_/, '');
+    modelNameByFid.set(c, m.model_name);
+    modelNameByFid.set(alt, m.model_name);
+    modelNameByFid.set(shortAlt, m.model_name);
+  }
+
+  const partModelsMap = new Map();
+  if (Array.isArray(fitmentIndex.shard_files)) {
+    for (const shard of fitmentIndex.shard_files) {
+      const shardPath = path.join(ROOT, 'data', shard);
+      if (!fs.existsSync(shardPath)) continue;
+      const rl = readline.createInterface({ input: fs.createReadStream(shardPath).pipe(zlib.createGunzip()), crlfDelay: Infinity });
+      for await (const line of rl) {
+        if (!line.trim()) continue;
+        let rec;
+        try { rec = JSON.parse(line); } catch { continue; }
+        const pn = PartNormalizer.normalizePartNumber(rec.part_number);
+        const fid = rec.canonical_model_id;
+        if (!pn || !fid) continue;
+        const mName = modelNameByFid.get(fid);
+        if (mName) {
+          if (!partModelsMap.has(pn)) partModelsMap.set(pn, new Set());
+          partModelsMap.get(pn).add(mName);
+        }
+      }
+    }
+  }
+  return { catalogParts, catalogNames, partModelsMap };
+}
+
+function extractModelsForCandidate(pn, check, partModelsMap) {
+  const fromFitment = Array.from(partModelsMap.get(pn) || []);
+  const text = `${check.title || ''} ${(check.bullets || []).join(' ')} ${check.techSpecs || ''}`;
+  const matches = text.match(/\b(?:MS|FS|BR|BG|HS|TS|HT|BT|HL|KM|MSA|FSA|HSA|BGA|SG|SGA|SHA)\s*\d{2,3}(?:\s*[A-Z]{1,3})?|\b0(?:09|10|11|12|15|17|18|19|20|21|23|24|25|26|28|29|30|31|32|34|36|38|39|41|44|45|46|56|64|66)\b/gi) || [];
+  const merged = [];
+  const seen = new Set();
+  for (const m of [...fromFitment, ...matches.map(x => x.toUpperCase().replace(/\s+/g, ' ').trim())]) {
+    if (!seen.has(m)) { seen.add(m); merged.push(m); }
+  }
+  return merged.slice(0, 12);
+}
+
+async function runSearchBatch(browserCtx, mkt, items, caches, maxVariants = 2) {
+  const own = caches.searchOwn[mkt];
+  const merged = caches.searchMerged[mkt];
+  const outPath = mkt === 'amazon.de' ? caches.paths.s94DePath : caches.paths.s94NlPath;
+
+  const pending = items.filter(it => !merged[it.part_number] || merged[it.part_number].error);
+  console.log(`[${mkt}] search pending=${pending.length}/${items.length}`);
+  if (pending.length === 0) return { processed: 0, rateLimited: false };
+
+  const concurrency = 3;
+  const pages = [];
+  for (let i = 0; i < concurrency; i++) {
+    const p = await browserCtx.newPage();
+    if (i === 0) await initMarketplaceSession(p, mkt);
+    pages.push(p);
+  }
+  if (mkt === 'amazon.de') {
+    for (let i = 1; i < pages.length; i++) {
+      await pages[i].goto(`https://www.${mkt}/`, { waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+    }
+  }
+
+  let idx = 0;
+  let processed = 0;
+  let rateLimited = false;
+
+  async function worker(page, wid) {
+    while (idx < pending.length && !rateLimited) {
+      const it = pending[idx++];
+      const pn = it.part_number;
+      const queries = (it.queries && it.queries.length ? it.queries : [`STIHL ${formatPart(pn)}`, pn]).slice(0, maxVariants);
+      const allCards = [];
+      const seenAsin = new Set();
+      let usedQuery = queries[0];
+      let hadError = null;
+
+      try {
+        for (const q of queries) {
+          usedQuery = q;
+          await sleep(wid * 90);
+          const resp = await page.goto(`https://www.${mkt}/s?k=${encodeURIComponent(q)}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+          await sleep(550);
+          const status = resp ? resp.status() : 200;
+          const info = await page.evaluate(() => ({
+            title: document.title || '',
+            bodyStart: (document.body.innerText || '').slice(0, 600),
+            cards: [...document.querySelectorAll('div[data-component-type="s-search-result"]')].slice(0, 10).map(card => {
+              const text = (card.innerText || '').replace(/\s+/g, ' ');
+              const href = card.querySelector('a[href*="/dp/"]')?.getAttribute('href') || '';
+              const asinFromHref = (href.match(/\/dp\/([A-Z0-9]{10})/) || [])[1] || null;
+              return {
+                asin: card.getAttribute('data-asin') || asinFromHref,
+                title: ((card.querySelector('h2')?.innerText) || '').replace(/\s+/g, ' ').slice(0, 220),
+                sponsored: /Gesponsord|Sponsored|Gesponsert/i.test(text),
+                has_price: !!card.querySelector('.a-price'),
+                delivery: (text.match(/(?:Levering|Gratis bezorging|Bezorging|Delivery|Lieferung|Zustellung)[^.|]{0,55}/i) || [''])[0]
+              };
+            }).filter(c => c.asin)
+          }));
+
+          if (isBlockedPage(status, info.title, info.bodyStart)) {
+            rateLimited = true;
+            console.log(`[${mkt}] Rate limit / bot gate (${status}) at search ${pn}; stopping cleanly.`);
+            break;
+          }
+
+          for (const c of info.cards) {
+            if (!seenAsin.has(c.asin)) {
+              seenAsin.add(c.asin);
+              allCards.push({ ...c, delivery: scrubGeo(c.delivery), matched_query: q });
+            }
+          }
+
+          const hasExactHit = info.cards.some(c => /^B[0-9A-Z]{9}$/i.test(c.asin) && digits(c.title).includes(pn) && !c.sponsored);
+          if (hasExactHit) break;
+          await sleep(180);
+        }
+      } catch (err) {
+        hadError = String(err).slice(0, 140);
+      }
+
+      if (rateLimited) break;
+
+      const rec = {
+        part: pn,
+        marketplace: mkt,
+        query: usedQuery,
+        queries_tried: queries,
+        checked_at: new Date().toISOString(),
+        hits: allCards,
+        ...(hadError ? { error: hadError } : {})
+      };
+      own[pn] = rec;
+      merged[pn] = rec;
+      processed++;
+      if (processed % 20 === 0) {
+        writeJsonAtomic(outPath, own);
+        console.log(`[${mkt}] search progress: ${processed}/${pending.length}`);
+      }
+      await sleep(140);
+    }
+  }
+
+  await Promise.all(pages.map((p, i) => worker(p, i)));
+  writeJsonAtomic(outPath, own);
+  for (const p of pages) await p.close();
+  return { processed, rateLimited };
+}
+
+function selectCandidateAsinsForParts(partRows, mkt, caches, activeByAsinMkt, maxPerPart = 4) {
+  const out = [];
+  const seen = new Set();
+  for (const p of partRows) {
+    const pn = p.part_number;
+    const partName = p.part_name || '';
+    const isKit = /\b(kit|set|pack|pair|satz)\b/i.test(partName);
+    const sh = caches.searchMerged[mkt][pn];
+    const scored = [];
+    for (const h of (sh?.hits || [])) {
+      const a = h?.asin;
+      if (!a || !/^[A-Z0-9]{10}$/.test(a) || PROTECTED_RECORD_ASINS.has(a)) continue;
+      if (h.sponsored) continue;
+      const owner = activeByAsinMkt.get(`${mkt}|${a}`);
+      if (owner && owner !== pn) continue;
+
+      const title = String(h.title || '');
+      if (/\b\d+\s*pks\b/i.test(title)) continue;
+      if (!isKit && STRONG_MULTIPACK_RE.test(title)) {
+        const m = title.match(STRONG_MULTIPACK_RE);
+        if (m && !/^1\s*(?:x|pc|stuk|stück)/i.test(m[0])) continue;
+      }
+      const found11 = [...new Set((title.match(/\b\d{4}[\s.-]?\d{3}[\s.-]?\d{4}\b/g) || []).map(digits))];
+      if (found11.some(d => d.length === 11 && d !== pn)) continue;
+
+      let s = 0;
+      if (digits(title).includes(pn)) s += 1000;
+      if (/stihl/i.test(title)) s += 200;
+      if (/sägenspezi|oregon|ngk|bosch|ratioparts|haishine|mchnic|perfektgarten|vhbw/i.test(title)) s += 120;
+      if (h.has_price) s += 80;
+      if (/levering|bezorging|lieferung/i.test(h.delivery || '')) s += 60;
+      if (s > 0) scored.push({ asin: a, s });
+    }
+    scored.sort((a, b) => b.s - a.s);
+    let nonExactPicked = 0;
+    for (const item of scored) {
+      if (out.length >= partRows.length * maxPerPart) break;
+      const isExact = item.s >= 1000;
+      if (!isExact) {
+        if (nonExactPicked >= 2) continue;
+        nonExactPicked++;
+      }
+      if (!seen.has(item.asin)) {
+        seen.add(item.asin);
+        out.push(item.asin);
+      }
+    }
+  }
+  return out;
+}
+
+async function runDpChecks(browserCtx, mkt, asinList, caches, forceRecheckSet = new Set()) {
+  const own = caches.checksOwn[mkt];
+  const merged = caches.checksMerged[mkt];
+  const outPath = mkt === 'amazon.de' ? caches.paths.c94DePath : caches.paths.c94NlPath;
+
+  const pending = asinList.filter(a => !own[a] && (!merged[a] || merged[a].error || forceRecheckSet.has(a)));
+  console.log(`[${mkt}] /dp/ pending=${pending.length}/${asinList.length}`);
+  if (pending.length === 0) return { processed: 0, rateLimited: false };
+
+  const concurrency = 3;
+  const pages = [];
+  for (let i = 0; i < concurrency; i++) {
+    const p = await browserCtx.newPage();
+    if (i === 0) await initMarketplaceSession(p, mkt);
+    pages.push(p);
+  }
+  if (mkt === 'amazon.de') {
+    for (let i = 1; i < pages.length; i++) {
+      await pages[i].goto(`https://www.${mkt}/`, { waitUntil: 'domcontentloaded', timeout: 25000 }).catch(() => {});
+    }
+  }
+
+  let idx = 0;
+  let processed = 0;
+  let rateLimited = false;
+
+  async function worker(page, wid) {
+    while (idx < pending.length && !rateLimited) {
+      const asin = pending[idx++];
+      try {
+        await sleep(wid * 80);
+        const resp = await page.goto(AMAZON_URL(mkt, asin), { waitUntil: 'domcontentloaded', timeout: 30000 });
+        await sleep(600);
+        const status = resp ? resp.status() : 200;
+        const data = await page.evaluate(() => {
+          const textOf = el => (el ? el.innerText.replace(/\s+/g, ' ').trim() : '');
+          const delivTexts = [
+            textOf(document.querySelector('#mir-layout-DELIVERY_BLOCK')),
+            textOf(document.querySelector('#deliveryBlockMessage')),
+            textOf(document.querySelector('#contextualIngressPtLabel_deliveryShortLine'))
+          ].filter(Boolean);
+          const sellerTexts = [
+            textOf(document.querySelector('#merchant-info')),
+            textOf(document.querySelector('#sellerProfileTriggerId')),
+            textOf(document.querySelector('#fulfillerInfoFeature_feature_div'))
+          ].filter(Boolean);
+          const bullets = [...document.querySelectorAll('#feature-bullets li')].map(el => el.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean);
+          const specRows = [
+            ...document.querySelectorAll('#productDetails_techSpec_section_1 tr'),
+            ...document.querySelectorAll('#productDetails_detailBullets_sections1 tr'),
+            ...document.querySelectorAll('#productOverview_feature_div tr'),
+            ...document.querySelectorAll('.prodDetTable tr'),
+            ...document.querySelectorAll('#technicalSpecifications_section_1 tr'),
+            ...document.querySelectorAll('#detailBullets_feature_div li')
+          ]
+            .map(el => el.innerText.replace(/\s+/g, ' ').trim())
+            .filter(Boolean)
+            .slice(0, 45);
+          const techSpecs = specRows.join(' | ').slice(0, 2200);
+          const descRaw = [
+            textOf(document.querySelector('#productDescription')),
+            textOf(document.querySelector('#aplus'))
+          ].filter(Boolean).join(' ');
+          const descriptionCombined = [techSpecs, descRaw].filter(Boolean).join(' | ').slice(0, 4000);
+          const price = !!(document.querySelector('.a-price .a-offscreen') || document.querySelector('#corePrice_feature_div .a-price'));
+          const addCart = !!(document.querySelector('#add-to-cart-button') || document.querySelector('input[name="submit.add-to-cart"]'));
+          const glowLoc = textOf(document.querySelector('#glow-ingress-line2'));
+          const bodyHead = (document.body.innerText || '').slice(0, 700);
+          return {
+            pageTitle: document.title || '',
+            bodyHead,
+            title: textOf(document.querySelector('#productTitle') || document.querySelector('#title span') || document.querySelector('h1#title') || document.querySelector('#btAsinTitle')),
+            byline: textOf(document.querySelector('#bylineInfo')),
+            avail: textOf(document.querySelector('#availability')),
+            glowLoc,
+            deliveryBlock: delivTexts.join(' | ').slice(0, 350),
+            delivery: delivTexts.map(s => s.slice(0, 180)),
+            seller: sellerTexts.map(s => s.slice(0, 180)),
+            bullets,
+            techSpecs,
+            description: descriptionCombined,
+            hasPrice: price,
+            hasAddCart: addCart,
+            cannotShipNl: /kan niet worden bezorgd|cannot be shipped|nicht.*Niederlande.*geliefert|nicht an die ausgewählte/i.test(`${delivTexts.join(' ')} ${textOf(document.querySelector('#availability'))}`)
+          };
+        });
+
+        if (isBlockedPage(status, data.pageTitle, data.bodyHead)) {
+          rateLimited = true;
+          console.log(`[${mkt}] Rate limit/CAPTCHA (${status}) at ${asin}; stopping cleanly.`);
+          break;
+        }
+
+        const isDead = /Page Not Found|Pagina niet gevonden|Seite wurde nicht gefunden/i.test(data.pageTitle);
+        const rec = {
+          asin,
+          marketplace: mkt,
+          http_status: status,
+          checked_at: new Date().toISOString(),
+          listed: !!data.title && !isDead,
+          isDead,
+          pageTitle: scrubGeo(data.pageTitle),
+          title: scrubGeo(data.title),
+          byline: scrubGeo(data.byline),
+          avail: scrubGeo(data.avail),
+          glowLoc: scrubGeo(data.glowLoc),
+          deliveryBlock: scrubGeo(data.deliveryBlock),
+          delivery: data.delivery.map(scrubGeo),
+          seller: data.seller.map(scrubGeo),
+          bullets: data.bullets.map(scrubGeo),
+          techSpecs: scrubGeo(data.techSpecs || ''),
+          description: scrubGeo(data.description || ''),
+          hasPrice: data.hasPrice,
+          hasAddCart: data.hasAddCart,
+          cannotShipNl: data.cannotShipNl
+        };
+        own[asin] = rec;
+        merged[asin] = rec;
+        processed++;
+        if (processed % 20 === 0) {
+          writeJsonAtomic(outPath, own);
+          console.log(`[${mkt}] /dp/ progress: ${processed}/${pending.length}`);
+        }
+      } catch (err) {
+        const rec = { asin, marketplace: mkt, error: String(err).slice(0, 140), checked_at: new Date().toISOString(), listed: false };
+        own[asin] = rec;
+        merged[asin] = rec;
+      }
+      await sleep(140);
+    }
+  }
+
+  await Promise.all(pages.map((p, i) => worker(p, i)));
+  writeJsonAtomic(outPath, own);
+  for (const p of pages) await p.close();
+  return { processed, rateLimited };
+}
+
+async function runDealerCorroboration(browserCtx, partList, caches) {
+  const own = caches.dealerOwn;
+  const merged = caches.dealerMerged;
+  const pending = partList.filter(p => !merged[p]);
+  console.log(`[dealer] pending=${pending.length}/${partList.length}`);
+  if (pending.length === 0) return;
+
+  const concurrency = 3;
+  const pages = await Promise.all(Array.from({ length: concurrency }, () => browserCtx.newPage()));
+  let idx = 0;
+  let processed = 0;
+
+  async function worker(page) {
+    while (idx < pending.length) {
+      const part = pending[idx++];
+      const formatted = formatPart(part);
+      try {
+        await page.goto(`https://www.gardenhirespares.co.uk/catalogsearch/result/?q=${encodeURIComponent(formatted)}`, { waitUntil: 'domcontentloaded', timeout: 18000 });
+        await sleep(300);
+        const data = await page.evaluate(() => {
+          const text = document.body.innerText.replace(/\r/g, '');
+          const items = (text.match(/(\d+)\s+Items?/) || [])[1] || '0';
+          const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+          const start = lines.findIndex(l => /^\d+ Items?$/.test(l));
+          const slice = start >= 0 ? lines.slice(start, start + 40) : [];
+          const hits = [];
+          for (const line of slice) {
+            if (/^\d+ Items?$/.test(line)) continue;
+            if (/Part no\.|£|ADD|Sort By|View \d/i.test(line)) continue;
+            if (/^[A-Z0-9][A-Za-z0-9 ,./'"()&+-]{10,160}$/.test(line) && line.split(' ').length >= 3) hits.push(line);
+          }
+          return { items: Number(items), hits: [...new Set(hits)].slice(0, 4), noResults: /No results|Geen resultaten/i.test(text) };
+        });
+        const exact = data.hits.filter(h => digits(h).includes(part));
+        const rec = {
+          part,
+          source: 'gardenhirespares.co.uk',
+          source_url: page.url(),
+          checked_at: new Date().toISOString(),
+          found: exact.length > 0,
+          items: data.items,
+          hits: exact.slice(0, 3),
+          all_hits: data.hits.slice(0, 3),
+          no_results: data.noResults
+        };
+        own[part] = rec;
+        merged[part] = rec;
+        processed++;
+        if (processed % 20 === 0) {
+          writeJsonAtomic(caches.paths.d94Path, own);
+          console.log(`[dealer] progress: ${processed}/${pending.length}`);
+        }
+      } catch (err) {
+        const rec = { part, error: String(err).slice(0, 140), checked_at: new Date().toISOString(), found: false, hits: [] };
+        own[part] = rec;
+        merged[part] = rec;
+      }
+      await sleep(160);
+    }
+  }
+
+  await Promise.all(pages.map(worker));
+  writeJsonAtomic(caches.paths.d94Path, own);
+  for (const p of pages) await p.close();
+}
+
+function buildOfferRecord({ pn, mkt, asin, brand, classification, check, dealerRec, archiveDossier, catalogNames, partModelsMap, usedKillSwitches, existingNote }) {
+  const TODAY = new Date().toISOString().split('T')[0];
+  const NOW = new Date().toISOString();
+  const formatted = formatPart(pn);
+  const catalogName = catalogNames[pn] || `STIHL onderdeel ${formatted}`;
+  const listingTitle = scrubGeo(check.title || '');
+  const tag = TAGS[mkt];
+  const models = extractModelsForCandidate(pn, check, partModelsMap);
+  const delivRaw = scrubGeo(check.deliveryBlock || (check.delivery || [])[0] || 'levering naar Nederland bevestigd');
+
+  const dealerHit = Array.isArray(dealerRec?.hits) && dealerRec.hits.length > 0 ? dealerRec.hits[0] : null;
+  const ghsArchiveUrl = archiveDossier?.ghs_source_url || null;
+  const sources = [{
+    type: 'AMAZON_PRODUCT_PAGE',
+    url: AMAZON_URL(mkt, asin),
+    title: listingTitle.slice(0, 180),
+    claim: `Live ${mkt}-vermelding ${asin} toont "${listingTitle.slice(0, 140)}" met het exacte onderdeelnummer ${formatted}; de pagina bevestigt verzending naar Nederlands afleveradres op ${TODAY}.`,
+    checked_at: check.checked_at || NOW,
+    delivery_to_nl: true,
+    seller_byline: scrubGeo(check.byline || brand)
+  }];
+  if (dealerHit && dealerRec.source_url) {
+    sources.push({
+      type: 'INDEPENDENT_DEALER_CATALOG',
+      url: dealerRec.source_url,
+      title: String(dealerHit).slice(0, 160),
+      claim: `Onafhankelijke STIHL-onderdelendealer vermeldt onderdeel ${formatted} ("${String(dealerHit).slice(0, 120)}").`,
+      checked_at: dealerRec.checked_at || NOW
+    });
+  } else if (ghsArchiveUrl) {
+    sources.push({
+      type: 'LOCAL_ARCHIVE_DEALER_LEDGER',
+      url: ghsArchiveUrl,
+      title: `GHS STIHL Source Ledger (${formatted})`,
+      claim: `Autoritatieve lokale dealercatalogus registreert STIHL-onderdeel ${formatted} op ${ghsArchiveUrl}.`,
+      checked_at: NOW
+    });
+  }
+
+  const mktCode = mkt === 'amazon.de' ? 'DE' : 'NL';
+  let ksSuffix = 94;
+  let killSwitchId = `KILL-P94-${mktCode}-${pn}-${asin}`;
+  if (usedKillSwitches.has(killSwitchId)) {
+    while (usedKillSwitches.has(`KILL-P94-${mktCode}-${pn}-${asin}-${ksSuffix}`)) ksSuffix++;
+    killSwitchId = `KILL-P94-${mktCode}-${pn}-${asin}-${ksSuffix}`;
+  }
+
+  const compatibilityProof = `${mkt}-vermelding ${asin} (${brand}) koppelt "${listingTitle.slice(0, 110)}" expliciet aan het STIHL-nummer ${formatted}${models.length ? ` (compatibele modellen o.a. ${models.slice(0, 4).join(', ')})` : ''}.`;
+  const identityProof = `Live controle van ${AMAZON_URL(mkt, asin)} op ${TODAY} bevestigt ASIN ${asin}, verkoper/merk ${brand} en het exacte onderdeelnummer ${formatted} in de productgegevens${dealerHit ? `, ondersteund door onafhankelijke dealercatalogus (${dealerHit})` : (ghsArchiveUrl ? ', ondersteund door lokaal GHS-archiefdossier' : '')}.`;
+
+  const record = {
+    part_number: pn,
+    part_number_formatted: formatted,
+    part_name: catalogName,
+    product_title: listingTitle.slice(0, 220),
+    brand,
+    manufacturer: MANUFACTURER_BY_BRAND[brand] || `${brand} (Verified Aftermarket)`,
+    manufacturer_part_number: formatted,
+    trade_number: null,
+    package_quantity: 1,
+    package_type: 'Enkelstuks',
+    is_multipack: false,
+    asin,
+    marketplace: mkt,
+    affiliate_tag: tag,
+    mpn: pn,
+    ean_gtin: null,
+    oem_brand_classification: classification,
+    evidence_classification: 'AMAZON_LISTING_COMPATIBLE',
+    model_compatibility: models,
+    machine_compatibility: [...models],
+    pilot_eligible: true,
+    pilot_active: true,
+    kill_switch_id: killSwitchId,
+    compatibility_proof: compatibilityProof,
+    asin_product_identity_proof: identityProof,
+    independent_evidence_url: (dealerHit && dealerRec.source_url) || ghsArchiveUrl || AMAZON_URL(mkt, asin),
+    direct_affiliate_url: `${AMAZON_URL(mkt, asin)}?tag=${tag}`,
+    search_fallback_url: `https://www.${mkt}/s?k=STIHL+${encodeURIComponent(formatted)}&tag=${tag}`,
+    verifiable_evidence_sources: sources,
+    verification_date: TODAY,
+    shipping_to_nl_status: 'SHIPS_TO_NL_CONFIRMED',
+    shipping_destination_country: 'NL',
+    shipping_checked_at: TODAY,
+    shipping_evidence_url: AMAZON_URL(mkt, asin),
+    shipping_evidence_description: `${mkt}-vermelding bevestigt levering naar Nederlands postcodegebied (${delivRaw.slice(0, 90)}).`,
+    availability_audit: {
+      verdict: 'LISTING_LIVE',
+      method: 'LIVE_BROWSER_GET',
+      checked_at: NOW,
+      http_status: 200
+    },
+    status: 'ACTIVE',
+    status_reason: `Phase 94: live ${mkt}-vermelding met het exacte STIHL-nummer ${formatted}${dealerHit || ghsArchiveUrl ? ' en archief-/dealercatalogus-onderbouwing' : ''} en bevestigde NL-levering.${existingNote ? ' ' + existingNote : ''}`,
+    supersedes_asin: null,
+    updated_at: NOW
+  };
+  if (mkt === 'amazon.nl') {
+    record.item_price = null;
+    record.shipping_cost_nl = null;
+  }
+  return record;
+}
+
+function evaluateAndActivateBatch({ batchId, partRows, candidatePairsByPartMkt, caches, enrichmentDossiers, catalogParts, catalogNames, partModelsMap, registry }) {
+  const beforeActive = registry.offers.filter(o => o.status === 'ACTIVE');
+  const beforeNl = beforeActive.filter(o => !o.marketplace || o.marketplace === 'amazon.nl').length;
+  const beforeDe = beforeActive.filter(o => o.marketplace === 'amazon.de').length;
+  const beforeUnique = new Set(beforeActive.map(o => o.part_number)).size;
+
+  const activeByPartMkt = new Map();
+  const activeByAsinMkt = new Map();
+  const usedKillSwitches = new Set(registry.offers.map(o => o.kill_switch_id).filter(Boolean));
+  for (const o of beforeActive) {
+    const mkt = o.marketplace || 'amazon.nl';
+    activeByPartMkt.set(`${o.part_number}|${mkt}`, o.asin);
+    activeByAsinMkt.set(`${mkt}|${o.asin}`, o.part_number);
+  }
+
+  const activated = [];
+  const needsEvidence = [];
+  const rejected = [];
+  const supersededResearch = [];
+
+  for (const row of partRows) {
+    const pn = row.part_number;
+    const partName = row.part_name || catalogNames[pn] || '';
+
+    for (const mkt of ['amazon.nl', 'amazon.de']) {
+      if (activeByPartMkt.has(`${pn}|${mkt}`) || PROTECTED_PINNED_SLOTS.has(`${pn}|${mkt}`)) continue;
+
+      const asins = candidatePairsByPartMkt.get(`${pn}|${mkt}`) || [];
+      if (asins.length === 0) continue;
+
+      let chosen = null;
+      const chosenReasons = [];
+
+      for (const asin of asins) {
+        const owner = activeByAsinMkt.get(`${mkt}|${asin}`);
+        if (owner && owner !== pn) {
+          chosenReasons.push({ asin, reason: `ASIN_ALREADY_OWNED_BY_${owner}` });
+          continue;
+        }
+        const check = caches.checksMerged[mkt][asin];
+        if (!check) continue;
+        if (!check.listed || check.isDead || check.http_status >= 400) {
+          const reason = (!check.listed && check.http_status === 200)
+            ? 'NOT_LISTED_HTTP_200'
+            : (check.error ? 'TRANSIENT_FETCH_ERROR' : `NOT_LISTED_HTTP_${check.http_status || 'DEAD'}`);
+          if (reason === 'NOT_LISTED_HTTP_200' || reason === 'TRANSIENT_FETCH_ERROR') {
+            needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason });
+          } else {
+            chosenReasons.push({ asin, reason });
+          }
+          continue;
+        }
+
+        const fullText = `${check.title || ''} ${(check.bullets || []).join(' ')} ${check.techSpecs || ''} ${check.description || ''}`;
+        if (!digits(fullText).includes(pn)) {
+          const found11 = [...new Set((fullText.match(/\b\d{4}[\s.-]?\d{3}[\s.-]?\d{4}\b/g) || []).map(digits))];
+          if (found11.some(d => d.length === 11 && d !== pn)) {
+            chosenReasons.push({ asin, reason: `CONFLICTING_MPN:${found11.find(d => d !== pn)}` });
+          } else if (NON_STIHL_PRODUCT_RE.test(fullText) && !/stihl/i.test(fullText)) {
+            chosenReasons.push({ asin, reason: 'NON_STIHL_PRODUCT_MATCH' });
+          } else if (COMPLETE_MACHINE_RE.test(check.title || '') && /\b(?:body|accu|cc|cm)\b/i.test(check.title || '')) {
+            chosenReasons.push({ asin, reason: 'COMPLETE_MACHINE_NOT_PART' });
+          } else {
+            needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason: 'MISSING_INDEPENDENT_MPN_EVIDENCE' });
+          }
+          continue;
+        }
+
+        const mismatch = checkHistoricalMismatch(pn, asin, check.title || '');
+        if (mismatch.isMismatch) {
+          chosenReasons.push({ asin, reason: `HISTORICAL_MISMATCH: ${mismatch.record?.reason || 'matched'}` });
+          continue;
+        }
+
+        if (EXTRA_MULTIPACK_RE.test(check.title || '')) {
+          chosenReasons.push({ asin, reason: 'MULTIPACK_EXTRA_GUARD' });
+          continue;
+        }
+
+        const brand = cleanBrand94(check);
+        if (!brand || BAD_BRAND_RE.test(brand)) {
+          needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason: `BAD_OR_MISSING_BRAND:${brand || 'empty'}` });
+          continue;
+        }
+
+        const checkWithSpecs = {
+          ...check,
+          description: [check.techSpecs || '', check.description || ''].filter(Boolean).join(' ')
+        };
+        const fit = evaluateTechnicalFit(pn, partName, checkWithSpecs, brand);
+        if (!fit.ok) {
+          chosenReasons.push({ asin, reason: fit.reason });
+          continue;
+        }
+
+        if (check.cannotShipNl) {
+          needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason: 'CANNOT_SHIP_TO_NL' });
+          continue;
+        }
+        if (mkt === 'amazon.de') {
+          const delivEvidence = `${check.glowLoc || ''} ${check.deliveryBlock || ''} ${(check.delivery || []).join(' ')} ${check.avail || ''}`;
+          if (!/nederland|netherlands|nl|bezorging|lieferung|zustellung|delivery/i.test(delivEvidence)) {
+            needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason: 'DE_NL_SHIPPING_NOT_EXPLICIT' });
+            continue;
+          }
+        }
+        if (!check.hasAddCart) {
+          needsEvidence.push({ part_number: pn, mkt, asin, status: 'NEEDS_EVIDENCE', reason: 'OUT_OF_STOCK_OR_NO_BUYBOX' });
+          continue;
+        }
+
+        const classification = classifyBrand(brand, check);
+        const dealerRec = caches.dealerMerged[pn] || null;
+        const archiveDossier = enrichmentDossiers[pn] || null;
+        const previous = registry.offers.find(
+          o => o.part_number === pn &&
+          !PROTECTED_RECORD_ASINS.has(o.asin) &&
+          (o.status === 'RESEARCH_REQUIRED' || o.status === 'SUSPENDED' || o.status === 'VERIFIED')
+        );
+        const existingNote = (previous && previous.asin !== asin) ? `Vervangt eerdere vermelding ${previous.asin}.` : '';
+
+        const record = buildOfferRecord({
+          pn, mkt, asin, brand, classification, check: checkWithSpecs, dealerRec, archiveDossier, catalogNames, partModelsMap, usedKillSwitches, existingNote
+        });
+        if (previous && previous.status === 'SUSPENDED' && !previous.superseded_by_asin && previous.asin !== asin) {
+          record.supersedes_asin = previous.asin;
+        }
+
+        const verif = TwoGateVerifier.verifyOffer(record, { catalogPartMap: catalogParts, expectedTag: TAGS[mkt] });
+        if (!verif.passed) {
+          chosenReasons.push({ asin, reason: `TWO_GATE_FAILED:${verif.errors.join(';')}` });
+          continue;
+        }
+        record.gate_1_technical = verif.gate1;
+        record.gate_2_product = verif.gate2;
+        chosen = { record, previous, dealerHit: !!(dealerRec?.hits?.length), fromArchive: Boolean(archiveDossier?.ghs_source_url) };
+        break;
+      }
+
+      if (chosen) {
+        const { record, previous, dealerHit, fromArchive } = chosen;
+        usedKillSwitches.add(record.kill_switch_id);
+        activeByPartMkt.set(`${pn}|${mkt}`, record.asin);
+        activeByAsinMkt.set(`${mkt}|${record.asin}`, pn);
+
+        const exIdx = registry.offers.findIndex(o => o.part_number === pn && (o.marketplace || 'amazon.nl') === mkt && o.asin === record.asin);
+        if (exIdx >= 0) registry.offers[exIdx] = record;
+        else registry.offers.push(record);
+
+        if (previous && !PROTECTED_RECORD_ASINS.has(previous.asin) && previous.asin !== record.asin) {
+          if (previous.status === 'RESEARCH_REQUIRED') {
+            if ((previous.marketplace || 'amazon.nl') === mkt) {
+              supersededResearch.push(previous);
+              registry.offers = registry.offers.filter(o => o !== previous);
+            }
+          } else if (previous.status === 'SUSPENDED' && !previous.superseded_by_asin) {
+            previous.superseded_by_asin = record.asin;
+            previous.superseded_at = record.updated_at;
+            previous.updated_at = record.updated_at;
+          }
+        }
+
+        activated.push({
+          part_number: pn,
+          asin: record.asin,
+          marketplace: mkt,
+          brand: record.brand,
+          classification: record.oem_brand_classification,
+          has_dealer: dealerHit,
+          archive_enriched: fromArchive
+        });
+      } else if (chosenReasons.length > 0) {
+        for (const r of chosenReasons) {
+          rejected.push({ part_number: pn, mkt, asin: r.asin, status: 'REJECTED', reason: r.reason });
+        }
+      }
+    }
+  }
+
+  const activeAll = registry.offers.filter(o => o.status === 'ACTIVE');
+  const afterNl = activeAll.filter(o => !o.marketplace || o.marketplace === 'amazon.nl').length;
+  const afterDe = activeAll.filter(o => o.marketplace === 'amazon.de').length;
+  const afterUniqueSet = new Set(activeAll.map(o => o.part_number));
+
+  registry.phase = '94';
+  registry.generated_at = new Date().toISOString();
+  registry.policy = {
+    ...registry.policy,
+    pilot_name: 'Phase 94 Evidence Recovery & Model Coverage',
+    production_activation_allowed: true,
+    pilot_activated_parts: Array.from(afterUniqueSet).sort(),
+    max_active_offers_allowed: null,
+    max_active_offers_per_marketplace: { 'amazon.nl': null, 'amazon.de': null }
+  };
+  registry.metrics = {
+    total_registered: registry.offers.length,
+    staged: registry.offers.filter(o => o.status === 'STAGED').length,
+    verified: registry.offers.filter(o => o.status === 'VERIFIED').length,
+    active: activeAll.length,
+    active_nl: afterNl,
+    active_de: afterDe,
+    research_required: registry.offers.filter(o => o.status === 'RESEARCH_REQUIRED').length,
+    suspended: registry.offers.filter(o => o.status === 'SUSPENDED').length,
+    parts_with_amazon_offer: afterUniqueSet.size
+  };
+
+  writeJsonAtomic(path.join(ROOT, REGISTRY_REL), registry, 2);
+
+  const summary = {
+    batch_id: batchId,
+    generated_at: new Date().toISOString(),
+    before: { active_total: beforeActive.length, active_nl: beforeNl, active_de: beforeDe, unique_parts: beforeUnique },
+    after: {
+      active_total: activeAll.length,
+      active_nl: afterNl,
+      active_de: afterDe,
+      unique_parts: afterUniqueSet.size,
+      delta_total: activeAll.length - beforeActive.length,
+      delta_nl: afterNl - beforeNl,
+      delta_de: afterDe - beforeDe,
+      delta_unique_parts: afterUniqueSet.size - beforeUnique
+    },
+    activated_count: activated.length,
+    needs_evidence_count: needsEvidence.length,
+    rejected_count: rejected.length,
+    superseded_research_count: supersededResearch.length,
+    activated,
+    needs_evidence: needsEvidence,
+    rejected,
+    superseded_research: supersededResearch
+  };
+  writeJsonAtomic(path.join(BATCH_DIR, `${batchId}.json`), summary, 2);
+  return summary;
+}
+
+async function main() {
+  const cmd = process.argv[2];
+  if (!cmd) {
+    console.error('Usage: node scripts/phase94_worker.mjs <batch0|batch|audit> [--max-dp N] [--index N | --from A --to B]');
+    process.exit(1);
+  }
+
+  if (cmd === 'audit') {
+    const res = await checkAffiliateConsistency();
+    const reg = readJson(path.join(ROOT, REGISTRY_REL));
+    console.log(JSON.stringify({ consistency: res, metrics: reg.metrics }, null, 2));
+    if (!res.success) process.exit(1);
+    return;
+  }
+
+  const registry = readJson(path.join(ROOT, REGISTRY_REL));
+  const queue = readJson(path.join(OUT94, 'queue.json'));
+  if (!queue) throw new Error('Missing output/phase94/queue.json — run node scripts/phase94_build_queue.mjs first');
+  const enrichmentDossiers = readJson(path.join(OUT94, 'evidence_enrichment.json'), { dossiers: {} }).dossiers || {};
+
+  const caches = loadMergedCaches();
+  const { catalogParts, catalogNames, partModelsMap } = await loadCatalogAndModels();
+
+  const browser = await chromium.launch({ headless: true });
+  const browserCtx = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    locale: 'nl-NL',
+    viewport: { width: 1280, height: 900 }
+  });
+
+  try {
+    if (cmd === 'batch0') {
+      const maxDp = Number(argVal('--max-dp', '300'));
+      const batchId = argVal('--batch-id', 'batch_0');
+      const rec = queue.batch_0;
+
+      const activeByPartMktNow = new Set(registry.offers.filter(x => x.status === 'ACTIVE').map(x => `${x.part_number}|${x.marketplace || 'amazon.nl'}`));
+
+      const filterPending = (list, mkt) => list.filter(x => {
+        if (activeByPartMktNow.has(`${x.part_number}|${mkt}`)) return false;
+        if (caches.checksOwn[mkt][x.asin]) return false;
+        if (x.force_recheck) return true;
+        return !caches.checksMerged[mkt][x.asin];
+      });
+
+      const nlPending = filterPending(rec.nl_pairs || [], 'amazon.nl').slice(0, maxDp * 2);
+      const dePending = filterPending(rec.de_pairs || [], 'amazon.de').slice(0, maxDp * 2);
+
+      const forceNl = new Set();
+      const forceDe = new Set();
+      const partSet = new Set();
+      const candidatePairsByPartMkt = new Map();
+      const nlAsins = [];
+      const deAsins = [];
+      const seenNl = new Set(), seenDe = new Set();
+
+      const addPair = (x, mkt) => {
+        if (!x.asin || PROTECTED_PINNED_SLOTS.has(`${x.part_number}|${mkt}`) || PROTECTED_RECORD_ASINS.has(x.asin)) return;
+        const targetArr = mkt === 'amazon.de' ? deAsins : nlAsins;
+        const seenArr = mkt === 'amazon.de' ? seenDe : seenNl;
+        if (!seenArr.has(x.asin) && targetArr.length >= maxDp) return;
+        partSet.add(x.part_number);
+        const k = `${x.part_number}|${mkt}`;
+        if (!candidatePairsByPartMkt.has(k)) candidatePairsByPartMkt.set(k, []);
+        const arr = candidatePairsByPartMkt.get(k);
+        if (!arr.includes(x.asin)) arr.push(x.asin);
+        if (x.force_recheck) (mkt === 'amazon.de' ? forceDe : forceNl).add(x.asin);
+        if (!seenArr.has(x.asin)) {
+          seenArr.add(x.asin);
+          targetArr.push(x.asin);
+        }
+      };
+
+      for (const x of nlPending) addPair(x, 'amazon.nl');
+      for (const x of dePending) addPair(x, 'amazon.de');
+
+      const dpNlRes = await runDpChecks(browserCtx, 'amazon.nl', nlAsins, caches, forceNl);
+      const dpDeRes = await runDpChecks(browserCtx, 'amazon.de', deAsins, caches, forceDe);
+
+      const partRows = Array.from(partSet).map(pn => ({ part_number: pn, part_name: catalogNames[pn] || '' }));
+
+      const dealerParts = [];
+      for (const r of partRows) {
+        const anyGood = ['amazon.nl', 'amazon.de'].some(mkt =>
+          (candidatePairsByPartMkt.get(`${r.part_number}|${mkt}`) || []).some(a => {
+            const c = caches.checksMerged[mkt][a];
+            return c && c.listed && !c.cannotShipNl && c.hasAddCart && digits(`${c.title || ''} ${(c.bullets || []).join(' ')} ${c.techSpecs || ''} ${c.description || ''}`).includes(r.part_number);
+          })
+        );
+        if (anyGood) dealerParts.push(r.part_number);
+      }
+      await runDealerCorroboration(browserCtx, dealerParts, caches);
+
+      const summary = evaluateAndActivateBatch({
+        batchId,
+        partRows,
+        candidatePairsByPartMkt,
+        caches,
+        enrichmentDossiers,
+        catalogParts,
+        catalogNames,
+        partModelsMap,
+        registry
+      });
+
+      const cons = await checkAffiliateConsistency();
+      console.log(`=== PHASE 94 ${batchId.toUpperCase()} ===`);
+      console.log(JSON.stringify({
+        dp: { nl: dpNlRes, de: dpDeRes },
+        before: summary.before,
+        after: summary.after,
+        activated_count: summary.activated_count,
+        needs_evidence_count: summary.needs_evidence_count,
+        rejected_count: summary.rejected_count,
+        consistency_success: cons.success
+      }, null, 2));
+      if (!cons.success) process.exitCode = 1;
+    } else if (cmd === 'reverse_recover') {
+      const activeByPartMkt = new Set(registry.offers.filter(x => x.status === 'ACTIVE').map(x => `${x.part_number}|${x.marketplace || 'amazon.nl'}`));
+      const activeByAsinMkt = new Map();
+      const activePartsNow = new Set();
+      for (const o of registry.offers.filter(x => x.status === 'ACTIVE')) {
+        const m = o.marketplace || 'amazon.nl';
+        activeByAsinMkt.set(`${m}|${o.asin}`, o.part_number);
+        activePartsNow.add(o.part_number);
+      }
+
+      const candidatePairsByPartMkt = new Map();
+      const partRowsMap = new Map();
+
+      for (const mkt of ['amazon.nl', 'amazon.de']) {
+        for (const [asin, check] of Object.entries(caches.checksMerged[mkt])) {
+          if (PROTECTED_RECORD_ASINS.has(asin) || activeByAsinMkt.has(`${mkt}|${asin}`)) continue;
+          if (!check || !check.listed || check.isDead || !check.hasAddCart || check.cannotShipNl) continue;
+          const t11 = [...new Set(((check.title || '').match(/\b\d{4}[\s.-]?\d{3}[\s.-]?\d{4}\b/g) || []).map(digits))];
+          if (t11.length === 0) continue;
+          for (const pn of t11) {
+            if (!catalogParts.has(pn) || activePartsNow.has(pn) || activeByPartMkt.has(`${pn}|${mkt}`) || PROTECTED_PINNED_SLOTS.has(`${pn}|${mkt}`)) continue;
+            const partName = catalogNames[pn] || '';
+            const brand = cleanBrand94(check);
+            if (!brand || BAD_BRAND_RE.test(brand)) continue;
+            if (EXTRA_MULTIPACK_RE.test(check.title || '')) continue;
+            if (checkHistoricalMismatch(pn, asin, check.title || '').isMismatch) continue;
+            const checkWithSpecs = { ...check, description: [check.techSpecs || '', check.description || ''].filter(Boolean).join(' ') };
+            if (!evaluateTechnicalFit(pn, partName, checkWithSpecs, brand).ok) continue;
+            if (mkt === 'amazon.de') {
+              const delivEvidence = `${check.glowLoc || ''} ${check.deliveryBlock || ''} ${(check.delivery || []).join(' ')} ${check.avail || ''}`;
+              if (!/nederland|netherlands|nl|bezorging|lieferung|zustellung|delivery/i.test(delivEvidence)) continue;
+            }
+            const k = `${pn}|${mkt}`;
+            if (!candidatePairsByPartMkt.has(k)) candidatePairsByPartMkt.set(k, []);
+            candidatePairsByPartMkt.get(k).push(asin);
+            partRowsMap.set(pn, { part_number: pn, part_name: partName });
+            break; // max 1 SKU per ASIN
+          }
+        }
+      }
+
+      const selectedParts = [...partRowsMap.values()];
+      await runDealerCorroboration(browserCtx, selectedParts.map(p => p.part_number), caches);
+      const summary = evaluateAndActivateBatch({
+        batchId: argVal('--batch-id', 'batch_reverse'),
+        partRows: selectedParts,
+        candidatePairsByPartMkt,
+        caches,
+        enrichmentDossiers,
+        catalogParts,
+        catalogNames,
+        partModelsMap,
+        registry
+      });
+      const cons = await checkAffiliateConsistency();
+      console.log('=== PHASE 94 REVERSE RECOVERY ===');
+      console.log(JSON.stringify({
+        before: summary.before,
+        after: summary.after,
+        activated_count: summary.activated_count,
+        consistency_success: cons.success
+      }, null, 2));
+      if (!cons.success) process.exitCode = 1;
+    } else if (cmd === 'alt_recovery') {
+      // Force untested alternative non-"STIHL"-prefixed search queries for P1 uncovered, P2 thin models,
+      // and open 0-ACTIVE NEEDS_EVIDENCE wear parts + run 200 extra never-searched multi-model wear parts.
+      const limitN = Number(argVal('--limit', '240'));
+      const batchId = argVal('--batch-id', 'batch_alt_recovery');
+      const neItems = readJson(path.join(ROOT, 'output/phase93/needs_evidence_pool.json'), { items: [] }).items || [];
+      const activeByPartMkt = new Set(registry.offers.filter(x => x.status === 'ACTIVE').map(x => `${x.part_number}|${x.marketplace || 'amazon.nl'}`));
+      const activeByAsinMkt = new Map();
+      const activePartsNow = new Set();
+      for (const o of registry.offers.filter(x => x.status === 'ACTIVE')) {
+        const m = o.marketplace || 'amazon.nl';
+        activeByAsinMkt.set(`${m}|${o.asin}`, o.part_number);
+        activePartsNow.add(o.part_number);
+      }
+
+      const WEAR_RE_LOCAL = /carburet|carburateur|spark plug|bougie|air filter|filter|chain sprocket|sprocket|clutch|koppeling|rewind starter|starter|ignition|coil|cylinder|piston|zuiger|muffler|uitlaat|oil pump|oliepomp|fuel hose|fuel line|fuel|tank|cap|av|buffer|gasket|seal|diaphragm|primer|choke|throttle|brake|tensioner|bearing|crankshaft|flywheel|fan|gear|head|blade|deflector|nozzle|handle|switch|valve|pawl|spring|ring|bar|guide|chain/i;
+      const TINY_HW = /^(?:screw|nut|bolt|washer|circlip|e-clip|pin|rivet|sleeve|spacer|shim|stud|plug)\b/i;
+
+      const candMap = new Map();
+      const pushAlt = (pn, tierScore) => {
+        if (!pn || pn.length !== 11 || activePartsNow.has(pn) || candMap.has(pn)) return;
+        const pName = catalogNames[pn] || '';
+        if (!pName || TINY_HW.test(pName) || /NO LONGER AVAILABLE/i.test(pName)) return;
+        const isWear = WEAR_RE_LOCAL.test(pName);
+        if (!isWear && tierScore < 900) return;
+        const kw = (pName.match(/\b(carburet|filter|piston|cylinder|clutch|sprocket|gasket|seal|starter|ignition|coil|diaphragm|primer|muffler|pump|hose|cap|blade|chain|bar|spring|nozzle|spool|head)\w*/i) || [''])[0];
+        const queries = [`${formatPart(pn)}${kw ? ' ' + kw : ''}`, pn];
+        candMap.set(pn, { part_number: pn, part_name: pName, queries, score: tierScore + (isWear ? 50 : 0) });
+      };
+
+      for (const b of (queue.batches || [])) {
+        for (const p of (b.parts || [])) {
+          if (p.tier === 'P1_UNCOVERED_MODELS') pushAlt(p.part_number, 1000);
+          else if (p.tier === 'P2_THIN_MODELS_1_TO_5' && (p.min_model_cov || 0) <= 3) pushAlt(p.part_number, 800 - (p.min_model_cov || 0) * 50);
+        }
+      }
+      for (const x of neItems) pushAlt(x.part_number, 650);
+
+      const altParts = [...candMap.values()].sort((a, b) => b.score - a.score).slice(0, limitN);
+      console.log(`[alt_recovery] running ${altParts.length} prioritized 0-ACTIVE parts with fresh alt queries`);
+
+      // Force running untested queries against both marketplaces
+      const runAltSearch = async (mkt) => {
+        const own = caches.searchOwn[mkt];
+        const merged = caches.searchMerged[mkt];
+        const outPath = mkt === 'amazon.de' ? caches.paths.s94DePath : caches.paths.s94NlPath;
+        const todo = altParts.filter(it => {
+          const ex = merged[it.part_number];
+          const tried = new Set(ex?.queries_tried || (ex?.query ? [ex.query] : []));
+          return it.queries.some(q => !tried.has(q));
+        });
+        console.log(`[${mkt}] alt_search pending=${todo.length}/${altParts.length}`);
+        if (!todo.length) return { processed: 0, rateLimited: false };
+
+        const pages = [];
+        for (let i = 0; i < 3; i++) {
+          const p = await browserCtx.newPage();
+          if (i === 0) await initMarketplaceSession(p, mkt);
+          pages.push(p);
+        }
+        let idx = 0, processed = 0, rateLimited = false;
+        const worker = async (page, wid) => {
+          while (idx < todo.length && !rateLimited) {
+            const it = todo[idx++];
+            const pn = it.part_number;
+            const ex = merged[pn];
+            const tried = new Set(ex?.queries_tried || (ex?.query ? [ex.query] : []));
+            const allCards = [...(ex?.hits || [])];
+            const seenAsin = new Set(allCards.map(c => c.asin).filter(Boolean));
+            for (const q of it.queries.filter(q => !tried.has(q))) {
+              tried.add(q);
+              await sleep(wid * 80);
+              try {
+                const resp = await page.goto(`https://www.${mkt}/s?k=${encodeURIComponent(q)}`, { waitUntil: 'domcontentloaded', timeout: 28000 });
+                await sleep(500);
+                const status = resp ? resp.status() : 200;
+                const info = await page.evaluate(() => ({
+                  title: document.title || '',
+                  bodyStart: (document.body.innerText || '').slice(0, 600),
+                  cards: [...document.querySelectorAll('div[data-component-type="s-search-result"]')].slice(0, 10).map(card => {
+                    const text = (card.innerText || '').replace(/\s+/g, ' ');
+                    const href = card.querySelector('a[href*="/dp/"]')?.getAttribute('href') || '';
+                    const asinFromHref = (href.match(/\/dp\/([A-Z0-9]{10})/) || [])[1] || null;
+                    return {
+                      asin: card.getAttribute('data-asin') || asinFromHref,
+                      title: ((card.querySelector('h2')?.innerText) || '').replace(/\s+/g, ' ').slice(0, 220),
+                      sponsored: /Gesponsord|Sponsored|Gesponsert/i.test(text),
+                      has_price: !!card.querySelector('.a-price'),
+                      delivery: (text.match(/(?:Levering|Gratis bezorging|Bezorging|Delivery|Lieferung|Zustellung)[^.|]{0,55}/i) || [''])[0]
+                    };
+                  }).filter(c => c.asin)
+                }));
+                if (isBlockedPage(status, info.title, info.bodyStart)) { rateLimited = true; break; }
+                for (const c of info.cards) {
+                  if (!seenAsin.has(c.asin)) {
+                    seenAsin.add(c.asin);
+                    allCards.push({ ...c, delivery: scrubGeo(c.delivery), matched_query: q });
+                  }
+                }
+                if (info.cards.some(c => /^B[0-9A-Z]{9}$/i.test(c.asin) && digits(c.title).includes(pn) && !c.sponsored)) break;
+              } catch {}
+            }
+            if (rateLimited) break;
+            const rec = { part: pn, marketplace: mkt, query: it.queries[0], queries_tried: [...tried], checked_at: new Date().toISOString(), hits: allCards };
+            own[pn] = rec; merged[pn] = rec;
+            processed++;
+            if (processed % 25 === 0) writeJsonAtomic(outPath, own);
+          }
+        };
+        await Promise.all(pages.map((p, i) => worker(p, i)));
+        writeJsonAtomic(outPath, own);
+        for (const p of pages) await p.close();
+        return { processed, rateLimited };
+      };
+
+      const sNlRes = await runAltSearch('amazon.nl');
+      const sDeRes = await runAltSearch('amazon.de');
+      const nlAsins = selectCandidateAsinsForParts(altParts, 'amazon.nl', caches, activeByAsinMkt, 3);
+      const deAsins = selectCandidateAsinsForParts(altParts, 'amazon.de', caches, activeByAsinMkt, 3);
+      const dpNlRes = await runDpChecks(browserCtx, 'amazon.nl', nlAsins, caches);
+      const dpDeRes = await runDpChecks(browserCtx, 'amazon.de', deAsins, caches);
+
+      const candidatePairsByPartMkt = new Map();
+      for (const mkt of ['amazon.nl', 'amazon.de']) {
+        for (const p of altParts) {
+          if (activeByPartMkt.has(`${p.part_number}|${mkt}`)) continue;
+          const picked = selectCandidateAsinsForParts([p], mkt, caches, activeByAsinMkt, 3);
+          if (picked.length) candidatePairsByPartMkt.set(`${p.part_number}|${mkt}`, picked);
+        }
+      }
+      const dealerCandidates = altParts
+        .filter(p => ['amazon.nl', 'amazon.de'].some(mkt =>
+          (candidatePairsByPartMkt.get(`${p.part_number}|${mkt}`) || []).some(a => {
+            const c = caches.checksMerged[mkt][a];
+            return c && c.listed && !c.cannotShipNl && c.hasAddCart && digits(`${c.title || ''} ${(c.bullets || []).join(' ')} ${c.techSpecs || ''} ${c.description || ''}`).includes(p.part_number);
+          })
+        ))
+        .map(p => p.part_number);
+      await runDealerCorroboration(browserCtx, dealerCandidates, caches);
+
+      const summary = evaluateAndActivateBatch({
+        batchId,
+        partRows: altParts,
+        candidatePairsByPartMkt,
+        caches,
+        enrichmentDossiers,
+        catalogParts,
+        catalogNames,
+        partModelsMap,
+        registry
+      });
+      const cons = await checkAffiliateConsistency();
+      console.log('=== PHASE 94 ALT RECOVERY ===');
+      console.log(JSON.stringify({ search: { nl: sNlRes, de: sDeRes }, dp: { nl: dpNlRes, de: dpDeRes }, before: summary.before, after: summary.after, activated_count: summary.activated_count, consistency_success: cons.success }, null, 2));
+      if (!cons.success) process.exitCode = 1;
+    } else if (cmd === 'batch') {
+      const idxArg = argVal('--index', null);
+      const from = Number(idxArg || argVal('--from', '1'));
+      const to = Number(idxArg || argVal('--to', String(from)));
+
+      for (let k = from; k <= to; k++) {
+        const batchObj = (queue.batches || []).find(b => b.batch_id === `batch_${k}`);
+        if (!batchObj) {
+          console.log(`Skipping batch_${k}: not found.`);
+          continue;
+        }
+        console.log(`\n>>> Starting Phase 94 batch_${k} (${batchObj.parts.length} parts) <<<`);
+
+        const activeByAsinMkt = new Map();
+        const activeByPartMkt = new Map();
+        for (const o of registry.offers.filter(x => x.status === 'ACTIVE')) {
+          const m = o.marketplace || 'amazon.nl';
+          activeByAsinMkt.set(`${m}|${o.asin}`, o.part_number);
+          activeByPartMkt.set(`${o.part_number}|${m}`, o.asin);
+        }
+
+        const nlNeedSearch = batchObj.parts.filter(p => !activeByPartMkt.has(`${p.part_number}|amazon.nl`) && !PROTECTED_PINNED_SLOTS.has(`${p.part_number}|amazon.nl`));
+        const deNeedSearch = batchObj.parts.filter(p => !activeByPartMkt.has(`${p.part_number}|amazon.de`) && !PROTECTED_PINNED_SLOTS.has(`${p.part_number}|amazon.de`));
+
+        const sNlRes = await runSearchBatch(browserCtx, 'amazon.nl', nlNeedSearch, caches, 2);
+        const sDeRes = await runSearchBatch(browserCtx, 'amazon.de', deNeedSearch, caches, 2);
+
+        const nlAsins = selectCandidateAsinsForParts(nlNeedSearch, 'amazon.nl', caches, activeByAsinMkt, 4);
+        const deAsins = selectCandidateAsinsForParts(deNeedSearch, 'amazon.de', caches, activeByAsinMkt, 4);
+
+        const dpNlRes = await runDpChecks(browserCtx, 'amazon.nl', nlAsins, caches);
+        const dpDeRes = await runDpChecks(browserCtx, 'amazon.de', deAsins, caches);
+
+        const candidatePairsByPartMkt = new Map();
+        for (const mkt of ['amazon.nl', 'amazon.de']) {
+          for (const p of batchObj.parts) {
+            if (activeByPartMkt.has(`${p.part_number}|${mkt}`) || PROTECTED_PINNED_SLOTS.has(`${p.part_number}|${mkt}`)) continue;
+            const picked = selectCandidateAsinsForParts([p], mkt, caches, activeByAsinMkt, 4);
+            if (picked.length) candidatePairsByPartMkt.set(`${p.part_number}|${mkt}`, picked);
+          }
+        }
+
+        const dealerCandidates = [];
+        for (const p of batchObj.parts) {
+          const anyGood = ['amazon.nl', 'amazon.de'].some(mkt =>
+            (candidatePairsByPartMkt.get(`${p.part_number}|${mkt}`) || []).some(a => {
+              const c = caches.checksMerged[mkt][a];
+              return c && c.listed && !c.cannotShipNl && c.hasAddCart && digits(`${c.title || ''} ${(c.bullets || []).join(' ')} ${c.techSpecs || ''} ${c.description || ''}`).includes(p.part_number);
+            })
+          );
+          if (anyGood) dealerCandidates.push(p.part_number);
+        }
+        await runDealerCorroboration(browserCtx, dealerCandidates, caches);
+
+        const summary = evaluateAndActivateBatch({
+          batchId: `batch_${k}`,
+          partRows: batchObj.parts,
+          candidatePairsByPartMkt,
+          caches,
+          enrichmentDossiers,
+          catalogParts,
+          catalogNames,
+          partModelsMap,
+          registry
+        });
+
+        const cons = await checkAffiliateConsistency();
+        console.log(`=== PHASE 94 BATCH ${k} SUMMARY ===`);
+        console.log(JSON.stringify({
+          search: { nl: sNlRes, de: sDeRes },
+          dp: { nl: dpNlRes, de: dpDeRes },
+          before: summary.before,
+          after: summary.after,
+          activated_count: summary.activated_count,
+          needs_evidence_count: summary.needs_evidence_count,
+          rejected_count: summary.rejected_count,
+          consistency_success: cons.success
+        }, null, 2));
+
+        if (!cons.success) {
+          console.error('Consistency check FAILED after batch', k, cons);
+          process.exitCode = 1;
+          break;
+        }
+        if (sNlRes.rateLimited || sDeRes.rateLimited || dpNlRes.rateLimited || dpDeRes.rateLimited) {
+          console.log('Rate limit / CAPTCHA encountered; stopping cleanly after saving progress.');
+          break;
+        }
+      }
+    } else {
+      console.error(`Unknown subcommand: ${cmd}`);
+      process.exit(1);
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

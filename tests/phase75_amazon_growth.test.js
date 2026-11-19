@@ -190,7 +190,10 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'Greenstar', 'HNULGVI', 'Klauer', 'LMSAWK', 'LatoYard', 'Mavrik',
       'Outdoor Spares', 'SAOIGEJUA', 'Savior', 'Sbeite', 'Spdtmhc',
       'ToolsEvery', 'Tufgo', 'VOANZO', 'Vectzeta', 'Vortiva', 'XHAJCSJWGD',
-      'ZHUUNOZ', 'Zoeyilan', 'shiosheng'
+      'ZHUUNOZ', 'Zoeyilan', 'shiosheng',
+      // Phase 94 expansion brands: verified live single-unit listings carrying the exact STIHL number.
+      'Alnaeson', 'CbErFVK', 'EcoLivzen', 'FUMHEUF', 'HXLSDYGP', 'LiteTour',
+      'Micpointik', 'PENSERAR', 'ZEMNLO'
     ]);
 
     for (const offer of activeOffers) {

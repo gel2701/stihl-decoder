@@ -33,7 +33,7 @@ const deSearch = read('output/phase87_2/search_hits_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase872Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.2:/.test(o.status_reason || ''));
-const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.[23]|Phase 8[89]|Phase 9[023]):/.test(o.status_reason || ''));
+const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.[23]|Phase 8[89]|Phase 9[0234]):/.test(o.status_reason || ''));
 
 test('Phase 87.2 — 1. registry expands to 150+ ACTIVE offers without losing prior offers', () => {
   assert.ok(registryDoc.offers.length >= 216);

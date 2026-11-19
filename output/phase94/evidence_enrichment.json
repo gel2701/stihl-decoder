@@ -1,0 +1,4612 @@
+{
+  "phase": "94",
+  "generated_at": "2026-11-18T23:16:29.215Z",
+  "verified_baseline": {
+    "amazon_active": 2723,
+    "amazon_nl": 1325,
+    "amazon_de": 1398,
+    "amazon_unique_parts": 1691,
+    "ebay_active": 1773,
+    "ebay_unique_parts": 220,
+    "combined_unique_parts": 1802,
+    "phase93_moved_to_needs_evidence": 734,
+    "open_needs_evidence_slots": 812,
+    "open_needs_evidence_unique_parts": 490
+  },
+  "archive_sources": {
+    "ghs_ledger_unique_parts": 5709,
+    "sqlite_fitment_evidence_unique_parts": 17737,
+    "local_manual_documents_indexed": 1790
+  },
+  "enrichment_summary": {
+    "open_needs_evidence_parts_enriched": 490,
+    "with_ghs_authoritative_source": 189,
+    "with_sqlite_fitment_evidence": 490
+  },
+  "dossiers": {
+    "42281602901": {
+      "part_number": "42281602901",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4228-160-2901-genuine-stihl-hs45-clutch-drum-4228-160-2901.html",
+      "ghs_models": [
+        "HS 45"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-45-Hedgetrimmers-Spare-Parts/P783141"
+    },
+    "56050071029": {
+      "part_number": "56050071029",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/7118-genuine-stihl-13-64-5-2mm-chainsaw-chain-sharpening-kit-036-ms311-ms362.html",
+      "ghs_models": [
+        "031"
+      ],
+      "fitment_models_count": 32,
+      "fitment_evidence_url": "https://www.gardenhirespares.co.uk/7118-genuine-stihl-13-64-5-2mm-chainsaw-chain-sharpening-kit-036-ms311-ms362.html"
+    },
+    "56050071028": {
+      "part_number": "56050071028",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/7117-genuine-stihl-3-16-4-8mm-chainsaw-chain-sharpening-kit-024-ms240-ms261.html",
+      "ghs_models": [
+        "024"
+      ],
+      "fitment_models_count": 17,
+      "fitment_evidence_url": "https://www.gardenhirespares.co.uk/7117-genuine-stihl-3-16-4-8mm-chainsaw-chain-sharpening-kit-024-ms240-ms261.html"
+    },
+    "41477901704": {
+      "part_number": "41477901704",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4147-790-1704-genuine-stihl-fs131-fsa130-km131-bike-handlebar-4147-790-1704.html",
+      "ghs_models": [
+        "FS 131"
+      ],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RGA-140-Cordless-Weed-Remover-Spare-Parts/P783226"
+    },
+    "41480071700": {
+      "part_number": "41480071700",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-5610-C-EM-Brush-Cutter-Clearing-Saw-Attachment-Spare-Parts/P787735"
+    },
+    "07811201118": {
+      "part_number": "07811201118",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ht-km-b-angle-drive.html",
+      "ghs_models": [
+        "HT-KM",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130 R",
+        "KM 130",
+        "KM 85 R",
+        "KM 90"
+      ],
+      "fitment_models_count": 41,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HTE-60-Electric-Pole-Pruner-Spare-Parts/P782932"
+    },
+    "00009302616": {
+      "part_number": "00009302616",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/lawn-garden-parts/grass-trimmer-brushcutter-parts/strimmer-brushcutter-accessories/strimmer-line/premium-nylon-line/stihl-nylon-line.html",
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-Mowinghead-Autocut-46-2-Spare-Parts/P787679"
+    },
+    "00009302644": {
+      "part_number": "00009302644",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/6406-genuine-stihl-3-0mm-x-55m-strimmer-line-square.html",
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-Mowinghead-Autocut-46-2-Spare-Parts/P787679"
+    },
+    "11357913100": {
+      "part_number": "11357913100",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782642"
+    },
+    "42383587700": {
+      "part_number": "42383587700",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/4594-stihl-ts410-ts420-fuel-hose-pipe.html",
+      "ghs_models": [
+        "TS 410"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-500i-A-Cut-Off-Machines-TS-Spare-Parts/P783935"
+    },
+    "00009975515": {
+      "part_number": "00009975515",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-251-Gasoline-Chainsaw-Spare-Parts/P782596"
+    },
+    "11236402076": {
+      "part_number": "11236402076",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "41807903405": {
+      "part_number": "41807903405",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-r-m-handle.html",
+      "ghs_models": [
+        "KM 100 R",
+        "KM 110 R",
+        "KM 56 RC-E",
+        "KM 90",
+        "KM 94 RC-E",
+        "KR 85"
+      ],
+      "fitment_models_count": 59,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-94-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783253"
+    },
+    "42821801103": {
+      "part_number": "42821801103",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4282-180-1103-genuine-stihl-br500-br550-br600-throttle-cable-4282-180-1103.html",
+      "ghs_models": [
+        "BR 500"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-600-Blower-Spare-Parts/P783990"
+    },
+    "00006421223": {
+      "part_number": "00006421223",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/0000-642-1207-genuine-stihl-rim-sprocket-0-404-7t.html",
+      "ghs_models": [
+        "034"
+      ],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-W-M-Tronic-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782678"
+    },
+    "00008902300": {
+      "part_number": "00008902300",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km110-r-q-tools-extras.html",
+      "ghs_models": [
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 56 RC-E",
+        "KM 85 R",
+        "KM 85",
+        "KR 85"
+      ],
+      "fitment_models_count": 115,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-881-Gasoline-Chainsaw-Spare-Parts/P782680"
+    },
+    "07838302000": {
+      "part_number": "07838302000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bf-d-bf-gear-head.html",
+      "ghs_models": [
+        "BF",
+        "HT-KM",
+        "KB",
+        "KB-KM",
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R"
+      ],
+      "fitment_models_count": 152,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-2301-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P787660"
+    },
+    "11176403800": {
+      "part_number": "11176403800",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1117-640-3800-genuine-stihl-pickup-filter.html",
+      "ghs_models": [],
+      "fitment_models_count": 40,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-881-Gasoline-Chainsaw-Spare-Parts/P782680"
+    },
+    "11351412200": {
+      "part_number": "11351412200",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782642"
+    },
+    "95030039850": {
+      "part_number": "95030039850",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fs-b-gear-head-18-2017.html",
+      "ghs_models": [
+        "FS",
+        "HL-KM 0",
+        "HL-KM 30"
+      ],
+      "fitment_models_count": 53,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HLE-71-K-Short-Shaft-Electronic-Hedge-Cutters-Spare-Parts/P783217"
+    },
+    "07811201117": {
+      "part_number": "07811201117",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bc-km-b-bc-km-cultivator.html",
+      "ghs_models": [
+        "BC-KM",
+        "BF",
+        "FCB-KM 4137",
+        "FCS-4137",
+        "FCS-KM 4137",
+        "FS",
+        "FS-MM",
+        "KB"
+      ],
+      "fitment_models_count": 80,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-55-Multiengines-Spare-Parts/P783302"
+    },
+    "41331290901": {
+      "part_number": "41331290901",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 25,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "11436402000": {
+      "part_number": "11436402000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/forestry-chainsaw-parts-accessories/forestry-chinese-chainsaw-acc-chainsaw-accessories/forestry-stihl-sprocket-bearings-chainsaw-sprockets-bearings/forestry-stihl-sprocket-bearings-search-by-brand/stihl-chainsaw-sprockets/stihl-3-8-lp-chain-sprockets.html",
+      "ghs_models": [
+        "MS 231"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-251-Gasoline-Chainsaw-Spare-Parts/P782596"
+    },
+    "41441900400": {
+      "part_number": "41441900400",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km56-rc-e-b-rewind-starter-km-56-c.html",
+      "ghs_models": [
+        "KM 56 RC-E"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-56-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783248"
+    },
+    "11251201622": {
+      "part_number": "11251201622",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1125-120-1622-genuine-stihl-ms340-ms360c-air-filter-fleece-1125-120-1622.html",
+      "ghs_models": [
+        "MS 340"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-360-C-Gasoline-Chainsaw-Spare-Parts/P782639"
+    },
+    "11221201621": {
+      "part_number": "11221201621",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1122-120-1621-genuine-stihl-064-066-ms640-air-filter-1122-120-1621.html",
+      "ghs_models": [
+        "064"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-640-Gasoline-Chainsaw-Spare-Parts/P782673"
+    },
+    "41801400602": {
+      "part_number": "41801400602",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4180-140-0602-genuine-stihl-fs130-muffler-4180-140-0602.html",
+      "ghs_models": [
+        "FS 130"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-130-R-Loop-Handle-Brushcutters-Spare-Parts/P783036"
+    },
+    "95030035290": {
+      "part_number": "95030035290",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 25,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MB-8580-Lawn-Mower-Spare-Parts/P784454"
+    },
+    "42827900301": {
+      "part_number": "42827900301",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-800-C-E-ErgoStart-Easy2Start-Blower-Spare-Parts/P783992"
+    },
+    "44046823101": {
+      "part_number": "44046823101",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BT-309-Augers-Drills-Spare-Parts/P783948"
+    },
+    "63097020102": {
+      "part_number": "63097020102",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-70-EVO-Robotic-Mowers-IMOW-Spare-Parts/P783473"
+    },
+    "42297086300": {
+      "part_number": "42297086300",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SHE-71-Electric-Shredder-Vacuums-Spare-Parts/P784016"
+    },
+    "95030036560": {
+      "part_number": "95030036560",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kr85-j-support-frame-flexible-shaft.html",
+      "ghs_models": [
+        "KR 85",
+        "FS 81"
+      ],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-96-Brushcutters-Spare-Parts/P783023"
+    },
+    "11331201603": {
+      "part_number": "11331201603",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1133-120-1603-genuine-stihl-ms270-ms280-air-filter-1133-120-1603.html",
+      "ghs_models": [
+        "MS 270"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-280-Gasoline-Chainsaw-Spare-Parts/P782623"
+    },
+    "11116402002": {
+      "part_number": "11116402002",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-076-S-Version-with-Larger-Piston-Diam-Gasoline-Chainsaw-Spare-Parts/P782797"
+    },
+    "11291400602": {
+      "part_number": "11291400602",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-200-T-Gasoline-Chainsaw-Spare-Parts/P782576"
+    },
+    "12516421200": {
+      "part_number": "12516421200",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1251-642-1200-genuine-stihl-chain-sprocket-1-4-6t.html",
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-200-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782826"
+    },
+    "42374001307": {
+      "part_number": "42374001307",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-87-T-Hedgetrimmers-Trimming-Blade-Spare-Parts/P783164"
+    },
+    "42414001311": {
+      "part_number": "42414001311",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+    },
+    "41800800401": {
+      "part_number": "41800800401",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/0000-640-2002-genuine-stihl-chain-sprocket-3-8-picco.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-131-Kombiengines-Spare-Parts/P783259"
+    },
+    "41800801606": {
+      "part_number": "41800801606",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-c-muffler-air-filter.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 15,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-131-Kombiengines-Spare-Parts/P783259"
+    },
+    "00003500533": {
+      "part_number": "00003500533",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-c-rewind-starter-fuel-tank.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 130",
+        "KM 130 R",
+        "KM 90 R",
+        "MS 310"
+      ],
+      "fitment_models_count": 61,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-800-C-B-Battery-Chainsaw-Spare-Parts/P782811"
+    },
+    "41808903400": {
+      "part_number": "41808903400",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fcb-km-4137-a-fcb-km-drive-tube-assembly.html",
+      "ghs_models": [
+        "FCB-KM 4137",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 56 RC-E"
+      ],
+      "fitment_models_count": 66,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-KM-Kombitools-Spare-Parts/P783289"
+    },
+    "11280801635": {
+      "part_number": "11280801635",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-080-1635-genuine-stihl-ms461-shroud-1128-080-1635.html",
+      "ghs_models": [
+        "MS 461"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "42381400610": {
+      "part_number": "42381400610",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4238-140-0610-genuine-stihl-ts410-ts420-exhaust-muffler-4238-140-0610-limited-stock-left.html",
+      "ghs_models": [
+        "TS 410"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "11447901702": {
+      "part_number": "11447901702",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1144-790-1702-genuine-stihl-ms661-handlebar-1144-790-1700.html",
+      "ghs_models": [
+        "MS 661"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782677"
+    },
+    "11447901700": {
+      "part_number": "11447901700",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1144-790-1700-genuine-stihl-handlebar-ms661.html",
+      "ghs_models": [
+        "MS 651"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.gardenhirespares.co.uk/1144-790-1700-genuine-stihl-handlebar-ms661.html"
+    },
+    "42377106051": {
+      "part_number": "42377106051",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/8049-stihl-hs81t-hs82t-hsa94t-600mm-24-blade-set.html",
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-94-T-Cordless-Hedgetimmers-Trimming-Blade-Spare-Parts/P783184"
+    },
+    "42377106054": {
+      "part_number": "42377106054",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/stihl-hedgetrimmer-blades.html",
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-94-R-Cordless-Hedgetimmers-Cutting-Blade-Spare-Parts/P783183"
+    },
+    "41401801109": {
+      "part_number": "41401801109",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4140-180-1109-genuine-stihl-fs55-km55-throttle-cable-4140-180-1109.html",
+      "ghs_models": [
+        "FS 55"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-55-Kombiengines-Spare-Parts/P783244"
+    },
+    "41401801100": {
+      "part_number": "41401801100",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HL-45-Extended-Reach-Hedge-Trimmers-Spare-Parts/P783196"
+    },
+    "42410071003": {
+      "part_number": "42410071003",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SHE-71-Electric-Shredder-Vacuums-Spare-Parts/P784016"
+    },
+    "41441801101": {
+      "part_number": "41441801101",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4144-180-1101-genuine-stihl-fs56-fs70-km56-throttle-cable-4144-180-1101.html",
+      "ghs_models": [
+        "FS 56"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-56-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783248"
+    },
+    "41141240800": {
+      "part_number": "41141240800",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-65-Brushcutters-Spare-Parts/P782993"
+    },
+    "42241401000": {
+      "part_number": "42241401000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4224-140-1000-genuine-stihl-ts700-ts800-filter-cover-4224-140-1000.html",
+      "ghs_models": [
+        "TS 700"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "42381401000": {
+      "part_number": "42381401000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-500i-A-Cut-Off-Machines-TS-Spare-Parts/P783935"
+    },
+    "40087102100": {
+      "part_number": "40087102100",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-56-Cordless-Trimmers-Spare-Parts/P783057"
+    },
+    "00001903400": {
+      "part_number": "00001903400",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/shop-by-product/two-stroke-engine-parts/two-stroke-recoil-starters-parts/two-stroke-recoil-handles/two-stroke-stihl-recoil-handles.html",
+      "ghs_models": [],
+      "fitment_models_count": 21,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KW-85-Sweeper-Drums-Spare-Parts/P784018"
+    },
+    "41441900407": {
+      "part_number": "41441900407",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-70-RC-E-ErgoStart-Easy2Start-Loop-Handle-Brushcutters-Spare-Parts/P782995"
+    },
+    "11371400606": {
+      "part_number": "11371400606",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-193-TC-E-ErgoStart-Easy2Start-Tophandle-Gasoline-Chainsaw-Spare-Parts/P782572"
+    },
+    "42037016102": {
+      "part_number": "42037016102",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "49105005400": {
+      "part_number": "49105005400",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    },
+    "95030030210": {
+      "part_number": "95030030210",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-192-T-Gasoline-Chainsaw-Spare-Parts/P782570"
+    },
+    "95030030240": {
+      "part_number": "95030030240",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-61-Hedgetrimmers-Spare-Parts/P783147"
+    },
+    "97710210921": {
+      "part_number": "97710210921",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 20,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-500-Cut-Off-Saw-Spare-Parts/P830560"
+    },
+    "63367041000": {
+      "part_number": "63367041000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MB-465-Lawn-Mower-Spare-Parts/P784461"
+    },
+    "11484001305": {
+      "part_number": "11484001305",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-212-Gasoline-Chainsaw-Spare-Parts/P782587"
+    },
+    "47097035900": {
+      "part_number": "47097035900",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se100-c-se-100-electric-motor-filter.html",
+      "ghs_models": [
+        "SE 100",
+        "SE 50",
+        "SE 60",
+        "SE 61 E",
+        "SE 61",
+        "SE 62",
+        "SE 80",
+        "SE 90"
+      ],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SE-90-Vacuum-Cleaner-Spare-Parts/P784112"
+    },
+    "11231201650": {
+      "part_number": "11231201650",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1123-120-1650-genuine-stihl-ms210-ms210c-ms230-ms230c-ms250-ms250c-air-filter-1123-120-1650.html",
+      "ghs_models": [
+        "MS 210"
+      ],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "11236402077": {
+      "part_number": "11236402077",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1123-640-2077-genuine-stihl-chain-sprocket-1-4-8t.html",
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "11281400600": {
+      "part_number": "11281400600",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-440-Gasoline-Chainsaw-Spare-Parts/P782656"
+    },
+    "11074007000": {
+      "part_number": "11074007000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+    },
+    "00003500532": {
+      "part_number": "00003500532",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/7001-genuine-stihl-hs86r-hs86t-ht56c-fuel-tank-cap.html",
+      "ghs_models": [
+        "FS 40"
+      ],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-291-Gasoline-Chainsaw-Spare-Parts/P782630"
+    },
+    "00009302619": {
+      "part_number": "00009302619",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/5918-genuine-stihl-3-0mm-x-168m-strimmer-line-square.html",
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-Mowinghead-Autocut-46-2-Spare-Parts/P787679"
+    },
+    "42011410300": {
+      "part_number": "42011410300",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1639-stihl-ts360-air-filter-set.html",
+      "ghs_models": [
+        "TS 360"
+      ],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "48667018301": {
+      "part_number": "48667018301",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/4866-701-8301-genuine-stihl-flat-nozzle-for-bga-100-bga-56.html",
+      "ghs_models": [
+        "BGA 100"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-86-Cordless-Blower-Spare-Parts/P783997"
+    },
+    "11276642200": {
+      "part_number": "11276642200",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-b-motor-housing.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "41477109003": {
+      "part_number": "41477109003",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-90-4117-Brushcutters-Spare-Parts/P783018"
+    },
+    "11207909600": {
+      "part_number": "11207909600",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-190-T-Gasoline-Chainsaw-Spare-Parts/P782568"
+    },
+    "11171628906": {
+      "part_number": "11171628906",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-381-Gasoline-Chainsaw-Spare-Parts/P782807"
+    },
+    "00009615116": {
+      "part_number": "00009615116",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-045-AVSE-Anti-Vibration-Electronic-Ignition-Electronic-Ignition-Gasoline-Chainsaw-Spare-Parts/P782769"
+    },
+    "45206020900": {
+      "part_number": "45206020900",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-700-C-B-Quick-Chain-Tensioner-Battery-Chainsaw-Spare-Parts/P782810"
+    },
+    "11281902900": {
+      "part_number": "11281902900",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-f-fan-housing-with-rewind-starter.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-400-Cut-Off-Machines-TS-Spare-Parts/P783927"
+    },
+    "90223411090": {
+      "part_number": "90223411090",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 42,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "41197109012": {
+      "part_number": "41197109012",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 55,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "92202601100": {
+      "part_number": "92202601100",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 39,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-500-Cut-Off-Saw-Spare-Parts/P830560"
+    },
+    "00009610601": {
+      "part_number": "00009610601",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-f-clutch-fan-housing.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 131 R",
+        "KM 90 R",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 32,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-94-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783253"
+    },
+    "41307109000": {
+      "part_number": "41307109000",
+      "reason": "OUT_OF_STOCK_OR_NO_BUYBOX",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km56-rc-e-r-tools-extras.html",
+      "ghs_models": [
+        "KM 56 RC-E"
+      ],
+      "fitment_models_count": 36,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TE1000-Lawn-Trimmer-Spare-Parts/P784655"
+    },
+    "41470071700": {
+      "part_number": "41470071700",
+      "reason": "ASIN_ALREADY_OWNED_BY_41471410300",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-461-C-EM-L-ErgoStart-Easy2Start-M-Tronic-Long-Shaft-Clearing-Saws-Spare-Parts/P783103"
+    },
+    "41400074100": {
+      "part_number": "41400074100",
+      "reason": "ASIN_ALREADY_OWNED_BY_41471410300",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.stihl.nl/nl/c/service-sets-97200"
+    },
+    "11301402800": {
+      "part_number": "11301402800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-018-Gasoline-Chainsaw-Spare-Parts/P782699"
+    },
+    "11231412300": {
+      "part_number": "11231412300",
+      "reason": "BAD_OR_MISSING_BRAND:Generic",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-h-carburetor-box-cover-air-filter.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-P-840-Water-Pumps-Spare-Parts/P783952"
+    },
+    "42831290900": {
+      "part_number": "42831290900",
+      "reason": "BAD_OR_MISSING_BRAND:Generic",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-800-C-E-ErgoStart-Easy2Start-Blower-Spare-Parts/P783992"
+    },
+    "00006421221": {
+      "part_number": "00006421221",
+      "reason": "BAD_OR_MISSING_BRAND:Generic",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-045-AVSE-Anti-Vibration-Electronic-Ignition-Electronic-Ignition-Gasoline-Chainsaw-Spare-Parts/P782769"
+    },
+    "41801290903": {
+      "part_number": "41801290903",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 90",
+        "KM 90 R"
+      ],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "11356603000": {
+      "part_number": "11356603000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-C-B-Quick-Chain-Tensioner-Gasoline-Chainsaw-Spare-Parts/P782648"
+    },
+    "11416640501": {
+      "part_number": "11416640501",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-3000-C-O-Battery-Chainsaw-Spare-Parts/P782838"
+    },
+    "41161223002": {
+      "part_number": "41161223002",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "30036506503": {
+      "part_number": "30036506503",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st3003-650-6503-genuine-stihl-ms440-ms460-stop-depth-wheel-3003-650-6503.html",
+      "ghs_models": [
+        "MS 440"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-R-Gasoline-Chainsaw-Spare-Parts/P782670"
+    },
+    "11301207101": {
+      "part_number": "11301207101",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301214700": {
+      "part_number": "11301214700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301250200": {
+      "part_number": "11301250200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-2-MIX-Gasoline-Chainsaw-Spare-Parts/P782563"
+    },
+    "11301290901": {
+      "part_number": "11301290901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301900700": {
+      "part_number": "11301900700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-C-BE-Quick-Chain-Tensioner-ErgoStart-Easy2Start-Gasoline-Chainsaw-Spare-Parts/P782562"
+    },
+    "11301214701": {
+      "part_number": "11301214701",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1130-121-4701-genuine-stihl-ms170-metering-diaphragm-1130-121-4701.html",
+      "ghs_models": [
+        "MS 170"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-170-2-MIX-Gasoline-Chainsaw-Spare-Parts/P782555"
+    },
+    "42411402802": {
+      "part_number": "42411402802",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4241-140-2802-genuine-stihl-bg86-sh86-filter-housing-4241-140-2802.html",
+      "ghs_models": [
+        "BG 86"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-D-Catalytic-Converter-Vacuum-Shredder-Spare-Parts/P784009"
+    },
+    "42411402803": {
+      "part_number": "42411402803",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4241-140-2803-genuine-stihl-sh86-sh86c-bg86-bg86c-filter-housing-4241-140-2803.html",
+      "ghs_models": [
+        "SH 86"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-Vacuum-Shredder-Spare-Parts/P784014"
+    },
+    "41191210700": {
+      "part_number": "41191210700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 37,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "42037117201": {
+      "part_number": "42037117201",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 68,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "00004910100": {
+      "part_number": "00004910100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-310-Gasoline-Chainsaw-Spare-Parts/P782633"
+    },
+    "97710212536": {
+      "part_number": "97710212536",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-500i-A-Cut-Off-Machines-TS-Spare-Parts/P783935"
+    },
+    "11281401009": {
+      "part_number": "11281401009",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1128-140-1009-genuine-stihl-filter-cover.html",
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "41800302001": {
+      "part_number": "41800302001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-a-cylinder-engine-pan.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R"
+      ],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-111-R-Wrap-Handle-Kombiengines-Spare-Parts/P783256"
+    },
+    "41800801809": {
+      "part_number": "41800801809",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-f-clutch-fan-housing.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 90 R"
+      ],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "41801215800": {
+      "part_number": "41801215800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-k-carburetor-c1q-s81.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "MM 55 C-E",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-55-Multiengines-Spare-Parts/P783302"
+    },
+    "41804001200": {
+      "part_number": "41804001200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-e-ignition-system.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 90"
+      ],
+      "fitment_models_count": 30,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "11381400655": {
+      "part_number": "11381400655",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1138-140-0655-genuine-stihl-ms441-muffler-1138-140-0655.html",
+      "ghs_models": [
+        "MS 441"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782658"
+    },
+    "11381605400": {
+      "part_number": "11381605400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1138-160-5400-genuine-stihl-ms441-ts440-brake-band-1138-160-5400.html",
+      "ghs_models": [
+        "MS 441"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "41197106900": {
+      "part_number": "41197106900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km110-r-q-tools-extras.html",
+      "ghs_models": [
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 85 R",
+        "KM 85"
+      ],
+      "fitment_models_count": 62,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "11251824505": {
+      "part_number": "11251824505",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-C-Q-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782647"
+    },
+    "11356483800": {
+      "part_number": "11356483800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-C-B-Quick-Chain-Tensioner-Gasoline-Chainsaw-Spare-Parts/P782648"
+    },
+    "11350209400": {
+      "part_number": "11350209400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782658"
+    },
+    "41371238900": {
+      "part_number": "41371238900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-r-d-air-filter-fuel-tank.html",
+      "ghs_models": [
+        "KM 85 R",
+        "KR 85",
+        "FR 85"
+      ],
+      "fitment_models_count": 23,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "42291212700": {
+      "part_number": "42291212700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-l-carburetor-c1q-s63-15-2003.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R"
+      ],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "41190343003": {
+      "part_number": "41190343003",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-280-K-Short-Shaft-Brushcutters-Spare-Parts/P783044"
+    },
+    "42010201201": {
+      "part_number": "42010201201",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+    },
+    "42374051000": {
+      "part_number": "42374051000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-86-T-Hedgetrimmers-Trimming-Blade-Spare-Parts/P783156"
+    },
+    "42374051001": {
+      "part_number": "42374051001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-87-T-Hedgetrimmers-Trimming-Blade-Spare-Parts/P783164"
+    },
+    "63781602901": {
+      "part_number": "63781602901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RM-7560-YC-Lawn-Mowers-Spare-Parts/P783350"
+    },
+    "11101291110": {
+      "part_number": "11101291110",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1110-129-1110-1110-129-1110-genuine-stihl-gasket.html",
+      "ghs_models": [
+        "FS 20"
+      ],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "41407166200": {
+      "part_number": "41407166200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bc-km-b-bc-km-cultivator.html",
+      "ghs_models": [
+        "BC-KM",
+        "BF"
+      ],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TE1000-Lawn-Trimmer-Spare-Parts/P784655"
+    },
+    "97710212550": {
+      "part_number": "97710212550",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782608"
+    },
+    "11421200621": {
+      "part_number": "11421200621",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-VW-M-Tronic-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782669"
+    },
+    "43146420800": {
+      "part_number": "43146420800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BT-45-Z-Augers-Drills-Spare-Parts/P783942"
+    },
+    "41494001313": {
+      "part_number": "41494001313",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-94-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783253"
+    },
+    "11231240800": {
+      "part_number": "11231240800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1123-124-0800-genuine-stihl-021-023-025-air-filter-1123-124-0800.html",
+      "ghs_models": [
+        "021"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-025-Gasoline-Chainsaw-Spare-Parts/P782707"
+    },
+    "41447900300": {
+      "part_number": "41447900300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4144-790-0300-genuine-stihl-fs56-fs70c-handle-4144-790-0300.html",
+      "ghs_models": [
+        "FS 56"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-56-Multiengines-Spare-Parts/P783303"
+    },
+    "42016781114": {
+      "part_number": "42016781114",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "49507007300": {
+      "part_number": "49507007300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-90-4951-Electric-Pressure-Washer-Spare-Parts/P784028"
+    },
+    "62417406100": {
+      "part_number": "62417406100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MH-6850-Tillers-MH-Spare-Parts/P783554"
+    },
+    "62418201100": {
+      "part_number": "62418201100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HB-6851-Tiller-Spare-Parts/P784692"
+    },
+    "62418201201": {
+      "part_number": "62418201201",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MH-6850-Tillers-MH-Spare-Parts/P783554"
+    },
+    "64604352401": {
+      "part_number": "64604352401",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSE-81-Electric-Hedgetimmers-Spare-Parts/P783195"
+    },
+    "00009303340": {
+      "part_number": "00009303340",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/lawn-garden-parts/grass-trimmer-brushcutter-parts/strimmer-brushcutter-accessories/strimmer-line/premium-nylon-line/stihl-nylon-line.html",
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-Mowing-head-TrimCut-C-52-2-Spare-Parts/P787696"
+    },
+    "00009303343": {
+      "part_number": "00009303343",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/0000-930-3343-genuine-stihl-bulk-pentagonal-line-red-2-7mm-x-80mm.html",
+      "ghs_models": [],
+      "fitment_models_count": 20,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-Mowinghead-Autocut-46-2-Spare-Parts/P787679"
+    },
+    "42293587702": {
+      "part_number": "42293587702",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4229-358-7702-genuine-stihl-bg45-bg55-bg85-fuel-hose-assembly-4229-358-7702.html",
+      "ghs_models": [
+        "BG 45"
+      ],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-85-Vacuum-Shredder-Spare-Parts/P784004"
+    },
+    "42011402800": {
+      "part_number": "42011402800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/4201-140-2800-genuine-stihl-housing-4201-140-2800.html",
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+    },
+    "42011801101": {
+      "part_number": "42011801101",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4201-180-1101-genuine-stihl-ts350-throttle-cable-4201-180-1101-only-2-left.html",
+      "ghs_models": [
+        "TS 350"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-360-Cut-Off-Machines-TS-Spare-Parts/P783925"
+    },
+    "61403502720": {
+      "part_number": "61403502720",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-40821-Ride-On-Mower-RT-Spare-Parts/P783496"
+    },
+    "41801418602": {
+      "part_number": "41801418602",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-a-engine-o-40-mm.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-131-Kombiengines-Spare-Parts/P783259"
+    },
+    "42037007100": {
+      "part_number": "42037007100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4203-700-7100-genuine-stihl-sr200-sr320-sr400-hose-clip-4203-700-7100.html",
+      "ghs_models": [
+        "SR 200"
+      ],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "11300343001": {
+      "part_number": "11300343001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1130-034-3001-genuine-stihl-017-piston-ring-37x1-5mm-1130-034-3001.html",
+      "ghs_models": [
+        "017"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-017-Gasoline-Chainsaw-Spare-Parts/P782697"
+    },
+    "11351401901": {
+      "part_number": "11351401901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1135-140-1901-genuine-stihl-ms341-air-filter-cover-1135-140-1901.html",
+      "ghs_models": [
+        "MS 341"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-341-Gasoline-Chainsaw-Spare-Parts/P782636"
+    },
+    "49015004702": {
+      "part_number": "49015004702",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se100-h-tools-extras.html",
+      "ghs_models": [
+        "SE 100",
+        "SE 120",
+        "SE 121",
+        "SE 122",
+        "SE 122 E",
+        "SE 50",
+        "SE 80",
+        "SE 90"
+      ],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SE-90-Vacuum-Cleaner-Spare-Parts/P784112"
+    },
+    "00009889100": {
+      "part_number": "00009889100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MT-61270-ZL-Ride-On-Mower-Spare-Parts/P784589"
+    },
+    "61703502700": {
+      "part_number": "61703502700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61703502720": {
+      "part_number": "61703502720",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61703502730": {
+      "part_number": "61703502730",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-50970-Ride-On-Mower-RT-Spare-Parts/P783500"
+    },
+    "61703580800": {
+      "part_number": "61703580800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707062200": {
+      "part_number": "61707062200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "62417171205": {
+      "part_number": "62417171205",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MH-6850-Tillers-MH-Spare-Parts/P783554"
+    },
+    "63757036601": {
+      "part_number": "63757036601",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MB-7801-GK-Lawn-Mowe-Spare-Parts/P784447"
+    },
+    "97710211500": {
+      "part_number": "97710211500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 55,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    },
+    "49155006602": {
+      "part_number": "49155006602",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-162-Electric-Pressure-Washer-Spare-Parts/P784068"
+    },
+    "11411222500": {
+      "part_number": "11411222500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/menu-parts-diagrams/stihl-parts-breakdowns/stihl-chainsaw-parts-diagrams/stihl-petrol-chainsaws-parts-breakdowns/stihl-petrol-chainsaw-new-models-parts/ms271-c-be-chainsaw-parts.html",
+      "ghs_models": [
+        "MS 271 C-BE"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-500i-A-Cut-Off-Machines-TS-Spare-Parts/P783935"
+    },
+    "41164007150": {
+      "part_number": "41164007150",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-550-L-Quiet-Clearing-Saws-Spare-Parts/P783112"
+    },
+    "41191400605": {
+      "part_number": "41191400605",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-280-K-Short-Shaft-Brushcutters-Spare-Parts/P783044"
+    },
+    "41800801808": {
+      "part_number": "41800801808",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4180-080-1808-genuine-stihl-fs310-fan-housing-4180-080-1808.html",
+      "ghs_models": [
+        "FS 310"
+      ],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-310-Clearing-Saws-Spare-Parts/P781726"
+    },
+    "42030343000": {
+      "part_number": "42030343000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-340-Mistblowers-Spare-Parts/P783229"
+    },
+    "92910210140": {
+      "part_number": "92910210140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fcs-km-4137-c-fcs-km-gear-head-32-2014.html",
+      "ghs_models": [
+        "FCS-KM 4137",
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 204,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-USG-Sharpeners-Spare-Parts/P782937"
+    },
+    "92220680900": {
+      "part_number": "92220680900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kb-a-kb-deflector.html",
+      "ghs_models": [
+        "KB",
+        "KB-KM",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 131 R",
+        "KM 56 RC-E",
+        "KM 90",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 118,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-56-Multiengines-Spare-Parts/P783303"
+    },
+    "94556210750": {
+      "part_number": "94556210750",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bf-d-bf-gear-head.html",
+      "ghs_models": [
+        "BF",
+        "FCB-KM 4137",
+        "FH-KM 145",
+        "FS",
+        "FS-MM",
+        "HL-KM 0",
+        "HL-KM 145",
+        "HL-KM 30"
+      ],
+      "fitment_models_count": 105,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RGA-140-Cordless-Weed-Remover-Spare-Parts/P783226"
+    },
+    "41237917400": {
+      "part_number": "41237917400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kb-a-kb-deflector.html",
+      "ghs_models": [
+        "KB",
+        "KB-KM",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 131 R",
+        "KM 56 RC-E",
+        "KM 90",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 92,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-56-Multiengines-Spare-Parts/P783303"
+    },
+    "41197186300": {
+      "part_number": "41197186300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km110-r-q-tools-extras.html",
+      "ghs_models": [
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 56 RC-E",
+        "KM 85 R",
+        "KM 85"
+      ],
+      "fitment_models_count": 72,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-31-Sprayers-Spare-Parts/P783240"
+    },
+    "90754784175": {
+      "part_number": "90754784175",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-c-muffler-air-filter.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 48,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-2301-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P787660"
+    },
+    "94556212150": {
+      "part_number": "94556212150",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 48,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "90754782995": {
+      "part_number": "90754782995",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-2301-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P787660"
+    },
+    "94556210570": {
+      "part_number": "94556210570",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 21,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "48514309800": {
+      "part_number": "48514309800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/4851-430-9800-genuine-stihl-locking-lever.html",
+      "ghs_models": [
+        "MSA 200 C-BQ",
+        "MSA 200"
+      ],
+      "fitment_models_count": 21,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-2301-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P787660"
+    },
+    "00007929600": {
+      "part_number": "00007929600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSE-61-Electric-Hedgetimmers-Spare-Parts/P783193"
+    },
+    "42447106900": {
+      "part_number": "42447106900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-450-Mistblowers-Spare-Parts/P783231"
+    },
+    "48674300501": {
+      "part_number": "48674300501",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-800-R-Cordless-Kombiengines-Spare-Parts/P783261"
+    },
+    "42555021000": {
+      "part_number": "42555021000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4255-502-1000-genuine-stihl-fan-jet-nozzle-80-015-4255-502-1000.html",
+      "ghs_models": [
+        "015"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-71-Sprayers-Spare-Parts/P783242"
+    },
+    "45216400500": {
+      "part_number": "45216400500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-56-Cordless-Hedgetimmers-Spare-Parts/P783176"
+    },
+    "00007026600": {
+      "part_number": "00007026600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4430-Cordless-Lawn-Mowers-Spare-Parts/P783400"
+    },
+    "61707031920": {
+      "part_number": "61707031920",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707035140": {
+      "part_number": "61707035140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707036410": {
+      "part_number": "61707036410",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "41800380801": {
+      "part_number": "41800380801",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-b-valve-timing-gear.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-131-Kombiengines-Spare-Parts/P783259"
+    },
+    "11080341501": {
+      "part_number": "11080341501",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-460-Cut-Off-Machines-TS-Spare-Parts/P783933"
+    },
+    "11166471806": {
+      "part_number": "11166471806",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSE-220-Electric-Chainsaw-Spare-Parts/P782857"
+    },
+    "11220071060": {
+      "part_number": "11220071060",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "00009511105": {
+      "part_number": "00009511105",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-f-clutch-fan-housing.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 90 R",
+        "MSA 200 C-BQ"
+      ],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-800-C-B-Battery-Chainsaw-Spare-Parts/P782811"
+    },
+    "41281820800": {
+      "part_number": "41281820800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-n-bike-handle.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 130",
+        "KM 85",
+        "KM 90"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-55-Multiengines-Spare-Parts/P783302"
+    },
+    "49005020911": {
+      "part_number": "49005020911",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 25,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-581-PLUS-Electric-Pressure-Washer-Spare-Parts/P784102"
+    },
+    "00001410300": {
+      "part_number": "00001410300",
+      "reason": "BAD_OR_MISSING_BRAND:empty",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11154048800": {
+      "part_number": "11154048800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1115-404-8800-genuine-stihl-cap.html",
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+    },
+    "41191212901": {
+      "part_number": "41191212901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-280-K-Short-Shaft-Brushcutters-Spare-Parts/P783044"
+    },
+    "11271605550": {
+      "part_number": "11271605550",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-d-chain-brake-muffler.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "11287903614": {
+      "part_number": "11287903614",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-790-3614-genuine-stihl-ms460-rescue-saw-wrap-around-handlebar-1128-790-3614.html",
+      "ghs_models": [
+        "MS 460"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "11230209400": {
+      "part_number": "11230209400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-C-B-Quick-Chain-Tensioner-Gasoline-Chainsaw-Spare-Parts/P782605"
+    },
+    "11231290901": {
+      "part_number": "11231290901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "11301210800": {
+      "part_number": "11301210800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-192-T-Gasoline-Chainsaw-Spare-Parts/P782570"
+    },
+    "11301215604": {
+      "part_number": "11301215604",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "90223411380": {
+      "part_number": "90223411380",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fcs-km-4137-c-fcs-km-gear-head-32-2014.html",
+      "ghs_models": [
+        "FCS-KM 4137",
+        "KM 100",
+        "KM 85",
+        "KW"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS9100i-Cut-Off-Machine-Spare-Parts/P787659"
+    },
+    "11066403801": {
+      "part_number": "11066403801",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-381-Gasoline-Chainsaw-Spare-Parts/P782807"
+    },
+    "11251627905": {
+      "part_number": "11251627905",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-C-Q-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782659"
+    },
+    "41281218900": {
+      "part_number": "41281218900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 31,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41407112500": {
+      "part_number": "41407112500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bc-km-a-bc-km-drive-tube-assembly.html",
+      "ghs_models": [
+        "BC-KM",
+        "BG-KM",
+        "FCS-KM 4137",
+        "FH-KM 145",
+        "FS-MM",
+        "HL-KM 135",
+        "HL-KM 145",
+        "HL-KM 30"
+      ],
+      "fitment_models_count": 45,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-KM-Kombitools-Spare-Parts/P783289"
+    },
+    "11101219200": {
+      "part_number": "11101219200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 17,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11241215000": {
+      "part_number": "11241215000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 17,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11251801503": {
+      "part_number": "11251801503",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-C-Q-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782641"
+    },
+    "93216300200": {
+      "part_number": "93216300200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kr85-h-fan-housing.html",
+      "ghs_models": [
+        "KR 85"
+      ],
+      "fitment_models_count": 25,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MT-795-Ride-On-Mower-Spare-Parts/P784605"
+    },
+    "95030035040": {
+      "part_number": "95030035040",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ht-km-b-angle-drive.html",
+      "ghs_models": [
+        "HT-KM"
+      ],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MB-555-S-Lawn-Mower-Spare-Parts/P784422"
+    },
+    "00009302213": {
+      "part_number": "00009302213",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-090-Gasoline-Chainsaw-Spare-Parts/P782804"
+    },
+    "11061952900": {
+      "part_number": "11061952900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-510-Cut-Off-Machines-TS-Spare-Parts/P783936"
+    },
+    "11061953200": {
+      "part_number": "11061953200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-510-Cut-Off-Machines-TS-Spare-Parts/P783936"
+    },
+    "11081223001": {
+      "part_number": "11081223001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11101214800": {
+      "part_number": "11101214800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11111215400": {
+      "part_number": "11111215400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11230343005": {
+      "part_number": "11230343005",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 10,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-230-Gasoline-Chainsaw-Spare-Parts/P782589"
+    },
+    "11451290900": {
+      "part_number": "11451290900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1145-129-0900-genuine-stihl-metering-gasket-1145-129-0900.html",
+      "ghs_models": [
+        "MS 170"
+      ],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-251-Gasoline-Chainsaw-Spare-Parts/P782596"
+    },
+    "47310071055": {
+      "part_number": "47310071055",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-661-PLUS-Electric-Pressure-Washer-Spare-Parts/P784106"
+    },
+    "61707064700": {
+      "part_number": "61707064700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "94626500900": {
+      "part_number": "94626500900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-202-Clearing-Saws-Spare-Parts/P783078"
+    },
+    "94626501300": {
+      "part_number": "94626501300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11281291100": {
+      "part_number": "11281291100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-640-Gasoline-Chainsaw-Spare-Parts/P782673"
+    },
+    "94168686630": {
+      "part_number": "94168686630",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 15,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11271621000": {
+      "part_number": "11271621000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-a-cylinder.html",
+      "ghs_models": [
+        "MS 310",
+        "029"
+      ],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "11271623200": {
+      "part_number": "11271623200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-c-oil-pump-clutch.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "42414058000": {
+      "part_number": "42414058000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km56-rc-e-e-ignition-system-clutch.html",
+      "ghs_models": [
+        "KM 56 RC-E",
+        "BG 56"
+      ],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+    },
+    "11281414001": {
+      "part_number": "11281414001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-880-Gasoline-Chainsaw-Spare-Parts/P782679"
+    },
+    "12504300500": {
+      "part_number": "12504300500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-230-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P783940"
+    },
+    "41441824500": {
+      "part_number": "41441824500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-56-Multiengines-Spare-Parts/P783303"
+    },
+    "41801223002": {
+      "part_number": "41801223002",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 85 R",
+        "KM 90",
+        "KM 90 R",
+        "KR 85",
+        "MM 55 C-E"
+      ],
+      "fitment_models_count": 29,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-85-Vacuum-Shredder-Spare-Parts/P784004"
+    },
+    "61700873000": {
+      "part_number": "61700873000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61703501501": {
+      "part_number": "61703501501",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61704302411": {
+      "part_number": "61704302411",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707036400": {
+      "part_number": "61707036400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "11101223200": {
+      "part_number": "11101223200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11223581800": {
+      "part_number": "11223581800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11251290901": {
+      "part_number": "11251290901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-381-Gasoline-Chainsaw-Spare-Parts/P782807"
+    },
+    "96459457510": {
+      "part_number": "96459457510",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-661-PLUS-Electric-Pressure-Washer-Spare-Parts/P784106"
+    },
+    "11111851900": {
+      "part_number": "11111851900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11116567700": {
+      "part_number": "11116567700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-090-Gasoline-Chainsaw-Spare-Parts/P782804"
+    },
+    "11151627900": {
+      "part_number": "11151627900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-056-S-Version-with-Larger-Piston-diam-Gasoline-Chainsaw-Spare-Parts/P782784"
+    },
+    "11216642800": {
+      "part_number": "11216642800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-340-Gasoline-Chainsaw-Spare-Parts/P782635"
+    },
+    "11221207200": {
+      "part_number": "11221207200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11221223205": {
+      "part_number": "11221223205",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11227909921": {
+      "part_number": "11227909921",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11240848900": {
+      "part_number": "11240848900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1124-084-8900-genuine-stihl-ms380-ms381-ring-1124-084-8900.html",
+      "ghs_models": [
+        "MS 380"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-381-Gasoline-Chainsaw-Spare-Parts/P782807"
+    },
+    "90363411070": {
+      "part_number": "90363411070",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-96-Brushcutters-Spare-Parts/P783023"
+    },
+    "90422161400": {
+      "part_number": "90422161400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-08-S-Cut-Off-Machines-TS-Spare-Parts/P783923"
+    },
+    "42263500900": {
+      "part_number": "42263500900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-190-T-Gasoline-Chainsaw-Spare-Parts/P782568"
+    },
+    "00001822100": {
+      "part_number": "00001822100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-800-R-Cordless-Kombiengines-Spare-Parts/P783261"
+    },
+    "00007163101": {
+      "part_number": "00007163101",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fs-d-cutting-tools-deflector-18-2017.html",
+      "ghs_models": [
+        "FS"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-Power-Tool-Attachments-Spare-Parts/P783294"
+    },
+    "61701625010": {
+      "part_number": "61701625010",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707021800": {
+      "part_number": "61707021800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707022210": {
+      "part_number": "61707022210",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "61707031750": {
+      "part_number": "61707031750",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "11241223000": {
+      "part_number": "11241223000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11320341501": {
+      "part_number": "11320341501",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-212-Gasoline-Chainsaw-Spare-Parts/P782587"
+    },
+    "42011211100": {
+      "part_number": "42011211100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-360-Cut-Off-Machines-TS-Spare-Parts/P783925"
+    },
+    "11211628000": {
+      "part_number": "11211628000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-C-Q-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782659"
+    },
+    "11216647301": {
+      "part_number": "11216647301",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-362-C-B-Quick-Chain-Tensioner-Gasoline-Chainsaw-Spare-Parts/P782648"
+    },
+    "11251801703": {
+      "part_number": "11251801703",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-441-C-Q-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782659"
+    },
+    "11270844100": {
+      "part_number": "11270844100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-a-cylinder.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "11271625800": {
+      "part_number": "11271625800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-d-chain-brake-muffler.html",
+      "ghs_models": [
+        "MS 310",
+        "MS 290"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "11276403800": {
+      "part_number": "11276403800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-c-oil-pump-clutch.html",
+      "ghs_models": [
+        "MS 310",
+        "MS 290"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "11281481200": {
+      "part_number": "11281481200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "49005006305": {
+      "part_number": "49005006305",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    },
+    "90073191420": {
+      "part_number": "90073191420",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "99910030548": {
+      "part_number": "99910030548",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-VH-440-Tiller-Spare-Parts/P784694"
+    },
+    "41341225000": {
+      "part_number": "41341225000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 16,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-85-Vacuum-Shredder-Spare-Parts/P784004"
+    },
+    "00009611406": {
+      "part_number": "00009611406",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "00009927105": {
+      "part_number": "00009927105",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-090-Gasoline-Chainsaw-Spare-Parts/P782804"
+    },
+    "00009970901": {
+      "part_number": "00009970901",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-090-G-Gearbox-Gasoline-Chainsaw-Spare-Parts/P782805"
+    },
+    "00009981801": {
+      "part_number": "00009981801",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st0000-998-1801-genuine-stihl-ms380-ms381-torsion-spring-0000-998-1801.html",
+      "ghs_models": [
+        "MS 380"
+      ],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-381-Gasoline-Chainsaw-Spare-Parts/P782807"
+    },
+    "11083505800": {
+      "part_number": "11083505800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1108-350-5800-genuine-stihl-ts08s-ms720-fuel-tank-vent-1108-350-5800.html",
+      "ghs_models": [
+        "MS 720"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-08-S-Cut-Off-Machines-TS-Spare-Parts/P783923"
+    },
+    "11097902200": {
+      "part_number": "11097902200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-090-G-Gearbox-Gasoline-Chainsaw-Spare-Parts/P782805"
+    },
+    "11111852001": {
+      "part_number": "11111852001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "00009531001": {
+      "part_number": "00009531001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-hl-km-0-d-gear-head-0.html",
+      "ghs_models": [
+        "HL-KM 0"
+      ],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HLE-71-K-Short-Shaft-Electronic-Hedge-Cutters-Spare-Parts/P783217"
+    },
+    "12044312500": {
+      "part_number": "12044312500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1204-431-2500-genuine-stihl-cable-clamp.html",
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TE1000-Lawn-Trimmer-Spare-Parts/P784655"
+    },
+    "41471229001": {
+      "part_number": "41471229001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-e-carburetor.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-131-Kombiengines-Spare-Parts/P783259"
+    },
+    "93070200200": {
+      "part_number": "93070200200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MT-795-Ride-On-Mower-Spare-Parts/P784605"
+    },
+    "93306300140": {
+      "part_number": "93306300140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-VH-550-Tiller-Spare-Parts/P784697"
+    },
+    "93306300510": {
+      "part_number": "93306300510",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "93714702683": {
+      "part_number": "93714702683",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-1200-R-Cordless-Kombiengines-Spare-Parts/P783262"
+    },
+    "41161212900": {
+      "part_number": "41161212900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 13,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "42411801500": {
+      "part_number": "42411801500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-800-C-E-ErgoStart-Easy2Start-Blower-Spare-Parts/P783992"
+    },
+    "42411824201": {
+      "part_number": "42411824201",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-800-C-E-ErgoStart-Easy2Start-Blower-Spare-Parts/P783992"
+    },
+    "42411824502": {
+      "part_number": "42411824502",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BR-800-C-E-ErgoStart-Easy2Start-Blower-Spare-Parts/P783992"
+    },
+    "11101229005": {
+      "part_number": "11101229005",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "95170035060": {
+      "part_number": "95170035060",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/9517-003-5060-genuine-stihl-cylindrical-roller-4x10-8.html",
+      "ghs_models": [],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSE-220-Electric-Chainsaw-Spare-Parts/P782857"
+    },
+    "11251623000": {
+      "part_number": "11251623000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-c-oil-pump-clutch.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-390-Gasoline-Chainsaw-Spare-Parts/P782652"
+    },
+    "42417068000": {
+      "part_number": "42417068000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4241-706-8000-genuine-stihl-sh56-sh56c-sh86-sh86c-screen-4241-706-8000.html",
+      "ghs_models": [
+        "SH 56"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-Vacuum-Shredder-Spare-Parts/P784014"
+    },
+    "42417922900": {
+      "part_number": "42417922900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+    },
+    "11286561500": {
+      "part_number": "11286561500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-656-1500-genuine-stihl-ms460-ms461-tank-guard-1128-656-1500.html",
+      "ghs_models": [
+        "MS 460"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "00001903403": {
+      "part_number": "00001903403",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-b-rewind-starter-muffler.html",
+      "ghs_models": [
+        "KM 85"
+      ],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KW-85-Sweeper-Drums-Spare-Parts/P784018"
+    },
+    "00004051007": {
+      "part_number": "00004051007",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km94-rc-e-b-engine-up-to-serial-number-514291126.html",
+      "ghs_models": [
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 20,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-VW-M-Tronic-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782669"
+    },
+    "11411214730": {
+      "part_number": "11411214730",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-291-Gasoline-Chainsaw-Spare-Parts/P782630"
+    },
+    "41171953400": {
+      "part_number": "41171953400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-76-Hedgetrimmers-Spare-Parts/P783150"
+    },
+    "41371824500": {
+      "part_number": "41371824500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41374421600": {
+      "part_number": "41374421600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41377901101": {
+      "part_number": "41377901101",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41377901350": {
+      "part_number": "41377901350",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41471900600": {
+      "part_number": "41471900600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/shop-by-product/two-stroke-engine-parts/two-stroke-recoil-starters-parts/two-stroke-recoil-springs/two-stroke-stihl-recoil-springs.html",
+      "ghs_models": [
+        "FS 240"
+      ],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-5610-C-EM-Brush-Cutter-Clearing-Saw-Attachment-Spare-Parts/P787735"
+    },
+    "41471950600": {
+      "part_number": "41471950600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-5610-C-EM-Brush-Cutter-Clearing-Saw-Attachment-Spare-Parts/P787735"
+    },
+    "41471958200": {
+      "part_number": "41471958200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-5610-C-EM-Brush-Cutter-Clearing-Saw-Attachment-Spare-Parts/P787735"
+    },
+    "41481900402": {
+      "part_number": "41481900402",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 19,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FS-5610-C-EM-Brush-Cutter-Clearing-Saw-Attachment-Spare-Parts/P787735"
+    },
+    "48544403001": {
+      "part_number": "48544403001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48667901004": {
+      "part_number": "48667901004",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-100-Cordless-Blower-Spare-Parts/P781719"
+    },
+    "91103191051": {
+      "part_number": "91103191051",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-71-Sprayers-Spare-Parts/P783242"
+    },
+    "95729300195": {
+      "part_number": "95729300195",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-200-Cordless-Blower-Spare-Parts/P783998"
+    },
+    "12524401500": {
+      "part_number": "12524401500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-4480-TC-Cordless-Lawn-Mowers-Spare-Parts/P783390"
+    },
+    "42447914600": {
+      "part_number": "42447914600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-450-Mistblowers-Spare-Parts/P783231"
+    },
+    "91040032960": {
+      "part_number": "91040032960",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-201-TC-M-M-Tronic-Tophandle-Gasoline-Chainsaw-Spare-Parts/P782580"
+    },
+    "07811101011": {
+      "part_number": "07811101011",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 7,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MI-6321-Robotic-Mower-Spare-Parts/P784535"
+    },
+    "48504322301": {
+      "part_number": "48504322301",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-130-R-Cordless-Kombiengines-Spare-Parts/P783263"
+    },
+    "42555026000": {
+      "part_number": "42555026000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "42555103903": {
+      "part_number": "42555103903",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "45216486700": {
+      "part_number": "45216486700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st4521-648-6700-genuine-stihl-hla56-hsa50-0-hsa56-slider-4521-648-6700.html",
+      "ghs_models": [
+        "HLA 56"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-56-Cordless-Hedgetimmers-Spare-Parts/P783176"
+    },
+    "12524040801": {
+      "part_number": "12524040801",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-161-T-Tophandle-Battery-Chainsaw-Spare-Parts/P782822"
+    },
+    "42555232000": {
+      "part_number": "42555232000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "42557083105": {
+      "part_number": "42557083105",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "42557083106": {
+      "part_number": "42557083106",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-71-Sprayers-Spare-Parts/P783242"
+    },
+    "45114005605": {
+      "part_number": "45114005605",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-45-Cordless-Hedgetimmers-Spare-Parts/P783173"
+    },
+    "45216425100": {
+      "part_number": "45216425100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-56-Cordless-Hedgetimmers-Spare-Parts/P783176"
+    },
+    "45217114800": {
+      "part_number": "45217114800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-56-Cordless-Hedgetimmers-Spare-Parts/P783176"
+    },
+    "45237700600": {
+      "part_number": "45237700600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-86-Cordless-Blower-Spare-Parts/P783997"
+    },
+    "48664328300": {
+      "part_number": "48664328300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HSA-94-T-Cordless-Hedgetimmers-Trimming-Blade-Spare-Parts/P783184"
+    },
+    "92082600700": {
+      "part_number": "92082600700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/9208-260-0700-genuine-stihl-hexagon-nut-din439-m5-04.html",
+      "ghs_models": [],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-71-Sprayers-Spare-Parts/P783242"
+    },
+    "48540071300": {
+      "part_number": "48540071300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48540071900": {
+      "part_number": "48540071900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544005900": {
+      "part_number": "48544005900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544008100": {
+      "part_number": "48544008100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544009400": {
+      "part_number": "48544009400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544301400": {
+      "part_number": "48544301400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544306700": {
+      "part_number": "48544306700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544306800": {
+      "part_number": "48544306800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48544401900": {
+      "part_number": "48544401900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48545000900": {
+      "part_number": "48545000900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48545033200": {
+      "part_number": "48545033200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48546003500": {
+      "part_number": "48546003500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48546404300": {
+      "part_number": "48546404300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48546703700": {
+      "part_number": "48546703700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48546762301": {
+      "part_number": "48546762301",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547002100": {
+      "part_number": "48547002100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547005600": {
+      "part_number": "48547005600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547005601": {
+      "part_number": "48547005601",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547011800": {
+      "part_number": "48547011800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547060200": {
+      "part_number": "48547060200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547088700": {
+      "part_number": "48547088700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547109003": {
+      "part_number": "48547109003",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547907700": {
+      "part_number": "48547907700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547908000": {
+      "part_number": "48547908000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48547982200": {
+      "part_number": "48547982200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48549677300": {
+      "part_number": "48549677300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SGA-85-Cordless-Sprayers-Spare-Parts/P783243"
+    },
+    "48666000202": {
+      "part_number": "48666000202",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-100-Cordless-Blower-Spare-Parts/P781719"
+    },
+    "48666020400": {
+      "part_number": "48666020400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-100-Cordless-Blower-Spare-Parts/P781719"
+    },
+    "48667063205": {
+      "part_number": "48667063205",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-100-Cordless-Blower-Spare-Parts/P781719"
+    },
+    "48667700600": {
+      "part_number": "48667700600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-BGA-100-Cordless-Blower-Spare-Parts/P781719"
+    },
+    "11201219200": {
+      "part_number": "11201219200",
+      "reason": "BAD_OR_MISSING_BRAND:Generisch",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 197,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "11251215000": {
+      "part_number": "11251215000",
+      "reason": "BAD_OR_MISSING_BRAND:Generisch",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 56 RC-E",
+        "KM 85",
+        "KM 85 R"
+      ],
+      "fitment_models_count": 151,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "11141217800": {
+      "part_number": "11141217800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 130,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11201227800": {
+      "part_number": "11201227800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km56-rc-e-j-carburetor-c1m-s267.html",
+      "ghs_models": [
+        "KM 56 RC-E",
+        "KM 85",
+        "KM 85 R",
+        "KR 85",
+        "MM 55 C-E",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 141,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "42031212700": {
+      "part_number": "42031212700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310",
+        "MS 240"
+      ],
+      "fitment_models_count": 40,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "93070210140": {
+      "part_number": "93070210140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/9307-021-0140-genuine-stihl-washer-6-4.html",
+      "ghs_models": [
+        "KW"
+      ],
+      "fitment_models_count": 112,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TSA-2301-Cordless-Cut-Off-Machines-TSA-Spare-Parts/P787660"
+    },
+    "93070210180": {
+      "part_number": "93070210180",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 111,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-VH-500-Tiller-Spare-Parts/P784695"
+    },
+    "00009891010": {
+      "part_number": "00009891010",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-e-ignition-system.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 53,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-880-Gasoline-Chainsaw-Spare-Parts/P782679"
+    },
+    "90083450960": {
+      "part_number": "90083450960",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-d-chain-brake-muffler.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 38,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SG-17-Mistblowers-Spare-Parts/P783232"
+    },
+    "90744783075": {
+      "part_number": "90744783075",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/9371-470-1060-genuine-stihl-cylindrical-pin-iso2338-2m6x8.html",
+      "ghs_models": [],
+      "fitment_models_count": 62,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TE1000-Lawn-Trimmer-Spare-Parts/P784655"
+    },
+    "94566213860": {
+      "part_number": "94566213860",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kr85-h-fan-housing.html",
+      "ghs_models": [
+        "KR 85"
+      ],
+      "fitment_models_count": 95,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-VH-550-Tiller-Spare-Parts/P784697"
+    },
+    "41161214800": {
+      "part_number": "41161214800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310",
+        "BR 340"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "00009741200": {
+      "part_number": "00009741200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-b-motor-housing.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 42,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSA-2201-TC-O-Cordless-Chainsaw-Spare-Parts/P787631"
+    },
+    "11201217800": {
+      "part_number": "11201217800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 85",
+        "KM 85 R",
+        "KM 90"
+      ],
+      "fitment_models_count": 78,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+    },
+    "11250848900": {
+      "part_number": "11250848900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-mm55-c-e-z-f-air-filter-fuel-tank.html",
+      "ghs_models": [
+        "MM 55 C-E",
+        "MS 310"
+      ],
+      "fitment_models_count": 42,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-481-Special-Purpose-Units-Spare-Parts/P783225"
+    },
+    "00009885211": {
+      "part_number": "00009885211",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-a-cylinder.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-M-Tronic-Gasoline-Chainsaw-Spare-Parts/P782677"
+    },
+    "92102611140": {
+      "part_number": "92102611140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-a-cylinder-engine-pan.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 91,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-USG-Sharpeners-Spare-Parts/P782937"
+    },
+    "41161214700": {
+      "part_number": "41161214700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "00009302208": {
+      "part_number": "00009302208",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-c-rewind-starter-fuel-tank.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 90 R",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 77,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-251-Gasoline-Chainsaw-Spare-Parts/P782596"
+    },
+    "00001227101": {
+      "part_number": "00001227101",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-e-carburetor.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 56 RC-E",
+        "KM 85",
+        "KM 85 R",
+        "KM 94 RC-E",
+        "KR 85"
+      ],
+      "fitment_models_count": 73,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-VW-M-Tronic-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782669"
+    },
+    "41161215000": {
+      "part_number": "41161215000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "11231229000": {
+      "part_number": "11231229000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 30,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-661-C-M-W-M-Tronic-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782678"
+    },
+    "11101215100": {
+      "part_number": "11101215100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 81,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "11271623000": {
+      "part_number": "11271623000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-c-ignition-system-clutch.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R",
+        "MS 310"
+      ],
+      "fitment_models_count": 56,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41161290902": {
+      "part_number": "41161290902",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 23,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-400-Mistblowers-Spare-Parts/P783228"
+    },
+    "11211625205": {
+      "part_number": "11211625205",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1121-162-5205-genuine-stihl-pin-1121-162-5205.html",
+      "ghs_models": [
+        "MS 240"
+      ],
+      "fitment_models_count": 37,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSE-220-Electric-Chainsaw-Spare-Parts/P782857"
+    },
+    "11201290905": {
+      "part_number": "11201290905",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 68,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "41401953400": {
+      "part_number": "41401953400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-c-rewind-starter-fuel-tank.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 56 RC-E",
+        "KM 90 R"
+      ],
+      "fitment_models_count": 72,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-200-Mistblowers-Spare-Parts/P783236"
+    },
+    "41307908450": {
+      "part_number": "41307908450",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-r-m-handle.html",
+      "ghs_models": [
+        "KM 100 R",
+        "KM 110 R",
+        "KM 131 R",
+        "KM 56 RC-E",
+        "KM 90",
+        "KM 94 RC-E",
+        "KR 85"
+      ],
+      "fitment_models_count": 72,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-800-R-Cordless-Kombiengines-Spare-Parts/P783261"
+    },
+    "41321226600": {
+      "part_number": "41321226600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km56-rc-e-j-carburetor-c1m-s267.html",
+      "ghs_models": [
+        "KM 56 RC-E",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 57,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-VW-M-Tronic-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782669"
+    },
+    "90223461070": {
+      "part_number": "90223461070",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-b-valve-timing-gear.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 69,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-55-Multiengines-Spare-Parts/P783302"
+    },
+    "11201223005": {
+      "part_number": "11201223005",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 51,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "00001410601": {
+      "part_number": "00001410601",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/0000-640-2002-genuine-stihl-chain-sprocket-3-8-picco.html",
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-881-Gasoline-Chainsaw-Spare-Parts/P782680"
+    },
+    "94566212660": {
+      "part_number": "94566212660",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fcb-km-4137-c-fcb-km-gear-head-50-2014.html",
+      "ghs_models": [
+        "FCB-KM 4137",
+        "FH-KM 145",
+        "FS",
+        "FS-MM",
+        "HL-KM 0",
+        "HL-KM 145",
+        "HL-KM 30",
+        "KR 85"
+      ],
+      "fitment_models_count": 80,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RGA-140-Cordless-Weed-Remover-Spare-Parts/P783226"
+    },
+    "11201290900": {
+      "part_number": "11201290900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 46,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-260-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782608"
+    },
+    "00009580518": {
+      "part_number": "00009580518",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-500i-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782672"
+    },
+    "11287918400": {
+      "part_number": "11287918400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "11131210800": {
+      "part_number": "11131210800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 44,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "92102600600": {
+      "part_number": "92102600600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se100-b-panel-switch.html",
+      "ghs_models": [
+        "SE 100",
+        "SE 200",
+        "SE 201"
+      ],
+      "fitment_models_count": 54,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-USG-Sharpeners-Spare-Parts/P782937"
+    },
+    "41337134110": {
+      "part_number": "41337134110",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-fs-d-cutting-tools-deflector-18-2017.html",
+      "ghs_models": [
+        "FS",
+        "FS-MM"
+      ],
+      "fitment_models_count": 63,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-90-R-Loop-Handle-Cordless-Trimmers-Spare-Parts/P783066"
+    },
+    "11236482202": {
+      "part_number": "11236482202",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1123-648-2202-genuine-stihl-adjusting-wheel.html",
+      "ghs_models": [],
+      "fitment_models_count": 36,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MSE-210-C-BQ-Quick-Chain-Tensioner-QuickStop-Super-Electric-Chainsaw-Spare-Parts/P782855"
+    },
+    "11281623202": {
+      "part_number": "11281623202",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "11231210800": {
+      "part_number": "11231210800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-j-carburetor-c1q-s157-c1q-s69-41-2017-45-2009.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R",
+        "MM 55 C-E",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 50,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "94606240500": {
+      "part_number": "94606240500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-kr85-h-fan-housing.html",
+      "ghs_models": [
+        "KR 85"
+      ],
+      "fitment_models_count": 54,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-USG-Sharpeners-Spare-Parts/P782937"
+    },
+    "11161223000": {
+      "part_number": "11161223000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 45,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "11291223001": {
+      "part_number": "11291223001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 20,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "11201217801": {
+      "part_number": "11201217801",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-k-carburetor-c1q-s81.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 85",
+        "KM 85 R",
+        "KR 85",
+        "MM 55 C-E",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 46,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "90990212770": {
+      "part_number": "90990212770",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st9099-021-2770-genuine-stihl-ms210c-ms230-ms230c-ms250-ms250c-ms461-ms881-s-tapping-screw-3-9x13-9099-021-2770.html",
+      "ghs_models": [
+        "MS 230"
+      ],
+      "fitment_models_count": 30,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TELESCOPIC-SHAFT-456-CM-Hand-Tool-Spare-Parts/P784339"
+    },
+    "11286641002": {
+      "part_number": "11286641002",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-664-1002-genuine-stihl-ms440-ms460-inner-side-plate-1128-664-1002.html",
+      "ghs_models": [
+        "MS 440"
+      ],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "90412160650": {
+      "part_number": "90412160650",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se50-b-electric-motor.html",
+      "ghs_models": [
+        "SE 50",
+        "SE 80",
+        "SE 90"
+      ],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-420-Mistblowers-Spare-Parts/P783230"
+    },
+    "90764782996": {
+      "part_number": "90764782996",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-360-Cut-Off-Machines-TS-Spare-Parts/P783925"
+    },
+    "90273181280": {
+      "part_number": "90273181280",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 47,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "00001957001": {
+      "part_number": "00001957001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 29,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-280-C-BQ-Quick-Chain-Tensioner-QuickStop-Super-Gasoline-Chainsaw-Spare-Parts/P782625"
+    },
+    "11271226701": {
+      "part_number": "11271226701",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782663"
+    },
+    "11287917200": {
+      "part_number": "11287917200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/1128-791-7200-genuine-stihl-sleeve.html",
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "90643411860": {
+      "part_number": "90643411860",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MT-640-1996-Ride-On-Mower-Spare-Parts/P784590"
+    },
+    "07510101110": {
+      "part_number": "07510101110",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 39,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-880-Gasoline-Chainsaw-Spare-Parts/P782679"
+    },
+    "59108904500": {
+      "part_number": "59108904500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-ms310-k-carburetor-hd-21.html",
+      "ghs_models": [
+        "MS 310"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "90083181280": {
+      "part_number": "90083181280",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 54,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "11281628000": {
+      "part_number": "11281628000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-162-8000-genuine-stihl-ms382-ms440-ms460-ms461-spring-hose-1128-162-8000.html",
+      "ghs_models": [
+        "MS 382"
+      ],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "11281821700": {
+      "part_number": "11281821700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-182-1700-genuine-stihl-ms440-ms460-ms461-slide-control-1128-182-1700.html",
+      "ghs_models": [
+        "MS 440"
+      ],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "11283507600": {
+      "part_number": "11283507600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-461-R-Wrap-Handle-Gasoline-Chainsaw-Spare-Parts/P782667"
+    },
+    "30036559200": {
+      "part_number": "30036559200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 5,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-462-C-M-R-Gasoline-Chainsaw-Spare-Parts/P782670"
+    },
+    "11104329200": {
+      "part_number": "11104329200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "90412160300": {
+      "part_number": "90412160300",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 26,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "93090210180": {
+      "part_number": "93090210180",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 48,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "00009980603": {
+      "part_number": "00009980603",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-r-c-ignition-system-clutch.html",
+      "ghs_models": [
+        "KM 85 R"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "11280848302": {
+      "part_number": "11280848302",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "49005021033": {
+      "part_number": "49005021033",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 39,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    },
+    "94606244031": {
+      "part_number": "94606244031",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 39,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MB-8580-Lawn-Mower-Spare-Parts/P784454"
+    },
+    "93306300180": {
+      "part_number": "93306300180",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 47,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-VH-550-Tiller-Spare-Parts/P784697"
+    },
+    "94606244030": {
+      "part_number": "94606244030",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 47,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61270-ZL-Ride-On-Mower-RT-Spare-Parts/P783509"
+    },
+    "41401227100": {
+      "part_number": "41401227100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-e-carburetor.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R",
+        "MM 55 C-E",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 41,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SH-86-Vacuum-Shredder-Spare-Parts/P784014"
+    },
+    "11201226705": {
+      "part_number": "11201226705",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 32,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-85-Hedgetrimmers-Spare-Parts/P783153"
+    },
+    "90744784140": {
+      "part_number": "90744784140",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 23,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-iMOW-70-Robotic-Mowers-IMOW-Spare-Parts/P783472"
+    },
+    "11304421602": {
+      "part_number": "11304421602",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 9,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-660-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782676"
+    },
+    "41291290902": {
+      "part_number": "41291290902",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "00001957000": {
+      "part_number": "00001957000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-b-rewind-starter-muffler.html",
+      "ghs_models": [
+        "KM 85",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MM-55-Multiengines-Spare-Parts/P783302"
+    },
+    "11211623000": {
+      "part_number": "11211623000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-c-ignition-system-clutch.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R"
+      ],
+      "fitment_models_count": 32,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "11071958200": {
+      "part_number": "11071958200",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11101223030": {
+      "part_number": "11101223030",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "11281621000": {
+      "part_number": "11281621000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 6,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-460-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782663"
+    },
+    "11300801800": {
+      "part_number": "11300801800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301213302": {
+      "part_number": "11301213302",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301214800": {
+      "part_number": "11301214800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301215401": {
+      "part_number": "11301215401",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301223001": {
+      "part_number": "11301223001",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301290900": {
+      "part_number": "11301290900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11301821002": {
+      "part_number": "11301821002",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11307910601": {
+      "part_number": "11307910601",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-180-Gasoline-Chainsaw-Spare-Parts/P782559"
+    },
+    "11281413201": {
+      "part_number": "11281413201",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1128-141-3201-genuine-stihl-ms440-exhaust-cooling-plate-1128-141-3201.html",
+      "ghs_models": [
+        "MS 440"
+      ],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-440-Gasoline-Chainsaw-Spare-Parts/P782656"
+    },
+    "90453191070": {
+      "part_number": "90453191070",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-581-PLUS-Electric-Pressure-Washer-Spare-Parts/P784102"
+    },
+    "90483190680": {
+      "part_number": "90483190680",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-se100-b-panel-switch.html",
+      "ghs_models": [
+        "SE 100",
+        "SE 200",
+        "SE 201"
+      ],
+      "fitment_models_count": 18,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SE-202-Vacuum-Cleaner-Spare-Parts/P784124"
+    },
+    "00009581000": {
+      "part_number": "00009581000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-f-clutch-fan-housing.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 131 R",
+        "KM 90 R",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 45,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-94-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783253"
+    },
+    "93306300120": {
+      "part_number": "93306300120",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 40,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-40821-Ride-On-Mower-RT-Spare-Parts/P783496"
+    },
+    "00009510600": {
+      "part_number": "00009510600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km111-r-f-clutch-fan-housing.html",
+      "ghs_models": [
+        "KM 111 R",
+        "KM 131",
+        "KM 131 R",
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 31,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-94-RC-E-ErgoStart-Easy2Start-Wrap-Handles-Kombiengines-Spare-Parts/P783253"
+    },
+    "41171210803": {
+      "part_number": "41171210803",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 38,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HS-85-Hedgetrimmers-Spare-Parts/P783153"
+    },
+    "90453191320": {
+      "part_number": "90453191320",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    },
+    "94410651910": {
+      "part_number": "94410651910",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-08-S-Cut-Off-Machines-TS-Spare-Parts/P783923"
+    },
+    "11231214700": {
+      "part_number": "11231214700",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 12,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-250-Gasoline-Chainsaw-Spare-Parts/P782604"
+    },
+    "00009677253": {
+      "part_number": "00009677253",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-bc-km-a-bc-km-drive-tube-assembly.html",
+      "ghs_models": [
+        "BC-KM",
+        "KR 85"
+      ],
+      "fitment_models_count": 38,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-FSA-4000-Cordless-Trimmer-Spare-Parts/P787634"
+    },
+    "90253135000": {
+      "part_number": "90253135000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 36,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-3390-Cordless-Lawn-Mowers-Spare-Parts/P783399"
+    },
+    "41804051000": {
+      "part_number": "41804051000",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-e-ignition-system.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 130 R",
+        "KM 90",
+        "BR 700"
+      ],
+      "fitment_models_count": 20,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "42261207100": {
+      "part_number": "42261207100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 25,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "42291215800": {
+      "part_number": "42291215800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-j-carburetor-c1q-s157-c1q-s69-41-2017-45-2009.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 27,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "92102600400": {
+      "part_number": "92102600400",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-350-Cut-Off-Machines-TS-Spare-Parts/P783924"
+    },
+    "92112601430": {
+      "part_number": "92112601430",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 22,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-760-Cut-Off-Machines-TS-Spare-Parts/P783937"
+    },
+    "92202600900": {
+      "part_number": "92202600900",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km94-rc-e-b-engine-up-to-serial-number-514291126.html",
+      "ghs_models": [
+        "KM 94 RC-E"
+      ],
+      "fitment_models_count": 23,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-800-Cut-Off-Machines-TS-Spare-Parts/P783939"
+    },
+    "91213190960": {
+      "part_number": "91213190960",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st9121-319-0960-genuine-stihl-stud-032-046-064-066-088-gs461-ms460-ms461-ms640-ms650-ms660-ms780-ms880-ms881-9121-319-0960.html",
+      "ghs_models": [
+        "032"
+      ],
+      "fitment_models_count": 14,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-881-Gasoline-Chainsaw-Spare-Parts/P782680"
+    },
+    "41800251100": {
+      "part_number": "41800251100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-b-valve-timing-gear.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "41800251600": {
+      "part_number": "41800251600",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-a-cylinder-engine-pan.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "41800290500": {
+      "part_number": "41800290500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-b-valve-timing-gear.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 131",
+        "KM 131 R"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "61700290500": {
+      "part_number": "61700290500",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 29,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RT-61271-ZL-Ride-On-Mower-RT-Spare-Parts/P783510"
+    },
+    "94636501100": {
+      "part_number": "94636501100",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 21,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-361-W-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782642"
+    },
+    "11103581800": {
+      "part_number": "11103581800",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 15,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-08-S-Cut-Off-Machines-TS-Spare-Parts/P783923"
+    },
+    "41341210802": {
+      "part_number": "41341210802",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-e-carburetor-4137-28.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R",
+        "KR 85",
+        "TS 410"
+      ],
+      "fitment_models_count": 35,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-TS-440-A-Electric-Water-Control-Cut-Off-Machines-TS-Spare-Parts/P783932"
+    },
+    "11283500851": {
+      "part_number": "11283500851",
+      "reason": "MPN_NOT_EXPLICIT_IN_TOP_TEXT",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 1,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-440-Gasoline-Chainsaw-Spare-Parts/P782656"
+    },
+    "41801214801": {
+      "part_number": "41801214801",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-h-carburetor-c1q-s110.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R",
+        "KM 130",
+        "KM 130 R",
+        "KM 90",
+        "KM 90 R"
+      ],
+      "fitment_models_count": 24,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-90-R-Wrap-Handles-Kombiengines-Spare-Parts/P783252"
+    },
+    "11281412204": {
+      "part_number": "11281412204",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 2,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-046-WVH-Carburetor-Heating-Handle-Heating-Gasoline-Chainsaw-Spare-Parts/P782776"
+    },
+    "41800201205": {
+      "part_number": "41800201205",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km100-a-cylinder-engine-pan.html",
+      "ghs_models": [
+        "KM 100",
+        "KM 100 R",
+        "KM 110 R"
+      ],
+      "fitment_models_count": 8,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KM-100-R-Wrap-Handle-Kombiengines-Spare-Parts/P783255"
+    },
+    "11401216900": {
+      "part_number": "11401216900",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/st1140-121-6900-genuine-stihl-ms311-ms362-ms391-baffle-1140-121-6900.html",
+      "ghs_models": [
+        "MS 311"
+      ],
+      "fitment_models_count": 3,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-391-Gasoline-Chainsaw-Spare-Parts/P782653"
+    },
+    "11401628004": {
+      "part_number": "11401628004",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 4,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-MS-400-C-M-Gasoline-Chainsaw-Spare-Parts/P782654"
+    },
+    "41401223600": {
+      "part_number": "41401223600",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km85-j-carburetor-c1q-s157-c1q-s69-41-2017-45-2009.html",
+      "ghs_models": [
+        "KM 85",
+        "KM 85 R",
+        "MM 55 Z"
+      ],
+      "fitment_models_count": 28,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SP-85-Special-Purpose-Units-Spare-Parts/P783223"
+    },
+    "41400071006": {
+      "part_number": "41400071006",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 11,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-HTA-85-Cordless-Pole-Pruner-Spare-Parts/P782926"
+    },
+    "61037047910": {
+      "part_number": "61037047910",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 72,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RMA-7650-V-Cordless-Lawn-Mowers-Spare-Parts/P783395"
+    },
+    "90744784545": {
+      "part_number": "90744784545",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 31,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-SR-450-Mistblowers-Spare-Parts/P783231"
+    },
+    "00009302241": {
+      "part_number": "00009302241",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": "https://www.gardenhirespares.co.uk/genuine-stihl-km110-r-q-tools-extras.html",
+      "ghs_models": [
+        "KM 110 R",
+        "KM 111 R",
+        "KM 130",
+        "KM 131",
+        "KM 56 RC-E",
+        "KM 85 R",
+        "KM 85"
+      ],
+      "fitment_models_count": 60,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-KMA-800-R-Cordless-Kombiengines-Spare-Parts/P783261"
+    },
+    "49005000100": {
+      "part_number": "49005000100",
+      "reason": "NOT_LISTED_HTTP_200",
+      "ghs_source_url": null,
+      "ghs_models": [],
+      "fitment_models_count": 37,
+      "fitment_evidence_url": "https://www.sparepartsworld.co.uk/Stihl-RE-98-Electric-Pressure-Washer-Spare-Parts/P784029"
+    }
+  }
+}
