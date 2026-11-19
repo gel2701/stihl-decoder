@@ -1,0 +1,77 @@
+{
+  "phase": "94",
+  "generated_at": "2026-11-19T02:03:24.423Z",
+  "gsc_status": {
+    "live_gsc_configured": false,
+    "limitation_note": "Google Search Console API credentials are not configured locally; prioritized using stored PHASE81_PRIORITY_MODELS.json & PHASE77D_GSC_INVENTORY.json + all 507 canonical model fitments."
+  },
+  "ebay_status": {
+    "phase": "94",
+    "generated_at": "2026-11-18T23:16:29.214Z",
+    "ebay_active_in_store": 1773,
+    "ebay_unique_parts": 220,
+    "ebay_title_only_needs_evidence": 586,
+    "ebay_rejected_conflicting_mpn": 101,
+    "ebay_queue_open_without_amazon": 60,
+    "ebay_api_credentials_available": false,
+    "ebay_enabled_env": false,
+    "ebay_blocker_reason": "EBAY_BROWSE_API_CREDENTIALS_MISSING_AND_PUBLIC_EBAY_HTTP_403",
+    "note": "All 1,773 existing ACTIVE eBay offers remain preserved without duplicate registrations. The 586 TITLE_ONLY_NEEDS_EVIDENCE eBay candidates lack Browse API OAuth credentials for authorized getItem(PRODUCT) verification and remain safely preserved as NEEDS_EVIDENCE without unauthorized scraping."
+  },
+  "evidence_enrichment": {
+    "dossiers_enriched_from_archives": 490,
+    "with_ghs_authoritative_source": 189,
+    "with_sqlite_fitment_evidence": 490,
+    "needs_evidence_slots_activated_in_phase94": 0,
+    "needs_evidence_slots_remaining_recoverable": 572
+  },
+  "before": {
+    "active_total": 2723,
+    "active_nl": 1325,
+    "active_de": 1398,
+    "unique_parts": 1691,
+    "models_covered_non_ghs": 365,
+    "models_covered_all_fitments": 430,
+    "models_with_gte6_parts_all_fitments": 317,
+    "suspended": 34,
+    "research_required": 19,
+    "verified_inactive": 3
+  },
+  "after": {
+    "active_total": 2784,
+    "active_nl": 1362,
+    "active_de": 1422,
+    "unique_parts": 1743,
+    "combined_unique_parts_amazon_plus_ebay": 1854,
+    "new_offers_activated": 61,
+    "new_nl_activated": 37,
+    "new_de_activated": 24,
+    "new_ebay_activated": 0,
+    "new_unique_parts_added": 52,
+    "new_genuine_stihl": 1,
+    "new_aftermarket": 60,
+    "new_dealer_corroborated": 0,
+    "new_archive_corroborated": 0,
+    "models_covered_non_ghs": 365,
+    "models_coverage_growth_non_ghs": 0,
+    "models_covered_all_fitments": 430,
+    "models_coverage_growth_all_fitments": 0,
+    "models_with_increased_part_coverage": 124,
+    "models_with_gte6_parts_all_fitments": 317,
+    "models_gte6_growth": 0,
+    "suspended_historical_preserved": 34,
+    "research_required_remaining": 19,
+    "verified_inactive_preserved": 3
+  },
+  "research_volume": {
+    "batches_completed": 22,
+    "search_queries_nl": 1659,
+    "search_queries_de": 1666,
+    "live_dp_checks_nl": 329,
+    "live_dp_checks_de": 597,
+    "dealer_checks": 63,
+    "batch_needs_evidence_open": 1921,
+    "batch_rejected_logged": 928
+  },
+  "consistency_success": true
+}
