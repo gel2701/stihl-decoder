@@ -38,7 +38,7 @@ const checksDe = read('output/phase88/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase88Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 88:/.test(o.status_reason || ''));
-const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase (?:8[89]|9[0234]):/.test(o.status_reason || ''));
+const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase (?:8[89]|9[02345]):/.test(o.status_reason || ''));
 
 test('Phase 88 — 1. registry expands past +150 goal while preserving baseline 344 ACTIVE & 34 SUSPENDED', () => {
   assert.strictEqual(MAX_PILOT_ACTIVE_OFFERS, null);

@@ -1,0 +1,16 @@
+{
+  "phase": "95",
+  "generated_at": "2026-11-20T21:42:16.113Z",
+  "ebay_already_active_in_production_and_store": 1773,
+  "ebay_recovered_locally_baseline": 1773,
+  "ebay_unique_parts": 220,
+  "ebay_title_only_needs_evidence": 586,
+  "ebay_rejected_conflicting_mpn": 101,
+  "ebay_queue_open_without_amazon": 0,
+  "ebay_new_verified_candidates": 0,
+  "ebay_new_active_offers": 0,
+  "ebay_api_credentials_available": false,
+  "ebay_enabled_env": false,
+  "ebay_blocker_reason": "EBAY_BROWSE_API_CREDENTIALS_MISSING_AND_PUBLIC_EBAY_HTTP_403",
+  "note": "All 1,773 existing ACTIVE eBay offers (220 parts) are preserved intact in data/affiliate/ebay_offers.json and active in production. No eBay Browse API OAuth credentials (EBAY_CLIENT_ID / EBAY_CLIENT_SECRET / EBAY_ENABLED) or connectors exist locally, and public eBay item pages return HTTP 403. Zero new unverified eBay items were scraped or promoted; the 586 TITLE_ONLY_NEEDS_EVIDENCE candidates remain in backlog."
+}

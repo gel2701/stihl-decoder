@@ -1,0 +1,146 @@
+{
+  "phase": "95",
+  "generated_at": "2026-11-20T21:42:16.518Z",
+  "gsc_status": {
+    "live_gsc_configured": false,
+    "limitation_note": "Google Search Console API credentials not configured locally; prioritized via stored PHASE81_PRIORITY_MODELS.json & PHASE77D_GSC_INVENTORY.json."
+  },
+  "ebay_status": {
+    "phase": "95",
+    "generated_at": "2026-11-20T21:42:16.113Z",
+    "ebay_already_active_in_production_and_store": 1773,
+    "ebay_recovered_locally_baseline": 1773,
+    "ebay_unique_parts": 220,
+    "ebay_title_only_needs_evidence": 586,
+    "ebay_rejected_conflicting_mpn": 101,
+    "ebay_queue_open_without_amazon": 0,
+    "ebay_new_verified_candidates": 0,
+    "ebay_new_active_offers": 0,
+    "ebay_api_credentials_available": false,
+    "ebay_enabled_env": false,
+    "ebay_blocker_reason": "EBAY_BROWSE_API_CREDENTIALS_MISSING_AND_PUBLIC_EBAY_HTTP_403",
+    "note": "All 1,773 existing ACTIVE eBay offers (220 parts) are preserved intact in data/affiliate/ebay_offers.json and active in production. No eBay Browse API OAuth credentials (EBAY_CLIENT_ID / EBAY_CLIENT_SECRET / EBAY_ENABLED) or connectors exist locally, and public eBay item pages return HTTP 403. Zero new unverified eBay items were scraped or promoted; the 586 TITLE_ONLY_NEEDS_EVIDENCE candidates remain in backlog."
+  },
+  "evidence_enrichment": {
+    "base_enriched_dossiers_preserved": 490,
+    "phase95_new_offers_with_archive_or_dealer_corroboration": 47,
+    "recoverable_slots_before_phase95": 572,
+    "needs_evidence_slots_activated_in_phase95": 70,
+    "needs_evidence_slots_remaining_recoverable": 502
+  },
+  "before": {
+    "active_total": 2784,
+    "active_nl": 1362,
+    "active_de": 1422,
+    "ebay_active": 1773,
+    "unique_parts_amazon": 1743,
+    "combined_unique_parts_amazon_plus_ebay": 1854,
+    "models_covered_non_ghs": 365,
+    "models_covered_all_fitments": 430,
+    "models_with_gte6_parts_all_fitments": 317,
+    "suspended": 34,
+    "research_required": 19,
+    "verified_inactive": 3
+  },
+  "after": {
+    "active_total": 3056,
+    "active_nl": 1442,
+    "active_de": 1614,
+    "ebay_active": 1773,
+    "unique_parts_amazon": 1895,
+    "combined_unique_parts_amazon_plus_ebay": 1998,
+    "new_offers_activated": 272,
+    "new_nl_activated": 80,
+    "new_de_activated": 192,
+    "new_ebay_activated": 0,
+    "new_unique_parts_added_amazon": 152,
+    "new_unique_parts_added_combined": 144,
+    "new_genuine_stihl": 57,
+    "new_oem_equivalent": 0,
+    "new_aftermarket": 215,
+    "models_covered_non_ghs": 366,
+    "models_coverage_growth_non_ghs": 1,
+    "models_covered_all_fitments": 440,
+    "models_coverage_growth_all_fitments": 10,
+    "models_with_increased_part_coverage": 327,
+    "models_with_gte6_parts_all_fitments": 326,
+    "models_gte6_growth": 9,
+    "newly_covered_models": [
+      {
+        "model_id": "stihl_bg_50",
+        "model_name": "BG 50",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_fse_41",
+        "model_name": "FSE 41",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_br_480",
+        "model_name": "BR 480",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_fs_311",
+        "model_name": "FS 311",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sg_31",
+        "model_name": "SG 31",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sp_400",
+        "model_name": "SP 400",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sp_401",
+        "model_name": "SP 401",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sp_450",
+        "model_name": "SP 450",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sp_451",
+        "model_name": "SP 451",
+        "parts_after": 1
+      },
+      {
+        "model_id": "stihl_sp_471",
+        "model_name": "SP 471",
+        "parts_after": 1
+      }
+    ],
+    "new_purchasable_parts_added_to_previously_uncovered_models": 4,
+    "parts_added_to_previously_uncovered_list": [
+      "11181953500",
+      "11200368500",
+      "42555005800",
+      "62357104305"
+    ],
+    "suspended_historical_preserved": 34,
+    "research_required_remaining": 19,
+    "verified_inactive_preserved": 3
+  },
+  "research_volume": {
+    "batches_completed": 5,
+    "batch_files": [
+      "batch_dp_amazon_de.json",
+      "batch_dp_amazon_nl.json",
+      "batch_pass_a.json",
+      "batch_search_p1_uncovered_model.json",
+      "batch_search_p2_ne572_recovery.json"
+    ],
+    "targeted_search_queries_nl": 421,
+    "targeted_search_queries_de": 410,
+    "live_dp_checks_nl": 302,
+    "live_dp_checks_de": 404
+  },
+  "consistency_success": true
+}

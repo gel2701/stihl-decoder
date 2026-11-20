@@ -193,7 +193,13 @@ describe('Phase 75: Commercial Expansion to Milestone 50 Verified Offers', () =>
       'ZHUUNOZ', 'Zoeyilan', 'shiosheng',
       // Phase 94 expansion brands: verified live single-unit listings carrying the exact STIHL number.
       'Alnaeson', 'CbErFVK', 'EcoLivzen', 'FUMHEUF', 'HXLSDYGP', 'LiteTour',
-      'Micpointik', 'PENSERAR', 'ZEMNLO'
+      'Micpointik', 'PENSERAR', 'ZEMNLO',
+      // Phase 95 expansion brands: verified live single-unit listings carrying the exact STIHL number.
+      'A ABSOPRO', 'BOJIANW', 'C-FUNN', 'Cloudpower', 'ENGICARB', 'ENGINERUN',
+      'EpheyFIF', 'Gwyzax', 'HAOHAO', 'HEPENG', 'HOBXMFY', 'HOHOVYVY',
+      'HTkdPEZe', 'Jodriva', 'KAGOUKA', 'MANGRY', 'NaningLxh', 'OUZRYWSDP',
+      'QASULER', 'Reinica', 'SPERTEK', 'VAINELY', 'WDSMGSDL', 'YHLXXM',
+      'YUANTUO', 'ZHANGPYOZ', 'ZJNGCJLJAD', 'oipwtfbq'
     ]);
 
     for (const offer of activeOffers) {

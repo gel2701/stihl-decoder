@@ -37,7 +37,7 @@ const checksDe = read('output/phase87_3/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase873Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.3:/.test(o.status_reason || ''));
-const priorActiveOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.3|Phase 8[89]|Phase 9[0234]):/.test(o.status_reason || ''));
+const priorActiveOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.3|Phase 8[89]|Phase 9[02345]):/.test(o.status_reason || ''));
 
 test('Phase 87.3 — 1. fixed commercial ceilings removed while registry scales past 150', () => {
   assert.strictEqual(MAX_PILOT_ACTIVE_OFFERS, null);
