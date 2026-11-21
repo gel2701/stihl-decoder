@@ -1,0 +1,637 @@
+{
+  "phase": "96",
+  "batch_id": "queue_06",
+  "generated_at": "2026-11-21T01:38:42.373Z",
+  "live_api": true,
+  "dry_run": false,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 2723,
+    "offers_after": 2732
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_processed": 9,
+    "parts_already_active": 31,
+    "new_active_offers": 0,
+    "new_active_parts": 0,
+    "new_active_parts_without_amazon_link": 0,
+    "needs_evidence_candidates": 2,
+    "rejected_candidates": 0,
+    "parts_with_no_listing": 7,
+    "resolver_resolved_new_parts": 0,
+    "resolver_misses": [],
+    "duration_ms": 53886
+  },
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "30036559200",
+      "item_id": "v1|146911025321|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine OEM Stihl Spacer Washer Part# 3003 655 9200 NOS",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11061227400",
+      "item_id": "v1|236661583519|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE STIHL OEM ROUND HEAD SCREW 012 FS360 1106 122 7400 B24",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [],
+  "per_part": [
+    {
+      "part_number": "11281820700",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11281821700",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11283507600",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11284403002",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11284421600",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11284421601",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11287928500",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "30036559200",
+      "part_name": "Stihl Spacer Washer",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461",
+        "ms_462"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 1,
+      "client_rejected": 9,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 8,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11103581800",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41801202601",
+      "part_name": "Stihl Pump Cover",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "bt_130",
+        "fs_130",
+        "fs_310",
+        "ht_131",
+        "km_130",
+        "km_130_r"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 0,
+      "client_rejected": 22,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 20,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "07510101110",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11061227400",
+      "part_name": "Stihl Screw And Lock Washer",
+      "models": [
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "017",
+        "019",
+        "020",
+        "021",
+        "023",
+        "024",
+        "025",
+        "026",
+        "028",
+        "029",
+        "031",
+        "032",
+        "039",
+        "041",
+        "042",
+        "045",
+        "048",
+        "051",
+        "056",
+        "064",
+        "066",
+        "070",
+        "075",
+        "076",
+        "08",
+        "084",
+        "090",
+        "bg_60",
+        "bg_61",
+        "br_320",
+        "br_400",
+        "bt_360",
+        "fc_44",
+        "fr_106",
+        "fs_106",
+        "fs_150",
+        "fs_151",
+        "fs_202",
+        "fs_280",
+        "fs_36",
+        "fs_360",
+        "fs_40",
+        "fs_410",
+        "fs_420",
+        "fs_44",
+        "fs_500",
+        "fs_550",
+        "fs_88",
+        "hs_60",
+        "hs_61",
+        "ms_210",
+        "ms_230",
+        "ms_250",
+        "ms_280",
+        "ms_640",
+        "ms_650",
+        "ms_660",
+        "p_835",
+        "p_840",
+        "sr_320",
+        "sr_400",
+        "ts_08",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 1,
+      "client_rejected": 21,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 19,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11131214705",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11131215000",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11131223205",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11151215401",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11151223002",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11201223001",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11211605000",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11231226200",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11291223001",
+      "part_name": "Stihl Spring",
+      "models": [
+        "038",
+        "bg_56",
+        "bg_86",
+        "ms_151",
+        "ms_210",
+        "ms_230",
+        "ms_231",
+        "ms_241",
+        "ms_250",
+        "ms_251",
+        "ms_251p",
+        "ms_362",
+        "ms_380",
+        "ms_381",
+        "ms_400_1",
+        "sh_56",
+        "sh_86",
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 12,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41171223006",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41171223007",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41190341500",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41321226600",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "90754783015",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "90990212770",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "92910210121",
+      "part_name": "Stihl Washer Din125-A5,3",
+      "models": [
+        "020",
+        "021",
+        "023",
+        "025",
+        "bg_75",
+        "br_320",
+        "br_340",
+        "br_380",
+        "br_400",
+        "br_420",
+        "br_45",
+        "bt_120",
+        "bt_121",
+        "fc_85",
+        "fh_75",
+        "fr_350",
+        "fr_450",
+        "fr_85",
+        "fs_120",
+        "fs_160",
+        "fs_180",
+        "fs_200",
+        "fs_220",
+        "fs_250",
+        "fs_280",
+        "fs_300",
+        "fs_350",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hl_75",
+        "hs_75",
+        "hs_80",
+        "hs_85",
+        "ht_70",
+        "ht_75",
+        "km_85",
+        "km_85_r",
+        "kr_85",
+        "kw_85",
+        "mc_200",
+        "ms_200",
+        "ms_210",
+        "ms_230",
+        "ms_250",
+        "sp_85",
+        "sr_320",
+        "sr_340",
+        "sr_400",
+        "sr_420"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "94556210570",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "94606240320",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "96459482470",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41801202602",
+      "part_name": "Stihl Pump Cover",
+      "models": [
+        "fc_100",
+        "fc_110",
+        "fr_130",
+        "fs_100",
+        "fs_87",
+        "fs_90",
+        "hl_100",
+        "hl_95",
+        "ht_101",
+        "km_100",
+        "km_110_r",
+        "km_130",
+        "km_130_r",
+        "km_90",
+        "km_90_r"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301210800",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "90990210805",
+      "part_name": "Stihl Self-Tapping Screw Din7971-4.2X6.5",
+      "models": [
+        "018",
+        "bg_45",
+        "bg_55",
+        "bg_85",
+        "br_45",
+        "fs_45",
+        "fs_55",
+        "ms_170",
+        "ms_180",
+        "p_835",
+        "p_840",
+        "sh_55",
+        "sh_85"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "client_rejection_reasons": {},
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11221414000",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11280801812",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11280847801",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11280848301",
+      "part_name": "Stihl Reflector Foil",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_460"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11281215405",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11281215602",
+      "part_name": "Stihl Fixed Jet 0.70",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_460"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    }
+  ],
+  "evidence_registry": {
+    "size": 2284,
+    "hits": 2,
+    "misses": 0,
+    "recorded": 0
+  }
+}

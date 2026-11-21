@@ -158,6 +158,7 @@ export const currentProductionSuites = [
   'tests/phase93_affiliate_recovery_expansion.test.js',
   'tests/phase94_evidence_recovery_model_coverage.test.js',
   'tests/phase95_targeted_activation_coverage.test.js',
+  'tests/phase96_ebay_activation_batch.test.js',
   'tests/phase86_1_affiliate_click_recovery.test.js',
   'tests/phase81_1_offer_visibility.test.js',
   'tests/phase81_2_homepage_parts_ux.test.js',

@@ -1,0 +1,1179 @@
+{
+  "phase": "96",
+  "batch_id": "queue_07",
+  "generated_at": "2026-11-21T01:43:49.404Z",
+  "live_api": true,
+  "dry_run": false,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 2800,
+    "offers_after": 2852
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_processed": 22,
+    "parts_already_active": 18,
+    "new_active_offers": 0,
+    "new_active_parts": 0,
+    "new_active_parts_without_amazon_link": 0,
+    "needs_evidence_candidates": 6,
+    "rejected_candidates": 1,
+    "parts_with_no_listing": 20,
+    "resolver_resolved_new_parts": 0,
+    "resolver_misses": [],
+    "duration_ms": 133015
+  },
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248539567|0",
+      "marketplace": "EBAY_DE",
+      "title": "10xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248571381|0",
+      "marketplace": "EBAY_DE",
+      "title": "5xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248539567|0",
+      "marketplace": "EBAY_NL",
+      "title": "10xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248571381|0",
+      "marketplace": "EBAY_NL",
+      "title": "5xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009302242",
+      "item_id": "v1|318478802248|0",
+      "marketplace": "EBAY_DE",
+      "title": "6. Original STIHL Gurtband 0000-930-2242",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009302242",
+      "item_id": "v1|318478802248|0",
+      "marketplace": "EBAY_NL",
+      "title": "6. Genuine STIHL Webbing 0000-930-2242",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|336347288704|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM STIHL SEALING RING 4124-122-3600 009 025 026 MS200T MS260 MS362 C MS391 -B64",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "11281400610",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11281453701",
+      "part_name": "Stihl Guard Plate",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 4
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11286640501",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11288918600",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "30036506502",
+      "part_name": "Stihl Depth Limiter Kit",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "37246606600",
+      "part_name": "Stihl Tie Strap, Preset 3/8\" R",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 1,
+        "PART_NUMBER_MISMATCH": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41371242801",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "41371402802",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "95706011880",
+      "part_name": "Stihl Star Grip Screw M8X35",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00004051007",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11161290900",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11391210800",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "fr_410",
+        "fr_460",
+        "fs_240",
+        "fs_260",
+        "fs_261",
+        "fs_360",
+        "fs_361",
+        "fs_410",
+        "fs_411",
+        "fs_411_0",
+        "fs_460",
+        "fs_461",
+        "ms_171",
+        "ms_181",
+        "ms_211",
+        "ms_231",
+        "ms_241",
+        "ms_251",
+        "ms_251p",
+        "ms_261",
+        "ms_271",
+        "ms_271p",
+        "ms_291",
+        "ms_291p",
+        "ms_362",
+        "ms_400"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 0,
+      "client_rejected": 5,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 3,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301210801",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "017",
+        "018",
+        "ms_170",
+        "ms_180"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 5,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301210802",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "ms_170",
+        "ms_180",
+        "ms_193",
+        "ms_194"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 5,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301290900",
+      "part_name": "Stihl Gasket",
+      "models": [
+        "017",
+        "018",
+        "ms_170",
+        "ms_180"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 20,
+      "client_passed": 0,
+      "client_rejected": 20,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 18,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301290901",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "42411210800",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "br_200",
+        "fs_50",
+        "fs_56",
+        "fs_70",
+        "km_56",
+        "km_56_rc_e",
+        "mm_56",
+        "sh_56",
+        "sh_86",
+        "sr_200"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "client_rejection_reasons": {},
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "90754783016",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "11211227102",
+      "part_name": "Stihl Screw",
+      "models": [
+        "051",
+        "076",
+        "fr_460",
+        "fs_240",
+        "fs_260",
+        "fs_360",
+        "fs_410",
+        "fs_460",
+        "fs_461",
+        "fs_490",
+        "fs_491",
+        "fs_491_0",
+        "fs_510",
+        "fs_560",
+        "fs_561",
+        "fs_561_0",
+        "gs_461",
+        "ms_240",
+        "ms_260",
+        "ms_280",
+        "ms_311",
+        "ms_362",
+        "ms_391",
+        "ms_441",
+        "ms_461",
+        "ms_661",
+        "p_835",
+        "p_840",
+        "ts_400",
+        "ts_700",
+        "ts_800"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2,
+        "PART_NUMBER_MISMATCH": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41241223600",
+      "part_name": "Stihl Sealing Ring",
+      "models": [
+        "009",
+        "017",
+        "020",
+        "021",
+        "023",
+        "025",
+        "026",
+        "bg_72",
+        "br_320",
+        "fc_44",
+        "fc_72",
+        "fs_36",
+        "fs_40",
+        "fs_44",
+        "fs_72",
+        "fs_74",
+        "fs_76",
+        "fs_88",
+        "hs_72",
+        "hs_74",
+        "hs_76",
+        "ms_240",
+        "ms_260",
+        "ms_311",
+        "ms_362",
+        "ms_391",
+        "sr_320",
+        "sr_400"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 5,
+      "client_rejected": 9,
+      "client_rejection_reasons": {
+        "DUPLICATE_ITEM": 6,
+        "CONFLICTING_TITLE_PART_NUMBER": 3
+      },
+      "active": 0,
+      "needs_evidence": 4,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "blocking_steps": {
+        "UNKNOWN": 4,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41301218601",
+      "part_name": "Stihl Washer",
+      "models": [
+        "024",
+        "026",
+        "bg_72",
+        "br_320",
+        "fc_44",
+        "fc_72",
+        "fs_36",
+        "fs_40",
+        "fs_44",
+        "fs_72",
+        "fs_74",
+        "fs_76",
+        "fs_88",
+        "hs_72",
+        "hs_74",
+        "hs_76",
+        "ms_240",
+        "ms_260",
+        "sr_320",
+        "sr_400"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41301223600",
+      "part_name": "Stihl Sealing Ring",
+      "models": [
+        "024",
+        "026",
+        "bg_72",
+        "br_320",
+        "fc_44",
+        "fc_72",
+        "fs_36",
+        "fs_40",
+        "fs_44",
+        "fs_72",
+        "fs_74",
+        "fs_76",
+        "fs_88",
+        "hs_72",
+        "hs_74",
+        "hs_76",
+        "ms_240",
+        "ms_260",
+        "sr_320",
+        "sr_400"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 3,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "90990212360",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "92102611140",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "91040038733",
+      "part_name": "Stihl Self-Tapping Screw Is-P4X16-10.9",
+      "models": [
+        "017",
+        "018",
+        "bra_500_0",
+        "bra_600_0",
+        "hta_65",
+        "hta_66",
+        "hta_85",
+        "hta_86",
+        "ms_170",
+        "ms_180",
+        "msa_160",
+        "msa_161"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 3,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41341210803",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "bt_120",
+        "bt_121",
+        "fr_350",
+        "fr_450",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480",
+        "sp_481"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11281226806",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "044",
+        "ms_440",
+        "ms_441"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 0,
+      "client_rejected": 5,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 4,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "30036506503",
+      "part_name": "Stihl Depth Limiter Kit",
+      "models": [
+        "ms_440",
+        "ms_460",
+        "ms_462"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 2,
+        "PART_NUMBER_MISMATCH": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "95230034275",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00000071300",
+      "part_name": "Stihl Set O-Rings N 4X2-Epdm70",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fr_130",
+        "fr_131",
+        "fr_350",
+        "fr_450",
+        "fr_85",
+        "fs",
+        "fs_25",
+        "fs_44",
+        "fs_450",
+        "fs_460",
+        "fs_480",
+        "fs_55",
+        "fs_65",
+        "fs_66",
+        "fs_74",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_87",
+        "fs_88",
+        "fs_90",
+        "fs_91",
+        "fs_94",
+        "fs_km",
+        "fs_power_tool_attachments",
+        "fsa_130",
+        "fsa_200_0"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 0,
+      "client_rejected": 22,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 20,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00001822100",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00001957000",
+      "part_name": "Stihl Cap",
+      "models": [
+        "fc_44",
+        "fc_55",
+        "fc_85",
+        "fh_75",
+        "fr_350",
+        "fr_450",
+        "fr_85",
+        "fs_36",
+        "fs_38",
+        "fs_40",
+        "fs_44",
+        "fs_45",
+        "fs_450",
+        "fs_480",
+        "fs_50",
+        "fs_55",
+        "fs_56",
+        "fs_72",
+        "fs_74",
+        "fs_75",
+        "fs_76",
+        "fs_80",
+        "fs_85",
+        "hl_75",
+        "hs_45",
+        "hs_75",
+        "hs_80",
+        "hs_85",
+        "ht_70",
+        "ht_75",
+        "km_55",
+        "km_85",
+        "kw_85",
+        "mm_55",
+        "mm_55_z"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 0,
+      "client_rejected": 23,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 21,
+        "CONFLICTING_TITLE_PART_NUMBER": 2
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00003500900",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00003530800",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00007112500",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00007163100",
+      "part_name": "Stihl Backing Plate",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fr_130",
+        "fr_350",
+        "fr_450",
+        "fr_85",
+        "fs",
+        "fs_25",
+        "fs_44",
+        "fs_450",
+        "fs_460",
+        "fs_480",
+        "fs_55",
+        "fs_65",
+        "fs_66",
+        "fs_74",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_87",
+        "fs_88",
+        "fs_90",
+        "fs_km",
+        "fs_power_tool_attachments"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "client_rejection_reasons": {
+        "CONFLICTING_TITLE_PART_NUMBER": 4,
+        "PART_NUMBER_MISMATCH": 3
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00007163101",
+      "part_name": "Stihl Backing Plate",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fr_130",
+        "fr_350",
+        "fr_450",
+        "fr_460",
+        "fr_85",
+        "fs",
+        "fs_25",
+        "fs_44",
+        "fs_450",
+        "fs_460",
+        "fs_480",
+        "fs_55",
+        "fs_65",
+        "fs_66",
+        "fs_74",
+        "fs_76",
+        "fs_80",
+        "fs_81",
+        "fs_85",
+        "fs_86",
+        "fs_87",
+        "fs_88",
+        "fs_90",
+        "fs_94",
+        "fs_km",
+        "fs_power_tool_attachments"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 15,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00007908801",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00009302241",
+      "skipped": "ALREADY_ACTIVE"
+    },
+    {
+      "part_number": "00009302242",
+      "part_name": "Stihl Webbing",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fs_25",
+        "fs_36",
+        "fs_40",
+        "fs_44",
+        "fs_450",
+        "fs_480",
+        "fs_500",
+        "fs_55",
+        "fs_550",
+        "fs_56",
+        "fs_65",
+        "fs_70",
+        "fs_72",
+        "fs_74",
+        "fs_75",
+        "fs_76",
+        "fs_80",
+        "fs_85",
+        "fs_87",
+        "fs_88",
+        "fs_90",
+        "fs_91",
+        "fs_94",
+        "fsa_120_0",
+        "fsa_200_0",
+        "fsa_80_0",
+        "fsa_90",
+        "ht_101",
+        "ht_70",
+        "ht_75",
+        "km_100",
+        "km_110_r",
+        "km_111",
+        "km_111_r",
+        "km_130",
+        "km_131",
+        "km_55",
+        "km_56",
+        "km_56_rc_e",
+        "km_85",
+        "km_85_r",
+        "km_90",
+        "km_94"
+      ],
+      "has_amazon_direct_link": false,
+      "gsc_priority_model": true,
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 2,
+      "client_rejected": 4,
+      "client_rejection_reasons": {
+        "PART_NUMBER_MISMATCH": 3,
+        "CONFLICTING_TITLE_PART_NUMBER": 1
+      },
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    }
+  ],
+  "evidence_registry": {
+    "size": 2288,
+    "hits": 3,
+    "misses": 4,
+    "recorded": 4
+  }
+}

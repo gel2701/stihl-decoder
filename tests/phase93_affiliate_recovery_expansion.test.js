@@ -56,7 +56,8 @@ test('Phase 93 — 1. REJECTED audit & eBay reconciliation preserve all invarian
 
   assert.strictEqual(ebayRecovery.reconciled_unique_offers, 1773);
   assert.strictEqual(ebayRecovery.reconciled_unique_parts, 220);
-  assert.strictEqual(ebayStore.offers.length, 1773);
+  // The reconciled store must never shrink: later phases only add proven offers.
+  assert.ok(ebayStore.offers.length >= 1773, 'The store still holds every reconciled Phase 93 offer');
   const ebayKeys = new Set();
   for (const offer of ebayStore.offers) {
     const key = `${offer.part_number}:${offer.marketplace}:${offer.item_id}`;
