@@ -38,6 +38,26 @@ import { logStihlEvent, EVENT_TYPES } from './src/components/AnalyticsTracker.js
 import { renderBreadcrumbsHtml } from './src/components/Breadcrumbs.js';
 import { AffiliateOfferResolver } from './src/affiliate/AffiliateOfferResolver.js';
 import { defaultVerifiedOfferRegistry } from './src/affiliate/VerifiedOfferRegistry.js';
+import { reconcileEbayStoreFromArchive } from './src/affiliate/EbayStoreBootstrap.js';
+import { getEbayOfferStorePath, resolveStorageRoot } from './src/affiliate/AffiliateStoragePaths.js';
+
+// Phase 96: proven eBay offers are committed to data/affiliate/ebay_offers.json,
+// while the site reads the persistent store. Add the committed ACTIVE offers to
+// that store once per boot via the normal write route; nothing is ever removed.
+if (resolveStorageRoot().persistent) {
+  try {
+    const ebayBootstrap = reconcileEbayStoreFromArchive({
+      archivePath: path.join(process.cwd(), 'data', 'affiliate', 'ebay_offers.json'),
+      storePath: getEbayOfferStorePath(),
+      campaignId: process.env.EBAY_EPN_CAMPAIGN_ID
+    });
+    if (ebayBootstrap.applied) {
+      console.log(`[affiliate] eBay store reconciled with committed offers: +${ebayBootstrap.added} ACTIVE`);
+    }
+  } catch (error) {
+    console.error('[affiliate] eBay store reconciliation skipped:', error.message);
+  }
+}
 
 // Phase 59E.1: Controlled Amazon ASIN Live Pilot Launch (3 vetted spark plugs)
 if (process.env.AMAZON_DIRECT_ASIN_ENABLED !== 'false') {
