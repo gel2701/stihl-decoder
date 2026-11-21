@@ -138,15 +138,15 @@ export function renderModelPartsPageHtml(model, database, baseUrl = PRIMARY_ORIG
   // Extract authentic maintenance & wear parts for this model
   const wearRules = [
     { label: 'Bougie', regex: /\b(spark plug|bougie|zündkerze)\b/i },
-    { label: 'Luchtfilter', regex: /\b(air filter|luchtfilter|filterelement|filter element)\b/i },
-    { label: 'Brandstoffilter', regex: /\b(fuel filter|brandstoffilter|pickup body|saugkopf)\b/i },
-    { label: 'Carburateur & Membraan', regex: /\b(carburetor|carburateur|vergaser|diaphragm|stelmengsel)\b/i },
+    { label: 'Luchtfilter', regex: /\b(air filter|luchtfilter|hd2-luchtfilter|voorfilter|filterelement|filter element)\b/i },
+    { label: 'Brandstoffilter', regex: /\b(fuel filter|brandstoffilter)\b/i },
+    { label: 'Carburateur & Membraan', regex: /\b(carburetor|carburettor|carburateur|vergaser|membraan|regelmembraan|pompmembraan|diaphragm|stelmengsel)\b/i },
     { label: 'Maaigarnituur & Maaikop', regex: /\b(mowing head|maaikop|autocut|trimmer head|cutter blade|slagmes|driehoeksmes|maaimes|polycut|durocut|brush knife|grass cutting blade)\b/i },
-    { label: 'Starter & Koord', regex: /\b(starter|starter rope|startkoord|anwerfseil|recoil starter|terugloopveer)\b/i },
-    { label: 'Koppeling & Aandrijving', regex: /\b(clutch|koppeling|chain sprocket|kettingwiel|rim sprocket|drive shaft|pinion)\b/i },
+    { label: 'Starter & Koord', regex: /\b(starter|trekstarter|handstarter|starterklink|starter rope|startkoord|anwerfseil|recoil starter|terugloopveer)\b/i },
+    { label: 'Koppeling & Aandrijving', regex: /\b(clutch|koppeling|koppelingstrommel|chain sprocket|kettingwiel|ringkettingwiel|rim sprocket|drive shaft|aandrijfas|pinion|rondsel)\b/i },
     { label: 'Tandwielvet & Smering', regex: /\b(gear grease|vet|lubricant|smeermiddel|gear lubricant)\b/i },
-    { label: 'Ketting & Zaagblad', regex: /\b(guide bar|zaagblad|zaagketting|saw chain)\b/i },
-    { label: 'Oliepomp & Smering', regex: /\b(oil pump|oliepomp|worm gear|schnecke)\b/i }
+    { label: 'Ketting & Zaagblad', regex: /\b(guide bar|zaagblad|zaagketting|saw chain|kettingspanner)\b/i },
+    { label: 'Oliepomp & Smering', regex: /\b(oil pump|oliepomp|wormwiel|worm gear|schnecke|zuigkop)\b/i }
   ];
 
   const maintenanceParts = [];

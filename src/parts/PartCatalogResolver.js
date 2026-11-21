@@ -17,6 +17,7 @@ const defaultFitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'model_p
 const defaultConfigurationsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_model_configurations.json');
 const defaultSupersessionsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_supersessions.json');
 const defaultFitmentModelIndexPath = path.resolve(__dirname, '..', '..', 'data', 'fitment_model_index.json');
+const defaultPhase96FitmentsPath = path.resolve(__dirname, '..', '..', 'data', 'parts_fitments_phase96.json');
 
 /**
  * Lightweight precomputed index of canonical model IDs with verified renderable catalog parts or configurations.
@@ -252,6 +253,22 @@ function loadDefaultPartsData() {
     } catch (e) {
       cachedFitments = [];
     }
+    try {
+      if (fs.existsSync(defaultPhase96FitmentsPath)) {
+        const p96Doc = JSON.parse(fs.readFileSync(defaultPhase96FitmentsPath, 'utf8'));
+        if (Array.isArray(p96Doc.fitments)) {
+          const seenIds = new Set(cachedFitments.map(f => f.fitment_id));
+          for (const f of p96Doc.fitments) {
+            if (f && f.fitment_id && !seenIds.has(f.fitment_id)) {
+              seenIds.add(f.fitment_id);
+              cachedFitments.push(f);
+            }
+          }
+        }
+      }
+    } catch (_) {
+      // Optional Phase 96 overlay
+    }
     cachedFitmentsByPartMap = new Map();
     cachedFitmentsByModelMap = new Map();
     for (const f of cachedFitments) {
@@ -482,8 +499,94 @@ export const MULTILINGUAL_TECHNICAL_SYNONYMS = {
   'simmerring': 'oil seal',
   'wellendichtringe': 'oil seal',
   'kugellager': 'ball bearing',
-  'nadellager': 'needle bearing'
+  'nadellager': 'needle bearing',
+  'rillenkugellager': 'grooved ball bearing',
+  'ontstekingsspoel': 'ignition coil',
+  'zündspule': 'ignition coil',
+  'zundspule': 'ignition coil',
+  'trekstarter': 'recoil starter',
+  'anwerfer': 'recoil starter',
+  'seilzugstarter': 'recoil starter',
+  'handstarter': 'rewind starter',
+  'koppelingstrommel': 'clutch drum',
+  'kupplungstrommel': 'clutch drum',
+  'wormwiel': 'worm gear',
+  'schnecke': 'worm gear',
+  'inlaatspruitstuk': 'intake manifold',
+  'ansaugstutzen': 'intake manifold',
+  'starterklink': 'starter pawl',
+  'sperrklinke': 'starter pawl',
+  'kettingspanner': 'chain tensioner',
+  'kettenspanner': 'chain tensioner',
+  'zuigerset': 'piston kit',
+  'kolbensatz': 'piston kit',
+  'onderhoudsset': 'service kit',
+  'kabelboom': 'wiring harness',
+  'trillingsdemper': 'annular buffer',
+  'oliekeerring': 'oil seal',
+  'groefkogellager': 'grooved ball bearing',
+  'regelmembraan': 'metering diaphragm',
+  'pompmembraan': 'pump diaphragm',
+  'cilinderpakking': 'cylinder gasket',
+  'uitlaatpakking': 'muffler gasket'
 };
+
+const SEARCH_EQUIVALENCE_CLUSTERS = [];
+const TERM_TO_CLUSTER_MAP = new Map();
+
+function buildSearchEquivalenceIndex() {
+  if (SEARCH_EQUIVALENCE_CLUSTERS.length > 0) return;
+  const glossaryTerms = PartNameNormalizer.getGlossaryTerms() || [];
+  const addDiacriticVariants = (s) => {
+    const lc = String(s || '').trim().toLowerCase();
+    if (!lc) return [];
+    const plain = lc.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss');
+    return plain !== lc ? [lc, plain] : [lc];
+  };
+
+  for (const entry of glossaryTerms) {
+    const cluster = new Set();
+    for (const term of [entry.nl, ...(entry.en || []), ...(entry.de || [])]) {
+      for (const variant of addDiacriticVariants(term)) {
+        cluster.add(variant);
+      }
+    }
+    const clusterArr = Array.from(cluster);
+    if (clusterArr.length > 0) {
+      SEARCH_EQUIVALENCE_CLUSTERS.push(clusterArr);
+      for (const alias of clusterArr) {
+        if (!TERM_TO_CLUSTER_MAP.has(alias)) {
+          TERM_TO_CLUSTER_MAP.set(alias, clusterArr);
+        }
+        if (entry.en && entry.en[0] && !MULTILINGUAL_TECHNICAL_SYNONYMS[alias] && alias !== entry.en[0].toLowerCase()) {
+          MULTILINGUAL_TECHNICAL_SYNONYMS[alias] = entry.en[0].toLowerCase();
+        }
+      }
+    }
+  }
+}
+buildSearchEquivalenceIndex();
+
+function resolveEquivalentSearchTerms(componentTerm) {
+  const clean = String(componentTerm || '').trim().toLowerCase();
+  const plain = clean.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss');
+  const translated = MULTILINGUAL_TECHNICAL_SYNONYMS[clean] ||
+    MULTILINGUAL_TECHNICAL_SYNONYMS[plain] ||
+    (clean.split(/\s+/).map(t => MULTILINGUAL_TECHNICAL_SYNONYMS[t]).filter(Boolean)[0]) ||
+    null;
+  const directCluster = TERM_TO_CLUSTER_MAP.get(clean) ||
+    TERM_TO_CLUSTER_MAP.get(plain) ||
+    (translated ? TERM_TO_CLUSTER_MAP.get(translated.toLowerCase()) : null);
+  const terms = new Set([clean]);
+  if (translated) terms.add(translated.toLowerCase());
+  if (directCluster) {
+    for (const a of directCluster) terms.add(a);
+  }
+  return {
+    translated,
+    terms: Array.from(terms).filter(t => t.length >= 2)
+  };
+}
 
 export class PartCatalogResolver {
   constructor(partsCatalog = null, fitments = null) {
@@ -1369,32 +1472,46 @@ export class PartCatalogResolver {
 
     // 2. Check for joint model + component query or options.modelId
     const modelExtraction = PartCatalogResolver.extractModelAndComponent(qClean);
-    const targetModelId = options.modelId
+    const rawTargetId = options.modelId
       ? options.modelId.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
       : (modelExtraction && modelExtraction.component_query ? modelExtraction.canonical_model_id : null);
+    const targetModelId = rawTargetId
+      ? (cachedFitmentsByModelMap?.has(rawTargetId) ? rawTargetId : PartCatalogResolver.resolveCanonicalModelId(rawTargetId, options.database))
+      : null;
     const componentTerm = options.modelId
       ? qClean
       : (modelExtraction && modelExtraction.component_query ? modelExtraction.component_query.toLowerCase() : qClean);
 
-    // Resolve synonym
-    const translated = MULTILINGUAL_TECHNICAL_SYNONYMS[componentTerm] ||
-      (componentTerm.split(/\s+/).map(t => MULTILINGUAL_TECHNICAL_SYNONYMS[t]).filter(Boolean)[0]) ||
-      null;
+    // Resolve multilingual EN/DE/NL equivalence terms
+    const { translated, terms: equivalentTerms } = resolveEquivalentSearchTerms(componentTerm);
+    const termRegexes = equivalentTerms.map(t => {
+      const esc = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return {
+        term: t,
+        leadWordRe: new RegExp(`^${esc}(?:\\s|$)`, 'i'),
+        boundaryRe: new RegExp(`\\b${esc}\\b`, 'i')
+      };
+    });
 
     function scorePart(part, term, trans, isModel) {
-      const name = (part.part_name || '').toLowerCase();
+      const nameRaw = (part.part_name || '').toLowerCase();
+      const nameNl = (part.part_name_normalized || PartNameNormalizer.normalizeDisplayName(part.part_name, part.part_number) || '').toLowerCase();
       let score = 0;
-      const primary = trans || term;
-      const secondary = trans ? term : null;
 
-      if (name === primary || (secondary && name === secondary)) {
-        score += 500;
-      } else if (name.startsWith(primary) || (secondary && name.startsWith(secondary))) {
-        score += 300;
-      } else if (new RegExp(`\\b${primary}\\b`, 'i').test(name) || (secondary && new RegExp(`\\b${secondary}\\b`, 'i').test(name))) {
-        score += 200;
-      } else if (name.includes(primary) || (secondary && name.includes(secondary))) {
-        score += 80;
+      for (const { term: cand, leadWordRe, boundaryRe } of termRegexes) {
+        let candScore = 0;
+        if (nameRaw === cand || nameNl === cand) {
+          candScore = 500;
+        } else if (leadWordRe.test(nameRaw) || leadWordRe.test(nameNl)) {
+          candScore = 320;
+        } else if (nameRaw.startsWith(cand) || nameNl.startsWith(cand)) {
+          candScore = 280;
+        } else if (boundaryRe.test(nameRaw) || boundaryRe.test(nameNl)) {
+          candScore = 200;
+        } else if (nameRaw.includes(cand) || nameNl.includes(cand)) {
+          candScore = 80;
+        }
+        if (candScore > score) score = candScore;
       }
 
       if (score === 0) return 0;
@@ -1403,11 +1520,13 @@ export class PartCatalogResolver {
         score += 150;
       }
 
-      const isHardwareSearch = /screw|schroef|schraube|nut|moer|mutter|washer|ring|scheibe/i.test(term) || (trans && /screw|nut|washer/i.test(trans));
+      const isHardwareSearch = /screw|schroef|schraube|nut|moer|mutter|washer|ring|scheibe|bolt|bout|rivet|klinknagel|bearing|lager|pin\b|pen\b|circlip|borgveer/i.test(term) ||
+        (trans && /screw|nut|washer|bolt|rivet|bearing|pin|circlip/i.test(trans));
       if (!isHardwareSearch) {
-        if (/^(pan head|hex|collar|self-tapping|spline|cheese head|countersunk|fillister|flat head|slotted)?\s*screw\b/i.test(name) ||
-            /^(hex|lock|square|collar|flange)?\s*nut\b/i.test(name) ||
-            /^(flat|spring|washer|circlip|snap ring)\b/i.test(name)) {
+        if (/^(pan head|hex|collar|self-tapping|spline|cheese head|countersunk|fillister|flat head|slotted)?\s*screw\b/i.test(nameRaw) ||
+            /^(hex|lock|square|collar|flange)?\s*nut\b/i.test(nameRaw) ||
+            /^(flat|spring|washer|circlip|snap ring)\b/i.test(nameRaw) ||
+            /^(torxschroef|zelftappende|bolkopschroef|zeskantschroef|kraagschroef|zeskantmoer|kraagmoer|sluitring|borgveer|veerring)\b/i.test(nameNl)) {
           score -= 40;
         }
       }

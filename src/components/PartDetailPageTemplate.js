@@ -538,7 +538,7 @@ ${supersessionHtml}
       <p class="leading-relaxed">
         Dit onderdeel is gedocumenteerd voor ${compatibleModels.length} STIHL model${compatibleModels.length === 1 ? '' : 'len'}. Controleer altijd het typeplaatje, de exacte machine-uitvoering en het serienummer.
       </p>
-      ${/service\s*kit|onderhoudset/i.test(displayPartName || '') ? `
+      ${/service\s*kit|onderhouds?set/i.test(displayPartName || '') ? `
       <p class="text-amber-100/90 leading-relaxed">
         <strong>Servicekit:</strong> deze set bevat meerdere onderdelen en is niet automatisch universeel passend. Controleer de variant en de exacte inhoud van de kit voor jouw machine-uitvoering vóór aankoop.
       </p>` : ''}

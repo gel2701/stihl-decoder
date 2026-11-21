@@ -44,7 +44,7 @@ const checksDe = read('output/phase93/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase93Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 93:/.test(o.status_reason || ''));
-const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[345]:/.test(o.status_reason || ''));
+const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[3456]:/.test(o.status_reason || ''));
 
 test('Phase 93 — 1. REJECTED audit & eBay reconciliation preserve all invariants', () => {
   assert.strictEqual(rejectedAudit.audited_rejected_candidates, 2689);

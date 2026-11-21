@@ -43,7 +43,7 @@ const checksDe = read('output/phase94/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase94Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 94:/.test(o.status_reason || ''));
-const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[45]:/.test(o.status_reason || ''));
+const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[456]:/.test(o.status_reason || ''));
 
 test('Phase 94 — 1. archive enrichment & eBay backlog boundaries stay intact', () => {
   assert.strictEqual(enrichment.enrichment_summary.open_needs_evidence_parts_enriched, 490);

@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
-  "phase": "95",
-  "generated_at": "2026-11-20T21:39:04.690Z",
+  "phase": "96",
+  "generated_at": "2026-11-20T23:34:26.701Z",
   "policy": {
-    "pilot_name": "Phase 95 Targeted Affiliate Activation & Coverage Growth",
+    "pilot_name": "Phase 96 Dutch Localization, Catalog Enrichment & Affiliate Growth",
     "production_activation_allowed": true,
     "pilot_activated_parts": [
       "00001201653",
@@ -139,13 +139,17 @@
       "11061400502",
       "11061602001",
       "11063504002",
+      "11063510701",
       "11063580700",
+      "11063591110",
+      "11064043210",
       "11064051000",
       "11066402025",
       "11066403202",
       "11066403600",
       "11066479404",
       "11066480412",
+      "11067900302",
       "11067901501",
       "11068904501",
       "11071911200",
@@ -183,8 +187,10 @@
       "11140343001",
       "11141900600",
       "11143587700",
+      "11143590700",
       "11147909600",
       "11150343010",
+      "11151418600",
       "11154043400",
       "11167909600",
       "11170071014",
@@ -202,6 +208,7 @@
       "11181200600",
       "11181201611",
       "11181490600",
+      "11181605002",
       "11181820900",
       "11181821006",
       "11181900600",
@@ -243,6 +250,7 @@
       "11206401300",
       "11206641500",
       "11207909600",
+      "11210071021",
       "11210071037",
       "11210071039",
       "11210071041",
@@ -291,6 +299,7 @@
       "11216402004",
       "11216403202",
       "11216403203",
+      "11216407110",
       "11216407111",
       "11216409400",
       "11216486610",
@@ -732,6 +741,7 @@
       "11331201604",
       "11331412202",
       "11334001350",
+      "11336407100",
       "11337915900",
       "11350071050",
       "11350201202",
@@ -954,6 +964,7 @@
       "11431851903",
       "11431900600",
       "11433506200",
+      "11433587700",
       "11434001201",
       "11434001203",
       "11434001235",
@@ -963,6 +974,7 @@
       "11436402000",
       "11436402002",
       "11436403201",
+      "11436479401",
       "11436640500",
       "11437911706",
       "11437911736",
@@ -998,6 +1010,7 @@
       "11464001303",
       "11464001304",
       "11466402006",
+      "11466407102",
       "11470292300",
       "11470802101",
       "11480074100",
@@ -1310,6 +1323,7 @@
       "41401801109",
       "41401801112",
       "41401801500",
+      "41401820800",
       "41401900601",
       "41401904009",
       "41401950601",
@@ -1568,6 +1582,7 @@
       "42291400607",
       "42291402801",
       "42291410501",
+      "42291413700",
       "42291413800",
       "42294001300",
       "42294300203",
@@ -1630,6 +1645,7 @@
       "42387608500",
       "42387608505",
       "42387908304",
+      "42387910600",
       "42410071003",
       "42410071700",
       "42410201203",
@@ -2019,16 +2035,16 @@
     ]
   },
   "metrics": {
-    "total_registered": 3112,
+    "total_registered": 3128,
     "staged": 0,
     "verified": 3,
-    "active": 3056,
+    "active": 3072,
     "active_nl": 1442,
-    "active_de": 1614,
-    "active_unique_parts": 1895,
+    "active_de": 1630,
+    "active_unique_parts": 1911,
+    "parts_with_amazon_offer": 1911,
     "suspended": 34,
-    "research_required": 19,
-    "parts_with_amazon_offer": 1895
+    "research_required": 19
   },
   "offers": [
     {
@@ -285216,6 +285232,1524 @@
         "listing_title": null
       },
       "superseded_by_asin": "B0GYR9BXM4"
+    },
+    {
+      "part_number": "41401820800",
+      "part_number_formatted": "4140 182 0800",
+      "part_name": "Stihl Lockout Lever",
+      "product_title": "Abzugssperre für Stihl Trimmer FC55 FS38 FS40 FS70RC KM56RC, Ersatzteil 4140 182 0800, Gashebel und Sicherungshebel Set aus Kunststoff",
+      "brand": "URPIZY",
+      "manufacturer": "URPIZY (Verified Aftermarket)",
+      "manufacturer_part_number": "4140 182 0800",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GQ9CBG8L",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "41401820800",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "FC 55",
+        "FS 38",
+        "FS 45",
+        "FS 50",
+        "FS 55",
+        "FS 56",
+        "FS 70",
+        "HL 45",
+        "KM 55",
+        "KM 56",
+        "FS 55 R"
+      ],
+      "machine_compatibility": [
+        "FC 55",
+        "FS 38",
+        "FS 45",
+        "FS 50",
+        "FS 55",
+        "FS 56",
+        "FS 70",
+        "HL 45",
+        "KM 55",
+        "KM 56",
+        "FS 55 R"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-41401820800-B0GQ9CBG8L",
+      "compatibility_proof": "amazon.de-vermelding B0GQ9CBG8L (URPIZY) koppelt \"Abzugssperre für Stihl Trimmer FC55 FS38 FS40 FS70RC KM56RC, Ersatzteil 4140 182 0800, Gashebel und Sicherungs\" expliciet aan het STIHL-nummer 4140 182 0800 (compatibele modellen o.a. FC 55, FS 38, FS 45, FS 50).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GQ9CBG8L op 2026-11-20 bevestigt ASIN B0GQ9CBG8L, verkoper/merk URPIZY en exact onderdeelnummer 4140 182 0800 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GQ9CBG8L",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GQ9CBG8L?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+4140%20182%200800&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GQ9CBG8L",
+          "title": "Abzugssperre für Stihl Trimmer FC55 FS38 FS40 FS70RC KM56RC, Ersatzteil 4140 182 0800, Gashebel und Sicherungshebel Set aus Kunststoff",
+          "claim": "Live amazon.de-vermelding B0GQ9CBG8L toont \"Abzugssperre für Stihl Trimmer FC55 FS38 FS40 FS70RC KM56RC, Ersatzteil 4140 182 0800, Gashebel und Sicherungshebel Set aus Kunststoff\" met het exacte onderdeelnummer 4140 182 0800; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:24:55.308Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: URPIZY"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GQ9CBG8L",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 7,50 bezorging 7 - 23 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.913Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 4140 182 0800 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.913Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11466407102",
+      "part_number_formatted": "1146 640 7102",
+      "part_name": "Stihl Worm 1/4\"Picco / 3/8\"Picco",
+      "product_title": "Schneckenrad für Kettensägen-Ölpumpe Kompatibel mit Stihl MS150 MS192T MS193T MS201T Kompatibel mit 1146-640-7102",
+      "brand": "MechPort",
+      "manufacturer": "MechPort (Verified Aftermarket)",
+      "manufacturer_part_number": "1146 640 7102",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0H2LMWL9L",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11466407102",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 150",
+        "MS 151",
+        "MS 192",
+        "MS 193",
+        "MS 194",
+        "MS 201 TC-M"
+      ],
+      "machine_compatibility": [
+        "MS 150",
+        "MS 151",
+        "MS 192",
+        "MS 193",
+        "MS 194",
+        "MS 201 TC-M"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11466407102-B0H2LMWL9L",
+      "compatibility_proof": "amazon.de-vermelding B0H2LMWL9L (MechPort) koppelt \"Schneckenrad für Kettensägen-Ölpumpe Kompatibel mit Stihl MS150 MS192T MS193T MS201T Kompatibel mit 1146-640-7\" expliciet aan het STIHL-nummer 1146 640 7102 (compatibele modellen o.a. MS 150, MS 151, MS 192, MS 193).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0H2LMWL9L op 2026-11-20 bevestigt ASIN B0H2LMWL9L, verkoper/merk MechPort en exact onderdeelnummer 1146 640 7102 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0H2LMWL9L",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0H2LMWL9L?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1146%20640%207102&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0H2LMWL9L",
+          "title": "Schneckenrad für Kettensägen-Ölpumpe Kompatibel mit Stihl MS150 MS192T MS193T MS201T Kompatibel mit 1146-640-7102",
+          "claim": "Live amazon.de-vermelding B0H2LMWL9L toont \"Schneckenrad für Kettensägen-Ölpumpe Kompatibel mit Stihl MS150 MS192T MS193T MS201T Kompatibel mit 1146-640-7102\" met het exacte onderdeelnummer 1146 640 7102; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:07.984Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: MechPort"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0H2LMWL9L",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging woensdag, 25 november).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.918Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1146 640 7102 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.918Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42291413700",
+      "part_number_formatted": "4229 141 3700",
+      "part_name": "Stihl Lever",
+      "product_title": "Chokehebel 4229-141-3700 für Stihl BG45 BG46 BG55 BG65 BG85 SH55 SH85, Ersatz Startklappe Knopf, Robustes Kunststoffdesign für Laubbläser, Einfache Montage, Direkter Passgenauigkeit",
+      "brand": "Moliuoly",
+      "manufacturer": "Moliuoly (Verified Aftermarket)",
+      "manufacturer_part_number": "4229 141 3700",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0HPKMBFQL",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "42291413700",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "BG 45",
+        "BG 55",
+        "BG 85",
+        "BR 45",
+        "SH 55",
+        "SH 85"
+      ],
+      "machine_compatibility": [
+        "BG 45",
+        "BG 55",
+        "BG 85",
+        "BR 45",
+        "SH 55",
+        "SH 85"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-42291413700-B0HPKMBFQL",
+      "compatibility_proof": "amazon.de-vermelding B0HPKMBFQL (Moliuoly) koppelt \"Chokehebel 4229-141-3700 für Stihl BG45 BG46 BG55 BG65 BG85 SH55 SH85, Ersatz Startklappe Knopf, Robustes Kuns\" expliciet aan het STIHL-nummer 4229 141 3700 (compatibele modellen o.a. BG 45, BG 55, BG 85, BR 45).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0HPKMBFQL op 2026-11-20 bevestigt ASIN B0HPKMBFQL, verkoper/merk Moliuoly en exact onderdeelnummer 4229 141 3700 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0HPKMBFQL",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0HPKMBFQL?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+4229%20141%203700&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0HPKMBFQL",
+          "title": "Chokehebel 4229-141-3700 für Stihl BG45 BG46 BG55 BG65 BG85 SH55 SH85, Ersatz Startklappe Knopf, Robustes Kunststoffdesign für Laubbläser, Einfache Montage, Direkter Passgenauigkei",
+          "claim": "Live amazon.de-vermelding B0HPKMBFQL toont \"Chokehebel 4229-141-3700 für Stihl BG45 BG46 BG55 BG65 BG85 SH55 SH85, Ersatz Startklappe Knopf, Robustes Kunststoffdesign für Laubbläser, E\" met het exacte onderdeelnummer 4229 141 3700; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:12.999Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: Moliuoly"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0HPKMBFQL",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 18,80 bezorging 11 - 18 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.920Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 4229 141 3700 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.920Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11151418600",
+      "part_number_formatted": "1115 141 8600",
+      "part_name": "Stihl Impulse Hose",
+      "product_title": "cyclingcolors Saugschlauch für Kettensägen, kompatibel mit Stihl 028, 029, 039, 042, 048, 044, 045, 046, 064, 066...1115 141 8600",
+      "brand": "cyclingcolors",
+      "manufacturer": "cyclingcolors (Verified Aftermarket)",
+      "manufacturer_part_number": "1115 141 8600",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GRVGCHZF",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11151418600",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "028",
+        "042",
+        "045",
+        "048",
+        "056"
+      ],
+      "machine_compatibility": [
+        "028",
+        "042",
+        "045",
+        "048",
+        "056"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11151418600-B0GRVGCHZF",
+      "compatibility_proof": "amazon.de-vermelding B0GRVGCHZF (cyclingcolors) koppelt \"cyclingcolors Saugschlauch für Kettensägen, kompatibel mit Stihl 028, 029, 039, 042, 048, 044, 045, 046, 064, \" expliciet aan het STIHL-nummer 1115 141 8600 (compatibele modellen o.a. 028, 042, 045, 048).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GRVGCHZF op 2026-11-20 bevestigt ASIN B0GRVGCHZF, verkoper/merk cyclingcolors en exact onderdeelnummer 1115 141 8600 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GRVGCHZF",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GRVGCHZF?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1115%20141%208600&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GRVGCHZF",
+          "title": "cyclingcolors Saugschlauch für Kettensägen, kompatibel mit Stihl 028, 029, 039, 042, 048, 044, 045, 046, 064, 066...1115 141 8600",
+          "claim": "Live amazon.de-vermelding B0GRVGCHZF toont \"cyclingcolors Saugschlauch für Kettensägen, kompatibel mit Stihl 028, 029, 039, 042, 048, 044, 045, 046, 064, 066...1115 141 8600\" met het exacte onderdeelnummer 1115 141 8600; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:18.117Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: cyclingcolors"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GRVGCHZF",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 4,95 bezorging 1 - 17 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.921Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1115 141 8600 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.921Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11181605002",
+      "part_number_formatted": "1118 160 5002",
+      "part_name": "Stihl Lever",
+      "product_title": "ECSiNG Bremsband Steuerhebel für Kettensäge Kompatibel mit Stihl MS380 MS381 038 ersetzt oem 1118 160 5002",
+      "brand": "ECSiNG",
+      "manufacturer": "ECSiNG (Verified Aftermarket)",
+      "manufacturer_part_number": "1118 160 5002",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0H1NK5D7J",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11181605002",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "028",
+        "038",
+        "048",
+        "MS 380",
+        "MS 381"
+      ],
+      "machine_compatibility": [
+        "028",
+        "038",
+        "048",
+        "MS 380",
+        "MS 381"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11181605002-B0H1NK5D7J",
+      "compatibility_proof": "amazon.de-vermelding B0H1NK5D7J (ECSiNG) koppelt \"ECSiNG Bremsband Steuerhebel für Kettensäge Kompatibel mit Stihl MS380 MS381 038 ersetzt oem 1118 160 5002\" expliciet aan het STIHL-nummer 1118 160 5002 (compatibele modellen o.a. 028, 038, 048, MS 380).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0H1NK5D7J op 2026-11-20 bevestigt ASIN B0H1NK5D7J, verkoper/merk ECSiNG en exact onderdeelnummer 1118 160 5002 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0H1NK5D7J",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0H1NK5D7J?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1118%20160%205002&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0H1NK5D7J",
+          "title": "ECSiNG Bremsband Steuerhebel für Kettensäge Kompatibel mit Stihl MS380 MS381 038 ersetzt oem 1118 160 5002",
+          "claim": "Live amazon.de-vermelding B0H1NK5D7J toont \"ECSiNG Bremsband Steuerhebel für Kettensäge Kompatibel mit Stihl MS380 MS381 038 ersetzt oem 1118 160 5002\" met het exacte onderdeelnummer 1118 160 5002; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:21.242Z",
+          "delivery_to_nl": true,
+          "seller_byline": "De ECSiNG Store openen"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0H1NK5D7J",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging woensdag, 25 november).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.921Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1118 160 5002 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.921Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11216407110",
+      "part_number_formatted": "1121 640 7110",
+      "part_name": "Stihl Worm",
+      "product_title": "Öler Schneckengetriebe passend für Stihl MS261 024 026 MS240 MS260 Kettensäge 1121 640 7110",
+      "brand": "Luxuypon",
+      "manufacturer": "Luxuypon (Verified Aftermarket)",
+      "manufacturer_part_number": "1121 640 7110",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0B4CWBP8Z",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11216407110",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "024",
+        "026",
+        "MS 240",
+        "MS 260"
+      ],
+      "machine_compatibility": [
+        "024",
+        "026",
+        "MS 240",
+        "MS 260"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11216407110-B0B4CWBP8Z",
+      "compatibility_proof": "amazon.de-vermelding B0B4CWBP8Z (Luxuypon) koppelt \"Öler Schneckengetriebe passend für Stihl MS261 024 026 MS240 MS260 Kettensäge 1121 640 7110\" expliciet aan het STIHL-nummer 1121 640 7110 (compatibele modellen o.a. 024, 026, MS 240, MS 260).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0B4CWBP8Z op 2026-11-20 bevestigt ASIN B0B4CWBP8Z, verkoper/merk Luxuypon en exact onderdeelnummer 1121 640 7110 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0B4CWBP8Z",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0B4CWBP8Z?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121%20640%207110&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0B4CWBP8Z",
+          "title": "Öler Schneckengetriebe passend für Stihl MS261 024 026 MS240 MS260 Kettensäge 1121 640 7110",
+          "claim": "Live amazon.de-vermelding B0B4CWBP8Z toont \"Öler Schneckengetriebe passend für Stihl MS261 024 026 MS240 MS260 Kettensäge 1121 640 7110\" met het exacte onderdeelnummer 1121 640 7110; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:39.344Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: Luxuypon"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0B4CWBP8Z",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€6 bezorging 4 - 21 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.922Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1121 640 7110 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.922Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11336407100",
+      "part_number_formatted": "1133 640 7100",
+      "part_name": "Stihl Worm",
+      "product_title": "Kettensägen-Schneckengetriebe 1133 640 7100 Kompatibel mit STIHL MS270 MS270 CB MS270 C-BQ MS271",
+      "brand": "LT Easiyl",
+      "manufacturer": "LT Easiyl (Verified Aftermarket)",
+      "manufacturer_part_number": "1133 640 7100",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0F7X8PCSB",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11336407100",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 270",
+        "MS 271",
+        "MS 280",
+        "MS 291"
+      ],
+      "machine_compatibility": [
+        "MS 270",
+        "MS 271",
+        "MS 280",
+        "MS 291"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11336407100-B0F7X8PCSB",
+      "compatibility_proof": "amazon.de-vermelding B0F7X8PCSB (LT Easiyl) koppelt \"Kettensägen-Schneckengetriebe 1133 640 7100 Kompatibel mit STIHL MS270 MS270 CB MS270 C-BQ MS271\" expliciet aan het STIHL-nummer 1133 640 7100 (compatibele modellen o.a. MS 270, MS 271, MS 280, MS 291).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0F7X8PCSB op 2026-11-20 bevestigt ASIN B0F7X8PCSB, verkoper/merk LT Easiyl en exact onderdeelnummer 1133 640 7100 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0F7X8PCSB",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0F7X8PCSB?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1133%20640%207100&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0F7X8PCSB",
+          "title": "Kettensägen-Schneckengetriebe 1133 640 7100 Kompatibel mit STIHL MS270 MS270 CB MS270 C-BQ MS271",
+          "claim": "Live amazon.de-vermelding B0F7X8PCSB toont \"Kettensägen-Schneckengetriebe 1133 640 7100 Kompatibel mit STIHL MS270 MS270 CB MS270 C-BQ MS271\" met het exacte onderdeelnummer 1133 640 7100; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:25:46.915Z",
+          "delivery_to_nl": true,
+          "seller_byline": "De LT Easiyl Store openen"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0F7X8PCSB",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging woensdag, 25 november).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.923Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1133 640 7100 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.923Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11433587700",
+      "part_number_formatted": "1143 358 7700",
+      "part_name": "Stihl Hose",
+      "product_title": "Kraftstoffschlauch kompatibel mit Stihl MS251 2-Mix C-BEQ CBE Z / 1143-358-7700 Kettensäge",
+      "brand": "perfektGarten",
+      "manufacturer": "perfektGarten (Verified Aftermarket)",
+      "manufacturer_part_number": "1143 358 7700",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GP8XT21D",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11433587700",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 231",
+        "MS 241",
+        "MS 251",
+        "MS 251 C"
+      ],
+      "machine_compatibility": [
+        "MS 231",
+        "MS 241",
+        "MS 251",
+        "MS 251 C"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11433587700-B0GP8XT21D",
+      "compatibility_proof": "amazon.de-vermelding B0GP8XT21D (perfektGarten) koppelt \"Kraftstoffschlauch kompatibel mit Stihl MS251 2-Mix C-BEQ CBE Z / 1143-358-7700 Kettensäge\" expliciet aan het STIHL-nummer 1143 358 7700 (compatibele modellen o.a. MS 231, MS 241, MS 251, MS 251 C).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GP8XT21D op 2026-11-20 bevestigt ASIN B0GP8XT21D, verkoper/merk perfektGarten en exact onderdeelnummer 1143 358 7700 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GP8XT21D",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GP8XT21D?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1143%20358%207700&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GP8XT21D",
+          "title": "Kraftstoffschlauch kompatibel mit Stihl MS251 2-Mix C-BEQ CBE Z / 1143-358-7700 Kettensäge",
+          "claim": "Live amazon.de-vermelding B0GP8XT21D toont \"Kraftstoffschlauch kompatibel mit Stihl MS251 2-Mix C-BEQ CBE Z / 1143-358-7700 Kettensäge\" met het exacte onderdeelnummer 1143 358 7700; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:26:00.149Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: perfektGarten"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GP8XT21D",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 5,99 bezorging 28 - 30 november. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:26:13.923Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1143 358 7700 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:26:13.923Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11436479401",
+      "part_number_formatted": "1143 647 9401",
+      "part_name": "Stihl Hose",
+      "product_title": "Ölschlauch kompatibel mit Stihl MS251 2-Mix C C-BEQ CBE Z / 1143-647-9401 Kettensäge",
+      "brand": "perfektGarten",
+      "manufacturer": "perfektGarten (Verified Aftermarket)",
+      "manufacturer_part_number": "1143 647 9401",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GP71FYX9",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11436479401",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "MS 231",
+        "MS 251",
+        "MS 251 C"
+      ],
+      "machine_compatibility": [
+        "MS 231",
+        "MS 251",
+        "MS 251 C"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11436479401-B0GP71FYX9",
+      "compatibility_proof": "amazon.de-vermelding B0GP71FYX9 (perfektGarten) koppelt \"Ölschlauch kompatibel mit Stihl MS251 2-Mix C C-BEQ CBE Z / 1143-647-9401 Kettensäge\" expliciet aan het STIHL-nummer 1143 647 9401 (compatibele modellen o.a. MS 231, MS 251, MS 251 C).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GP71FYX9 op 2026-11-20 bevestigt ASIN B0GP71FYX9, verkoper/merk perfektGarten en exact onderdeelnummer 1143 647 9401 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GP71FYX9",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GP71FYX9?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1143%20647%209401&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GP71FYX9",
+          "title": "Ölschlauch kompatibel mit Stihl MS251 2-Mix C C-BEQ CBE Z / 1143-647-9401 Kettensäge",
+          "claim": "Live amazon.de-vermelding B0GP71FYX9 toont \"Ölschlauch kompatibel mit Stihl MS251 2-Mix C C-BEQ CBE Z / 1143-647-9401 Kettensäge\" met het exacte onderdeelnummer 1143 647 9401; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:33:03.829Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: perfektGarten"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GP71FYX9",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 5,99 bezorging 28 - 30 november. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.624Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1143 647 9401 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.624Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "42387910600",
+      "part_number_formatted": "4238 791 0600",
+      "part_name": "Stihl Handle Moulding",
+      "product_title": "Oberer Griff für Trennschleifer Ersetzt OEM 4238 791 0600 42387910600 Kompatibel mit Stihl ts410 ts420",
+      "brand": "AS Axis Spindleon",
+      "manufacturer": "AS Axis Spindleon (Verified Aftermarket)",
+      "manufacturer_part_number": "4238 791 0600",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0H1YW99PB",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "42387910600",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "TS 410",
+        "TS 420",
+        "TS 440"
+      ],
+      "machine_compatibility": [
+        "TS 410",
+        "TS 420",
+        "TS 440"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-42387910600-B0H1YW99PB",
+      "compatibility_proof": "amazon.de-vermelding B0H1YW99PB (AS Axis Spindleon) koppelt \"Oberer Griff für Trennschleifer Ersetzt OEM 4238 791 0600 42387910600 Kompatibel mit Stihl ts410 ts420\" expliciet aan het STIHL-nummer 4238 791 0600 (compatibele modellen o.a. TS 410, TS 420, TS 440).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0H1YW99PB op 2026-11-20 bevestigt ASIN B0H1YW99PB, verkoper/merk AS Axis Spindleon en exact onderdeelnummer 4238 791 0600 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0H1YW99PB",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0H1YW99PB?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+4238%20791%200600&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0H1YW99PB",
+          "title": "Oberer Griff für Trennschleifer Ersetzt OEM 4238 791 0600 42387910600 Kompatibel mit Stihl ts410 ts420",
+          "claim": "Live amazon.de-vermelding B0H1YW99PB toont \"Oberer Griff für Trennschleifer Ersetzt OEM 4238 791 0600 42387910600 Kompatibel mit Stihl ts410 ts420\" met het exacte onderdeelnummer 4238 791 0600; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:33:22.368Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: AS Axis Spindleon"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0H1YW99PB",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging woensdag, 25 november).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.627Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 4238 791 0600 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.627Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11063510701",
+      "part_number_formatted": "1106 351 0701",
+      "part_name": "Stihl Fuel Tank Cover",
+      "product_title": "Tankdeckel passend Stihl ersetzt 1106 351 0701",
+      "brand": "Jardiaffaires",
+      "manufacturer": "Jardiaffaires (Verified Aftermarket)",
+      "manufacturer_part_number": "1106 351 0701",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B09N7Z8H3M",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11063510701",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "070",
+        "090"
+      ],
+      "machine_compatibility": [
+        "070",
+        "090"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11063510701-B09N7Z8H3M",
+      "compatibility_proof": "amazon.de-vermelding B09N7Z8H3M (Jardiaffaires) koppelt \"Tankdeckel passend Stihl ersetzt 1106 351 0701\" expliciet aan het STIHL-nummer 1106 351 0701 (compatibele modellen o.a. 070, 090).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B09N7Z8H3M op 2026-11-20 bevestigt ASIN B09N7Z8H3M, verkoper/merk Jardiaffaires en exact onderdeelnummer 1106 351 0701 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B09N7Z8H3M",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B09N7Z8H3M?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1106%20351%200701&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B09N7Z8H3M",
+          "title": "Tankdeckel passend Stihl ersetzt 1106 351 0701",
+          "claim": "Live amazon.de-vermelding B09N7Z8H3M toont \"Tankdeckel passend Stihl ersetzt 1106 351 0701\" met het exacte onderdeelnummer 1106 351 0701; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:33:27.412Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: Jardiaffaires"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B09N7Z8H3M",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€14 bezorging 28 november - 2 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.628Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1106 351 0701 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.628Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11063591110",
+      "part_number_formatted": "1106 359 1110",
+      "part_name": "Stihl Gasket",
+      "product_title": "Kraftstofftankdeckel Kurbelgehäusedichtung for Stihl 070 090 Kettensäge OEM 1106 359 1110",
+      "brand": "Supkancl",
+      "manufacturer": "Supkancl (Verified Aftermarket)",
+      "manufacturer_part_number": "1106 359 1110",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GXFWV4D7",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11063591110",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "070",
+        "090"
+      ],
+      "machine_compatibility": [
+        "070",
+        "090"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11063591110-B0GXFWV4D7",
+      "compatibility_proof": "amazon.de-vermelding B0GXFWV4D7 (Supkancl) koppelt \"Kraftstofftankdeckel Kurbelgehäusedichtung for Stihl 070 090 Kettensäge OEM 1106 359 1110\" expliciet aan het STIHL-nummer 1106 359 1110 (compatibele modellen o.a. 070, 090).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GXFWV4D7 op 2026-11-20 bevestigt ASIN B0GXFWV4D7, verkoper/merk Supkancl en exact onderdeelnummer 1106 359 1110 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GXFWV4D7",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GXFWV4D7?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1106%20359%201110&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GXFWV4D7",
+          "title": "Kraftstofftankdeckel Kurbelgehäusedichtung for Stihl 070 090 Kettensäge OEM 1106 359 1110",
+          "claim": "Live amazon.de-vermelding B0GXFWV4D7 toont \"Kraftstofftankdeckel Kurbelgehäusedichtung for Stihl 070 090 Kettensäge OEM 1106 359 1110\" met het exacte onderdeelnummer 1106 359 1110; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:33:42.831Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: Supkancl"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GXFWV4D7",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 7,56 bezorging 14 - 21 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.628Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1106 359 1110 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.628Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11064043210",
+      "part_number_formatted": "1106 404 3210",
+      "part_name": "Stihl Stator With Coil",
+      "product_title": "Boubine voor Stihl 070 090 090AV 090G kettingzaag vervangt Stihl PN 1106-404-3210",
+      "brand": "C·T·S",
+      "manufacturer": "C·T·S (Verified Aftermarket)",
+      "manufacturer_part_number": "1106 404 3210",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B098BGFB1M",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11064043210",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "070",
+        "090"
+      ],
+      "machine_compatibility": [
+        "070",
+        "090"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11064043210-B098BGFB1M",
+      "compatibility_proof": "amazon.de-vermelding B098BGFB1M (C·T·S) koppelt \"Boubine voor Stihl 070 090 090AV 090G kettingzaag vervangt Stihl PN 1106-404-3210\" expliciet aan het STIHL-nummer 1106 404 3210 (compatibele modellen o.a. 070, 090).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B098BGFB1M op 2026-11-20 bevestigt ASIN B098BGFB1M, verkoper/merk C·T·S en exact onderdeelnummer 1106 404 3210 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B098BGFB1M",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B098BGFB1M?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1106%20404%203210&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B098BGFB1M",
+          "title": "Boubine voor Stihl 070 090 090AV 090G kettingzaag vervangt Stihl PN 1106-404-3210",
+          "claim": "Live amazon.de-vermelding B098BGFB1M toont \"Boubine voor Stihl 070 090 090AV 090G kettingzaag vervangt Stihl PN 1106-404-3210\" met het exacte onderdeelnummer 1106 404 3210; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:33:45.723Z",
+          "delivery_to_nl": true,
+          "seller_byline": "De C·T·S Store openen"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B098BGFB1M",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 12,08 bezorging 4 - 21 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.628Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1106 404 3210 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.628Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11067900302",
+      "part_number_formatted": "1106 790 0302",
+      "part_name": "Stihl Handle",
+      "product_title": "Heckgriff Montage für Stihl 070 090 Kettensäge Ersatz #1106 790 0302",
+      "brand": "SGBTB",
+      "manufacturer": "SGBTB (Verified Aftermarket)",
+      "manufacturer_part_number": "1106 790 0302",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0912RHPQV",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11067900302",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "070",
+        "090"
+      ],
+      "machine_compatibility": [
+        "070",
+        "090"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11067900302-B0912RHPQV",
+      "compatibility_proof": "amazon.de-vermelding B0912RHPQV (SGBTB) koppelt \"Heckgriff Montage für Stihl 070 090 Kettensäge Ersatz #1106 790 0302\" expliciet aan het STIHL-nummer 1106 790 0302 (compatibele modellen o.a. 070, 090).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0912RHPQV op 2026-11-20 bevestigt ASIN B0912RHPQV, verkoper/merk SGBTB en exact onderdeelnummer 1106 790 0302 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0912RHPQV",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0912RHPQV?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1106%20790%200302&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0912RHPQV",
+          "title": "Heckgriff Montage für Stihl 070 090 Kettensäge Ersatz #1106 790 0302",
+          "claim": "Live amazon.de-vermelding B0912RHPQV toont \"Heckgriff Montage für Stihl 070 090 Kettensäge Ersatz #1106 790 0302\" met het exacte onderdeelnummer 1106 790 0302; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:34:09.404Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: SGBTB"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0912RHPQV",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 7,75 bezorging 3 - 19 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.629Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1106 790 0302 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.629Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11143590700",
+      "part_number_formatted": "1114 359 0700",
+      "part_name": "Stihl Gasket",
+      "product_title": "Kraftstofftankdichtung für Stihl 020 MS200 FS120 FS200 Ersatzteil 1114-359-0700 Dichtungsring verhindert Kraftstofflecks einfache Montage langlebig",
+      "brand": "Moliuoly",
+      "manufacturer": "Moliuoly (Verified Aftermarket)",
+      "manufacturer_part_number": "1114 359 0700",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0HLFHMDHQ",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11143590700",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "020",
+        "FS 202"
+      ],
+      "machine_compatibility": [
+        "020",
+        "FS 202"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11143590700-B0HLFHMDHQ",
+      "compatibility_proof": "amazon.de-vermelding B0HLFHMDHQ (Moliuoly) koppelt \"Kraftstofftankdichtung für Stihl 020 MS200 FS120 FS200 Ersatzteil 1114-359-0700 Dichtungsring verhindert Kraft\" expliciet aan het STIHL-nummer 1114 359 0700 (compatibele modellen o.a. 020, FS 202).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0HLFHMDHQ op 2026-11-20 bevestigt ASIN B0HLFHMDHQ, verkoper/merk Moliuoly en exact onderdeelnummer 1114 359 0700 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0HLFHMDHQ",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0HLFHMDHQ?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1114%20359%200700&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0HLFHMDHQ",
+          "title": "Kraftstofftankdichtung für Stihl 020 MS200 FS120 FS200 Ersatzteil 1114-359-0700 Dichtungsring verhindert Kraftstofflecks einfache Montage langlebig",
+          "claim": "Live amazon.de-vermelding B0HLFHMDHQ toont \"Kraftstofftankdichtung für Stihl 020 MS200 FS120 FS200 Ersatzteil 1114-359-0700 Dichtungsring verhindert Kraftstofflecks einfache Montage la\" met het exacte onderdeelnummer 1114 359 0700; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:34:11.961Z",
+          "delivery_to_nl": true,
+          "seller_byline": "Merk: Moliuoly"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0HLFHMDHQ",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 18,80 bezorging 11 - 18 december. Gegevens).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.629Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1114 359 0700 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.629Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
+    },
+    {
+      "part_number": "11210071021",
+      "part_number_formatted": "1121 007 1021",
+      "part_name": "Stihl Chain Tensioner Kit",
+      "product_title": "YINETTECH Kettensäge Kettenspanner Einstellsatz 1121-007-1021 Kompatibel mit Stihl 024 026 028",
+      "brand": "YINETTECH",
+      "manufacturer": "YINETTECH (Verified Aftermarket)",
+      "manufacturer_part_number": "1121 007 1021",
+      "trade_number": null,
+      "package_quantity": 1,
+      "package_type": "Enkelstuks",
+      "is_multipack": false,
+      "asin": "B0GWK6FVGT",
+      "marketplace": "amazon.de",
+      "affiliate_tag": "srihldecode00-21",
+      "mpn": "11210071021",
+      "ean_gtin": null,
+      "oem_brand_classification": "MANUFACTURER_AFTERMARKET",
+      "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+      "model_compatibility": [
+        "024",
+        "MS 240"
+      ],
+      "machine_compatibility": [
+        "024",
+        "MS 240"
+      ],
+      "pilot_eligible": true,
+      "pilot_active": true,
+      "kill_switch_id": "KILL-P96-DE-11210071021-B0GWK6FVGT",
+      "compatibility_proof": "amazon.de-vermelding B0GWK6FVGT (YINETTECH) koppelt \"YINETTECH Kettensäge Kettenspanner Einstellsatz 1121-007-1021 Kompatibel mit Stihl 024 026 028\" expliciet aan het STIHL-nummer 1121 007 1021 (compatibele modellen o.a. 024, MS 240).",
+      "asin_product_identity_proof": "Controle van https://www.amazon.de/dp/B0GWK6FVGT op 2026-11-20 bevestigt ASIN B0GWK6FVGT, verkoper/merk YINETTECH en exact onderdeelnummer 1121 007 1021 in de productgegevens.",
+      "independent_evidence_url": "https://www.amazon.de/dp/B0GWK6FVGT",
+      "direct_affiliate_url": "https://www.amazon.de/dp/B0GWK6FVGT?tag=srihldecode00-21",
+      "search_fallback_url": "https://www.amazon.de/s?k=STIHL+1121%20007%201021&tag=srihldecode00-21",
+      "verifiable_evidence_sources": [
+        {
+          "type": "AMAZON_PRODUCT_PAGE",
+          "url": "https://www.amazon.de/dp/B0GWK6FVGT",
+          "title": "YINETTECH Kettensäge Kettenspanner Einstellsatz 1121-007-1021 Kompatibel mit Stihl 024 026 028",
+          "claim": "Live amazon.de-vermelding B0GWK6FVGT toont \"YINETTECH Kettensäge Kettenspanner Einstellsatz 1121-007-1021 Kompatibel mit Stihl 024 026 028\" met het exacte onderdeelnummer 1121 007 1021; de pagina bevestigt verzending naar Nederlands afleveradres op 2026-11-20.",
+          "checked_at": "2026-11-20T23:34:22.794Z",
+          "delivery_to_nl": true,
+          "seller_byline": "De YINETTECH Store openen"
+        }
+      ],
+      "verification_date": "2026-11-20",
+      "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_destination_country": "NL",
+      "shipping_checked_at": "2026-11-20",
+      "shipping_evidence_url": "https://www.amazon.de/dp/B0GWK6FVGT",
+      "shipping_evidence_description": "amazon.de-vermelding bevestigt levering naar Nederlands postcodegebied (€ 6,99 bezorging donderdag, 26 november).",
+      "availability_audit": {
+        "verdict": "LISTING_LIVE",
+        "method": "LIVE_BROWSER_GET",
+        "checked_at": "2026-11-20T23:34:26.630Z",
+        "http_status": 200
+      },
+      "status": "ACTIVE",
+      "status_reason": "Phase 96: amazon.de-vermelding met exact STIHL-nummer 1121 007 1021 en bevestigde NL-levering.",
+      "supersedes_asin": null,
+      "updated_at": "2026-11-20T23:34:26.630Z",
+      "gate_1_technical": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "asin_syntax": true,
+          "marketplace_valid": true,
+          "affiliate_tag_valid": true,
+          "part_number_canonical": true,
+          "catalog_grounded": true,
+          "provenance_fields_present": true
+        },
+        "errors": []
+      },
+      "gate_2_product": {
+        "status": "PASS",
+        "passed": true,
+        "checks": {
+          "oem_taxonomy_valid": true,
+          "manufacturer_mpn_proof": true,
+          "compatibility_proof": true,
+          "asin_product_identity_proof": true,
+          "known_mismatch_absent": true,
+          "volatile_facts_absent": true,
+          "independent_sources_corroborated": true,
+          "packaging_valid": true
+        },
+        "errors": []
+      }
     }
   ],
   "availability_audit": {
@@ -285369,5 +286903,6 @@
     "superseded_research_candidates": 5,
     "ready_above_cap": 12,
     "not_activated": 10
-  }
+  },
+  "total_offers": 3121
 }

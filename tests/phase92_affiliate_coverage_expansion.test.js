@@ -40,7 +40,7 @@ const checksDe = read('output/phase92/product_checks_amazon_de.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase92Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 92:/.test(o.status_reason || ''));
-const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[2345]:/.test(o.status_reason || ''));
+const baselineOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^Phase 9[23456]:/.test(o.status_reason || ''));
 
 test('Phase 92 — 1. registry expands ACTIVE offers & unique parts while preserving 2,196 baseline ACTIVE & 34 SUSPENDED', () => {
   assert.strictEqual(MAX_PILOT_ACTIVE_OFFERS, null);

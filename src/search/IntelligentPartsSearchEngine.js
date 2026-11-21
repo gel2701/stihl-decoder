@@ -18,6 +18,7 @@ import { fileURLToPath } from 'node:url';
 
 import { PartCatalogResolver } from '../parts/PartCatalogResolver.js';
 import { PartNormalizer } from '../parts/PartNormalizer.js';
+import { PartNameNormalizer } from '../parts/PartNameNormalizer.js';
 import { defaultVerifiedOfferRegistry } from '../affiliate/VerifiedOfferRegistry.js';
 import { AmazonAffiliateProvider, COMMERCIAL_TIERS, extractTargetedSearchKeywords } from '../affiliate/AmazonAffiliateProvider.js';
 import { EbayAffiliateProvider } from '../affiliate/EbayAffiliateProvider.js';
@@ -81,37 +82,37 @@ export function classifyPartCategory(partName = '') {
   const name = String(partName || '').toLowerCase();
 
   // Fasteners & hardware checked early so titles with "Chainsaw Parts - M5 Nut" or "Screw for guide bar" are classified as hardware
-  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgring|circlip|sprengring|klem|clip|bout|bolt|tapeind|stud|cylindrical pin|snap ring|grooved ball bearing|needle cage|helicoil/i.test(name)) {
+  if (/schroef|screw|schraube|moer|nut|mutter|sluitring|washer|scheibe|borgveer|borgclip|borgring|circlip|sprengring|klem|clip|bout|bolt|tapeind|stud|cylindrical pin|cilinderpen|snap ring|kogellager|groefkogellager|grooved ball bearing|naaldlager|needle cage|needle bearing|helicoil|spie/i.test(name)) {
     return PART_CATEGORIES.HARDWARE;
   }
-  if (/luchtfilter|air filter|luftfilter|brandstoffilter|fuel filter|kraftstofffilter|filterelement|filter element|filter|saugkopf|pickup body|service kit|onderhoudset/i.test(name)) {
+  if (/luchtfilter|air filter|luftfilter|voorfilter|hulpfilter|filterdeksel|filterhuis|filtervoet|brandstoffilter|fuel filter|kraftstofffilter|filterelement|filter element|filter|saugkopf|pickup body|service kit|onderhouds?set/i.test(name)) {
     return PART_CATEGORIES.FILTERS;
   }
-  if (/bougie|spark plug|zündkerze|zundkerze|ontsteking|ignition|stecker|bougiedop|flywheel|vliegwiel|control unit|wiring harness|contactveer|cable harness|lead retainer/i.test(name)) {
+  if (/bougie|spark plug|zündkerze|zundkerze|ontsteking|ignition|zündspule|zündmodul|stecker|bougiedop|flywheel|vliegwiel|control unit|regeleenheid|elektronische module|condensator|wiring harness|kabelboom|contactveer|cable harness|lead retainer/i.test(name)) {
     return PART_CATEGORIES.IGNITION;
   }
-  if (/carburateur|carburetor|carburettor|vergaser|membraan|diaphragm|pakking|gasket|dichtung|revisieset|carb set|fixed jet|inlet control|strainer|spindle|fuel tank|brandstoftank|tank vent|filler cap|fuel hose|tankdop/i.test(name)) {
+  if (/carburateur|carburetor|carburettor|vergaser|membraan|diaphragm|pakking|gasket|dichtung|revisieset|carb set|fixed jet|inlet control|inlaatspruitstuk|spruitstuk|strainer|zeef|spindle|fuel tank|brandstoftank|tankontluchting|tank vent|filler cap|fuel hose|brandstofslang|tankdop|brandstofdop/i.test(name)) {
     return PART_CATEGORIES.CARBURETOR;
   }
-  if (/zaagketting|saw chain|sägekette|sagekette|ketting(?!enzaag)|\bchain(?!saw)\b|zaagblad|guide bar|schwert|spreader|kettingspanner|chain tensioner/i.test(name)) {
+  if (/zaagketting|saw chain|sägekette|sagekette|ketting(?!enzaag)|\bchain(?!saw)\b|zaagblad|guide bar|schwert|spreader|kettingspanner|chain tensioner|kettingvanger|kettingrem|remband/i.test(name)) {
     return PART_CATEGORIES.CUTTING_EQUIPMENT;
   }
-  if (/maaikop|mowing head|autocut|trimmer|maaidraad|trimmer line|polycut|duocut|slagmes|mowing blade|cutter blade|rider plate|limit stop|deflector|thrust plate|skirt|protection|guard ring/i.test(name)) {
+  if (/maaikop|mowing head|autocut|trimmer|maaidraad|trimmer line|polycut|duocut|slagmes|mowing blade|cutter blade|rider plate|limit stop|deflector|thrust plate|skirt|protection|guard ring|maaidek|mes/i.test(name)) {
     return PART_CATEGORIES.TRIMMER_EQUIPMENT;
   }
-  if (/starter|recoil|anwerfer|startkoord|starter rope|startveer|rewind spring|seilrolle|starter grip|pawl/i.test(name)) {
+  if (/starter|trekstarter|handstarter|startrol|startdeksel|recoil|anwerfer|startkoord|starter rope|startveer|terugloopveer|rewind spring|seilrolle|starter grip|elastostart|pawl|starterklink/i.test(name)) {
     return PART_CATEGORIES.STARTER;
   }
-  if (/koppeling|clutch|kupplung|kettingwiel|sprocket|kettenrad|rim sprocket|rondsel|aandrijfwiel|clutch drum|drive shaft|pinion|flexible liner/i.test(name)) {
+  if (/koppeling|clutch|kupplung|kettingwiel|sprocket|kettenrad|rim sprocket|ringkettingwiel|rondsel|aandrijfwiel|clutch drum|koppelingstrommel|koppelingsschoen|drive shaft|aandrijfas|pinion|flexible liner/i.test(name)) {
     return PART_CATEGORIES.CLUTCH;
   }
-  if (/cilinder|cylinder|zylinder|zuiger|piston|kolben|zuigerveer|piston ring|crankshaft|krukas|krukaslager|drijfstang|crankcase|carter|uitlaat|muffler|auspuff|cooling plate/i.test(name)) {
+  if (/cilinder|cylinder|zylinder|zuiger|piston|kolben|zuigerveer|zuigerpen|zuigerset|piston ring|crankshaft|krukas|krukaslager|drijfstang|crankcase|carter|uitlaat|muffler|auspuff|cooling plate|koelplaat|decompressieventiel/i.test(name)) {
     return PART_CATEGORIES.ENGINE;
   }
-  if (/oliepomp|oil pump|ölpumpe|olpumpe|olieslang|wormwiel|worm gear|schneckentrieb|grease|vet|lubricant|smeermiddel/i.test(name)) {
+  if (/oliepomp|oil pump|ölpumpe|olpumpe|olieslang|oliedop|olietank|wormwiel|worm gear|schneckentrieb|grease|vet|lubricant|smeermiddel/i.test(name)) {
     return PART_CATEGORIES.OIL_SYSTEM;
   }
-  if (/handgreep|handle|griff|av-veer|veerelement|annular buffer|bumper spike|tandkam|behuizing|housing|kap|cover|haube|harness|draagharnas|hip pad|chest strap|chest plate|shoulder plate|shroud|shutter|handbeschermer|throttle|gashendel|rubber buffer|av spring/i.test(name)) {
+  if (/handgreep|beugelhandgreep|beugelgreep|handle|griff|av-veer|veerelement|trillingsdemper|aanslagbuffer|annular buffer|bumper spike|schorskam|tandkam|behuizing|ventilatorhuis|afdekkap|beschermkap|housing|kap|cover|haube|harness|draagharnas|draaggordel|hip pad|chest strap|chest plate|shoulder plate|shroud|shutter|handbeschermer|throttle|gashendel|gaskabel|rubber buffer|av spring/i.test(name)) {
     return PART_CATEGORIES.BODY;
   }
 
@@ -561,7 +562,7 @@ export function enrichSearchResultPart(partObj, database = null) {
   if (!partObj) return null;
   const partNo = partObj.part_number;
   const formattedNo = partObj.part_number_display || (partNo ? `${partNo.slice(0, 4)} ${partNo.slice(4, 7)} ${partNo.slice(7)}` : '');
-  const cleanName = partObj.part_name_normalized || partObj.part_name || 'STIHL Vervangingsonderdeel';
+  const cleanName = PartNameNormalizer.normalizeDisplayName(partObj.part_name, partNo) || partObj.part_name_normalized || partObj.part_name || 'STIHL Vervangingsonderdeel';
 
   const category = classifyPartCategory(cleanName);
   const supersession = checkPartSupersession(partNo);
