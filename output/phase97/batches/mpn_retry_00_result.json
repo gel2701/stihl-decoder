@@ -1,0 +1,1996 @@
+{
+  "phase": "97",
+  "batch_id": "mpn_retry_00",
+  "generated_at": "2026-11-21T08:55:43.287Z",
+  "complete": true,
+  "live_api": true,
+  "dry_run": false,
+  "used_query_hints": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 4218,
+    "offers_after": 4218
+  },
+  "metrics": {
+    "parts_in_batch": 27,
+    "parts_resolved": 27,
+    "parts_processed": 27,
+    "parts_already_active": 0,
+    "parts_errors": 0,
+    "new_active_offers": 0,
+    "new_active_parts": 0,
+    "new_active_parts_without_amazon_link": 0,
+    "needs_evidence_candidates": 72,
+    "rejected_candidates": 4,
+    "parts_with_no_listing": 0,
+    "resolver_resolved_new_parts": 0,
+    "resolver_misses": [],
+    "remaining_parts": 0,
+    "duration_ms": 170995
+  },
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "00004481250",
+      "item_id": "v1|178476343363|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kabelhalter Original Stihl 024, 026, 028, MS310, MS360 0000-448-1250 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00004481250",
+      "item_id": "v1|178476343363|0",
+      "marketplace": "EBAY_NL",
+      "title": "Kabelhalter Original Stihl 024, 026, 028, MS310, MS360 0000-448-1250 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009302242",
+      "item_id": "v1|318478802248|0",
+      "marketplace": "EBAY_DE",
+      "title": "6. Original STIHL Gurtband 0000-930-2242",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009302242",
+      "item_id": "v1|318478802248|0",
+      "marketplace": "EBAY_NL",
+      "title": "6. Genuine STIHL Webbing 0000-930-2242",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009741200",
+      "item_id": "v1|236575343192|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Crankcase Pin Notched 2.6x8 0000-974-1200 MS 400 500i 661 360 #GM-R4C2",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009741200",
+      "item_id": "v1|307129689926|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Crankcase Pin Notched 2.6x8 0000-974-1200 MS 400 500i 661 360 H69",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009890814",
+      "item_id": "v1|164309698371|0",
+      "marketplace": "EBAY_DE",
+      "title": "5xOriginal Stihl Tülle 0000 989 0814 ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009890814",
+      "item_id": "v1|286108050262|0",
+      "marketplace": "EBAY_NL",
+      "title": "Grommet Fits Stihl MS440 MS460 044 046 Chainsaw w 0000 989 0814",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "00009890814",
+      "item_id": "v1|164309698371|0",
+      "marketplace": "EBAY_NL",
+      "title": "5xOriginal Stihl Tülle 0000 989 0814 ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11061227400",
+      "item_id": "v1|236661583519|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE STIHL OEM ROUND HEAD SCREW 012 FS360 1106 122 7400 B24",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11131210800",
+      "item_id": "v1|114447667090|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE OEM STIHL COVER 11131210800",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11141227400",
+      "item_id": "v1|277545091464|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Fs85 Carb Screw OEM Original 1114 122 7400 3A",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|226481901785|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl Ersatzteil : Hebel 1121 162 5010 bei Kettenbremse",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|880135745673|0",
+      "marketplace": "EBAY_DE",
+      "title": "Für Kettensäge Bremshebel 1121 162 5010 leichtgängiger Eingriff ohne Werkzeug",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|278333111967|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremshebel 1121 162 5010 kompatibel mit für Kettensägenmodelle Easy Swap",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|278360124712|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge hochfester Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|800928264010|0",
+      "marketplace": "EBAY_DE",
+      "title": "OEM Ersatz Bremshebel 1121 162 5010 für kompatibel für Motorsägen",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|137728063219|0",
+      "marketplace": "EBAY_DE",
+      "title": "Für Kettensäge Bremshebel 1121 162 5010 für zuverlässige Stoppfunktion Metal",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|860005109741|0",
+      "marketplace": "EBAY_DE",
+      "title": "OEM Spec Bremshebel 1121 162 5010 für Kettensäge nahtlose Kompatibilität",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|318717269041|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge müheloses Eingreifen Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|820117677717|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge Feinmechanik Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|407143418067|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge verschleißfest für robuste Metallausführ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|880135745673|0",
+      "marketplace": "EBAY_NL",
+      "title": "Für Kettensäge Bremshebel 1121 162 5010 leichtgängiger Eingriff ohne Werkzeug",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|278360124712|0",
+      "marketplace": "EBAY_NL",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge hochfester Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|278333111967|0",
+      "marketplace": "EBAY_NL",
+      "title": "Bremshebel 1121 162 5010 kompatibel mit für Kettensägenmodelle Easy Swap",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|318717269041|0",
+      "marketplace": "EBAY_NL",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge müheloses Eingreifen Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|234924247925|0",
+      "marketplace": "EBAY_NL",
+      "title": "1121-162-5010 Brake Level Fits Stihl MS360 036 MS340 034 MS660 066 MS260",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|285121236894|0",
+      "marketplace": "EBAY_NL",
+      "title": "For Stihl Brake Lever For Many For Stihl s (Description) 1121 162 5010",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|226481901785|0",
+      "marketplace": "EBAY_NL",
+      "title": "Original Stihl Ersatzteil : Hebel 1121 162 5010 bei Kettenbremse",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|125375898474|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Brake Lever 021 025 026 024 034 036 066 046 044 1121-162-5010 NEW ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|820117677717|0",
+      "marketplace": "EBAY_NL",
+      "title": "Bremshebel 1121 162 5010 für Kettensäge Feinmechanik Metallbau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|318857689467|0",
+      "marketplace": "EBAY_NL",
+      "title": "Für Kettensäge Bremshebel 1121 162 5010 leichtgängiger Eingriff ohne Werkzeug",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|186334931968|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Chain Brake Lever 024 026 034 MS290 MS390 1121-162-5010 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|187609448725|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Chain Brake Lever 024 026 034 MS290 MS390 1121-162-5010 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|132940660635|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl 026 044 046 MS440 MS460 MS441 084 066 064 Chainbrake Lever 11211625010",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|336325770303|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE OEM STIHL CHAIN BRAKE LEVER 024 026 034 MS290 MS390 1121-162-5010 B17",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|393997888191|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl 044 046 MS440 MS460 MS441 084 066 064 Chainbrake Lever 11211625010 TY9",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|164410194459|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 1121-162-5010 Chainsaw Chain Brake Lever",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|157366729226|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine 024/024 Chain Brake Lever - OEM Used - 1121 162 5010",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|157464466922|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine 024/026/034/036 & More Chain Brake Lever-OEM Used-1121 162 5010",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11211625010",
+      "item_id": "v1|960044317730|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Chain Brake Lever 024 026 034 MS290 MS390 1121-162-5010 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11214420402",
+      "item_id": "v1|146884154777|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine OEM Stihl Insulating Hose Part# 1121 442 0402 NOS",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11271226701",
+      "item_id": "v1|405155379771|0",
+      "marketplace": "EBAY_NL",
+      "title": "stihl high speed screw 1127 122 6701",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11280807500",
+      "item_id": "v1|336467062790|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL COVER PLATE 1128 080 7500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11281226703",
+      "item_id": "v1|387335192667|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM carburetor High Speed Adjusting Screw 1128-122-6703 #GM-P4D4",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11281621000",
+      "item_id": "v1|287004455892|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine STIHL 044 046 MS440 MS460 MS 440 460 CLUTCH WASHER 1128 162 1000. 1E",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11286642200",
+      "item_id": "v1|358112366115|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Cover 1128 664 2200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "30036559200",
+      "item_id": "v1|146911025321|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine OEM Stihl Spacer Washer Part# 3003 655 9200 NOS",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41197924305",
+      "item_id": "v1|124702989513|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine Clamping Wire ST4119 792 4305",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248539567|0",
+      "marketplace": "EBAY_DE",
+      "title": "10xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248571381|0",
+      "marketplace": "EBAY_DE",
+      "title": "5xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248539567|0",
+      "marketplace": "EBAY_NL",
+      "title": "10xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|164248571381|0",
+      "marketplace": "EBAY_NL",
+      "title": "5xOriginal Stihl Dichtring 41241223600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41281824504",
+      "item_id": "v1|235715914298|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL TORSION SPRING FS85 FS87 FS110 HS86 HS87 KM90 KM130 MM55 4128-182-4504 B68",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41281824504",
+      "item_id": "v1|287396998991|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 41281824504 Ressort de levier accélérateur",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41371958200",
+      "item_id": "v1|397944717890|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM 41371958200 Starter Rope 2.7mm x 910mm 35.8\" Fits FS94",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41371958200",
+      "item_id": "v1|287650264846|0",
+      "marketplace": "EBAY_NL",
+      "title": "Starter Rope For ST HS81R HS81RC HS81T #4137 195 8200  2.7x910 mm",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401223600",
+      "item_id": "v1|203789353621|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl Dichtring FS38, FS45 .41401223600 . KOSTENLOSER VERSAND. NEU . 'A275",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401223600",
+      "item_id": "v1|203789353621|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl Sealing Ring FS38, FS45 .41401223600 . FREE P&P . NEW . 'A275",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401226200",
+      "item_id": "v1|276813373328|0",
+      "marketplace": "EBAY_NL",
+      "title": "stihl throttle adjust screw part # 4140-122-6200. 1A",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223001",
+      "item_id": "v1|178492325621|0",
+      "marketplace": "EBAY_DE",
+      "title": "Feder Original Stihl BR500, FS100, FS130, HL100, KM100 4180-122-3001 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223001",
+      "item_id": "v1|178492325621|0",
+      "marketplace": "EBAY_NL",
+      "title": "Feder Original Stihl BR500, FS100, FS130, HL100, KM100 4180-122-3001 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223002",
+      "item_id": "v1|178285163574|0",
+      "marketplace": "EBAY_DE",
+      "title": "Feder Original Stihl FS100, FS100R, BG85, FC90, HL100, KM90 4180-122-3002 NEU",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223002",
+      "item_id": "v1|178496064379|0",
+      "marketplace": "EBAY_DE",
+      "title": "Feder Original Stihl BG55, FS110, FS55R, FS90, HL95 4180-122-3002 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223002",
+      "item_id": "v1|178496064379|0",
+      "marketplace": "EBAY_NL",
+      "title": "Feder Original Stihl BG55, FS110, FS55R, FS90, HL95 4180-122-3002 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801223002",
+      "item_id": "v1|178285163574|0",
+      "marketplace": "EBAY_NL",
+      "title": "Feder Original Stihl FS100, FS100R, BG85, FC90, HL100, KM90 4180-122-3002 NEU",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90223461070",
+      "item_id": "v1|334530805845|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL OEM 9022 346 1070 Valve Cover Screw Blower and Trimmer",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90754783012",
+      "item_id": "v1|389251372071|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Pan Head Self Tapping Screws (5) D4x12 9075-478-3012 T27 #GM-X1E1",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90764782996",
+      "item_id": "v1|264734282660|0",
+      "marketplace": "EBAY_NL",
+      "title": "9076 478 2996 Brand New 100% Genuine Stihl OEM Part. SCREW. 12 Avail.",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90764782996",
+      "item_id": "v1|155961291985|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Chainsaw Hedge Trimmer Screw 90764782996",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90990211760",
+      "item_id": "v1|317758094724|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl 9099 021 1760 Screw, OEM Stihl, Free Shipping",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "90990211760",
+      "item_id": "v1|128034923999|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Screw. Part 9099 021 1760. See pic.",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "11280807500",
+      "item_id": "v1|235427234267|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL STARTER COVER PLATE 1128-080-7500 044 046 MS440 C MS460 MAGNUM -B7",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11281621000",
+      "item_id": "v1|336394258315|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Cover Washer 58mm for Stihl 044 046 036 MS360 Chainsaw (1128 162 1000)",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "41241223600",
+      "item_id": "v1|336347288704|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM STIHL SEALING RING 4124-122-3600 009 025 026 MS200T MS260 MS362 C MS391 -B64",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "90990211760",
+      "item_id": "v1|235435437918|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL SELF TAPPING SCREW 9099-021-1760 020T 024 026 028 038 MS200T —B59",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "00004481250",
+      "part_name": "Stihl 00004481250 Lead Retainer",
+      "models": [
+        "039",
+        "044",
+        "046",
+        "064",
+        "066",
+        "084"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 00004481250 Stihl 00004481250 Lead Retainer",
+        "00004481250 Stihl 00004481250 Lead Retainer",
+        "STIHL 039 Stihl 00004481250 Lead Retainer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 12,
+      "client_passed": 2,
+      "client_rejected": 10,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009302242",
+      "part_name": "Stihl Webbing",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fs_25",
+        "fs_36",
+        "fs_40",
+        "fs_44"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 00009302242 Stihl Webbing",
+        "00009302242 Stihl Webbing",
+        "STIHL fr_106 Stihl Webbing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 2,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009741200",
+      "part_name": "Stihl Notched Pin 2,6X8",
+      "models": [
+        "039",
+        "044",
+        "046",
+        "064",
+        "066",
+        "084"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 00009741200 Stihl Notched Pin 2,6X8",
+        "00009741200 Stihl Notched Pin 2,6X8",
+        "STIHL 039 Stihl Notched Pin 2,6X8"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 2,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009890814",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "039",
+        "044",
+        "046",
+        "gs_461",
+        "mc_200",
+        "ms_200"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 00009890814 Stihl Grommet",
+        "00009890814 Stihl Grommet",
+        "STIHL 039 Stihl Grommet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 3,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 3,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 3
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11061227400",
+      "part_name": "Stihl Screw And Lock Washer",
+      "models": [
+        "009",
+        "010",
+        "011",
+        "012",
+        "015",
+        "017"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11061227400 Stihl Screw And Lock Washer",
+        "11061227400 Stihl Screw And Lock Washer",
+        "STIHL 009 Stihl Screw And Lock Washer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 1,
+      "client_rejected": 21,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11131210800",
+      "part_name": "Stihl Fuel Strainer Cover",
+      "models": [
+        "009",
+        "010",
+        "011",
+        "012",
+        "017",
+        "019"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11131210800 Stihl Fuel Strainer Cover",
+        "11131210800 Stihl Fuel Strainer Cover",
+        "STIHL 009 Stihl Fuel Strainer Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 1,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11141227400",
+      "part_name": "Stihl Screw",
+      "models": [
+        "009",
+        "010",
+        "011",
+        "012",
+        "017",
+        "019"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11141227400 Stihl Screw",
+        "11141227400 Stihl Screw",
+        "STIHL 009 Stihl Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 1,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11211625010",
+      "part_name": "Stihl Lever",
+      "models": [
+        "024",
+        "026",
+        "029",
+        "034",
+        "036",
+        "039"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11211625010 Stihl Lever",
+        "11211625010 Stihl Lever",
+        "STIHL 024 Stihl Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 86,
+      "client_passed": 29,
+      "client_rejected": 57,
+      "active": 0,
+      "needs_evidence": 29,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 7,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 29
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11214420402",
+      "part_name": "Stihl Insulating Hose 35Mm / 1.4\"",
+      "models": [
+        "024",
+        "026",
+        "034",
+        "036",
+        "044",
+        "046"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11214420402 Stihl Insulating Hose 35Mm / 1.4\"",
+        "11214420402 Stihl Insulating Hose 35Mm / 1.4\"",
+        "STIHL 024 Stihl Insulating Hose 35Mm / 1.4\""
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 12,
+      "client_passed": 1,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11271226701",
+      "part_name": "Stihl High Speed Screw",
+      "models": [
+        "029",
+        "039",
+        "044",
+        "046",
+        "ms_290",
+        "ms_310"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11271226701 Stihl High Speed Screw",
+        "11271226701 Stihl High Speed Screw",
+        "STIHL 029 Stihl High Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 1,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11280807500",
+      "part_name": "Stihl Cover Plate",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_460"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11280807500 Stihl Cover Plate",
+        "11280807500 Stihl Cover Plate",
+        "STIHL 044 Stihl Cover Plate"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 26,
+      "client_passed": 2,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11281226703",
+      "part_name": "Stihl High Speed Screw",
+      "models": [
+        "029",
+        "039",
+        "044",
+        "046",
+        "ms_270",
+        "ms_280"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11281226703 Stihl High Speed Screw",
+        "11281226703 Stihl High Speed Screw",
+        "STIHL 029 Stihl High Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 1,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11281621000",
+      "part_name": "Stihl Cover Washer 43Mm / 1 3/4\"",
+      "models": [
+        "036",
+        "044",
+        "046",
+        "ms_360",
+        "ms_440",
+        "ms_460"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11281621000 Stihl Cover Washer 43Mm / 1 3/4\"",
+        "11281621000 Stihl Cover Washer 43Mm / 1 3/4\"",
+        "STIHL 036 Stihl Cover Washer 43Mm / 1 3/4\""
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 12,
+      "client_passed": 2,
+      "client_rejected": 10,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11286642200",
+      "part_name": "Stihl Cover",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 11286642200 Stihl Cover",
+        "11286642200 Stihl Cover",
+        "STIHL 044 Stihl Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 28,
+      "client_passed": 1,
+      "client_rejected": 27,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "30036559200",
+      "part_name": "Stihl Spacer Washer",
+      "models": [
+        "044",
+        "046",
+        "ms_440",
+        "ms_461",
+        "ms_462"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 30036559200 Stihl Spacer Washer",
+        "30036559200 Stihl Spacer Washer",
+        "STIHL 044 Stihl Spacer Washer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 1,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41197924305",
+      "part_name": "Stihl Clamping Wire",
+      "models": [
+        "fr_106",
+        "fr_108",
+        "fr_410",
+        "fr_460",
+        "fs_100",
+        "fs_106"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41197924305 Stihl Clamping Wire",
+        "41197924305 Stihl Clamping Wire",
+        "STIHL fr_106 Stihl Clamping Wire"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 1,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41241223600",
+      "part_name": "Stihl Sealing Ring",
+      "models": [
+        "009",
+        "017",
+        "020",
+        "021",
+        "023",
+        "025"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41241223600 Stihl Sealing Ring",
+        "41241223600 Stihl Sealing Ring",
+        "STIHL 009 Stihl Sealing Ring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 29,
+      "client_passed": 5,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 4,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 5,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 4,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41281824504",
+      "part_name": "Stihl Torsion Spring",
+      "models": [
+        "fs_100",
+        "fs_120",
+        "fs_130",
+        "fs_160",
+        "fs_180",
+        "fs_200"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41281824504 Stihl Torsion Spring",
+        "41281824504 Stihl Torsion Spring",
+        "STIHL fs_100 Stihl Torsion Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 2,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41371958200",
+      "part_name": "Stihl Starter Rope � 2.7x910 mm for MS180, MS181 Chainsaws - 4137 195 8200",
+      "models": [
+        "bg_72",
+        "bg_75",
+        "fc_85",
+        "fh_75",
+        "fr_125",
+        "fr_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41371958200 Stihl Starter Rope � 2.7x910 mm for MS180, MS181 Chainsaws - 4137 195 8200",
+        "41371958200 Stihl Starter Rope � 2.7x910 mm for MS180, MS181 Chainsaws - 4137 195 8200",
+        "STIHL bg_72 Stihl Starter Rope � 2.7x910 mm for MS180, MS181 Chainsaws - 4137 195 8200"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 2,
+      "client_rejected": 12,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41401223600",
+      "part_name": "Stihl Sealing Ring",
+      "models": [
+        "bg_45",
+        "bg_55",
+        "bg_85",
+        "br_45",
+        "fc_55",
+        "fc_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41401223600 Stihl Sealing Ring",
+        "41401223600 Stihl Sealing Ring",
+        "STIHL bg_45 Stihl Sealing Ring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 2,
+      "client_rejected": 13,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41401226200",
+      "part_name": "Stihl Idle Speed Screw",
+      "models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "br_200",
+        "fc_100",
+        "fc_110"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41401226200 Stihl Idle Speed Screw",
+        "41401226200 Stihl Idle Speed Screw",
+        "STIHL bg_56 Stihl Idle Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 1,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41801223001",
+      "part_name": "Stihl Spring",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "bt_130",
+        "fc_100"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41801223001 Stihl Spring",
+        "41801223001 Stihl Spring",
+        "STIHL br_500 Stihl Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 19,
+      "client_passed": 2,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41801223002",
+      "part_name": "Stihl Spring",
+      "models": [
+        "bg_45",
+        "bg_55",
+        "bg_85",
+        "br_45",
+        "fc_100",
+        "fc_110"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 41801223002 Stihl Spring",
+        "41801223002 Stihl Spring",
+        "STIHL bg_45 Stihl Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 4,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 4,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 4,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 4
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "90223461070",
+      "part_name": "Stihl Spline Screw Is-M5X30X22",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700",
+        "br_800",
+        "bt_130"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 90223461070 Stihl Spline Screw Is-M5X30X22",
+        "90223461070 Stihl Spline Screw Is-M5X30X22",
+        "STIHL br_500 Stihl Spline Screw Is-M5X30X22"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 1,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "90754783012",
+      "part_name": "Stihl Pan Head Self-Tapping Screw Is D4X12",
+      "models": [
+        "fh_145",
+        "fh_km",
+        "fh_km_145",
+        "hl_91",
+        "hl_92",
+        "hl_94"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 90754783012 Stihl Pan Head Self-Tapping Screw Is D4X12",
+        "90754783012 Stihl Pan Head Self-Tapping Screw Is D4X12",
+        "STIHL fh_145 Stihl Pan Head Self-Tapping Screw Is D4X12"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 1,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "90764782996",
+      "part_name": "Stihl Pan Head Self-Tapping Screw P4X12",
+      "models": [
+        "009",
+        "010",
+        "011",
+        "012",
+        "019",
+        "026"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 90764782996 Stihl Pan Head Self-Tapping Screw P4X12",
+        "90764782996 Stihl Pan Head Self-Tapping Screw P4X12",
+        "STIHL 009 Stihl Pan Head Self-Tapping Screw P4X12"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 17,
+      "client_passed": 2,
+      "client_rejected": 15,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "90990211760",
+      "part_name": "Stihl Self-Tapping Screw Din7971-2.9X9.5",
+      "models": [
+        "020",
+        "024",
+        "026",
+        "028",
+        "034",
+        "038"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "alternative_search_hints": [
+        "STIHL 90990211760 Stihl Self-Tapping Screw Din7971-2.9X9.5",
+        "90990211760 Stihl Self-Tapping Screw Din7971-2.9X9.5",
+        "STIHL 020 Stihl Self-Tapping Screw Din7971-2.9X9.5"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 3,
+      "client_rejected": 5,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "blocking_steps": {
+        "UNKNOWN": 2,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    }
+  ],
+  "evidence_registry": {
+    "size": 4321,
+    "hits": 28,
+    "misses": 0,
+    "recorded": 0
+  }
+}
