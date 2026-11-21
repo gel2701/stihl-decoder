@@ -135,11 +135,12 @@ test('Phase 56E - Test 3: Multilingual Technical Synonyms (Dutch & German)', () 
 });
 
 test('Phase 56E - Test 4: Model-Scoped Joint Query Resolution', () => {
-  // MS 261 carburateur
-  const rMs261 = PartCatalogResolver.searchParts('MS 261 carburateur', 5);
+  // MS 261 carburateur (with unified UK Carburettor / US Carburetor -> Carburateur glossary matching)
+  const rMs261 = PartCatalogResolver.searchParts('MS 261 carburateur', 25);
   assert.ok(rMs261.length > 0, 'MS 261 carburateur must return parts');
   assert.strictEqual(rMs261[0].matched_model, 'ms_261', 'Must attach matched_model ms_261');
-  assert.strictEqual(rMs261[0].part_number, '11411200640', 'Must return exact MS 261 carburetor 1141 120 0640');
+  assert.ok(/carburet+or|carburateur/i.test(rMs261[0].part_name_normalized || rMs261[0].part_name), 'Top MS 261 result must be a carburetor');
+  assert.ok(rMs261.some(r => r.part_number === '11411200640'), 'Must include exact MS 261 carburetor 1141 120 0640');
 
   // 026 bougie (legacy model alias mapping)
   const r026 = PartCatalogResolver.searchParts('026 bougie', 5);

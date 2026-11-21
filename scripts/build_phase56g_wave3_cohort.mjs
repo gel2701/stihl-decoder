@@ -50,7 +50,7 @@ const WEAR_REGEX = /carburet|carburateur|spark plug|bougie|air filter|filter|cha
 // Generic / ambiguous head nouns (optionally preceded by up to 3 adjectives) -> standard hardware / thin content
 const GENERIC_HARDWARE_REGEX = /^(?:[a-z\-]+\s+){0,3}(?:screws?|bolts?|nuts?|washers?|rivets?|pins?|circlips?|e-clips?|snap rings?|o-rings?|grommets?|caps?|sleeves?|balls?|ropes?|keys?|plugs?|springs?|clips?|clamps?|spacers?|bushings?|screw assembly)\b|^kraagschroef$/i;
 // Technically specific designations that contain a generic noun but describe a functional component
-const SPECIFIC_COMPONENT_WHITELIST = /high speed screw|low speed screw|idle speed screw|adjusting screw kit|spur gear|spark plug|rewind spring|starter rope|starter grip|bearing|oil seal|piston pin/i;
+const SPECIFIC_COMPONENT_WHITELIST = /high speed screw|low speed screw|idle speed screw|adjusting screw kit|spur gear|spark plug|rewind spring|starter rope|starter grip|bearing|oil seal|piston pin|kogellager|naaldlager|stelschroef|oliekeerring|zuigerpen|bougie|startveer|startkoord|startgreep/i;
 // Retailer-style scraped names that the display normalizer does not fully clean -> fail closed (H5)
 const RETAILER_STYLE_REGEX = /\||chainsaw parts|trimmer parts|brushcutter parts|\bfits\b|\bfor stihl\b/i;
 const MODEL_TOKEN_REGEX = /\b(?:MS|FS|BG|BR|HS|HL|KM|TS|MSA|FSA|BGA|HSA)\s?-?\d{2,3}/gi;
@@ -98,7 +98,7 @@ export function buildWave3Cohort({ write = true } = {}) {
     const cleanName = PartNameNormalizer.normalizeDisplayName(p.part_name, pn);
     const isWear = WEAR_REGEX.test(p.part_name || '') || WEAR_REGEX.test(cleanName || '');
     const rawCore = String(p.part_name || '').replace(/^(?:genuine\s+)?stihl\s+(?:\d[\d\s]*\s+)?/i, '').trim();
-    const isWhitelisted = SPECIFIC_COMPONENT_WHITELIST.test(cleanName || '');
+    const isWhitelisted = SPECIFIC_COMPONENT_WHITELIST.test(cleanName || '') || SPECIFIC_COMPONENT_WHITELIST.test(rawCore);
     const isHardware = !isWhitelisted && (GENERIC_HARDWARE_REGEX.test((cleanName || '').trim()) || GENERIC_HARDWARE_REGEX.test(rawCore));
     const isRetailerStyle = RETAILER_STYLE_REGEX.test(cleanName || '') || ((cleanName || '').match(MODEL_TOKEN_REGEX) || []).length >= 1;
 
