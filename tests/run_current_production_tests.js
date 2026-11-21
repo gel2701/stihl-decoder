@@ -160,6 +160,8 @@ export const currentProductionSuites = [
   'tests/phase95_targeted_activation_coverage.test.js',
   'tests/phase96_ebay_activation_batch.test.js',
   'tests/phase96_ebay_store_bootstrap.test.js',
+  'tests/phase97_ebay_alternative_search.test.js',
+  'tests/phase97_ebay_activation_batch.test.js',
   'tests/phase86_1_affiliate_click_recovery.test.js',
   'tests/phase81_1_offer_visibility.test.js',
   'tests/phase81_2_homepage_parts_ux.test.js',

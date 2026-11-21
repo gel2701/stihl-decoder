@@ -1,0 +1,112 @@
+{
+  "phase": "97",
+  "generated_at": "2026-11-21T07:02:46.832Z",
+  "store_before_phase96": {
+    "commit": "fe1860e",
+    "active_offers": 1773,
+    "unique_parts": 220,
+    "unique_items": 1602,
+    "marketplaces": {
+      "EBAY_NL": 1146,
+      "EBAY_DE": 627
+    }
+  },
+  "store_after_phase96": {
+    "commit": "4c7e0db",
+    "active_offers": 2968,
+    "unique_parts": 503,
+    "unique_items": 2699,
+    "marketplaces": {
+      "EBAY_NL": 1931,
+      "EBAY_DE": 1037
+    }
+  },
+  "phase96_growth": {
+    "offers": 1195,
+    "parts": 283
+  },
+  "phase96_report_counted": {
+    "offers": 695,
+    "parts": 159
+  },
+  "phase96_unreported": {
+    "offers": 500,
+    "parts": 124,
+    "explanation": "Offers persisted by an interrupted batch run; the resumed run skipped those parts as ALREADY_ACTIVE and the result file only counts offers the run itself accepted.",
+    "skipped_parts_in_result_files": 124,
+    "skipped_parts_without_store_offer": 0,
+    "skipped_by_batch": {
+      "queue_00": 0,
+      "queue_01": 0,
+      "queue_02": 0,
+      "queue_03": 0,
+      "queue_04": 0,
+      "queue_05": 15,
+      "queue_06": 31,
+      "queue_07": 18,
+      "queue_08": 30,
+      "queue_09": 30
+    },
+    "sample": [
+      {
+        "part_number": "41801226200",
+        "item_id": "v1|237099847456|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|198755798260|0",
+        "marketplace": "EBAY_DE"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|257544151792|0",
+        "marketplace": "EBAY_DE"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|198755798260|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|155373001877|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|235754896848|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|336708158295|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|354356506317|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291212701",
+        "item_id": "v1|314644861609|0",
+        "marketplace": "EBAY_NL"
+      },
+      {
+        "part_number": "42291214700",
+        "item_id": "v1|157002302505|0",
+        "marketplace": "EBAY_NL"
+      }
+    ]
+  },
+  "campaign_check": {
+    "archive_campaign_ids": [
+      "5339245312"
+    ],
+    "environment_campaign_id_matches_archive": true,
+    "environment_campaign_id_configured": true,
+    "production_bootstrap_source": "EbayStoreBootstrap: options.campaignId || archive.campaign_id || first offer campaign_id || EBAY_EPN_CAMPAIGN_ID",
+    "note": "The archive and the operator-configured EBAY_EPN_CAMPAIGN_ID carry the same id; the Browse API responses used in this batch stamp that same campid on every affiliate URL."
+  }
+}
