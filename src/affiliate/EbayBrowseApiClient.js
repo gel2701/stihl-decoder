@@ -209,9 +209,16 @@ export class EbayBrowseApiClient {
     const compact = part.replace(/[\s-]/g, '');
     if (!/^\d{11}$/.test(compact)) return fail('Valid partNumber required.');
     const substitutes = Array.isArray(searchParams.verifiedSubstitutes) ? searchParams.verifiedSubstitutes : [];
+    // Phase 97: caller-supplied query hints surface *other* listings of the same
+    // part (e.g. model + part name). They only change what is searched; identity
+    // still has to be proven by the engine.
+    const extraQueries = (Array.isArray(searchParams.extraQueries) ? searchParams.extraQueries : [])
+      .filter(query => typeof query === 'string' && query.trim())
+      .map(query => query.trim())
+      .slice(0, 3);
     // Phase 76C: seller filter optional — null/''/'ALL' searches all suitable sellers
     const seller = Object.prototype.hasOwnProperty.call(searchParams, 'seller') ? searchParams.seller : this.defaultSeller;
-    const key = `${marketplaceId}:${seller ?? 'ALL'}:${compact}:${substitutes.join(',')}`;
+    const key = `${marketplaceId}:${seller ?? 'ALL'}:${compact}:${substitutes.join(',')}:${extraQueries.join('|')}`;
     if (this.partCache.has(key)) return this.partCache.get(key);
     const token = await this.getAccessToken();
     if (!token) return fail(this.lastAuthError || 'Unable to acquire OAuth token for eBay Browse API.');
@@ -219,6 +226,9 @@ export class EbayBrowseApiClient {
     let queries = [formatted, compact, `STIHL ${compact}`];
     for (const substitute of (Array.isArray(searchParams.verifiedSubstitutes) ? searchParams.verifiedSubstitutes : []).slice(0, 2)) {
       if (/^\d{11}$/.test(String(substitute))) queries.push(`STIHL ${substitute}`);
+    }
+    for (const query of extraQueries) {
+      if (!queries.includes(query)) queries.push(query);
     }
     // Phase 76D: maxQueries bounds fan-out for large batches (default full ladder)
     queries = queries.slice(0, Math.max(1, Math.min(queries.length, Number(searchParams.maxQueries) || queries.length)));

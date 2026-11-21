@@ -484,6 +484,9 @@ export class EbayHighVolumeEngine {
     const enrich = options.enrich ?? this.enrichByDefault;
     const maxEnrichments = options.maxEnrichments ?? this.maxEnrichments;
     const evidenceRegistry = options.evidenceRegistry || this.evidenceRegistry;
+    // Phase 97: per-part query hints for a second look at listings the exact
+    // number ladder did not surface. Decisions stay in evaluateOffer().
+    const queryHintsByPart = options.queryHintsByPart || null;
 
     const activeOffers = [];
     const reviewOffers = [];
@@ -536,7 +539,8 @@ export class EbayHighVolumeEngine {
                 seller: vendor,
                 marketplace,
                 limit: 10,
-                catalogModels: classification.models
+                catalogModels: classification.models,
+                extraQueries: queryHintsByPart?.[part] || []
               });
 
               if (!res.success) {
