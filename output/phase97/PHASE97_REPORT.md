@@ -518,7 +518,28 @@ REJECTED (48 kandidaten):
   fase 97-suite voor alternatieve zoektermen.
 - De eBay-campagne en de marktplaats per aanbieding zijn niet aangepast.
 
-## 9. Artefacten
+## 9. Productieverificatie en publicatiefix
+
+- Na merge van #186 draaide productie commit `1223c7dbd820573a2b80d0618933c0b8ea98ec78`
+  (`deployed_at` 2026-11-21T09:17:48Z).
+- Steekproef op 12 nieuwe onderdelen: HTTP 200, maar **0 eBay-links**, terwijl
+  bestaande fase 96-pagina's 6–12 directe links toonden. De persistente store was
+  op dat moment dus niet zichtbaar voor de request-processen.
+- Oorzaak: `AffiliateOfferResolver` cachet de eBay-store bij module-import. De
+  boot-reconciliatie schrijft de gecommitte aanbiedingen pas daarna, waardoor een
+  deploy de store van vóór de publicatie serveert tot de volgende herstart (fase
+  96 leek te werken doordat er een extra herstart/deploy volgde).
+- Fix (PR #188, commit `b50dff9`): `refreshEbayOffers()` /
+  `AffiliateOfferResolver.refreshDefaultEbayOffers()` herladen de
+  provider-snapshot direct na de reconciliatie; nieuwe test
+  `tests/phase97_ebay_store_refresh.test.js` in de suite.
+- Bewijs met een gesimuleerde productieboot (persistente store met de fase
+  96-stand van 2.968 offers): log `+1250 ACTIVE (2968 already present, 0
+  rejected)`, cache herladen, en pagina `/onderdeelnummer/stihl-9222-068-0900/`
+  toont item `366775476510` (4 unieke eBay-items).
+- Na deploy van #188 is de steekproef herhaald; uitkomst staat in §10.
+
+## 10. Artefacten
 
 | Bestand | Inhoud |
 |---|---|
@@ -529,3 +550,4 @@ REJECTED (48 kandidaten):
 | `output/phase97/listing_mpn_groups.json` | de 846 LISTING_MPN-kandidaten per onderdeel |
 | `output/phase97/PHASE97_BASELINE.json` | nulmeting en reconciliatie van fase 96 |
 | `output/phase97/PHASE97_EBAY_ACTIVATION.json` | alle nieuwe aanbiedingen, blokkades en modeldekking |
+| `tests/phase97_ebay_store_refresh.test.js` | regressietest voor de publicatie-cache |
