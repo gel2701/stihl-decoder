@@ -29,7 +29,7 @@ const queue = read('output/phase87_1/queue.json');
 
 const activeOffers = registryDoc.offers.filter(o => o.status === 'ACTIVE');
 const phase871Offers = registryDoc.offers.filter(o => o.status === 'ACTIVE' && /^Phase 87\.1:/.test(o.status_reason || ''));
-const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.[123]|Phase 8[89]|Phase 9[02345]):/.test(o.status_reason || ''));
+const previouslyLive = registryDoc.offers.filter(o => o.status === 'ACTIVE' && !/^(?:Phase 87\.[123]|Phase 8[89]|Phase 9[023456]):/.test(o.status_reason || ''));
 
 test('Phase 87.1 — 1. registry grows without losing a single previously live offer', () => {
   assert.ok(registryDoc.offers.length >= 216, 'Only obsolete RESEARCH_REQUIRED candidates are retired (and preserved in the artifact)');

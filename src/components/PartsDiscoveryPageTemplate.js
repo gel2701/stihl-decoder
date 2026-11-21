@@ -144,7 +144,7 @@ export function renderPartsDiscoveryPageHtml(query = '', database = {}, baseUrl 
     { name: 'Lucht- & Brandstoffilters', icon: '💨', q: 'filter', catId: 'filters', desc: 'Luchtfilters, aanzuigkoppen, viltfilters en brandstoffilters' },
     { name: 'Carburateurs & Membranen', icon: '🎛️', q: 'carburateur', catId: 'carburateur', desc: 'Complete carburateurs, membraansets en pakkingen' },
     { name: 'Koppelingen & Kettingwielen', icon: '⚙️', q: 'koppeling', catId: 'koppeling', desc: 'Centrifugaalkoppelingen, koppelingsveren en aandrijfwielen' },
-    { name: 'Starters & Startkoorden', icon: '🔄', q: 'starter', catId: 'starter', desc: 'Repulseurs, startrollen, trekveren en anwerfseil' },
+    { name: 'Starters & Startkoorden', icon: '🔄', q: 'starter', catId: 'starter', desc: 'Trekstarters, handstarters, startrollen, terugloopveren en startkoorden' },
     { name: 'Oliepompen & Smering', icon: '🛢️', q: 'oliepomp', catId: 'oliesmering', desc: 'Kettingoliepompen, wormwielen en olieslangen' }
   ];
 

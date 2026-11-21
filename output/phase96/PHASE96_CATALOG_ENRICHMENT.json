@@ -1,0 +1,494 @@
+{
+  "generated_at": "2026-11-20T23:36:43.443Z",
+  "baseline_empty_models": 41,
+  "classification_counts": {
+    "OFFICIAL_DOCUMENTED": 17,
+    "SECONDARY_EVIDENCED": 5,
+    "NEEDS_EVIDENCE": 19
+  },
+  "newly_enriched_empty_models": 22,
+  "total_phase96_additive_fitments": 2033,
+  "newly_added_to_renderable_index": [],
+  "thin_models_enriched": [
+    {
+      "canonical_model_id": "ms_362_c_m",
+      "model_name": "MS 362 C-M",
+      "existing_direct": 1,
+      "added_fitments": 249
+    },
+    {
+      "canonical_model_id": "sha_56",
+      "model_name": "SHA 56",
+      "existing_direct": 5,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "fse_41",
+      "model_name": "FSE 41",
+      "existing_direct": 2,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "030",
+      "model_name": "030",
+      "existing_direct": 1,
+      "added_fitments": 2
+    },
+    {
+      "canonical_model_id": "040",
+      "model_name": "040",
+      "existing_direct": 2,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "bg_46",
+      "model_name": "BG 46",
+      "existing_direct": 4,
+      "added_fitments": 5
+    },
+    {
+      "canonical_model_id": "bg_65",
+      "model_name": "BG 65",
+      "existing_direct": 4,
+      "added_fitments": 4
+    },
+    {
+      "canonical_model_id": "fr_220",
+      "model_name": "FR 220",
+      "existing_direct": 5,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "fs_83",
+      "model_name": "FS 83",
+      "existing_direct": 4,
+      "added_fitments": 2
+    },
+    {
+      "canonical_model_id": "fs_311",
+      "model_name": "FS 311",
+      "existing_direct": 1,
+      "added_fitments": 2
+    },
+    {
+      "canonical_model_id": "fsa_120",
+      "model_name": "FSA 120",
+      "existing_direct": 2,
+      "added_fitments": 7
+    },
+    {
+      "canonical_model_id": "fsa_200",
+      "model_name": "FSA 200",
+      "existing_direct": 1,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "hs_52",
+      "model_name": "HS 52",
+      "existing_direct": 4,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "hsa_50",
+      "model_name": "HSA 50",
+      "existing_direct": 2,
+      "added_fitments": 2
+    },
+    {
+      "canonical_model_id": "ht_102",
+      "model_name": "HT 102",
+      "existing_direct": 1,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "hta_150",
+      "model_name": "HTA 150",
+      "existing_direct": 1,
+      "added_fitments": 3
+    },
+    {
+      "canonical_model_id": "hta_160",
+      "model_name": "HTA 160",
+      "existing_direct": 1,
+      "added_fitments": 4
+    },
+    {
+      "canonical_model_id": "km_135",
+      "model_name": "KM 135",
+      "existing_direct": 5,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "ms_651",
+      "model_name": "MS 651",
+      "existing_direct": 3,
+      "added_fitments": 3
+    },
+    {
+      "canonical_model_id": "ms_720",
+      "model_name": "MS 720",
+      "existing_direct": 4,
+      "added_fitments": 3
+    },
+    {
+      "canonical_model_id": "sg_11",
+      "model_name": "SG 11",
+      "existing_direct": 4,
+      "added_fitments": 1
+    },
+    {
+      "canonical_model_id": "sg_21",
+      "model_name": "SG 21",
+      "existing_direct": 2,
+      "added_fitments": 1
+    }
+  ],
+  "empty_models_audit": [
+    {
+      "canonical_model_id": "ms_201_t",
+      "model_name": "MS 201 TC-M",
+      "category": "Kettingzaag (Boomverzorging)",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 202,
+      "evidence_source": "Exact variant_key tc_m on canonical family ms_201"
+    },
+    {
+      "canonical_model_id": "fs_100_rx",
+      "model_name": "FS 100 RX",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "Base family fs_100 has parts in archive, but exact variant \"FS 100 RX\" lacks variant-specific IPL evidence"
+    },
+    {
+      "canonical_model_id": "fs_410_c_m",
+      "model_name": "FS 410 C-M",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "Base family fs_410 has parts in archive, but exact variant \"FS 410 C-M\" lacks variant-specific IPL evidence"
+    },
+    {
+      "canonical_model_id": "fs_490_c_m",
+      "model_name": "FS 490 C-M",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "Base family fs_490 has parts in archive, but exact variant \"FS 490 C-M\" lacks variant-specific IPL evidence"
+    },
+    {
+      "canonical_model_id": "ms_200_t",
+      "model_name": "MS 200 T",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 222,
+      "evidence_source": "Exact variant_key t on canonical family ms_200"
+    },
+    {
+      "canonical_model_id": "ms_261_c_m",
+      "model_name": "MS 261 C-M",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 270,
+      "evidence_source": "Exact variant_key c_m on canonical family ms_261"
+    },
+    {
+      "canonical_model_id": "ms_251_c",
+      "model_name": "MS 251 C",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 216,
+      "evidence_source": "Exact variant_key c on canonical family ms_251"
+    },
+    {
+      "canonical_model_id": "fs_161",
+      "model_name": "FS 161",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "fs_221",
+      "model_name": "FS 221",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "ms_363",
+      "model_name": "MS 363",
+      "category": "Kettingzaag",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "fs_351",
+      "model_name": "FS 351",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "fs_291",
+      "model_name": "FS 291",
+      "category": "Bosmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "fs_55_r",
+      "model_name": "FS 55 R",
+      "category": "Bosmaaier",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 231,
+      "evidence_source": "Exact variant_key r on canonical family fs_55"
+    },
+    {
+      "canonical_model_id": "ms_172_c_be",
+      "model_name": "MS 172 C-BE",
+      "category": "Kettingzaag",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "Base family ms_172 has parts in archive, but exact variant \"MS 172 C-BE\" lacks variant-specific IPL evidence"
+    },
+    {
+      "canonical_model_id": "bga_30",
+      "model_name": "BGA 30",
+      "category": "Bladblazer",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 2,
+      "evidence_source": "Existing documented IPL sub-ID bga_30_0 in model_part_fitments"
+    },
+    {
+      "canonical_model_id": "fsa_50",
+      "model_name": "FSA 50",
+      "category": "Bosmaaier",
+      "classification": "SECONDARY_EVIDENCED",
+      "added_fitments": 3,
+      "evidence_source": "Explicit OEM model citation in data/parts_catalog.json",
+      "part_numbers": [
+        "40097102100",
+        "40097102104",
+        "41387161200"
+      ]
+    },
+    {
+      "canonical_model_id": "hla_40",
+      "model_name": "HLA 40",
+      "category": "Heggenschaar",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "No IPL fitment rows or explicit catalog model citations present in local archives"
+    },
+    {
+      "canonical_model_id": "hsa_40",
+      "model_name": "HSA 40",
+      "category": "Heggenschaar",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "hsa_30",
+      "model_name": "HSA 30",
+      "category": "Heggenschaar",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "hsa_100",
+      "model_name": "HSA 100",
+      "category": "Heggenschaar",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 22,
+      "evidence_source": "Existing documented IPL sub-IDs hsa_100_0 / hsa_100_1 in model_part_fitments"
+    },
+    {
+      "canonical_model_id": "fsa_30",
+      "model_name": "FSA 30",
+      "category": "Bosmaaier",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 13,
+      "evidence_source": "Existing documented IPL sub-ID fsa_30_0 in model_part_fitments"
+    },
+    {
+      "canonical_model_id": "msa_60_c_b",
+      "model_name": "MSA 60 C-B",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 26,
+      "evidence_source": "Exact variant_key c_b on canonical IPL msa_60_0"
+    },
+    {
+      "canonical_model_id": "msa_160_c_b",
+      "model_name": "MSA 160 C-B",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 59,
+      "evidence_source": "Exact variant_key c_b on canonical family msa_160"
+    },
+    {
+      "canonical_model_id": "msa_220_c_b",
+      "model_name": "MSA 220 C-B",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 48,
+      "evidence_source": "Exact variant_key c_b on canonical family msa_220"
+    },
+    {
+      "canonical_model_id": "msa_200_c_b",
+      "model_name": "MSA 200 C-B",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 52,
+      "evidence_source": "Exact variant_key c_b on canonical family msa_200"
+    },
+    {
+      "canonical_model_id": "msa_70_c_b",
+      "model_name": "MSA 70 C-B",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 26,
+      "evidence_source": "Exact variant_key c_b on canonical IPL msa_70_0"
+    },
+    {
+      "canonical_model_id": "mse_170_c_bq",
+      "model_name": "MSE 170 C-BQ",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 57,
+      "evidence_source": "Exact variant_key c_bq on canonical family mse_170"
+    },
+    {
+      "canonical_model_id": "mse_141_c_q",
+      "model_name": "MSE 141 C-Q",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 61,
+      "evidence_source": "Exact variant_key c_q on canonical family mse_141"
+    },
+    {
+      "canonical_model_id": "hsa_26",
+      "model_name": "HSA 26",
+      "category": "Heggenschaar",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "hs_82_r",
+      "model_name": "HS 82 R",
+      "category": "Heggenschaar",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 191,
+      "evidence_source": "Exact variant_key r on canonical family hs_82"
+    },
+    {
+      "canonical_model_id": "msa_190_t",
+      "model_name": "MSA 190 T",
+      "category": "Kettingzaag",
+      "classification": "OFFICIAL_DOCUMENTED",
+      "added_fitments": 31,
+      "evidence_source": "Exact variant_key t on canonical family msa_190"
+    },
+    {
+      "canonical_model_id": "050",
+      "model_name": "050",
+      "category": "Kettingzaag",
+      "classification": "SECONDARY_EVIDENCED",
+      "added_fitments": 1,
+      "evidence_source": "Explicit OEM model citation in data/parts_catalog.json",
+      "part_numbers": [
+        "30020005731"
+      ]
+    },
+    {
+      "canonical_model_id": "bge_60",
+      "model_name": "BGE 60",
+      "category": "Elektrische bladblazer",
+      "classification": "SECONDARY_EVIDENCED",
+      "added_fitments": 2,
+      "evidence_source": "Explicit OEM model citation in data/parts_catalog.json",
+      "part_numbers": [
+        "42277086905",
+        "48117003401"
+      ]
+    },
+    {
+      "canonical_model_id": "bge_61",
+      "model_name": "BGE 61",
+      "category": "Elektrische bladblazer",
+      "classification": "SECONDARY_EVIDENCED",
+      "added_fitments": 1,
+      "evidence_source": "Explicit OEM model citation in data/parts_catalog.json",
+      "part_numbers": [
+        "48114350300"
+      ]
+    },
+    {
+      "canonical_model_id": "fc_56",
+      "model_name": "FC 56",
+      "category": "Kantenmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "fc_73",
+      "model_name": "FC 73",
+      "category": "Kantenmaaier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "hse_60",
+      "model_name": "HSE 60",
+      "category": "Elektrische heggenschaar",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "ht_56",
+      "model_name": "HT 56",
+      "category": "Hoogsnoeier",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "ms_500",
+      "model_name": "MS 500",
+      "category": "Kettingzaag",
+      "classification": "SECONDARY_EVIDENCED",
+      "added_fitments": 1,
+      "evidence_source": "Explicit OEM model citation in data/parts_catalog.json",
+      "part_numbers": [
+        "11471401000"
+      ]
+    },
+    {
+      "canonical_model_id": "sg_10",
+      "model_name": "SG 10",
+      "category": "Nevelspuit",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    },
+    {
+      "canonical_model_id": "sg_20",
+      "model_name": "SG 20",
+      "category": "Nevelspuit",
+      "classification": "NEEDS_EVIDENCE",
+      "added_fitments": 0,
+      "reason": "GHS model index URL exists in archive ledger without harvested IPL part table"
+    }
+  ]
+}

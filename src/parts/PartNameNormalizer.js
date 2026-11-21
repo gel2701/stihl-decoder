@@ -1,14 +1,14 @@
 /**
  * Part Name Normalizer for STIHL Parts Catalog
- * Phase 54E / Phase 54E-R1 — Technical Data Integrity & Enrichment Hardening
+ * Phase 54E / Phase 54E-R1 / Phase 96 — Technical Data Integrity & Dutch Terminology Localization
  *
- * Provides safe, deterministic normalization of part names into clean technical display names.
+ * Provides safe, deterministic normalization of part names into clean Dutch technical display names.
  * Priority:
  *   1. Approved explicit override (data/parts_name_overrides.json)
  *   2. Fail-closed on unresolved encoding (U+FFFD -> safe neutral fallback)
  *   3. HTML & deterministic character encoding normalization
- *   4. Safe technical core extraction (stripping vendor prefixes, part number duplication, and trailing retailer lists)
- *   5. Deterministic Dutch technical dictionary translation
+ *   4. Safe technical core extraction (stripping vendor prefixes, availability tags, part number duplication, trailing retailer lists)
+ *   5. Central Dutch technical glossary + deterministic structural composition (data/parts_glossary_nl.json)
  *   6. Clean canonical fallback
  *
  * Strict invariants:
@@ -27,6 +27,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..', '..');
 
 const overridesPath = path.join(rootDir, 'data', 'parts_name_overrides.json');
+const glossaryPath = path.join(rootDir, 'data', 'parts_glossary_nl.json');
 
 let overridesMap = new Map();
 function loadOverrides() {
@@ -46,56 +47,205 @@ function loadOverrides() {
     overridesMap = new Map();
   }
 }
-loadOverrides();
 
-/**
- * Deterministic Dutch technical dictionary for exact technical components.
- * Matches full component designation to avoid partial / ambiguous mistranslations.
- */
-const DUTCH_DICTIONARY = [
-  [/^clutch$/i, 'Koppeling'],
-  [/^oil pump$/i, 'Oliepomp'],
-  [/^air filter$/i, 'Luchtfilter'],
-  [/^air filter, fleece$/i, 'Luchtfilter (vlies)'],
-  [/^spark plug$/i, 'Bougie'],
-  [/^starter rope$/i, 'Startkoord'],
-  [/^carburetor$/i, 'Carburateur'],
-  [/^chain sprocket$/i, 'Kettingwiel'],
-  [/^rewind starter$/i, 'Handstarter'],
-  [/^crankshaft$/i, 'Krukas'],
-  [/^cylinder$/i, 'Cilinder'],
-  [/^piston$/i, 'Zuiger'],
-  [/^muffler$/i, 'Uitlaat'],
-  [/^gasket$/i, 'Pakking'],
-  [/^flywheel$/i, 'Vliegwiel'],
-  [/^guide bar$/i, 'Zaagblad'],
-  [/^saw chain$/i, 'Zaagketting'],
-  [/^ignition module$/i, 'Ontstekingsmodule'],
-  [/^ignition coil$/i, 'Ontstekingsspoel'],
-  [/^fuel tank$/i, 'Brandstoftank'],
-  [/^fuel pickup body$/i, 'Brandstoffilter / zuigkop'],
-  [/^pickup body$/i, 'Brandstoffilter / zuigkop'],
-  [/^chain sprocket cover$/i, 'Kettingwieldeksel'],
-  [/^tank housing$/i, 'Tankbehuizing'],
-  [/^handlebar$/i, 'Beugelhandgreep'],
-  [/^contact spring$/i, 'Contactveer'],
-  [/^hand guard$/i, 'Handbeschermer'],
-  [/^collar screw$/i, 'Kraagschroef'],
-  [/^spiked bumper$/i, 'Getande aanslag'],
-  [/^chain tensioner$/i, 'Kettingspanner'],
-  [/^clutch drum$/i, 'Koppelingstrommel']
-];
+let phraseMap = new Map();
+let canonicalTerms = [];
+function loadGlossary() {
+  phraseMap = new Map();
+  canonicalTerms = [];
+  try {
+    if (fs.existsSync(glossaryPath)) {
+      const doc = JSON.parse(fs.readFileSync(glossaryPath, 'utf8'));
+      if (Array.isArray(doc.canonical_terms)) {
+        canonicalTerms = doc.canonical_terms;
+      }
+      if (doc.phrase_map && typeof doc.phrase_map === 'object') {
+        for (const [k, v] of Object.entries(doc.phrase_map)) {
+          if (k && v) {
+            phraseMap.set(k.trim().toLowerCase(), v.trim());
+          }
+        }
+      }
+    }
+  } catch (e) {
+    phraseMap = new Map();
+    canonicalTerms = [];
+  }
+}
+
+loadOverrides();
+loadGlossary();
+
+const POSITION_QUALIFIERS_NL = new Map([
+  ['left', 'links'],
+  ['right', 'rechts'],
+  ['upper', 'boven'],
+  ['lower', 'onder'],
+  ['outer', 'buiten'],
+  ['inner', 'binnen'],
+  ['front', 'voor'],
+  ['rear', 'achter'],
+  ['fan side', 'ventilatorzijde'],
+  ['ignition side', 'ontstekingszijde'],
+  ['clutch side', 'koppelingszijde']
+]);
+
+function normalizeSpecTail(spec = '') {
+  let out = spec
+    .replace(/\s+/g, ' ')
+    .replace(/\b(\d+(?:[.,]\d+)?)\s*Mm\b/g, '$1 mm')
+    .replace(/\b(\d+(?:[.,]\d+)?)\s*Cm\b/g, '$1 cm')
+    .replace(/\b(\d+(?:[.,]\d+)?)\s*[Μµu]f\b/gi, '$1 µF')
+    .replace(/\bDin(\d)/gi, 'DIN $1')
+    .replace(/\bDin\s+(\d)/gi, 'DIN $1')
+    .replace(/\bIs-([A-Za-z0-9])/g, 'IS-$1')
+    .trim();
+  while (/(\d)X(\d)/.test(out)) {
+    out = out.replace(/(\d)X(\d)/g, '$1x$2');
+  }
+  return out;
+}
+
+function lookupGlossary(text) {
+  if (!text) return null;
+  const lc = text.trim().toLowerCase().replace(/\s+/g, ' ');
+  return phraseMap.get(lc) || null;
+}
+
+function translateHeadAndModifiers(clean) {
+  if (!clean) return clean;
+  const lc = clean.toLowerCase();
+
+  // 1. Direct glossary match
+  const exact = phraseMap.get(lc);
+  if (exact) return exact;
+
+  // 2. "X / Y" dual slash component names (only pure word phrases, not fraction/imperial specs)
+  if (/^[a-z\s\-()]+\s+\/\s+[a-z\s\-()]+$/i.test(clean)) {
+    const parts = clean.split(' / ');
+    if (parts.length === 2) {
+      const t1 = lookupGlossary(parts[0]) || translateHeadAndModifiers(parts[0]);
+      const t2 = lookupGlossary(parts[1]) || translateHeadAndModifiers(parts[1]);
+      if (t1 !== parts[0] || t2 !== parts[1]) {
+        return `${t1} / ${t2}`;
+      }
+    }
+  }
+
+  // 3. "<Head> with <Tail>" / "<Head> and <Tail>" (translate Tail recursively including specs)
+  const withMatch = clean.match(/^(.+?)\s+(?:with|met)\s+(.+)$/i);
+  if (withMatch) {
+    const headTr = lookupGlossary(withMatch[1]);
+    const tailTr = translateHeadAndModifiers(withMatch[2].trim());
+    if (headTr || tailTr !== withMatch[2].trim()) {
+      const h = headTr || withMatch[1].trim();
+      const t = tailTr.charAt(0).toLowerCase() + tailTr.slice(1);
+      return `${h} met ${t}`;
+    }
+  }
+
+  const andMatch = clean.match(/^(.+?)\s+(?:and|en)\s+(.+)$/i);
+  if (andMatch) {
+    const headTr = lookupGlossary(andMatch[1]);
+    const tailTr = translateHeadAndModifiers(andMatch[2].trim());
+    if (headTr && tailTr !== andMatch[2].trim()) {
+      return `${headTr} en ${tailTr.charAt(0).toLowerCase() + tailTr.slice(1)}`;
+    }
+  }
+
+  // 4. "<Head>, <Qualifier>" or "<Head> <position qualifier>"
+  const commaMatch = clean.match(/^(.+?),\s*([a-z\s\-]+)$/i);
+  if (commaMatch) {
+    const headTr = lookupGlossary(commaMatch[1]);
+    const qLc = commaMatch[2].trim().toLowerCase();
+    const qualTr = POSITION_QUALIFIERS_NL.get(qLc);
+    if (headTr && qualTr) {
+      return `${headTr} (${qualTr})`;
+    }
+  }
+
+  const posTailMatch = clean.match(/^(.+?)\s+(left|right|upper|lower|outer|inner|front|rear)$/i);
+  if (posTailMatch) {
+    const headTr = lookupGlossary(posTailMatch[1]);
+    const qualTr = POSITION_QUALIFIERS_NL.get(posTailMatch[2].toLowerCase());
+    if (headTr && qualTr) {
+      return `${headTr} (${qualTr})`;
+    }
+  }
+
+  // 5. "<Head> DIN..." / "<Head> IS-..." / "<Head> <technical dimension/model/spec>"
+  const specMatch = clean.match(
+    /^(.+?)\s+((?:\(?DIN\s*\d|IS-[A-Z0-9]|Ø\s*\d|\d+(?:[.,\/x×]\d+)?\s*(?:mm|cm|m|v|w|a|kw|hz|µf|uf|t|dl|tg|z|"|')?|\d{3,4}\/\d+[a-z0-9\-]*|[A-Z]{1,4}\d+[A-Z0-9\-\/]*|M\d+(?:[.,x×]\d+)*|P\d+(?:[.,x×]\d+)*|d\d+).*)$/i
+  );
+  if (specMatch) {
+    const headRaw = specMatch[1].trim();
+    const specRaw = specMatch[2].trim();
+    const headTr = lookupGlossary(headRaw) || translateHeadAndModifiers(headRaw);
+    const normSpec = normalizeSpecTail(specRaw);
+    if (headTr !== headRaw || normSpec !== specRaw) {
+      return `${headTr} ${normSpec}`.trim();
+    }
+  }
+
+  // 6. "<Head> kit" / "<Head> assembly" / "<Head> assy" / "Set of <Head>"
+  const setOfMatch = clean.match(/^set\s+of\s+(.+?)(?:\s+(\d+.*))?$/i);
+  if (setOfMatch) {
+    const itemTr = lookupGlossary(setOfMatch[1]) || lookupGlossary(setOfMatch[1].replace(/s$/, ''));
+    if (itemTr) {
+      const tail = setOfMatch[2] ? ` ${normalizeSpecTail(setOfMatch[2])}` : '';
+      return `Set ${itemTr.charAt(0).toLowerCase() + itemTr.slice(1)}${tail}`;
+    }
+  }
+
+  const kitMatch = clean.match(/^(.+?)\s+kit(?:\s+(.*))?$/i);
+  if (kitMatch) {
+    const baseTr = lookupGlossary(kitMatch[1]);
+    if (baseTr) {
+      const suffix = kitMatch[2] ? ` ${normalizeSpecTail(kitMatch[2])}` : '';
+      const combined = baseTr.toLowerCase().endsWith('set') ? baseTr : `${baseTr}set`;
+      return `${combined}${suffix}`;
+    }
+  }
+
+  const assyMatch = clean.match(/^(.+?)\s+(?:assembly|assy\.?)(?:\s+(.*))?$/i);
+  if (assyMatch) {
+    const baseTr = lookupGlossary(assyMatch[1]);
+    if (baseTr) {
+      const suffix = assyMatch[2] ? ` ${normalizeSpecTail(assyMatch[2])}` : '';
+      return `${baseTr} (compleet)${suffix}`;
+    }
+  }
+
+  // 7. Model-plate / pictogram / cover / warning prefixes followed by STIHL series code
+  const seriesSuffixMatch = clean.match(/^(model plate|name plate|rating plate|warning pictogram)\s+([a-z0-9\-\/\s]+)$/i);
+  if (seriesSuffixMatch) {
+    const prefixTr = lookupGlossary(seriesSuffixMatch[1]);
+    if (prefixTr) {
+      return `${prefixTr} ${seriesSuffixMatch[2].trim().toUpperCase()}`;
+    }
+  }
+
+  return clean;
+}
 
 export class PartNameNormalizer {
   /**
-   * Reload overrides map from disk.
+   * Reload overrides map and glossary from disk.
    */
   static reloadOverrides() {
     loadOverrides();
+    loadGlossary();
   }
 
   /**
-   * Normalizes a raw part name into a safe, clean technical display name.
+   * Exposes loaded canonical Dutch glossary entries for search alias builders and audits.
+   */
+  static getGlossaryTerms() {
+    return canonicalTerms;
+  }
+
+  /**
+   * Normalizes a raw part name into a safe, clean technical Dutch display name.
    *
    * @param {string} rawName - original harvested part name
    * @param {string} [partNumber] - canonical 11-digit part number for prefix stripping
@@ -164,22 +314,26 @@ export class PartNameNormalizer {
       return formatted ? `Onderdeel ${formatted}` : 'STIHL onderdeel';
     }
 
-    // 3. Normalize deterministic HTML entities and unambiguous mojibake sequences
+    // 3. Normalize deterministic HTML entities, whitespace, and unambiguous mojibake sequences
     let clean = rawName
       .replace(/&#8203;/g, '')
       .replace(/&#8209;/g, '-')
       .replace(/&amp;/g, '&')
       .replace(/&quot;/g, '"')
       .replace(/&nbsp;/g, ' ')
+      .replace(/\t+/g, ' ')
       .replace(/Ã¸|Âø/g, 'ø')
       .replace(/Ã¤|Âä/g, 'ä')
       .replace(/Ã¼|Âü/g, 'ü')
-      .replace(/Ã¶|Âö/g, 'ö');
+      .replace(/Ã¶|Âö/g, 'ö')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
 
-    // 4. Strip vendor / retailer prefix and duplicate part numbers iteratively
+    // 4. Strip vendor / availability / retailer prefix and duplicate part numbers iteratively
     let changed = true;
     while (changed) {
       const prev = clean;
+      clean = clean.replace(/^(?:\(\s*NO LONGER AVAILABLE\s*\)|\[\s*NO LONGER AVAILABLE\s*\]|NO LONGER AVAILABLE)\s*/i, '');
       clean = clean.replace(/^(?:genuine\s+)?stihl\s+/i, '');
       clean = clean.replace(/^genuine\s+/i, '');
       clean = clean.replace(/^ST\s*(?=\d{4})/i, '');
@@ -195,22 +349,27 @@ export class PartNameNormalizer {
       changed = (clean !== prev);
     }
 
-    // 5. Strip trailing retailer / compatibility model lists
-    // e.g. " for MS 171 MS 181...", " Fits HL 91 KC...", " - OEM No. 0000 792 9600"
-    clean = clean.replace(/\s+(?:for|fits)\s+(?:the\s+)?[A-Z0-9]{1,4}\s*\d*[a-z0-9\s\/\.,\-_]*$/i, '');
-    clean = clean.replace(/\s+-\s*OEM\s*No\.?\s*[\d\s\-]+$/i, '');
-    clean = clean.replace(/\s*\(\s*pack\s+of\s+\d+\s*\)/gi, '');
-    clean = clean.replace(/\s*,\s*pack of \d+.*$/gi, '');
-    clean = clean.replace(/\s+pack of \d+.*$/gi, '');
-    clean = clean.replace(/[\.\s]+$/, '').trim();
-
-    // 6. Check deterministic Dutch technical dictionary
-    for (const [regex, dutchTranslation] of DUTCH_DICTIONARY) {
-      if (regex.test(clean)) {
-        return dutchTranslation;
-      }
+    // 5. Strip trailing retailer / compatibility model lists and broken pack suffixes (iteratively for idempotence)
+    let stripChanged = true;
+    while (stripChanged) {
+      const prev = clean;
+      clean = clean.replace(/\s*\(\(\s*(?:For|Fits|Voor|Für)\b[^)]*\)\)\s*$/i, '');
+      clean = clean.replace(/\s*\(\(\s*Qty\b.*$/i, '');
+      clean = clean.replace(/\s+(?:for|fits)\s+(?:the\s+)?[A-Z0-9]{1,4}\s*\d*[a-z0-9\s\/\.,\-_]*$/i, '');
+      clean = clean.replace(/\s+(?:Chainsaw|Brushcutter|Hedgetrimmer|Hedge Trimmer|Blower|Trimmer|Clearing Saw|Disc Cutter)\s+Parts\b.*$/i, '');
+      clean = clean.replace(/\s+(?:(?:BG|BGE|BGA|BR|BT|FC|FR|FS|FSA|FSE|HL|HLA|HS|HSA|HSE|HT|KM|MM|MS|MSA|MSE|RM|RMA|SE|SG|SH|SHA|SP|SR|TS)\s*\d{2,3}[A-Z0-9\-\/]*|0\d{2}\s*\/\s*0\d{2})\b[\s,\/\-]+(?:[A-Z0-9,\s\/\-\.\|]*\bParts\b.*|(?:BG|BGE|BGA|BR|BT|FC|FR|FS|FSA|FSE|HL|HLA|HS|HSA|HSE|HT|KM|MM|MS|MSA|MSE|RM|RMA|SE|SG|SH|SHA|SP|SR|TS|0\d{2})\b.*)$/i, '');
+      clean = clean.replace(/\s+(?:BG|BGE|BGA|BR|BT|FC|FR|FS|FSA|FSE|HL|HLA|HS|HSA|HSE|HT|KM|MM|MS|MSA|MSE|RM|RMA|SE|SG|SH|SHA|SP|SR|TS)\s*\d{2,3}[A-Z0-9\-]*\s*\/\s*(?:BG|BGE|BGA|BR|BT|FC|FR|FS|FSA|FSE|HL|HLA|HS|HSA|HSE|HT|KM|MM|MS|MSA|MSE|RM|RMA|SE|SG|SH|SHA|SP|SR|TS)\s*\d{2,3}[A-Z0-9\-]*$/i, '');
+      clean = clean.replace(/\s+-\s*OEM\s*No\.?\s*[\d\s\-]+$/i, '');
+      clean = clean.replace(/\s*\(\s*pack\s+of\s+\d+\s*\)/gi, '');
+      clean = clean.replace(/\s*,\s*pack of \d+.*$/gi, '');
+      clean = clean.replace(/\s+pack of \d+.*$/gi, '');
+      clean = clean.replace(/\s*\|\s*Stihl\s*.*$/i, '');
+      clean = clean.replace(/[\.\s\/]+$/, '').trim();
+      stripChanged = (clean !== prev);
     }
 
-    return clean || rawName;
+    // 6. Central Dutch technical glossary + safe structural translation
+    const translated = translateHeadAndModifiers(clean);
+    return translated || clean || rawName;
   }
 }

@@ -1,0 +1,175 @@
+{
+  "phase": "96",
+  "generated_at": "2026-11-20T23:34:27.207Z",
+  "before": {
+    "active_total": 3056,
+    "active_nl": 1442,
+    "active_de": 1614,
+    "ebay_active": 220,
+    "ebay_offers": 1773,
+    "unique_parts_amazon": 1895,
+    "combined_unique_parts": 1998,
+    "nonGhsCovered": 365,
+    "allFitmentsCombinedCovered": 440,
+    "modelsGte6": 326
+  },
+  "after": {
+    "active_total": 3072,
+    "active_nl": 1442,
+    "active_de": 1630,
+    "ebay_active": 220,
+    "ebay_offers": 1773,
+    "unique_parts_amazon": 1911,
+    "combined_unique_parts": 2014,
+    "nonGhsCovered": 366,
+    "allFitmentsAmzCovered": 459,
+    "allFitmentsCombinedCovered": 459,
+    "modelsGte6": 345
+  },
+  "delta": {
+    "new_offers_activated": 16,
+    "new_nl_activated": 0,
+    "new_de_activated": 16,
+    "new_unique_parts_amazon": 16,
+    "new_unique_parts_combined": 16,
+    "models_non_ghs_delta": 1,
+    "models_all_fitments_combined_delta": 19,
+    "models_gte6_delta": 19
+  },
+  "search_stats": {
+    "p1_queued": 106,
+    "p2_queued": 325,
+    "p3_queued": 2441,
+    "nl_searched": 0,
+    "de_searched": 80,
+    "dp_nl_checked": 0,
+    "dp_de_checked": 33,
+    "bot_gate_hit": false
+  },
+  "newly_activated": [
+    {
+      "part_number": "41401820800",
+      "asin": "B0GQ9CBG8L",
+      "marketplace": "amazon.de",
+      "brand": "URPIZY",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11466407102",
+      "asin": "B0H2LMWL9L",
+      "marketplace": "amazon.de",
+      "brand": "MechPort",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "42291413700",
+      "asin": "B0HPKMBFQL",
+      "marketplace": "amazon.de",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11151418600",
+      "asin": "B0GRVGCHZF",
+      "marketplace": "amazon.de",
+      "brand": "cyclingcolors",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11181605002",
+      "asin": "B0H1NK5D7J",
+      "marketplace": "amazon.de",
+      "brand": "ECSiNG",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11216407110",
+      "asin": "B0B4CWBP8Z",
+      "marketplace": "amazon.de",
+      "brand": "Luxuypon",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11336407100",
+      "asin": "B0F7X8PCSB",
+      "marketplace": "amazon.de",
+      "brand": "LT Easiyl",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11433587700",
+      "asin": "B0GP8XT21D",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11436479401",
+      "asin": "B0GP71FYX9",
+      "marketplace": "amazon.de",
+      "brand": "perfektGarten",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "42387910600",
+      "asin": "B0H1YW99PB",
+      "marketplace": "amazon.de",
+      "brand": "AS Axis Spindleon",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11063510701",
+      "asin": "B09N7Z8H3M",
+      "marketplace": "amazon.de",
+      "brand": "Jardiaffaires",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11063591110",
+      "asin": "B0GXFWV4D7",
+      "marketplace": "amazon.de",
+      "brand": "Supkancl",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11064043210",
+      "asin": "B098BGFB1M",
+      "marketplace": "amazon.de",
+      "brand": "C·T·S",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11067900302",
+      "asin": "B0912RHPQV",
+      "marketplace": "amazon.de",
+      "brand": "SGBTB",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11143590700",
+      "asin": "B0HLFHMDHQ",
+      "marketplace": "amazon.de",
+      "brand": "Moliuoly",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    },
+    {
+      "part_number": "11210071021",
+      "asin": "B0GWK6FVGT",
+      "marketplace": "amazon.de",
+      "brand": "YINETTECH",
+      "classification": "MANUFACTURER_AFTERMARKET"
+    }
+  ],
+  "ebay_status": {
+    "phase": "96",
+    "generated_at": "2026-11-20T23:34:27.203Z",
+    "ebay_active_offers": 1773,
+    "ebay_unique_parts": 220,
+    "ebay_api_credentials_available": false,
+    "ebay_enabled_env": false,
+    "blocker_reason": "EBAY_BROWSE_API_CREDENTIALS_MISSING_AND_PUBLIC_EBAY_HTTP_403",
+    "new_ebay_activated": 0,
+    "note": "All 1,773 ACTIVE eBay offers (220 parts) are preserved intact. eBay Browse API OAuth credentials are not configured locally and public eBay item pages return HTTP 403."
+  },
+  "consistency_success": true
+}

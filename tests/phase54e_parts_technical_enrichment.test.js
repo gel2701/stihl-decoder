@@ -195,8 +195,8 @@ test('Phase 54E: Safe Part Name Normalization & Quality Targets', () => {
   assert.strictEqual(PartNameNormalizer.normalizePartName('Stihl 1123 160 2050 Clutch', '11231602050'), 'Koppeling');
   assert.strictEqual(PartNameNormalizer.normalizePartName('Genuine STIHL Air Filter for MS 170', '11301240800'), 'Luchtfilter');
 
-  // Character encoding fixes & fail-closed neutral fallback
-  assert.strictEqual(PartNameNormalizer.normalizePartName('Gasket &#8209; Special', '11230290500'), 'Gasket - Special');
+  // Character encoding fixes & fail-closed neutral fallback (Phase 96: localized to Pakking)
+  assert.strictEqual(PartNameNormalizer.normalizePartName('Gasket &#8209; Special', '11230290500'), 'Pakking - Speciaal');
   assert.strictEqual(PartNameNormalizer.normalizePartName('Capacitor 0.22 \uFFFD F', '11234000100'), 'Onderdeel 1123 400 0100');
   assert.strictEqual(PartNameNormalizer.normalizePartName('Stihl Support \uFFFD 25.4Mm', '00001822100'), 'Onderdeel 0000 182 2100');
 
