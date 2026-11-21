@@ -52,7 +52,7 @@ if (resolveStorageRoot().persistent) {
       campaignId: process.env.EBAY_EPN_CAMPAIGN_ID
     });
     if (ebayBootstrap.applied) {
-      console.log(`[affiliate] eBay store reconciled with committed offers: +${ebayBootstrap.added} ACTIVE`);
+      console.log(`[affiliate] eBay store reconciled with committed offers: +${ebayBootstrap.added} ACTIVE (${ebayBootstrap.already_present} already present, ${ebayBootstrap.rejected} rejected)`);
     }
   } catch (error) {
     console.error('[affiliate] eBay store reconciliation skipped:', error.message);
