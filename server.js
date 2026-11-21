@@ -54,6 +54,13 @@ if (resolveStorageRoot().persistent) {
     if (ebayBootstrap.applied) {
       console.log(`[affiliate] eBay store reconciled with committed offers: +${ebayBootstrap.added} ACTIVE (${ebayBootstrap.already_present} already present, ${ebayBootstrap.rejected} rejected)`);
     }
+    // The provider cached its offer snapshot when this module graph was
+    // imported, i.e. before the reconciliation above wrote the committed
+    // offers. Reload it so this process serves the published offers without
+    // waiting for another restart.
+    if (AffiliateOfferResolver.refreshDefaultEbayOffers({ ebayStorePath: getEbayOfferStorePath() })) {
+      console.log('[affiliate] eBay resolver cache reloaded after boot reconciliation');
+    }
   } catch (error) {
     console.error('[affiliate] eBay store reconciliation skipped:', error.message);
   }

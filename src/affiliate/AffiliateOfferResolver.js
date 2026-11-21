@@ -65,6 +65,34 @@ export class AffiliateOfferResolver {
   }
 
   /**
+   * Reloads the eBay offer cache from the store.
+   *
+   * The provider holds an in-memory snapshot that is loaded when this resolver
+   * is constructed (module import). A boot-time reconciliation writes offers to
+   * the store after that import, so without this the process keeps serving the
+   * offers that existed before the publication until the next restart.
+   *
+   * @param {Object} [options]
+   * @param {string} [options.ebayStorePath]
+   * @param {Map<string, Array<Object>>} [options.cachedOffers]
+   * @returns {boolean} whether an eBay offer snapshot is now loaded
+   */
+  refreshEbayOffers(options = {}) {
+    if (process.env.EBAY_ENABLED !== 'true') return false;
+    const cachedOffers = options.cachedOffers
+      || loadEbayCachedOffers(options.ebayStorePath || this.ebayStorePath);
+    if (!this.ebayProvider) {
+      const ebayProvider = new EbayAffiliateProvider({ cachedOffers });
+      if (!ebayProvider.isEnabled()) return false;
+      this.ebayProvider = ebayProvider;
+      this.registerProvider(ebayProvider);
+      return cachedOffers.size > 0;
+    }
+    this.ebayProvider.cachedOffers = cachedOffers;
+    return cachedOffers.size > 0;
+  }
+
+  /**
    * Registers a provider.
    * @param {import('./AffiliateProvider.js').AffiliateProvider} provider
    */
@@ -269,6 +297,13 @@ export class AffiliateOfferResolver {
    */
   static async resolveOffersAsync(params = {}) {
     return defaultResolverInstance.resolveOffersAsync(params);
+  }
+
+  /**
+   * Static helper: reload the shared resolver's eBay offers after a publication.
+   */
+  static refreshDefaultEbayOffers(options = {}) {
+    return defaultResolverInstance.refreshEbayOffers(options);
   }
 }
 
