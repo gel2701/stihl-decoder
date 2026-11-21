@@ -41,6 +41,14 @@ export function reconcileEbayStoreFromArchive(options = {}) {
   if (!fs.existsSync(archivePath)) return { applied: false, reason: 'NO_ARCHIVE' };
 
   const archive = loadEbayOfferStore(archivePath);
+  // The batch already stamped every record with the EPN campaign it was verified
+  // with. The store guard re-validates against that same id, so the id is taken
+  // from the archive when the process environment does not define it.
+  const campaignId = options.campaignId
+    || archive.campaign_id
+    || archive.offers.find(offer => offer && offer.campaign_id)?.campaign_id
+    || process.env.EBAY_EPN_CAMPAIGN_ID
+    || '';
   const active = archive.offers.filter(offer =>
     offer
     && offer.decision === 'ACCEPT'
@@ -56,7 +64,7 @@ export function reconcileEbayStoreFromArchive(options = {}) {
     return { applied: false, reason: 'ALREADY_IN_SYNC', archive_offers: active.length, already_present: active.length };
   }
 
-  const result = saveEbayOfferStore(storePath, missing, { campaignId: options.campaignId });
+  const result = saveEbayOfferStore(storePath, missing, { campaignId });
   return {
     applied: true,
     archive_offers: active.length,

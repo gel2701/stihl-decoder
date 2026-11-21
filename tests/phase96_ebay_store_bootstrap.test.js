@@ -47,6 +47,17 @@ test('Phase 96 bootstrap — 1. adds the committed ACTIVE offers to an empty per
   assert.equal(loadEbayOfferStore(storePath).offers.length, 2);
 });
 
+test('Phase 96 bootstrap — 1b. uses the campaign id recorded in the archive when the environment has none', () => {
+  const dir = tmp();
+  const archivePath = path.join(dir, 'archive.json');
+  const storePath = path.join(dir, 'store', 'ebay_offers.json');
+  saveEbayOfferStore(archivePath, [makeOffer('11226642200', 'v1|1|0', 'EBAY_DE')], { campaignId: CAMPAIGN });
+  const result = reconcileEbayStoreFromArchive({ archivePath, storePath });
+  assert.equal(result.applied, true);
+  assert.equal(result.added, 1);
+  assert.equal(result.rejected, 0);
+});
+
 test('Phase 96 bootstrap — 2. is idempotent and never duplicates on a later boot', () => {
   const dir = tmp();
   const archivePath = path.join(dir, 'archive.json');
