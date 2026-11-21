@@ -107,7 +107,8 @@ test('Phase 95 — 2. registry expands ACTIVE, unique parts, & model coverage wh
   assert.ok(activation.after.models_coverage_growth_all_fitments >= 10);
   assert.ok(activation.evidence_enrichment.needs_evidence_slots_activated_in_phase95 >= 50);
 
-  assert.strictEqual(ebayStore.offers.length, 1773);
+  // The reconciled store must never shrink: later phases only add proven offers.
+  assert.ok(ebayStore.offers.length >= 1773, 'The store still holds every reconciled Phase 93 offer');
   assert.strictEqual(ebayStatus.ebay_already_active_in_production_and_store, 1773);
   assert.strictEqual(ebayStatus.ebay_title_only_needs_evidence, 586);
 });

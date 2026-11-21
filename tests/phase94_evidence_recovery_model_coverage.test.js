@@ -50,7 +50,8 @@ test('Phase 94 — 1. archive enrichment & eBay backlog boundaries stay intact',
   assert.ok(enrichment.enrichment_summary.with_ghs_authoritative_source >= 180);
   assert.strictEqual(enrichment.enrichment_summary.with_sqlite_fitment_evidence, 490);
 
-  assert.strictEqual(ebayStore.offers.length, 1773);
+  // The reconciled store must never shrink: later phases only add proven offers.
+  assert.ok(ebayStore.offers.length >= 1773, 'The store still holds every reconciled Phase 93 offer');
   assert.strictEqual(ebayStatus.ebay_active_in_store, 1773);
   assert.strictEqual(ebayStatus.ebay_title_only_needs_evidence, 586);
 });
