@@ -537,7 +537,13 @@ REJECTED (48 kandidaten):
   96-stand van 2.968 offers): log `+1250 ACTIVE (2968 already present, 0
   rejected)`, cache herladen, en pagina `/onderdeelnummer/stihl-9222-068-0900/`
   toont item `366775476510` (4 unieke eBay-items).
-- Na deploy van #188 is de steekproef herhaald; uitkomst staat in §10.
+- Na deploy van #188 (`d67f1ce17c7c7b20d80d9121f0e6fb5a9956a2c9`):
+  - 11/11 gerichte steekproefonderdelen (de eerder lege pagina's) tonen hun eigen
+    nieuwe item-ID, met 1–7 unieke eBay-items per pagina.
+  - 30/30 aselecte nieuwe onderdelen tonen ≥1 directe eBay-link met
+    `campid=5339245312`.
+  - Bestaande fase 96-pagina's ongewijzigd (6 en 12 links); geen bestaande
+    aanbieding verdwenen.
 
 ## 10. Artefacten
 
