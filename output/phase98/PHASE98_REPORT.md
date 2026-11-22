@@ -339,10 +339,10 @@ de exacte nummerladder staat altijd vooraan in de zoekopdracht.
 
 ## 9. Publicatie en verificatie
 
-- PR: (open)
-- Geverifieerde productiecommit: `(na deploy)`
-- Gedeployed: -
-- `/api/version`: -
+- PR: #190 (squash 1c67afb)
+- Geverifieerde productiecommit: `1c67afbf9fd4e71ee62c44639c8ebbaf13e028c8`
+- Gedeployed: 2026-11-22T01:24:30.708Z
+- `/api/version`: main @ 1c67afbf9fd4e71ee62c44639c8ebbaf13e028c8
 - Store geschreven via de bestaande `EbayStoreBootstrap` + `saveEbayOfferStore`;
   bestaande ACTIVE-aanbiedingen zijn niet verwijderd of gewijzigd.
 - Campagne: archief en `EBAY_EPN_CAMPAIGN_ID` geven beide
@@ -350,6 +350,33 @@ de exacte nummerladder staat altijd vooraan in de zoekopdracht.
   595 nieuwe aanbiedingen dragen die campagne in de affiliate-URL.
   Technische campagnevalidatie is daarmee aangetoond; een registratie in het
   EPN-dashboard is niet bevestigd (geen inloggegevens beschikbaar).
+
+### Productiecontrole na de deploy
+
+Gedeployed commit `1c67afbf9fd4e71ee62c44639c8ebbaf13e028c8`
+(2026-11-22T01:24:35.503Z); steekproef via
+`scripts/verify_phase98_production.mjs`: **15/15**
+pagina's tonen het verwachte eBay item-ID met `campid=5339245312`, inclusief
+3 bestaande onderdelen die ongewijzigd bleven.
+
+| Onderdeel | Soort | eBay-links | Campagne | Verwacht item aanwezig |
+|---|---|---:|---|---|
+| 00001205111 | NEW | 4 | ja | ja |
+| 11216641000 | NEW | 5 | ja | ja |
+| 11251824502 | NEW | 2 | ja | ja |
+| 11300302014 | NEW | 1 | ja | ja |
+| 11301411801 | NEW | 1 | ja | ja |
+| 11308932601 | NEW | 4 | ja | ja |
+| 41197172806 | NEW | 2 | ja | ja |
+| 41341900600 | NEW | 1 | ja | ja |
+| 41401827602 | NEW | 4 | ja | ja |
+| 41801214701 | NEW | 1 | ja | ja |
+| 42370343001 | NEW | 8 | ja | ja |
+| 42821820800 | NEW | 3 | ja | ja |
+| 00003500905 | EXISTING | 4 | ja | ja |
+| 00003530600 | EXISTING | 1 | ja | ja |
+| 00003530605 | EXISTING | 4 | ja | ja |
+
 
 ## 10. Artefacten
 
