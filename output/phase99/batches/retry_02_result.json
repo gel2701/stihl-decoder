@@ -1,0 +1,2140 @@
+{
+  "phase": "99",
+  "batch_id": "retry_02",
+  "generated_at": "2026-11-22T09:25:54.554Z",
+  "complete": true,
+  "live_api": true,
+  "dry_run": false,
+  "used_query_hints": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 5769,
+    "offers_after": 5769
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_in_this_invocation": 40,
+    "parts_resolved": 40,
+    "parts_processed": 40,
+    "parts_unfinished": 0,
+    "parts_already_active": 0,
+    "parts_errors": 0,
+    "new_active_offers": 0,
+    "new_active_parts": 0,
+    "needs_evidence_candidates": 52,
+    "rejected_candidates": 2,
+    "parts_with_no_listing": 34,
+    "resolver_resolved_new_parts": 0,
+    "resolver_misses": [],
+    "remaining_parts": 0,
+    "duration_ms": 180532
+  },
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "41801418600",
+      "item_id": "v1|286997152922|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM GENUINE NEW OLD STOCK STIHL 4180-141-8600 IMPULSE HOSE",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41801418600",
+      "item_id": "v1|389474351645|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Impulse Hose 45mm 4180-141-8600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42280802101",
+      "item_id": "v1|165856470340|0",
+      "marketplace": "EBAY_DE",
+      "title": "STARTER FÜR STIHL HS45 ( 4228 080 2101 )",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380302008",
+      "item_id": "v1|334717579446|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL 4238 030 2008 Piston 50mm TS 410 410-A 420 420-A 440-A",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|168712681255|0",
+      "marketplace": "EBAY_DE",
+      "title": "Auffangwanne Stihl Bg56 Sh86 Bg86 Benzin Laubbläser Kurbelgehäuse 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147685758517|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Lüftergehäuse für BR 200 / SR 200 Ref: 4241 084 1100 (2)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|800665063148|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original STIHL Spiralgehäuse Lüftergehäuse 4241 084 1100 BG56 BG86 SH86 BR200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147655053955|0",
+      "marketplace": "EBAY_DE",
+      "title": "Luftschaufel Für Stihl BG 56/86 Ref: 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|336785957532|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Bg86 Sh86 Bg56 Benzin Laubbläser Kurbelgehäuse Auffangwanne 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|336902621767|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Bg86 Sh86 Bg56 Benzin Laubbläser Kurbelgehäuse Auffangwanne 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|298635048112|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original STIHL Spiralgehäuse 4241 084 1100 für BG56, BG56C, BG66, BG66C, BG86,",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|336817601246|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Bg86 Sh86 Bg56 Benzin Laubbläser Kurbelgehäuse Auffangwanne 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147667197866|0",
+      "marketplace": "EBAY_DE",
+      "title": "Gehäuse Für Stihl BR 200 / SR 200 Ref: 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147657372599|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Lüfterrad Abdeckung Für Laubbläser Häcksler SH 56 Ref: 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|175164514524|0",
+      "marketplace": "EBAY_DE",
+      "title": "STIHL BG86 /SH86 Kühlhaube 42410841100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|357419139610|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl BG 56 C-E Gebläse Spiralgehäuse OEM - 4241 084 1100 B",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|168861600893|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Bg86 BG56 Spirallüftergehäuse Benzin Laubbläser 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|114657296204|0",
+      "marketplace": "EBAY_DE",
+      "title": "STIHL BG56C SPIRALGEHÄUSE GEBRAUCHT AUSSCHLACHTEN FÜR ERSATZTEILE 2013 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|335514361333|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Bg86 Sh86 Bg56 Benzin Laubbläser Spirallüftergehäuse 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|227450971443|0",
+      "marketplace": "EBAY_DE",
+      "title": "stihl BG86 BG56 SH56 SH86 Laubbläser Spiralgehäuse 4241 084 1100 b ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|389190190412|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG86 Spiral Housing 4241-084-1100 Bg56",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147685758517|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Lüftergehäuse für BR 200 / SR 200 Ref: 4241 084 1100 (2)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|177599930924|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG86 Spiral Housing 4241-084-1100/ Bin 003",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|177609376377|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG86 Spiral Housing 4241-084-1100/ Bin 50",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|336902621767|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Bg86 Sh86 Bg56 Petrol Leaf Blower Crank Housing Sump pan 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|178459899766|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG86 Spiral Housing 4241-084-1100 Bg56/ Bin 185",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|336785957532|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Bg86 Sh86 Bg56 Petrol Leaf Blower Crank Housing Sump pan 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|168712681255|0",
+      "marketplace": "EBAY_NL",
+      "title": "Sump pan Stihl Bg56 Sh86 Bg86 Petrol Leaf Blower Crank Housing 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147655053955|0",
+      "marketplace": "EBAY_NL",
+      "title": "Luftschaufel Für Stihl BG 56/86 Ref: 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|147667197866|0",
+      "marketplace": "EBAY_NL",
+      "title": "Gehäuse Für Stihl BR 200 / SR 200 Ref: 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|226463442024|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl BG56C SH56C Handheld Blower Starter Base Mount Adapter 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|226463437882|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl BG56C SH56C Handheld Blower Starter Base Mount Adapter 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|227166724781|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl BG56 C SH56C Handheld Blower Starter Base Mount Adapter 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|205723614195|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl BG56C SH56C Handheld Blower Starter Base Mount Adapter 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|175164514524|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL BG86 /SH86 cooling shroud 42410841100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|362834666422|0",
+      "marketplace": "EBAY_NL",
+      "title": "STARTER MOUNT PLATE FOR STIHL BG56 BG86 BLOWER # 4241 084 1100 -- BOX 180",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157556045257|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG56/86 Fan Housing/Spiral - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157128248932|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG86C SH86C Flywheel Housing/Shroud - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|127577898203|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL BG86 BG56 SH56 SH86 C Leaf Blower FLYWHEEL BASE HOUSING OEM 42410841100👍",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|306993277979|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl BG56 BG86 Handheld Blower Starter Base Mount Adapter 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157536555569|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG56/86 Spiral Flywheel Housing - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157573884967|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG56/86 Fan Housing/Spiral - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|357419139610|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl BG 56 C-E Blower Spiral Housing OEM – 4241 084 1100 B",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157834377453|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG56/86 SH56/86 Spiral/Flywheel Housing - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|157897733455|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Genuine BG56/66/86 Spiral/Flywheel Shield - OEM Used - 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|406714767544|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG56, SH56, BG86, SH86 Spiral Housing 4241-084-1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|298635048112|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine STIHL Spiral Housing 4241 084 1100 for BG56, BG56C, BG66, BG66C, BG86,",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|298738180328|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl SH 56 BG 86 Engine Cylinder Spiral Shroud Housing 4241 084 1100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|114657296204|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL bg56c spiral housing  USED   BREAKING FOR  SPARES PARTS 2013 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|178365190022|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl BG56, SH56, BG86, SH86 Spiral Housing 4241-084-1100/ Bin 131",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42410841100",
+      "item_id": "v1|168861600893|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Bg86 BG56 spiral fan housing petrol leaf blower 4241 084 1100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42417910201",
+      "item_id": "v1|226544178465|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Handle 4241 791 0201, Genuine OEM Stihl, Free Shipping ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "41801418600",
+      "item_id": "v1|236087718292|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL IMPULSE HOSE LINE 4180-141-8600 FC100 FC110 FS100 FS110 KM100 KM110 —B63",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42387917605",
+      "item_id": "v1|820264455311|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL TS420 TS410 ts480i TS500i  support foot 4238 791 7605 OEM",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "41801418600",
+      "part_name": "Stihl Hose 45Mm",
+      "models": [
+        "fc_100",
+        "fc_110",
+        "fs_100",
+        "km_100"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41801418600 Stihl Hose 45Mm",
+        "41801418600 Stihl Hose 45Mm",
+        "STIHL fc 100 Stihl Hose 45Mm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 3,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42246910100",
+      "part_name": "Stihl Stop Pin",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_480i",
+        "ts_500i",
+        "ts_700",
+        "ts_710"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42246910100 Stihl Stop Pin",
+        "42246910100 Stihl Stop Pin",
+        "STIHL ts 410 Stihl Stop Pin"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42247917204",
+      "part_name": "Stihl Sleeve",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440",
+        "ts_480i",
+        "ts_500i",
+        "ts_700",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42247917204 Stihl Sleeve",
+        "42247917204 Stihl Sleeve",
+        "STIHL ts 410 Stihl Sleeve"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42263500900",
+      "part_name": "Stihl Rope",
+      "models": [
+        "019",
+        "hs_45",
+        "hs_72",
+        "hs_74",
+        "hs_75",
+        "hs_76",
+        "hs_80",
+        "hs_85",
+        "ms_190"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42263500900 Stihl Rope",
+        "42263500900 Stihl Rope",
+        "STIHL 019 Stihl Rope"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42280802101",
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "models": [
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42280802101 Stihl Fan Housing With Rewind Starter",
+        "42280802101 Stihl Fan Housing With Rewind Starter",
+        "STIHL hs 45 Stihl Fan Housing With Rewind Starter"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 1,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42281213301",
+      "part_name": "Stihl Throttle Shutter",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42281213301 Stihl Throttle Shutter",
+        "42281213301 Stihl Throttle Shutter",
+        "STIHL fc 55 Stihl Throttle Shutter"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42284300200",
+      "part_name": "Stihl Stop Switch",
+      "models": [
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42284300200 Stihl Stop Switch",
+        "42284300200 Stihl Stop Switch",
+        "STIHL hs 45 Stihl Stop Switch"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 0,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42286410400",
+      "part_name": "Stihl Gearbox Cover",
+      "models": [
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42286410400 Stihl Gearbox Cover",
+        "42286410400 Stihl Gearbox Cover",
+        "STIHL hs 45 Stihl Gearbox Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 0,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42290071700",
+      "part_name": "Stihl Set Of Carburetor Parts",
+      "models": [
+        "fr_85",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42290071700 Stihl Set Of Carburetor Parts",
+        "42290071700 Stihl Set Of Carburetor Parts",
+        "STIHL fr 85 Stihl Set Of Carburetor Parts"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42380202614",
+      "part_name": "Stihl Crankcase, Fan Side",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42380202614 Stihl Crankcase, Fan Side",
+        "42380202614 Stihl Crankcase, Fan Side",
+        "STIHL ts 410 Stihl Crankcase, Fan Side"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42380202901",
+      "part_name": "TS410, TS420 Crankcase Half (Drive End) - 238 020 2909",
+      "models": [
+        "020",
+        "ts_410",
+        "ts_420"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42380202901 TS410, TS420 Crankcase Half (Drive End) - 238 020 2909",
+        "42380202901 TS410, TS420 Crankcase Half (Drive End) - 238 020 2909",
+        "STIHL 020 TS410, TS420 Crankcase Half (Drive End) - 238 020 2909"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42380302008",
+      "part_name": "Stihl Piston � 50Mm",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42380302008 Stihl Piston � 50Mm",
+        "42380302008 Stihl Piston � 50Mm",
+        "STIHL ts 410 Stihl Piston � 50Mm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 38,
+      "client_passed": 1,
+      "client_rejected": 37,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42380802201",
+      "part_name": "Stihl Cap",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42380802201 Stihl Cap",
+        "42380802201 Stihl Cap",
+        "STIHL ts 410 Stihl Cap"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 24,
+      "client_passed": 0,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42380878301",
+      "part_name": "Stihl Rubber Buffer",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42380878301 Stihl Rubber Buffer",
+        "42380878301 Stihl Rubber Buffer",
+        "STIHL ts 410 Stihl Rubber Buffer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 24,
+      "client_passed": 0,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381206700",
+      "part_name": "Stihl High Speed Screw",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381206700 Stihl High Speed Screw",
+        "42381206700 Stihl High Speed Screw",
+        "STIHL ts 410 Stihl High Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381206801",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381206801 Stihl Low Speed Screw",
+        "42381206801 Stihl Low Speed Screw",
+        "STIHL ts 410 Stihl Low Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381207200",
+      "part_name": "Stihl Choke Shaft With Lever",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381207200 Stihl Choke Shaft With Lever",
+        "42381207200 Stihl Choke Shaft With Lever",
+        "STIHL ts 410 Stihl Choke Shaft With Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 0,
+      "client_rejected": 21,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381207300",
+      "part_name": "Stihl Choke Shaft With Lever",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381207300 Stihl Choke Shaft With Lever",
+        "42381207300 Stihl Choke Shaft With Lever",
+        "STIHL ts 410 Stihl Choke Shaft With Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381209700",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381209700 Stihl Pump Piston Kit",
+        "42381209700 Stihl Pump Piston Kit",
+        "STIHL ts 410 Stihl Pump Piston Kit"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 0,
+      "client_rejected": 18,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381213300",
+      "part_name": "Stihl Throttle Shutter",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381213300 Stihl Throttle Shutter",
+        "42381213300 Stihl Throttle Shutter",
+        "STIHL ts 410 Stihl Throttle Shutter"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381214700",
+      "part_name": "Stihl Metering Diaphragm",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381214700 Stihl Metering Diaphragm",
+        "42381214700 Stihl Metering Diaphragm",
+        "STIHL ts 410 Stihl Metering Diaphragm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 0,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381215601",
+      "part_name": "Stihl Fixed Jet",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381215601 Stihl Fixed Jet",
+        "42381215601 Stihl Fixed Jet",
+        "STIHL ts 410 Stihl Fixed Jet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381216600",
+      "part_name": "Stihl Lever",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381216600 Stihl Lever",
+        "42381216600 Stihl Lever",
+        "STIHL ts 410 Stihl Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 27,
+      "client_passed": 0,
+      "client_rejected": 27,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381216601",
+      "part_name": "Stihl Lever",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381216601 Stihl Lever",
+        "42381216601 Stihl Lever",
+        "STIHL ts 410 Stihl Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 25,
+      "client_passed": 0,
+      "client_rejected": 25,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381223200",
+      "part_name": "Stihl Torsion Spring",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381223200 Stihl Torsion Spring",
+        "42381223200 Stihl Torsion Spring",
+        "STIHL ts 410 Stihl Torsion Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 0,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381223202",
+      "part_name": "Stihl Torsion Spring",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381223202 Stihl Torsion Spring",
+        "42381223202 Stihl Torsion Spring",
+        "STIHL ts 410 Stihl Torsion Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 0,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381225000",
+      "part_name": "Stihl Spacer Sleeve",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381225000 Stihl Spacer Sleeve",
+        "42381225000 Stihl Spacer Sleeve",
+        "STIHL ts 410 Stihl Spacer Sleeve"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 0,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381229000",
+      "part_name": "Stihl E-Clip",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381229000 Stihl E-Clip",
+        "42381229000 Stihl E-Clip",
+        "STIHL ts 410 Stihl E-Clip"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 0,
+      "client_rejected": 15,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381242100",
+      "part_name": "Stihl Rod",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381242100 Stihl Rod",
+        "42381242100 Stihl Rod",
+        "STIHL ts 410 Stihl Rod"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 19,
+      "client_passed": 0,
+      "client_rejected": 19,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381416301",
+      "part_name": "Stihl Air Baffle",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42381416301 Stihl Air Baffle",
+        "42381416301 Stihl Air Baffle",
+        "STIHL ts 410 Stihl Air Baffle"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 0,
+      "client_rejected": 5,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42384306500",
+      "part_name": "Stihl Control Panel",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42384306500 Stihl Control Panel",
+        "42384306500 Stihl Control Panel",
+        "STIHL ts 410 Stihl Control Panel"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42384481200",
+      "part_name": "Stihl Lead Retainer",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42384481200 Stihl Lead Retainer",
+        "42384481200 Stihl Lead Retainer",
+        "STIHL ts 410 Stihl Lead Retainer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42387917605",
+      "part_name": "Stihl Support",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_480i",
+        "ts_500i"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42387917605 Stihl Support",
+        "42387917605 Stihl Support",
+        "STIHL ts 410 Stihl Support"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 27,
+      "client_passed": 1,
+      "client_rejected": 26,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REJECT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "42388901200",
+      "part_name": "TS410, TS420, TS440 Flange",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42388901200 TS410, TS420, TS440 Flange",
+        "42388901200 TS410, TS420, TS440 Flange",
+        "STIHL ts 410 TS410, TS420, TS440 Flange"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 0,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42410302001",
+      "part_name": "Stihl Piston",
+      "models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "br_200",
+        "sh_56",
+        "sh_86",
+        "sr_200"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42410302001 Stihl Piston",
+        "42410302001 Stihl Piston",
+        "STIHL bg 56 Stihl Piston"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 40,
+      "client_passed": 0,
+      "client_rejected": 40,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42410343000",
+      "part_name": "Stihl Piston Ring � 34X1,2 Mm",
+      "models": [
+        "fs_38",
+        "fs_55",
+        "fs_70",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42410343000 Stihl Piston Ring � 34X1,2 Mm",
+        "42410343000 Stihl Piston Ring � 34X1,2 Mm",
+        "STIHL fs 38 Stihl Piston Ring � 34X1,2 Mm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 0,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42410841100",
+      "part_name": "Stihl Spiral Housing",
+      "models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "br_200",
+        "sh_56",
+        "sh_86",
+        "sr_200"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42410841100 Stihl Spiral Housing",
+        "42410841100 Stihl Spiral Housing",
+        "STIHL bg 56 Stihl Spiral Housing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 90,
+      "client_passed": 47,
+      "client_rejected": 43,
+      "active": 0,
+      "needs_evidence": 47,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 8,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 47
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42411213500",
+      "part_name": "Stihl Throttle Lever",
+      "models": [
+        "bg_56",
+        "bg_66",
+        "bg_86",
+        "sh_56",
+        "sh_86"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42411213500 Stihl Throttle Lever",
+        "42411213500 Stihl Throttle Lever",
+        "STIHL bg 56 Stihl Throttle Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 0,
+      "client_rejected": 10,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42411400605",
+      "part_name": "Stihl Muffler",
+      "models": [
+        "bg_56",
+        "bg_86",
+        "sh_56",
+        "sh_86"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42411400605 Stihl Muffler",
+        "42411400605 Stihl Muffler",
+        "STIHL bg 56 Stihl Muffler"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 29,
+      "client_passed": 0,
+      "client_rejected": 29,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42417910201",
+      "part_name": "Stihl Handle",
+      "models": [
+        "bg_66",
+        "bg_86",
+        "sh_86"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 42417910201 Stihl Handle",
+        "42417910201 Stihl Handle",
+        "STIHL bg 66 Stihl Handle"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 1,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    }
+  ],
+  "evidence_registry": {
+    "size": 6392,
+    "hits": 10,
+    "misses": 0,
+    "recorded": 0
+  }
+}
