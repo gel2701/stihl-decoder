@@ -1,0 +1,251 @@
+{
+  "generated_at": "2026-11-22T09:50:51.929Z",
+  "summary": {
+    "deployed_version": {
+      "repository": "https://github.com/gel2701/stihl-decoder.git",
+      "commit": "b15f08de6a9737cab6751a311229ff9ec918dd80",
+      "branch": "main",
+      "environment": "production",
+      "database": {
+        "connected": true,
+        "persistent": true,
+        "path_type": "persistent_disk",
+        "analytics_schema_ready": true,
+        "schema_version": 3,
+        "last_error": null
+      },
+      "deployed_at": "2026-11-22T09:50:50.059Z"
+    },
+    "new_parts_checked": 12,
+    "existing_parts_checked": 3,
+    "passed": 15,
+    "total": 15,
+    "failures": []
+  },
+  "rows": [
+    {
+      "kind": "NEW",
+      "part_number": "00006700206",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-0000-670-0206/",
+      "status": 200,
+      "ebay_links": 7,
+      "campid": true,
+      "expected_ids": [
+        "136307141368",
+        "198786012901",
+        "880135657170",
+        "840140688835",
+        "287743118477",
+        "227624819288",
+        "960221379433"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "11211237503",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-1121-123-7503/",
+      "status": 200,
+      "ebay_links": 4,
+      "campid": true,
+      "expected_ids": [
+        "168830180770",
+        "137683356588",
+        "236087714051",
+        "336394265050"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "11230801815",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-1123-080-1815/",
+      "status": 200,
+      "ebay_links": 1,
+      "campid": true,
+      "expected_ids": [
+        "168830182746"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "11270840900",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-1127-084-0900/",
+      "status": 200,
+      "ebay_links": 4,
+      "campid": true,
+      "expected_ids": [
+        "267693068817",
+        "230727966627",
+        "800872147013",
+        "147277612106"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "11351215401",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-1135-121-5401/",
+      "status": 200,
+      "ebay_links": 1,
+      "campid": true,
+      "expected_ids": [
+        "397503387322"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "11381605000",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-1138-160-5000/",
+      "status": 200,
+      "ebay_links": 5,
+      "campid": true,
+      "expected_ids": [
+        "257553487780",
+        "307177363545",
+        "186334932774",
+        "257553487780",
+        "256227352051",
+        "266422052892"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "41341207100",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4134-120-7100/",
+      "status": 200,
+      "ebay_links": 2,
+      "campid": true,
+      "expected_ids": [
+        "116947099878",
+        "277555578456"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "41403532400",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4140-353-2400/",
+      "status": 200,
+      "ebay_links": 2,
+      "campid": true,
+      "expected_ids": [
+        "227115253425",
+        "306092193046"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "42380209400",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4238-020-9400/",
+      "status": 200,
+      "ebay_links": 5,
+      "campid": true,
+      "expected_ids": [
+        "117530378074",
+        "257553484946",
+        "800833364185",
+        "227255989316",
+        "226733907093"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "42381901001",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4238-190-1001/",
+      "status": 200,
+      "ebay_links": 7,
+      "campid": true,
+      "expected_ids": [
+        "136475640617",
+        "358657389238",
+        "234594474648",
+        "297379514569",
+        "840091043141",
+        "198515401808",
+        "227573682228"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "42410201200",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4241-020-1200/",
+      "status": 200,
+      "ebay_links": 5,
+      "campid": true,
+      "expected_ids": [
+        "185891048832",
+        "185820669916",
+        "267088384541",
+        "157557395769",
+        "157653493863"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "NEW",
+      "part_number": "42417608200",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-4241-760-8200/",
+      "status": 200,
+      "ebay_links": 2,
+      "campid": true,
+      "expected_ids": [
+        "198625106872",
+        "306356396271",
+        "198625106872"
+      ],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "EXISTING",
+      "part_number": "00001205111",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-0000-120-5111/",
+      "status": 200,
+      "ebay_links": 4,
+      "campid": true,
+      "expected_ids": [],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "EXISTING",
+      "part_number": "00001240800",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-0000-124-0800/",
+      "status": 200,
+      "ebay_links": 7,
+      "campid": true,
+      "expected_ids": [],
+      "has_expected_item": true,
+      "ok": true
+    },
+    {
+      "kind": "EXISTING",
+      "part_number": "00003591220",
+      "url": "https://www.stihldecoder.nl/onderdeelnummer/stihl-0000-359-1220/",
+      "status": 200,
+      "ebay_links": 6,
+      "campid": true,
+      "expected_ids": [],
+      "has_expected_item": true,
+      "ok": true
+    }
+  ]
+}

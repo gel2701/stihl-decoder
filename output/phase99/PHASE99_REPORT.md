@@ -473,10 +473,10 @@ onderzocht en geen enkel onderdeel is onafgerond gebleven.
 
 ## 10. Publicatie en verificatie
 
-- PR: (open)
-- Geverifieerde productiecommit: `(na deploy)`
-- Gedeployed: -
-- `/api/version`: -
+- PR: #192
+- Geverifieerde productiecommit: `b15f08de6a9737cab6751a311229ff9ec918dd80`
+- Gedeployed: 2026-11-22T09:50:45Z
+- `/api/version`: b15f08de6a9737cab6751a311229ff9ec918dd80 (deployed_at 2026-11-22T09:50:45.249Z)
 - Store geschreven via de bestaande `EbayStoreBootstrap` + `saveEbayOfferStore`;
   bestaande ACTIVE-aanbiedingen zijn niet verwijderd of gewijzigd.
 - Campagne: archief en `EBAY_EPN_CAMPAIGN_ID` geven beide
@@ -485,6 +485,31 @@ onderzocht en geen enkel onderdeel is onafgerond gebleven.
   Technische campagnevalidatie is daarmee aangetoond; een registratie in het
   EPN-dashboard is niet bevestigd (geen inloggegevens beschikbaar).
 
+### Productiecontrole na de deploy
+
+Gedeployed commit `b15f08de6a9737cab6751a311229ff9ec918dd80`
+(2026-11-22T09:50:50.059Z); steekproef via
+`scripts/verify_phase99_production.mjs`: **15/15**
+pagina's tonen het verwachte eBay item-ID met `campid=5339245312`, inclusief
+3 bestaande onderdelen die ongewijzigd bleven.
+
+| Onderdeel | Soort | eBay-links | Campagne | Verwacht item aanwezig |
+|---|---|---:|---|---|
+| 00006700206 | NEW | 7 | ja | ja |
+| 11211237503 | NEW | 4 | ja | ja |
+| 11230801815 | NEW | 1 | ja | ja |
+| 11270840900 | NEW | 4 | ja | ja |
+| 11351215401 | NEW | 1 | ja | ja |
+| 11381605000 | NEW | 5 | ja | ja |
+| 41341207100 | NEW | 2 | ja | ja |
+| 41403532400 | NEW | 2 | ja | ja |
+| 42380209400 | NEW | 5 | ja | ja |
+| 42381901001 | NEW | 7 | ja | ja |
+| 42410201200 | NEW | 5 | ja | ja |
+| 42417608200 | NEW | 2 | ja | ja |
+| 00001205111 | EXISTING | 4 | ja | ja |
+| 00001240800 | EXISTING | 7 | ja | ja |
+| 00003591220 | EXISTING | 6 | ja | ja |
 
 
 ## 11. Artefacten
