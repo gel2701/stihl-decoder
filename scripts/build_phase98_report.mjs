@@ -19,6 +19,13 @@ const readJson = rel => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const baseline = readJson('output/phase98/PHASE98_BASELINE.json');
 const data = readJson('output/phase98/PHASE98_EBAY_ACTIVATION.json');
 const queue = readJson('output/phase98/queue.json');
+const production = (() => {
+  try {
+    return readJson('output/phase98/PHASE98_PRODUCTION_VERIFICATION.json');
+  } catch {
+    return null;
+  }
+})();
 const retry = (() => {
   try {
     return readJson('output/phase98/batches/retry_00.json');
@@ -215,6 +222,19 @@ de exacte nummerladder staat altijd vooraan in de zoekopdracht.
   ${num(data.result.new_active_offers)} nieuwe aanbiedingen dragen die campagne in de affiliate-URL.
   Technische campagnevalidatie is daarmee aangetoond; een registratie in het
   EPN-dashboard is niet bevestigd (geen inloggegevens beschikbaar).
+
+${production ? `### Productiecontrole na de deploy
+
+Gedeployed commit \`${production.summary.deployed_version?.commit || '-'}\`
+(${production.summary.deployed_version?.deployed_at || '-'}); steekproef via
+\`scripts/verify_phase98_production.mjs\`: **${production.summary.passed}/${production.summary.total}**
+pagina's tonen het verwachte eBay item-ID met \`campid=5339245312\`, inclusief
+${production.summary.existing_parts_checked} bestaande onderdelen die ongewijzigd bleven.
+
+| Onderdeel | Soort | eBay-links | Campagne | Verwacht item aanwezig |
+|---|---|---:|---|---|
+${production.rows.map(row => `| ${row.part_number} | ${row.kind} | ${row.ebay_links ?? '-'} | ${row.campid ? 'ja' : 'nee'} | ${row.has_expected_item ? 'ja' : 'nee'} |`).join('\n')}
+` : ''}
 
 ## 10. Artefacten
 
