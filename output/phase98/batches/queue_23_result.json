@@ -1,0 +1,3569 @@
+{
+  "phase": "98",
+  "batch_id": "queue_23",
+  "generated_at": "2026-11-21T22:47:54.144Z",
+  "complete": true,
+  "live_api": true,
+  "dry_run": false,
+  "used_query_hints": false,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 4478,
+    "offers_after": 4549
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_in_this_invocation": 40,
+    "parts_resolved": 40,
+    "parts_processed": 40,
+    "parts_unfinished": 0,
+    "parts_already_active": 0,
+    "parts_errors": 0,
+    "new_active_offers": 71,
+    "new_active_parts": 23,
+    "needs_evidence_candidates": 85,
+    "rejected_candidates": 8,
+    "parts_with_no_listing": 14,
+    "resolver_resolved_new_parts": 23,
+    "resolver_misses": [],
+    "remaining_parts": 0,
+    "duration_ms": 277953
+  },
+  "accepted_offers": [
+    {
+      "part_number": "11300302014",
+      "item_id": "v1|136203537568|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Pistone Ø 37 mm 11300302014",
+      "seller_name": "soluzi56",
+      "item_price": 49.4,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203537568?_skw=11300302014&hash=item1fb65d0ca0%3Ag%3AWaUAAeSwWVVogMgk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|278066428682|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Verkleidung Für Lüfter Motorsäge Modelle MS170 MS180 Original STIHL 11300801807",
+      "seller_name": "newgardenstore",
+      "item_price": 23.56,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/278066428682?_skw=1130+080+1807&hash=item40be0cfb0a%3Ag%3A0PUAAeSwfn9qdM3v&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|820287011819|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Seilzugstarter für STIHL MS170 2-MIX MS180 2-MIX 11300801807",
+      "seller_name": "hsparts1",
+      "item_price": 12.67,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/820287011819?_skw=11300801807&hash=itembefcea7beb%3Ag%3AplkAAeSwaXJq4a3H&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|156651073241|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL OEM FAN HOUSING 1130 080 1807 MS170 MS180 MS 170 180 CHAINSAWS  GENUINE",
+      "seller_name": "burnsideparts1996",
+      "item_price": 52.94,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/156651073241?_skw=1130+080+1807&hash=item247921aed9%3Ag%3AYbsAAOSwCpNnkgC6&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mQkIx6Hw59vPOfKUzYdJivvxx5HfTQZTPCwWlGsdKxiUXNVi4ZfwvKW3O7IDdlpuSLJRatrHP7HsxppXKzdDybJzYMpCBkDUHLTPqzm7ChDs6rF%2BFf%2F9FV2Aw6ZWcqh%2Bq%2BR99EzDaPKbZu3XLqataB00U2myYLvTcxCXq1JkrqUuAiqSOvuEOnumAqm1SyhOqYzJcLSaiZxQEXaRLXscadpw7Wum%2FC5gaYdISykBYkiTZwYCnzpauirPudFpS5aa1A69WfAR6Hl%2Fx5T1NAKmeNcJoAbAysQvhiEHix6XRGSg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|177402889441|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "1130-080-1807 Stihl Fan Housing",
+      "seller_name": "haj0486-ycqbytm4dp",
+      "item_price": 33.1,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/177402889441?_skw=1130+080+1807&hash=item294e0944e1%3Ag%3A9oYAAeSwuWpowZmT&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|276015907481|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Carenatura ventola motosega modelli MS170 MS180 ORIGINALE STIHL 11300801807",
+      "seller_name": "newgardenstore",
+      "item_price": 23,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/276015907481?_skw=11300801807&hash=item4043d48299%3Ag%3AZyUAAeSwBVhqdMRX&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|278066428682|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Verkleidung Für Lüfter Motorsäge Modelle MS170 MS180 Original STIHL 11300801807",
+      "seller_name": "newgardenstore",
+      "item_price": 23.56,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/278066428682?_skw=11300801807&hash=item40be0cfb0a%3Ag%3A0PUAAeSwfn9qdM3v&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11300847801",
+      "item_id": "v1|267328988793|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL MS170 Wind Baffle - 1130 084 7801 B OEM Original Part",
+      "seller_name": "subedei1",
+      "item_price": 14.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267328988793?_skw=1130+084+7801&hash=item3e3e0ca679%3Ag%3AxesAAeSwRe1oeQsZ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|267688530382|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS170 2-MIX Motoreinbau Sägeeinheit 1130-140-4714",
+      "seller_name": "newgardenstore",
+      "item_price": 24.58,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/267688530382?_skw=1130+140+4714&hash=item3e537ad1ce%3Ag%3A%7EvMAAeSwTTNq%7EzbN&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|317002690467|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Air filter cover STIHL MS 170, MS 180, Ms 180C-BE  1130 140 4714, 1130-140-4714",
+      "seller_name": "tool_master",
+      "item_price": 39.71,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/317002690467?_skw=1130+140+4714&hash=item49ced52fa3%3Ag%3APMUAAOSwhpRoAUAD&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|316673441517|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Air filter cover STIHL MS 170, MS 180, Ms 180C-BE  1130 140 4714, 1130-140-4714",
+      "seller_name": "tool_master",
+      "item_price": 33.1,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/316673441517?_skw=1130+140+4714&hash=item49bb353eed%3Ag%3APMUAAOSwhpRoAUAD&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|267688530382|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS170 2-MIX Motoreinbau Sägeeinheit 1130-140-4714",
+      "seller_name": "newgardenstore",
+      "item_price": 24.58,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267688530382?_skw=1130+140+4714&hash=item3e537ad1ce%3Ag%3A%7EvMAAeSwTTNq%7EzbN&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|256201603137|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS170 2-MIX Motoreinbau Sägeeinheit 1130-140-4714",
+      "seller_name": "newgardenstore",
+      "item_price": 24.79,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/256201603137?_skw=1130+140+4714&hash=item3ba6ce3841%3Ag%3A%7EvMAAeSwTTNq%7EzbN&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|276021887099|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Cappottatura motosega modelli MS170 2-MIX ORIGINALE STIHL 11301404714",
+      "seller_name": "newgardenstore",
+      "item_price": 24,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/276021887099?_skw=11301404714&hash=item40442fc07b%3Ag%3A%7EvMAAeSwTTNq%7EzbN&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|327432632128|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "S137 Stihl OEM 1130-190-0700  EZ Start Spring Housing MS210c MS180c MS170c",
+      "seller_name": "wurknman",
+      "item_price": 54.67,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/327432632128?_skw=1130+190+0700&hash=item4c3c817740%3Ag%3A4kwAAeSwqNJoepjE&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|136203537624|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Sede molla 11301900700",
+      "seller_name": "soluzi56",
+      "item_price": 34.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203537624?_skw=11301900700&hash=item1fb65d0cd8%3Ag%3AY9gAAeSwK4RogMic&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|267103764329|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL MS180 C-E Easy Start Carrier  1130 195 2000 Oem",
+      "seller_name": "quality.parts.specialist",
+      "item_price": 8.97,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267103764329?_skw=1130+195+2000&hash=item3e309fff69%3Ag%3A3jIAAOSwRBpnaBRM&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nmbUafT5lspMwGhxUEDUgGecn92rsb3Zh8jaNS0U%2FPxIlkKXlk%2F3qnQQaJvEoJNx0Cq2hTUKcMGdBFtN7LJG9vgaBNwslKQbrEXt%2FiHWyNw6V1%2FMmq2okGYNQJKT8Bv9kCfH%2B7c9p8ZmtuUTSeSf4ZJAQTphj2n8yi8OZxYrYsGsZC8BZTh8xDIwfi9DAxVhgP5Skb5kfouTknG671NYrlN%2FnPWuH4pYzmGE8DVuwM3sbWKMuBBKy7tnIR3ciRhKfzOztvye5NaKPHqzqNZw7OlcWCSPknH09kSQUTlJDM4w%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|136203537627|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Trascinatore 11301952000",
+      "seller_name": "soluzi56",
+      "item_price": 2.31,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203537627?_skw=11301952000&hash=item1fb65d0cdb%3Ag%3AspsAAeSw2SNogMgk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|298378168328|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl MS170C MS180C Rewind Starter Carrier 1130-195-2001 OEM",
+      "seller_name": "csservicecenter",
+      "item_price": 18.75,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/298378168328?_skw=1130+195+2001&hash=item4578b98808%3Ag%3AAWIAAeSw82ZqHvU4&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mHVqy3VPcVLK04wHKMMdJIY5sUgUPpwUfU0D9QF5Fu%2B4b%2FyHxHUBZvBprOdLyHTM%2FVEduUwDXsgjgAaiJHB2UOsNIvMB%2BrtpGM6NfrV9v3CQVa9n06sNo1j5I9%2BilTTIWf7aqhb5H5VrSRWyzmeZnW685JDVt4%2Fc36%2BdlKcUQZYqx1iLpBYUhha15bZ1BoJFQeyb%2B2Cw%2BL1XOV5sbI%2B2JpY4qnfbPRnEeEqzt%2Bg8olgJ%2F0v4X3RYBlVJw%2Bhz9LC4w3kxm2bjgwmA%2Fvw3PmwmOp1PHfJSoe8cwuQxVVR%2B8Sow%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|307102014711|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl MS170C MS180C Rewind Starter Carrier 1130-195-2001 OEM S",
+      "seller_name": "grocer_3749",
+      "item_price": 17.64,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/307102014711?_skw=1130+195+2001&hash=item4780b4dcf7%3Ag%3AX-4AAeSwwnlqb0vZ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|136203537628|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Trascinatore 11301952001",
+      "seller_name": "soluzi56",
+      "item_price": 1.4,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203537628?_skw=11301952001&hash=item1fb65d0cdc%3Ag%3AWzwAAeSwF1xogMhl&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|267693068769|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS170 MS180 Motosegen Manico Rahmen Impugnature 11307914903",
+      "seller_name": "newgardenstore",
+      "item_price": 51.21,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/267693068769?_skw=11307914903&hash=item3e53c011e1%3Ag%3AvPcAAeSwNBBq4a81&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|168747562849|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Genuine MS170/180 017 018 Throttle Handle Frame - OEM Used - 1130 791 4903",
+      "seller_name": "crosscutsawshop",
+      "item_price": 35.3,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/168747562849?_skw=1130+791+4903&hash=item274a237761%3Ag%3Ap94AAeSw-PdqvbQQ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|266362576755|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Manico a telaio motosega modelli MS170 MS180 ORIGINALE STIHL 11307914903",
+      "seller_name": "newgardenstore",
+      "item_price": 50,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/266362576755?_skw=11307914903&hash=item3e04725f73%3Ag%3A52MAAeSwzzpq4Z7%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|267693068769|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS170 MS180 Motosegen Manico Rahmen Impugnature 11307914903",
+      "seller_name": "newgardenstore",
+      "item_price": 51.21,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267693068769?_skw=11307914903&hash=item3e53c011e1%3Ag%3AvPcAAeSwNBBq4a81&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|267693069765|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl 1130-893-2601 Spannband für Stihl Nastro di serraggio",
+      "seller_name": "newgardenstore",
+      "item_price": 5.12,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/267693069765?_skw=1130+893+2601&hash=item3e53c015c5%3Ag%3A0G8AAeSw2l9q5LOs&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|384707304188|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Stihl Ring Clamping Sleeve 37m OEM MS 193T 170 TC 1130-893-2601 #GL-L2B1",
+      "seller_name": "hatch4045",
+      "item_price": 5.46,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/384707304188?_skw=1130+893+2601&hash=item5992579afc%3Ag%3Aj8AAAeSwSbdolrHs&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nn%2BoqNqcnNw3zZvF6uI7WOqh3UGchh0Pzd2XAmEj6hiEHJ4aBwGzYAmyZUYJozQqBcLbZrA7zLlbtJs%2BsnUlIncCHqwZtf616r4ViyqAdAPShhmXG63t1rniqMo7EkUXaw3UHSerYc3xwLU%2B6zPqTWXtjx6JjiYssiiJXXyFkbZMwHRdSdw7smOPnm6f2AK8NqAKf7SHQvIHyhS2wiQO4AE5kMwkptLQ5CZ3MD7y6Aui2aFimx%2F3IUXHVEcqHUwG8qLRep4WexP%2F8zJUv1P8JDAQoGs4LVz3K5M40SNSX0xQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|267313951507|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Nastro di serraggio Stihl 11308932601 ORIGINALE STIHL - 1130-893-2601",
+      "seller_name": "newgardenstore",
+      "item_price": 5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267313951507?_skw=1130+893+2601&hash=item3e3d273313%3Ag%3A0G8AAeSw2l9q5LOs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|267693069765|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl 1130-893-2601 Spannband für Stihl Nastro di serraggio",
+      "seller_name": "newgardenstore",
+      "item_price": 5.12,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267693069765?_skw=1130+893+2601&hash=item3e53c015c5%3Ag%3A0G8AAeSw2l9q5LOs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|257004048338|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl 1130-893-2601 Spannband für Stihl Nastro di serraggio",
+      "seller_name": "newgardenstore",
+      "item_price": 5.16,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/257004048338?_skw=1130+893+2601&hash=item3bd6a28fd2%3Ag%3A0G8AAeSw2l9q5LOs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380074102",
+      "item_id": "v1|206588188908|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Servicekit 35 - 4238 007 4102",
+      "seller_name": "agrimaxx",
+      "item_price": 54.99,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/206588188908?_skw=4238+007+4102&hash=item30199d98ec%3Ag%3AgSAAAeSwrrpquoZ2&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380074102",
+      "item_id": "v1|206588188908|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Servicekit 35 - 4238 007 4102",
+      "seller_name": "agrimaxx",
+      "item_price": 54.99,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/206588188908?_skw=4238+007+4102&hash=item30199d98ec%3Ag%3AgSAAAeSwrrpquoZ2&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|234594557152|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl TS410 Lüfterdeckel 4238 080 3102",
+      "seller_name": "greenredspares",
+      "item_price": 66.82,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/234594557152?_skw=4238+080+3102&hash=item369eecdce0%3Ag%3A2UMAAOSwd%7EpnWuNl&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mfuqK%2Bt1iBLhD1CQh81vD0kaafGOrqXEF2mudU66hzZdV7T%2Bq9xZxsHl5to5kf1HCs%2Fw135TItGghO0aGjOMGdnKUkgHAH%2FN5hqEvEO83HH5TLYblxfYgl7eOpN6YajnIffRQnWzk59b4weE4QZjEUi240JX9eYA1oGNLO%2FS1tUq8qi3db0PKdFNrZBzlBVEjL%2Fda%2B5n2I7WHK%2FBZ%2FOx76j5LwUBVKg1oT6yCapAQsAp8XQAiqJg4t9KjksFRhgXF%2B4CArK0IFqXEWRLSdtUvo5lc5IWcdfFdfViHVuheF4A%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|358656308329|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl TS410 Lüfterabdeckung 4238 080 3102",
+      "seller_name": "zenvorparts",
+      "item_price": 176.4,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/358656308329?_skw=4238+080+3102&hash=item538194f469%3Ag%3A2UMAAOSwd%7EpnWuNl&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lb5SAGAEkePvy75Sp3tCYcoCFtjowPUXANxLkM7cxANQ%2Fum5BEo%2FFlOIIwb0v7soBXID%2FsiqEK6%2BDczeAGw9BKQjGAyE3xhXaFyT%2BHo9NXkMKC5dWs54shR0WMtpcV8jPlJLwPShjpICKnP6dtZ0xDV6VoLmKZRVXHzB4yfF3OZ8HFxYiI7F%2FinGNuJmkKycTGJOtEhL%2FZb6XM2fkxyla3bDJqfhtCzwEarf1r0XdNN7821SEHRMDuRvJ21LxqMArA%2Fy3b4aHfRhYKnD%2BvDeSLB1wD5ApBRekkSHmBHVJAeA%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|178338152280|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl TS410 TS420 Schwungradabdeckung Lüfterabdeckung 4238 080 3102",
+      "seller_name": "martynscratch68",
+      "item_price": 21.65,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/178338152280?_skw=4238+080+3102&hash=item2985c83f58%3Ag%3ALQ8AAeSwRQxqYlwP&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|301958595932|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "NEU Original Stihl TS 410 TS 420 Lüfterdeckel 4238 080 3102",
+      "seller_name": "msg-parts",
+      "item_price": 49.95,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/301958595932?_skw=4238+080+3102&hash=item464e22855c%3Ag%3AieUAAOSwhdhnYquS&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|234594557152|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Genuine Stihl TS410 Fan Cover 4238 080 3102",
+      "seller_name": "greenredspares",
+      "item_price": 66.82,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/234594557152?_skw=4238+080+3102&hash=item369eecdce0%3Ag%3A2UMAAOSwd%7EpnWuNl&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mfuqK%2Bt1iBLhD1CQh81vD0kaafGOrqXEF2mudU66hzZdV7T%2Bq9xZxsHl5to5kf1HCs%2Fw135TItGghO0aGjOMGdnKUkgHAH%2FN5hqEvEO83HH5TLYblxfYgl7eOpN6YajnLY055tKD4uaJUytl5qPGEZfaC2QIQi0A8sR2c8dofTdf3tCMYiAn5CzOboqdUDC09XSv%2FTZuJjBPqCphDqtw2hn12ukTi15ytFRz9%2FfAqVjWOS7ym4DdeOUFTnRjp%2BeWBXGL02MgVSmoi7LNqxpSzPWG4dZ%2FBnUUjGQTSuATSygw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|278299364491|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl OEM Fan Cover fits Stihl TS410, TS420 cut-off saws  4238-080-3102 ORIGINAL",
+      "seller_name": "dhs-equipment",
+      "item_price": 44.34,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/278299364491?_skw=4238+080+3102&hash=item40cbef4c8b%3Ag%3AgmEAAOSwDrNZR9nf&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lh6FaEi2LTAkubPJcFiorVGnQkoIksJxHIHphoj0n0%2FUiIwFJ0fsPUQi4xnypwpBjweWOuO6FruCjAoGNUbkn%2BaThjRkeuglwWpW7jVGK9OOrhmNj%2FwK9VcDP6%2BNn2%2B2Juet8pdipEfDE3EEcawPAS2yysZsAmFhmyKvDAGXa7eHKYH66n3g%2B8V%2FB%2BGY7afhP8I0RtsFU0NbJeDl21QM7X6Tq%2FxaW7v89JLUMS1Q%2BfJlaOuKOO7ircrWEYp5xs0%2F6MZnvvesKSxzHcpKV%2BvC5PwsWy6xyBvrBc7rbDORvvaQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|317484262559|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original STIHL Kupplung 4238-160-2002 (Modelle in Beschreibung)",
+      "seller_name": "oxsoslow",
+      "item_price": 57.74,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/317484262559?_skw=4238+160+2002&hash=item49eb89649f%3Ag%3AUdIAAeSwTIJpA-1b&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mkRvYicWTtHILeT2ZJT0Y4sJJ3cnFuLVmvB8C84wvTsMoeNeEoyJAQp1B8gTJrx8eRbaRJd%2FDX%2Bkb%2BWvlwOMorSBToK0fkYcLJYTeC82nu59S47DwdRFFl4zI36Tl0GWifnxiW0qI6y44PtON1bjQ%2F%2BX%2BwYFwxQ4z%2B3Bxvm1kJdPkmo0iFmuAXIM9z6gRk87ZwA%2FJ3WwGgQtCN7nkLYSumNDvyRz4K8LqoVieiKwa8fhGf6VwiHCy6d01GZW%2BCz1zXjJQ3rQR26obcO%2BhY13b%2FbJ6vh7DTG8RVlNeB%2FG1WIg%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|253160744838|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Non Gen Kupplung für Stihl TS410 Scheibenfräse - ersetzt 4238 160 2002",
+      "seller_name": "small_plant_and_garden_spares",
+      "item_price": 22,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/253160744838?_skw=4238+160+2002&hash=item3af18e6786%3Ag%3AdmQAAOSwbThiVuWd&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|275341385986|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Non Gen Kupplung für Stihl TS400 Scheibenfräse - ersetzt 4238 160 2002",
+      "seller_name": "small_plant_and_garden_spares",
+      "item_price": 21.57,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/275341385986?_skw=4238+160+2002&hash=item401ba02102%3Ag%3AdmQAAOSwbThiVuWd&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|255571432759|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Non Gen Kupplung für Stihl TS420 Scheibenfräse - ersetzt 4238 160 2002",
+      "seller_name": "small_plant_and_garden_spares",
+      "item_price": 28.59,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/255571432759?_skw=4238+160+2002&hash=item3b813e9537%3Ag%3AdmQAAOSwbThiVuWd&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|267693069077|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Kupplung Für Trennschleifer Modelle TS410 TS420 TS440 Original STIHL 42381602002",
+      "seller_name": "newgardenstore",
+      "item_price": 55.31,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/267693069077?_skw=42381602002&hash=item3e53c01315%3Ag%3Aj3MAAeSw-ghqMY38&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|362106974610|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Schalterwelle für Stihl TS410 Scheibenfräse - ersetzt 4238 182 0900",
+      "seller_name": "small_plant_and_garden_spares",
+      "item_price": 9.53,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/362106974610?_skw=4238+182+0900&hash=item544f41f192%3Ag%3ADooAAOSwRkhiVsB2&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|407002127646|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Schalterwelle für Abdeckung passend für STIHL TS410 TS420 4238-182-0900 Schalterwelle",
+      "seller_name": "toolsru",
+      "item_price": 9.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/407002127646?_skw=4238+182+0900&hash=item5ec3379d1e%3Ag%3AqdIAAeSwMs1qL%7EZT&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nHbmbIhJss1em99fzJpnF2Zn8la8xx9YWbLDByrIZ%2FUhMoxwJTu65E4snldfjScbiRaKEEu5ESWnmF2zyAVYGZ54j4QXmDwMkUppBz7EUoN1V7WPmM4N4w8seV2E1l01nRltqkd0eqknkQARu9WBZqa1CHaztUoQTycy08gXF07QsiM%2BMdlqOHlqTUT8WWFhfKRiKaFPDI%2BGvi5L%2B3cM5Q1H71kNBR2tUZFDFkpUPjMfiTzALj9ZDuZxbQ32vJp30ToMZqWIVKQBzESC3%2BuGV7aIH56hsY%2FLMpgAuzOlg7%2BA%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|840140714990|696259049692",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Schalterwelle für Cutquik für TS410 TS420 Aus Sägen 4238 182 0900 1 oder 5 St",
+      "seller_name": "textilemill996",
+      "item_price": 27.62,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/840140714990?_skw=4238+182+0900&hash=itemc39c49f3ee%3Ag%3Avf8AAeSwf1lq%7EU73&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nyV3p0jBBIjrHxR8sZtU3m73c6y9D3zPygsTBfDuk7r12ueN6NbOz0DZHE7PYAoNtULdhsQ31iP0gkSWxcspKunTT%2FZnAxD6B%2BchxdM2edWE8eL8hE%2BZtrZnCMOwkjj%2Ft5ZWp2N7Shg1EqrtMhhQ1ygAywboksTKweRcBC6TLi8PuVo71%2BLs5373VaJsnG6sg89DXRVGQQOdVI9QDyuM0ogUtHeEr%2BF4RfefoKk9Agu8zPU1gek%2Fw1WLXmocGm2PBXGBNkwBXnw74%2BfTXCi%2BPgsQZ43Vya6E25U%2Fznj5WQqQ%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|358572134916|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Schalterwelle für Abdeckung passend für STIHL TS410 TS420 4238-182-0900",
+      "seller_name": "zenvorparts",
+      "item_price": 24.51,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/358572134916?_skw=4238+182+0900&hash=item537c909204%3Ag%3Afk8AAMXQVT9TDeJ8&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7myaUVkDKYur0oaXSFqnMyL6sHmF6pa1pFnRlFK%2FH62qbuGjl24VNCK5KpPjhBrET25slGxdRQqMGSJe42MN2jx8wSz5RYUQKuVw2rC%2FqhN5wacenZbluMgcPJfwJzRj3A%2BJA7wLW6CEboE1ZYCafiEN24xoWXwOFhhui4Fv6ZgK1NE56ZX0jbJzyVU3yQmPKymK3HiyQOBuyVzLWv5Yu7eYsZXeXS%2F5Cf6B85J486%2BDGKEh1iKStRgpExEjO7%2BgoAqqyCfNFy5XV1JVQ8gK4Rb%2Bfp0EZNFTCmeDq5gADfFGw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|401693546716|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Schalterwelle für Abdeckung passend für STIHL TS410 TS420 4238-182-0900",
+      "seller_name": "garden-hire-spares",
+      "item_price": 9.01,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/401693546716?_skw=4238+182+0900&hash=item5d86cd18dc%3Ag%3Afk8AAMXQVT9TDeJ8&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|363864139530|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Nicht Original Schalterwelle für Stihl TS420 Scheibenfräse - ersetzt 4238 182 0900",
+      "seller_name": "small_plant_and_garden_spares",
+      "item_price": 11.12,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/363864139530?_skw=4238+182+0900&hash=item54b7fe270a%3Ag%3ADooAAOSwRkhiVsB2&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|318671230051|616969935856",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "OEM Style Schalterwelle für Cutquik für TS410 TS420 Kappsägen 4238 182 0900",
+      "seller_name": "trustful7",
+      "item_price": 16.49,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/318671230051?_skw=4238+182+0900&hash=item4a32491463%3Ag%3A-1wAAeSwGjJqcGfn&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|128204242585|429606447770",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Schalterwelle für Cutquik für TS410 TS420 Kappsäge Modell 4238 182 0900",
+      "seller_name": "wonderfulhome",
+      "item_price": 26.33,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/128204242585?_skw=4238+182+0900&hash=item1dd9917e99%3Ag%3AyCoAAeSwTKdq%7EpMA&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236705000",
+      "item_id": "v1|285764940790|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original STIHL Ventil 4223 670 5000",
+      "seller_name": "rob_yzf02",
+      "item_price": 14.43,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/285764940790?_skw=4223+670+5000&hash=item4288eaf3f6%3Ag%3ACiIAAOSw-E9l80f6&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236705000",
+      "item_id": "v1|355998782344|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL 4223-670-5000 Valve for Disc Cutters",
+      "seller_name": "americanproducerssupply1963",
+      "item_price": 22.06,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/355998782344?_skw=4223+670+5000&hash=item52e32e5388%3Ag%3AcSMAAeSwzc5oyvfH&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kmtYPTWVv2k8s3hKbDEbCauKQJCu0ldZI7SYCSTgrlIm02bs9M%2BQ7jPmsaaFpSeQu8qPdroG7tzpMWnSNqwCCwqNWCNCzUCQlEkJmpDEFV8%2BEW1kfdsVkc4pJ2Q3gnEC70LSr2KVcUY8Z0TW5Yx3UmwJv3ki%2BrcS2kaq6GZeumvfofYJHdYq8Ta4F9gAOfPwOLe0fKicmwY9EI4B8mlUVJVsPjmafzIULIz4GuMrkRWOKos30V4FMjj%2FV4mROxrEnCHYMGj6zph7CJc6%2F3B9PBsIHYi%2FF95XH0ODGv0FPCiA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236705000",
+      "item_id": "v1|187243636620|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 4223 670 5000 OEM Valve",
+      "seller_name": "thetwistedrosemercantile",
+      "item_price": 17.65,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/187243636620?_skw=4223+670+5000&hash=item2b9897278c%3Ag%3AUmIAAeSwOqJoLowk&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mG%2BM1OmVRmpTbZvH6H0BUe6dcN%2FerdkSxrFYWNKLHpgYJouob9aLZE8P0To8ADZAFyhCxo8BoU7ssKPSFWh6Ea2HJaS7SHBOCi3FPBgoX2%2BHSVUohrfXA%2BNz4zdlhoVummvqoURZA1zQ3Fz8FY%2FsBmUs1%2Bmyo%2BSguEPiKaNrcbkF82Z%2F6dls9TSWsR%2BFN8ASlLViPGYlYId1FJ5bK4gZf7%2F3IpciK9YGL%2FaqllN8chvPYtdZsvNeG4sJkzne9XjR0foH9NVqoAKzMKGbPAwcqesOCKPri2pYwF7zU3hXnkJA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236705000",
+      "item_id": "v1|285764940790|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Genuine STIHL valve 4223 670 5000",
+      "seller_name": "rob_yzf02",
+      "item_price": 14.43,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/285764940790?_skw=4223+670+5000&hash=item4288eaf3f6%3Ag%3ACiIAAOSw-E9l80f6&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236706600",
+      "item_id": "v1|187547399697|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS360 TS410 TS420 TS460 TS700 Pumpenrohr 4223 670 6600 Originalteil NEU",
+      "seller_name": "kettenfaenger",
+      "item_price": 20.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/187547399697?_skw=4223+670+6600&hash=item2baab23611%3Ag%3A3DMAAeSwiaJomEcv&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236706600",
+      "item_id": "v1|800829244107|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS 410, TS 800 Concrete Cut Off Saw OEM New Tank Pump 4223 670 6600",
+      "seller_name": "nellys_minnesota",
+      "item_price": 33.09,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/800829244107?_skw=4223+670+6600&hash=itemba752482cb%3Ag%3AmpQAAeSwto1p6N04&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nqaGOeL07ESud%2FCjnz39OK1hArvfffUwXyySIT%2F2X9aqJeDy1GosLjflIw200BWodoa1Glb3zAvJuydrm4xACFm2rVt2birLJt%2BgCOpVF2tFJsh73JypLi%2BsitPBuLwTHqsxjNSueDY7PFBgnoxpjvJ5gwssNxTlq66eag3g0psRSWuqFPOAvqnTsDwTIMxUzWgAUSxW35MrA1aVDNFuvCy0RW2lwlp1zcEH%2BFHipdJIDzJlCN5AUNwlBhxE33NAVyLZUe1CSe%2BDTvJbW0O1vBlnAi0AhSHAtxRtf4aexdHw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236707700",
+      "item_id": "v1|800829244086|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS 410, TS 800 Concrete Cut Off Saw OEM New Tank Pump Handle 4223 670 7700",
+      "seller_name": "nellys_minnesota",
+      "item_price": 22.06,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/800829244086?_skw=4223+670+7700&hash=itemba752482b6%3Ag%3A5fAAAeSweJZp6Nym&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nZY5a3zl0%2BkekwPYelx7rTnooFqiA2A9AFDeaRow8QFG4bwTvvOvT2mJUU9xfAi0eciQsIcenaRrDWfWm9YxX7F27wboBB60pPBtQ4%2F9oH9lt1vYhGlV1ridBOil106VrR3jGsW%2BFddxdBndZBfYG7HrppRbXtSaoEoXkr6THig8ywyqw9E7NaVgcXXDROneLYqYulnKqfS%2Fm2WqUkmnN79uTcSiYVrt5YaqTTrAuW8JWtoJEUbww5eAiP7%2FiA8vsRopz3NKrMtwwZP3OLpnFxbRRz0l0X767efqldXAfOpg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236708200",
+      "item_id": "v1|205241402477|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 4223 670 8200 Piston for TS350, TS360, TS510, TS460, TS760 (2010)",
+      "seller_name": "equipmentdepot305",
+      "item_price": 17.66,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/205241402477?_skw=4223+670+8200&hash=item2fc957446d%3Ag%3A%7EOEAAOSwMDJk5k1v&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236708600",
+      "item_id": "v1|187547401095|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS360 TS400 TS420 TS800 BT45 Tankverschluss 4223 670 8600 Originalteil NEU",
+      "seller_name": "kettenfaenger",
+      "item_price": 12.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/187547401095?_skw=4223+670+8600&hash=item2baab23b87%3Ag%3AA3IAAeSwYlBoj3D%7E&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "42236782600",
+      "item_id": "v1|800844121499|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS400 Chainsaw OEM NEW Valve 4223 678 2600",
+      "seller_name": "nellys_minnesota",
+      "item_price": 11.02,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/800844121499?_skw=4223+678+2600&hash=itemba7607859b%3Ag%3AsKcAAeSwkXBp74n7&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7l0V4ChPcN2RHkPHknqid85WMZGaXgoI5Bod0vNS6shxWgSPv9gXzzSH1HGBhVwmaPlUVLPRWtR0xHxNZaTIltHoNtWmA877opjRaQt%2FWjLEDp40FH%2FqkhPqudL63E%2BeAzVQHpAUHN%2Fo%2FHLVRdfGJvtLhkqE8mIeCIo1ncB5Ypm5SC3iDrIlfCW0bHOIacPELJoX%2BFgG%2BH9kJ7Ee4r2cD7JdCPRdv9OjVRk29f6Biz9ZfB0LTzmGH5KIKPt5866cFhlfItldsdIjf%2FzkAtUY8fVRG8eSUXPhNVxy49%2BOMY4%2Fw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "96459457958",
+      "item_id": "v1|187457347053|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS400 TS460 TS700 TS800 RDR A37,5x3,15 9645 945 7958 Originalteil NEU",
+      "seller_name": "kettenfaenger",
+      "item_price": 2.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/187457347053?_skw=9645+945+7958&hash=item2ba5541ded%3Ag%3Av6MAAeSwD%7E5oiSba&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "96459457958",
+      "item_id": "v1|800866928929|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS400, TS410, TS460, TS510 Chainsaw OEM Water Tank O-Ring 9645 945 7958",
+      "seller_name": "nellys_minnesota",
+      "item_price": 5.52,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/800866928929?_skw=9645+945+7958&hash=itemba77638921%3Ag%3AUOAAAeSw13Zp9Lv6&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nxRl83Ek022qX3pXb3OO3sKBSGU3kG2OVwHYDUqAfe0Hxa33%2FdElHgCB8v2cuPrKS7N2Q%2F2U1dZaZrimrVl%2BDBBgiA5jVOLZxYiSuJ2M5o5QaObtvSJnuSxWbBxm1r0ti3nyXMXq96CCm6%2BLq4F52kHfvCN%2B38wh9aieq%2FJ1XFb6CnPskwfBLIBwekyzh%2B48ZWkMnHd0ybq%2Fy6YV7S9hHNUCyT%2BSEvEZAsjnhyPHXxMdIITNKvotMS6f2omUm4alyJhCq0lQ0i8dezD7DI0fWp%2Fmpy5BdJk2pjzO%2FTh1ToSQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "96459457958",
+      "item_id": "v1|225645279489|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL OEM O Ring 9645 945 7958 ",
+      "seller_name": "snowball1170",
+      "item_price": 10.98,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/225645279489?_skw=9645+945+7958&hash=item348981b901%3Ag%3AXE0AAOSwtC9knall&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "96459458240",
+      "item_id": "v1|187457347055|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl TS360 TS400 TS420 TS800 RDR A56, 5x5, 33 9645 945 8240 Originalteil NEU",
+      "seller_name": "kettenfaenger",
+      "item_price": 2.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/187457347055?_skw=9645+945+8240&hash=item2ba5541def%3Ag%3AtawAAeSwXvRoiS7%7E&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "96459458240",
+      "item_id": "v1|800866928886|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Chainsaw OEM O-Ring 9645 945 8240",
+      "seller_name": "nellys_minnesota",
+      "item_price": 5.52,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/800866928886?_skw=9645+945+8240&hash=itemba776388f6%3Ag%3Aa3sAAeSw2Cpp9Lnk&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nv2k9RZpL%2FwcIRnpPGQk7RzDDIm6EkRkwHp8U4tPLOZ2tIMGF0G64uGXyT6FPi1rTgGQMZr41hFGEfvc2esb9taMvmBPENCUpc8AfboF5lDAelyrzChGFgF5v4dQQzh9sVEf7%2FEbvcIgZSoMM8fm9yG9%2BKMUg5YWQSJpIx63Vw%2BfqWe%2FisRJOTs7YbfNN7bq5hjamc57AkFhL0%2FBqIzRIbogkaDET1vvcYLMmmTUmAUypGaxD6ln5VKXwuoU6QPfc%2F1EmBEYGEYj2ry3ihRmB9uoM5bge7FVWLjaNyrSpghA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "41281226300",
+      "item_id": "v1|335220158365|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM STIHL CARBURETOR ADJUSTMENT SCREW 4128-122-6300 FS120 FS200 FS250 BT120 -B63",
+      "seller_name": "robzgarage",
+      "item_price": 22.01,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/335220158365?_skw=4128+122+6300&hash=item4e0cadaf9d%3Ag%3A8y8AAOSwhqRlrPRw&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|198755798232|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Kabelträger 4128 792 2400 41287922400",
+      "seller_name": "daltonsatvs",
+      "item_price": 38.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/198755798232?_skw=4128+792+2400&hash=item2e46c4ccd8%3Ag%3AZS0AAeSwNlRq49gE&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nmZw%2BQAh%2Bj%2FlC2HaoiFlUKS%2BEt%2BmHh0DYkQtzFtU%2BZzCrHNHUD0eUxm%2BAJP1WVqv%2FoSLqf%2BrOntBq8%2FstKV4seAjQrMpiyoV4%2FBnAqOhKUr8aux%2BcLOaBheOKQoIz0x3VIClVVv%2FXa%2FdXbMJmHzUknCAvsYrqZeBkn3SpSfAkNcxfx1fgD9Sx%2B4OgefKbIRcerNVBMEHf6mTWfrzcXz9qy5nzBjx2ifQF8t4BBTn7VmoznHXFKm22niLCqupuZEM06s5yDge4AtZFXZbiC0uQLtMtDoSE0ASRsw8W3QXjikw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|227153038916|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "ORIGINAL STIHL BLEIHALTER PT NO 4128 792 2400 NEU X2",
+      "seller_name": "harrim0158",
+      "item_price": 2.87,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/227153038916?_skw=4128+792+2400&hash=item34e3604e44%3Ag%3AUbIAAeSw-Y5pUq58&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|407023734720|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "2x STIHL KABELHALTER 4128 792 2400 Schwarz Neu",
+      "seller_name": "bal-discount23",
+      "item_price": 12.99,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/407023734720?_skw=4128+792+2400&hash=item5ec4814fc0%3Ag%3Am0AAAeSwCPVqO6hz&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|198755798232|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Cable Support 4128 792 2400 41287922400",
+      "seller_name": "daltonsatvs",
+      "item_price": 38.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/198755798232?_skw=4128+792+2400&hash=item2e46c4ccd8%3Ag%3AZS0AAeSwNlRq49gE&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nmZw%2BQAh%2Bj%2FlC2HaoiFlUKS%2BEt%2BmHh0DYkQtzFtU%2BZzCrHNHUD0eUxm%2BAJP1WVqv%2FoSLqf%2BrOntBq8%2FstKV4seAjQrMpiyoV4%2FBnAqOhKUr8aux%2BcLOaBheOKQoIz0x3U9cvFoZoAwDUNYQ3EdlCItdBF4Y9JgDmL%2B3SXJFLajav8gaeggnigvRaMqL74Z5%2FLkrUCGCcrWP33FN1F9C3487SjBrAkx8SP%2FHfVMfjNkg8DaDGD%2Fh1cUgha3YP%2FGIMOxjg5LM345ljLcvikr4lPfOo9boE8lLn5moV34%2FOQQBQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    }
+  ],
+  "needs_evidence_offers": [
+    {
+      "part_number": "11300302014",
+      "item_id": "v1|237124678259|0",
+      "marketplace": "EBAY_NL",
+      "title": "1130-030-2014 MS170 Chainsaw Piston and Rings Parts",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300801803",
+      "item_id": "v1|177661177163|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW STIHL OEM 1130-080-1803 Fan Housing for MS180/C-B/CB-E",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|266387956860|0",
+      "marketplace": "EBAY_NL",
+      "title": "Carénage Ventilateur Tronçonneuse Modèles MS170 MS180 Original Stihl 11300801807",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|256196739726|0",
+      "marketplace": "EBAY_NL",
+      "title": "Carénage Ventilateur Tronçonneuse Modèles MS170 MS180 Original Stihl 11300801807",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300801807",
+      "item_id": "v1|276016058963|0",
+      "marketplace": "EBAY_NL",
+      "title": "Verkleidung Für Lüfter Motorsäge Modelle MS170 MS180 Original STIHL 11300801807",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300847801",
+      "item_id": "v1|407139833732|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL STARTER RECOIL ASSEMBLY MS170, 1130 084 7801, USED, FREE SHIPPING",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300847801",
+      "item_id": "v1|306781828000|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Segment 11300847801 NOS OEM STIHL T64",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11300847801",
+      "item_id": "v1|177548543866|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Segment 11300847801B",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|276022571082|0",
+      "marketplace": "EBAY_NL",
+      "title": "Revêtement De Tronçonneuse Modèles MS170 2-MIX ORIGINALE STIHL 11301404714",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301404714",
+      "item_id": "v1|266393473043|0",
+      "marketplace": "EBAY_NL",
+      "title": "Revêtement De Tronçonneuse Modèles MS170 2-MIX ORIGINALE STIHL 11301404714",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|287301221289|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Federgehäuse   1130 190 0700  # 2768",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|234855015531|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM MS180 Ergo Start Spring Housing MS 180 C-BE 1130-190-0700 #GM-M3C6",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|287301221289|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Federgehäuse   1130 190 0700  # 2768",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301900700",
+      "item_id": "v1|168489185391|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL NEW Spring Housing 1130-190-0700 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|178449966615|0",
+      "marketplace": "EBAY_DE",
+      "title": "Mitnehmer Original Stihl MS170, MS170C, MS180, MS180C 1130-195-2000 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|385422332309|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Rewind Carrier MS180C MS 180 C MS170 170 1130-195-2000 #GM-J3C5",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|178449966615|0",
+      "marketplace": "EBAY_NL",
+      "title": "Mitnehmer Original Stihl MS170, MS170C, MS180, MS180C 1130-195-2000 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|278178600106|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Rewind Carrier MS180C MS 180 C MS170 170 1130-195-2000(4DG2)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|178436594733|0",
+      "marketplace": "EBAY_DE",
+      "title": "Mitnehmer Original Stihl MS180, MS180C, MS170, MS170C 1130-195-2001 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|164310609620|0",
+      "marketplace": "EBAY_DE",
+      "title": "4xOriginal Stihl Mitnehmer 1130 195 2001 ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|178436594733|0",
+      "marketplace": "EBAY_NL",
+      "title": "Mitnehmer Original Stihl MS180, MS180C, MS170, MS170C 1130-195-2001 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11301952001",
+      "item_id": "v1|164310609620|0",
+      "marketplace": "EBAY_NL",
+      "title": "4xOriginal Stihl Mitnehmer 1130 195 2001 ",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|307293882007|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM STIHL MS170C/MS180C Handlebar 1130-791-4903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|266363084776|0",
+      "marketplace": "EBAY_NL",
+      "title": "Poignée À Cadre Scie à Chaîne Modèles MS170 MS180 Original Stihl 11307914903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|266362661750|0",
+      "marketplace": "EBAY_NL",
+      "title": "Poignée À Cadre Scie à Chaîne Modèles MS170 MS180 Original Stihl 11307914903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|266363932323|0",
+      "marketplace": "EBAY_NL",
+      "title": "Original Stihl MS170 MS180 Motosegen Manico Rahmen Impugnature 11307914903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|277253299668|0",
+      "marketplace": "EBAY_NL",
+      "title": "Sangle De Serrage STIHL 11308932601 ORIGINALE STIHL - 1130-893-2601",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11308932601",
+      "item_id": "v1|257004048081|0",
+      "marketplace": "EBAY_NL",
+      "title": "Sangle De Serrage STIHL 11308932601 ORIGINALE STIHL - 1130-893-2601",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|282536776761|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fan Cover fits Stihl TS410, TS420 cut-off concrete saws replaces 4238-080-3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|358586364975|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fan Cover Flywheel Fits STIHL TS410 TS420 4238-080-3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|404313470244|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fan Cover Flywheel Fits STIHL TS410 TS420 4238-080-3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|387872737274|0",
+      "marketplace": "EBAY_NL",
+      "title": "FAN FLYWHEEL COVER 4238 080 3102 FOR STIHL TS410 TS420",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|327348801131|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl 4238 080 3102, 4238-080-3102 Cover, OEM Stihl, Free Shipping",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|178338152280|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl TS410 TS420 Flywheel Cover Fan Cover 4238 080 3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|358656308329|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl TS410 Fan Cover 4238 080 3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|186962114547|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Fan Cover TS410 TS420 TS440 4238-080-3102 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|376025931237|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl TS 410 420 Concrete Cut-off Saw Fan Housing Cover 4238 080 3102",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|166550267552|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Fan Cover 4238-080-3102 - TS410 TS420 TS440 - Good Working Condition",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|154408302099|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kupplungsbaugruppe für Stihl TS400 TS410 TS420 Fliehkraft 4238 160 2002 Benzinscheibe",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|402791036012|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kupplungsbaugruppe für Stihl TS400 TS410 TS420 Fliehkraft 4238 160 2002 Benzin",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|176856206353|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kupplung für Stihl TS400, TS410, TS420 - 4238 160 2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|357744946048|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl TS400 TS410 TS420 Kupplungsteil 1128/06, OEM - 4238 160 2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|317484262559|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine STIHL Clutch 4238-160-2002 (Models In Description)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|860103546039|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stens 646-424 Metal Clutch Assembly for Stihl TS410 TS420 Replaces 4238 160 2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|880126229149|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Assembly / Replaces 4238 160 2002 646-424",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|168812846081|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl TS410 TS420 Concrete Cut-Off Saw Clutch Assembly 4238-160-2002 New",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|127817155270|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL 4238 160 2002 Clutch OEM NOS",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|154408302099|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Assembly For Stihl TS400 TS410 TS420 Cenrifugal 4238 160 2002 Petrol Disc",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|402791036012|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Assembly For Stihl TS400 TS410 TS420 Cenrifugal 4238 160 2002 Petrol",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|253160744838|0",
+      "marketplace": "EBAY_NL",
+      "title": "Non Gen Clutch for Stihl TS410 Disc Cutter - Replaces 4238 160 2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|273079121227|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Assembly fits Stihl TS480 & TS500i cut-off saw replaces 4238-160-2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|282435906846|0",
+      "marketplace": "EBAY_NL",
+      "title": "Clutch Assembly fits Stihl TS410, TS420 concrete cut-off saws 4238-160-2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|127661183036|0",
+      "marketplace": "EBAY_NL",
+      "title": "Centrifugal Clutch Assembly Stihl TS410 TS420 TS440A Cutquik 42381602002 646-424",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|265944791988|0",
+      "marketplace": "EBAY_NL",
+      "title": "Used OEM Stihl 42381602002 Clutch Assembly fits TS420 Cutoff Saw",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|275989455922|0",
+      "marketplace": "EBAY_NL",
+      "title": "Embrayage Tronçonneuse Modèles TS410 TS420 TS440 ORIGINALE STIHL 42381602002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|185505100378|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Clutch Assembly TS410 TS420 TS440 4238-160-2002 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|377347957922|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Stihl 4238 160 2002 Clutch Assembly TS410 TS420 TS440",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|127661182984|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM Grade Clutch Assembly Stihl TS410 TS420 TS440 Cutquik 4238 160 2002 646-424",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|193144661665|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl TS420 TS410 Concrete Cut-Off Saw OEM Clutch   4238 160 2002",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381602002",
+      "item_id": "v1|366349722238|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl TS420 Concrete Saw Clutch Assembly 4238 160 2002 OEM Replacement",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|206687860011|507446587066",
+      "marketplace": "EBAY_DE",
+      "title": "Schalterwelle für Cutquik für TS410 TS420 Aus Sägen 4238 182 0900 passgenau",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|198703202590|497633834517",
+      "marketplace": "EBAY_DE",
+      "title": "Schalterwelle für Cutquik für TS410 TS420 Aus Säge 4238 182 0900 zuverlässig",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|307177247064|0",
+      "marketplace": "EBAY_DE",
+      "title": "NEU Original Stihl TS 410 420 440 Schaltwelle  42381820900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|185921931733|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Switch Shaft TS410 TS420 TS440 4238-182-0900 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|185505105021|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Switch Shaft TS410 TS420 TS440 4238-182-0900 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|131890683339|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft Fits Stihl TS410 TS420 4238 182 0900 Cutquik Saws",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|272810890826|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft fits Stihl TS410, TS420 cut-off saws replaces OEM 4238-182-0900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|277666432341|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE STIHL SWITCH SHAFT 42381820900, 4238-182-0900 (TS410, TS420, TS440)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|362106974610|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft for Stihl TS410 Disc Cutter - Replaces 4238 182 0900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|287209580166|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft Fits Stihl TS410 TS420 4238 182 0900 Cutquik Saws",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|401693546716|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft For Shroud Fits STIHL TS410 TS420 4238-182-0900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|407002127646|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft For Shroud Fits STIHL TS410 TS420 4238-182-0900 Switch Shaft",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|287082545417|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM GENUINE NEW OLD STOCK STIHL 4238-182-0900 SWITCH SHAFT",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|358572134916|0",
+      "marketplace": "EBAY_NL",
+      "title": "Switch Shaft For Shroud Fits STIHL TS410 TS420 4238-182-0900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42381820900",
+      "item_id": "v1|256933539356|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Switch Shaft TS410 TS420 TS440 ( 4238-182-0900 )",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401490603",
+      "item_id": "v1|206408213126|0",
+      "marketplace": "EBAY_NL",
+      "title": "New OEM Stihl 4140 149 0603 Exhaust Gasket Plus $12.30 Shipping",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42236705000",
+      "item_id": "v1|405765105342|0",
+      "marketplace": "EBAY_NL",
+      "title": "stihl valve 4223 670 5000",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42236708600",
+      "item_id": "v1|315385523760|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl Kit51 Druck Trinkflasche Einfüllstutzen 4223 670 8600 Staubunterdrückung",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "42236708600",
+      "item_id": "v1|315385523760|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl Kit51 Pressure Water Bottle Filler Cap 4223 670 8600 Dust Supress",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|178509863998|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kabelhalter Original Stihl FR410C, FS240, FS260, FS310 4128-792-2400 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|318542563442|0",
+      "marketplace": "EBAY_DE",
+      "title": "D3 Bleihalter 4128-792-2400",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|178509863998|0",
+      "marketplace": "EBAY_NL",
+      "title": "Kabelhalter Original Stihl FR410C, FS240, FS260, FS310 4128-792-2400 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|318542563442|0",
+      "marketplace": "EBAY_NL",
+      "title": "D3 Lead retainer 4128-792-2400",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|227153038916|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE STIHL LEAD RETAINER PT NO 4128 792 2400 NEW X2",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287922400",
+      "item_id": "v1|136203577843|0",
+      "marketplace": "EBAY_NL",
+      "title": "Portacavo 41287922400",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "11300847801",
+      "item_id": "v1|800699661475|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl MS 170 Chainsaw OEM Flywheel Shroud 1130 084 7801",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11301952000",
+      "item_id": "v1|235848330854|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL STARTER CARRIER 1130-195-2000 MS170 C MS180 C MS180CBE MS210C MS210CBE B17",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11307914903",
+      "item_id": "v1|800913370673|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL MS180  MS170   Chainsaw Top/Rear Throttle Handle OEM 1130 791 4903",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|404313470244|0",
+      "marketplace": "EBAY_DE",
+      "title": "Lüfterabdeckung Schwungrad passend für STIHL TS410 TS420 4238-080-3102",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42380803102",
+      "item_id": "v1|358586364975|0",
+      "marketplace": "EBAY_DE",
+      "title": "Lüfterabdeckung Schwungrad passend für STIHL TS410 TS420 4238-080-3102",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42381290901",
+      "item_id": "v1|156266933112|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL  Gasket 4238 129 0901",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42381290901",
+      "item_id": "v1|196949195831|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL 4238 129 0901 Gasket FITS TS 410, TS420 OEM",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "42381290901",
+      "item_id": "v1|225905393973|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL  Gasket 4238 129 0901",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "11300302014",
+      "part_name": "Stihl Piston 37Mm",
+      "models": [
+        "ms_170",
+        "ms_170_2_mix"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 2,
+      "client_rejected": 19,
+      "active": 1,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11300801803",
+      "part_name": "Stihl Fan Housing",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 1,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11300801807",
+      "part_name": "Stihl Fan Housing",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 33,
+      "client_passed": 9,
+      "client_rejected": 24,
+      "active": 6,
+      "needs_evidence": 3,
+      "rejected": 0,
+      "evidence_enriched": 6,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 3
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11300847801",
+      "part_name": "Stihl Segment",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 5,
+      "client_rejected": 4,
+      "active": 1,
+      "needs_evidence": 3,
+      "rejected": 1,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 3,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11301400613",
+      "part_name": "Stihl Muffler",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301404707",
+      "part_name": "Stihl Shroud",
+      "models": [
+        "018",
+        "ms_170"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301404714",
+      "part_name": "Stihl Shroud",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 26,
+      "client_passed": 8,
+      "client_rejected": 18,
+      "active": 6,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 6,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11301411804",
+      "part_name": "Stihl Sleeve",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11301900700",
+      "part_name": "Stihl Spring Housing",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 27,
+      "client_passed": 6,
+      "client_rejected": 21,
+      "active": 2,
+      "needs_evidence": 4,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 4
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11301952000",
+      "part_name": "Stihl Carrier",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 19,
+      "client_passed": 7,
+      "client_rejected": 12,
+      "active": 2,
+      "needs_evidence": 4,
+      "rejected": 1,
+      "evidence_enriched": 2,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 4,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11301952001",
+      "part_name": "Stihl 11301952001 Carrier",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 7,
+      "client_rejected": 16,
+      "active": 3,
+      "needs_evidence": 4,
+      "rejected": 0,
+      "evidence_enriched": 3,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 4
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11304401102",
+      "part_name": "Stihl Short Circuit Wire",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11307914903",
+      "part_name": "Stihl Handle Frame",
+      "models": [
+        "ms_170",
+        "ms_180"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 24,
+      "client_passed": 9,
+      "client_rejected": 15,
+      "active": 4,
+      "needs_evidence": 4,
+      "rejected": 1,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 4,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11308932601",
+      "part_name": "Stihl Clamping Strap",
+      "models": [
+        "ms_170",
+        "ms_193"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 7,
+      "client_rejected": 8,
+      "active": 5,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 5,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42380074102",
+      "part_name": "Service Kit 35 (Main & Auxiliary Filter, Spark Plug Bosch WSR6F, Fuel Filter)",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 50,
+      "client_passed": 2,
+      "client_rejected": 48,
+      "active": 2,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42380803102",
+      "part_name": "Stihl Fan Cover",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 52,
+      "client_passed": 18,
+      "client_rejected": 34,
+      "active": 6,
+      "needs_evidence": 10,
+      "rejected": 2,
+      "evidence_enriched": 6,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 10,
+        "CONFLICTING_MPN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42381200850",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42381290901",
+      "part_name": "Stihl Gasket",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 3,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 3,
+      "evidence_enriched": 0,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 3
+      },
+      "decision": "REJECT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "42381602002",
+      "part_name": "Stihl Clutch",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 56,
+      "client_passed": 27,
+      "client_rejected": 29,
+      "active": 5,
+      "needs_evidence": 22,
+      "rejected": 0,
+      "evidence_enriched": 5,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 22
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42381820900",
+      "part_name": "Stihl Switch Shaft",
+      "models": [
+        "ts_410",
+        "ts_420",
+        "ts_440"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 53,
+      "client_passed": 23,
+      "client_rejected": 30,
+      "active": 8,
+      "needs_evidence": 15,
+      "rejected": 0,
+      "evidence_enriched": 8,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 15
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41400074103",
+      "part_name": "Service Kit 47 (Air Filter, Spark Plug NGK CMR6H, Fuel Filter)",
+      "models": [
+        "fs_38",
+        "fs_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 39,
+      "client_passed": 0,
+      "client_rejected": 39,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41401490603",
+      "part_name": "Stihl Muffler Gasket",
+      "models": [
+        "fs_45",
+        "fs_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 1,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42417080100",
+      "part_name": "Stihl Adaptor",
+      "models": [
+        "bg_45",
+        "bg_55",
+        "bg_56",
+        "bg_85",
+        "bg_86",
+        "bge_71",
+        "sh_55",
+        "sh_56",
+        "sh_85",
+        "sh_86",
+        "she_71"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 0,
+      "client_rejected": 10,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236705000",
+      "part_name": "Stihl Valve",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 5,
+      "client_rejected": 10,
+      "active": 4,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42236706600",
+      "part_name": "Stihl Pump Barrel",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 2,
+      "client_rejected": 2,
+      "active": 2,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236707700",
+      "part_name": "Stihl Handle",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 1,
+      "client_rejected": 2,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236708200",
+      "part_name": "Stihl Piston",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 1,
+      "client_rejected": 0,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236708600",
+      "part_name": "Stihl Filler Cap",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 3,
+      "client_rejected": 2,
+      "active": 1,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "42236778300",
+      "part_name": "Stihl Union Nut",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236781600",
+      "part_name": "Stihl Insert",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42236782600",
+      "part_name": "Stihl Valve",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 1,
+      "client_rejected": 0,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "96459457958",
+      "part_name": "Stihl O-Ring 37.5X3.15",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 3,
+      "client_rejected": 6,
+      "active": 3,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 3,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "96459458240",
+      "part_name": "Stihl O-Ring 56.52X5.33",
+      "models": [
+        "bt_45",
+        "ts_350",
+        "ts_360",
+        "ts_400",
+        "ts_410",
+        "ts_420",
+        "ts_460",
+        "ts_510",
+        "ts_700",
+        "ts_760",
+        "ts_800"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 2,
+      "client_rejected": 2,
+      "active": 2,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11284300200",
+      "part_name": "Stihl Switch",
+      "models": [
+        "044",
+        "046",
+        "ms_460"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42031226703",
+      "part_name": "Stihl High Speed Screw",
+      "models": [
+        "br_340",
+        "br_380",
+        "br_420",
+        "fs_500",
+        "fs_550",
+        "gs_461",
+        "ms_461",
+        "sr_320",
+        "sr_340",
+        "sr_400",
+        "sr_420"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00003513201",
+      "part_name": "Stihl 00003513201 Sleeve",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "hs_45",
+        "hs_452",
+        "km_55",
+        "mm_55",
+        "mm_55_c_e"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41281226300",
+      "part_name": "Stihl Idle Speed Screw",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fr_450",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 1,
+      "client_rejected": 4,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41287922400",
+      "part_name": "Stihl Lead Retainer",
+      "models": [
+        "fr_410",
+        "fr_460",
+        "fs_240",
+        "fs_260",
+        "fs_261",
+        "fs_300",
+        "fs_310",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 10,
+      "client_rejected": 13,
+      "active": 4,
+      "needs_evidence": 6,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 6
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41341226601",
+      "part_name": "Stihl Collar Screw",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fr_450",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41341806701",
+      "part_name": "Stihl Support",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fr_450",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    }
+  ],
+  "evidence_registry": {
+    "size": 4770,
+    "hits": 18,
+    "misses": 98,
+    "recorded": 98
+  }
+}
