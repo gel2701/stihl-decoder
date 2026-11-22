@@ -1,0 +1,3937 @@
+{
+  "batch_id": "queue_27",
+  "started_at": "2026-11-21T23:02:34.591Z",
+  "processed_parts": [
+    "11234403001",
+    "11234420401",
+    "11391209702",
+    "41371200602",
+    "41371215401",
+    "96469450355",
+    "00009890812",
+    "00009890808",
+    "00009975816",
+    "11248903400",
+    "11251801503",
+    "11259673419",
+    "11271623200",
+    "11287915501",
+    "11331207101",
+    "11331820800",
+    "11351605500",
+    "11401628004",
+    "42820073600",
+    "42820212502",
+    "42820381900",
+    "42820382600",
+    "42820873001",
+    "42820873002",
+    "42821207100",
+    "42821212900",
+    "42821213000",
+    "42821216900",
+    "42821223004",
+    "42821412200",
+    "42821458100",
+    "42823500407",
+    "42823501402",
+    "42824049300",
+    "42824312101",
+    "42827001809",
+    "42827003805",
+    "42827015402",
+    "42827016300",
+    "42827019304"
+  ],
+  "accepted_offers": [
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "match_basis": "PART_NUMBER_CORROBORATED",
+      "item_id": "v1|960205451449|0",
+      "title": "Stihl Genuine 021/023/025 MS210/230/250 Wiring Harness - OEM Used -1123 440 3001",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 6.27,
+      "item_price": 6.27,
+      "currency": "EUR",
+      "shipping_cost": 75.18,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:42.138Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/960205451449?_skw=1123+440+3001&hash=itemdf90b470b9%3Ag%3AQ80AAeSwt0hq-6Kn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/960205451449?_skw=1123+440+3001&hash=itemdf90b470b9%3Ag%3AQ80AAeSwt0hq-6Kn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/960205451449?_skw=1123+440+3001&hash=itemdf90b470b9%3Ag%3AQ80AAeSwt0hq-6Kn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+          "corroboration": [
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Model=025",
+              "matched": [
+                "025"
+              ]
+            },
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Compatible Model=For STIHL 021, For STIHL 023, For STIHL 025, For STIHL MS210, For STIHL MS230, For STIHL MS250",
+              "matched": [
+                "ms210",
+                "ms230",
+                "ms250",
+                "021",
+                "023",
+                "025"
+              ]
+            },
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Model=025",
+              "matched": [
+                "025"
+              ]
+            },
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Compatible Model=For STIHL 021, For STIHL 023, For STIHL 025, For STIHL MS210, For STIHL MS230, For STIHL MS250",
+              "matched": [
+                "ms210",
+                "ms230",
+                "ms250",
+                "021",
+                "023",
+                "025"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:42.138Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:02:42.138Z",
+      "validation_confidence": 0.95
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|158033208588|0",
+      "title": "Stihl Genuine MS210/230/250 Wiring Harness - OEM Used - 1123 440 3001",
+      "mpn": "1123 440 3001",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 6.27,
+      "item_price": 6.27,
+      "currency": "EUR",
+      "shipping_cost": 91.36,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:42.724Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/158033208588?_skw=1123+440+3001&hash=item24cb83650c%3Ag%3AlL0AAeSwuMZqQFLY&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/158033208588?_skw=1123+440+3001&hash=item24cb83650c%3Ag%3AlL0AAeSwuMZqQFLY&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/158033208588?_skw=1123+440+3001&hash=item24cb83650c%3Ag%3AlL0AAeSwuMZqQFLY&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1123 440 3001",
+              "matched": [
+                "11234403001"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:42.724Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:02:42.724Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|157971005664|0",
+      "title": "Stihl Genuine MS210/230/250 Wiring Harness - OEM Used - 1123 440 3001",
+      "mpn": "1123 440 3001",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 8.37,
+      "item_price": 8.37,
+      "currency": "EUR",
+      "shipping_cost": 75.18,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:43.267Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/157971005664?_skw=11234403001&hash=item24c7ce40e0%3Ag%3AFPQAAeSwezxqIjTV&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/157971005664?_skw=11234403001&hash=item24c7ce40e0%3Ag%3AFPQAAeSwezxqIjTV&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/157971005664?_skw=11234403001&hash=item24c7ce40e0%3Ag%3AFPQAAeSwezxqIjTV&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1123 440 3001",
+              "matched": [
+                "11234403001"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:43.267Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:02:43.267Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|157911555078|0",
+      "title": "Stihl Genuine MS210/230/250 Wiring Harness - OEM Used - 1123 440 3001",
+      "mpn": "1123 440 3001",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 9.42,
+      "item_price": 9.42,
+      "currency": "EUR",
+      "shipping_cost": 75.18,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:43.711Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/157911555078?_skw=11234403001&hash=item24c4431c06%3Ag%3A5MkAAeSwo4BqBoQJ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/157911555078?_skw=11234403001&hash=item24c4431c06%3Ag%3A5MkAAeSwo4BqBoQJ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/157911555078?_skw=11234403001&hash=item24c4431c06%3Ag%3A5MkAAeSwo4BqBoQJ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "1123 440 3001",
+              "matched": [
+                "11234403001"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:43.711Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:02:43.711Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "11391209702",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|117493530695|0",
+      "title": "Stihl Pumpenkolbensatz 1139 120 9702 11391209702",
+      "mpn": "11391209702",
+      "brand": "Stihl",
+      "manufacturer": "",
+      "gtin": "886661538720",
+      "seller_name": "daltonsatvs",
+      "price": 50.25,
+      "item_price": 50.25,
+      "currency": "EUR",
+      "shipping_cost": 12.13,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:53.718Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:52.941Z",
+          "item_count": 2,
+          "queries": [
+            "1139 120 9702",
+            "11391209702",
+            "STIHL 11391209702"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:52.941Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/117493530695?_skw=1139+120+9702&hash=item1b5b290047%3Ag%3AqbAAAeSwAndq49gA&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mQsCH%2B3BE9usY4Kd95K9BUGRIRb3PfHmpC84FOhM1GnT5o%2F3TbVxDAqR0zumw%2BLJnxCSgc%2FcjgWBlQQU3rYCVoGXG9ppjZjKFLL9kJZ5LZN%2BgTHXJIXTbOGZgOngCUaKOoiFCXS2FxeeHWqbIsydPRb9svsh7MbgYWIvf3w5BpeTIywGWugVWJG38GsOF4pec%2BQkqHNzufxXz0iSd2eKZOYgciZh4y5ZUPTxi1H86WcbnjFhm%2BVksgFilX7fwnVmEM45qmciMgq6nJBktwzdhZr87NnozYvoUviwI%2FTMKRSw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/117493530695?_skw=1139+120+9702&hash=item1b5b290047%3Ag%3AqbAAAeSwAndq49gA&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mQsCH%2B3BE9usY4Kd95K9BUGRIRb3PfHmpC84FOhM1GnT5o%2F3TbVxDAqR0zumw%2BLJnxCSgc%2FcjgWBlQQU3rYCVoGXG9ppjZjKFLL9kJZ5LZN%2BgTHXJIXTbOGZgOngCUaKOoiFCXS2FxeeHWqbIsydPRb9svsh7MbgYWIvf3w5BpeTIywGWugVWJG38GsOF4pec%2BQkqHNzufxXz0iSd2eKZOYgciZh4y5ZUPTxi1H86WcbnjFhm%2BVksgFilX7fwnVmEM45qmciMgq6nJBktwzdhZr87NnozYvoUviwI%2FTMKRSw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/117493530695?_skw=1139+120+9702&hash=item1b5b290047%3Ag%3AqbAAAeSwAndq49gA&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mQsCH%2B3BE9usY4Kd95K9BUGRIRb3PfHmpC84FOhM1GnT5o%2F3TbVxDAqR0zumw%2BLJnxCSgc%2FcjgWBlQQU3rYCVoGXG9ppjZjKFLL9kJZ5LZN%2BgTHXJIXTbOGZgOngCUaKOoiFCXS2FxeeHWqbIsydPRb9svsh7MbgYWIvf3w5BpeTIywGWugVWJG38GsOF4pec%2BQkqHNzufxXz0iSd2eKZOYgciZh4y5ZUPTxi1H86WcbnjFhm%2BVksgFilX7fwnVmEM45qmciMgq6nJBktwzdhZr87NnozYvoUviwI%2FTMKRSw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "11391209702",
+              "matched": [
+                "11391209702"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:53.718Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:52.941Z",
+            "item_count": 2,
+            "queries": [
+              "1139 120 9702",
+              "11391209702",
+              "STIHL 11391209702"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:52.941Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:02:53.719Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "41371200602",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "match_basis": "PART_NUMBER_CORROBORATED",
+      "item_id": "v1|158273637631|0",
+      "title": "Stihl Zama C1Q S41A 4137 120 0602 FS 75 80 85 FS75 FS80 FS85 **For Parts** 0742",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "thymissinglinq",
+      "price": 16.49,
+      "item_price": 16.49,
+      "currency": "EUR",
+      "shipping_cost": 17.81,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:03.467Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:02.321Z",
+          "item_count": 3,
+          "queries": [
+            "4137 120 0602",
+            "41371200602",
+            "STIHL 41371200602"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "For parts or not working",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/158273637631?_skw=4137+120+0602&hash=item24d9d80cff%3Ag%3Ad%7EEAAeSwO-NqoPBL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7m%2BuDccEvjo5506FJCgnbh%2By0cSnUv7G39%2Btib68uNxKrd9rNjl5hgWNep2%2B5QEbokoy6%2F5UhAsRMFT2MAfWBm1Tk3IiNsyKAh8few3k8SlqxomgDcm8ekq%2FTlZe4g0tdg7IGioIaaV6B07RwQeozTdA0bQ2xOptMXdY2U4EC4LC%2Fmnwv2DGBJMR8%2BH5Dmle5Sdw%2BI2zqiXugwcKZC2Np0huXtdKqHA7TRrAGFxpUtNJWncTNRznau%2BcbZeEnq0AgA5ScnhAkBvTcLdnuqdfVjOQtFDd78RNrVbMllcDadIvg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/158273637631?_skw=4137+120+0602&hash=item24d9d80cff%3Ag%3Ad%7EEAAeSwO-NqoPBL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7m%2BuDccEvjo5506FJCgnbh%2By0cSnUv7G39%2Btib68uNxKrd9rNjl5hgWNep2%2B5QEbokoy6%2F5UhAsRMFT2MAfWBm1Tk3IiNsyKAh8few3k8SlqxomgDcm8ekq%2FTlZe4g0tdg7IGioIaaV6B07RwQeozTdA0bQ2xOptMXdY2U4EC4LC%2Fmnwv2DGBJMR8%2BH5Dmle5Sdw%2BI2zqiXugwcKZC2Np0huXtdKqHA7TRrAGFxpUtNJWncTNRznau%2BcbZeEnq0AgA5ScnhAkBvTcLdnuqdfVjOQtFDd78RNrVbMllcDadIvg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/158273637631?_skw=4137+120+0602&hash=item24d9d80cff%3Ag%3Ad%7EEAAeSwO-NqoPBL&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7m%2BuDccEvjo5506FJCgnbh%2By0cSnUv7G39%2Btib68uNxKrd9rNjl5hgWNep2%2B5QEbokoy6%2F5UhAsRMFT2MAfWBm1Tk3IiNsyKAh8few3k8SlqxomgDcm8ekq%2FTlZe4g0tdg7IGioIaaV6B07RwQeozTdA0bQ2xOptMXdY2U4EC4LC%2Fmnwv2DGBJMR8%2BH5Dmle5Sdw%2BI2zqiXugwcKZC2Np0huXtdKqHA7TRrAGFxpUtNJWncTNRznau%2BcbZeEnq0AgA5ScnhAkBvTcLdnuqdfVjOQtFDd78RNrVbMllcDadIvg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+          "corroboration": [
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Model=FS75",
+              "matched": [
+                "fs75"
+              ]
+            },
+            {
+              "source": "EBAY_ITEM_ASPECT_MODEL",
+              "detail": "Model=FS75",
+              "matched": [
+                "fs75"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:03.467Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "item_count": 3,
+            "queries": [
+              "4137 120 0602",
+              "41371200602",
+              "STIHL 41371200602"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:02.321Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:03.467Z",
+      "validation_confidence": 0.95
+    },
+    {
+      "part_number": "41371200602",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|267516149603|0",
+      "title": "STIHL 4137 120 0602 Carburetor C1Q-S41D fits FS 85, HL 75 Genuine OEM",
+      "mpn": "4137 120 0602, 4137-120-0602, 41371200602, C1Q-S41D",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "eqsalesmiami",
+      "price": 85.8,
+      "item_price": 85.8,
+      "currency": "EUR",
+      "shipping_cost": 22.57,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:03.918Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:02.321Z",
+          "item_count": 3,
+          "queries": [
+            "4137 120 0602",
+            "41371200602",
+            "STIHL 41371200602"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/267516149603?_skw=4137+120+0602&hash=item3e49347f63%3Ag%3AK3EAAOSwOvlmPNat&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/267516149603?_skw=4137+120+0602&hash=item3e49347f63%3Ag%3AK3EAAOSwOvlmPNat&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/267516149603?_skw=4137+120+0602&hash=item3e49347f63%3Ag%3AK3EAAOSwOvlmPNat&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "4137 120 0602, 4137-120-0602, 41371200602, C1Q-S41D",
+              "matched": [
+                "41371200602"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:03.918Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "item_count": 3,
+            "queries": [
+              "4137 120 0602",
+              "41371200602",
+              "STIHL 41371200602"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:02.321Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:03.918Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "96469450355",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|187567693249|0",
+      "title": "Stihl 021 023 025 MS230 MS250 RDR A 6,1x1,6-NBR70 9646 945 0355 Originalteil NEU",
+      "mpn": "9646 945 0355",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "kettenfaenger",
+      "price": 2.9,
+      "item_price": 2.9,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:13.495Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:13.187Z",
+          "item_count": 1,
+          "queries": [
+            "9646 945 0355",
+            "96469450355",
+            "STIHL 96469450355"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-21T23:03:13.495Z"
+          }
+        ]
+      },
+      "condition": "Neu: Sonstige (siehe Artikelbeschreibung)",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/187567693249?_skw=9646+945+0355&hash=item2babe7ddc1%3Ag%3AK30AAeSwVtpoxnjC&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/187567693249?_skw=9646+945+0355&hash=item2babe7ddc1%3Ag%3AK30AAeSwVtpoxnjC&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/187567693249?_skw=9646+945+0355&hash=item2babe7ddc1%3Ag%3AK30AAeSwVtpoxnjC&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "9646 945 0355",
+              "matched": [
+                "96469450355"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:13.495Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:13.187Z",
+            "item_count": 1,
+            "queries": [
+              "9646 945 0355",
+              "96469450355",
+              "STIHL 96469450355"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-21T23:03:13.495Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:13.495Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "96469450355",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|298484494640|0",
+      "title": "STIHL OIL PUMP O-RING SEAL 9646-945-0355",
+      "mpn": "9646-945-0355, 96469450355",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "csservicecenter",
+      "price": 2.21,
+      "item_price": 2.21,
+      "currency": "EUR",
+      "shipping_cost": 20.16,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:16.495Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:16.080Z",
+          "item_count": 5,
+          "queries": [
+            "9646 945 0355",
+            "96469450355",
+            "STIHL 96469450355"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/298484494640?_skw=9646+945+0355&hash=item457f0ff130%3Ag%3AjHUAAeSwhnRqS6%7E5&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nhZOLac%2Fm7FCN3PFbkWFXnoNyrAg%2BsnI%2FLj1esc1qNCPLOg2Gz%2FR92z1G3UjyjGzuLJtLruBKzRTmdm%2FRHNydBiWtniGkAcBuNprA08FQB64d%2F5GPUlEenTOaCr%2B7SHmMI%2F4E7h%2FtWM6uqQe%2Fa5aty217s2OJ9%2BBpUWKzK41qBmWW9GwvrnP%2B7i1q1KqRGuZoJExzRktmngeFdz65pXesZ4Da9S6tlTI%2BZpwWJIp1JbF8cImSVXavCf%2FVRiCnTZ44Wn%2BQs31DhKtL9kPb7qdrz%2FeqLv0P%2F33rbtbB1vqjGZg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/298484494640?_skw=9646+945+0355&hash=item457f0ff130%3Ag%3AjHUAAeSwhnRqS6%7E5&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nhZOLac%2Fm7FCN3PFbkWFXnoNyrAg%2BsnI%2FLj1esc1qNCPLOg2Gz%2FR92z1G3UjyjGzuLJtLruBKzRTmdm%2FRHNydBiWtniGkAcBuNprA08FQB64d%2F5GPUlEenTOaCr%2B7SHmMI%2F4E7h%2FtWM6uqQe%2Fa5aty217s2OJ9%2BBpUWKzK41qBmWW9GwvrnP%2B7i1q1KqRGuZoJExzRktmngeFdz65pXesZ4Da9S6tlTI%2BZpwWJIp1JbF8cImSVXavCf%2FVRiCnTZ44Wn%2BQs31DhKtL9kPb7qdrz%2FeqLv0P%2F33rbtbB1vqjGZg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/298484494640?_skw=9646+945+0355&hash=item457f0ff130%3Ag%3AjHUAAeSwhnRqS6%7E5&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nhZOLac%2Fm7FCN3PFbkWFXnoNyrAg%2BsnI%2FLj1esc1qNCPLOg2Gz%2FR92z1G3UjyjGzuLJtLruBKzRTmdm%2FRHNydBiWtniGkAcBuNprA08FQB64d%2F5GPUlEenTOaCr%2B7SHmMI%2F4E7h%2FtWM6uqQe%2Fa5aty217s2OJ9%2BBpUWKzK41qBmWW9GwvrnP%2B7i1q1KqRGuZoJExzRktmngeFdz65pXesZ4Da9S6tlTI%2BZpwWJIp1JbF8cImSVXavCf%2FVRiCnTZ44Wn%2BQs31DhKtL9kPb7qdrz%2FeqLv0P%2F33rbtbB1vqjGZg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "9646-945-0355, 96469450355",
+              "matched": [
+                "96469450355"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:16.495Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "item_count": 5,
+            "queries": [
+              "9646 945 0355",
+              "96469450355",
+              "STIHL 96469450355"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:16.080Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:16.495Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "96469450355",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|235601054475|0",
+      "title": "OEM STIHL OIL PUMP O-RING SEAL 9646-945-0355 021 023 025 MS210 MS230 MS250 C B70",
+      "mpn": "9646-945-0355, 96469450355",
+      "brand": "GENUINE STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "robzgarage",
+      "price": 466.77,
+      "item_price": 466.77,
+      "currency": "EUR",
+      "shipping_cost": 26.32,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:17.234Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:16.080Z",
+          "item_count": 5,
+          "queries": [
+            "9646 945 0355",
+            "96469450355",
+            "STIHL 96469450355"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/235601054475?_skw=9646+945+0355&hash=item36daeacb0b%3Ag%3AgZMAAeSwv9tqzXuw&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/235601054475?_skw=9646+945+0355&hash=item36daeacb0b%3Ag%3AgZMAAeSwv9tqzXuw&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/235601054475?_skw=9646+945+0355&hash=item36daeacb0b%3Ag%3AgZMAAeSwv9tqzXuw&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "9646-945-0355, 96469450355",
+              "matched": [
+                "96469450355"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:17.234Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "item_count": 5,
+            "queries": [
+              "9646 945 0355",
+              "96469450355",
+              "STIHL 96469450355"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:16.080Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:17.234Z",
+      "validation_confidence": 0.98
+    },
+    {
+      "part_number": "00009890812",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "ACCEPT",
+      "status": "ACTIVE",
+      "match_type": "EXACT_MPN",
+      "match_basis": "MPN_EXACT",
+      "item_id": "v1|233897952383|0",
+      "title": "OEM STIHL WIRE GROMMET 0000-989-0812 MS200 T MS440 MS460 MS640 MS650 R MS660 B60",
+      "mpn": "0000-989-0812, 00009890812",
+      "brand": "GENUINE STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "robzgarage",
+      "price": 9.87,
+      "item_price": 9.87,
+      "currency": "EUR",
+      "shipping_cost": 24.87,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:23.843Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:23.089Z",
+          "item_count": 2,
+          "queries": [
+            "0000 989 0812",
+            "00009890812",
+            "STIHL 00009890812"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:23.089Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/233897952383?_skw=0000+989+0812&hash=item367567847f%3Ag%3ARkgAAOSwfeJgKzBc&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/233897952383?_skw=0000+989+0812&hash=item367567847f%3Ag%3ARkgAAOSwfeJgKzBc&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/233897952383?_skw=0000+989+0812&hash=item367567847f%3Ag%3ARkgAAOSwfeJgKzBc&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "EXACT_MPN",
+          "corroboration": [
+            {
+              "source": "LISTING_MPN",
+              "detail": "0000-989-0812, 00009890812",
+              "matched": [
+                "00009890812"
+              ]
+            }
+          ],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:23.843Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:23.089Z",
+            "item_count": 2,
+            "queries": [
+              "0000 989 0812",
+              "00009890812",
+              "STIHL 00009890812"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:23.089Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [],
+      "checked_at": "2026-11-21T23:03:23.843Z",
+      "validation_confidence": 0.98
+    }
+  ],
+  "needs_evidence_offers": [
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|147650890148|0",
+      "title": "Kabelbaum Kettensäge Stihl Ms 210/230/250 Ref: 1123 440 3001",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "occazmotoculture76210",
+      "price": 7.5,
+      "item_price": 7.5,
+      "currency": "EUR",
+      "shipping_cost": 18.9,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:38.176Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:37.742Z",
+          "item_count": 6,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:37.742Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:38.176Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:37.742Z",
+            "item_count": 6,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:37.742Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:38.176Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|147650890148|0",
+      "title": "Kabelbaum Kettensäge Stihl Ms 210/230/250 Ref: 1123 440 3001",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Nicht zutreffend",
+      "seller_name": "occazmotoculture76210",
+      "price": 7.5,
+      "item_price": 7.5,
+      "currency": "EUR",
+      "shipping_cost": 18.9,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:40.899Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Gebraucht",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k5iwM9qh4rtPnwG4gnotFLMCoGFQpyeLUvHPIS%2FV76EQDM9FseLMM%2BU1nxz1Pt7DiL0p9sXQReREWUEXoTkQyU6BJ2JWYW8ubtWjcK%2B9TFuNzCeBHAxrbT22a9gf1dWHRA%2BYUAMkyHjylnFjuBeqSitvdGF3iyfb1igTMGWmMGF2YvSQm0GqGsgQBNeI3cu0qB2aVA3qUTGvu49rNv6%2Brmx2eOjr8TMf0pH683LEDtPE7Ci3bNcL4wJPMySjIo9OzAI9OHQI05t9fTTz%2FiFO8iQGtXfjj1xgAWkrIUjwkdyQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k5iwM9qh4rtPnwG4gnotFLMCoGFQpyeLUvHPIS%2FV76EQDM9FseLMM%2BU1nxz1Pt7DiL0p9sXQReREWUEXoTkQyU6BJ2JWYW8ubtWjcK%2B9TFuNzCeBHAxrbT22a9gf1dWHRA%2BYUAMkyHjylnFjuBeqSitvdGF3iyfb1igTMGWmMGF2YvSQm0GqGsgQBNeI3cu0qB2aVA3qUTGvu49rNv6%2Brmx2eOjr8TMf0pH683LEDtPE7Ci3bNcL4wJPMySjIo9OzAI9OHQI05t9fTTz%2FiFO8iQGtXfjj1xgAWkrIUjwkdyQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/147650890148?_skw=1123+440+3001&hash=item2260adc9a4%3Ag%3A5XAAAOSwdVpl02sQ&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k5iwM9qh4rtPnwG4gnotFLMCoGFQpyeLUvHPIS%2FV76EQDM9FseLMM%2BU1nxz1Pt7DiL0p9sXQReREWUEXoTkQyU6BJ2JWYW8ubtWjcK%2B9TFuNzCeBHAxrbT22a9gf1dWHRA%2BYUAMkyHjylnFjuBeqSitvdGF3iyfb1igTMGWmMGF2YvSQm0GqGsgQBNeI3cu0qB2aVA3qUTGvu49rNv6%2Brmx2eOjr8TMf0pH683LEDtPE7Ci3bNcL4wJPMySjIo9OzAI9OHQI05t9fTTz%2FiFO8iQGtXfjj1xgAWkrIUjwkdyQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:40.899Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:40.899Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|116953865311|0",
+      "title": "Stihl 025 Chainsaw  Wiring Harness 1123 440 3001",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "tallgrasskyle",
+      "price": 8.83,
+      "item_price": 8.83,
+      "currency": "EUR",
+      "shipping_cost": 14.33,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:41.251Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/116953865311?_skw=1123+440+3001&hash=item1b3afe5c5f%3Ag%3AC1cAAOSwSRZnvmhY&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mo1VRukzf0HRJS8jcL0IOoiV%2B%2Frt%2FcuiJ00jjd%2BTkt4WB78MfT9Ob2w2jxU3WzdnildqSpR6vGOYrOSgRrpB97IqlhApt2h7AjlIBdAiMlADYrqYPH6wXb%2FM2ZK5tyz05cjeO8ENq9E%2BRjBGAbS5WiwyjrEsiERy6JbtGUn%2BwVA36CpLbeatCehYm0QLGMBJGIXgWVieguK0ALIUGZvtJ2QLf7UTsmVcnxQgPamu34MBawqKup9giyV42BJLnmQRM1x%2FxR3ozroidIEbgoMT6g%2F7CWgRLVgpmtl5h6OCHaaQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/116953865311?_skw=1123+440+3001&hash=item1b3afe5c5f%3Ag%3AC1cAAOSwSRZnvmhY&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mo1VRukzf0HRJS8jcL0IOoiV%2B%2Frt%2FcuiJ00jjd%2BTkt4WB78MfT9Ob2w2jxU3WzdnildqSpR6vGOYrOSgRrpB97IqlhApt2h7AjlIBdAiMlADYrqYPH6wXb%2FM2ZK5tyz05cjeO8ENq9E%2BRjBGAbS5WiwyjrEsiERy6JbtGUn%2BwVA36CpLbeatCehYm0QLGMBJGIXgWVieguK0ALIUGZvtJ2QLf7UTsmVcnxQgPamu34MBawqKup9giyV42BJLnmQRM1x%2FxR3ozroidIEbgoMT6g%2F7CWgRLVgpmtl5h6OCHaaQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/116953865311?_skw=1123+440+3001&hash=item1b3afe5c5f%3Ag%3AC1cAAOSwSRZnvmhY&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mo1VRukzf0HRJS8jcL0IOoiV%2B%2Frt%2FcuiJ00jjd%2BTkt4WB78MfT9Ob2w2jxU3WzdnildqSpR6vGOYrOSgRrpB97IqlhApt2h7AjlIBdAiMlADYrqYPH6wXb%2FM2ZK5tyz05cjeO8ENq9E%2BRjBGAbS5WiwyjrEsiERy6JbtGUn%2BwVA36CpLbeatCehYm0QLGMBJGIXgWVieguK0ALIUGZvtJ2QLf7UTsmVcnxQgPamu34MBawqKup9giyV42BJLnmQRM1x%2FxR3ozroidIEbgoMT6g%2F7CWgRLVgpmtl5h6OCHaaQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:41.251Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:41.251Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|137710768304|0",
+      "title": "Stihl 1123-440-3001 Wiring Harness",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "headyspowerproducts",
+      "price": 23.16,
+      "item_price": 23.16,
+      "currency": "EUR",
+      "shipping_cost": 29.38,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:41.701Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/137710768304?_skw=1123+440+3001&hash=item20103390b0%3Ag%3AhLAAAeSwXFFqnw%7Ej&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/137710768304?_skw=1123+440+3001&hash=item20103390b0%3Ag%3AhLAAAeSwXFFqnw%7Ej&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/137710768304?_skw=1123+440+3001&hash=item20103390b0%3Ag%3AhLAAAeSwXFFqnw%7Ej&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:41.701Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:40.897Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:41.701Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|157956347105|0",
+      "title": "Stihl Genuine MS210/230/250 Wiring Harness - OEM Used - 1123 440 3001",
+      "mpn": "",
+      "brand": "",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 8.37,
+      "item_price": 8.37,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:43.711Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-21T23:02:43.711Z"
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/157956347105?_skw=11234403001&hash=item24c6ee94e1%3Ag%3AxXkAAeSwfkRqG6th&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/157956347105?_skw=11234403001&hash=item24c6ee94e1%3Ag%3AxXkAAeSwfkRqG6th&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/157956347105?_skw=11234403001&hash=item24c6ee94e1%3Ag%3AxXkAAeSwfkRqG6th&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:43.711Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-21T23:02:43.711Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:43.711Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": false
+      }
+    },
+    {
+      "part_number": "11234403001",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|158018451488|0",
+      "title": "Stihl Genuine MS210/230/250 Wiring Harness - OEM Used - 1123 440 3001",
+      "mpn": "",
+      "brand": "",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "shoresmallenginepartsandaccessories",
+      "price": 6.27,
+      "item_price": 6.27,
+      "currency": "EUR",
+      "shipping_cost": null,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:43.711Z",
+        "destinations": [
+          "NL"
+        ],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:40.897Z",
+          "item_count": 14,
+          "queries": [
+            "1123 440 3001",
+            "11234403001",
+            "STIHL 11234403001"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "ITEM_SHIPPING_OPTIONS",
+            "delivery_country": "NL",
+            "destinations": [
+              "NL"
+            ],
+            "confirmed": true,
+            "checked_at": "2026-11-21T23:02:43.711Z"
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/158018451488?_skw=11234403001&hash=item24caa23820%3Ag%3AxoIAAeSwGqVqOdTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/158018451488?_skw=11234403001&hash=item24caa23820%3Ag%3AxoIAAeSwGqVqOdTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/158018451488?_skw=11234403001&hash=item24caa23820%3Ag%3AxoIAAeSwGqVqOdTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:43.711Z",
+          "destinations": [
+            "NL"
+          ],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:40.897Z",
+            "item_count": 14,
+            "queries": [
+              "1123 440 3001",
+              "11234403001",
+              "STIHL 11234403001"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "ITEM_SHIPPING_OPTIONS",
+              "delivery_country": "NL",
+              "destinations": [
+                "NL"
+              ],
+              "confirmed": true,
+              "checked_at": "2026-11-21T23:02:43.711Z"
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:43.711Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": false
+      }
+    },
+    {
+      "part_number": "11391209702",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178342715320|0",
+      "title": "Satz Pumpenkolben Original Stihl MS181 C-BE, MS250 C-B 1139-120-9702 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 14.95,
+      "item_price": 14.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:53.313Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:52.941Z",
+          "item_count": 2,
+          "queries": [
+            "1139 120 9702",
+            "11391209702",
+            "STIHL 11391209702"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:52.941Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:53.313Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:52.941Z",
+            "item_count": 2,
+            "queries": [
+              "1139 120 9702",
+              "11391209702",
+              "STIHL 11391209702"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:52.941Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:53.313Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11391209702",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178342715320|0",
+      "title": "Satz Pumpenkolben Original Stihl MS181 C-BE, MS250 C-B 1139-120-9702 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 14.95,
+      "item_price": 14.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:02:56.332Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:02:56.331Z",
+          "item_count": 2,
+          "queries": [
+            "1139 120 9702",
+            "11391209702",
+            "STIHL 11391209702"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:56.331Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178342715320?_skw=1139+120+9702&hash=item29860ddfb8%3Ag%3AfSYAAeSwOk1qZIEq&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:02:56.332Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:02:56.331Z",
+            "item_count": 2,
+            "queries": [
+              "1139 120 9702",
+              "11391209702",
+              "STIHL 11391209702"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:02:56.331Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:02:56.332Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "41371200602",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|385107604119|0",
+      "title": "Stihl Carburetor Zama C1Q-S41 HT-75 70 OEM FS-75 80 85 HL 4137-120-0602 #GM-M4E7",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "hatch4045",
+      "price": 73.86,
+      "item_price": 73.86,
+      "currency": "EUR",
+      "shipping_cost": 26.21,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:03.045Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:02.321Z",
+          "item_count": 3,
+          "queries": [
+            "4137 120 0602",
+            "41371200602",
+            "STIHL 41371200602"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/385107604119?_skw=4137+120+0602&hash=item59aa33b297%3Ag%3AvhcAAeSwD%7EBokEc3&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDrkE%2BBaRC3SbrC31UA9kC98CLJfaioP%2BZ6bmfDJziHryG0ubDWR7rpHKnPg%2BQ5ev0RNXS5s3SiC3rGrDzxt7Far5HjJqLu5dGZ9WXMJ5k%2F%2Bf48%2BlU08v3KqlY0U%2FqvvEc%2FtX610WG9GxoYjYfus7AqdWLfGlmk2xzrT9ckSKSWsiwZRGlWScNZdrcO8jXirvCHyhJ%2B4OmFmIRt4DgJc7y%2BHRsk%2BVA9atYzfY4SKqmVeRRlI5liOlUMrOURAwGe5%2BpACl6eQacHlIhzff4iG56yvrrrIxE3FuSCyvGjXAQCQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/385107604119?_skw=4137+120+0602&hash=item59aa33b297%3Ag%3AvhcAAeSwD%7EBokEc3&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDrkE%2BBaRC3SbrC31UA9kC98CLJfaioP%2BZ6bmfDJziHryG0ubDWR7rpHKnPg%2BQ5ev0RNXS5s3SiC3rGrDzxt7Far5HjJqLu5dGZ9WXMJ5k%2F%2Bf48%2BlU08v3KqlY0U%2FqvvEc%2FtX610WG9GxoYjYfus7AqdWLfGlmk2xzrT9ckSKSWsiwZRGlWScNZdrcO8jXirvCHyhJ%2B4OmFmIRt4DgJc7y%2BHRsk%2BVA9atYzfY4SKqmVeRRlI5liOlUMrOURAwGe5%2BpACl6eQacHlIhzff4iG56yvrrrIxE3FuSCyvGjXAQCQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/385107604119?_skw=4137+120+0602&hash=item59aa33b297%3Ag%3AvhcAAeSwD%7EBokEc3&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDrkE%2BBaRC3SbrC31UA9kC98CLJfaioP%2BZ6bmfDJziHryG0ubDWR7rpHKnPg%2BQ5ev0RNXS5s3SiC3rGrDzxt7Far5HjJqLu5dGZ9WXMJ5k%2F%2Bf48%2BlU08v3KqlY0U%2FqvvEc%2FtX610WG9GxoYjYfus7AqdWLfGlmk2xzrT9ckSKSWsiwZRGlWScNZdrcO8jXirvCHyhJ%2B4OmFmIRt4DgJc7y%2BHRsk%2BVA9atYzfY4SKqmVeRRlI5liOlUMrOURAwGe5%2BpACl6eQacHlIhzff4iG56yvrrrIxE3FuSCyvGjXAQCQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:03.045Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:02.321Z",
+            "item_count": 3,
+            "queries": [
+              "4137 120 0602",
+              "41371200602",
+              "STIHL 41371200602"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:02.321Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:03:03.045Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "96469450355",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|278287704710|0",
+      "title": "STIHL  O Ring for Oil Pump fits saws 021 023 025 MS210 230 250  # 9646 945 0355",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "outbushman",
+      "price": 3.66,
+      "item_price": 3.66,
+      "currency": "EUR",
+      "shipping_cost": 5.48,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:16.847Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:16.080Z",
+          "item_count": 5,
+          "queries": [
+            "9646 945 0355",
+            "96469450355",
+            "STIHL 96469450355"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Brand New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/278287704710?_skw=9646+945+0355&hash=item40cb3d6286%3Ag%3AWH8AAeSwAVhqglTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/278287704710?_skw=9646+945+0355&hash=item40cb3d6286%3Ag%3AWH8AAeSwAVhqglTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/278287704710?_skw=9646+945+0355&hash=item40cb3d6286%3Ag%3AWH8AAeSwAVhqglTF&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:16.847Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:16.080Z",
+            "item_count": 5,
+            "queries": [
+              "9646 945 0355",
+              "96469450355",
+              "STIHL 96469450355"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:16.080Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:03:16.847Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "00009890812",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|276014062774|0",
+      "title": "STIHL Genuine Wiring Grommet MS200 044 440 046 460 064 066 660 # 0000 989 0812",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "outbushman",
+      "price": 6.22,
+      "item_price": 6.22,
+      "currency": "EUR",
+      "shipping_cost": 5.48,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-21T23:03:23.443Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-21T23:03:23.089Z",
+          "item_count": 2,
+          "queries": [
+            "0000 989 0812",
+            "00009890812",
+            "STIHL 00009890812"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:23.089Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Brand New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/276014062774?_skw=0000+989+0812&hash=item4043b85cb6%3Ag%3ACCQAAeSwg3Fo4gVi&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/276014062774?_skw=0000+989+0812&hash=item4043b85cb6%3Ag%3ACCQAAeSwg3Fo4gVi&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/276014062774?_skw=0000+989+0812&hash=item4043b85cb6%3Ag%3ACCQAAeSwg3Fo4gVi&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-21T23:03:23.443Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-21T23:03:23.089Z",
+            "item_count": 2,
+            "queries": [
+              "0000 989 0812",
+              "00009890812",
+              "STIHL 00009890812"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-21T23:03:23.089Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-21T23:03:23.443Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    }
+  ],
+  "rejected_offers": [],
+  "per_part": [
+    {
+      "part_number": "11234403001",
+      "part_name": "Stihl Wiring Harness",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 27,
+      "client_passed": 10,
+      "client_rejected": 17,
+      "active": 4,
+      "needs_evidence": 6,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 6
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11234420401",
+      "part_name": "Stihl Insulating Hose",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 20,
+      "client_passed": 0,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11391209702",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "ms_171",
+        "ms_181",
+        "ms_210",
+        "ms_211",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 3,
+      "client_rejected": 5,
+      "active": 1,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41371200602",
+      "part_name": "Stihl Carburettor C1Q-S41D",
+      "models": [
+        "fh_75",
+        "fr_85",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hl_75",
+        "ht_70",
+        "ht_75",
+        "sp_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 8,
+      "client_passed": 3,
+      "client_rejected": 5,
+      "active": 2,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41371215401",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "fh_75",
+        "fr_85",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hl_75",
+        "ht_70",
+        "ht_75",
+        "sp_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "96469450355",
+      "part_name": "Stihl O-Ring 6.1X1.6",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 4,
+      "client_rejected": 10,
+      "active": 3,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 3,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009890812",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "044",
+        "046",
+        "064",
+        "066",
+        "mc_200",
+        "ms_200",
+        "ms_640",
+        "ms_650",
+        "ms_660"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 2,
+      "client_rejected": 5,
+      "active": 1,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009890808",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "064",
+        "066",
+        "084",
+        "ms_261",
+        "ms_380",
+        "ms_381",
+        "ms_441",
+        "ms_660",
+        "ms_661"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009975816",
+      "part_name": "Stihl Tension Spring",
+      "models": [
+        "ms_341",
+        "ms_361",
+        "ms_362",
+        "ms_441"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11248903400",
+      "part_name": "Stihl Combination Wrench",
+      "models": [
+        "066",
+        "ms_361",
+        "ms_650",
+        "ms_660"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11251801503",
+      "part_name": "Stihl Throttle Trigger",
+      "models": [
+        "036",
+        "ms_280",
+        "ms_360",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11259673419",
+      "part_name": "Stihl Warning Pictogram Qs",
+      "models": [
+        "036",
+        "ms_280",
+        "ms_360",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11271623200",
+      "part_name": "Stihl Carrier",
+      "models": [
+        "029",
+        "034",
+        "039",
+        "ms_290",
+        "ms_310",
+        "ms_311",
+        "ms_340",
+        "ms_390",
+        "ms_391"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11287915501",
+      "part_name": "Stihl Elbow Connector",
+      "models": [
+        "046",
+        "ms_361",
+        "ms_460",
+        "ms_461"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11331207101",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "models": [
+        "ms_270",
+        "ms_280",
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11331820800",
+      "part_name": "Stihl Trigger Interlock",
+      "models": [
+        "ms_270",
+        "ms_280",
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351605500",
+      "part_name": "Stihl Tension Spring",
+      "models": [
+        "ms_341",
+        "ms_361",
+        "ms_362",
+        "ms_400"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11401628004",
+      "part_name": "Stihl Hose",
+      "models": [
+        "ms_341",
+        "ms_361",
+        "ms_362",
+        "ms_400"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820073600",
+      "part_name": "Stihl Set Of Pickup Bodies",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820212502",
+      "part_name": "Stihl Engine Pan",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820381900",
+      "part_name": "Stihl Cam Follower",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820382600",
+      "part_name": "Stihl Push Rod",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820873001",
+      "part_name": "Stihl Air Guide Shroud",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42820873002",
+      "part_name": "Stihl Air Guide Shroud",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821207100",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821212900",
+      "part_name": "Stihl Choke Shutter",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821213000",
+      "part_name": "Stihl Choke Shaft",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821216900",
+      "part_name": "Stihl Intake Baffle",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821223004",
+      "part_name": "Stihl Spring",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821412200",
+      "part_name": "Stihl Manifold",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42821458100",
+      "part_name": "Stihl Exhaust Deflector",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42823500407",
+      "part_name": "Stihl Fuel Tank",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42823501402",
+      "part_name": "Stihl Connector",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42824049300",
+      "part_name": "Stihl Washer",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42824312101",
+      "part_name": "Stihl Connector Tag 6,3 Mm",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42827001809",
+      "part_name": "Stihl Blower Tube",
+      "models": [
+        "br_430",
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42827003805",
+      "part_name": "Stihl Backplate",
+      "models": [
+        "br_500",
+        "br_550",
+        "br_600",
+        "br_700"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42827015402",
+      "part_name": "Stihl Blower Tube",
+      "models": [
+        "br_430",
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42827016300",
+      "part_name": "Stihl Slip Ring",
+      "models": [
+        "br_430",
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "42827019304",
+      "part_name": "Stihl Cling Strip",
+      "models": [
+        "br_430",
+        "br_500",
+        "br_550",
+        "br_600"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 0,
+      "client_passed": 0,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    }
+  ],
+  "complete": true,
+  "updated_at": "2026-11-21T23:20:03.780Z"
+}
