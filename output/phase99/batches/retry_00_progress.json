@@ -1,0 +1,4253 @@
+{
+  "batch_id": "retry_00",
+  "started_at": "2026-11-22T09:01:22.969Z",
+  "processed_parts": [
+    "00001212301",
+    "00001227103",
+    "00004304801",
+    "00009530807",
+    "00009580513",
+    "00009611406",
+    "00009672128",
+    "00009970504",
+    "00009972002",
+    "11210847101",
+    "11211207105",
+    "11211213301",
+    "11211215400",
+    "11211226201",
+    "11211226205",
+    "11211226703",
+    "11230801818",
+    "11230847802",
+    "11231209700",
+    "11231209701",
+    "11231212700",
+    "11231223202",
+    "11231237503",
+    "11231237507",
+    "11233532700",
+    "11234403002",
+    "11237901004",
+    "11237909152",
+    "11239671514",
+    "11251623201",
+    "11281215403",
+    "11281226803",
+    "11286470606",
+    "11287903614",
+    "11291215600",
+    "11350202909",
+    "11350202917",
+    "11350281002",
+    "11350341500",
+    "11351209700"
+  ],
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "00001212301",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|227506707280|0",
+      "title": "Stihl MS261C M MS362C M Chainsaw Solenoid Support Holder 0000 121 2301 OEM ",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "sawpartsbybechtold",
+      "price": 15.22,
+      "item_price": 15.22,
+      "currency": "EUR",
+      "shipping_cost": 17.79,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:01:35.493Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:01:35.490Z",
+          "item_count": 10,
+          "queries": [
+            "0000 121 2301",
+            "00001212301",
+            "STIHL 00001212301",
+            "STIHL 00001212301 Stihl Holder Bracket",
+            "00001212301 Stihl Holder Bracket",
+            "STIHL fr 460 Stihl Holder Bracket"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:35.490Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/227506707280?_skw=0000+121+2301&hash=item34f874db50%3Ag%3AwGEAAeSw9KNqm34M&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mbBhgfMlff20uT0H8UyG1WUpi6pdOfMsFCbNICEP8iSKlXWJhbn3iLxpb6roZtuCW9I7FS5gCoT7MCpC6Am6kpdSWPiD8Y73lK0R%2F9lMyMoA8CfuiLpkhyEvzjZS1xIzsRNEckgjY44btV1mR1%2B4aaBfF8D2uCqkLnhP7%2FN6ISwVFLG%2Fba7m8Jj0dh9TRLIXVbyxZKsbPaBQzBpdvy1xy%2FUvhJiwSgv0HQA%2FqBmifZvmEmz7MBZyWBDf0bBOK%2Fq%2BlSHHRZiAKxc7U9fbHuYzYeGemddQYyeQGT%2Ba5enHKmxw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/227506707280?_skw=0000+121+2301&hash=item34f874db50%3Ag%3AwGEAAeSw9KNqm34M&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mbBhgfMlff20uT0H8UyG1WUpi6pdOfMsFCbNICEP8iSKlXWJhbn3iLxpb6roZtuCW9I7FS5gCoT7MCpC6Am6kpdSWPiD8Y73lK0R%2F9lMyMoA8CfuiLpkhyEvzjZS1xIzsRNEckgjY44btV1mR1%2B4aaBfF8D2uCqkLnhP7%2FN6ISwVFLG%2Fba7m8Jj0dh9TRLIXVbyxZKsbPaBQzBpdvy1xy%2FUvhJiwSgv0HQA%2FqBmifZvmEmz7MBZyWBDf0bBOK%2Fq%2BlSHHRZiAKxc7U9fbHuYzYeGemddQYyeQGT%2Ba5enHKmxw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/227506707280?_skw=0000+121+2301&hash=item34f874db50%3Ag%3AwGEAAeSw9KNqm34M&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mbBhgfMlff20uT0H8UyG1WUpi6pdOfMsFCbNICEP8iSKlXWJhbn3iLxpb6roZtuCW9I7FS5gCoT7MCpC6Am6kpdSWPiD8Y73lK0R%2F9lMyMoA8CfuiLpkhyEvzjZS1xIzsRNEckgjY44btV1mR1%2B4aaBfF8D2uCqkLnhP7%2FN6ISwVFLG%2Fba7m8Jj0dh9TRLIXVbyxZKsbPaBQzBpdvy1xy%2FUvhJiwSgv0HQA%2FqBmifZvmEmz7MBZyWBDf0bBOK%2Fq%2BlSHHRZiAKxc7U9fbHuYzYeGemddQYyeQGT%2Ba5enHKmxw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:01:35.493Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:35.490Z",
+            "item_count": 10,
+            "queries": [
+              "0000 121 2301",
+              "00001212301",
+              "STIHL 00001212301",
+              "STIHL 00001212301 Stihl Holder Bracket",
+              "00001212301 Stihl Holder Bracket",
+              "STIHL fr 460 Stihl Holder Bracket"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:01:35.490Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:01:35.494Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "00001212301",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|235985629628|0",
+      "title": "Stihl Solenoid Support OEM 461 400 201 261 362 361 0000-121-2301 #GM-T1D2",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "hatch4045",
+      "price": 8.77,
+      "item_price": 8.77,
+      "currency": "EUR",
+      "shipping_cost": 21.63,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:01:35.494Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:01:35.490Z",
+          "item_count": 10,
+          "queries": [
+            "0000 121 2301",
+            "00001212301",
+            "STIHL 00001212301",
+            "STIHL 00001212301 Stihl Holder Bracket",
+            "00001212301 Stihl Holder Bracket",
+            "STIHL fr 460 Stihl Holder Bracket"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:35.490Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/235985629628?_skw=0000+121+2301&hash=item36f1d6f1bc%3Ag%3A85AAAeSw4x5ok-uW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDJDazEVj5J1VYnJ6GfJeFjx%2BIanMuvsoEmh1W3167A6dWaXa1kvJCjV%2BmVmjaqbrCc2UHzqkd33X2pFKWqXAijpOCohzrJwUiZzEM2aW8N%2F7OLXm7v96oUTV48nYh37tA2jSgmtlXfz4bu%2BImCg8FAxmzg0%2FFShEOcN1QgKCuNxSgLSPji1QjL76Wwidvl7CsVAmQnWH2PmD6Gwlm7%2BWKt7LlCYJk%2FX6zzQ7vYcCOSt%2BomJHR15s%2BZ3FjLhywmVYyIsa5SIypMyh3KqIp2kcReVijIDYmmhN5J4PZepY%2Ftw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/235985629628?_skw=0000+121+2301&hash=item36f1d6f1bc%3Ag%3A85AAAeSw4x5ok-uW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDJDazEVj5J1VYnJ6GfJeFjx%2BIanMuvsoEmh1W3167A6dWaXa1kvJCjV%2BmVmjaqbrCc2UHzqkd33X2pFKWqXAijpOCohzrJwUiZzEM2aW8N%2F7OLXm7v96oUTV48nYh37tA2jSgmtlXfz4bu%2BImCg8FAxmzg0%2FFShEOcN1QgKCuNxSgLSPji1QjL76Wwidvl7CsVAmQnWH2PmD6Gwlm7%2BWKt7LlCYJk%2FX6zzQ7vYcCOSt%2BomJHR15s%2BZ3FjLhywmVYyIsa5SIypMyh3KqIp2kcReVijIDYmmhN5J4PZepY%2Ftw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/235985629628?_skw=0000+121+2301&hash=item36f1d6f1bc%3Ag%3A85AAAeSw4x5ok-uW&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mDJDazEVj5J1VYnJ6GfJeFjx%2BIanMuvsoEmh1W3167A6dWaXa1kvJCjV%2BmVmjaqbrCc2UHzqkd33X2pFKWqXAijpOCohzrJwUiZzEM2aW8N%2F7OLXm7v96oUTV48nYh37tA2jSgmtlXfz4bu%2BImCg8FAxmzg0%2FFShEOcN1QgKCuNxSgLSPji1QjL76Wwidvl7CsVAmQnWH2PmD6Gwlm7%2BWKt7LlCYJk%2FX6zzQ7vYcCOSt%2BomJHR15s%2BZ3FjLhywmVYyIsa5SIypMyh3KqIp2kcReVijIDYmmhN5J4PZepY%2Ftw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:01:35.494Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:35.490Z",
+            "item_count": 10,
+            "queries": [
+              "0000 121 2301",
+              "00001212301",
+              "STIHL 00001212301",
+              "STIHL 00001212301 Stihl Holder Bracket",
+              "00001212301 Stihl Holder Bracket",
+              "STIHL fr 460 Stihl Holder Bracket"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:01:35.490Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:01:35.494Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "00004304801",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|236016407286|0",
+      "title": "Stihl FS460C Plug FS 460C OEM 0000-430-4801 FS560 MS362 MS400 MS241 #GM-T2C4",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": "Does not apply",
+      "seller_name": "hatch4045",
+      "price": 9.66,
+      "item_price": 9.66,
+      "currency": "EUR",
+      "shipping_cost": 21.65,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:01:59.471Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:01:59.469Z",
+          "item_count": 10,
+          "queries": [
+            "0000 430 4801",
+            "00004304801",
+            "STIHL 00004304801",
+            "STIHL 00004304801 Stihl 00004304801 Plug",
+            "00004304801 Stihl 00004304801 Plug",
+            "STIHL fr 460 Stihl 00004304801 Plug"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:59.469Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/236016407286?_skw=0000+430+4801&hash=item36f3ac92f6%3Ag%3AfK8AAeSwqBholEMq&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nMKVgkSdNEql%2BMKYNwU1uxpo0upgRNC3PfPzi1L%2F8BXYbglBWfnqFxQW9B6xE17LR0xMin6eh%2BlDWGE5GfRKX8Uk6VtZk%2FUBCsqJEa28JA6TS2S%2F072yEhsXsalNUWAFaWh716lmXChUx9VT%2Bref7tWT7z5dwML0hLr3cYfS7zK1OwYJ2jTFBQRAx6f7HB2%2BQ1qpZvKrNo2fMIlrUacyUcxr285wvTEsHoJCEAxQL8ZTGhmWs4VuZqkEtC%2FT9HJzwsk0AlvyjvPKhFwLZ4UPjeK0dci5e6nEGN5XUXJ11wKw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/236016407286?_skw=0000+430+4801&hash=item36f3ac92f6%3Ag%3AfK8AAeSwqBholEMq&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nMKVgkSdNEql%2BMKYNwU1uxpo0upgRNC3PfPzi1L%2F8BXYbglBWfnqFxQW9B6xE17LR0xMin6eh%2BlDWGE5GfRKX8Uk6VtZk%2FUBCsqJEa28JA6TS2S%2F072yEhsXsalNUWAFaWh716lmXChUx9VT%2Bref7tWT7z5dwML0hLr3cYfS7zK1OwYJ2jTFBQRAx6f7HB2%2BQ1qpZvKrNo2fMIlrUacyUcxr285wvTEsHoJCEAxQL8ZTGhmWs4VuZqkEtC%2FT9HJzwsk0AlvyjvPKhFwLZ4UPjeK0dci5e6nEGN5XUXJ11wKw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/236016407286?_skw=0000+430+4801&hash=item36f3ac92f6%3Ag%3AfK8AAeSwqBholEMq&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nMKVgkSdNEql%2BMKYNwU1uxpo0upgRNC3PfPzi1L%2F8BXYbglBWfnqFxQW9B6xE17LR0xMin6eh%2BlDWGE5GfRKX8Uk6VtZk%2FUBCsqJEa28JA6TS2S%2F072yEhsXsalNUWAFaWh716lmXChUx9VT%2Bref7tWT7z5dwML0hLr3cYfS7zK1OwYJ2jTFBQRAx6f7HB2%2BQ1qpZvKrNo2fMIlrUacyUcxr285wvTEsHoJCEAxQL8ZTGhmWs4VuZqkEtC%2FT9HJzwsk0AlvyjvPKhFwLZ4UPjeK0dci5e6nEGN5XUXJ11wKw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:01:59.471Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:01:59.469Z",
+            "item_count": 10,
+            "queries": [
+              "0000 430 4801",
+              "00004304801",
+              "STIHL 00004304801",
+              "STIHL 00004304801 Stihl 00004304801 Plug",
+              "00004304801 Stihl 00004304801 Plug",
+              "STIHL fr 460 Stihl 00004304801 Plug"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:01:59.469Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:01:59.471Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "00009530807",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|800503006404|0",
+      "title": "STIHL Stud. Part 0000 953 0807. See pic.",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "60acres-of-oaks",
+      "price": 11.02,
+      "item_price": 11.02,
+      "currency": "EUR",
+      "shipping_cost": 21.85,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:02:11.526Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:02:11.525Z",
+          "item_count": 9,
+          "queries": [
+            "0000 953 0807",
+            "00009530807",
+            "STIHL 00009530807",
+            "STIHL 00009530807 Stihl Stud",
+            "00009530807 Stihl Stud",
+            "STIHL gs 461 Stihl Stud"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:02:11.525Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/800503006404?_skw=0000+953+0807&hash=itemba61b284c4%3Ag%3AxY8AAeSwHdJqffvn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/800503006404?_skw=0000+953+0807&hash=itemba61b284c4%3Ag%3AxY8AAeSwHdJqffvn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/800503006404?_skw=0000+953+0807&hash=itemba61b284c4%3Ag%3AxY8AAeSwHdJqffvn&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:02:11.526Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:02:11.525Z",
+            "item_count": 9,
+            "queries": [
+              "0000 953 0807",
+              "00009530807",
+              "STIHL 00009530807",
+              "STIHL 00009530807 Stihl Stud",
+              "00009530807 Stihl Stud",
+              "STIHL gs 461 Stihl Stud"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:02:11.525Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:02:11.526Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11211215400",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|327255083001|0",
+      "title": "STIHL OEM NOS 024, 026, MS 260 VALVE JET 1121 121 5400",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "alssawshop67",
+      "price": 11.03,
+      "item_price": 11.03,
+      "currency": "EUR",
+      "shipping_cost": 21.08,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:03:59.675Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:03:59.669Z",
+          "item_count": 7,
+          "queries": [
+            "1121 121 5400",
+            "11211215400",
+            "STIHL 11211215400",
+            "STIHL 11211215400 Stihl Valve Jet 0.48",
+            "11211215400 Stihl Valve Jet 0.48",
+            "STIHL 024 Stihl Valve Jet 0.48"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:03:59.669Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/327255083001?_skw=1121+121+5400&hash=item4c31ec47f9%3Ag%3AXcsAAeSwkN9qT%7Epb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/327255083001?_skw=1121+121+5400&hash=item4c31ec47f9%3Ag%3AXcsAAeSwkN9qT%7Epb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/327255083001?_skw=1121+121+5400&hash=item4c31ec47f9%3Ag%3AXcsAAeSwkN9qT%7Epb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:03:59.675Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:03:59.669Z",
+            "item_count": 7,
+            "queries": [
+              "1121 121 5400",
+              "11211215400",
+              "STIHL 11211215400",
+              "STIHL 11211215400 Stihl Valve Jet 0.48",
+              "11211215400 Stihl Valve Jet 0.48",
+              "STIHL 024 Stihl Valve Jet 0.48"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:03:59.669Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:03:59.675Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11230847802",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|275783015582|0",
+      "title": "Genuine Stihl MS 250C MS250 C Chainsaw FLYWHEEL DUST SHIELD 1123 084 7802",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "carribaile_7",
+      "price": 10.98,
+      "item_price": 10.98,
+      "currency": "EUR",
+      "shipping_cost": 24.31,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:04:59.760Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:04:59.757Z",
+          "item_count": 9,
+          "queries": [
+            "1123 084 7802",
+            "11230847802",
+            "STIHL 11230847802",
+            "STIHL 11230847802 Stihl Segment",
+            "11230847802 Stihl Segment",
+            "STIHL ms 210 Stihl Segment"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:04:59.757Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Used",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/275783015582?_skw=1123+084+7802&hash=item4035f2dc9e%3Ag%3A2jwAAOSwLNtkMacB&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nQtmsDJpqhdxWQ92VoE8JFx5YvlBvcrS4mzSaZT2oE5r1uIsXpb98LSx0IKrCaVk1EDlOnZofaRN6DGW5SlrQEcjHcjzUepNDJEnnYjTikvK6Rhjor92PZV%2F2B9HmuT%2F%2BzkDK8IcX6XV2kSO3IKBHxR5nkG84V5jri1KRznPMD9u42IqmXxoNyDkUeGeFEZn3e2FIfXVELMKOapD%2Bll1FddD%2Fpovsu9O2eyjAGc%2FPNHWNjvQ5yIvVg3UqIZzppD11sE2lX06WLjz%2B1i8L%2B3mpXgcWYhDthE8sdrgWnugSZyA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/275783015582?_skw=1123+084+7802&hash=item4035f2dc9e%3Ag%3A2jwAAOSwLNtkMacB&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nQtmsDJpqhdxWQ92VoE8JFx5YvlBvcrS4mzSaZT2oE5r1uIsXpb98LSx0IKrCaVk1EDlOnZofaRN6DGW5SlrQEcjHcjzUepNDJEnnYjTikvK6Rhjor92PZV%2F2B9HmuT%2F%2BzkDK8IcX6XV2kSO3IKBHxR5nkG84V5jri1KRznPMD9u42IqmXxoNyDkUeGeFEZn3e2FIfXVELMKOapD%2Bll1FddD%2Fpovsu9O2eyjAGc%2FPNHWNjvQ5yIvVg3UqIZzppD11sE2lX06WLjz%2B1i8L%2B3mpXgcWYhDthE8sdrgWnugSZyA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/275783015582?_skw=1123+084+7802&hash=item4035f2dc9e%3Ag%3A2jwAAOSwLNtkMacB&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nQtmsDJpqhdxWQ92VoE8JFx5YvlBvcrS4mzSaZT2oE5r1uIsXpb98LSx0IKrCaVk1EDlOnZofaRN6DGW5SlrQEcjHcjzUepNDJEnnYjTikvK6Rhjor92PZV%2F2B9HmuT%2F%2BzkDK8IcX6XV2kSO3IKBHxR5nkG84V5jri1KRznPMD9u42IqmXxoNyDkUeGeFEZn3e2FIfXVELMKOapD%2Bll1FddD%2Fpovsu9O2eyjAGc%2FPNHWNjvQ5yIvVg3UqIZzppD11sE2lX06WLjz%2B1i8L%2B3mpXgcWYhDthE8sdrgWnugSZyA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:04:59.760Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:04:59.757Z",
+            "item_count": 9,
+            "queries": [
+              "1123 084 7802",
+              "11230847802",
+              "STIHL 11230847802",
+              "STIHL 11230847802 Stihl Segment",
+              "11230847802 Stihl Segment",
+              "STIHL ms 210 Stihl Segment"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:04:59.757Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:04:59.760Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231209700",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509781457|0",
+      "title": "Satz Pumpenkolben Original Stihl MS210, MS230, MS250 1123-120-9700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 21.95,
+      "item_price": 21.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:05:05.866Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:05:05.863Z",
+          "item_count": 5,
+          "queries": [
+            "1123 120 9700",
+            "11231209700",
+            "STIHL 11231209700",
+            "STIHL 11231209700 Stihl Pump Piston Kit",
+            "11231209700 Stihl Pump Piston Kit",
+            "STIHL fc 55 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:05.863Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:05:05.866Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:05.863Z",
+            "item_count": 5,
+            "queries": [
+              "1123 120 9700",
+              "11231209700",
+              "STIHL 11231209700",
+              "STIHL 11231209700 Stihl Pump Piston Kit",
+              "11231209700 Stihl Pump Piston Kit",
+              "STIHL fc 55 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:05:05.863Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:05:05.866Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231209700",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509781457|0",
+      "title": "Satz Pumpenkolben Original Stihl MS210, MS230, MS250 1123-120-9700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 21.95,
+      "item_price": 21.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:05:11.725Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:05:11.725Z",
+          "item_count": 8,
+          "queries": [
+            "1123 120 9700",
+            "11231209700",
+            "STIHL 11231209700",
+            "STIHL 11231209700 Stihl Pump Piston Kit",
+            "11231209700 Stihl Pump Piston Kit",
+            "STIHL fc 55 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:11.725Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178509781457?_skw=1123+120+9700&hash=item29900319d1%3Ag%3AUwgAAeSwchBqrlg0&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:05:11.725Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:11.725Z",
+            "item_count": 8,
+            "queries": [
+              "1123 120 9700",
+              "11231209700",
+              "STIHL 11231209700",
+              "STIHL 11231209700 Stihl Pump Piston Kit",
+              "11231209700 Stihl Pump Piston Kit",
+              "STIHL fc 55 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:05:11.725Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:05:11.725Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231209701",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178456146620|0",
+      "title": "Satz Pumpenkolben Original Stihl MS210, MS230, MS250 1123-120-9701 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 21.95,
+      "item_price": 21.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:05:18.657Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:05:18.652Z",
+          "item_count": 9,
+          "queries": [
+            "1123 120 9701",
+            "11231209701",
+            "STIHL 11231209701",
+            "STIHL 11231209701 Stihl Pump Piston Kit",
+            "11231209701 Stihl Pump Piston Kit",
+            "STIHL ms 210 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:18.652Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:05:18.657Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:18.652Z",
+            "item_count": 9,
+            "queries": [
+              "1123 120 9701",
+              "11231209701",
+              "STIHL 11231209701",
+              "STIHL 11231209701 Stihl Pump Piston Kit",
+              "11231209701 Stihl Pump Piston Kit",
+              "STIHL ms 210 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:05:18.652Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:05:18.657Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231209701",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178456146620|0",
+      "title": "Satz Pumpenkolben Original Stihl MS210, MS230, MS250 1123-120-9701 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 21.95,
+      "item_price": 21.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:05:24.615Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:05:24.614Z",
+          "item_count": 10,
+          "queries": [
+            "1123 120 9701",
+            "11231209701",
+            "STIHL 11231209701",
+            "STIHL 11231209701 Stihl Pump Piston Kit",
+            "11231209701 Stihl Pump Piston Kit",
+            "STIHL ms 210 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:24.614Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178456146620?_skw=1123+120+9701&hash=item298cd0b2bc%3Ag%3AzucAAeSwrBFqlZVy&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:05:24.615Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:05:24.614Z",
+            "item_count": 10,
+            "queries": [
+              "1123 120 9701",
+              "11231209701",
+              "STIHL 11231209701",
+              "STIHL 11231209701 Stihl Pump Piston Kit",
+              "11231209701 Stihl Pump Piston Kit",
+              "STIHL ms 210 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:05:24.614Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:05:24.615Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231237503",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509915894|0",
+      "title": "Tuelle Original Stihl MS210, MS210C, MS230, MS250 1123-123-7503 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 3.95,
+      "item_price": 3.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:06:02.156Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:06:02.152Z",
+          "item_count": 2,
+          "queries": [
+            "1123 123 7503",
+            "11231237503",
+            "STIHL 11231237503",
+            "STIHL 11231237503 Stihl Grommet",
+            "11231237503 Stihl Grommet",
+            "STIHL ms 210 Stihl Grommet"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:02.152Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:06:02.156Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:02.152Z",
+            "item_count": 2,
+            "queries": [
+              "1123 123 7503",
+              "11231237503",
+              "STIHL 11231237503",
+              "STIHL 11231237503 Stihl Grommet",
+              "11231237503 Stihl Grommet",
+              "STIHL ms 210 Stihl Grommet"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:06:02.152Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:06:02.156Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11231237503",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509915894|0",
+      "title": "Tuelle Original Stihl MS210, MS210C, MS230, MS250 1123-123-7503 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 3.95,
+      "item_price": 3.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:06:08.131Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:06:08.129Z",
+          "item_count": 14,
+          "queries": [
+            "1123 123 7503",
+            "11231237503",
+            "STIHL 11231237503",
+            "STIHL 11231237503 Stihl Grommet",
+            "11231237503 Stihl Grommet",
+            "STIHL ms 210 Stihl Grommet"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:08.129Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178509915894?_skw=1123+123+7503&hash=item29900526f6%3Ag%3AvgEAAeSwyCpqrmhB&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:06:08.131Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:08.129Z",
+            "item_count": 14,
+            "queries": [
+              "1123 123 7503",
+              "11231237503",
+              "STIHL 11231237503",
+              "STIHL 11231237503 Stihl Grommet",
+              "11231237503 Stihl Grommet",
+              "STIHL ms 210 Stihl Grommet"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:06:08.129Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:06:08.131Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11233532700",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178536316478|0",
+      "title": "Verbindungsstueck Original Stihl MS210, MS210C, MS230 1123-353-2700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 3.95,
+      "item_price": 3.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:06:26.136Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:06:26.135Z",
+          "item_count": 6,
+          "queries": [
+            "1123 353 2700",
+            "11233532700",
+            "STIHL 11233532700",
+            "STIHL 11233532700 Stihl Connecting Piece",
+            "11233532700 Stihl Connecting Piece",
+            "STIHL ms 210 Stihl Connecting Piece"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:26.135Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:06:26.136Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:26.135Z",
+            "item_count": 6,
+            "queries": [
+              "1123 353 2700",
+              "11233532700",
+              "STIHL 11233532700",
+              "STIHL 11233532700 Stihl Connecting Piece",
+              "11233532700 Stihl Connecting Piece",
+              "STIHL ms 210 Stihl Connecting Piece"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:06:26.135Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:06:26.136Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11233532700",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178536316478|0",
+      "title": "Verbindungsstueck Original Stihl MS210, MS210C, MS230 1123-353-2700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 3.95,
+      "item_price": 3.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:06:32.076Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:06:32.075Z",
+          "item_count": 7,
+          "queries": [
+            "1123 353 2700",
+            "11233532700",
+            "STIHL 11233532700",
+            "STIHL 11233532700 Stihl Connecting Piece",
+            "11233532700 Stihl Connecting Piece",
+            "STIHL ms 210 Stihl Connecting Piece"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:32.075Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178536316478?_skw=1123+353+2700&hash=item299197fe3e%3Ag%3ASUAAAeSw7sxqunWp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:06:32.076Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:32.075Z",
+            "item_count": 7,
+            "queries": [
+              "1123 353 2700",
+              "11233532700",
+              "STIHL 11233532700",
+              "STIHL 11233532700 Stihl Connecting Piece",
+              "11233532700 Stihl Connecting Piece",
+              "STIHL ms 210 Stihl Connecting Piece"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:06:32.075Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:06:32.076Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11237901004",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|165804959023|0",
+      "title": "STIHL1123-790-1004.HANDLE HOUSING.",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "buedm_7",
+      "price": 36.09,
+      "item_price": 36.09,
+      "currency": "EUR",
+      "shipping_cost": 15.23,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:06:56.128Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:06:56.126Z",
+          "item_count": 20,
+          "queries": [
+            "1123 790 1004",
+            "11237901004",
+            "STIHL 11237901004",
+            "STIHL 11237901004 Stihl Handle Housing",
+            "11237901004 Stihl Handle Housing",
+            "STIHL ms 210 Stihl Handle Housing"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:56.126Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New other (see details)",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/165804959023?_skw=1123+790+1004&hash=item269abee52f%3Ag%3A4NgAAOSwEkljhkic&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/165804959023?_skw=1123+790+1004&hash=item269abee52f%3Ag%3A4NgAAOSwEkljhkic&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/165804959023?_skw=1123+790+1004&hash=item269abee52f%3Ag%3A4NgAAOSwEkljhkic&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:06:56.128Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:06:56.126Z",
+            "item_count": 20,
+            "queries": [
+              "1123 790 1004",
+              "11237901004",
+              "STIHL 11237901004",
+              "STIHL 11237901004 Stihl Handle Housing",
+              "11237901004 Stihl Handle Housing",
+              "STIHL ms 210 Stihl Handle Housing"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:06:56.126Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:06:56.128Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11251623201",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|226938337264|0",
+      "title": "Stihl 1125 162 3201 Clutch Carrier 029 039",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "brand-stcla",
+      "price": 17.64,
+      "item_price": 17.64,
+      "currency": "EUR",
+      "shipping_cost": 17.84,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:07:32.175Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:07:32.174Z",
+          "item_count": 15,
+          "queries": [
+            "1125 162 3201",
+            "11251623201",
+            "STIHL 11251623201",
+            "STIHL 11251623201 Stihl Carrier",
+            "11251623201 Stihl Carrier",
+            "STIHL 029 Stihl Carrier"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:07:32.174Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/226938337264?_skw=1125+162+3201&hash=item34d69437f0%3Ag%3AIvQAAeSwb7Joq1Qv&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/226938337264?_skw=1125+162+3201&hash=item34d69437f0%3Ag%3AIvQAAeSwb7Joq1Qv&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/226938337264?_skw=1125+162+3201&hash=item34d69437f0%3Ag%3AIvQAAeSwb7Joq1Qv&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:07:32.175Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:07:32.174Z",
+            "item_count": 15,
+            "queries": [
+              "1125 162 3201",
+              "11251623201",
+              "STIHL 11251623201",
+              "STIHL 11251623201 Stihl Carrier",
+              "11251623201 Stihl Carrier",
+              "STIHL 029 Stihl Carrier"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:07:32.174Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:07:32.175Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11251623201",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|800525918467|0",
+      "title": "STIHL Clutch Carrier. Part 1125 162 3201. See pic",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "60acres-of-oaks",
+      "price": 13.07,
+      "item_price": 13.07,
+      "currency": "EUR",
+      "shipping_cost": 21.9,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:07:32.175Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:07:32.174Z",
+          "item_count": 15,
+          "queries": [
+            "1125 162 3201",
+            "11251623201",
+            "STIHL 11251623201",
+            "STIHL 11251623201 Stihl Carrier",
+            "11251623201 Stihl Carrier",
+            "STIHL 029 Stihl Carrier"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:07:32.174Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/800525918467?_skw=1125+162+3201&hash=itemba63102103%3Ag%3AoPwAAeSwaONqg5rp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/800525918467?_skw=1125+162+3201&hash=itemba63102103%3Ag%3AoPwAAeSwaONqg5rp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/800525918467?_skw=1125+162+3201&hash=itemba63102103%3Ag%3AoPwAAeSwaONqg5rp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:07:32.175Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:07:32.174Z",
+            "item_count": 15,
+            "queries": [
+              "1125 162 3201",
+              "11251623201",
+              "STIHL 11251623201",
+              "STIHL 11251623201 Stihl Carrier",
+              "11251623201 Stihl Carrier",
+              "STIHL 029 Stihl Carrier"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:07:32.174Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:07:32.175Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11286470606",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|128035021174|0",
+      "title": "STIHL Oil Pump Piston. Part 1128 647 0606. See pic.",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "60acres-of-oaks",
+      "price": 26.13,
+      "item_price": 26.13,
+      "currency": "EUR",
+      "shipping_cost": 22.19,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:08:08.157Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:08:08.156Z",
+          "item_count": 1,
+          "queries": [
+            "1128 647 0606",
+            "11286470606",
+            "STIHL 11286470606",
+            "STIHL 11286470606 Stihl Pump Piston 0.8Mm",
+            "11286470606 Stihl Pump Piston 0.8Mm",
+            "STIHL 046 Stihl Pump Piston 0.8Mm"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:08.156Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/128035021174?_skw=1128+647+0606&hash=item1dcf7b6176%3Ag%3AzRAAAeSw2npqhgF7&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/128035021174?_skw=1128+647+0606&hash=item1dcf7b6176%3Ag%3AzRAAAeSw2npqhgF7&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/128035021174?_skw=1128+647+0606&hash=item1dcf7b6176%3Ag%3AzRAAAeSw2npqhgF7&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:08:08.157Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:08.156Z",
+            "item_count": 1,
+            "queries": [
+              "1128 647 0606",
+              "11286470606",
+              "STIHL 11286470606",
+              "STIHL 11286470606 Stihl Pump Piston 0.8Mm",
+              "11286470606 Stihl Pump Piston 0.8Mm",
+              "STIHL 046 Stihl Pump Piston 0.8Mm"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:08:08.156Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:08:08.157Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11291215600",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|298375082439|0",
+      "title": "Unbranded For Stihl 020t Carburetor Fixed High Jet 1129 121 5600",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "csservicecenter",
+      "price": 3.87,
+      "item_price": 3.87,
+      "currency": "EUR",
+      "shipping_cost": 24.1,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:08:32.497Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:08:32.138Z",
+          "item_count": 2,
+          "queries": [
+            "1129 121 5600",
+            "11291215600",
+            "STIHL 11291215600",
+            "STIHL 11291215600 Stihl Fixed Jet 0.50",
+            "11291215600 Stihl Fixed Jet 0.50",
+            "STIHL 017 Stihl Fixed Jet 0.50"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:32.138Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Open box",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/298375082439?_skw=1129+121+5600&hash=item45788a71c7%3Ag%3ACTMAAeSwBuxqHbOr&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kEAQ%2B2gVFwrjI54QB8ebMLErZCeVuqItq9FG7Vb8RrQxDnEz0fWpT34%2FhaEkio8T%2Fzn0dcusLSTWw4cb3l%2Fh4qjyAG4rWEmQZGleQkgyeZRPwT373LvlsR6rhdX2CVu4l0B028mBRfhojiUIsIpnIYWhKKw%2FKJTyuhtx29s7KQWlkOy%2F4OuGux9gfX3ofLHCqtsC1zwtPKH5%2B9oPGSbQB1YOHTTJAsKff7WvTENfoVr3089SttR9cjQAoPRjxdOqjaqBvpa3NTRkrm1Dlu3w8T1SnIHz3RL69qxy1yxd3HSA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/298375082439?_skw=1129+121+5600&hash=item45788a71c7%3Ag%3ACTMAAeSwBuxqHbOr&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kEAQ%2B2gVFwrjI54QB8ebMLErZCeVuqItq9FG7Vb8RrQxDnEz0fWpT34%2FhaEkio8T%2Fzn0dcusLSTWw4cb3l%2Fh4qjyAG4rWEmQZGleQkgyeZRPwT373LvlsR6rhdX2CVu4l0B028mBRfhojiUIsIpnIYWhKKw%2FKJTyuhtx29s7KQWlkOy%2F4OuGux9gfX3ofLHCqtsC1zwtPKH5%2B9oPGSbQB1YOHTTJAsKff7WvTENfoVr3089SttR9cjQAoPRjxdOqjaqBvpa3NTRkrm1Dlu3w8T1SnIHz3RL69qxy1yxd3HSA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/298375082439?_skw=1129+121+5600&hash=item45788a71c7%3Ag%3ACTMAAeSwBuxqHbOr&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kEAQ%2B2gVFwrjI54QB8ebMLErZCeVuqItq9FG7Vb8RrQxDnEz0fWpT34%2FhaEkio8T%2Fzn0dcusLSTWw4cb3l%2Fh4qjyAG4rWEmQZGleQkgyeZRPwT373LvlsR6rhdX2CVu4l0B028mBRfhojiUIsIpnIYWhKKw%2FKJTyuhtx29s7KQWlkOy%2F4OuGux9gfX3ofLHCqtsC1zwtPKH5%2B9oPGSbQB1YOHTTJAsKff7WvTENfoVr3089SttR9cjQAoPRjxdOqjaqBvpa3NTRkrm1Dlu3w8T1SnIHz3RL69qxy1yxd3HSA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:08:32.497Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:32.138Z",
+            "item_count": 2,
+            "queries": [
+              "1129 121 5600",
+              "11291215600",
+              "STIHL 11291215600",
+              "STIHL 11291215600 Stihl Fixed Jet 0.50",
+              "11291215600 Stihl Fixed Jet 0.50",
+              "STIHL 017 Stihl Fixed Jet 0.50"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:08:32.138Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:08:32.497Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11291215600",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|168138380525|0",
+      "title": "Stihl 020t Carburetor Fixed High Jet Oem 1129 121  5600",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "bostongreenm3",
+      "price": 5.52,
+      "item_price": 5.52,
+      "currency": "EUR",
+      "shipping_cost": 29.6,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:08:32.862Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:08:32.138Z",
+          "item_count": 2,
+          "queries": [
+            "1129 121 5600",
+            "11291215600",
+            "STIHL 11291215600",
+            "STIHL 11291215600 Stihl Fixed Jet 0.50",
+            "11291215600 Stihl Fixed Jet 0.50",
+            "STIHL 017 Stihl Fixed Jet 0.50"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:32.138Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "New",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/168138380525?_skw=1129+121+5600&hash=item2725d414ed%3Ag%3AfUMAAeSwAHhphWVb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/168138380525?_skw=1129+121+5600&hash=item2725d414ed%3Ag%3AfUMAAeSwAHhphWVb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/168138380525?_skw=1129+121+5600&hash=item2725d414ed%3Ag%3AfUMAAeSwAHhphWVb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:08:32.862Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:08:32.138Z",
+            "item_count": 2,
+            "queries": [
+              "1129 121 5600",
+              "11291215600",
+              "STIHL 11291215600",
+              "STIHL 11291215600 Stihl Fixed Jet 0.50",
+              "11291215600 Stihl Fixed Jet 0.50",
+              "STIHL 017 Stihl Fixed Jet 0.50"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:08:32.138Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:08:32.862Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "GET_ITEM",
+        "evidence_reused": false
+      }
+    },
+    {
+      "part_number": "11351209700",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509729569|0",
+      "title": "Satz Pumpenkolben Original Stihl MS341, MS361, MS361C 1135-120-9700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 20.95,
+      "item_price": 20.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:09:26.627Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_DE",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:09:26.626Z",
+          "item_count": 7,
+          "queries": [
+            "1135 120 9700",
+            "11351209700",
+            "STIHL 11351209700",
+            "STIHL 11351209700 Stihl Pump Piston Kit",
+            "11351209700 Stihl Pump Piston Kit",
+            "STIHL ms 341 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:09:26.626Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_DE",
+      "item_url": "https://www.ebay.de/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.de/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.de/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:09:26.627Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_DE",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:09:26.626Z",
+            "item_count": 7,
+            "queries": [
+              "1135 120 9700",
+              "11351209700",
+              "STIHL 11351209700",
+              "STIHL 11351209700 Stihl Pump Piston Kit",
+              "11351209700 Stihl Pump Piston Kit",
+              "STIHL ms 341 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_DE",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:09:26.626Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:09:26.627Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    },
+    {
+      "part_number": "11351209700",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "decision": "REVIEW",
+      "status": "NEEDS_EVIDENCE",
+      "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+      "match_basis": "TITLE_ONLY",
+      "item_id": "v1|178509729569|0",
+      "title": "Satz Pumpenkolben Original Stihl MS341, MS361, MS361C 1135-120-9700 NEU OVP",
+      "mpn": "",
+      "brand": "STIHL",
+      "manufacturer": "",
+      "gtin": null,
+      "seller_name": "classic_parts_ireland",
+      "price": 20.95,
+      "item_price": 20.95,
+      "currency": "EUR",
+      "shipping_cost": 5.5,
+      "shipping_cost_nl": null,
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "shipping_evidence": {
+        "checked_at": "2026-11-22T09:09:32.438Z",
+        "destinations": [],
+        "browse_delivery": {
+          "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+          "delivery_country": "NL",
+          "filter": "deliveryCountry:NL",
+          "marketplace": "EBAY_NL",
+          "api_status": 200,
+          "confirmed": true,
+          "confirmed_at": "2026-11-22T09:09:32.438Z",
+          "item_count": 3,
+          "queries": [
+            "1135 120 9700",
+            "11351209700",
+            "STIHL 11351209700",
+            "STIHL 11351209700 Stihl Pump Piston Kit",
+            "11351209700 Stihl Pump Piston Kit",
+            "STIHL ms 341 Stihl Pump Piston Kit"
+          ],
+          "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+        },
+        "sources": [
+          {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:09:32.438Z",
+            "reused": true
+          }
+        ]
+      },
+      "condition": "Neu",
+      "marketplaceId": "EBAY_NL",
+      "item_url": "https://www.ebay.nl/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "affiliate_url": "https://www.ebay.nl/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "itemAffiliateWebUrl": "https://www.ebay.nl/itm/178509729569?_skw=1135+120+9700&hash=item2990024f21%3Ag%3AcggAAeSwJYxqrlJh&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049",
+      "evidence": {
+        "product": {
+          "match_type": "TITLE_ONLY_NEEDS_EVIDENCE",
+          "corroboration": [],
+          "contradictory_part_numbers": []
+        },
+        "shipping": {
+          "checked_at": "2026-11-22T09:09:32.438Z",
+          "destinations": [],
+          "browse_delivery": {
+            "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+            "delivery_country": "NL",
+            "filter": "deliveryCountry:NL",
+            "marketplace": "EBAY_NL",
+            "api_status": 200,
+            "confirmed": true,
+            "confirmed_at": "2026-11-22T09:09:32.438Z",
+            "item_count": 3,
+            "queries": [
+              "1135 120 9700",
+              "11351209700",
+              "STIHL 11351209700",
+              "STIHL 11351209700 Stihl Pump Piston Kit",
+              "11351209700 Stihl Pump Piston Kit",
+              "STIHL ms 341 Stihl Pump Piston Kit"
+            ],
+            "end_user_context": "affiliateCampaignId=5339245312,contextualLocation=country%3DNL"
+          },
+          "sources": [
+            {
+              "source": "BROWSE_DELIVERY_COUNTRY_FILTER",
+              "delivery_country": "NL",
+              "filter": "deliveryCountry:NL",
+              "marketplace": "EBAY_NL",
+              "api_status": 200,
+              "confirmed": true,
+              "confirmed_at": "2026-11-22T09:09:32.438Z",
+              "reused": true
+            }
+          ]
+        },
+        "affiliate": {
+          "campaign_id": "5339245312",
+          "url_source": "itemAffiliateWebUrl"
+        }
+      },
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ],
+      "checked_at": "2026-11-22T09:09:32.438Z",
+      "validation_confidence": 0.85,
+      "reason_codes": [],
+      "enrichment": {
+        "attempted": true,
+        "source": "REGISTRY",
+        "evidence_reused": true
+      }
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "11231237503",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "item_id": "v1|158021421045|0",
+      "title": "Stihl Genuine MS210/230/250 Carb Adjustment Grommet - OEM Used - 1123 123 7503",
+      "mpn": "1123 123 7504",
+      "reason": "validation_failed",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "match_type": "CONTRADICTORY_MATCH",
+      "status": "REJECTED"
+    },
+    {
+      "part_number": "11237909152",
+      "marketplace": "EBAY_NL",
+      "vendor": "ALL",
+      "item_id": "v1|820372018091|0",
+      "title": "STIHL PROTEZIONE MANO /PARAMANO MOTOSEGA MS 230-210-250   11237909152",
+      "mpn": "1123 792 4001",
+      "reason": "validation_failed",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "match_type": "CONTRADICTORY_MATCH",
+      "status": "REJECTED"
+    },
+    {
+      "part_number": "11239671514",
+      "marketplace": "EBAY_DE",
+      "vendor": "ALL",
+      "item_id": "v1|306713839478|0",
+      "title": "Stihl Typenschild MS 250 11239671514",
+      "mpn": "11279671502",
+      "reason": "validation_failed",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "match_type": "CONTRADICTORY_MATCH",
+      "status": "REJECTED"
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "00001212301",
+      "part_name": "Stihl Holder Bracket",
+      "models": [
+        "fr_460",
+        "fs_411_0",
+        "fs_461",
+        "ms_201",
+        "ms_241",
+        "ms_261",
+        "ms_362",
+        "ms_400",
+        "ms_400_1",
+        "ms_462"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00001212301 Stihl Holder Bracket",
+        "00001212301 Stihl Holder Bracket",
+        "STIHL fr 460 Stihl Holder Bracket"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 2,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00001227103",
+      "part_name": "Stihl Screw",
+      "models": [
+        "fr_460",
+        "fs_411_0",
+        "fs_461",
+        "ms_201",
+        "ms_241",
+        "ms_261",
+        "ms_362",
+        "ms_400",
+        "ms_400_1",
+        "ms_462"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00001227103 Stihl Screw",
+        "00001227103 Stihl Screw",
+        "STIHL fr 460 Stihl Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 0,
+      "client_rejected": 18,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00004304801",
+      "part_name": "Stihl 00004304801 Plug",
+      "models": [
+        "fr_460",
+        "fs_460",
+        "fs_490",
+        "fs_491",
+        "fs_491_0",
+        "fs_510",
+        "fs_560",
+        "fs_561",
+        "fs_561_0",
+        "ms_241",
+        "ms_362",
+        "ms_400"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00004304801 Stihl 00004304801 Plug",
+        "00004304801 Stihl 00004304801 Plug",
+        "STIHL fr 460 Stihl 00004304801 Plug"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 19,
+      "client_passed": 1,
+      "client_rejected": 18,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009530807",
+      "part_name": "Stihl Stud",
+      "models": [
+        "gs_461",
+        "ms_441",
+        "ms_461"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009530807 Stihl Stud",
+        "00009530807 Stihl Stud",
+        "STIHL gs 461 Stihl Stud"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 1,
+      "client_rejected": 13,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "00009580513",
+      "part_name": "Stihl Washer",
+      "models": [
+        "084",
+        "088",
+        "ms_441",
+        "ms_880",
+        "ms_881"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009580513 Stihl Washer",
+        "00009580513 Stihl Washer",
+        "STIHL 084 Stihl Washer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 34,
+      "client_passed": 0,
+      "client_rejected": 34,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009611406",
+      "part_name": "Stihl Ring",
+      "models": [
+        "044",
+        "064",
+        "066",
+        "ms_660"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009611406 Stihl Ring",
+        "00009611406 Stihl Ring",
+        "STIHL 044 Stihl Ring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 28,
+      "client_passed": 0,
+      "client_rejected": 28,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009672128",
+      "part_name": "Stihl Trade Mark",
+      "models": [
+        "fr_85",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hs_75",
+        "hs_80",
+        "hs_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009672128 Stihl Trade Mark",
+        "00009672128 Stihl Trade Mark",
+        "STIHL fr 85 Stihl Trade Mark"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009970504",
+      "part_name": "Stihl Helical Spring",
+      "models": [
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009970504 Stihl Helical Spring",
+        "00009970504 Stihl Helical Spring",
+        "STIHL ms 240 Stihl Helical Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009972002",
+      "part_name": "Stihl Compression Spring",
+      "models": [
+        "ms_240",
+        "ms_260",
+        "ms_261"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 00009972002 Stihl Compression Spring",
+        "00009972002 Stihl Compression Spring",
+        "STIHL ms 240 Stihl Compression Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 17,
+      "client_passed": 0,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11210847101",
+      "part_name": "Stihl Cap",
+      "models": [
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11210847101 Stihl Cap",
+        "11210847101 Stihl Cap",
+        "STIHL ms 240 Stihl Cap"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 26,
+      "client_passed": 0,
+      "client_rejected": 26,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11211207105",
+      "part_name": "Stihl Throttle Shaft With Lever",
+      "models": [
+        "024",
+        "026",
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211207105 Stihl Throttle Shaft With Lever",
+        "11211207105 Stihl Throttle Shaft With Lever",
+        "STIHL 024 Stihl Throttle Shaft With Lever"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11211213301",
+      "part_name": "Stihl Throttle Shutter",
+      "models": [
+        "024",
+        "026",
+        "fs_280",
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211213301 Stihl Throttle Shutter",
+        "11211213301 Stihl Throttle Shutter",
+        "STIHL 024 Stihl Throttle Shutter"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11211215400",
+      "part_name": "Stihl Valve Jet 0.48",
+      "models": [
+        "024",
+        "026",
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211215400 Stihl Valve Jet 0.48",
+        "11211215400 Stihl Valve Jet 0.48",
+        "STIHL 024 Stihl Valve Jet 0.48"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 1,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11211226201",
+      "part_name": "Stihl Idle Speed Screw",
+      "models": [
+        "ms_240",
+        "ms_260",
+        "ms_441"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211226201 Stihl Idle Speed Screw",
+        "11211226201 Stihl Idle Speed Screw",
+        "STIHL ms 240 Stihl Idle Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11211226205",
+      "part_name": "Stihl Idle Speed Screw",
+      "models": [
+        "024",
+        "026",
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211226205 Stihl Idle Speed Screw",
+        "11211226205 Stihl Idle Speed Screw",
+        "STIHL 024 Stihl Idle Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11211226703",
+      "part_name": "Stihl High Speed Screw",
+      "models": [
+        "ms_240",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11211226703 Stihl High Speed Screw",
+        "11211226703 Stihl High Speed Screw",
+        "STIHL ms 240 Stihl High Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11230801818",
+      "part_name": "Stihl Fan Housing",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11230801818 Stihl Fan Housing",
+        "11230801818 Stihl Fan Housing",
+        "STIHL ms 210 Stihl Fan Housing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 0,
+      "client_rejected": 18,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11230847802",
+      "part_name": "Stihl Segment",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11230847802 Stihl Segment",
+        "11230847802 Stihl Segment",
+        "STIHL ms 210 Stihl Segment"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 1,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11231209700",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "km_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231209700 Stihl Pump Piston Kit",
+        "11231209700 Stihl Pump Piston Kit",
+        "STIHL fc 55 Stihl Pump Piston Kit"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 2,
+      "client_rejected": 19,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11231209701",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231209701 Stihl Pump Piston Kit",
+        "11231209701 Stihl Pump Piston Kit",
+        "STIHL ms 210 Stihl Pump Piston Kit"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 2,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11231212700",
+      "part_name": "Stihl Cap",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231212700 Stihl Cap",
+        "11231212700 Stihl Cap",
+        "STIHL ms 210 Stihl Cap"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 42,
+      "client_passed": 0,
+      "client_rejected": 42,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11231223202",
+      "part_name": "Stihl Torsion Spring",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231223202 Stihl Torsion Spring",
+        "11231223202 Stihl Torsion Spring",
+        "STIHL ms 210 Stihl Torsion Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 0,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11231237503",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231237503 Stihl Grommet",
+        "11231237503 Stihl Grommet",
+        "STIHL ms 210 Stihl Grommet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 3,
+      "client_rejected": 18,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11231237507",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11231237507 Stihl Grommet",
+        "11231237507 Stihl Grommet",
+        "STIHL ms 210 Stihl Grommet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 33,
+      "client_passed": 0,
+      "client_rejected": 33,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11233532700",
+      "part_name": "Stihl Connecting Piece",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11233532700 Stihl Connecting Piece",
+        "11233532700 Stihl Connecting Piece",
+        "STIHL ms 210 Stihl Connecting Piece"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 13,
+      "client_passed": 2,
+      "client_rejected": 11,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11234403002",
+      "part_name": "Stihl Wiring Harness",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11234403002 Stihl Wiring Harness",
+        "11234403002 Stihl Wiring Harness",
+        "STIHL ms 210 Stihl Wiring Harness"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 28,
+      "client_passed": 0,
+      "client_rejected": 28,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11237901004",
+      "part_name": "Stihl Handle Housing",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11237901004 Stihl Handle Housing",
+        "11237901004 Stihl Handle Housing",
+        "STIHL ms 210 Stihl Handle Housing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 43,
+      "client_passed": 1,
+      "client_rejected": 42,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11237909152",
+      "part_name": "Stihl Hand Guard",
+      "models": [
+        "ms_210",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11237909152 Stihl Hand Guard",
+        "11237909152 Stihl Hand Guard",
+        "STIHL ms 210 Stihl Hand Guard"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 27,
+      "client_passed": 1,
+      "client_rejected": 26,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REJECT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "11239671514",
+      "part_name": "Stihl Model Plate Ms 250",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11239671514 Stihl Model Plate Ms 250",
+        "11239671514 Stihl Model Plate Ms 250",
+        "STIHL 021 Stihl Model Plate Ms 250"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 1,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REJECT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "11251623201",
+      "part_name": "Stihl Carrier",
+      "models": [
+        "029",
+        "034",
+        "039",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11251623201 Stihl Carrier",
+        "11251623201 Stihl Carrier",
+        "STIHL 029 Stihl Carrier"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 2,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11281215403",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "029",
+        "039",
+        "044",
+        "046",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11281215403 Stihl Valve Jet",
+        "11281215403 Stihl Valve Jet",
+        "STIHL 029 Stihl Valve Jet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11281226803",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "029",
+        "039",
+        "fs_500",
+        "fs_550",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11281226803 Stihl Low Speed Screw",
+        "11281226803 Stihl Low Speed Screw",
+        "STIHL 029 Stihl Low Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11286470606",
+      "part_name": "Stihl Pump Piston 0.8Mm",
+      "models": [
+        "046",
+        "ms_441",
+        "ms_460",
+        "ms_461"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11286470606 Stihl Pump Piston 0.8Mm",
+        "11286470606 Stihl Pump Piston 0.8Mm",
+        "STIHL 046 Stihl Pump Piston 0.8Mm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 1,
+      "client_rejected": 0,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11287903614",
+      "part_name": "Stihl Wrap Around Handlebar",
+      "models": [
+        "046",
+        "ms_460",
+        "ms_461"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11287903614 Stihl Wrap Around Handlebar",
+        "11287903614 Stihl Wrap Around Handlebar",
+        "STIHL 046 Stihl Wrap Around Handlebar"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 0,
+      "client_rejected": 5,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11291215600",
+      "part_name": "Stihl Fixed Jet 0.50",
+      "models": [
+        "017",
+        "020",
+        "023",
+        "025",
+        "ms_260"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11291215600 Stihl Fixed Jet 0.50",
+        "11291215600 Stihl Fixed Jet 0.50",
+        "STIHL 017 Stihl Fixed Jet 0.50"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 2,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11350202909",
+      "part_name": "Stihl Crankcase",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11350202909 Stihl Crankcase",
+        "11350202909 Stihl Crankcase",
+        "STIHL ms 341 Stihl Crankcase"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 13,
+      "client_passed": 0,
+      "client_rejected": 13,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350202917",
+      "part_name": "Stihl Crankcase",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11350202917 Stihl Crankcase",
+        "11350202917 Stihl Crankcase",
+        "STIHL ms 361 Stihl Crankcase"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350281002",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "gs_461",
+        "ms_441",
+        "ms_461",
+        "ms_661"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11350281002 Stihl Grommet",
+        "11350281002 Stihl Grommet",
+        "STIHL gs 461 Stihl Grommet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350341500",
+      "part_name": "Stihl Piston Pin 11X8X33",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11350341500 Stihl Piston Pin 11X8X33",
+        "11350341500 Stihl Piston Pin 11X8X33",
+        "STIHL ms 341 Stihl Piston Pin 11X8X33"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351209700",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351209700 Stihl Pump Piston Kit",
+        "11351209700 Stihl Pump Piston Kit",
+        "STIHL ms 341 Stihl Pump Piston Kit"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 2,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    }
+  ],
+  "complete": true,
+  "updated_at": "2026-11-22T09:09:32.902Z"
+}

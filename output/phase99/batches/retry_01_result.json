@@ -1,0 +1,2115 @@
+{
+  "phase": "99",
+  "batch_id": "retry_01",
+  "generated_at": "2026-11-22T09:17:42.776Z",
+  "complete": true,
+  "live_api": true,
+  "dry_run": false,
+  "used_query_hints": true,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 5769,
+    "offers_after": 5769
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_in_this_invocation": 40,
+    "parts_resolved": 40,
+    "parts_processed": 40,
+    "parts_unfinished": 0,
+    "parts_already_active": 0,
+    "parts_errors": 0,
+    "new_active_offers": 0,
+    "new_active_parts": 0,
+    "needs_evidence_candidates": 49,
+    "rejected_candidates": 0,
+    "parts_with_no_listing": 28,
+    "resolver_resolved_new_parts": 0,
+    "resolver_misses": [],
+    "remaining_parts": 0,
+    "duration_ms": 204380
+  },
+  "accepted_offers": [],
+  "needs_evidence_offers": [
+    {
+      "part_number": "11351226600",
+      "item_id": "v1|286108050806|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl MS341 MS361 Chainsaw Carburetor Bolt 1135 122 6600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351226600",
+      "item_id": "v1|880082163486|0",
+      "marketplace": "EBAY_NL",
+      "title": "Vis De Carburateur 2 Vis Pour Carburateur Stihl MS361 1135 122 6600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351605501",
+      "item_id": "v1|287396998931|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 11351605501 Ressort",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353500825",
+      "item_id": "v1|404720338566|0",
+      "marketplace": "EBAY_NL",
+      "title": "1135 350 0825 - STIHL TANK HOUSING - USED FITS MS 341/361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11354043500",
+      "item_id": "v1|395677104099|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl MS360 MS361 Generator 1135 404 3500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357901702",
+      "item_id": "v1|276789281076|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Genuine MS361 Half Wrap \"Arctic\" Heated Handle NLA  # 1135 790 1702",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|206514221050|0",
+      "marketplace": "EBAY_DE",
+      "title": "Motors?ge Sto?d?mpfer D?mpfer zur Schwingungsreduzierung 1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|287723501263|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kunststoff Kettensägendämpfer zur Vibrationsminimierung OEM 1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|198804374480|0",
+      "marketplace": "EBAY_DE",
+      "title": "OEM Style Kettensägendämpfer 1138 791 5903 Anti Vibration Stoßdämpfer",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|377664847023|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettensägen-Dämpfer zur Reduzierung von Handermüdung OEM 1138 791 5903 für k",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|206714899080|0",
+      "marketplace": "EBAY_DE",
+      "title": "OEM-für kompatiblen Kettensägendämpfer 1138 791 5903 Anti-Vibrations-Design",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|147690051288|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettensägendämpfer für reduzierte Handermüdung OEM 1138 791 5903 für kompat",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|227619753169|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettensägendämpfer für reibungslosen Betrieb OEM 1138 791 5903 für kompatibl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|287735683789|0",
+      "marketplace": "EBAY_DE",
+      "title": "Ersatz Stoßdämpfer für Kettensäge 1138 791 5903 für kompatible Geräte",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|840140636169|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stoßdämpfer für Kettensäge passend für OEM 1138 791 5903 für kompatible Mo",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|127915673445|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kunststoff Kettensägendämpfer zur Vibrationsminimierung OEM 1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|305628994023|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Vibrationsdämpfer AV-System,MS 362, MS 400 C-M,MS 441 ,11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|257544153307|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl Antivibrationspuffer Für Motosega MS261 MS362 11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|306306069456|0",
+      "marketplace": "EBAY_DE",
+      "title": "NEU Original Stihl MS 261 362 400C 441 661 Anschlagpuffer 1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|316415337346|0",
+      "marketplace": "EBAY_NL",
+      "title": "Anti-Vibration Buffer Fits Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|186670833747|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Stop Buffer MS261 MS362 MS400 MS441 MS661 1138-791-5903 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|276342379959|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Genuine MS261, MS271, MS362, MS441 AV Buffer   # 1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|168146224336|0",
+      "marketplace": "EBAY_NL",
+      "title": "1138-791-5903 Stop buffers For Stihl MS261 MS362 MS441 MS661 4PC US Stock",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|405588047776|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stop buffers Fits For Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|188229864554|0",
+      "marketplace": "EBAY_NL",
+      "title": "New Anti-Vibration Buffer Fits Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|205323350580|0",
+      "marketplace": "EBAY_NL",
+      "title": "Anti-Vibration Buffer Fits For Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|406697754992|0",
+      "marketplace": "EBAY_NL",
+      "title": "4Pcs Stop Buffers New For STIHL MS261 MS362 MS441 MS661 Chainsaw 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|188063501670|0",
+      "marketplace": "EBAY_NL",
+      "title": "4x Anti-Vibration Buffers For STIHL MS261 MS362 MS441 MS661 Chainsaw 11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|398206514239|0",
+      "marketplace": "EBAY_NL",
+      "title": "4 Pcs Stop Buffers Fits for 11387915903 Stihl MS261 MS362 MS441 MS661",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|257637842332|0",
+      "marketplace": "EBAY_NL",
+      "title": "4 Pcs Stop Buffers Fits for Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|305628994023|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Vibrationsdämpfer AV-System,MS 362, MS 400 C-M,MS 441 ,11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|146418415036|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW Anti-Vibration Buffer Fits For Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|266687644627|0",
+      "marketplace": "EBAY_NL",
+      "title": "Tampone antivibrante motosega modelli MS261 MS362 ORIGINALE STIHL 11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|276350507646|0",
+      "marketplace": "EBAY_NL",
+      "title": "Tampon Antivibrant Tronçonneuse Modèles MS261 MS362 ORIGINALE STIHL 11387915903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|324258353624|0",
+      "marketplace": "EBAY_NL",
+      "title": "AV Buffer for Stihl MS261 MS441 Chainsaw Replaces 1138 791 5903 MS362 MS271",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|186670834110|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Stop Buffer MS261 MS362 MS400 MS441 MS661 1138-791-5903 Genuine OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|327266007346|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM STIHL Stop Buffer MS261 MS362 MS400 MS441 MS661-  1138 791 5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|377363924270|0",
+      "marketplace": "EBAY_NL",
+      "title": "4 Pcs Stop Buffers Fits for Stihl MS261 MS362 MS661 MS441 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11387915903",
+      "item_id": "v1|267736323925|0",
+      "marketplace": "EBAY_NL",
+      "title": "Quality 4x Stop Buffers Fits for Stihl MS261 MS362 MS441 MS661 1138-791-5903",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41191221701",
+      "item_id": "v1|174747932921|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine OEM Stihl Spacer Plate 4119 122 1701 New",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287907650",
+      "item_id": "v1|880016683204|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stuetze Original Stihl FS300, FS350, FS380, FS450, FS480 4128-790-7650 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41287907650",
+      "item_id": "v1|880016683204|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stuetze Original Stihl FS300, FS350, FS380, FS450, FS480 4128-790-7650 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41341237502",
+      "item_id": "v1|178509925902|0",
+      "marketplace": "EBAY_DE",
+      "title": "Tuelle Original Stihl BT120C, FR350, FS120, FS250, FS380 4134-123-7502 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41341237502",
+      "item_id": "v1|178509925902|0",
+      "marketplace": "EBAY_NL",
+      "title": "Tuelle Original Stihl BT120C, FR350, FS120, FS250, FS380 4134-123-7502 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41377117302",
+      "item_id": "v1|158365383457|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Flexable Liner for Pole Saw 4137 711 7302",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401226300",
+      "item_id": "v1|880016721057|0",
+      "marketplace": "EBAY_DE",
+      "title": "Leerlaufstellschraube Original Stihl FC55, FS45, FS55 4140-122-6300 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41401226300",
+      "item_id": "v1|880016721057|0",
+      "marketplace": "EBAY_NL",
+      "title": "Leerlaufstellschraube Original Stihl FC55, FS45, FS55 4140-122-6300 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41407403501",
+      "item_id": "v1|335609203911|0",
+      "marketplace": "EBAY_DE",
+      "title": "Träger für Stihl ST4140 740 3501 FS55 FS55C Freischneider / Multitools",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "41407403501",
+      "item_id": "v1|335609203911|0",
+      "marketplace": "EBAY_NL",
+      "title": "Carrier for Stihl ST4140 740 3501 FS55 FS55C Brushcutters / Multi-tools",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [],
+  "per_part": [
+    {
+      "part_number": "11351226600",
+      "part_name": "Stihl Collar Screw",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351226600 Stihl Collar Screw",
+        "11351226600 Stihl Collar Screw",
+        "STIHL ms 341 Stihl Collar Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 2,
+      "client_rejected": 20,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351226800",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351226800 Stihl Low Speed Screw",
+        "11351226800 Stihl Low Speed Screw",
+        "STIHL ms 341 Stihl Low Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351602500",
+      "part_name": "Stihl Brake Cable",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351602500 Stihl Brake Cable",
+        "11351602500 Stihl Brake Cable",
+        "STIHL ms 361 Stihl Brake Cable"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 0,
+      "client_rejected": 15,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351605450",
+      "part_name": "Stihl Brake Band",
+      "models": [
+        "ms_361",
+        "ms_362"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351605450 Stihl Brake Band",
+        "11351605450 Stihl Brake Band",
+        "STIHL ms 361 Stihl Brake Band"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351605501",
+      "part_name": "Stihl Tension Spring",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11351605501 Stihl Tension Spring",
+        "11351605501 Stihl Tension Spring",
+        "STIHL ms 361 Stihl Tension Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 25,
+      "client_passed": 1,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11353500825",
+      "part_name": "Stihl Tank Housing",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11353500825 Stihl Tank Housing",
+        "11353500825 Stihl Tank Housing",
+        "STIHL ms 341 Stihl Tank Housing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 18,
+      "client_passed": 1,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11354001204",
+      "part_name": "Stihl Flywheel",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11354001204 Stihl Flywheel",
+        "11354001204 Stihl Flywheel",
+        "STIHL ms 361 Stihl Flywheel"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 28,
+      "client_passed": 0,
+      "client_rejected": 28,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11354043500",
+      "part_name": "Stihl Generator",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11354043500 Stihl Generator",
+        "11354043500 Stihl Generator",
+        "STIHL ms 361 Stihl Generator"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 1,
+      "client_rejected": 9,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11356566600",
+      "part_name": "Stihl Sleeve",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11356566600 Stihl Sleeve",
+        "11356566600 Stihl Sleeve",
+        "STIHL ms 341 Stihl Sleeve"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11357901702",
+      "part_name": "Stihl Handlebar",
+      "models": [
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11357901702 Stihl Handlebar",
+        "11357901702 Stihl Handlebar",
+        "STIHL ms 361 Stihl Handlebar"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 1,
+      "client_rejected": 13,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11387915903",
+      "part_name": "Stihl Stop Buffer",
+      "models": [
+        "ms_261",
+        "ms_362",
+        "ms_400",
+        "ms_441",
+        "ms_661"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11387915903 Stihl Stop Buffer",
+        "11387915903 Stihl Stop Buffer",
+        "STIHL ms 261 Stihl Stop Buffer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 90,
+      "client_passed": 33,
+      "client_rejected": 57,
+      "active": 0,
+      "needs_evidence": 33,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 8,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 33
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11400211102",
+      "part_name": "Stihl Cover",
+      "models": [
+        "ms_362",
+        "ms_400"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11400211102 Stihl Cover",
+        "11400211102 Stihl Cover",
+        "STIHL ms 362 Stihl Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 29,
+      "client_passed": 0,
+      "client_rejected": 29,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11400841601",
+      "part_name": "Stihl Cover",
+      "models": [
+        "ms_362",
+        "ms_400",
+        "ms_400_1",
+        "ms_881"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11400841601 Stihl Cover",
+        "11400841601 Stihl Cover",
+        "STIHL ms 362 Stihl Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 33,
+      "client_passed": 0,
+      "client_rejected": 33,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11401200800",
+      "part_name": "Stihl End Cover",
+      "models": [
+        "fr_460",
+        "ms_362"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11401200800 Stihl End Cover",
+        "11401200800 Stihl End Cover",
+        "STIHL fr 460 Stihl End Cover"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11401290900",
+      "part_name": "Stihl Gasket",
+      "models": [
+        "ms_362",
+        "ms_400"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 11401290900 Stihl Gasket",
+        "11401290900 Stihl Gasket",
+        "STIHL ms 362 Stihl Gasket"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 24,
+      "client_passed": 0,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41087187200",
+      "part_name": "Stihl Strap",
+      "models": [
+        "fs_160",
+        "fs_180",
+        "fs_202",
+        "fs_220",
+        "fs_280",
+        "fs_360",
+        "fs_410",
+        "fs_420",
+        "fs_61",
+        "fs_65",
+        "fs_80",
+        "fs_90",
+        "fs_96"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41087187200 Stihl Strap",
+        "41087187200 Stihl Strap",
+        "STIHL fs 160 Stihl Strap"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41191221701",
+      "part_name": "Stihl Distance Plate",
+      "models": [
+        "fs_280",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "km_85",
+        "km_85_r"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41191221701 Stihl Distance Plate",
+        "41191221701 Stihl Distance Plate",
+        "STIHL fs 280 Stihl Distance Plate"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 1,
+      "client_rejected": 10,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41197166500",
+      "part_name": "Stihl Clamp",
+      "models": [
+        "fs_160",
+        "fs_180",
+        "fs_300",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41197166500 Stihl Clamp",
+        "41197166500 Stihl Clamp",
+        "STIHL fs 160 Stihl Clamp"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 0,
+      "client_rejected": 16,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41287107108",
+      "part_name": "Stihl Drive Tube Assembly",
+      "models": [
+        "fs_300",
+        "fs_310",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41287107108 Stihl Drive Tube Assembly",
+        "41287107108 Stihl Drive Tube Assembly",
+        "STIHL fs 300 Stihl Drive Tube Assembly"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 0,
+      "client_rejected": 15,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41287907650",
+      "part_name": "Stihl Support",
+      "models": [
+        "fs_300",
+        "fs_310",
+        "fs_350",
+        "fs_400",
+        "fs_450",
+        "fs_480"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41287907650 Stihl Support",
+        "41287907650 Stihl Support",
+        "STIHL fs 300 Stihl Support"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 2,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41321215400",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "fr_108",
+        "fs_108",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41321215400 Stihl Valve Jet",
+        "41321215400 Stihl Valve Jet",
+        "STIHL fr 108 Stihl Valve Jet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41340846800",
+      "part_name": "Stihl Spacer",
+      "models": [
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41340846800 Stihl Spacer",
+        "41340846800 Stihl Spacer",
+        "STIHL fs 120 Stihl Spacer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 0,
+      "client_rejected": 15,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41341206801",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "fr_350",
+        "fs_200",
+        "fs_250",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41341206801 Stihl Low Speed Screw",
+        "41341206801 Stihl Low Speed Screw",
+        "STIHL fr 350 Stihl Low Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41341215402",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41341215402 Stihl Valve Jet",
+        "41341215402 Stihl Valve Jet",
+        "STIHL bt 120 Stihl Valve Jet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41341237502",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41341237502 Stihl Grommet",
+        "41341237502 Stihl Grommet",
+        "STIHL bt 120 Stihl Grommet"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 2,
+      "client_rejected": 21,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41344317000",
+      "part_name": "[NO LONGER AVAILABLE] Stihl Contact Plate",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41344317000 [NO LONGER AVAILABLE] Stihl Contact Plate",
+        "41344317000 [NO LONGER AVAILABLE] Stihl Contact Plate",
+        "STIHL bt 120 [NO LONGER AVAILABLE] Stihl Contact Plate"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41347113200",
+      "part_name": "Stihl Drive Shaft",
+      "models": [
+        "fs_300",
+        "fs_310",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41347113200 Stihl Drive Shaft",
+        "41347113200 Stihl Drive Shaft",
+        "STIHL fs 300 Stihl Drive Shaft"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 0,
+      "client_rejected": 5,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41349671514",
+      "part_name": "Stihl Model Plate",
+      "models": [
+        "bt_120",
+        "fr_350",
+        "fs_120",
+        "fs_200",
+        "fs_250",
+        "fs_300",
+        "fs_350"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41349671514 Stihl Model Plate",
+        "41349671514 Stihl Model Plate",
+        "STIHL bt 120 Stihl Model Plate"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41370848300",
+      "part_name": "Stihl Reflector Foil",
+      "models": [
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hl_75",
+        "ht_70",
+        "ht_75"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41370848300 Stihl Reflector Foil",
+        "41370848300 Stihl Reflector Foil",
+        "STIHL fs 75 Stihl Reflector Foil"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41377107100",
+      "part_name": "Stihl Drive Tube Assembly 25.4Mm / 1\"",
+      "models": [
+        "fr_350",
+        "fr_450",
+        "fr_85",
+        "fs_80",
+        "fs_85",
+        "fs_90"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41377107100 Stihl Drive Tube Assembly 25.4Mm / 1\"",
+        "41377107100 Stihl Drive Tube Assembly 25.4Mm / 1\"",
+        "STIHL fr 350 Stihl Drive Tube Assembly 25.4Mm / 1\""
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 0,
+      "client_rejected": 3,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41377117302",
+      "part_name": "Stihl 41377117302 Flexible Liner 1344Mm / 52 15/16\"",
+      "models": [
+        "fc_55",
+        "fs_55",
+        "fs_56",
+        "fs_70"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41377117302 Stihl 41377117302 Flexible Liner 1344Mm / 52 15/16\"",
+        "41377117302 Stihl 41377117302 Flexible Liner 1344Mm / 52 15/16\"",
+        "STIHL fc 55 Stihl 41377117302 Flexible Liner 1344Mm / 52 15/16\""
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 1,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41400360301",
+      "part_name": "Stihl Washer",
+      "models": [
+        "fs_38",
+        "fs_55",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41400360301 Stihl Washer",
+        "41400360301 Stihl Washer",
+        "STIHL fs 38 Stihl Washer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41400846801",
+      "part_name": "Stihl Spacer",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "km_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41400846801 Stihl Spacer",
+        "41400846801 Stihl Spacer",
+        "STIHL fc 55 Stihl Spacer"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 17,
+      "client_passed": 0,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41401215800",
+      "part_name": "Stihl Pump Piston",
+      "models": [
+        "fc_55",
+        "fs_55",
+        "hl_45",
+        "km_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41401215800 Stihl Pump Piston",
+        "41401215800 Stihl Pump Piston",
+        "STIHL fc 55 Stihl Pump Piston"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 0,
+      "client_rejected": 6,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41401223000",
+      "part_name": "Stihl Spring",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "km_55"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41401223000 Stihl Spring",
+        "41401223000 Stihl Spring",
+        "STIHL fc 55 Stihl Spring"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 17,
+      "client_passed": 0,
+      "client_rejected": 17,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41401226300",
+      "part_name": "Stihl Idle Speed Screw",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41401226300 Stihl Idle Speed Screw",
+        "41401226300 Stihl Idle Speed Screw",
+        "STIHL fc 55 Stihl Idle Speed Screw"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 2,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41401605201",
+      "part_name": "Stihl Bushing",
+      "models": [
+        "fs_55",
+        "km_55",
+        "km_56",
+        "km_56_rc_e"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41401605201 Stihl Bushing",
+        "41401605201 Stihl Bushing",
+        "STIHL fs 55 Stihl Bushing"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 0,
+      "client_rejected": 7,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41407107128",
+      "part_name": "Stihl Drive Tube Assembly 25.4Mm / 1\"",
+      "models": [
+        "fs_55",
+        "km_55",
+        "km_56",
+        "km_56_rc_e"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41407107128 Stihl Drive Tube Assembly 25.4Mm / 1\"",
+        "41407107128 Stihl Drive Tube Assembly 25.4Mm / 1\"",
+        "STIHL fs 55 Stihl Drive Tube Assembly 25.4Mm / 1\""
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "41407403501",
+      "part_name": "Stihl Driver",
+      "models": [
+        "fs_55",
+        "km_55",
+        "km_56",
+        "km_56_rc_e"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41407403501 Stihl Driver",
+        "41407403501 Stihl Driver",
+        "STIHL fs 55 Stihl Driver"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 26,
+      "client_passed": 2,
+      "client_rejected": 24,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "41440302002",
+      "part_name": "Stihl Piston 34Mm",
+      "models": [
+        "fs_38",
+        "fs_50",
+        "fs_55",
+        "fs_56",
+        "km_56"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [
+        "STIHL 41440302002 Stihl Piston 34Mm",
+        "41440302002 Stihl Piston 34Mm",
+        "STIHL fs 38 Stihl Piston 34Mm"
+      ],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 31,
+      "client_passed": 0,
+      "client_rejected": 31,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    }
+  ],
+  "evidence_registry": {
+    "size": 6392,
+    "hits": 7,
+    "misses": 0,
+    "recorded": 0
+  }
+}

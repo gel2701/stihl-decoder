@@ -1,0 +1,4110 @@
+{
+  "phase": "99",
+  "batch_id": "queue_31",
+  "generated_at": "2026-11-22T08:20:11.448Z",
+  "complete": true,
+  "live_api": true,
+  "dry_run": false,
+  "used_query_hints": false,
+  "campaign_id_configured": true,
+  "activation_blocker": null,
+  "preflight": {
+    "enabled": true,
+    "ready": true,
+    "missing": []
+  },
+  "store": {
+    "path": "data/affiliate/ebay_offers.json",
+    "offers_before": 4908,
+    "offers_after": 4975
+  },
+  "metrics": {
+    "parts_in_batch": 40,
+    "parts_in_this_invocation": 40,
+    "parts_resolved": 40,
+    "parts_processed": 40,
+    "parts_unfinished": 0,
+    "parts_already_active": 0,
+    "parts_errors": 0,
+    "new_active_offers": 67,
+    "new_active_parts": 26,
+    "needs_evidence_candidates": 143,
+    "rejected_candidates": 9,
+    "parts_with_no_listing": 10,
+    "resolver_resolved_new_parts": 26,
+    "resolver_misses": [],
+    "remaining_parts": 0,
+    "duration_ms": 277163
+  },
+  "accepted_offers": [
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|257553488620|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Kühlplatte Stihl 1123-141-3200 Original",
+      "seller_name": "newgardenstore",
+      "item_price": 9.22,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/257553488620?_skw=1123+141+3200&hash=item3bf7625aec%3Ag%3AHLEAAeSwUdlq4fqm&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|185505094013|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL Exhaust Cooling Plate 023 025 MS230 MS250 1123-141-3200 Genuine OEM",
+      "seller_name": "qualitytools4sale",
+      "item_price": 20.91,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/185505094013?_skw=1123+141+3200&hash=item2b30f7197d%3Ag%3AsKkAAOSwYdRhskjd&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lWME63sOwS%2BcqMFY2bvIJlwq2ILA%2FD%2FwBI3JqZTu5U6%2BMMZRmt%2B1F6gCKd%2F5zb6deQSRqsOYshx4ueYsEdmzj5QysuC4iE%2BYngOevzFbPbBYzoO9z8V1lIbEEoSMWxLAfxPzDuUuDSa3YJ9V4gV5j1d1G4KUadhIoCagBeLoYBEQRjgygGPswQk2t3RxR0Z7LSGEIk%2Fp9QUkwPy7jHNMJphbNIrrRLYNYrUa5Hf10H3gtoLSubVV9Cx8wlorJa8eJ10JGI8v0XNvyh2uwIRrW5CsC73trmPurfMmh2KlISkQ%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|306995841462|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Genuine Cooling Muffler Back Plate STIHL 023 025 MS230 MS250 1123 141 3200",
+      "seller_name": "baltic_forest_and_garden",
+      "item_price": 2.98,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/306995841462?_skw=1123+141+3200&hash=item477a60c9b6%3Ag%3AHFcAAeSwtw9qKrZv&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|277246914539|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Piastra di Raffreddamento Stihl 11231413200 ORIGINALE STIHL - 1123-141-3200",
+      "seller_name": "newgardenstore",
+      "item_price": 9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/277246914539?_skw=11231413200&hash=item408d342feb%3Ag%3AHLEAAeSwUdlq4fqm&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11239671515",
+      "item_id": "v1|366775464189|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL MS 250C Bushcutter OEM Model Plate/Name Badge - 1123 967 1515",
+      "seller_name": "suncoastcyclesports",
+      "item_price": 27.57,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/366775464189?_skw=1123+967+1515&hash=item55658570fd%3Ag%3AYjkAAeSwwylq5vX6&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nDcP0M3igR1c1lNT8YP2ujRcy5%2F41raEyvqqRSc51MHN%2F6Z3KBQCOfwdVenvHSlqcz836%2FV6TccvVO8YxNlqkWabEZxZ9HABitr7CG01AlswVztzqwLOX32MvAxOHnYK2JLMygDOMYCMpgEMYFRqdnE%2FyIGqonMK0dUCgzaXnSBDRSY3D%2B0tYBAclLE%2BfG5ryioyWqBQHll%2BmmBfJAwWi82ug68LtwzDs8n%2FRVJiAUE0W%2FB0NPvATcIgfwCb1hA6DfBtfDA8mj%2FVnoElWIW8FzJjV%2FKUzkQTpU%2BLFXZHdB7A%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|117493530783|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Kappe 1121 358 2500 11213582500",
+      "seller_name": "daltonsatvs",
+      "item_price": 39.51,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/117493530783?_skw=1121+358+2500&hash=item1b5b29009f%3Ag%3A-7UAAeSw31xq49fG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7n0i7YyGe%2FMQSm4wrVIqP4oXlQ3MK0lWEVD7vv%2BAd1vIKykru0RJx1elAklZ8xRwjA9dxymL1iWgOosFezoHjpuRVqmUHyM5lC49S8e2xE%2BzK9M9roF%2FAVpDZ3pTUXo5oGngfamLTyhuNoyktCKJ9pxtzhPc%2F0eh%2F1xRvOLmyvD4Z2uPXE5EoSieupr7WE%2Flv3Hx1PMGosMtzF835%2FZLufomfIGuUYXErPZhZaYjZD083pBEh3ppDzPFvqcvDZAgJENzx9fAI9Vxzpbs%2BBoH%2FmvRuqKo%2B0AMwfHq0GVxpZO6g%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|136474362497|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11213582500 1121-358-2500 Kappe NOS NEU genuine xx33063",
+      "seller_name": "die-moped-metzger",
+      "item_price": 7.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/136474362497?_skw=1121+358+2500&hash=item1fc6818281%3Ag%3AhLQAAeSw4zBoyoRG&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|233728402275|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Stihl Fuel Tank Vent Cap OEM 026 Pro 034 036 044 046 088 1121-358-2500 #GM-K1F3",
+      "seller_name": "hatch4045",
+      "item_price": 7.67,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/233728402275?_skw=1121+358+2500&hash=item366b4c6363%3Ag%3AVQ8AAeSwik1olTQY&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7lTVlOwrFKbnmczOJOCHj0HjRX4cakNSSWqt3cv2TmFBK2uwlKZ5TF%2BmdVamAsyNCRTOHECOWXOYyW%2B7OHmZW7EH6SFLu5e4vVxPVvbNihC5RJksrT3Em0H7AijqnCW9vUj0iT45EyYwWZuZ1j38p23ylVGoZSDINTjSKx7ReIDu1cmHonBvR7mXj4v3I6DW5BRIBQSr8%2BAMXpBnG4u0lvDuKInE9e%2BFB2REThdL05WPbqcKqpu%2BaceLF7IAP%2BKIaLmVu1WfuY%2FckG990dvZBeGQcH53jqvfIHq8q0vq%2Bpngw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|117493530783|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Cap 1121 358 2500 11213582500",
+      "seller_name": "daltonsatvs",
+      "item_price": 39.51,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/117493530783?_skw=1121+358+2500&hash=item1b5b29009f%3Ag%3A-7UAAeSw31xq49fG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7n0i7YyGe%2FMQSm4wrVIqP4oXlQ3MK0lWEVD7vv%2BAd1vIKykru0RJx1elAklZ8xRwjA9dxymL1iWgOosFezoHjpuRVqmUHyM5lC49S8e2xE%2BzK9M9roF%2FAVpDZ3pTUXo5oEjigz5zhc51OYv53cALg%2FtpS7Z2nMXHYP%2Fq7IH3tCnfsE8x1NeiPVwQXT%2FqkuS4x3oTBRA8xQFwwrRGnz7m6xImkYzUo5vUd4NN3D%2FMn9FXGLQncWF%2ByEbFC92vtLZb3xEaDitqPlBu6Fu459PWhaUhUQ1DzmZTGzqYAz%2BdrezKg%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|136474362497|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11213582500 1121-358-2500 Kappe NOS NEU genuine xx33063",
+      "seller_name": "die-moped-metzger",
+      "item_price": 7.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136474362497?_skw=1121+358+2500&hash=item1fc6818281%3Ag%3AhLQAAeSw4zBoyoRG&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "00009031506",
+      "item_id": "v1|235709433418|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL HOSE TIE / CLAMP 0000-903-1506 009 010 011 012 MS270 MS341 MS360 MS361 B70",
+      "seller_name": "robzgarage",
+      "item_price": 10.98,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/235709433418?_skw=0000+903+1506&hash=item36e160864a%3Ag%3AT-AAAOSwqC5myArY&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11271226800",
+      "item_id": "v1|137928050498|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Low Speed Adjustment Screw 1127 122 6800 Genuine Replacement Part",
+      "seller_name": "gleze.danie",
+      "item_price": 5.48,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/137928050498?_skw=1127+122+6800&hash=item201d270742%3Ag%3A914AAeSw8fBp9Qpi&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|278066428404|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Kolben Ölpumpe Motorsäge Modelle MS290 MS310 ORIGINAL STIHL 11276470602",
+      "seller_name": "newgardenstore",
+      "item_price": 26.63,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/278066428404?_skw=11276470602&hash=item40be0cf9f4%3Ag%3Aze8AAeSwNBBq4iy6&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|256188439460|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Pistone pompa olio motosega modelli MS290 MS310 ORIGINALE STIHL 11276470602",
+      "seller_name": "newgardenstore",
+      "item_price": 26,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/256188439460?_skw=11276470602&hash=item3ba6055ba4%3Ag%3AK48AAeSwtqFq4hPc&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|278066428404|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Kolben Ölpumpe Motorsäge Modelle MS290 MS310 ORIGINAL STIHL 11276470602",
+      "seller_name": "newgardenstore",
+      "item_price": 26.63,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/278066428404?_skw=11276470602&hash=item40be0cf9f4%3Ag%3Aze8AAeSwNBBq4iy6&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|266378934179|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Kolben Ölpumpe Motorsäge Modelle MS290 MS310 ORIGINAL STIHL 11276470602",
+      "seller_name": "newgardenstore",
+      "item_price": 26.85,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/266378934179?_skw=11276470602&hash=item3e056bf7a3%3Ag%3As7sAAeSweZpq4ix-&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|920025925161|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS 341 MS 361 MS341 MS361 Ersatzteil Satz Tüllen 1135 007 1003",
+      "seller_name": "robert--873",
+      "item_price": 17.5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/920025925161?_skw=1135+007+1003&hash=itemd635d18629%3Ag%3A5ekAAeSwJ9JqyeKp&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|127376847077|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11350071003 1135-007-1003 Satz Tüllen NOS NEU genuine xx32984",
+      "seller_name": "die-moped-metzger",
+      "item_price": 13.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/127376847077?_skw=1135+007+1003&hash=item1da84070e5%3Ag%3A3CYAAeSwD5poynjC&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|373258809332|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "1135 007 1003 Grommet Fits Stihl MS341 MS361 Chainsaw",
+      "seller_name": "quality_parts_10906",
+      "item_price": 9.67,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/373258809332?_skw=1135+007+1003&hash=item56e7f56ff4%3Ag%3AU4YAAOSwV4BffLlG&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nnxTn248zBVPyiRsYKAOr6UJ9tErevzM9SCDFPskj1TtUGAAf2S4B1C6ErK9pQ43QFLGIK2taLQ%2FpdvarCCwYteDuWQzhs5791qEJw3c%2Bj%2BU5j8fi%2Bxsk6HJ32vLTcgUO6eBD3bsvpe0cl95HPmBqVZ9Wtn4flPFXcKeHzj8NTpaGKVp83uanJTJ54dC463tLRoOVaed%2BYLsnwFs36XzkC3ShVHFsS8yzTk3OpbxDXo7PNAEpvUgX48AFmHaEAbr0qzh6YIxDum8D67kIizaVVaiwOlcQaklnCKeHyoBXPIA%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|920025925161|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl MS 341 MS 361 MS341 MS361 Ersatzteil Satz Tüllen 1135 007 1003",
+      "seller_name": "robert--873",
+      "item_price": 17.5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/920025925161?_skw=1135+007+1003&hash=itemd635d18629%3Ag%3A5ekAAeSwJ9JqyeKp&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350202606",
+      "item_id": "v1|820287160486|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Kurbelgehäuse für STIHL MS341 MS361 11350202606",
+      "seller_name": "hsparts1",
+      "item_price": 62.04,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/820287160486?_skw=11350202606&hash=itembefcecc0a6%3Ag%3Ay7gAAeSwiRtq4bsu&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350202913",
+      "item_id": "v1|860051173256|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Original right-hand engine crankcase half for STIHL MS361, # 1135 020 2913",
+      "seller_name": "tool_master",
+      "item_price": 176.5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/860051173256?_skw=1135+020+2913&hash=itemc83f0b6f88%3Ag%3AMQUAAeSwRdRq0jnb&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350844100",
+      "item_id": "v1|336394265080|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Shutter for Stihl MS361, MS361C, MS341 Chainsaw (replaces 1135 084 4100)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394265080?_skw=1135+084+4100&hash=item4e52a921f8%3Ag%3AkTAAAOSwRqxjoNCX&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350844100",
+      "item_id": "v1|136203551527|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Cursore 11350844100",
+      "seller_name": "soluzi56",
+      "item_price": 2.7,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203551527?_skw=11350844100&hash=item1fb65d4327%3Ag%3AcqsAAeSwX5xogMrI&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350847800",
+      "item_id": "v1|168825656828|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "OEM STARTER Cover FOR STIHL MS361  CHAINSAW   1135-084-7800 USED",
+      "seller_name": "crosscutsawshop",
+      "item_price": 27.58,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/168825656828?_skw=1135+084+7800&hash=item274ecb15fc%3Ag%3A188AAeSwGqJq5ADf&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350847800",
+      "item_id": "v1|171018911201|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "NEW REPLAC STIHL FLYWHEEL SEGMENT FITS  MS361  11350847800  15363 BTT",
+      "seller_name": "dms62",
+      "item_price": 14.22,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/171018911201?_skw=1135+084+7800&hash=item27d1857de1%3Ag%3AzZIAAOxyyF5RXPh2&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350847800",
+      "item_id": "v1|336394265010|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM Stihl Flywheel Segment for MS341 MS361 MS361C Chainsaw (1135 084 7800)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394265010?_skw=1135+084+7800&hash=item4e52a921b2%3Ag%3AEZAAAOSwPyVjoNVR&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11350847800",
+      "item_id": "v1|136203551514|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Segmento 11350847800",
+      "seller_name": "soluzi56",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203551514?_skw=11350847800&hash=item1fb65d431a%3Ag%3AVxYAAeSwxDRogMsB&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|136474158259|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11351204100 1135-120-4100 Pralltopf NOS NEU genuine xx32981",
+      "seller_name": "die-moped-metzger",
+      "item_price": 16.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/136474158259?_skw=1135+120+4100&hash=item1fc67e64b3%3Ag%3AHX0AAeSwtVhoynix&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|187525048831|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL Intake Baffle MS341 MS361 1135-120-4100 Genuine OEM",
+      "seller_name": "qualitytools4sale",
+      "item_price": 44.07,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/187525048831?_skw=1135+120+4100&hash=item2ba95d29ff%3Ag%3AqQoAAOSwsXdlN%7EAr&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mKkKVmXY8mts013I5j77ItUFjmmulRmqk%2BLf%2BMJeZ%2FPWTzz03ggIz5FIcZLEaxwCAhOrXvps0wCUvbSZhirOPP3xEY1xX%2F7HKVpNWbHdDVtf6MDpHmHTtNFgbmnbmA7NNtKITuvrHDPia%2Bn5EN8tZXT%2F5RJ6i%2FP5%2FewIcEpicKbAAQPlEsMnwdVVxPIiCdGqxvEpmG9IFIKDfUMTyKF49GvrKFKCr2c7YqEQ2qEQq4wo0XoWIqdXmOJU3SY%2BLq466LG%2F0rGLZqR%2FISZurgtKdU8udGlbwprfplGueuCAvG6A%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|365437469195|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM AIR FILTER HOUSING BAFFLE FOR STIHL MS341 MS361 CHAINSAW 1135 120 4100",
+      "seller_name": "customchainsawparts",
+      "item_price": 31.94,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/365437469195?_skw=1135+120+4100&hash=item5515c5420b%3Ag%3AfcAAAeSwDZ5p3TgK&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|136474158259|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11351204100 1135-120-4100 Pralltopf NOS NEU genuine xx32981",
+      "seller_name": "die-moped-metzger",
+      "item_price": 16.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136474158259?_skw=1135+120+4100&hash=item1fc67e64b3%3Ag%3AHX0AAeSwtVhoynix&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|307166255018|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL Intake Baffle MS341 MS361 1135-120-4100 Genuine OEM N",
+      "seller_name": "grocer_3749",
+      "item_price": 33.09,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/307166255018?_skw=1135+120+4100&hash=item47848917aa%3Ag%3AeMUAAeSwZPBqnbpr&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|361878735824|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "AIR FILTER HOUSING BAFFLE FOR STIHL MS341 MS361 CHAINSAW 1135 120 4100 -- UP 541",
+      "seller_name": "customchainsawparts",
+      "item_price": 9.87,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/361878735824?_skw=1135+120+4100&hash=item5441a74bd0%3Ag%3A7OYAAeSwWlNp3SXk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351215401",
+      "item_id": "v1|397503387322|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "NEW Genuine OEM Stihl Valve Jet 1135 121 5401. Walbro",
+      "seller_name": "hillyridgesales-service",
+      "item_price": 15.44,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/397503387322?_skw=1135+121+5401&hash=item5c8d0c56ba%3Ag%3APJAAAeSwhYZpam1t&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351218600",
+      "item_id": "v1|336394266372|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM Stihl 1.9mm Carburetor Intake Washer MS341 MS361 Chainsaw (1135 121 8600)",
+      "seller_name": "coch-17",
+      "item_price": 1.25,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394266372?_skw=1135+121+8600&hash=item4e52a92704%3Ag%3Aw00AAeSwm6VpbAH%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|373256394185|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "1135 123 7501 Carburetor Carb Grommet Fits Stihl MS341 MS361 Chainsaw",
+      "seller_name": "quality_parts_10906",
+      "item_price": 10.18,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/373256394185?_skw=1135+123+7501&hash=item56e7d095c9%3Ag%3A540AAOSwDHZhQ21V&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mwOtbG4sJRP3k5ytLm%2FCXbl2%2B8Mtesy%2Fu%2BrIgwF5hUNzBlNhsveO5b14%2FEwA5Tf%2BIbBBGExQluJMnJ415LHcNMsVU8PejA1y50S2BH61F6dmErdoSRUgk9JOfR70b%2Fq8M%2BIqyayGmGho8M61FXWqaJEeQGXSKVXTwOML2oQAm8gmRU1UDdqDdvtJOYZN07rCg5kjh8J0i3kF530hmdWfSU6duC%2F0Wz7G7JRZnFf%2BSUJWVHhqIXEPhxgwh9hfs8uILCt%2FVIKpfoeGua9awgOsdL%2FbLfmBeQosOo6wHUQPosXw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|352471569511|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "NEW CARBURETOR GROMMET FOR STIHL MS361 CHAINSAWS # 1135 123 7501",
+      "seller_name": "customchainsawparts",
+      "item_price": 6.56,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/352471569511?_skw=1135+123+7501&hash=item5210f15467%3Ag%3AZmwAAOSwJuZbrUgx&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|336394265177|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Carburetor Carb Grommet for Stihl MS341 MS361 MS361C Chainsaw (1135 123 7501)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394265177?_skw=1135+123+7501&hash=item4e52a92259%3Ag%3ABj4AAOSwT1VjoOku&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351416300",
+      "item_id": "v1|336394265082|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM Air Baffle Housing for Stihl MS341 MS361 MS361C Chainsaw (1135 141 6300)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394265082?_skw=1135+141+6300&hash=item4e52a921fa%3Ag%3And4AAOSwCQZjogNs&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351416300",
+      "item_id": "v1|336394265123|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Air Baffle Housing for Stihl MS341 MS361 MS361C Chainsaw (replace 1135 141 6300)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394265123?_skw=1135+141+6300&hash=item4e52a92223%3Ag%3A5NUAAOSwhZ9jogKa&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|127377511887|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11351821500 1135-182-1500 Gasgestänge NOS NEU genuine xx33085",
+      "seller_name": "die-moped-metzger",
+      "item_price": 4.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/127377511887?_skw=1135+182+1500&hash=item1da84a95cf%3Ag%3AorAAAeSw4-ZoysPk&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|820279861773|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Gasgestänge für STIHL MS341 MS361 MS361C 11351821500 HS PARTS",
+      "seller_name": "hsparts1",
+      "item_price": 5.39,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/820279861773?_skw=11351821500&hash=itembefc7d620d%3Ag%3AxloAAeSwmwdq32LD&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7nqebZYnjHGGxzo0GPEDIzBVlJ3iR%2BKlejO3XhM0k8o2Su7vVxjif%2FWQnQbFN25zPyJuNJQs16QlrbA00c4Y7bKzWe2RelMSHFlbPMap4EtRNLNHG4eAI0KstAMwRGYwIZaOeGs3fjZVePh0PC7ntVcg4FjX8bR5MDb7eJ1iDT8yaimS30enmCJCdAbFq7A5HceYmNBu2FKOWNI7RT5Csp39RPmntr30r%2BHaZOMaol0jZIYwCNRl91qy2bg3FTTu0V3kRDjOnrGZSnMKiCql6LYo2g1ATSa0eDuYoLZJviP6Q%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|127377511887|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11351821500 1135-182-1500 Gasgestänge NOS NEU genuine xx33085",
+      "seller_name": "die-moped-metzger",
+      "item_price": 4.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/127377511887?_skw=1135+182+1500&hash=item1da84a95cf%3Ag%3AorAAAeSw4-ZoysPk&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|336394263338|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM Stihl Throttle Rod for MS341 MS361 MS361C Chainsaw (1135 182 1500)",
+      "seller_name": "coch-17",
+      "item_price": 5.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/336394263338?_skw=1135+182+1500&hash=item4e52a91b2a%3Ag%3AIJoAAOSwKXpjoOWQ&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|316961078935|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl OEM Benzinschlauch MS460 MS440 MS361 MS341 046 044 1135 350 7600",
+      "seller_name": "tool_master",
+      "item_price": 14.72,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/316961078935?_skw=1135+350+7600&hash=item49cc5a3e97%3Ag%3AE6gAAOSwNU5oJc3c&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|316810405770|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Original Stihl OEM Benzinschlauch MS460 MS440 MS361 MS341 046 044 1135 350 7600",
+      "seller_name": "tool_master",
+      "item_price": 18.34,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/316810405770?_skw=1135+350+7600&hash=item49c35f278a%3Ag%3AE6gAAOSwNU5oJc3c&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11354403000",
+      "item_id": "v1|127376902058|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11354403000 1135-440-3000 Kabelbaum NOS NEU genuine xx33011",
+      "seller_name": "die-moped-metzger",
+      "item_price": 11.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/127376902058?_skw=1135+440+3000&hash=item1da84147aa%3Ag%3Ahl0AAeSwkmBoyoM%7E&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11354403000",
+      "item_id": "v1|136475445378|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11354403000 1135-440-3000 Kabelbaum NOS NEU genuine xx33087",
+      "seller_name": "die-moped-metzger",
+      "item_price": 12.5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/136475445378?_skw=1135+440+3000&hash=item1fc6920882%3Ag%3A6vUAAeSw4iFoysPy&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11354403000",
+      "item_id": "v1|136475445378|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11354403000 1135-440-3000 Kabelbaum NOS NEU genuine xx33087",
+      "seller_name": "die-moped-metzger",
+      "item_price": 12.5,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136475445378?_skw=1135+440+3000&hash=item1fc6920882%3Ag%3A6vUAAeSw4iFoysPy&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11354403000",
+      "item_id": "v1|127376902058|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl 11354403000 1135-440-3000 Kabelbaum NOS NEU genuine xx33011",
+      "seller_name": "die-moped-metzger",
+      "item_price": 11.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/127376902058?_skw=1135+440+3000&hash=item1da84147aa%3Ag%3Ahl0AAeSwkmBoyoM%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356507750",
+      "item_id": "v1|236915484202|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM DOG SPIKE W/ CATCHER FOR STIHL MS361 MS341 CHAINSAW 1135 650 7750  -- UP 541",
+      "seller_name": "customchainsawparts",
+      "item_price": 50.69,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/236915484202?_skw=1135+650+7750&hash=item372943662a%3Ag%3AI4QAAOSwOYtn4txL&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356640500",
+      "item_id": "v1|284103775848|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL 1135-664-0500 CHAINSAW SPIKED BUMPER SPIKE OEM GENUINE PARTS *NEW",
+      "seller_name": "logimat_automation",
+      "item_price": 8.61,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/284103775848?_skw=1135+664+0500&hash=item4225e79668%3Ag%3AjqoAAOSwbV9fymrw&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356640500",
+      "item_id": "v1|284103775848|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL 1135-664-0500 CHAINSAW SPIKED BUMPER SPIKE OEM GENUINE PARTS *NEW",
+      "seller_name": "logimat_automation",
+      "item_price": 8.61,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/284103775848?_skw=1135+664+0500&hash=item4225e79668%3Ag%3AjqoAAOSwbV9fymrw&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kc1p0c%2FHhB%2F0Gk0qD9z%2FM3mswwfy0dPWg%2FzC62Qh%2BkuX1WJu4rsx%2BRCqkFMSx8Gt2EtebrR83lAk%2F8HnNkuSaQxsCxGmdR3%2FCZtQDMiPG%2BpB%2BbVT3UknRd7J9xY7sjE4ET5kmTmHubUn%2FmGKQS%2FlydkvWP20DjsXSu28oX7VGlY8Qq%2Bc91QgnTbcwlxBhX9KWLS8ESuDRjCXtYlTD7sKXlb0BT5Psu4423bDTI6wdozmneODZgOsJLdIGm8CfCVF3ofsAdB8MSdP3Yh4ikLoEPpxgAnkqVsl1Hf5w%2FutLFNw%3D%3D&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356640500",
+      "item_id": "v1|187773605580|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "STIHL Bumper Spike MS341 MS361 MS362 1135-664-0500 Genuine OEM",
+      "seller_name": "qualitytools4sale",
+      "item_price": 23.11,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/187773605580?_skw=1135+664+0500&hash=item2bb82dd6cc%3Ag%3AYMEAAeSw7QVpJKTN&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356640500",
+      "item_id": "v1|267102691789|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl MS361 Chainsaw Bumper Spike 1135 664 0500 Oem",
+      "seller_name": "quality.parts.specialist",
+      "item_price": 15.59,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/267102691789?_skw=1135+664+0500&hash=item3e308fa1cd%3Ag%3AL4gAAOSwNuVnZlJ3&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|353495661441|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "OEM DOG SPIKE FOR STIHL MS341 MS361 CHAINSAW # 1135 664 0501     ----  UP 215",
+      "seller_name": "customchainsawparts",
+      "item_price": 13.18,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/353495661441?_skw=1135+664+0501&hash=item524dfbbb81%3Ag%3ALg8AAOSwMhlgnte%7E&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|137897232729|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "MS341 MS361 MS361C Kettensäge Bremshebel Handschutz Ersatz 1135 790 9100",
+      "seller_name": "yfmeizhuang-3",
+      "item_price": 31.21,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/137897232729?_skw=1135+790+9100&hash=item201b50c959%3Ag%3AfuYAAeSw3Hxp15Us&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7mQucltRcI6Na5mWDd5glgUXi9wp34zvJlkQanZVFqiMVfHDdTE0T%2FlAPi1OTdljlwRxxNGvMKYeJOBLX24jSdjfKwsa887em9CMJoRjQqmzPaR0Ihu8OfMJUUD6OAnxjSKAK49S%2FdVFjKhtj84EaHBi0rqz4EJyKyXjB02FI%2BrrGJ62tT%2BPQKc%2Fx7vVmluNutLFb0ifWH--Zd8dzR62wLUZrl0Nvt%2Fwa54gol8glcUef0fVCDtXcMRtfvIhlU8qq1Hd58U8K6JdOdrAaBpcUM6qq7ApInYY0pFgRbork0gmg%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|187681804880|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Stihl Ringpuffer 1135 790 9900 Originalteil NEU",
+      "seller_name": "kettenfaenger",
+      "item_price": 10.9,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/187681804880?_skw=1135+790+9900&hash=item2bb2b51250%3Ag%3Azl4AAeSwakpo%7EIuV&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|136203551533|0",
+      "marketplace": "EBAY_NL",
+      "match_type": "EXACT_MPN",
+      "title": "Ammortizzatore anulare 11357909900",
+      "seller_name": "soluzi56",
+      "item_price": 7.6,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.nl/itm/136203551533?_skw=11357909900&hash=item1fb65d432d%3Ag%3AYVsAAeSwHLNogMs9&mkevt=1&mkcid=1&mkrid=1346-53482-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|960196768172|459504724020",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Für Motorsäge Stoßdämpfer Puffer für MS361 MS341 ersetzt 1135 790 9902",
+      "seller_name": "newfamilylife",
+      "item_price": 16.59,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/960196768172?_skw=1135+790+9902&hash=itemdf902ff1ac%3Ag%3AgwUAAeSwLqNq-LH9&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7kGnqIAO4QgGCesuyrKyGIn69pBA9ix4FwHY%2BjYs%2BT6kh%2FR5AHq6nouxCRyTWI1xe9iCThpWCpwtz7o5Mr4DLQiFAVnaz39bzJYgdN5ffeAeNGjuZC9rVuhRItRtBzfeW6vev1fh2vPnNR9MakiHK7UU3fQECVc--WNqv5OR%2F9cPto77vR4dGDnl8UQJIT7m6ACFZGo1DkvYCFGjmpYfpIp4svfCtMgbveAr6%2FVNQzCVt05jiSNcGaObr6BbLJBs1cpvaOzwmT5vUB9aDTXaKtSCWn4yr9zG5NoXUTfJZKqiw%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|257815804851|558358408038",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_PART_NUMBER_WITH_CORROBORATION",
+      "title": "Für MS361 MS341 für Kettensäge Stoßdämpfer Puffer Ersatz 11357909902",
+      "seller_name": "sevenshop888",
+      "item_price": 7.49,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/257815804851?_skw=11357909902&hash=item3c0704fbb3%3Ag%3A%7EvcAAeSwkf9q3RTf&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k69dfx2K44NNqxGPWEYS7UUeg4Df%2BxLPRmz1snozDASVy50sYiywvEPBpj7XDeeRXqpAraD8ljVgG%2BsTAXGSJScDjKFJER%2FHcEKffVjcJ04%2BjfZ%2FQ6HjRgoVooaT33Sou6ytkiXROiGDF7n2jU%2FJsIsHkVVOCU9LXVFcWovY7Of2301saaKX9dF0qlDvlwYprXsegtyz3wgKp6DL7iYfCrYHgjIb06UAzdEeeU9TYi2PaJ35WdxSStW18D%2Fz%2FDSzuiPPSA1PkpZGx%2Bcit8xYr%2B0flnV91eG6Ldx7rekh4V2g%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|257553486028|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Antivibrationshalter Für Freischneider Motorsäge Für STIHL 1135 790 9902",
+      "seller_name": "newgardenstore",
+      "item_price": 12.29,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/257553486028?_skw=11357909902&hash=item3bf76250cc%3Ag%3Ar78AAeSwr0dq30OW&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|195908912302|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "MOTORSÄGE AV-HALTERUNG PUFFERFEDER PASSEND FÜR STIHL MS341 MS361 -- P/N 1135 791 3100",
+      "seller_name": "the-garden-machinery-centre",
+      "item_price": 10.09,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/195908912302?_skw=1135+791+3100&hash=item2d9d14c4ae%3Ag%3AQbIAAOSw9AVnuL9T&amdata=enc%3AAQALAAAA8Of5zIIojhOf%2BkQK%2Bxzjn7k1trVJe3NTDtZ57x0QAdmTWUssqajL7ty7cdxrOQxcFqD0l7DGELg1vN92hlWgNZxF9WrYtd2T4%2ByW7a5M3rzcpYi7CN7KUW1MpUYd3%2BoYesVv79RjFi%2BkNmVjKcsfPR0ErWgHyxjW0xFi5TGUhMdegqRS5h8M4RLmHIrMcYaLDZdewxCAobIXgSo0hJNOIbaY5k6r7rDPTvMDXtyxEZ4KC8yHjRs20yj92f003oB85FmKmcohBmKz%2B1MQLjurofOdl8m6npO%2BGFxIKeIq2MbbvmLhWLoqRBhYlZa5GbupCg%3D%3D&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|336448573574|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "AV-FEDER VORNE FÜR STIHL MS341 MS361 MOTORSÄGEN. 1135 791 3100",
+      "seller_name": "farmandgardenmachinespares",
+      "item_price": 5.99,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/336448573574?_skw=1135+791+3100&hash=item4e55e5d086%3Ag%3A9xoAAOSwuG1cwH7S&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|257553485492|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Antivibrationsfeder für Freischneider M 1135 791 3100 Boccole",
+      "seller_name": "newgardenstore",
+      "item_price": 7.17,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/257553485492?_skw=1135+791+3100&hash=item3bf7624eb4%3Ag%3Ae6oAAeSweo5q4bkL&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|255060855754|0",
+      "marketplace": "EBAY_DE",
+      "match_type": "EXACT_MPN",
+      "title": "Antivibrationszubehör Für Motosega HUSQVARNA MS 341 (MPN 1135 791 3100)",
+      "seller_name": "newgardenstore",
+      "item_price": 6.15,
+      "shipping_cost_nl": null,
+      "currency": "EUR",
+      "ships_to_nl": true,
+      "shipping_status": "SHIPS_TO_NL_CONFIRMED",
+      "affiliate_url": "https://www.ebay.de/itm/255060855754?_skw=1135+791+3100&hash=item3b62cfcbca%3Ag%3ApEgAAeSw0nBq30LQ&mkevt=1&mkcid=1&mkrid=707-53477-19255-0&campid=5339245312&customid=&toolid=10049"
+    }
+  ],
+  "needs_evidence_offers": [
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|116953865363|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 025 Chainsaw  1123 141 3200 Cooling plate",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|286107971563|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl 021 023 025 MS210 MS230 MS250 Chainsaw Cooling Plate 1123 141 3200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|402654666359|0",
+      "marketplace": "EBAY_NL",
+      "title": "1123 141 3200 - STIHL COOLING PLATE - USED FITS 021/023/025/MS 230/250",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|364822594197|0",
+      "marketplace": "EBAY_NL",
+      "title": "OEM STIHL COOLING PLATE  021/023/025/MS 230/250 PN-1123-141-3200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|267310961877|0",
+      "marketplace": "EBAY_NL",
+      "title": "Plaque De Refroidissement STIHL 11231413200 ORIGINALE STIHL - 1123-141-3200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|256999964978|0",
+      "marketplace": "EBAY_NL",
+      "title": "Plaque De Refroidissement STIHL 11231413200 ORIGINALE STIHL - 1123-141-3200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11231413200",
+      "item_id": "v1|136203152681|0",
+      "marketplace": "EBAY_NL",
+      "title": "Piastra di raffreddamento 11231413200",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11239671515",
+      "item_id": "v1|227215633044|0",
+      "marketplace": "EBAY_DE",
+      "title": "ORIGINAL STIHL MS 250 C AUFKLEBER BADGE NEU PT NR 1123 967 1515",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11239671515",
+      "item_id": "v1|227215633044|0",
+      "marketplace": "EBAY_NL",
+      "title": "GENUINE STIHL MS 250 C DECAL BADGE NEW PT NO 1123 967 1515",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|178476374408|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kappe Original Stihl 024, 026, 036, MS240, MS340, MS440 1121-358-2500 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|318545046955|0",
+      "marketplace": "EBAY_DE",
+      "title": "G1 stihl cap 1121-358-2500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|178476374408|0",
+      "marketplace": "EBAY_NL",
+      "title": "Kappe Original Stihl 024, 026, 036, MS240, MS340, MS440 1121-358-2500 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|406750693397|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL OEM POLYMER COVER, PART NUMBER: 1121 358 2500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|134593455514|0",
+      "marketplace": "EBAY_NL",
+      "title": "1121-358-2500 Vent Cup",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|335742185001|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL FUEL TANK VENT COVER 1121-358-2500 024 026 034 036 044 046 088 B60",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11213582500",
+      "item_id": "v1|136203152558|0",
+      "marketplace": "EBAY_NL",
+      "title": "Cuffia 11213582500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|276005361824|0",
+      "marketplace": "EBAY_NL",
+      "title": "Piston Pompe Huile Tronçonneuse Modèles MS290 MS310 ORIGINALE STIHL 11276470602",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11276470602",
+      "item_id": "v1|266378934173|0",
+      "marketplace": "EBAY_NL",
+      "title": "Piston Pompe Huile Tronçonneuse Modèles MS290 MS310 ORIGINALE STIHL 11276470602",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|178456121665|0",
+      "marketplace": "EBAY_DE",
+      "title": "Satz Tuellen Original Stihl MS341, MS361 1135-007-1003 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|284941762081|0",
+      "marketplace": "EBAY_NL",
+      "title": "Aftermarket For Stihl MS341 MS361 Chainsaw Grommet 1135 007 1003",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|284941761252|0",
+      "marketplace": "EBAY_NL",
+      "title": "Aftermarket For Stihl MS361 MS341Chainsaw Grommet OEM 1135 007 1003",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|178456121665|0",
+      "marketplace": "EBAY_NL",
+      "title": "Satz Tuellen Original Stihl MS341, MS361 1135-007-1003 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|127376847077|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 11350071003 1135-007-1003 Satz Tüllen NOS NEU genuine xx32984",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|336394265089|0",
+      "marketplace": "EBAY_NL",
+      "title": "Aftermarket Grommet for Stihl MS341, MS361, MS361C Chainsaw (1135 007 1003)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350071003",
+      "item_id": "v1|136203551502|0",
+      "marketplace": "EBAY_NL",
+      "title": "Serie boccola 11350071003",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11350844100",
+      "item_id": "v1|285902701666|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl MS361 MS341 Chainsaw Shutter 1135 084 4100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351204100",
+      "item_id": "v1|284835177864|0",
+      "marketplace": "EBAY_NL",
+      "title": "For Stihl Chainsaw MS341 MS361 Baffle OEM 1135 120 4100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351209700",
+      "item_id": "v1|178509729569|0",
+      "marketplace": "EBAY_DE",
+      "title": "Satz Pumpenkolben Original Stihl MS341, MS361, MS361C 1135-120-9700 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351209700",
+      "item_id": "v1|178509729569|0",
+      "marketplace": "EBAY_NL",
+      "title": "Satz Pumpenkolben Original Stihl MS341, MS361, MS361C 1135-120-9700 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351218600",
+      "item_id": "v1|286108049596|0",
+      "marketplace": "EBAY_NL",
+      "title": "1.3mm Carburetor Intake Washer Fits Stihl MS361 MS341 Chainsaw 1135 121 8600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351218600",
+      "item_id": "v1|284835159690|0",
+      "marketplace": "EBAY_NL",
+      "title": "For Stihl MS361 MS341 Chainsaw Carburetor Intake Washer 1135 121 8600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351226600",
+      "item_id": "v1|286108050806|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl MS341 MS361 Chainsaw Carburetor Bolt 1135 122 6600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351226600",
+      "item_id": "v1|880082163486|0",
+      "marketplace": "EBAY_NL",
+      "title": "Vis De Carburateur 2 Vis Pour Carburateur Stihl MS361 1135 122 6600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|234960578146|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM MS361 Carburetor Grommet MS 361 341 1135-123-7501 #GM-K2B1",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|285904244024|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl MS341 MS361 Chainsaw Carburetor Gromment 1135 123 7501",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351237501",
+      "item_id": "v1|128035012053|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Grommet. Part 1135 123 7501. See pic.",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351416300",
+      "item_id": "v1|275476496234|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl Luftleitblech Pt Nr. 11351416300",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351416300",
+      "item_id": "v1|284835176983|0",
+      "marketplace": "EBAY_NL",
+      "title": "Air Baffle For Stihl Chainsaw MS341 MS361  OEM 1135 141 6300",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351416300",
+      "item_id": "v1|275476496234|0",
+      "marketplace": "EBAY_NL",
+      "title": "Original Stihl Air Baffle Pt No. 11351416300",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|284835169298|0",
+      "marketplace": "EBAY_NL",
+      "title": "For Stihl MS361 MS341 Chainsaw Throttle Rod Level 1135 182 1500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11351821500",
+      "item_id": "v1|407053909422|0",
+      "marketplace": "EBAY_NL",
+      "title": "For Stihl MS361 MS341 Chainsaw Throttle Rod Level 1135 182 1500",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353500825",
+      "item_id": "v1|404720338566|0",
+      "marketplace": "EBAY_NL",
+      "title": "1135 350 0825 - STIHL TANK HOUSING - USED FITS MS 341/361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|178496049106|0",
+      "marketplace": "EBAY_DE",
+      "title": "Schlauch Original Stihl 044, 046, MS361, MS440, MS341 1135-350-7600 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|317016358161|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl OEM Benzinschlauch MS460 MS440 MS361 MS341 046 044 11353507600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|167359729976|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS460",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325801|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS440",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|384103018547|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Fuel Hose Gas Line OEM MS 361 460 046 440 044 1135-350-7600 1128 #GM-F7A1",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|277123217290|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Fuel Hose for MS341 MS361 MS440 MS460 Chainsaw Tank Line OEM 1135 350 7600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|178496049106|0",
+      "marketplace": "EBAY_NL",
+      "title": "Schlauch Original Stihl 044, 046, MS361, MS440, MS341 1135-350-7600 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|316714415209|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fuel hose Stihl 1135 350 7600; 1128 Gas line for chainsaw MS 341 361 440",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|204037441543|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Fuel Hose Gas Line For Chainsaw MS 361 460 046 440 044 #1135-350-7600 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|316961078935|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl OEM Fuel Hose MS460 MS440 MS361 MS341 046 044 1135 350 7600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|316810405770|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl OEM Fuel Hose MS460 MS440 MS361 MS341 046 044 1135 350 7600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|317016358161|0",
+      "marketplace": "EBAY_NL",
+      "title": "Genuine Stihl OEM Fuel Hose MS460 MS440 MS361 MS341 046 044 11353507600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326141|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge 044",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325907|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS341",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326099|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS461",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|167359729976|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS460",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325801|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS440",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325831|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|277516269383|0",
+      "marketplace": "EBAY_NL",
+      "title": "Tubo flessibile Stihl 11353507600 ORIGINALE STIHL - 1135-350-7600",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326031|0",
+      "marketplace": "EBAY_NL",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge 046",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640500",
+      "item_id": "v1|235093419714|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Bucking Spike Outer Dawg OEM 1135-664-0500 #GM-C2E5",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|196295709892|0",
+      "marketplace": "EBAY_DE",
+      "title": "11356640501 ARPIONE ROSTRO ARTIGLIO Motosege STIHL 029 MS 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|235431564287|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Bucking Spike Inner Dawg OEM 1135-664-0501 #GM-F3C5",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|196259156186|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 ARPIONE ROSTRO ARTIGLIO MOTOSEGA STIHL 029 MS 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|196295522114|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 HAMEÇON POINTE ARTICULÉE MOTOSEIGNE STIHL 029 MS 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|186693306724|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 Trace RAM Claw Chainsaw STIHL 029 Ms 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|196295709892|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 ARPIONE ROSTRO ARTIGLIO Motosege STIHL 029 MS 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|186693382583|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 ARPIONE ROSTRO ARTIGLIO Motosege STIHL 029 MS 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11356640501",
+      "item_id": "v1|176585027740|0",
+      "marketplace": "EBAY_NL",
+      "title": "11356640501 Ice-Sûr Intérim Artiglio Scie à Chaîne STIHL 029 Ms 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|397629128878|0",
+      "marketplace": "EBAY_DE",
+      "title": "Original Stihl MS 341 MS 361 Handschutz Kettenbremshebel 1135 790 9100 MS361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|158270249895|0",
+      "marketplace": "EBAY_DE",
+      "title": "Bremsgriff 1135 790 9100 Für Stihl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|128108133255|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettenbremsgriff für -Kettensäge MS361 # 1135 790 9100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|178536431336|0",
+      "marketplace": "EBAY_DE",
+      "title": "Handschutz Handbremse Original Stihl MS341, MS361 1135-790-9100NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|147482468805|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettenbremsgriffschutz für  MS341 MS361 KettensäGen, Ersetzt 1135 790 9100 L2J8",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|318841615788|0",
+      "marketplace": "EBAY_DE",
+      "title": "1 x Bremsgriff 1135 790 9100 für Stihl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|178542609811|0",
+      "marketplace": "EBAY_DE",
+      "title": "Kettenbremsgriff für -Kettensäge MS361 # 1135 790 9100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|306857340768|0",
+      "marketplace": "EBAY_DE",
+      "title": "NEU Original Stihl MS 341 MS 361 MS 361 C Handschutz  11357909100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|257553487868|0",
+      "marketplace": "EBAY_DE",
+      "title": "Handschutz Für Motosege STIHL MS 341 - MS 361 1135-790-9100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|385916933233|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM MS361 Brake Handle MS 361 1135-790-9100  #GM-K8A2",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|840099548087|0",
+      "marketplace": "EBAY_NL",
+      "title": "1135 790 9100 Chain Brake Handle Replacement For STIHL MS341 MS361 Chainsaw Part",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|377480351947|0",
+      "marketplace": "EBAY_NL",
+      "title": "1 x Brake Handle 1135 790 9100 For Stihl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|158270249895|0",
+      "marketplace": "EBAY_NL",
+      "title": "Bremsgriff 1135 790 9100 Für Stihl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|397629128878|0",
+      "marketplace": "EBAY_NL",
+      "title": "Original Stihl MS 341 MS 361 Handschutz Kettenbremshebel 1135 790 9100 MS361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|800884632560|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM MS361 Brake Handle MS 361 1135-790-9100  New",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|198777734215|0",
+      "marketplace": "EBAY_NL",
+      "title": "2X Chain Brake Handle Guard for  MS341 MS361 , Replaces 1135 790 9100 S3Q88322",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|840088028647|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Guard for  MS341 MS361 , Replaces 1135 790 9100 B9I34295",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|406941485797|0",
+      "marketplace": "EBAY_NL",
+      "title": "1*Chain Brake Handle For STIHL MS341 MS361 Chainsaw Part OEM:1135 790 9100 B",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|377480708592|0",
+      "marketplace": "EBAY_NL",
+      "title": "Brake Handle 1135 790 9100 For Stihl",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|407060502825|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard #11357909100 For Stihl MS341 MS361 MS341C MS361C",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|137294617212|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard 11357909100 For Stihl MS341 MS361 MS341C MS361C US",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|358628800874|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard For Stihl MS341 MS361 MS341C MS361C 11357909100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|318372360244|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard For Stihl MS341 MS361 MS341C MS361C #11357909100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|168419503509|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard For Stihl MS341 MS361 MS341C MS361C #11357909100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|336871561267|0",
+      "marketplace": "EBAY_NL",
+      "title": "S194  Stihl OEM 1135-790-9100  Brake Handle  Hand Guard MS 341 361",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|406718912243|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM Handguard for MS 361, 341 Chainsaws (11357909100)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|324240545295|0",
+      "marketplace": "EBAY_NL",
+      "title": "Chain Brake Handle Hand Guard For Stihl MS341 MS361 Replaces 1135 790 9100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909100",
+      "item_id": "v1|255234872304|0",
+      "marketplace": "EBAY_NL",
+      "title": "Protection Des Mains Pour Tronçonneuse STIHL MS 341 - MS 361 - 1135-790-9100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|178496131082|0",
+      "marketplace": "EBAY_DE",
+      "title": "Ringpuffer Original Stihl MS341, MS361, MS361C 1135-790-9900 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|235918777516|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl MS361 Annular Buffer Mount OEM MS 361 341  1135-790-9900 #GM-T6D1",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|178496131082|0",
+      "marketplace": "EBAY_NL",
+      "title": "Ringpuffer Original Stihl MS341, MS361, MS361C 1135-790-9900 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|406753414016|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL OEM ANNULAR BUFFER, PART NUMBER: 1135 790 9900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|226643432205|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Annular Buffer Mount #11357909900",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|178469781749|0",
+      "marketplace": "EBAY_DE",
+      "title": "Ringpuffer Original Stihl MS341, MS361, MS361C 1135-790-9902 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|273777524363|0",
+      "marketplace": "EBAY_DE",
+      "title": "Vibrationsdämpfer STIHL vgl. Mod. MS341 MS361 vgl. Orig. 11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|168687932029|0",
+      "marketplace": "EBAY_DE",
+      "title": "Schwingungsdämpfer Vibrationsdämpfer Griff für Stihl MS 341 MS 361  11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|235918783182|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl OEM MS361 Annular Buffer Mount MS 361 341  1135-790-9902 #GM-T8A1",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|285904244389|0",
+      "marketplace": "EBAY_NL",
+      "title": "Fits Stihl MS341 MS361 Chainsaw AV Annular Buffer Shock Mount 1135 790 9902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|178469781749|0",
+      "marketplace": "EBAY_NL",
+      "title": "Ringpuffer Original Stihl MS341, MS361, MS361C 1135-790-9902 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|157933065635|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl Part # 1135 790 9902   Annular Buffer Mount",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|276481304129|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL Genuine MS341, MS361 Plated AV Buffer  # 1135 790 9902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|146916803770|0",
+      "marketplace": "EBAY_NL",
+      "title": "Ammortizzatore Motosega Stihl MS341, MS361 -Adattabile-Antivibrante-11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|171203875463|0",
+      "marketplace": "EBAY_NL",
+      "title": "Annular Buffer for STIHL MS341, MS 341-Z, MS361, MS 361 C [#11357909902]",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|263201111607|0",
+      "marketplace": "EBAY_NL",
+      "title": "STIHL SHOCK MOUNT BUFFER FITS MS361 MS341 SAWS REPLACES 11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|116388021496|0",
+      "marketplace": "EBAY_NL",
+      "title": "Annular Buffer/Rubber Mount for Stihl MS341, MS361 - 1135 790 9902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|151314920480|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW REPLAC STIHL SHOCK MOUNT BUFFER FITS MS361 MS341 SAWS 11357909902 20950 BTT",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|257815804851|558358408038",
+      "marketplace": "EBAY_NL",
+      "title": "For MS361 MS341 For Chainsaw Shock Absorber Buffer Replacement 11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|263353777539|0",
+      "marketplace": "EBAY_NL",
+      "title": "Antivibrant Débroussailleuse Tronçonneuse Pour STIHL 1135 790 9902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357909902",
+      "item_id": "v1|273777524363|0",
+      "marketplace": "EBAY_NL",
+      "title": "Vibrationsdämpfer STIHL vgl. Mod. MS341 MS361 vgl. Orig. 11357909902",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|178509745283|0",
+      "marketplace": "EBAY_DE",
+      "title": "Feder Original Stihl MS341, MS361, MS341-Z, MS361-Z 1135-791-3100 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|147650889634|0",
+      "marketplace": "EBAY_DE",
+      "title": "Neuer Stihl MS 341 / 361 Feder Ref: 1135-791-3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|164378610047|0",
+      "marketplace": "EBAY_DE",
+      "title": "2xOriginal Stihl Feder 1135 791 3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|168688022852|0",
+      "marketplace": "EBAY_DE",
+      "title": "Schwingungsdämpfer Vibrationsdämpfer für Stihl MS 341 MS 361  11357913100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|283429928347|0",
+      "marketplace": "EBAY_DE",
+      "title": "Vibrationsdämpfer Antivibration STIHL vgl. Mod. MS 361 vgl. Orig. 11357913100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|305776746160|0",
+      "marketplace": "EBAY_DE",
+      "title": "NEU Original Stihl MS 341 MS 361 AV Feder 1135 791 3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|396656324360|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl 11357913100 / Feder",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|353623029377|0",
+      "marketplace": "EBAY_DE",
+      "title": "STIHL 11357913100 ANTI VIB SPRING MOUNT OEM ORIGINAL MS361 M341 AV",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|195908912302|0",
+      "marketplace": "EBAY_NL",
+      "title": "CHAINSAW AV MOUNT BUFFER SPRING FITS STIHL MS341 MS361 -- P/N 1135 791 3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|324258337164|0",
+      "marketplace": "EBAY_NL",
+      "title": "Handle Spring AV Mount Fits Stihl MS361 MS361C MS341 Chainsaw 1135-791-3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|235918770218|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl MS361 AV Buffer Spring Mount OEM MS 361 341  1135-791-3100  #GM-T5A4",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|178509745283|0",
+      "marketplace": "EBAY_NL",
+      "title": "Feder Original Stihl MS341, MS361, MS341-Z, MS361-Z 1135-791-3100 NEU OVP",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|336448573574|0",
+      "marketplace": "EBAY_NL",
+      "title": "FRONT AV SPRING FOR STIHL MS341 MS361 CHAINSAWS. 1135 791 3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|195951862643|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 1135 791 3100 Spring for MS 341, 361 OEM (2 pcs)",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|147650889634|0",
+      "marketplace": "EBAY_NL",
+      "title": "Neuer Stihl MS 341 / 361 Feder Ref: 1135-791-3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|146916959210|0",
+      "marketplace": "EBAY_NL",
+      "title": "Ammortizzatore Motosega Stihl MS341, MS361 -Adattabile-Antivibrante-11357913100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|174177872176|0",
+      "marketplace": "EBAY_NL",
+      "title": "Spring AV Buffer for STIHL MS341, MS 341-Z, MS361, MS 361 C [#11357913100]",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|185597418950|0",
+      "marketplace": "EBAY_NL",
+      "title": "NOS Genuine STIHL Handle Spring MS341 MS361 1135-791-3100 OEM",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|172218554741|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW BBT SHOCK MOUNT FITS STIHL MS341 MS361 CHAINSAWS 11357913100 20526",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|283429928347|0",
+      "marketplace": "EBAY_NL",
+      "title": "Vibrationsdämpfer Antivibration STIHL vgl. Mod. MS 361 vgl. Orig. 11357913100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|307165950581|0",
+      "marketplace": "EBAY_NL",
+      "title": "NOS Genuine STIHL Handle Spring MS341 MS361 1135-791-3100 OEM H78",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|263207133251|0",
+      "marketplace": "EBAY_NL",
+      "title": "Molle Antivibrante Débroussailleuse Tronçonneuse Pour STIHL 1135 791 3100",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    },
+    {
+      "part_number": "11357913100",
+      "item_id": "v1|396656324360|0",
+      "marketplace": "EBAY_NL",
+      "title": "Stihl 11357913100 / Feder",
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "evidence_gaps": [
+        "LISTING_MPN",
+        "MODEL_COMPATIBILITY_CORROBORATION"
+      ]
+    }
+  ],
+  "rejected_offers": [
+    {
+      "part_number": "11239671514",
+      "item_id": "v1|306713839478|0",
+      "marketplace": "EBAY_DE",
+      "title": "Stihl Typenschild MS 250 11239671514",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11350202606",
+      "item_id": "v1|376960337139|645481575455",
+      "marketplace": "EBAY_DE",
+      "title": "Kurbelgehäuse Motorgehäuse für Kettensäge Stihl MS 341 MS 361 ( 1135 020 2606",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11350202606",
+      "item_id": "v1|376960337139|645481575455",
+      "marketplace": "EBAY_NL",
+      "title": "Kurbelgehäuse Motorgehäuse für Kettensäge Stihl MS 341 MS 361 ( 1135 020 2606",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325907|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS341",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769325831|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS361",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326099|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge MS461",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326031|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge 046",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11353507600",
+      "item_id": "v1|156769326141|0",
+      "marketplace": "EBAY_DE",
+      "title": "Benzinschlauch Stihl Vgl.Nr.1135 350 7600, 11353507600 f. Motorsäge 044",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    },
+    {
+      "part_number": "11357909900",
+      "item_id": "v1|235358882901|0",
+      "marketplace": "EBAY_NL",
+      "title": "NEW OEM STIHL ANNULAR AV BUFFER MOUNT 1135-790-9900, 9902 MS341 MS361 C —B7",
+      "primary_reason": "CONFLICTING_MPN",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ]
+    }
+  ],
+  "per_part": [
+    {
+      "part_number": "42281213301",
+      "part_name": "Stihl Throttle Shutter",
+      "models": [
+        "fc_55",
+        "fs_38",
+        "fs_45",
+        "fs_55",
+        "hl_45",
+        "hs_45"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "95030039848",
+      "part_name": "Stihl Grooved Ball Bearing 609-2Z",
+      "models": [
+        "fcb_km",
+        "fs_55",
+        "fs_56",
+        "fs_70",
+        "fsa_120_0",
+        "fsa_80_0"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009672128",
+      "part_name": "Stihl Trade Mark",
+      "models": [
+        "fr_85",
+        "fs_75",
+        "fs_80",
+        "fs_85",
+        "hs_75",
+        "hs_80",
+        "hs_85"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 0,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11231413200",
+      "part_name": "Stihl Cooling Plate",
+      "models": [
+        "023",
+        "025",
+        "ms_230",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 33,
+      "client_passed": 11,
+      "client_rejected": 22,
+      "active": 4,
+      "needs_evidence": 7,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 7
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11239671514",
+      "part_name": "Stihl Model Plate Ms 250",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 1,
+      "client_rejected": 8,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 1,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "REJECT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "11239671515",
+      "part_name": "Stihl Model Plate Ms 250 C",
+      "models": [
+        "021",
+        "023",
+        "025",
+        "ms_250"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 9,
+      "client_passed": 3,
+      "client_rejected": 6,
+      "active": 1,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11213582500",
+      "part_name": "Stihl Cap",
+      "models": [
+        "024",
+        "026",
+        "034",
+        "036",
+        "044",
+        "046",
+        "088"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 34,
+      "client_passed": 12,
+      "client_rejected": 22,
+      "active": 5,
+      "needs_evidence": 7,
+      "rejected": 0,
+      "evidence_enriched": 5,
+      "evidence_reused": 3,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 7
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11281215403",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "029",
+        "039",
+        "044",
+        "046",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "00009031506",
+      "part_name": "Stihl Hose Tie",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 13,
+      "client_passed": 1,
+      "client_rejected": 12,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11271226800",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "029",
+        "039",
+        "fs_500",
+        "fs_550",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 5,
+      "client_passed": 1,
+      "client_rejected": 4,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11276470602",
+      "part_name": "Stihl Pump Piston 0.88Mm Stroke",
+      "models": [
+        "029",
+        "039",
+        "ms_290",
+        "ms_310",
+        "ms_311",
+        "ms_390",
+        "ms_391"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 6,
+      "client_rejected": 9,
+      "active": 4,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11281226803",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "029",
+        "039",
+        "fs_500",
+        "fs_550",
+        "ms_290",
+        "ms_310",
+        "ms_390"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350071003",
+      "part_name": "Stihl Set Of Grommets",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 32,
+      "client_passed": 11,
+      "client_rejected": 21,
+      "active": 4,
+      "needs_evidence": 7,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 7
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11350202606",
+      "part_name": "Stihl Crankcase, Fan Side",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 3,
+      "client_rejected": 3,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 2,
+      "evidence_enriched": 1,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "CONFLICTING_MPN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "CONFLICTING_MPN"
+    },
+    {
+      "part_number": "11350202909",
+      "part_name": "Stihl Crankcase",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350202913",
+      "part_name": "Stihl Crankcase",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 1,
+      "client_rejected": 15,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350341500",
+      "part_name": "Stihl Piston Pin 11X8X33",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 14,
+      "client_passed": 0,
+      "client_rejected": 14,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11350844100",
+      "part_name": "Stihl Shutter",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 3,
+      "client_rejected": 8,
+      "active": 2,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11350847800",
+      "part_name": "Stihl Segment",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 4,
+      "client_rejected": 3,
+      "active": 4,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351204100",
+      "part_name": "Stihl Intake Baffle",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 32,
+      "client_passed": 7,
+      "client_rejected": 25,
+      "active": 6,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 6,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351209700",
+      "part_name": "Stihl Pump Piston Kit",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 6,
+      "client_passed": 2,
+      "client_rejected": 4,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351215401",
+      "part_name": "Stihl Valve Jet",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 7,
+      "client_passed": 1,
+      "client_rejected": 6,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351218600",
+      "part_name": "Stihl Washer",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 11,
+      "client_passed": 3,
+      "client_rejected": 8,
+      "active": 1,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351226600",
+      "part_name": "Stihl Collar Screw",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 4,
+      "client_passed": 2,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351226800",
+      "part_name": "Stihl Low Speed Screw",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351237501",
+      "part_name": "Stihl Grommet",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 10,
+      "client_passed": 6,
+      "client_rejected": 4,
+      "active": 3,
+      "needs_evidence": 3,
+      "rejected": 0,
+      "evidence_enriched": 3,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 3
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351416300",
+      "part_name": "Stihl Air Baffle",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 22,
+      "client_passed": 5,
+      "client_rejected": 17,
+      "active": 2,
+      "needs_evidence": 3,
+      "rejected": 0,
+      "evidence_enriched": 2,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 3
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11351605450",
+      "part_name": "Stihl Brake Band",
+      "models": [
+        "ms_361",
+        "ms_362"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 1,
+      "client_passed": 0,
+      "client_rejected": 1,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11351821500",
+      "part_name": "Stihl Throttle Rod",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 23,
+      "client_passed": 6,
+      "client_rejected": 17,
+      "active": 4,
+      "needs_evidence": 2,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 2
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11353500825",
+      "part_name": "Stihl Tank Housing",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 1,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "REVIEW",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11353507600",
+      "part_name": "Stihl Hose",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 58,
+      "client_passed": 27,
+      "client_rejected": 31,
+      "active": 2,
+      "needs_evidence": 20,
+      "rejected": 5,
+      "evidence_enriched": 2,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 20,
+        "CONFLICTING_MPN": 5
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11354403000",
+      "part_name": "Stihl Wiring Harness",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 28,
+      "client_passed": 4,
+      "client_rejected": 24,
+      "active": 4,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 2,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11356507750",
+      "part_name": "Stihl Chain Catcher",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 3,
+      "client_passed": 1,
+      "client_rejected": 2,
+      "active": 1,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11356566600",
+      "part_name": "Stihl Sleeve",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 2,
+      "client_passed": 0,
+      "client_rejected": 2,
+      "active": 0,
+      "needs_evidence": 0,
+      "rejected": 0,
+      "evidence_enriched": 0,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {},
+      "decision": "NO_LISTING_FOUND",
+      "reason_codes": [],
+      "first_blocking_step": null
+    },
+    {
+      "part_number": "11356640500",
+      "part_name": "Stihl Bumper Spike",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 15,
+      "client_passed": 5,
+      "client_rejected": 10,
+      "active": 4,
+      "needs_evidence": 1,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11356640501",
+      "part_name": "Stihl Bumper Spike",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 21,
+      "client_passed": 9,
+      "client_rejected": 12,
+      "active": 1,
+      "needs_evidence": 8,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 8
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11357909100",
+      "part_name": "Stihl Hand Guard",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 46,
+      "client_passed": 29,
+      "client_rejected": 17,
+      "active": 1,
+      "needs_evidence": 28,
+      "rejected": 0,
+      "evidence_enriched": 1,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 28
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11357909900",
+      "part_name": "Stihl Annular Buffer",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 16,
+      "client_passed": 8,
+      "client_rejected": 8,
+      "active": 2,
+      "needs_evidence": 5,
+      "rejected": 1,
+      "evidence_enriched": 2,
+      "evidence_reused": 1,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 5,
+        "CONFLICTING_MPN": 1
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [
+        "CONFLICTING_MPN",
+        "CONTRADICTORY_MATCH"
+      ],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11357909902",
+      "part_name": "Stihl Annular Buffer",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 50,
+      "client_passed": 19,
+      "client_rejected": 31,
+      "active": 3,
+      "needs_evidence": 16,
+      "rejected": 0,
+      "evidence_enriched": 3,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 16
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    },
+    {
+      "part_number": "11357913100",
+      "part_name": "Stihl Spring",
+      "models": [
+        "ms_341",
+        "ms_361"
+      ],
+      "gsc_priority_model": true,
+      "has_amazon_direct_link": false,
+      "has_no_direct_link_anywhere": true,
+      "alternative_search_hints": [],
+      "searched_marketplaces": [
+        "EBAY_DE",
+        "EBAY_NL"
+      ],
+      "raw_results": 51,
+      "client_passed": 27,
+      "client_rejected": 24,
+      "active": 4,
+      "needs_evidence": 23,
+      "rejected": 0,
+      "evidence_enriched": 4,
+      "evidence_reused": 0,
+      "api_errors": [],
+      "unfinished": false,
+      "blocking_steps": {
+        "UNKNOWN": 23
+      },
+      "decision": "ACCEPT",
+      "reason_codes": [],
+      "first_blocking_step": "UNKNOWN"
+    }
+  ],
+  "evidence_registry": {
+    "size": 5407,
+    "hits": 17,
+    "misses": 121,
+    "recorded": 121
+  }
+}
