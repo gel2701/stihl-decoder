@@ -1,0 +1,661 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "77E",
+  "generated_at_utc": "2026-11-12T23:34:48.429Z",
+  "applied": false,
+  "database_mutated": false,
+  "registry_policy": {
+    "max_active_offers_allowed": 100,
+    "max_active_offers_per_marketplace": {
+      "amazon.nl": 100,
+      "amazon.de": 50
+    },
+    "active_before": 99,
+    "active_after": 86,
+    "active_nl_before": 53,
+    "active_de_before": 46
+  },
+  "admission_rules": {
+    "strict_admission": "Every new promotion needs at least one source that is neither the candidate's own Amazon listing nor a bare manufacturer URL. Existing listing-class ACTIVE offers are not touched retroactively.",
+    "known_inconsistency": "The registry still contains ACTIVE offers whose only evidence is their own Amazon listing (legacy). That is reported, not silently extended.",
+    "caps": "Total ACTIVE <= 100 and per-marketplace caps are hard limits; both are asserted by existing tests."
+  },
+  "summary": {
+    "processed": 25,
+    "already_active": 1,
+    "ready_to_activate": 0,
+    "ready_but_cap_blocked": 0,
+    "activated": 0,
+    "needs_evidence": 22,
+    "rejected": 2,
+    "active_offers_after": 99
+  },
+  "activation": {
+    "requested": false,
+    "attempted": [],
+    "activated": [],
+    "blocked": []
+  },
+  "results": [
+    {
+      "rank": 1,
+      "part_number": "42821410300",
+      "part_name": "Stihl Air Filter",
+      "primary_model": "BR 600",
+      "models": [
+        "BR 600"
+      ],
+      "catalog_present": true,
+      "offers_found": 1,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "Two-Gate passes, but the ASIN identity is not admissible under the repository evidence rules.",
+      "gate_1": true,
+      "gate_2": true,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "ASIN_IDENTITY_UNVERIFIED: SELF_CERTIFIED_ASIN_IDENTITY.",
+        "PRIOR_AUDIT_MARKED_UNPROVEN: the stored record still carries an unproven/uncorroborated identity reason."
+      ],
+      "candidate": {
+        "asin": "B079DM989K",
+        "marketplace": "amazon.nl",
+        "status": "RESEARCH_REQUIRED",
+        "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+        "verification_date": "2026-11-09",
+        "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+        "evidence_urls": [
+          "https://www.amazon.nl/dp/B079DM989K",
+          "https://www.stihl.nl/nl/p/bladblazers-bladzuigers-toebehoren-luchtfilters-1820"
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "part_number": "11280292301",
+      "part_name": "Stihl Cylinder Gasket 0.5Mm",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440"
+      ],
+      "catalog_present": true,
+      "offers_found": 1,
+      "active_offers": [],
+      "decision": "REJECTED",
+      "decision_reason": "Two-Gate failed on product identity/consistency.",
+      "gate_1": false,
+      "gate_2": true,
+      "gate_errors": [
+        "SUSPICIOUS_SEQUENTIAL_GTIN: GTIN \"4063212105105\" matches an uncorroborated sequential generator pattern."
+      ],
+      "admission_basis": null,
+      "required_evidence": [
+        "SUSPICIOUS_SEQUENTIAL_GTIN: GTIN \"4063212105105\" matches an uncorroborated sequential generator pattern."
+      ],
+      "candidate": {
+        "asin": "B08HQ8D33X",
+        "marketplace": "amazon.nl",
+        "status": "RESEARCH_REQUIRED",
+        "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+        "verification_date": "2026-11-10",
+        "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+        "evidence_urls": [
+          "https://www.amazon.nl/dp/B08HQ8D33X",
+          "https://www.amazon.nl/dp/B08HQ8D33X"
+        ]
+      }
+    },
+    {
+      "rank": 3,
+      "part_number": "11281201602",
+      "part_name": "Stihl Air Filter",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440"
+      ],
+      "catalog_present": true,
+      "offers_found": 1,
+      "active_offers": [],
+      "decision": "REJECTED",
+      "decision_reason": "Two-Gate failed on product identity/consistency.",
+      "gate_1": false,
+      "gate_2": true,
+      "gate_errors": [
+        "SUSPICIOUS_SEQUENTIAL_GTIN: GTIN \"4063212104979\" matches an uncorroborated sequential generator pattern."
+      ],
+      "admission_basis": null,
+      "required_evidence": [
+        "SUSPICIOUS_SEQUENTIAL_GTIN: GTIN \"4063212104979\" matches an uncorroborated sequential generator pattern."
+      ],
+      "candidate": {
+        "asin": "B08K8Y1G7W",
+        "marketplace": "amazon.nl",
+        "status": "RESEARCH_REQUIRED",
+        "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+        "verification_date": "2026-11-10",
+        "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+        "evidence_urls": [
+          "https://www.amazon.nl/dp/B08K8Y1G7W",
+          "https://www.amazon.nl/dp/B08K8Y1G7W"
+        ]
+      }
+    },
+    {
+      "rank": 4,
+      "part_number": "11280802104",
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 5,
+      "part_number": "00004007000",
+      "part_name": "Spark plug NGK BPMR7A",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 170",
+        "MS 461",
+        "MS 390",
+        "MS 361",
+        "HS 45",
+        "MS 250"
+      ],
+      "catalog_present": true,
+      "offers_found": 2,
+      "active_offers": [
+        {
+          "asin": "B001RM8J76",
+          "marketplace": "amazon.nl",
+          "tag": "srihldecoder2-21"
+        }
+      ],
+      "decision": "ALREADY_ACTIVE",
+      "decision_reason": "Already has 1 direct ACTIVE offer(s).",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [],
+      "candidate": null
+    },
+    {
+      "rank": 6,
+      "part_number": "11300074101",
+      "part_name": "Service Kit 7 (Air Filter Fleece, Spark Plug Bosch WSR6F, Fuel Pickup Body)",
+      "primary_model": "MS 170",
+      "models": [
+        "MS 170"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 7,
+      "part_number": "11300074103",
+      "part_name": "Service Kit 45 (Air Filter Fleece, Spark Plug Bosch WSR6F, Fuel Pickup Body)",
+      "primary_model": "MS 170",
+      "models": [
+        "MS 170"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 8,
+      "part_number": "11281903400",
+      "part_name": "Stihl 11281903400 Starter Grip Elastostart 3.5mm for MS390 MS400 MS440 MS441 MS460 MS500i",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 461",
+        "MS 390",
+        "MS 361"
+      ],
+      "catalog_present": true,
+      "offers_found": 1,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "Two-Gate passes, but the ASIN identity is not admissible under the repository evidence rules.",
+      "gate_1": true,
+      "gate_2": true,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "ASIN_IDENTITY_UNVERIFIED: SELF_CERTIFIED_ASIN_IDENTITY.",
+        "PRIOR_AUDIT_MARKED_UNPROVEN: the stored record still carries an unproven/uncorroborated identity reason."
+      ],
+      "candidate": {
+        "asin": "B079DNL88M",
+        "marketplace": "amazon.nl",
+        "status": "RESEARCH_REQUIRED",
+        "evidence_classification": "AMAZON_LISTING_COMPATIBLE",
+        "verification_date": "2026-11-10",
+        "shipping_to_nl_status": "SHIPS_TO_NL_CONFIRMED",
+        "evidence_urls": [
+          "https://www.amazon.nl/dp/B079DNL88M",
+          "https://www.amazon.nl/dp/B079DNL88M"
+        ]
+      }
+    },
+    {
+      "rank": 9,
+      "part_number": "11300802110",
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "primary_model": "MS 170",
+      "models": [
+        "MS 170"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 10,
+      "part_number": "42411200606",
+      "part_name": "Stihl 42411200606 Carburetor C1M-S228B for SH 86 Vacuum Shredder / BG 86 Blower",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 11,
+      "part_number": "42411401002",
+      "part_name": "Stihl Filter Cover",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 12,
+      "part_number": "42411402800",
+      "part_name": "Stihl Filter Housing",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 13,
+      "part_number": "42411402803",
+      "part_name": "Stihl Filter Housing",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 14,
+      "part_number": "42411404401",
+      "part_name": "Stihl Air Filter",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 15,
+      "part_number": "42414051000",
+      "part_name": "Stihl Spark Plug Boot",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 16,
+      "part_number": "11300201207",
+      "part_name": "Stihl Cylinder And Piston 37Mm",
+      "primary_model": "MS 170",
+      "models": [
+        "MS 170"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 17,
+      "part_number": "11201958200",
+      "part_name": "Stihl 11201958200 Starter Rope 3 x 1060mm for BT 45 FS 55 BG 86",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86",
+        "HS 45"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 18,
+      "part_number": "42410802110",
+      "part_name": "Stihl Fan Housing With Rewind Starter",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 19,
+      "part_number": "42414001320",
+      "part_name": "Stihl Ignition Module",
+      "primary_model": "BG 86",
+      "models": [
+        "BG 86"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 20,
+      "part_number": "00001410601",
+      "part_name": "Stihl Prefilter",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 461"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 21,
+      "part_number": "00006421239",
+      "part_name": "Stihl 00006421239 Rim Sprocket .325\" 9T",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 461",
+        "MS 361"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 22,
+      "part_number": "11226480403",
+      "part_name": "Stihl Chain Sprocket Cover",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 461"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 23,
+      "part_number": "11256401701",
+      "part_name": "Stihl Chain Sprocket Cover",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 24,
+      "part_number": "11280071000",
+      "part_name": "Stihl 11280071000 Rim Sprocket Kit Chainsaw Parts 3/8\" 7T MS361 / MS361C MS440 MS460  MS362 / MS362C MS441 / MS441C",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 361"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    },
+    {
+      "rank": 25,
+      "part_number": "11280071001",
+      "part_name": "Stihl Rim Sprocket Kit 3/8\" 8T",
+      "primary_model": "MS 440",
+      "models": [
+        "MS 440",
+        "MS 361"
+      ],
+      "catalog_present": true,
+      "offers_found": 0,
+      "active_offers": [],
+      "decision": "NEEDS_EVIDENCE",
+      "decision_reason": "NO_CANDIDATE: no stored offer for this part in any marketplace.",
+      "gate_1": null,
+      "gate_2": null,
+      "gate_errors": [],
+      "admission_basis": null,
+      "required_evidence": [
+        "Find an authorised product source whose listing names this exact STIHL part number, then record the ASIN evidence."
+      ],
+      "candidate": null
+    }
+  ]
+}
