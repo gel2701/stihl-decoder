@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { resolveImportedMyStihlSerial } from './ImportedMyStihlSerialResolver.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -51,6 +52,6 @@ export class OfficialSerialAnchorResolver {
     // 3. Check cached file data/official_serial_anchors.json
     const defaultAnchors = loadDefaultOfficialAnchors();
     const match = defaultAnchors.find(a => a.serial_number === serialStr);
-    return match || null;
+    return match || resolveImportedMyStihlSerial(serialStr, database);
   }
 }
