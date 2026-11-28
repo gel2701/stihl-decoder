@@ -109,4 +109,38 @@ test.describe('Phase 91 Model Recovery & Machine Passport Journeys', () => {
 
     gates.assertClean('Phase 91 Shareable Passport Journey');
   });
+  test('Mobile passport form scrolls to the save action on a short touchscreen viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 640 });
+    await page.goto('/stihl-paspoort/');
+    const cookieReject = page.locator('#cookie-consent-banner button', { hasText: /Weiger|Sluit|Accepteren/i }).first();
+    if (await cookieReject.isVisible({ timeout: 500 }).catch(() => false)) await cookieReject.click();
+
+    await page.locator('#btn-open-add').click();
+    const modal = page.locator('#modal-add');
+    await expect(modal).toBeVisible();
+
+    const scrollRegion = modal.locator(':scope > div');
+    const before = await scrollRegion.evaluate(el => ({
+      scrollHeight: el.scrollHeight,
+      clientHeight: el.clientHeight,
+      top: el.getBoundingClientRect().top
+    }));
+    expect(before.scrollHeight).toBeGreaterThan(before.clientHeight);
+    expect(before.top).toBeGreaterThanOrEqual(0);
+
+    await scrollRegion.evaluate(el => { el.scrollTop = el.scrollHeight; });
+    const after = await scrollRegion.evaluate(el => ({
+      scrollTop: el.scrollTop,
+      bottom: el.getBoundingClientRect().bottom
+    }));
+    expect(after.scrollTop).toBeGreaterThan(0);
+    expect(after.bottom).toBeLessThanOrEqual(640);
+    await expect(page.locator('#form-add-machine button[type="submit"]')).toBeInViewport();
+
+    await page.locator('#select-model').selectOption('ms-260');
+    await page.locator('#check-confirm-model').check();
+    await page.locator('#form-add-machine button[type="submit"]').click();
+    await expect(page.locator('#dossier-grid')).toContainText('MS 260');
+  });
+
 });
