@@ -119,7 +119,7 @@ test.describe('Phase 91 Model Recovery & Machine Passport Journeys', () => {
     const modal = page.locator('#modal-add');
     await expect(modal).toBeVisible();
 
-    const scrollRegion = modal.locator('> div');
+    const scrollRegion = modal.locator(':scope > div');
     const before = await scrollRegion.evaluate(el => ({
       scrollHeight: el.scrollHeight,
       clientHeight: el.clientHeight,
