@@ -337,8 +337,8 @@ export function renderPassportHubHtml({ intent, database, baseUrl, seoMetaHtml, 
   </main>
 
   <!-- Add Machine Modal -->
-  <div id="modal-add" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto">
+  <div id="modal-add" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto" style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
+    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl max-w-lg w-full min-h-0 p-5 sm:p-6 space-y-4 shadow-2xl relative my-0 sm:my-auto overflow-y-auto" style="max-height: calc(100dvh - 1.5rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-bottom: max(1.25rem, env(safe-area-inset-bottom));">
       <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
         <h3 class="text-lg font-bold text-white flex items-center gap-2">
           <span>➕ Machine toevoegen aan dossier</span>
